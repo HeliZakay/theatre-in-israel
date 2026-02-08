@@ -1,0 +1,93 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid #e5e5e5;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  background: var(--background);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.navList {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+
+.navList a {
+  transition: color 0.2s ease;
+}
+
+.navList a:hover {
+  color: var(--color-curtain-red-hover);
+}
+
+.navList a[aria-current="page"],
+.navList a[data-active] {
+  color: var(--color-curtain-red-hover);
+}
+
+.navText {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+@media (max-width: 900px) {
+  .header {
+    padding: 14px 18px;
+  }
+
+  .menu {
+    gap: 1.25rem;
+  }
+
+  .navText {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .header {
+    align-items: flex-start;
+  }
+
+  .menu {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .navList {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .menu {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}

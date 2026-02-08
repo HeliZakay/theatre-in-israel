@@ -1,0 +1,17 @@
+.button {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: var(--color-curtain-red);
+  color: white;
+  border-radius: 8px;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: var(--color-curtain-red-hover);
+}

@@ -1,66 +1,149 @@
-import Image from "next/image";
+import Link from "next/link";
+import Hero from "@/components/Hero/Hero";
 import styles from "./page.module.css";
+import { getShows } from "@/lib/shows";
 
-export default function Home() {
+function getAverageRating(reviews) {
+  if (!reviews.length) {
+    return null;
+  }
+  const total = reviews.reduce((sum, review) => sum + review.rating, 0);
+  return total / reviews.length;
+}
+
+function getLatestReviewDate(reviews) {
+  if (!reviews.length) {
+    return null;
+  }
+  return reviews.reduce((latest, review) => {
+    const reviewDate = new Date(review.date);
+    if (Number.isNaN(reviewDate.getTime())) {
+      return latest;
+    }
+    return !latest || reviewDate > latest ? reviewDate : latest;
+  }, null);
+}
+
+export default async function Home() {
+  const shows = await getShows();
+  const topRated = [...shows]
+    .map((show) => ({
+      ...show,
+      avgRating: getAverageRating(show.reviews),
+    }))
+    .filter((show) => show.avgRating !== null)
+    .sort((a, b) => b.avgRating - a.avgRating)
+    .slice(0, 6);
+  const latestReviewed = [...shows]
+    .map((show) => ({
+      ...show,
+      latestReviewDate: getLatestReviewDate(show.reviews),
+      avgRating: getAverageRating(show.reviews),
+    }))
+    .filter((show) => show.latestReviewDate)
+    .sort((a, b) => b.latestReviewDate - a.latestReviewDate)
+    .slice(0, 6);
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
+      <Hero />
+
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <div>
+            <p className={styles.kicker}>החודש</p>
+            <h2 className={styles.sectionTitle}>דירוגים גבוהים</h2>
+          </div>
+          <Link className={styles.link} href="/shows">
+            לכל ההצגות
+          </Link>
+        </div>
+        <div className={styles.grid}>
+          {topRated.map((show) => (
+            <Link
+              key={show.id}
+              className={styles.showCardLink}
+              href={`/shows/${show.id}`}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
+              <article className={styles.showCard}>
+                <div className={styles.showThumb} aria-hidden />
+                <div className={styles.showBody}>
+                  <h3 className={styles.showTitle}>{show.title}</h3>
+                  <p className={styles.showMeta}>{show.theatre}</p>
+                  <div className={styles.genreRow}>
+                    {(show.genre ?? []).slice(0, 2).map((item) => (
+                      <span key={item} className={styles.genreChip}>
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                  <div className={styles.showRating}>
+                    {show.avgRating.toFixed(1)}
+                    <span className={styles.star}>★</span>
+                  </div>
+                  <p className={styles.reviewCount}>
+                    {show.reviews.length} ביקורות
+                  </p>
+                </div>
+              </article>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <div>
+            <p className={styles.kicker}>חדש</p>
+            <h2 className={styles.sectionTitle}>ביקורות אחרונות</h2>
+          </div>
+          <Link className={styles.link} href="/shows">
+            לכל ההצגות
+          </Link>
+        </div>
+        <div className={styles.grid}>
+          {latestReviewed.map((show) => (
+            <Link
+              key={show.id}
+              className={styles.showCardLink}
+              href={`/shows/${show.id}`}
             >
-              Learning
-            </a>{" "}
-            center.
+              <article className={styles.showCard}>
+                <div className={styles.showThumb} aria-hidden />
+                <div className={styles.showBody}>
+                  <h3 className={styles.showTitle}>{show.title}</h3>
+                  <p className={styles.showMeta}>{show.theatre}</p>
+                  <div className={styles.genreRow}>
+                    {(show.genre ?? []).slice(0, 2).map((item) => (
+                      <span key={item} className={styles.genreChip}>
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                  <div className={styles.showRating}>
+                    {show.avgRating.toFixed(1)}
+                    <span className={styles.star}>★</span>
+                  </div>
+                  <p className={styles.reviewCount}>
+                    {show.reviews.length} ביקורות
+                  </p>
+                </div>
+              </article>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.ctaStrip}>
+        <div>
+          <h2 className={styles.ctaTitle}>כתבו ביקורת ועזרו לאחרים לבחור</h2>
+          <p className={styles.ctaText}>
+            כמה דקות של כתיבה יכולות לחסוך לקהל ערב לא מוצלח.
           </p>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+        <Link className={styles.ctaButton} href="/reviews/new">
+          כתיבת ביקורת
+        </Link>
+      </section>
     </div>
   );
 }

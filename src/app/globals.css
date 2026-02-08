@@ -1,6 +1,9 @@
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --color-curtain-red: #9c1b20;
+  --color-curtain-red-hover: #b12228;
+  --color-text-primary: #1a1a1a;
+  --header-offset: 96px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,11 +20,12 @@ body {
 }
 
 body {
-  color: var(--foreground);
+  color: var(--color-text-primary);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-text), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding-top: var(--header-offset);
 }
 
 * {
@@ -38,5 +42,17 @@ a {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --header-offset: 120px;
+  }
+}
+
+@media (max-width: 420px) {
+  :root {
+    --header-offset: 150px;
   }
 }

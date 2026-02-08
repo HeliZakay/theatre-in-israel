@@ -1,0 +1,141 @@
+.footer {
+  position: relative;
+  margin-top: clamp(48px, 8vw, 96px);
+  padding: clamp(32px, 6vw, 72px) clamp(20px, 6vw, 96px) 28px;
+  color: #fdf6f2;
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(255, 176, 100, 0.35),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 85% 10%,
+      rgba(220, 80, 80, 0.35),
+      transparent 50%
+    ),
+    linear-gradient(135deg, #25080b, #4a141c 40%, #1a0c10 100%);
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  inset: -20% 10% auto 10%;
+  height: 220px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 214, 170, 0.35),
+    transparent 70%
+  );
+  filter: blur(10px);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(220px, 1.2fr) minmax(260px, 2fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: start;
+}
+
+.brandTitle {
+  font-family: var(--title-font), serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  letter-spacing: -0.02em;
+  color: #ffe4c4;
+}
+
+.tagline {
+  margin-top: 12px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 320px;
+}
+
+.metaRow {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dot {
+  opacity: 0.6;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  gap: 28px;
+}
+
+.columnTitle {
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 229, 204, 0.85);
+  margin-bottom: 12px;
+}
+
+.linkList {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.95rem;
+}
+
+.linkList a {
+  color: inherit;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.linkList a:hover {
+  color: #ffd4a6;
+  transform: translateX(-2px);
+}
+
+.bottom {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(24px, 4vw, 40px);
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 900px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+
+  .tagline {
+    max-width: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer {
+    padding: 32px 16px 24px;
+  }
+
+  .columnTitle {
+    font-size: 0.9rem;
+  }
+}

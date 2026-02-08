@@ -1,0 +1,98 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  min-width: 0;
+}
+
+.logoIcon {
+  width: 85px;
+  height: auto;
+  flex: 0 0 auto;
+}
+
+.logoTextWrapper {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  min-width: 0;
+}
+
+.logoTitle {
+  font-family: var(--title-font), serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--color-curtain-red);
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.logoSubtitle {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+  color: #cd8937;
+  font-size: 0.85rem;
+  opacity: 0.75;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.logoSubtitle::before,
+.logoSubtitle::after {
+  content: "";
+  height: 2px;
+  background: #cd8937;
+  opacity: 0.6;
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  .logo {
+    gap: 10px;
+  }
+
+  .logoIcon {
+    width: 72px;
+  }
+
+  .logoTitle {
+    font-size: 2rem;
+  }
+
+  .logoSubtitle {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .logo {
+    gap: 8px;
+  }
+
+  .logoIcon {
+    width: 60px;
+  }
+
+  .logoTitle {
+    font-size: 1.6rem;
+  }
+
+  .logoSubtitle {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .logoTitle {
+    font-size: 1.35rem;
+  }
+
+  .logoSubtitle {
+    display: none;
+  }
+}
