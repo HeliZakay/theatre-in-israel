@@ -26,7 +26,7 @@ export default async function Home() {
       <Hero />
 
       <ShowsSection
-        kicker="החודש"
+        kicker="המובילים"
         title="דירוגים גבוהים"
         shows={topRated}
         linkHref="/shows"

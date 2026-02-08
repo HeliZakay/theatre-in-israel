@@ -1,0 +1,7 @@
+.backLink {
+  color: var(--color-curtain-red);
+  font-weight: 600;
+  width: fit-content;
+  align-self: flex-end;
+  text-decoration: none;
+}

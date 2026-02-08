@@ -1,20 +1,10 @@
-import Link from "next/link";
 import ShowCard from "@/components/ShowCard/ShowCard";
 import ShowsFilterBar from "@/components/ShowsFilterBar/ShowsFilterBar";
 import styles from "./page.module.css";
-import { getShows } from "@/lib/shows";
-
-function normalize(value) {
-  return value?.toString().trim().toLowerCase() ?? "";
-}
-
-function getAverageRating(reviews) {
-  if (!reviews?.length) {
-    return null;
-  }
-  const total = reviews.reduce((sum, review) => sum + review.rating, 0);
-  return total / reviews.length;
-}
+import { getShows, getAverageRating } from "@/lib/shows";
+import { normalize } from "@/utils/normalize";
+import BackLink from "@/components/BackLink/BackLink";
+import Link from "next/link";
 
 export default async function ShowsPage({ searchParams }) {
   const {
@@ -71,9 +61,7 @@ export default async function ShowsPage({ searchParams }) {
 
   return (
     <main className={styles.page}>
-      <Link className={styles.homeLink} href="/">
-        חזרה לעמוד הבית →
-      </Link>
+      <BackLink href="/" />
       <header className={styles.header}>
         <h1 className={styles.title}>הצגות</h1>
         <p className={styles.subtitle}>בחרו הצגה וקראו ביקורות של הקהל</p>
