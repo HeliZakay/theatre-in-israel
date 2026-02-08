@@ -1,6 +1,6 @@
 import styles from "./Hero.module.css";
 import { SearchBar } from "../SearchBar/SearchBar";
-import FeaturedShow from "./components/FeaturedShow/FeaturedShow";
+import FeaturedShow from "../FeaturedShow/FeaturedShow";
 
 export default function Hero() {
   return (

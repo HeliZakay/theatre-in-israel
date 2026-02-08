@@ -1,6 +1,6 @@
 import Link from "next/link";
 import ShowCard from "@/components/ShowCard/ShowCard";
-import ShowsFilterBar from "./components/ShowsFilterBar";
+import ShowsFilterBar from "@/components/ShowsFilterBar/ShowsFilterBar";
 import styles from "./page.module.css";
 import { getShows } from "@/lib/shows";
 

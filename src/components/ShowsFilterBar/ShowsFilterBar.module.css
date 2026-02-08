@@ -1,0 +1,71 @@
+.filterBar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(156, 27, 32, 0.03);
+}
+
+.filterForm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.select {
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.2);
+  padding: 8px 12px;
+  background: #ffffff;
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.searchInput {
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.2);
+  padding: 8px 12px;
+  background: #ffffff;
+  color: var(--color-text-primary);
+  font-weight: 600;
+  min-width: 220px;
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.chip {
+  border-radius: 999px;
+  padding: 6px 12px;
+  background: rgba(156, 27, 32, 0.08);
+  color: var(--color-curtain-red);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.chipActive {
+  background: var(--color-curtain-red);
+  color: #ffffff;
+}
+
+.filterLabel {
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .filterForm {
+    align-items: stretch;
+  }
+
+  .select,
+  .searchInput {
+    width: 100%;
+  }
+}

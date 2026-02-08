@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import { getShows } from "@/lib/shows";
+import ReviewCard from "@/components/ReviewCard/ReviewCard";
 
 export async function generateStaticParams() {
   const shows = await getShows();
@@ -23,17 +24,6 @@ export default async function ShowPage({ params }) {
   const averageRating = reviewCount
     ? show.reviews.reduce((sum, review) => sum + review.rating, 0) / reviewCount
     : null;
-
-  const formatDate = (dateValue) => {
-    const date = new Date(dateValue);
-    return Number.isNaN(date.getTime())
-      ? ""
-      : date.toLocaleDateString("he-IL", {
-          day: "2-digit",
-          month: "2-digit",
-          year: "2-digit",
-        });
-  };
 
   return (
     <main className={styles.page}>
@@ -88,21 +78,7 @@ export default async function ShowPage({ params }) {
         {show.reviews.length ? (
           <div className={styles.reviewList}>
             {show.reviews.map((review) => (
-              <article key={review.id} className={styles.reviewCard}>
-                <div className={styles.reviewHeader}>
-                  <div className={styles.reviewMeta}>
-                    <span>{review.author}</span>
-                    {review.date ? (
-                      <>
-                        <span className={styles.dot}>•</span>
-                        <span>{formatDate(review.date)}</span>
-                      </>
-                    ) : null}
-                  </div>
-                  <span className={styles.reviewRating}>{review.rating}★</span>
-                </div>
-                <p className={styles.reviewText}>{review.text}</p>
-              </article>
+              <ReviewCard key={review.id} review={review} />
             ))}
           </div>
         ) : (

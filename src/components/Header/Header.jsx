@@ -4,7 +4,7 @@ import Link from "next/link";
 import styles from "./Header.module.css";
 import Logo from "@/components/Logo/Logo";
 import { usePathname } from "next/navigation";
-import Button from "../Button/Button";
+import Button from "@/components/Button/Button";
 
 export default function Header() {
   const pathname = usePathname();
