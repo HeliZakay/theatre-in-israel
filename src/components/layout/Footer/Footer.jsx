@@ -54,7 +54,7 @@ export default function Footer() {
       </div>
 
       <div className={styles.bottom}>
-        <span>© 2026 תיאטרון בישראל</span>
+        <span>© {new Date().getFullYear()} תיאטרון בישראל</span>
         <span className={styles.dot}>•</span>
         <span>כל הזכויות שמורות</span>
       </div>

@@ -1,6 +1,6 @@
 import styles from "./Hero.module.css";
 import { SearchBar } from "../SearchBar/SearchBar";
-import FeaturedShow from "../FeaturedShow/FeaturedShow";
+import FeaturedShow from "./components/FeaturedShow/FeaturedShow";
 
 export default function Hero() {
   return (
@@ -16,7 +16,13 @@ export default function Hero() {
           <SearchBar />
         </div>
         <div className={styles.left}>
-          <FeaturedShow />
+          <FeaturedShow
+            title="גבירתי הנאווה"
+            imageSrc="/my-fair-lady.jpg"
+            tags={["מחזמר", "2 שעות"]}
+            quote="ממש מצחיק ושחקנים מעולים!"
+            quoteAuthor="חלי, רחובות"
+          />
         </div>
       </div>
     </section>

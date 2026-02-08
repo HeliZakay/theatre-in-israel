@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import styles from "./page.module.css";
+import styles from "../page.module.css";
 
 export default function ShowsFilterBar({
   theatres,

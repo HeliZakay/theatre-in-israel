@@ -1,6 +1,6 @@
 import "./globals.css";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
+import Header from "@/components/layout/Header/Header";
+import Footer from "@/components/layout/Footer/Footer";
 import { Noto_Sans_Hebrew } from "next/font/google";
 
 const textFont = Noto_Sans_Hebrew({

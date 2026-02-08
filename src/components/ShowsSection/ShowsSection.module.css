@@ -1,0 +1,123 @@
+.section {
+  padding: 0 clamp(20px, 6vw, 96px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.7rem;
+  color: rgba(26, 26, 26, 0.55);
+}
+
+.title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.link {
+  color: var(--color-curtain-red);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background:
+    linear-gradient(160deg, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.35)),
+    radial-gradient(circle at 20% 30%, #f3c78a, transparent 60%),
+    radial-gradient(circle at 80% 20%, #e7996a, transparent 55%), #1b1f2a;
+}
+
+.body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cardTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.meta {
+  color: rgba(26, 26, 26, 0.65);
+}
+
+.genreRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.genreChip {
+  border-radius: 999px;
+  padding: 4px 10px;
+  background: rgba(26, 26, 26, 0.06);
+  color: rgba(26, 26, 26, 0.7);
+  font-size: 0.8rem;
+}
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: var(--color-curtain-red);
+}
+
+.star {
+  font-size: 1rem;
+}
+
+.reviewCount {
+  font-size: 0.9rem;
+  color: rgba(26, 26, 26, 0.6);
+}
+
+@media (max-width: 900px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 0 16px;
+  }
+}

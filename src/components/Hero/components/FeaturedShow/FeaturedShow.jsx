@@ -2,14 +2,21 @@ import * as Separator from "@radix-ui/react-separator";
 import Image from "next/image";
 import styles from "./FeaturedShow.module.css";
 
-export default function FeaturedShow() {
+export default function FeaturedShow({
+  title,
+  imageSrc,
+  imageAlt,
+  tags = [],
+  quote,
+  quoteAuthor,
+}) {
   return (
     <article className={styles.card} aria-label="כרטיס הצגה מומלצת">
       <div className={styles.media}>
         <div className={styles.mediaRatio}>
           <Image
-            src="/my-fair-lady.jpg"
-            alt="גבירתי הנאווה"
+            src={imageSrc}
+            alt={imageAlt ?? title}
             fill
             sizes="(max-width: 900px) 100vw, 45vw"
             className={styles.mediaImage}
@@ -17,11 +24,13 @@ export default function FeaturedShow() {
           />
           <div className={styles.mediaShade} aria-hidden />
           <div className={styles.mediaOverlay}>
-            <h3 className={styles.showTitle}>גבירתי הנאווה</h3>
+            <h3 className={styles.showTitle}>{title}</h3>
             <div className={styles.tagRow}>
-              <span className={styles.tag}>מחזמר</span>
-              <span className={styles.tag}>תל אביב</span>
-              <span className={styles.tag}>2 שעות</span>
+              {tags.map((tag) => (
+                <span key={tag} className={styles.tag}>
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
         </div>
@@ -29,16 +38,22 @@ export default function FeaturedShow() {
 
       <div className={styles.body}>
         <Separator.Root className={styles.separator} />
-        <h3 className={styles.mobileTitle}>גבירתי הנאווה</h3>
+        <h3 className={styles.mobileTitle}>{title}</h3>
         <div className={styles.mobileTags}>
-          <span className={styles.tag}>מחזמר</span>
-          <span className={styles.tag}>תל אביב</span>
-          <span className={styles.tag}>2 שעות</span>
+          {tags.map((tag) => (
+            <span key={tag} className={styles.tag}>
+              {tag}
+            </span>
+          ))}
         </div>
-        <blockquote className={styles.quote}>
-          ממש מצחיק ושחקנים מעולים!
-          <span className={styles.quoteAuthor}>חלי, רחובות</span>
-        </blockquote>
+        {quote && (
+          <blockquote className={styles.quote}>
+            {quote}
+            {quoteAuthor && (
+              <span className={styles.quoteAuthor}>{quoteAuthor}</span>
+            )}
+          </blockquote>
+        )}
       </div>
     </article>
   );
