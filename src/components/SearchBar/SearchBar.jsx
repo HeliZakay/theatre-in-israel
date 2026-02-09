@@ -5,7 +5,7 @@ import Button from "../Button/Button";
 import styles from "./SearchBar.module.css";
 import { useCombobox } from "@/hooks/useCombobox";
 
-export function SearchBar({ suggestions = [] }) {
+export default function SearchBar({ suggestions = [] }) {
   const [value, setValue] = useState("");
   const {
     activeIndex,

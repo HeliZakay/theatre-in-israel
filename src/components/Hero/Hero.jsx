@@ -1,5 +1,5 @@
 import styles from "./Hero.module.css";
-import { SearchBar } from "../SearchBar/SearchBar";
+import SearchBar from "../SearchBar/SearchBar";
 import FeaturedShow from "../FeaturedShow/FeaturedShow";
 
 export default function Hero({ suggestions = [] }) {
