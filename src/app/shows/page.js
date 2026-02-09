@@ -3,6 +3,7 @@ import ShowsFilterBar from "@/components/ShowsFilterBar/ShowsFilterBar";
 import styles from "./page.module.css";
 import { getShowsForList } from "@/lib/showsData";
 import BackLink from "@/components/BackLink/BackLink";
+import ROUTES from "@/constants/routes";
 import Link from "next/link";
 
 export default async function ShowsPage({ searchParams }) {
@@ -13,7 +14,7 @@ export default async function ShowsPage({ searchParams }) {
 
   return (
     <main className={styles.page} id="main-content">
-      <BackLink href="/" />
+      <BackLink href={ROUTES.HOME} />
       <header className={styles.header}>
         <h1 className={styles.title}>הצגות</h1>
         <p className={styles.subtitle}>בחרו הצגה וקראו ביקורות של הקהל</p>
@@ -41,7 +42,7 @@ export default async function ShowsPage({ searchParams }) {
                 <span className={styles.filterChip}>"{query}"</span>
               ) : null}
               <span className={styles.filterCount}>{shows.length} תוצאות</span>
-              <Link className={styles.clearLink} href="/shows">
+              <Link className={styles.clearLink} href={ROUTES.SHOWS}>
                 נקה סינון
               </Link>
             </>

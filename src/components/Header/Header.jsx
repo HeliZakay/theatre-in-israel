@@ -24,7 +24,7 @@ export default function Header() {
               </NavigationMenu.Link>
             </NavigationMenu.Item>
             <NavigationMenu.Item>
-              <NavigationMenu.Link asChild active={pathname === "/shows"}>
+              <NavigationMenu.Link asChild active={pathname === ROUTES.SHOWS}>
                 <Link href={ROUTES.SHOWS} className={styles.navText}>
                   כל ההצגות
                 </Link>
@@ -33,7 +33,7 @@ export default function Header() {
           </NavigationMenu.List>
         </NavigationMenu.Root>
 
-        <Button href="/reviews/new" aria-label="כתיבת ביקורת">
+        <Button href={ROUTES.REVIEWS_NEW} aria-label="כתיבת ביקורת">
           לכתוב ביקורת
         </Button>
       </div>

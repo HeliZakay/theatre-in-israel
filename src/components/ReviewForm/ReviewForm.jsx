@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import styles from "@/app/reviews/new/page.module.css";
+import ROUTES from "@/constants/routes";
 
 const reviewSchema = z.object({
   showId: z.string().min(1, "יש לבחור הצגה"),
@@ -49,7 +50,7 @@ export default function ReviewForm({ shows = [], initialShowId = "" }) {
       formData.set("rating", String(values.rating));
       formData.set("comment", values.comment);
 
-      const res = await fetch("/api/reviews", {
+      const res = await fetch(ROUTES.API_REVIEWS, {
         method: "POST",
         body: formData,
       });
