@@ -33,11 +33,18 @@ export function useShowsFilters({
       const nextGenres = overrides.genres ?? genreFilters;
       const nextSort = overrides.sort ?? selectedSort;
 
+      // If any filter (query/theatre/genres/sort) changed, reset to page 1
+      const filterKeys = ["query", "theatre", "genres", "sort"];
+      const shouldResetPage = Object.keys(overrides).some((k) =>
+        filterKeys.includes(k),
+      );
+
       return buildShowsQueryString({
         query: nextQuery,
         theatre: nextTheatre,
         genres: nextGenres,
         sort: nextSort,
+        page: overrides.page ?? (shouldResetPage ? 1 : undefined),
         defaultSort: "rating",
       });
     },

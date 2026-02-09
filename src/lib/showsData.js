@@ -127,11 +127,21 @@ export async function getShowsForList(searchParams) {
   const filteredShows = filterShows(shows, normalized);
   const sortedShows = sortShowsByRating(filteredShows, filters.selectedSort);
 
+  // Pagination: determine page/perPage and slice results.
+  const perPage = 12; // default items per page
+  const page = filters.page ?? 1;
+  const total = sortedShows.length;
+  const totalPages = Math.max(1, Math.ceil(total / perPage));
+  const clampedPage = Math.min(Math.max(1, page), totalPages);
+  const start = (clampedPage - 1) * perPage;
+  const end = start + perPage;
+  const paginated = sortedShows.slice(start, end);
+
   return {
-    shows: sortedShows,
+    shows: paginated,
     theatres,
     genres,
-    filters,
+    filters: { ...filters, page: clampedPage, perPage, total, totalPages },
   };
 }
 

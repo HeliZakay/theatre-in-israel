@@ -5,6 +5,7 @@ import { getShowsForList } from "@/lib/showsData";
 import BackLink from "@/components/BackLink/BackLink";
 import ROUTES from "@/constants/routes";
 import Link from "next/link";
+import Pagination from "@/components/Pagination/Pagination";
 
 export default async function ShowsPage({ searchParams }) {
   const { shows, theatres, genres, filters } = await getShowsForList(
@@ -60,6 +61,7 @@ export default async function ShowsPage({ searchParams }) {
           <p className={styles.emptyState}>לא נמצאו הצגות לפי החיפוש.</p>
         )}
       </section>
+      <Pagination filters={filters} />
     </main>
   );
 }
