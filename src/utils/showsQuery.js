@@ -1,10 +1,12 @@
+export const DEFAULT_SORT = "rating";
+
 export function buildShowsQueryString({
   query,
   theatre,
   genres,
   sort,
   page,
-  defaultSort = "rating",
+  defaultSort = DEFAULT_SORT,
 } = {}) {
   const params = new URLSearchParams();
 
@@ -24,7 +26,7 @@ export function buildShowsQueryString({
   return queryString ? `?${queryString}` : "";
 }
 
-export function parseShowsSearchParams(searchParams, defaultSort = "rating") {
+export function parseShowsSearchParams(searchParams, defaultSort = DEFAULT_SORT) {
   const { theatre, query, genre, sort } = searchParams ?? {};
   const genreFilters = Array.isArray(genre) ? genre : genre ? [genre] : [];
 

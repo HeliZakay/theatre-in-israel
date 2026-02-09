@@ -45,7 +45,6 @@ export function useShowsFilters({
         genres: nextGenres,
         sort: nextSort,
         page: overrides.page ?? (shouldResetPage ? 1 : undefined),
-        defaultSort: "rating",
       });
     },
     [query, theatreFilter, genreFilters, selectedSort],
