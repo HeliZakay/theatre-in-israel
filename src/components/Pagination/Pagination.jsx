@@ -4,7 +4,15 @@ import { buildShowsQueryString } from "@/utils/showsQuery";
 import ROUTES from "@/constants/routes";
 
 export default function Pagination({ filters }) {
-  const { page = 1, totalPages = 1, perPage, query, theatreFilter, genreFilters, selectedSort } = filters;
+  const {
+    page = 1,
+    totalPages = 1,
+    perPage,
+    query,
+    theatreFilter,
+    genreFilters,
+    selectedSort,
+  } = filters;
 
   if (totalPages <= 1) return null;
 
@@ -16,7 +24,10 @@ export default function Pagination({ filters }) {
   return (
     <nav className={styles.pagination} aria-label="Pagination">
       {page > 1 ? (
-        <Link href={`${ROUTES.SHOWS}${buildShowsQueryString({ query, theatre: theatreFilter, genres: genreFilters, sort: selectedSort, page: page - 1 })}`} className={styles.prev}>
+        <Link
+          href={`${ROUTES.SHOWS}${buildShowsQueryString({ query, theatre: theatreFilter, genres: genreFilters, sort: selectedSort, page: page - 1 })}`}
+          className={styles.prev}
+        >
           הקודם
         </Link>
       ) : (
@@ -24,25 +35,38 @@ export default function Pagination({ filters }) {
       )}
 
       {start > 1 ? (
-        <Link href={`${ROUTES.SHOWS}${buildShowsQueryString({ query, theatre: theatreFilter, genres: genreFilters, sort: selectedSort, page: 1 })}`} className={styles.page}>
+        <Link
+          href={`${ROUTES.SHOWS}${buildShowsQueryString({ query, theatre: theatreFilter, genres: genreFilters, sort: selectedSort, page: 1 })}`}
+          className={styles.page}
+        >
           1
         </Link>
       ) : null}
 
       {pages.map((p) => (
-        <Link key={p} href={`${ROUTES.SHOWS}${buildShowsQueryString({ query, theatre: theatreFilter, genres: genreFilters, sort: selectedSort, page: p })}`} className={p === page ? styles.active : styles.page}>
+        <Link
+          key={p}
+          href={`${ROUTES.SHOWS}${buildShowsQueryString({ query, theatre: theatreFilter, genres: genreFilters, sort: selectedSort, page: p })}`}
+          className={p === page ? styles.active : styles.page}
+        >
           {p}
         </Link>
       ))}
 
       {end < totalPages ? (
-        <Link href={`${ROUTES.SHOWS}${buildShowsQueryString({ query, theatre: theatreFilter, genres: genreFilters, sort: selectedSort, page: totalPages })}`} className={styles.page}>
+        <Link
+          href={`${ROUTES.SHOWS}${buildShowsQueryString({ query, theatre: theatreFilter, genres: genreFilters, sort: selectedSort, page: totalPages })}`}
+          className={styles.page}
+        >
           {totalPages}
         </Link>
       ) : null}
 
       {page < totalPages ? (
-        <Link href={`${ROUTES.SHOWS}${buildShowsQueryString({ query, theatre: theatreFilter, genres: genreFilters, sort: selectedSort, page: page + 1 })}`} className={styles.next}>
+        <Link
+          href={`${ROUTES.SHOWS}${buildShowsQueryString({ query, theatre: theatreFilter, genres: genreFilters, sort: selectedSort, page: page + 1 })}`}
+          className={styles.next}
+        >
           הבא
         </Link>
       ) : (
