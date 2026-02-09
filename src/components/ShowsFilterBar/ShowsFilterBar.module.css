@@ -50,6 +50,15 @@
   text-decoration: none;
 }
 
+.chip:hover {
+  background: rgba(156, 27, 32, 0.14);
+}
+
+.chip:focus-visible {
+  outline: 3px solid rgba(156, 27, 32, 0.35);
+  outline-offset: 2px;
+}
+
 .chipActive {
   background: var(--color-curtain-red);
   color: #ffffff;

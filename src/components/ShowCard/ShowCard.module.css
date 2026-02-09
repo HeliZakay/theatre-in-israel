@@ -21,6 +21,12 @@
   color: inherit;
 }
 
+.cardLink:focus-visible .card {
+  box-shadow:
+    0 0 0 3px rgba(156, 27, 32, 0.35),
+    0 18px 30px rgba(15, 23, 42, 0.12);
+}
+
 .cardLink:hover .card {
   transform: translateY(-2px);
   box-shadow: 0 18px 30px rgba(15, 23, 42, 0.12);

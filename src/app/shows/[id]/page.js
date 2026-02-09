@@ -26,7 +26,7 @@ export default async function ShowPage({ params }) {
     : null;
 
   return (
-    <main className={styles.page}>
+    <main className={styles.page} id="main-content">
       <Link className={styles.backLink} href="/shows">
         לכל ההצגות →
       </Link>

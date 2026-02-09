@@ -126,6 +126,7 @@ export default function ShowsFilterBar({
           className={`${styles.chip} ${
             genreFilters.length ? "" : styles.chipActive
           }`}
+          aria-current={genreFilters.length ? undefined : "true"}
           href={`${pathname}${buildQueryString({ genres: [] })}`}
         >
           הכל
@@ -136,6 +137,7 @@ export default function ShowsFilterBar({
             className={`${styles.chip} ${
               genreFilters.includes(genre) ? styles.chipActive : ""
             }`}
+            aria-current={genreFilters.includes(genre) ? "true" : undefined}
             href={`${pathname}${buildQueryString({
               genres: toggleGenre(genre),
             })}`}

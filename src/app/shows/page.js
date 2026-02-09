@@ -60,7 +60,7 @@ export default async function ShowsPage({ searchParams }) {
   });
 
   return (
-    <main className={styles.page}>
+    <main className={styles.page} id="main-content">
       <BackLink href="/" />
       <header className={styles.header}>
         <h1 className={styles.title}>הצגות</h1>

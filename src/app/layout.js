@@ -17,6 +17,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="he" dir="rtl">
       <body className={textFont.variable}>
+        <a href="#main-content" className="skipLink">
+          דלג לתוכן הראשי
+        </a>
         <Header />
         {children}
         <Footer />

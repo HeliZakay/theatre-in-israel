@@ -22,7 +22,7 @@ export default async function Home() {
     .slice(0, 6);
 
   return (
-    <div className={styles.page}>
+    <main className={styles.page} id="main-content">
       <Hero />
 
       <ShowsSection
@@ -47,6 +47,6 @@ export default async function Home() {
         buttonText="כתיבת ביקורת"
         href="/reviews/new"
       />
-    </div>
+    </main>
   );
 }

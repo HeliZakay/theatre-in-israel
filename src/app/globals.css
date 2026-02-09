@@ -4,13 +4,7 @@
   --color-curtain-red-hover: #b12228;
   --color-text-primary: #1a1a1a;
   --header-offset: 96px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --focus-ring-color: rgba(156, 27, 32, 0.35);
 }
 
 html,
@@ -39,10 +33,32 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.skipLink {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #ffffff;
+  color: var(--color-text-primary);
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 2px solid var(--color-curtain-red);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18);
+  transform: translateY(-200%);
+  transition: transform 0.2s ease;
+  z-index: 1100;
+}
+
+.skipLink:focus-visible {
+  transform: translateY(0);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--focus-ring-color);
+  outline-offset: 3px;
 }
 
 @media (max-width: 640px) {

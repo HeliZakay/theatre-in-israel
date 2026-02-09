@@ -15,8 +15,7 @@ export default function Logo() {
     <Link href="/" aria-label="דף הבית" className={styles.logo}>
       <Image
         src="/logo-img.png"
-        alt="לוגו וילון תיאטרון"
-        aria-hidden="true"
+        alt=""
         className={styles.logoIcon}
         width={85}
         height={60}

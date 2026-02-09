@@ -20,7 +20,7 @@ export default async function NewReviewPage({ params }) {
   }
 
   return (
-    <main className={styles.page}>
+    <main className={styles.page} id="main-content">
       <header className={styles.header}>
         <p className={styles.kicker}>ביקורת חדשה</p>
         <h1 className={styles.title}>{show.title}</h1>

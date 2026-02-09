@@ -32,9 +32,9 @@ export default function Header() {
           </NavigationMenu.List>
         </NavigationMenu.Root>
 
-        <Link href="/reviews/new" aria-label="כתיבת ביקורת">
-          <Button>לכתוב ביקורת</Button>
-        </Link>
+        <Button href="/reviews/new" aria-label="כתיבת ביקורת">
+          לכתוב ביקורת
+        </Button>
       </div>
     </header>
   );

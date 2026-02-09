@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import Button from "../Button/Button";
 import styles from "./SearchBar.module.css";
 import shows from "@/data/shows.json";
@@ -15,6 +15,9 @@ const genres = Array.from(
 export function SearchBar() {
   const [value, setValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const listboxId = "shows-suggestions";
+  const rootRef = useRef(null);
 
   const suggestions = useMemo(() => {
     const pool = [
@@ -32,6 +35,63 @@ export function SearchBar() {
       .slice(0, 8);
   }, [value]);
 
+  useEffect(() => {
+    if (!isOpen) {
+      setActiveIndex(-1);
+      return;
+    }
+    if (activeIndex >= suggestions.length) {
+      setActiveIndex(suggestions.length ? 0 : -1);
+    }
+  }, [isOpen, suggestions.length, activeIndex]);
+
+  const handleKeyDown = (event) => {
+    if (!suggestions.length) return;
+
+    switch (event.key) {
+      case "ArrowDown": {
+        event.preventDefault();
+        setIsOpen(true);
+        setActiveIndex((prev) =>
+          prev < suggestions.length - 1 ? prev + 1 : 0,
+        );
+        break;
+      }
+      case "ArrowUp": {
+        event.preventDefault();
+        setIsOpen(true);
+        setActiveIndex((prev) =>
+          prev > 0 ? prev - 1 : suggestions.length - 1,
+        );
+        break;
+      }
+      case "Enter": {
+        if (isOpen && activeIndex >= 0) {
+          event.preventDefault();
+          setValue(suggestions[activeIndex]);
+          setIsOpen(false);
+        }
+        break;
+      }
+      case "Escape": {
+        if (isOpen) {
+          event.preventDefault();
+          setIsOpen(false);
+        }
+        break;
+      }
+      default:
+        break;
+    }
+  };
+
+  const handleBlur = (event) => {
+    if (rootRef.current?.contains(event.relatedTarget)) {
+      return;
+    }
+    setIsOpen(false);
+  };
+
   return (
     <form
       className={styles.search}
@@ -44,7 +104,7 @@ export function SearchBar() {
         חיפוש
       </label>
 
-      <div className={styles.searchShell}>
+      <div className={styles.searchShell} ref={rootRef} onBlur={handleBlur}>
         <span className={styles.searchIcon} aria-hidden>
           <svg viewBox="0 0 24 24" width="18" height="18">
             <path
@@ -63,25 +123,33 @@ export function SearchBar() {
           autoComplete="off"
           name="query"
           value={value}
-          onChange={(event) => setValue(event.target.value)}
+          onChange={(event) => {
+            setValue(event.target.value);
+            setIsOpen(true);
+          }}
           onFocus={() => setIsOpen(true)}
-          onBlur={() => setIsOpen(false)}
+          onKeyDown={handleKeyDown}
+          role="combobox"
+          aria-autocomplete="list"
           aria-expanded={isOpen}
-          aria-controls="shows-suggestions"
+          aria-controls={listboxId}
+          aria-activedescendant={
+            activeIndex >= 0 ? `shows-suggestion-${activeIndex}` : undefined
+          }
         />
 
         {isOpen && suggestions.length ? (
-          <div
-            className={styles.suggestions}
-            id="shows-suggestions"
-            role="listbox"
-          >
-            {suggestions.map((item) => (
+          <div className={styles.suggestions} id={listboxId} role="listbox">
+            {suggestions.map((item, index) => (
               <button
                 key={item}
                 type="button"
-                className={styles.suggestion}
+                id={`shows-suggestion-${index}`}
+                className={`${styles.suggestion} ${
+                  index === activeIndex ? styles.suggestionActive : ""
+                }`}
                 role="option"
+                aria-selected={index === activeIndex}
                 onMouseDown={(event) => event.preventDefault()}
                 onClick={() => {
                   setValue(item);
