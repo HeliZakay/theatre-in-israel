@@ -2,6 +2,7 @@
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import Link from "next/link";
 import styles from "./Header.module.css";
+import ROUTES from "@/constants/routes";
 import Logo from "@/components/Logo/Logo";
 import { usePathname } from "next/navigation";
 import Button from "@/components/Button/Button";
@@ -24,7 +25,7 @@ export default function Header() {
             </NavigationMenu.Item>
             <NavigationMenu.Item>
               <NavigationMenu.Link asChild active={pathname === "/shows"}>
-                <Link href="/shows" className={styles.navText}>
+                <Link href={ROUTES.SHOWS} className={styles.navText}>
                   כל ההצגות
                 </Link>
               </NavigationMenu.Link>

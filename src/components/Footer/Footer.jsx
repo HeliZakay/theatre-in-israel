@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./Footer.module.css";
+import ROUTES from "@/constants/routes";
 import { Frank_Ruhl_Libre } from "next/font/google";
 
 const titleFont = Frank_Ruhl_Libre({
@@ -34,7 +35,7 @@ export default function Footer() {
                 <Link href="/">דף הבית</Link>
               </li>
               <li>
-                <Link href="/shows">כל ההצגות</Link>
+                <Link href={ROUTES.SHOWS}>כל ההצגות</Link>
               </li>
               <li>
                 <Link href="/reviews/new">כתיבת ביקורת</Link>

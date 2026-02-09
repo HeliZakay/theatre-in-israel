@@ -3,6 +3,7 @@ import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import { getShows } from "@/lib/shows";
 import { getShowById } from "@/lib/showsData";
+import ROUTES from "@/constants/routes";
 import ReviewCard from "@/components/ReviewCard/ReviewCard";
 import { getShowStats } from "@/utils/showStats";
 
@@ -25,7 +26,7 @@ export default async function ShowPage({ params }) {
 
   return (
     <main className={styles.page} id="main-content">
-      <Link className={styles.backLink} href="/shows">
+      <Link className={styles.backLink} href={ROUTES.SHOWS}>
         לכל ההצגות →
       </Link>
       <header className={styles.header}>

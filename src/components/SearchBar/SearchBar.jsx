@@ -4,6 +4,7 @@ import { useState } from "react";
 import Button from "../Button/Button";
 import styles from "./SearchBar.module.css";
 import { useCombobox } from "@/hooks/useCombobox";
+import ROUTES from "@/constants/routes";
 
 export default function SearchBar({ suggestions = [] }) {
   const [value, setValue] = useState("");
@@ -29,7 +30,7 @@ export default function SearchBar({ suggestions = [] }) {
       className={styles.search}
       role="search"
       aria-label="חיפוש הצגות"
-      action="/shows"
+      action={ROUTES.SHOWS}
       method="get"
     >
       <label className={styles.srOnly} htmlFor="q">

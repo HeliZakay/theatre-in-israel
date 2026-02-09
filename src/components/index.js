@@ -13,3 +13,4 @@ export { default as ShowsFilterBar } from "./ShowsFilterBar/ShowsFilterBar";
 export { default as ShowsSection } from "./ShowsSection/ShowsSection";
 export { default as SectionHeader } from "./SectionHeader/SectionHeader";
 export { default as Tag } from "./Tag/Tag";
+export { default as ROUTES } from "@/constants/routes";

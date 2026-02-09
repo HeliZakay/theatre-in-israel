@@ -1,5 +1,6 @@
 import styles from "./page.module.css";
 import Link from "next/link";
+import ROUTES from "@/constants/routes";
 import { getShows } from "@/lib/shows";
 import ReviewForm from "@/components/ReviewForm/ReviewForm";
 
@@ -16,7 +17,7 @@ export default async function NewReviewPage() {
       <ReviewForm shows={shows} />
 
       <div style={{ marginTop: 12 }}>
-        <Link className={styles.ghostBtn} href="/shows">
+        <Link className={styles.ghostBtn} href={ROUTES.SHOWS}>
           ביטול
         </Link>
       </div>

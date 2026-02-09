@@ -2,6 +2,7 @@ import Hero from "@/components/Hero/Hero";
 import CtaStrip from "@/components/CtaStrip/CtaStrip";
 import ShowsSection from "@/components/ShowsSection/ShowsSection";
 import styles from "./page.module.css";
+import ROUTES from "@/constants/routes";
 import { getHomePageData } from "@/lib/showsData";
 
 export default async function Home() {
@@ -15,7 +16,7 @@ export default async function Home() {
         kicker="המובילים"
         title="דירוגים גבוהים"
         shows={topRated}
-        linkHref="/shows"
+        linkHref={ROUTES.SHOWS}
         linkText="לכל ההצגות"
       />
 

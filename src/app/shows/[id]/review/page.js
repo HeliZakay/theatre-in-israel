@@ -1,6 +1,7 @@
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import ROUTES from "@/constants/routes";
 import { getShows } from "@/lib/shows";
 import { getShowById } from "@/lib/showsData";
 import ReviewForm from "@/components/ReviewForm/ReviewForm";
@@ -30,7 +31,7 @@ export default async function NewReviewPage({ params }) {
 
       <ReviewForm initialShowId={show.id} />
       <div style={{ marginTop: 12 }}>
-        <Link className={styles.ghostBtn} href={`/shows/${show.id}`}>
+        <Link className={styles.ghostBtn} href={`${ROUTES.SHOWS}/${show.id}`}>
           חזרה לדף ההצגה
         </Link>
       </div>
