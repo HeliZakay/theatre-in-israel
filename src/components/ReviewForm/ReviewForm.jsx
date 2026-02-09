@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,15 +11,18 @@ const reviewSchema = z.object({
   showId: z.string().min(1, "יש לבחור הצגה"),
   name: z.string().min(2, "הכנס שם חוקי"),
   title: z.string().min(2, "הכנס כותרת"),
-  rating: z
-    .preprocess((v) => (typeof v === "string" ? parseInt(v, 10) : v),
-      z.number().int().min(1).max(5)),
+  rating: z.preprocess(
+    (v) => (typeof v === "string" ? parseInt(v, 10) : v),
+    z.number().int().min(1).max(5),
+  ),
   comment: z.string().min(10, "תגובה צריכה להכיל לפחות 10 תווים"),
 });
 
 export default function ReviewForm({ shows = [], initialShowId = "" }) {
   const router = useRouter();
   const [serverError, setServerError] = useState("");
+  const [success, setSuccess] = useState(false);
+  const timerRef = useRef(null);
 
   const {
     register,
@@ -27,7 +30,13 @@ export default function ReviewForm({ shows = [], initialShowId = "" }) {
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(reviewSchema),
-    defaultValues: { showId: String(initialShowId ?? ""), name: "", title: "", rating: "", comment: "" },
+    defaultValues: {
+      showId: String(initialShowId ?? ""),
+      name: "",
+      title: "",
+      rating: "",
+      comment: "",
+    },
   });
 
   const onSubmit = async (values) => {
@@ -51,19 +60,33 @@ export default function ReviewForm({ shows = [], initialShowId = "" }) {
         return;
       }
 
-      // Navigate to the show page after successful submission
-      router.push(`/shows/${values.showId}`);
+      // Show inline success and navigate after a short delay
+      setSuccess(true);
+      timerRef.current = setTimeout(() => {
+        router.push(`/shows/${values.showId}`);
+      }, 1400);
     } catch (err) {
       setServerError(err?.message || String(err));
     }
   };
 
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
+
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+      <div aria-live="polite" aria-atomic="true">
+        {success ? (
+          <p className={styles.success}>תודה! הביקורת נשלחה בהצלחה.</p>
+        ) : null}
+      </div>
       {shows.length ? (
         <label className={styles.field}>
           <span className={styles.label}>הצגה</span>
-          <select className={styles.select} {...register("showId")}> 
+          <select className={styles.select} {...register("showId")}>
             <option value="" disabled>
               בחרו הצגה
             </option>
@@ -73,7 +96,9 @@ export default function ReviewForm({ shows = [], initialShowId = "" }) {
               </option>
             ))}
           </select>
-          {errors.showId ? <p className={styles.fieldError}>{errors.showId.message}</p> : null}
+          {errors.showId ? (
+            <p className={styles.fieldError}>{errors.showId.message}</p>
+          ) : null}
         </label>
       ) : (
         <input type="hidden" {...register("showId")} />
@@ -82,18 +107,22 @@ export default function ReviewForm({ shows = [], initialShowId = "" }) {
       <label className={styles.field}>
         <span className={styles.label}>שם מלא</span>
         <input className={styles.input} {...register("name")} />
-        {errors.name ? <p className={styles.fieldError}>{errors.name.message}</p> : null}
+        {errors.name ? (
+          <p className={styles.fieldError}>{errors.name.message}</p>
+        ) : null}
       </label>
 
       <label className={styles.field}>
         <span className={styles.label}>כותרת הביקורת</span>
         <input className={styles.input} {...register("title")} />
-        {errors.title ? <p className={styles.fieldError}>{errors.title.message}</p> : null}
+        {errors.title ? (
+          <p className={styles.fieldError}>{errors.title.message}</p>
+        ) : null}
       </label>
 
       <label className={styles.field}>
         <span className={styles.label}>דירוג</span>
-        <select className={styles.select} {...register("rating")}> 
+        <select className={styles.select} {...register("rating")}>
           <option value="" disabled>
             בחרו דירוג
           </option>
@@ -103,20 +132,32 @@ export default function ReviewForm({ shows = [], initialShowId = "" }) {
           <option value="2">2 - פחות</option>
           <option value="1">1 - לא מומלץ</option>
         </select>
-        {errors.rating ? <p className={styles.fieldError}>{errors.rating.message}</p> : null}
+        {errors.rating ? (
+          <p className={styles.fieldError}>{errors.rating.message}</p>
+        ) : null}
       </label>
 
       <label className={styles.field}>
         <span className={styles.label}>תגובה</span>
-        <textarea className={styles.textarea} rows={6} {...register("comment")} />
-        {errors.comment ? <p className={styles.fieldError}>{errors.comment.message}</p> : null}
+        <textarea
+          className={styles.textarea}
+          rows={6}
+          {...register("comment")}
+        />
+        {errors.comment ? (
+          <p className={styles.fieldError}>{errors.comment.message}</p>
+        ) : null}
       </label>
 
       {serverError ? <p className={styles.fieldError}>{serverError}</p> : null}
 
       <div className={styles.actions}>
-        <button className={styles.primaryBtn} type="submit" disabled={isSubmitting}>
-          שליחת ביקורת
+        <button
+          className={styles.primaryBtn}
+          type="submit"
+          disabled={isSubmitting || success}
+        >
+          {success ? "נשלח" : "שליחת ביקורת"}
         </button>
       </div>
     </form>
