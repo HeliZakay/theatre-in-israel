@@ -6,7 +6,6 @@ export function buildShowsQueryString({
   genres,
   sort,
   page,
-  defaultSort = DEFAULT_SORT,
 } = {}) {
   const params = new URLSearchParams();
 
@@ -19,17 +18,15 @@ export function buildShowsQueryString({
       }
     });
   }
-  if (sort && sort !== defaultSort) params.set("sort", sort);
+  // Only include `sort` in the URL when it differs from the canonical default.
+  if (sort && sort !== DEFAULT_SORT) params.set("sort", sort);
   if (page && Number(page) > 1) params.set("page", String(page));
 
   const queryString = params.toString();
   return queryString ? `?${queryString}` : "";
 }
 
-export function parseShowsSearchParams(
-  searchParams,
-  defaultSort = DEFAULT_SORT,
-) {
+export function parseShowsSearchParams(searchParams) {
   const { theatre, query, genre, sort } = searchParams ?? {};
   const genreFilters = Array.isArray(genre) ? genre : genre ? [genre] : [];
 
@@ -41,7 +38,7 @@ export function parseShowsSearchParams(
     theatreFilter: theatre ?? "",
     query: query ?? "",
     genreFilters,
-    selectedSort: sort ?? defaultSort,
+    selectedSort: sort ?? DEFAULT_SORT,
     page,
   };
 }
