@@ -6,9 +6,10 @@ const reviewSchema = z.object({
   showId: z.string().min(1, "Missing showId"),
   name: z.string().min(2, "Name is too short"),
   title: z.string().min(2, "Title is too short"),
-  rating: z
-    .preprocess((v) => (typeof v === "string" ? parseInt(v, 10) : v),
-      z.number().int().min(1).max(5)),
+  rating: z.preprocess(
+    (v) => (typeof v === "string" ? parseInt(v, 10) : v),
+    z.number().int().min(1).max(5),
+  ),
   comment: z.string().min(10, "Comment is too short"),
 });
 

@@ -94,5 +94,6 @@ export function useCombobox({
     rootRef,
     selectItem,
     setIsOpen,
+    setActiveIndex,
   };
 }

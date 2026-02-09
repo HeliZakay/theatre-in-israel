@@ -7,7 +7,9 @@ export default function GlobalError({ error, reset }) {
       <h1>אירעה שגיאה</h1>
       <p>מצטערים — קרתה שגיאה במהלך טעינת הדף.</p>
       {error?.message ? (
-        <pre style={{ whiteSpace: "pre-wrap", marginTop: 12 }}>{error.message}</pre>
+        <pre style={{ whiteSpace: "pre-wrap", marginTop: 12 }}>
+          {error.message}
+        </pre>
       ) : null}
 
       <div style={{ marginTop: 16, display: "flex", gap: 12 }}>

@@ -58,12 +58,22 @@ export function useShowsFilters({
     return Array.from(current);
   };
 
+  const getToggledGenres = (genre) => {
+    const current = new Set(genreFilters);
+    if (current.has(genre)) {
+      current.delete(genre);
+    } else {
+      current.add(genre);
+    }
+    return Array.from(current);
+  };
+
   return {
     buildQueryString,
     handleSelectChange,
     pathname,
     searchValue,
     setSearchValue,
-    toggleGenre,
+    getToggledGenres,
   };
 }

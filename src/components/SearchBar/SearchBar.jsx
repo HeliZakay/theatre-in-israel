@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Button from "../Button/Button";
 import styles from "./SearchBar.module.css";
 import { useCombobox } from "@/hooks/useCombobox";
@@ -18,12 +18,15 @@ export default function SearchBar({ suggestions = [] }) {
     rootRef,
     selectItem,
     setIsOpen,
+    setActiveIndex,
   } = useCombobox({
     items: suggestions,
     value,
     onSelect: (item) => setValue(item),
     listboxId: "shows-suggestions",
   });
+
+  const inputRef = useRef(null);
 
   return (
     <form
@@ -60,6 +63,8 @@ export default function SearchBar({ suggestions = [] }) {
             setValue(event.target.value);
             setIsOpen(true);
           }}
+          ref={inputRef}
+          aria-haspopup="listbox"
           onFocus={() => setIsOpen(true)}
           onKeyDown={handleKeyDown}
           role="combobox"
@@ -84,8 +89,12 @@ export default function SearchBar({ suggestions = [] }) {
                 role="option"
                 aria-selected={index === activeIndex}
                 onMouseDown={(event) => event.preventDefault()}
+                onMouseEnter={() => setActiveIndex(index)}
                 onClick={() => {
-                  selectItem(item);
+                  // set the visible input value, close popup and keep focus on input
+                  setValue(item);
+                  setIsOpen(false);
+                  inputRef.current?.focus();
                 }}
               >
                 {item}

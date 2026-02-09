@@ -18,7 +18,7 @@ export default function ShowsFilterBar({
     pathname,
     searchValue,
     setSearchValue,
-    toggleGenre,
+    getToggledGenres,
   } = useShowsFilters({
     query,
     theatreFilter,
@@ -91,7 +91,7 @@ export default function ShowsFilterBar({
             }`}
             aria-current={genreFilters.includes(genre) ? "true" : undefined}
             href={`${pathname}${buildQueryString({
-              genres: toggleGenre(genre),
+              genres: getToggledGenres(genre),
             })}`}
           >
             {genre}
