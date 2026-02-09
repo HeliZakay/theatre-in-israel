@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { buildShowsQueryString } from "../utils/showsQuery";
+import { useDebounce } from "./useDebounce";
 
 export function useShowsFilters({
   query,
@@ -39,17 +40,13 @@ export function useShowsFilters({
     router.push(`${pathname}${buildQueryString({ [key]: value })}`);
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const nextQuery = searchValue.trim();
-      if (nextQuery === (query ?? "")) {
-        return;
-      }
-      router.push(`${pathname}${buildQueryString({ query: nextQuery })}`);
-    }, 350);
+  const debouncedSearch = useDebounce(searchValue, 350);
 
-    return () => clearTimeout(timer);
-  }, [searchValue, query, pathname, router, buildQueryString]);
+  useEffect(() => {
+    const nextQuery = debouncedSearch.trim();
+    if (nextQuery === (query ?? "")) return;
+    router.push(`${pathname}${buildQueryString({ query: nextQuery })}`);
+  }, [debouncedSearch, query, pathname, router, buildQueryString]);
 
   const toggleGenre = (genre) => {
     const current = new Set(genreFilters);
