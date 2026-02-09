@@ -40,7 +40,7 @@ export default function ShowsFilterBar({
           name="query"
           className={styles.searchInput}
           type="search"
-          placeholder="חפש.י הצגה, תיאטרון או ז&apos;אנר"
+          placeholder="חפש.י הצגה, תיאטרון או ז'אנר"
           value={searchValue}
           onChange={(event) => setSearchValue(event.target.value)}
         />

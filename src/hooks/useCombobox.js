@@ -33,7 +33,8 @@ export function useCombobox({
     }
     if (activeIndex >= filteredItems.length) {
       const next = filteredItems.length ? 0 : -1;
-      if (activeIndex !== next) Promise.resolve().then(() => setActiveIndex(next));
+      if (activeIndex !== next)
+        Promise.resolve().then(() => setActiveIndex(next));
     }
   }, [isOpen, filteredItems.length, activeIndex]);
 
