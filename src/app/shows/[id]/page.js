@@ -2,7 +2,9 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import { getShows } from "@/lib/shows";
+import { getShowById } from "@/lib/showsData";
 import ReviewCard from "@/components/ReviewCard/ReviewCard";
+import { getShowStats } from "@/utils/showStats";
 
 export async function generateStaticParams() {
   const shows = await getShows();
@@ -13,17 +15,13 @@ export async function generateStaticParams() {
 
 export default async function ShowPage({ params }) {
   const { id: showId } = await params;
-  const shows = await getShows();
-  const show = shows.find((item) => String(item.id) === String(showId));
+  const show = await getShowById(showId);
 
   if (!show) {
     notFound();
   }
 
-  const reviewCount = show.reviews.length;
-  const averageRating = reviewCount
-    ? show.reviews.reduce((sum, review) => sum + review.rating, 0) / reviewCount
-    : null;
+  const { reviewCount, avgRating } = getShowStats(show);
 
   return (
     <main className={styles.page} id="main-content">
@@ -36,11 +34,11 @@ export default async function ShowPage({ params }) {
           <div className={styles.heroContent}>
             <h1 className={styles.title}>{show.title}</h1>
             <div className={styles.ratingRow}>
-              {averageRating ? (
+              {avgRating !== null ? (
                 <span className={styles.metaRating}>
                   דירוג ממוצע
                   <span className={styles.metaRatingValue}>
-                    {averageRating.toFixed(1)}
+                    {avgRating.toFixed(1)}
                     <span className={styles.metaRatingStar}>★</span>
                   </span>
                 </span>

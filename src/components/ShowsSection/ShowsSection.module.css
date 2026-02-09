@@ -5,32 +5,6 @@
   gap: 20px;
 }
 
-.header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.kicker {
-  text-transform: uppercase;
-  letter-spacing: 0.28em;
-  font-size: 0.7rem;
-  color: rgba(26, 26, 26, 0.55);
-}
-
-.title {
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
-  color: var(--color-text-primary);
-  letter-spacing: -0.02em;
-}
-
-.link {
-  color: var(--color-curtain-red);
-  font-weight: 600;
-  text-decoration: none;
-}
-
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -38,9 +12,6 @@
 }
 
 .card {
-  background: #ffffff;
-  border-radius: 18px;
-  border: 1px solid rgba(15, 23, 42, 0.08);
   box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
   display: flex;
   flex-direction: column;
@@ -90,14 +61,6 @@
   gap: 8px;
 }
 
-.genreChip {
-  border-radius: 999px;
-  padding: 4px 10px;
-  background: rgba(26, 26, 26, 0.06);
-  color: rgba(26, 26, 26, 0.7);
-  font-size: 0.8rem;
-}
-
 .rating {
   display: inline-flex;
   align-items: center;
@@ -113,13 +76,6 @@
 .reviewCount {
   font-size: 0.9rem;
   color: rgba(26, 26, 26, 0.6);
-}
-
-@media (max-width: 900px) {
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 }
 
 @media (max-width: 640px) {

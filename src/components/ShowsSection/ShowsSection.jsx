@@ -1,5 +1,8 @@
 import Link from "next/link";
 import styles from "./ShowsSection.module.css";
+import Tag from "@/components/Tag/Tag";
+import Card from "@/components/Card/Card";
+import SectionHeader from "@/components/SectionHeader/SectionHeader";
 
 export default function ShowsSection({
   kicker,
@@ -10,17 +13,12 @@ export default function ShowsSection({
 }) {
   return (
     <section className={styles.section}>
-      <div className={styles.header}>
-        <div>
-          <p className={styles.kicker}>{kicker}</p>
-          <h2 className={styles.title}>{title}</h2>
-        </div>
-        {linkHref && linkText && (
-          <Link className={styles.link} href={linkHref}>
-            {linkText}
-          </Link>
-        )}
-      </div>
+      <SectionHeader
+        kicker={kicker}
+        title={title}
+        linkHref={linkHref}
+        linkText={linkText}
+      />
       <div className={styles.grid}>
         {shows.map((show) => (
           <Link
@@ -28,16 +26,14 @@ export default function ShowsSection({
             className={styles.cardLink}
             href={`/shows/${show.id}`}
           >
-            <article className={styles.card}>
+            <Card as="article" className={styles.card}>
               <div className={styles.thumb} aria-hidden />
               <div className={styles.body}>
                 <h3 className={styles.cardTitle}>{show.title}</h3>
                 <p className={styles.meta}>{show.theatre}</p>
                 <div className={styles.genreRow}>
                   {(show.genre ?? []).slice(0, 2).map((item) => (
-                    <span key={item} className={styles.genreChip}>
-                      {item}
-                    </span>
+                    <Tag key={item}>{item}</Tag>
                   ))}
                 </div>
                 <div className={styles.rating}>
@@ -48,7 +44,7 @@ export default function ShowsSection({
                   {show.reviews.length} ביקורות
                 </p>
               </div>
-            </article>
+            </Card>
           </Link>
         ))}
       </div>

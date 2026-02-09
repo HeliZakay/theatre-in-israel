@@ -2,6 +2,7 @@ import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getShows } from "@/lib/shows";
+import { getShowById } from "@/lib/showsData";
 
 export async function generateStaticParams() {
   const shows = await getShows();
@@ -12,8 +13,7 @@ export async function generateStaticParams() {
 
 export default async function NewReviewPage({ params }) {
   const { id: showId } = await params;
-  const shows = await getShows();
-  const show = shows.find((item) => String(item.id) === String(showId));
+  const show = await getShowById(showId);
 
   if (!show) {
     notFound();

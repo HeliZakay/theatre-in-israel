@@ -1,96 +1,28 @@
 "use client";
 
-import { useMemo, useRef, useState, useEffect } from "react";
+import { useState } from "react";
 import Button from "../Button/Button";
 import styles from "./SearchBar.module.css";
-import shows from "@/data/shows.json";
+import { useCombobox } from "@/hooks/useCombobox";
 
-const theatres = Array.from(new Set(shows.map((show) => show.theatre))).filter(
-  Boolean,
-);
-const genres = Array.from(
-  new Set(shows.flatMap((show) => show.genre ?? [])),
-).filter(Boolean);
-
-export function SearchBar() {
+export function SearchBar({ suggestions = [] }) {
   const [value, setValue] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(-1);
-  const listboxId = "shows-suggestions";
-  const rootRef = useRef(null);
-
-  const suggestions = useMemo(() => {
-    const pool = [
-      ...shows.map((show) => show.title),
-      ...theatres,
-      ...genres,
-    ].filter(Boolean);
-    const unique = Array.from(new Set(pool));
-    if (!value.trim()) {
-      return unique.slice(0, 8);
-    }
-    const query = value.toLowerCase();
-    return unique
-      .filter((item) => item.toLowerCase().includes(query))
-      .slice(0, 8);
-  }, [value]);
-
-  useEffect(() => {
-    if (!isOpen) {
-      setActiveIndex(-1);
-      return;
-    }
-    if (activeIndex >= suggestions.length) {
-      setActiveIndex(suggestions.length ? 0 : -1);
-    }
-  }, [isOpen, suggestions.length, activeIndex]);
-
-  const handleKeyDown = (event) => {
-    if (!suggestions.length) return;
-
-    switch (event.key) {
-      case "ArrowDown": {
-        event.preventDefault();
-        setIsOpen(true);
-        setActiveIndex((prev) =>
-          prev < suggestions.length - 1 ? prev + 1 : 0,
-        );
-        break;
-      }
-      case "ArrowUp": {
-        event.preventDefault();
-        setIsOpen(true);
-        setActiveIndex((prev) =>
-          prev > 0 ? prev - 1 : suggestions.length - 1,
-        );
-        break;
-      }
-      case "Enter": {
-        if (isOpen && activeIndex >= 0) {
-          event.preventDefault();
-          setValue(suggestions[activeIndex]);
-          setIsOpen(false);
-        }
-        break;
-      }
-      case "Escape": {
-        if (isOpen) {
-          event.preventDefault();
-          setIsOpen(false);
-        }
-        break;
-      }
-      default:
-        break;
-    }
-  };
-
-  const handleBlur = (event) => {
-    if (rootRef.current?.contains(event.relatedTarget)) {
-      return;
-    }
-    setIsOpen(false);
-  };
+  const {
+    activeIndex,
+    filteredItems,
+    handleBlur,
+    handleKeyDown,
+    isOpen,
+    listboxId,
+    rootRef,
+    selectItem,
+    setIsOpen,
+  } = useCombobox({
+    items: suggestions,
+    value,
+    onSelect: (item) => setValue(item),
+    listboxId: "shows-suggestions",
+  });
 
   return (
     <form
@@ -138,9 +70,9 @@ export function SearchBar() {
           }
         />
 
-        {isOpen && suggestions.length ? (
+        {isOpen && filteredItems.length ? (
           <div className={styles.suggestions} id={listboxId} role="listbox">
-            {suggestions.map((item, index) => (
+            {filteredItems.map((item, index) => (
               <button
                 key={item}
                 type="button"
@@ -152,8 +84,7 @@ export function SearchBar() {
                 aria-selected={index === activeIndex}
                 onMouseDown={(event) => event.preventDefault()}
                 onClick={() => {
-                  setValue(item);
-                  setIsOpen(false);
+                  selectItem(item);
                 }}
               >
                 {item}

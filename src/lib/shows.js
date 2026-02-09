@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
+import { getAverageRating, getLatestReviewDate } from "../utils/showStats";
 
 const dataPath = path.join(process.cwd(), "src", "data", "shows.json");
 
@@ -29,17 +30,4 @@ export async function addReview(showId, review) {
   return { show, review: newReview };
 }
 
-export function getAverageRating(reviews) {
-  if (!reviews || !reviews.length) return null;
-  const total = reviews.reduce((sum, review) => sum + review.rating, 0);
-  return total / reviews.length;
-}
-
-export function getLatestReviewDate(reviews) {
-  if (!reviews || !reviews.length) return null;
-  return reviews.reduce((latest, review) => {
-    const reviewDate = new Date(review.date);
-    if (Number.isNaN(reviewDate.getTime())) return latest;
-    return !latest || reviewDate > latest ? reviewDate : latest;
-  }, null);
-}
+export { getAverageRating, getLatestReviewDate };

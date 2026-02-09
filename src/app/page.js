@@ -2,28 +2,14 @@ import Hero from "@/components/Hero/Hero";
 import CtaStrip from "@/components/CtaStrip/CtaStrip";
 import ShowsSection from "@/components/ShowsSection/ShowsSection";
 import styles from "./page.module.css";
-import { getShows, getAverageRating, getLatestReviewDate } from "@/lib/shows";
+import { getHomePageData } from "@/lib/showsData";
 
 export default async function Home() {
-  const shows = await getShows();
-  const enrichedShows = shows.map((show) => ({
-    ...show,
-    avgRating: getAverageRating(show.reviews),
-    latestReviewDate: getLatestReviewDate(show.reviews),
-  }));
-  const topRated = enrichedShows
-    .filter((s) => s.avgRating !== null)
-    .sort((a, b) => b.avgRating - a.avgRating)
-    .slice(0, 6);
-
-  const latestReviewed = enrichedShows
-    .filter((s) => s.latestReviewDate)
-    .sort((a, b) => b.latestReviewDate - a.latestReviewDate)
-    .slice(0, 6);
+  const { suggestions, topRated, latestReviewed } = await getHomePageData();
 
   return (
     <main className={styles.page} id="main-content">
-      <Hero />
+      <Hero suggestions={suggestions} />
 
       <ShowsSection
         kicker="המובילים"

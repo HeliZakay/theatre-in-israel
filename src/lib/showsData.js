@@ -1,0 +1,107 @@
+import { getShows } from "./shows";
+import { normalize } from "../utils/normalize";
+import { parseShowsSearchParams } from "../utils/showsQuery";
+import { enrichShow } from "../utils/showStats";
+
+function buildSuggestions(shows) {
+  return Array.from(
+    new Set([
+      ...shows.map((show) => show.title),
+      ...shows.map((show) => show.theatre),
+      ...shows.flatMap((show) => show.genre ?? []),
+    ]),
+  ).filter(Boolean);
+}
+
+function normalizeFilters({ theatreFilter, query, genreFilters }) {
+  return {
+    theatreNormalized: normalize(theatreFilter),
+    queryNormalized: normalize(query),
+    genreNormalized: genreFilters.map(normalize).filter(Boolean),
+  };
+}
+
+function filterShows(
+  shows,
+  { theatreNormalized, queryNormalized, genreNormalized },
+) {
+  return shows.filter((show) => {
+    const matchesTheatre = theatreNormalized
+      ? normalize(show.theatre) === theatreNormalized
+      : true;
+
+    const matchesQuery = queryNormalized
+      ? [show.title, show.theatre, show.summary, (show.genre ?? []).join(" ")]
+          .filter(Boolean)
+          .some((field) => normalize(field).includes(queryNormalized))
+      : true;
+
+    const matchesGenre = genreNormalized.length
+      ? (show.genre ?? []).some((genre) =>
+          genreNormalized.includes(normalize(genre)),
+        )
+      : true;
+
+    return matchesTheatre && matchesQuery && matchesGenre;
+  });
+}
+
+function sortShowsByRating(shows, selectedSort) {
+  if (selectedSort !== "rating" && selectedSort !== "rating-asc") {
+    return shows;
+  }
+
+  return [...shows].sort((a, b) => {
+    const ratingA = a.avgRating ?? -1;
+    const ratingB = b.avgRating ?? -1;
+    return selectedSort === "rating-asc"
+      ? ratingA - ratingB
+      : ratingB - ratingA;
+  });
+}
+
+export async function getHomePageData() {
+  const shows = await getShows();
+  const suggestions = buildSuggestions(shows);
+
+  const enrichedShows = shows.map(enrichShow);
+  const topRated = enrichedShows
+    .filter((show) => show.avgRating !== null)
+    .sort((a, b) => b.avgRating - a.avgRating)
+    .slice(0, 6);
+
+  const latestReviewed = enrichedShows
+    .filter((show) => show.latestReviewDate)
+    .sort((a, b) => b.latestReviewDate - a.latestReviewDate)
+    .slice(0, 6);
+
+  return { suggestions, topRated, latestReviewed };
+}
+
+export async function getShowsForList(searchParams) {
+  const filters = parseShowsSearchParams(searchParams);
+  const shows = (await getShows()).map(enrichShow);
+
+  const theatres = Array.from(
+    new Set(shows.map((show) => show.theatre)),
+  ).filter(Boolean);
+  const genres = Array.from(
+    new Set(shows.flatMap((show) => show.genre ?? [])),
+  ).filter(Boolean);
+
+  const normalized = normalizeFilters(filters);
+  const filteredShows = filterShows(shows, normalized);
+  const sortedShows = sortShowsByRating(filteredShows, filters.selectedSort);
+
+  return {
+    shows: sortedShows,
+    theatres,
+    genres,
+    filters,
+  };
+}
+
+export async function getShowById(showId) {
+  const shows = await getShows();
+  return shows.find((item) => String(item.id) === String(showId)) ?? null;
+}

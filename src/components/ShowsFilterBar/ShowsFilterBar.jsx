@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
 import styles from "./ShowsFilterBar.module.css";
+import { useShowsFilters } from "@/hooks/useShowsFilters";
 
 export default function ShowsFilterBar({
   theatres,
@@ -13,66 +12,19 @@ export default function ShowsFilterBar({
   query,
   selectedSort,
 }) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const [searchValue, setSearchValue] = useState(query ?? "");
-
-  useEffect(() => {
-    setSearchValue(query ?? "");
-  }, [query]);
-
-  const buildQueryString = useCallback(
-    (overrides = {}) => {
-      const params = new URLSearchParams();
-
-      const nextQuery = overrides.query ?? query;
-      const nextTheatre = overrides.theatre ?? theatreFilter;
-      const nextGenres = overrides.genres ?? genreFilters;
-      const nextSort = overrides.sort ?? selectedSort;
-
-      if (nextQuery) params.set("query", nextQuery);
-      if (nextTheatre) params.set("theatre", nextTheatre);
-      if (nextGenres?.length) {
-        nextGenres.forEach((genre) => {
-          if (genre) {
-            params.append("genre", genre);
-          }
-        });
-      }
-      if (nextSort && nextSort !== "rating") params.set("sort", nextSort);
-
-      const queryString = params.toString();
-      return queryString ? `?${queryString}` : "";
-    },
-    [query, theatreFilter, genreFilters, selectedSort],
-  );
-
-  const handleSelectChange = (key) => (event) => {
-    const value = event.target.value;
-    router.push(`${pathname}${buildQueryString({ [key]: value })}`);
-  };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const nextQuery = searchValue.trim();
-      if (nextQuery === (query ?? "")) {
-        return;
-      }
-      router.push(`${pathname}${buildQueryString({ query: nextQuery })}`);
-    }, 350);
-
-    return () => clearTimeout(timer);
-  }, [searchValue, query, pathname, router, buildQueryString]);
-
-  const toggleGenre = (genre) => {
-    const current = new Set(genreFilters);
-    if (current.has(genre)) {
-      current.delete(genre);
-    } else {
-      current.add(genre);
-    }
-    return Array.from(current);
-  };
+  const {
+    buildQueryString,
+    handleSelectChange,
+    pathname,
+    searchValue,
+    setSearchValue,
+    toggleGenre,
+  } = useShowsFilters({
+    query,
+    theatreFilter,
+    genreFilters,
+    selectedSort,
+  });
 
   return (
     <div className={styles.filterBar}>

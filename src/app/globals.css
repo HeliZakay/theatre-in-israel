@@ -1,11 +1,4 @@
-:root {
-  --background: #ffffff;
-  --color-curtain-red: #9c1b20;
-  --color-curtain-red-hover: #b12228;
-  --color-text-primary: #1a1a1a;
-  --header-offset: 96px;
-  --focus-ring-color: rgba(156, 27, 32, 0.35);
-}
+@import "./tokens.css";
 
 html,
 body {

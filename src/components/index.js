@@ -1,4 +1,5 @@
 export { default as Button } from "./Button/Button";
+export { default as Card } from "./Card/Card";
 export { default as CtaStrip } from "./CtaStrip/CtaStrip";
 export { default as FeaturedShow } from "./FeaturedShow/FeaturedShow";
 export { default as Footer } from "./Footer/Footer";
@@ -10,3 +11,5 @@ export { SearchBar } from "./SearchBar/SearchBar";
 export { default as ShowCard } from "./ShowCard/ShowCard";
 export { default as ShowsFilterBar } from "./ShowsFilterBar/ShowsFilterBar";
 export { default as ShowsSection } from "./ShowsSection/ShowsSection";
+export { default as SectionHeader } from "./SectionHeader/SectionHeader";
+export { default as Tag } from "./Tag/Tag";

@@ -2,7 +2,7 @@ import styles from "./Hero.module.css";
 import { SearchBar } from "../SearchBar/SearchBar";
 import FeaturedShow from "../FeaturedShow/FeaturedShow";
 
-export default function Hero() {
+export default function Hero({ suggestions = [] }) {
   return (
     <section className={styles.hero} aria-label="Hero">
       <div className={styles.inner}>
@@ -13,7 +13,7 @@ export default function Hero() {
               לפני שקונים כרטיס – בודקים מה הקהל חושב.
             </p>
           </div>
-          <SearchBar />
+          <SearchBar suggestions={suggestions} />
         </div>
         <div className={styles.left}>
           <FeaturedShow

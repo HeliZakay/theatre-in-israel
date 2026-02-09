@@ -1,15 +1,15 @@
 import Link from "next/link";
 import styles from "./ShowCard.module.css";
+import Tag from "@/components/Tag/Tag";
+import Card from "@/components/Card/Card";
+import { getShowStats } from "@/utils/showStats";
 
 export default function ShowCard({ show }) {
-  const reviewCount = show.reviews?.length ?? 0;
-  const averageRating = reviewCount
-    ? show.reviews.reduce((sum, review) => sum + review.rating, 0) / reviewCount
-    : null;
+  const { reviewCount, avgRating } = getShowStats(show);
 
   return (
     <Link href={`/shows/${show.id}`} className={styles.cardLink}>
-      <article className={styles.card} aria-label={show.title}>
+      <Card as="article" className={styles.card} aria-label={show.title}>
         <div className={styles.imagePlaceholder} aria-hidden="true" />
         <header className={styles.header}>
           <h3 className={styles.title}>{show.title}</h3>
@@ -28,22 +28,18 @@ export default function ShowCard({ show }) {
 
         <div className={styles.genreRow}>
           {(show.genre ?? []).slice(0, 3).map((item) => (
-            <span key={item} className={styles.genreChip}>
-              {item}
-            </span>
+            <Tag key={item}>{item}</Tag>
           ))}
         </div>
 
         <div className={styles.rating}>
-          {averageRating ? (
-            <span className={styles.ratingValue}>
-              {averageRating.toFixed(1)}
-            </span>
+          {avgRating !== null ? (
+            <span className={styles.ratingValue}>{avgRating.toFixed(1)}</span>
           ) : (
             <span className={styles.ratingEmpty}>עדיין אין דירוגים</span>
           )}
         </div>
-      </article>
+      </Card>
     </Link>
   );
 }
