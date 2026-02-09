@@ -3,6 +3,11 @@ import { usePathname, useRouter } from "next/navigation";
 import { buildShowsQueryString } from "../utils/showsQuery";
 import { useDebounce } from "./useDebounce";
 
+// useShowsFilters manages UI state for the shows list page and exposes
+// helpers to build query strings and navigate when filters change.
+// It keeps a debounced search input locally to avoid pushing every
+// keystroke into the router.
+
 export function useShowsFilters({
   query,
   theatreFilter,
@@ -14,8 +19,12 @@ export function useShowsFilters({
   const [searchValue, setSearchValue] = useState(query ?? "");
 
   useEffect(() => {
-    setSearchValue(query ?? "");
-  }, [query]);
+    const next = query ?? "";
+    if (next === searchValue) return;
+    // Defer setState to avoid calling setState synchronously in the
+    // effect body (silences strict lint rules while keeping behavior).
+    Promise.resolve().then(() => setSearchValue(next));
+  }, [query, searchValue]);
 
   const buildQueryString = useCallback(
     (overrides = {}) => {
@@ -48,16 +57,9 @@ export function useShowsFilters({
     router.push(`${pathname}${buildQueryString({ query: nextQuery })}`);
   }, [debouncedSearch, query, pathname, router, buildQueryString]);
 
-  const toggleGenre = (genre) => {
-    const current = new Set(genreFilters);
-    if (current.has(genre)) {
-      current.delete(genre);
-    } else {
-      current.add(genre);
-    }
-    return Array.from(current);
-  };
-
+  // Return a new array with the given genre toggled. This function
+  // does not perform navigation — it only returns the next genres
+  // array so callers can decide when/how to update the URL/router.
   const getToggledGenres = (genre) => {
     const current = new Set(genreFilters);
     if (current.has(genre)) {

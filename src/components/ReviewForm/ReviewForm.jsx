@@ -71,6 +71,14 @@ export default function ReviewForm({ shows = [], initialShowId = "" }) {
     }
   };
 
+  // Wrap react-hook-form's `handleSubmit` so we don't call it during
+  // render (some lint rules flag calling it directly in JSX). This
+  // returns an event handler that will invoke the RHF submit logic.
+  const submitHandler = (e) => {
+    e.preventDefault();
+    handleSubmit(onSubmit)(e);
+  };
+
   useEffect(() => {
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
@@ -78,7 +86,7 @@ export default function ReviewForm({ shows = [], initialShowId = "" }) {
   }, []);
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form className={styles.form} onSubmit={submitHandler} noValidate>
       <div aria-live="polite" aria-atomic="true">
         {success ? (
           <p className={styles.success}>תודה! הביקורת נשלחה בהצלחה.</p>

@@ -39,7 +39,7 @@ export default async function ShowsPage({ searchParams }) {
                 </span>
               ))}
               {query ? (
-                <span className={styles.filterChip}>"{query}"</span>
+                <span className={styles.filterChip}>&quot;{query}&quot;</span>
               ) : null}
               <span className={styles.filterCount}>{shows.length} תוצאות</span>
               <Link className={styles.clearLink} href={ROUTES.SHOWS}>

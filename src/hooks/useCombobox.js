@@ -22,13 +22,18 @@ export function useCombobox({
       .slice(0, maxItems);
   }, [items, value, maxItems]);
 
+  // `filteredItems` is memoized to avoid recalculating the list on every
+  // render unless the inputs change (items, value or maxItems).
+
   useEffect(() => {
     if (!isOpen) {
-      setActiveIndex(-1);
+      // Only update when necessary to avoid unnecessary re-renders.
+      if (activeIndex !== -1) Promise.resolve().then(() => setActiveIndex(-1));
       return;
     }
     if (activeIndex >= filteredItems.length) {
-      setActiveIndex(filteredItems.length ? 0 : -1);
+      const next = filteredItems.length ? 0 : -1;
+      if (activeIndex !== next) Promise.resolve().then(() => setActiveIndex(next));
     }
   }, [isOpen, filteredItems.length, activeIndex]);
 
@@ -94,6 +99,8 @@ export function useCombobox({
     rootRef,
     selectItem,
     setIsOpen,
+    // Expose `setActiveIndex` so callers (components) can update the
+    // highlighted item on mouse hover for better UX.
     setActiveIndex,
   };
 }

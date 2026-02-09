@@ -4,6 +4,9 @@ import Link from "next/link";
 import styles from "./ShowsFilterBar.module.css";
 import { useShowsFilters } from "@/hooks/useShowsFilters";
 
+// ShowsFilterBar renders the controls used to filter and sort the
+// shows list. It delegates navigation to the hook helpers so the
+// component remains focused on rendering and UX.
 export default function ShowsFilterBar({
   theatres,
   genres,
@@ -37,7 +40,7 @@ export default function ShowsFilterBar({
           name="query"
           className={styles.searchInput}
           type="search"
-          placeholder="חפש.י הצגה, תיאטרון או ז'אנר"
+          placeholder="חפש.י הצגה, תיאטרון או ז&apos;אנר"
           value={searchValue}
           onChange={(event) => setSearchValue(event.target.value)}
         />
@@ -73,7 +76,7 @@ export default function ShowsFilterBar({
         </select>
       </div>
       <div className={styles.chipRow}>
-        <span className={styles.filterLabel}>ז'אנר</span>
+        <span className={styles.filterLabel}>ז&apos;אנר</span>
         <Link
           className={`${styles.chip} ${
             genreFilters.length ? "" : styles.chipActive
