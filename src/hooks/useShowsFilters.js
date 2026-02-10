@@ -19,12 +19,19 @@ export function useShowsFilters({
   const [searchValue, setSearchValue] = useState(query ?? "");
 
   useEffect(() => {
+    let active = true;
     const next = query ?? "";
-    if (next === searchValue) return;
-    // Defer setState to avoid calling setState synchronously in the
-    // effect body (silences strict lint rules while keeping behavior).
-    Promise.resolve().then(() => setSearchValue(next));
-  }, [query, searchValue]);
+    // Defer state sync to satisfy strict effect linting while keeping
+    // input state aligned with URL query changes.
+    Promise.resolve().then(() => {
+      if (!active) return;
+      setSearchValue((current) => (current === next ? current : next));
+    });
+
+    return () => {
+      active = false;
+    };
+  }, [query]);
 
   const buildQueryString = useCallback(
     (overrides = {}) => {
