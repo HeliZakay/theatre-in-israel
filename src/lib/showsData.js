@@ -50,7 +50,7 @@ function filterShows(
       : true;
 
     const matchesQuery = queryNormalized
-      ? [show.title, show.theatre, show.summary, (show.genre ?? []).join(" ")]
+      ? [show.title, show.theatre, (show.genre ?? []).join(" ")]
           .filter(Boolean)
           .some((field) => normalize(field).includes(queryNormalized))
       : true;
