@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { buildShowsQueryString } from "../utils/showsQuery";
 import { useDebounce } from "./useDebounce";
@@ -17,10 +17,15 @@ export function useShowsFilters({
   const router = useRouter();
   const pathname = usePathname();
   const [searchValue, setSearchValue] = useState(query ?? "");
+  const lastSubmittedQueryRef = useRef(query ?? "");
 
   useEffect(() => {
-    let active = true;
     const next = query ?? "";
+    // Ignore query updates triggered by this hook's debounced push,
+    // so delayed router updates don't clobber in-progress typing.
+    if (next === lastSubmittedQueryRef.current) return;
+
+    let active = true;
     // Defer state sync to satisfy strict effect linting while keeping
     // input state aligned with URL query changes.
     Promise.resolve().then(() => {
@@ -67,6 +72,7 @@ export function useShowsFilters({
   useEffect(() => {
     const nextQuery = debouncedSearch.trim();
     if (nextQuery === (query ?? "")) return;
+    lastSubmittedQueryRef.current = nextQuery;
     router.push(`${pathname}${buildQueryString({ query: nextQuery })}`);
   }, [debouncedSearch, query, pathname, router, buildQueryString]);
 
