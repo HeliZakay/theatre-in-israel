@@ -50,12 +50,12 @@
   line-height: 1.6;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
-  min-height: calc(1.6em * 6);
+  min-height: calc(1.6em * 3);
 }
 
 .textTruncated {
   display: -webkit-box;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
