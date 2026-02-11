@@ -22,7 +22,7 @@ export default function ShowsFilterBar({
   const ALL_THEATRES_VALUE = "__all_theatres__";
   const router = useRouter();
   const pathname = usePathname();
-  const [, startTransition] = useTransition();
+  const [isPending, startTransition] = useTransition();
   const [optimisticFilters, setOptimisticFilters] = useOptimistic(
     filters,
     (current, overrides: Partial<ShowFilters>) => ({
@@ -66,7 +66,7 @@ export default function ShowsFilterBar({
   ];
 
   return (
-    <div className={styles.filterBar}>
+    <div className={styles.filterBar} aria-busy={isPending}>
       <div className={styles.filterForm}>
         <label className={styles.filterLabel} htmlFor="query">
           חיפוש
@@ -139,6 +139,18 @@ export default function ShowsFilterBar({
             </button>
           );
         })}
+      </div>
+      <div className={styles.status} role="status" aria-live="polite">
+        {isPending ? (
+          <>
+            <span className={styles.spinner} aria-hidden="true" />
+            <span>מעדכנים תוצאות...</span>
+          </>
+        ) : (
+          <span className={styles.statusPlaceholder} aria-hidden="true">
+            מעדכנים תוצאות...
+          </span>
+        )}
       </div>
     </div>
   );

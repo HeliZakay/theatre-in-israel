@@ -73,6 +73,40 @@
   font-weight: 600;
 }
 
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 20px;
+  color: rgba(26, 26, 26, 0.65);
+  font-size: 0.9rem;
+}
+
+.statusPlaceholder {
+  visibility: hidden;
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 2px solid rgba(156, 27, 32, 0.25);
+  border-top-color: var(--color-curtain-red);
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 1.6s;
+  }
+}
+
 @media (max-width: 640px) {
   .filterForm {
     align-items: stretch;
