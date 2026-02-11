@@ -3,14 +3,14 @@ import { addReview } from "@/lib/shows";
 import * as z from "zod";
 
 const reviewSchema = z.object({
-  showId: z.string().min(1, "Missing showId"),
-  name: z.string().min(2, "Name is too short"),
-  title: z.string().min(2, "Title is too short"),
+  showId: z.string().trim().min(1, "Missing showId"),
+  name: z.string().trim().min(2, "Name is too short"),
+  title: z.string().trim().min(2, "Title is too short"),
   rating: z.preprocess(
     (v) => (typeof v === "string" ? parseInt(v, 10) : v),
     z.number().int().min(1).max(5),
   ),
-  comment: z.string().min(10, "Comment is too short"),
+  comment: z.string().trim().min(10, "Comment is too short"),
 });
 
 function formatZodErrors(err: z.ZodError): string {

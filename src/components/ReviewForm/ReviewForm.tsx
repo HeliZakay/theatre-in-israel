@@ -12,14 +12,17 @@ import ShowCombobox from "@/components/ShowCombobox/ShowCombobox";
 import type { Show } from "@/types";
 
 const reviewSchema = z.object({
-  showId: z.string().min(1, "יש לבחור הצגה"),
-  name: z.string().min(2, "הכנס שם חוקי"),
-  title: z.string().min(2, "הכנס כותרת"),
+  showId: z.string().trim().min(1, "יש לבחור הצגה"),
+  name: z.string().trim().min(2, "הכנס שם חוקי"),
+  title: z.string().trim().min(2, "הכנס כותרת"),
   rating: z.preprocess(
     (v) => (typeof v === "string" ? parseInt(v, 10) : v),
     z.number().int().min(1).max(5),
   ),
-  comment: z.string().min(10, "תגובה צריכה להכיל לפחות 10 תווים"),
+  comment: z
+    .string()
+    .trim()
+    .min(10, "תגובה צריכה להכיל לפחות 10 תווים"),
 });
 
 const ratingOptions = [
