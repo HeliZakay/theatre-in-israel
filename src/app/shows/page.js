@@ -11,7 +11,6 @@ export default async function ShowsPage({ searchParams }) {
   const { shows, theatres, genres, filters } = await getShowsForList(
     await searchParams,
   );
-  const { theatreFilter, query, genreFilters, selectedSort } = filters;
 
   return (
     <main className={styles.page} id="main-content">
@@ -21,26 +20,25 @@ export default async function ShowsPage({ searchParams }) {
         <p className={styles.subtitle}>בחרו הצגה וקראו ביקורות של הקהל</p>
         <ShowsFilterBar
           theatres={theatres}
-          genres={genres}
-          theatreFilter={theatreFilter ?? ""}
-          genreFilters={genreFilters}
-          query={query ?? ""}
-          selectedSort={selectedSort}
+          allGenres={genres}
+          filters={filters}
         />
         <div className={styles.filterRow}>
-          {theatreFilter || query || genreFilters.length ? (
+          {filters.theatre || filters.query || filters.genres.length ? (
             <>
               <span className={styles.filterLabel}>מסונן לפי:</span>
-              {theatreFilter ? (
-                <span className={styles.filterChip}>{theatreFilter}</span>
+              {filters.theatre ? (
+                <span className={styles.filterChip}>{filters.theatre}</span>
               ) : null}
-              {genreFilters.map((genre) => (
+              {filters.genres.map((genre) => (
                 <span key={genre} className={styles.filterChip}>
                   {genre}
                 </span>
               ))}
-              {query ? (
-                <span className={styles.filterChip}>&quot;{query}&quot;</span>
+              {filters.query ? (
+                <span className={styles.filterChip}>
+                  &quot;{filters.query}&quot;
+                </span>
               ) : null}
               <span className={styles.filterCount}>{shows.length} תוצאות</span>
               <Link className={styles.clearLink} href={ROUTES.SHOWS}>

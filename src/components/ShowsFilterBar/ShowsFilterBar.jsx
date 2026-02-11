@@ -1,36 +1,34 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import styles from "./ShowsFilterBar.module.css";
-import { useShowsFilters } from "@/hooks/useShowsFilters";
 import AppSelect from "@/components/AppSelect/AppSelect";
+import SearchInput from "@/components/SearchInput/SearchInput";
+import { buildShowsQueryString } from "@/utils/showsQuery";
 
 // ShowsFilterBar renders the controls used to filter and sort the
-// shows list. It delegates navigation to the hook helpers so the
-// component remains focused on rendering and UX.
-export default function ShowsFilterBar({
-  theatres,
-  genres,
-  theatreFilter,
-  genreFilters,
-  query,
-  selectedSort,
-}) {
+// shows list.  Selects navigate immediately, genre chips are plain
+// links, and the search input is handled by a dedicated component
+// that debounces keystrokes independently.
+export default function ShowsFilterBar({ theatres, allGenres, filters }) {
   const ALL_THEATRES_VALUE = "__all_theatres__";
+  const router = useRouter();
+  const pathname = usePathname();
 
-  const {
-    buildQueryString,
-    handleSelectChange,
-    pathname,
-    searchValue,
-    setSearchValue,
-    getToggledGenres,
-  } = useShowsFilters({
-    query,
-    theatreFilter,
-    genreFilters,
-    selectedSort,
-  });
+  // Build a URL that applies the given overrides on top of the current
+  // filters, omitting page so any filter change resets to page 1.
+  const buildHref = (overrides) => {
+    const { page, ...current } = filters;
+    return `${pathname}${buildShowsQueryString({ ...current, ...overrides })}`;
+  };
+
+  const toggleGenre = (genre) => {
+    const current = new Set(filters.genres);
+    if (current.has(genre)) current.delete(genre);
+    else current.add(genre);
+    return Array.from(current);
+  };
 
   const theatreOptions = [
     { value: ALL_THEATRES_VALUE, label: "הכל" },
@@ -48,14 +46,10 @@ export default function ShowsFilterBar({
         <label className={styles.filterLabel} htmlFor="query">
           חיפוש
         </label>
-        <input
-          id="query"
-          name="query"
+        <SearchInput
+          defaultValue={filters.query}
+          filters={filters}
           className={styles.searchInput}
-          type="search"
-          placeholder="חפש.י הצגה, תיאטרון או ז'אנר"
-          value={searchValue}
-          onChange={(event) => setSearchValue(event.target.value)}
         />
         <label className={styles.filterLabel} htmlFor="theatre">
           תיאטרון
@@ -65,10 +59,12 @@ export default function ShowsFilterBar({
           name="theatre"
           className={styles.select}
           ariaLabel="תיאטרון"
-          value={theatreFilter || ALL_THEATRES_VALUE}
-          onValueChange={(nextValue) =>
-            handleSelectChange("theatre")(
-              nextValue === ALL_THEATRES_VALUE ? "" : nextValue,
+          value={filters.theatre || ALL_THEATRES_VALUE}
+          onValueChange={(value) =>
+            router.push(
+              buildHref({
+                theatre: value === ALL_THEATRES_VALUE ? "" : value,
+              }),
             )
           }
           options={theatreOptions}
@@ -81,8 +77,8 @@ export default function ShowsFilterBar({
           name="sort"
           className={styles.select}
           ariaLabel="מיון"
-          value={selectedSort}
-          onValueChange={handleSelectChange("sort")}
+          value={filters.sort}
+          onValueChange={(value) => router.push(buildHref({ sort: value }))}
           options={sortOptions}
         />
       </div>
@@ -90,23 +86,21 @@ export default function ShowsFilterBar({
         <span className={styles.filterLabel}>ז&apos;אנר</span>
         <Link
           className={`${styles.chip} ${
-            genreFilters.length ? "" : styles.chipActive
+            filters.genres.length ? "" : styles.chipActive
           }`}
-          aria-current={genreFilters.length ? undefined : "true"}
-          href={`${pathname}${buildQueryString({ genres: [] })}`}
+          aria-current={filters.genres.length ? undefined : "true"}
+          href={buildHref({ genres: [] })}
         >
           הכל
         </Link>
-        {genres.map((genre) => (
+        {allGenres.map((genre) => (
           <Link
             key={genre}
             className={`${styles.chip} ${
-              genreFilters.includes(genre) ? styles.chipActive : ""
+              filters.genres.includes(genre) ? styles.chipActive : ""
             }`}
-            aria-current={genreFilters.includes(genre) ? "true" : undefined}
-            href={`${pathname}${buildQueryString({
-              genres: getToggledGenres(genre),
-            })}`}
+            aria-current={filters.genres.includes(genre) ? "true" : undefined}
+            href={buildHref({ genres: toggleGenre(genre) })}
           >
             {genre}
           </Link>

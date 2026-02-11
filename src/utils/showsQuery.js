@@ -28,17 +28,17 @@ export function buildShowsQueryString({
 
 export function parseShowsSearchParams(searchParams) {
   const { theatre, query, genre, sort } = searchParams ?? {};
-  const genreFilters = Array.isArray(genre) ? genre : genre ? [genre] : [];
+  const genres = Array.isArray(genre) ? genre : genre ? [genre] : [];
 
   // Parse page parameter (1-based). Default to 1 when missing or invalid.
   const rawPage = searchParams?.page;
   const page = rawPage ? Math.max(1, parseInt(rawPage, 10) || 1) : 1;
 
   return {
-    theatreFilter: theatre ?? "",
+    theatre: theatre ?? "",
     query: query ?? "",
-    genreFilters,
-    selectedSort: sort ?? DEFAULT_SORT,
+    genres,
+    sort: sort ?? DEFAULT_SORT,
     page,
   };
 }

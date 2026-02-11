@@ -21,16 +21,16 @@ function buildSuggestions(shows) {
 /**
  * Normalize filter values for consistent searching.
  * @param {Object} filters
- * @param {string} filters.theatreFilter
+ * @param {string} filters.theatre
  * @param {string} filters.query
- * @param {Array} filters.genreFilters
+ * @param {Array} filters.genres
  * @returns {Object} Normalized filter values
  */
-function normalizeFilters({ theatreFilter, query, genreFilters }) {
+function normalizeFilters({ theatre, query, genres }) {
   return {
-    theatreNormalized: normalize(theatreFilter),
+    theatreNormalized: normalize(theatre),
     queryNormalized: normalize(query),
-    genreNormalized: genreFilters.map(normalize).filter(Boolean),
+    genreNormalized: genres.map(normalize).filter(Boolean),
   };
 }
 
@@ -125,7 +125,7 @@ export async function getShowsForList(searchParams) {
 
   const normalized = normalizeFilters(filters);
   const filteredShows = filterShows(shows, normalized);
-  const sortedShows = sortShowsByRating(filteredShows, filters.selectedSort);
+  const sortedShows = sortShowsByRating(filteredShows, filters.sort);
 
   // Pagination: determine page/perPage and slice results.
   const perPage = 12; // default items per page
