@@ -1,10 +1,10 @@
 import Link from "next/link";
-import Image from "next/image";
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import { getShowById } from "@/lib/showsData";
 import ROUTES from "@/constants/routes";
 import ReviewCard from "@/components/ReviewCard/ReviewCard";
+import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import { getShowStats } from "@/utils/showStats";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 
@@ -32,7 +32,7 @@ export default async function ShowPage({ params }: ShowPageProps) {
       <header className={styles.header}>
         <div className={styles.heroGrid}>
           <div className={styles.poster}>
-            <Image
+            <FallbackImage
               src={getShowImagePath(show.title)}
               alt={show.title}
               fill

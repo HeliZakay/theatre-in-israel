@@ -1,9 +1,9 @@
 import Link from "next/link";
-import Image from "next/image";
 import styles from "./ShowsSection.module.css";
 import Tag from "@/components/Tag/Tag";
 import Card from "@/components/Card/Card";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
+import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import type { EnrichedShow } from "@/types";
 
@@ -39,7 +39,7 @@ export default function ShowsSection({
           >
             <Card as="article" className={styles.card}>
               <div className={styles.thumb}>
-                <Image
+                <FallbackImage
                   src={getShowImagePath(show.title)}
                   alt={show.title}
                   fill

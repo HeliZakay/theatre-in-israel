@@ -1,6 +1,6 @@
 import * as Separator from "@radix-ui/react-separator";
-import Image from "next/image";
 import styles from "./FeaturedShow.module.css";
+import FallbackImage from "@/components/FallbackImage/FallbackImage";
 
 interface FeaturedShowProps {
   title: string;
@@ -30,7 +30,7 @@ export default function FeaturedShow({
     <article className={styles.card} aria-label="כרטיס הצגה מומלצת">
       <div className={styles.media}>
         <div className={styles.mediaRatio}>
-          <Image
+          <FallbackImage
             src={imageSrc}
             alt={imageAlt ?? title}
             fill

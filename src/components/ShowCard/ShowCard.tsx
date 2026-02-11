@@ -1,8 +1,8 @@
 import Link from "next/link";
-import Image from "next/image";
 import styles from "./ShowCard.module.css";
 import Tag from "@/components/Tag/Tag";
 import Card from "@/components/Card/Card";
+import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import { getShowStats } from "@/utils/showStats";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import type { Show } from "@/types";
@@ -18,7 +18,7 @@ export default function ShowCard({ show }: ShowCardProps) {
     <Link href={`/shows/${show.id}`} className={styles.cardLink}>
       <Card as="article" className={styles.card} aria-label={show.title}>
         <div className={styles.imageWrapper}>
-          <Image
+          <FallbackImage
             src={getShowImagePath(show.title)}
             alt={show.title}
             fill
