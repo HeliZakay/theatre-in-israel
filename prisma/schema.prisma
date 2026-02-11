@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Show {
+  id              Int         @id @default(autoincrement())
+  title           String
+  theatre         String
+  durationMinutes Int
+  summary         String
+  genres          ShowGenre[]
+  reviews         Review[]
+}
+
+model Genre {
+  id    Int         @id @default(autoincrement())
+  name  String      @unique
+  shows ShowGenre[]
+}
+
+model ShowGenre {
+  show   Show  @relation(fields: [showId], references: [id], onDelete: Cascade)
+  showId Int
+  genre  Genre @relation(fields: [genreId], references: [id], onDelete: Cascade)
+  genreId Int
+
+  @@id([showId, genreId])
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  show      Show     @relation(fields: [showId], references: [id], onDelete: Cascade)
+  showId    Int
+  author    String
+  title     String?
+  text      String
+  rating    Int
+  date      DateTime
+  createdAt DateTime @default(now())
+
+  @@index([showId])
+}
