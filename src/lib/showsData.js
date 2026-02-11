@@ -27,21 +27,21 @@ function normalizeShow(show) {
  * @returns {Promise<Object>} Homepage data
  */
 export async function getHomePageData() {
-  // Build autocomplete suggestions from distinct values.
+  // Build autocomplete suggestions from distinct values, grouped by type.
   const [showFields, genreNames] = await Promise.all([
     prisma.show.findMany({ select: { title: true, theatre: true } }),
     prisma.genre.findMany({ select: { name: true } }),
   ]);
 
-  const suggestions = Array.from(
-    new Set([
-      ...showFields.map((s) => s.title),
-      ...showFields.map((s) => s.theatre),
-      ...genreNames.map((g) => g.name),
-    ]),
-  ).filter(Boolean);
+  const suggestions = {
+    shows: Array.from(new Set(showFields.map((s) => s.title).filter(Boolean))),
+    theatres: Array.from(
+      new Set(showFields.map((s) => s.theatre).filter(Boolean)),
+    ),
+    genres: genreNames.map((g) => g.name).filter(Boolean),
+  };
 
-  // Top 6 by average rating — raw SQL because Prisma can't orderBy on
+  // Top 5 by average rating — raw SQL because Prisma can't orderBy on
   // an aggregate of a relation.
   const topRatedIds = await prisma.$queryRaw`
     SELECT s.id
@@ -50,7 +50,7 @@ export async function getHomePageData() {
     GROUP BY s.id
     HAVING COUNT(r.id) > 0
     ORDER BY AVG(r.rating) DESC
-    LIMIT 6
+    LIMIT 5
   `;
 
   const topRatedShows =
@@ -76,7 +76,7 @@ export async function getHomePageData() {
     INNER JOIN "Review" r ON r."showId" = s.id
     GROUP BY s.id
     ORDER BY MAX(r.date) DESC
-    LIMIT 6
+    LIMIT 5
   `;
 
   const latestReviewedShows =

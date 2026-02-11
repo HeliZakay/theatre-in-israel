@@ -97,6 +97,29 @@
   background: rgba(156, 27, 32, 0.12);
 }
 
+.groupHeader {
+  padding: 6px 12px 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #8a94a6;
+  text-align: right;
+  user-select: none;
+  pointer-events: none;
+}
+
+.groupHeader:not(:first-child) {
+  margin-top: 4px;
+  border-top: 1px solid #e1e4ea;
+  padding-top: 8px;
+}
+
+.empty {
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  color: rgba(26, 26, 26, 0.5);
+  text-align: center;
+}
+
 .searchShell:focus-within {
   border-color: #c5cad3;
   background: #ffffff;

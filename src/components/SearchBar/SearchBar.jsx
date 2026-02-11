@@ -1,13 +1,42 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { Fragment, useState, useRef, useMemo } from "react";
 import Button from "../Button/Button";
 import styles from "./SearchBar.module.css";
 import { useCombobox } from "@/hooks/useCombobox";
 import ROUTES from "@/constants/routes";
 
-export default function SearchBar({ suggestions = [] }) {
+const CATEGORIES = [
+  { key: "shows", label: "הצגות" },
+  { key: "theatres", label: "תיאטראות" },
+  { key: "genres", label: "ז'אנרים" },
+];
+
+export default function SearchBar({ suggestions = {} }) {
   const [value, setValue] = useState("");
+  const inputRef = useRef(null);
+
+  // Build a flat, category-ordered list for the combobox hook.
+  const allItems = useMemo(
+    () => [
+      ...(suggestions.shows || []),
+      ...(suggestions.theatres || []),
+      ...(suggestions.genres || []),
+    ],
+    [suggestions],
+  );
+
+  // Map each suggestion to its category for rendering group headers.
+  const categoryLookup = useMemo(() => {
+    const lookup = new Map();
+    for (const cat of CATEGORIES) {
+      for (const item of suggestions[cat.key] || []) {
+        if (!lookup.has(item)) lookup.set(item, cat.key);
+      }
+    }
+    return lookup;
+  }, [suggestions]);
+
   const {
     activeIndex,
     filteredItems,
@@ -20,13 +49,12 @@ export default function SearchBar({ suggestions = [] }) {
     setIsOpen,
     setActiveIndex,
   } = useCombobox({
-    items: suggestions,
+    items: allItems,
     value,
     onSelect: (item) => setValue(item),
     listboxId: "shows-suggestions",
+    maxItems: 50,
   });
-
-  const inputRef = useRef(null);
 
   return (
     <form
@@ -76,32 +104,51 @@ export default function SearchBar({ suggestions = [] }) {
           }
         />
 
-        {isOpen && filteredItems.length ? (
+        {isOpen && (
           <div className={styles.suggestions} id={listboxId} role="listbox">
-            {filteredItems.map((item, index) => (
-              <button
-                key={item}
-                type="button"
-                id={`shows-suggestion-${index}`}
-                className={`${styles.suggestion} ${
-                  index === activeIndex ? styles.suggestionActive : ""
-                }`}
-                role="option"
-                aria-selected={index === activeIndex}
-                onMouseDown={(event) => event.preventDefault()}
-                onMouseEnter={() => setActiveIndex(index)}
-                onClick={() => {
-                  // set the visible input value, close popup and keep focus on input
-                  setValue(item);
-                  setIsOpen(false);
-                  inputRef.current?.focus();
-                }}
-              >
-                {item}
-              </button>
-            ))}
+            {filteredItems.length === 0 ? (
+              <div className={styles.empty}>לא נמצאו תוצאות</div>
+            ) : (
+              filteredItems.map((item, index) => {
+                const cat = categoryLookup.get(item);
+                const prevCat =
+                  index > 0
+                    ? categoryLookup.get(filteredItems[index - 1])
+                    : null;
+                const showHeader = cat !== prevCat;
+                const catLabel = CATEGORIES.find((c) => c.key === cat)?.label;
+
+                return (
+                  <Fragment key={item}>
+                    {showHeader && (
+                      <div className={styles.groupHeader} role="presentation">
+                        {catLabel}
+                      </div>
+                    )}
+                    <button
+                      type="button"
+                      id={`shows-suggestion-${index}`}
+                      className={`${styles.suggestion} ${
+                        index === activeIndex ? styles.suggestionActive : ""
+                      }`}
+                      role="option"
+                      aria-selected={index === activeIndex}
+                      onMouseDown={(event) => event.preventDefault()}
+                      onMouseEnter={() => setActiveIndex(index)}
+                      onClick={() => {
+                        setValue(item);
+                        setIsOpen(false);
+                        inputRef.current?.focus();
+                      }}
+                    >
+                      {item}
+                    </button>
+                  </Fragment>
+                );
+              })
+            )}
           </div>
-        ) : null}
+        )}
 
         <Button type="submit">לחפש הצגה</Button>
       </div>

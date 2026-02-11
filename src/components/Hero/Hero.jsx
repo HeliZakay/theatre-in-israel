@@ -2,7 +2,7 @@ import styles from "./Hero.module.css";
 import SearchBar from "../SearchBar/SearchBar";
 import FeaturedShow from "../FeaturedShow/FeaturedShow";
 
-export default function Hero({ suggestions = [] }) {
+export default function Hero({ suggestions = {} }) {
   return (
     <section className={styles.hero} aria-label="Hero">
       <div className={styles.inner}>

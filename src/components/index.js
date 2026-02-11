@@ -9,6 +9,7 @@ export { default as Logo } from "./Logo/Logo";
 export { default as ReviewCard } from "./ReviewCard/ReviewCard";
 export { default as SearchBar } from "./SearchBar/SearchBar";
 export { default as ShowCard } from "./ShowCard/ShowCard";
+export { default as ShowCombobox } from "./ShowCombobox/ShowCombobox";
 export { default as ShowsFilterBar } from "./ShowsFilterBar/ShowsFilterBar";
 export { default as ShowsSection } from "./ShowsSection/ShowsSection";
 export { default as SectionHeader } from "./SectionHeader/SectionHeader";

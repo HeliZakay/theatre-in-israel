@@ -8,6 +8,7 @@ import * as z from "zod";
 import styles from "@/app/reviews/new/page.module.css";
 import ROUTES from "@/constants/routes";
 import AppSelect from "@/components/AppSelect/AppSelect";
+import ShowCombobox from "@/components/ShowCombobox/ShowCombobox";
 
 const reviewSchema = z.object({
   showId: z.string().min(1, "יש לבחור הצגה"),
@@ -114,16 +115,13 @@ export default function ReviewForm({ shows = [], initialShowId = "" }) {
             name="showId"
             control={control}
             render={({ field }) => (
-              <AppSelect
+              <ShowCombobox
                 id="showId"
-                name={field.name}
-                className={styles.select}
-                ariaLabel="הצגה"
                 value={field.value ?? ""}
                 onValueChange={field.onChange}
                 onBlur={field.onBlur}
                 options={showOptions}
-                placeholder="בחרו הצגה"
+                placeholder="חפש.י הצגה…"
               />
             )}
           />
