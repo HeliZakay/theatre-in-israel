@@ -13,6 +13,11 @@
   font-family: inherit;
 }
 
+.inputInvalid {
+  border-color: rgba(156, 27, 32, 0.7);
+  background: rgba(156, 27, 32, 0.04);
+}
+
 .input::placeholder {
   font-family: inherit;
   color: rgba(26, 26, 26, 0.5);

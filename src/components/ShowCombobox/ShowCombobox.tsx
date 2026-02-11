@@ -12,6 +12,8 @@ interface ShowComboboxProps {
   placeholder?: string;
   id?: string;
   onBlur?: () => void;
+  invalid?: boolean;
+  ariaDescribedBy?: string;
 }
 
 export default function ShowCombobox({
@@ -21,6 +23,8 @@ export default function ShowCombobox({
   placeholder = "חפש.י הצגה…",
   id,
   onBlur,
+  invalid = false,
+  ariaDescribedBy,
 }: ShowComboboxProps) {
   const labels = options.map((o) => o.label);
 
@@ -108,12 +112,14 @@ export default function ShowCombobox({
             ? `${listboxId}-option-${activeIndex}`
             : undefined
         }
-        className={styles.input}
+        className={`${styles.input} ${invalid ? styles.inputInvalid : ""}`}
         placeholder={placeholder}
         value={inputValue}
         onChange={handleInputChange}
         onFocus={handleFocus}
         onKeyDown={handleKeyDown}
+        aria-invalid={invalid}
+        aria-describedby={ariaDescribedBy}
       />
 
       {isOpen && (

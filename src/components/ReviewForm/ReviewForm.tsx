@@ -131,11 +131,15 @@ export default function ReviewForm({
                 onBlur={field.onBlur}
                 options={showOptions}
                 placeholder="חפש.י הצגה…"
+                invalid={Boolean(errors.showId)}
+                ariaDescribedBy={errors.showId ? "showId-error" : undefined}
               />
             )}
           />
           {errors.showId ? (
-            <p className={styles.fieldError}>{errors.showId.message}</p>
+            <p id="showId-error" className={styles.fieldError} role="alert">
+              {errors.showId.message}
+            </p>
           ) : null}
         </label>
       ) : (

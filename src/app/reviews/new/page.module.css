@@ -75,6 +75,18 @@
   gap: 12px;
 }
 
+.fieldError {
+  color: var(--color-curtain-red);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.success {
+  color: #146c43;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
 .primaryBtn,
 .ghostBtn {
   border-radius: 12px;
