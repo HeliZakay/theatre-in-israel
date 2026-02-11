@@ -36,4 +36,33 @@
 .text {
   color: var(--color-text-primary);
   line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.textTruncated {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.readMoreBtn {
+  align-self: flex-start;
+  border: none;
+  background: transparent;
+  color: var(--color-curtain-red);
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+}
+
+.readMoreBtn:hover {
+  text-decoration: underline;
+}
+
+.readMoreBtn:focus-visible {
+  outline: 3px solid rgba(156, 27, 32, 0.3);
+  outline-offset: 3px;
 }

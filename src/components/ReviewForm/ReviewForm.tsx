@@ -141,21 +141,6 @@ export default function ReviewForm({
 
   return (
     <form className={styles.form} onSubmit={submitHandler} noValidate>
-      <div aria-live="polite" aria-atomic="true">
-        {success ? (
-          <div className={styles.successBanner} role="status">
-            <span className={styles.successIcon} aria-hidden="true">
-              ✓
-            </span>
-            <div>
-              <p className={styles.successTitle}>הביקורת נשלחה בהצלחה</p>
-              <p className={styles.successSubtitle}>
-                מעבירים אותך לעמוד ההצגה...
-              </p>
-            </div>
-          </div>
-        ) : null}
-      </div>
       {shows.length ? (
         <label className={styles.field}>
           <span className={styles.label}>הצגה</span>
@@ -256,6 +241,21 @@ export default function ReviewForm({
       </label>
 
       {serverError ? <p className={styles.fieldError}>{serverError}</p> : null}
+      <div aria-live="polite" aria-atomic="true">
+        {success ? (
+          <div className={styles.successBanner} role="status">
+            <span className={styles.successIcon} aria-hidden="true">
+              ✓
+            </span>
+            <div>
+              <p className={styles.successTitle}>הביקורת נשלחה בהצלחה</p>
+              <p className={styles.successSubtitle}>
+                מעבירים אותך לעמוד ההצגה...
+              </p>
+            </div>
+          </div>
+        ) : null}
+      </div>
 
       <div className={styles.actions}>
         <button
