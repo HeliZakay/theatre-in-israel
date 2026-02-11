@@ -48,6 +48,11 @@
   color: var(--color-curtain-red);
   font-weight: 600;
   text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
 }
 
 .chip:hover {

@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useOptimistic, useTransition } from "react";
 import styles from "./ShowsFilterBar.module.css";
 import AppSelect from "@/components/AppSelect/AppSelect";
 import SearchInput from "@/components/SearchInput/SearchInput";
@@ -12,16 +12,36 @@ interface ShowsFilterBarProps {
   theatres: string[];
   allGenres: string[];
   filters: ShowFilters;
+  onPendingChange?: (pending: boolean) => void;
 }
 
 export default function ShowsFilterBar({
   theatres,
   allGenres,
   filters,
+  onPendingChange,
 }: ShowsFilterBarProps) {
   const ALL_THEATRES_VALUE = "__all_theatres__";
   const router = useRouter();
   const pathname = usePathname();
+  const [isPending, startTransition] = useTransition();
+
+  // Optimistic genre state so chips toggle immediately
+  const [optimisticGenres, setOptimisticGenres] = useOptimistic(filters.genres);
+
+  // Wrap navigation in a transition for non-blocking updates
+  const navigate = (href: string, optimisticUpdate?: () => void) => {
+    startTransition(() => {
+      optimisticUpdate?.();
+      router.push(href);
+    });
+    onPendingChange?.(true);
+  };
+
+  // Keep parent in sync when transition completes
+  if (!isPending) {
+    onPendingChange?.(false);
+  }
 
   // Build a URL that applies the given overrides on top of the current
   // filters, omitting page so any filter change resets to page 1.
@@ -31,7 +51,7 @@ export default function ShowsFilterBar({
   };
 
   const toggleGenre = (genre: string) => {
-    const current = new Set(filters.genres);
+    const current = new Set(optimisticGenres);
     if (current.has(genre)) current.delete(genre);
     else current.add(genre);
     return Array.from(current);
@@ -68,7 +88,7 @@ export default function ShowsFilterBar({
           ariaLabel="תיאטרון"
           value={filters.theatre || ALL_THEATRES_VALUE}
           onValueChange={(value) =>
-            router.push(
+            navigate(
               buildHref({
                 theatre: value === ALL_THEATRES_VALUE ? "" : value,
               }),
@@ -85,33 +105,43 @@ export default function ShowsFilterBar({
           className={styles.select}
           ariaLabel="מיון"
           value={filters.sort}
-          onValueChange={(value) => router.push(buildHref({ sort: value }))}
+          onValueChange={(value) => navigate(buildHref({ sort: value }))}
           options={sortOptions}
         />
       </div>
       <div className={styles.chipRow}>
         <span className={styles.filterLabel}>ז&apos;אנר</span>
-        <Link
+        <button
+          type="button"
           className={`${styles.chip} ${
-            filters.genres.length ? "" : styles.chipActive
+            optimisticGenres.length ? "" : styles.chipActive
           }`}
-          aria-current={filters.genres.length ? undefined : "true"}
-          href={buildHref({ genres: [] })}
+          aria-current={optimisticGenres.length ? undefined : "true"}
+          onClick={() =>
+            navigate(buildHref({ genres: [] }), () => setOptimisticGenres([]))
+          }
         >
           הכל
-        </Link>
-        {allGenres.map((genre) => (
-          <Link
-            key={genre}
-            className={`${styles.chip} ${
-              filters.genres.includes(genre) ? styles.chipActive : ""
-            }`}
-            aria-current={filters.genres.includes(genre) ? "true" : undefined}
-            href={buildHref({ genres: toggleGenre(genre) })}
-          >
-            {genre}
-          </Link>
-        ))}
+        </button>
+        {allGenres.map((genre) => {
+          const isActive = optimisticGenres.includes(genre);
+          return (
+            <button
+              type="button"
+              key={genre}
+              className={`${styles.chip} ${isActive ? styles.chipActive : ""}`}
+              aria-current={isActive ? "true" : undefined}
+              onClick={() => {
+                const next = toggleGenre(genre);
+                navigate(buildHref({ genres: next }), () =>
+                  setOptimisticGenres(next),
+                );
+              }}
+            >
+              {genre}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
