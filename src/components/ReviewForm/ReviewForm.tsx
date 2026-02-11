@@ -2,19 +2,35 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import styles from "@/app/reviews/new/page.module.css";
 import ROUTES from "@/constants/routes";
 import AppSelect from "@/components/AppSelect/AppSelect";
 import ShowCombobox from "@/components/ShowCombobox/ShowCombobox";
+import {
+  REVIEW_COMMENT_MAX,
+  REVIEW_COMMENT_MIN,
+  REVIEW_NAME_MAX,
+  REVIEW_NAME_MIN,
+  REVIEW_TITLE_MAX,
+  REVIEW_TITLE_MIN,
+} from "@/constants/reviewValidation";
 import type { Show } from "@/types";
 
 const reviewSchema = z.object({
   showId: z.string().trim().min(1, "יש לבחור הצגה"),
-  name: z.string().trim().min(2, "הכנס שם חוקי"),
-  title: z.string().trim().min(2, "הכנס כותרת"),
+  name: z
+    .string()
+    .trim()
+    .min(REVIEW_NAME_MIN, "הכנס שם חוקי")
+    .max(REVIEW_NAME_MAX, `השם יכול להכיל עד ${REVIEW_NAME_MAX} תווים`),
+  title: z
+    .string()
+    .trim()
+    .min(REVIEW_TITLE_MIN, "הכנס כותרת")
+    .max(REVIEW_TITLE_MAX, `הכותרת יכולה להכיל עד ${REVIEW_TITLE_MAX} תווים`),
   rating: z.preprocess(
     (v) => (typeof v === "string" ? parseInt(v, 10) : v),
     z.number().int().min(1).max(5),
@@ -22,7 +38,14 @@ const reviewSchema = z.object({
   comment: z
     .string()
     .trim()
-    .min(10, "תגובה צריכה להכיל לפחות 10 תווים"),
+    .min(
+      REVIEW_COMMENT_MIN,
+      `תגובה צריכה להכיל לפחות ${REVIEW_COMMENT_MIN} תווים`,
+    )
+    .max(
+      REVIEW_COMMENT_MAX,
+      `התגובה יכולה להכיל עד ${REVIEW_COMMENT_MAX} תווים`,
+    ),
 });
 
 const ratingOptions = [
@@ -67,6 +90,9 @@ export default function ReviewForm({
     value: String(show.id),
     label: show.title,
   }));
+  const nameValue = useWatch({ control, name: "name" }) ?? "";
+  const titleValue = useWatch({ control, name: "title" }) ?? "";
+  const commentValue = useWatch({ control, name: "comment" }) ?? "";
 
   const onSubmit = async (values: z.infer<typeof reviewSchema>) => {
     setServerError("");
@@ -93,7 +119,7 @@ export default function ReviewForm({
       setSuccess(true);
       timerRef.current = setTimeout(() => {
         router.push(`/shows/${values.showId}`);
-      }, 1400);
+      }, 1800);
     } catch (err: unknown) {
       setServerError(err instanceof Error ? err.message : String(err));
     }
@@ -117,7 +143,17 @@ export default function ReviewForm({
     <form className={styles.form} onSubmit={submitHandler} noValidate>
       <div aria-live="polite" aria-atomic="true">
         {success ? (
-          <p className={styles.success}>תודה! הביקורת נשלחה בהצלחה.</p>
+          <div className={styles.successBanner} role="status">
+            <span className={styles.successIcon} aria-hidden="true">
+              ✓
+            </span>
+            <div>
+              <p className={styles.successTitle}>הביקורת נשלחה בהצלחה</p>
+              <p className={styles.successSubtitle}>
+                מעבירים אותך לעמוד ההצגה...
+              </p>
+            </div>
+          </div>
         ) : null}
       </div>
       {shows.length ? (
@@ -151,18 +187,32 @@ export default function ReviewForm({
 
       <label className={styles.field}>
         <span className={styles.label}>שם מלא</span>
-        <input className={styles.input} {...register("name")} />
+        <input
+          className={styles.input}
+          maxLength={REVIEW_NAME_MAX}
+          {...register("name")}
+        />
         {errors.name ? (
           <p className={styles.fieldError}>{errors.name.message}</p>
         ) : null}
+        <p className={styles.charMeta}>
+          {nameValue.length}/{REVIEW_NAME_MAX}
+        </p>
       </label>
 
       <label className={styles.field}>
         <span className={styles.label}>כותרת הביקורת</span>
-        <input className={styles.input} {...register("title")} />
+        <input
+          className={styles.input}
+          maxLength={REVIEW_TITLE_MAX}
+          {...register("title")}
+        />
         {errors.title ? (
           <p className={styles.fieldError}>{errors.title.message}</p>
         ) : null}
+        <p className={styles.charMeta}>
+          {titleValue.length}/{REVIEW_TITLE_MAX}
+        </p>
       </label>
 
       <label className={styles.field}>
@@ -194,11 +244,15 @@ export default function ReviewForm({
         <textarea
           className={styles.textarea}
           rows={6}
+          maxLength={REVIEW_COMMENT_MAX}
           {...register("comment")}
         />
         {errors.comment ? (
           <p className={styles.fieldError}>{errors.comment.message}</p>
         ) : null}
+        <p className={styles.charMeta}>
+          {commentValue.length}/{REVIEW_COMMENT_MAX}
+        </p>
       </label>
 
       {serverError ? <p className={styles.fieldError}>{serverError}</p> : null}

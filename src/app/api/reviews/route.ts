@@ -1,16 +1,36 @@
 import { NextResponse, NextRequest } from "next/server";
 import { addReview } from "@/lib/shows";
 import * as z from "zod";
+import {
+  REVIEW_COMMENT_MAX,
+  REVIEW_COMMENT_MIN,
+  REVIEW_NAME_MAX,
+  REVIEW_NAME_MIN,
+  REVIEW_TITLE_MAX,
+  REVIEW_TITLE_MIN,
+} from "@/constants/reviewValidation";
 
 const reviewSchema = z.object({
   showId: z.string().trim().min(1, "Missing showId"),
-  name: z.string().trim().min(2, "Name is too short"),
-  title: z.string().trim().min(2, "Title is too short"),
+  name: z
+    .string()
+    .trim()
+    .min(REVIEW_NAME_MIN, "Name is too short")
+    .max(REVIEW_NAME_MAX, "Name is too long"),
+  title: z
+    .string()
+    .trim()
+    .min(REVIEW_TITLE_MIN, "Title is too short")
+    .max(REVIEW_TITLE_MAX, "Title is too long"),
   rating: z.preprocess(
     (v) => (typeof v === "string" ? parseInt(v, 10) : v),
     z.number().int().min(1).max(5),
   ),
-  comment: z.string().trim().min(10, "Comment is too short"),
+  comment: z
+    .string()
+    .trim()
+    .min(REVIEW_COMMENT_MIN, "Comment is too short")
+    .max(REVIEW_COMMENT_MAX, "Comment is too long"),
 });
 
 function formatZodErrors(err: z.ZodError): string {
