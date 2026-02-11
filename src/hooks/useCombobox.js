@@ -25,18 +25,38 @@ export function useCombobox({
   // `filteredItems` is memoized to avoid recalculating the list on every
   // render unless the inputs change (items, value or maxItems).
 
+  const queueActiveIndexUpdate = (nextIndex) => {
+    Promise.resolve().then(() => setActiveIndex(nextIndex));
+  };
+
   useEffect(() => {
     if (!isOpen) {
       // Only update when necessary to avoid unnecessary re-renders.
-      if (activeIndex !== -1) Promise.resolve().then(() => setActiveIndex(-1));
+      if (activeIndex !== -1) queueActiveIndexUpdate(-1);
       return;
     }
+
     if (activeIndex >= filteredItems.length) {
-      const next = filteredItems.length ? 0 : -1;
-      if (activeIndex !== next)
-        Promise.resolve().then(() => setActiveIndex(next));
+      const nextIndex = filteredItems.length ? 0 : -1;
+      if (activeIndex !== nextIndex) queueActiveIndexUpdate(nextIndex);
     }
   }, [isOpen, filteredItems.length, activeIndex]);
+
+  const moveActiveIndex = (direction) => {
+    setIsOpen(true);
+    setActiveIndex((previousIndex) => {
+      if (direction === "down") {
+        return previousIndex < filteredItems.length - 1 ? previousIndex + 1 : 0;
+      }
+      return previousIndex > 0 ? previousIndex - 1 : filteredItems.length - 1;
+    });
+  };
+
+  const selectActiveItem = () => {
+    if (!isOpen || activeIndex < 0) return;
+    onSelect?.(filteredItems[activeIndex]);
+    setIsOpen(false);
+  };
 
   const handleKeyDown = (event) => {
     if (!filteredItems.length) return;
@@ -44,26 +64,18 @@ export function useCombobox({
     switch (event.key) {
       case "ArrowDown": {
         event.preventDefault();
-        setIsOpen(true);
-        setActiveIndex((prev) =>
-          prev < filteredItems.length - 1 ? prev + 1 : 0,
-        );
+        moveActiveIndex("down");
         break;
       }
       case "ArrowUp": {
         event.preventDefault();
-        setIsOpen(true);
-        setActiveIndex((prev) =>
-          prev > 0 ? prev - 1 : filteredItems.length - 1,
-        );
+        moveActiveIndex("up");
         break;
       }
       case "Enter": {
-        if (isOpen && activeIndex >= 0) {
-          event.preventDefault();
-          onSelect?.(filteredItems[activeIndex]);
-          setIsOpen(false);
-        }
+        if (!isOpen || activeIndex < 0) break;
+        event.preventDefault();
+        selectActiveItem();
         break;
       }
       case "Escape": {
@@ -79,9 +91,7 @@ export function useCombobox({
   };
 
   const handleBlur = (event) => {
-    if (rootRef.current?.contains(event.relatedTarget)) {
-      return;
-    }
+    if (rootRef.current?.contains(event.relatedTarget)) return;
     setIsOpen(false);
   };
 

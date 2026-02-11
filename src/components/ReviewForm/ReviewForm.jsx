@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import styles from "@/app/reviews/new/page.module.css";
 import ROUTES from "@/constants/routes";
-import AppSelect from "@/components/ui/AppSelect/AppSelect";
+import AppSelect from "@/components/AppSelect/AppSelect";
 
 const reviewSchema = z.object({
   showId: z.string().min(1, "יש לבחור הצגה"),

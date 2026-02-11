@@ -3,6 +3,11 @@ import { usePathname, useRouter } from "next/navigation";
 import { buildShowsQueryString } from "../utils/showsQuery";
 import { useDebounce } from "./useDebounce";
 
+const FILTER_KEYS = new Set(["query", "theatre", "genres", "sort"]);
+
+const getSelectValue = (valueOrEvent) =>
+  typeof valueOrEvent === "string" ? valueOrEvent : valueOrEvent?.target?.value ?? "";
+
 // useShowsFilters manages UI state for the shows list page and exposes
 // helpers to build query strings and navigate when filters change.
 // It keeps a debounced search input locally to avoid pushing every
@@ -16,21 +21,26 @@ export function useShowsFilters({
 }) {
   const router = useRouter();
   const pathname = usePathname();
-  const [searchValue, setSearchValue] = useState(query ?? "");
-  const lastSubmittedQueryRef = useRef(query ?? "");
+  const initialQuery = query ?? "";
+  const [searchValue, setSearchValue] = useState(initialQuery);
+  const lastSubmittedQueryRef = useRef(initialQuery);
 
   useEffect(() => {
-    const next = query ?? "";
+    const nextQueryFromUrl = query ?? "";
+
     // Ignore query updates triggered by this hook's debounced push,
     // so delayed router updates don't clobber in-progress typing.
-    if (next === lastSubmittedQueryRef.current) return;
+    if (nextQueryFromUrl === lastSubmittedQueryRef.current) return;
 
     let active = true;
+
     // Defer state sync to satisfy strict effect linting while keeping
     // input state aligned with URL query changes.
     Promise.resolve().then(() => {
       if (!active) return;
-      setSearchValue((current) => (current === next ? current : next));
+      setSearchValue((current) =>
+        current === nextQueryFromUrl ? current : nextQueryFromUrl,
+      );
     });
 
     return () => {
@@ -46,9 +56,8 @@ export function useShowsFilters({
       const nextSort = overrides.sort ?? selectedSort;
 
       // If any filter (query/theatre/genres/sort) changed, reset to page 1
-      const filterKeys = ["query", "theatre", "genres", "sort"];
-      const shouldResetPage = Object.keys(overrides).some((k) =>
-        filterKeys.includes(k),
+      const shouldResetPage = Object.keys(overrides).some((key) =>
+        FILTER_KEYS.has(key),
       );
 
       return buildShowsQueryString({
@@ -62,12 +71,16 @@ export function useShowsFilters({
     [query, theatreFilter, genreFilters, selectedSort],
   );
 
+  const pushQuery = useCallback(
+    (overrides = {}) => {
+      router.push(`${pathname}${buildQueryString(overrides)}`);
+    },
+    [router, pathname, buildQueryString],
+  );
+
   const handleSelectChange = (key) => (valueOrEvent) => {
-    const value =
-      typeof valueOrEvent === "string"
-        ? valueOrEvent
-        : valueOrEvent?.target?.value ?? "";
-    router.push(`${pathname}${buildQueryString({ [key]: value })}`);
+    const value = getSelectValue(valueOrEvent);
+    pushQuery({ [key]: value });
   };
 
   const debouncedSearch = useDebounce(searchValue, 350);
@@ -75,9 +88,10 @@ export function useShowsFilters({
   useEffect(() => {
     const nextQuery = debouncedSearch.trim();
     if (nextQuery === (query ?? "")) return;
+
     lastSubmittedQueryRef.current = nextQuery;
-    router.push(`${pathname}${buildQueryString({ query: nextQuery })}`);
-  }, [debouncedSearch, query, pathname, router, buildQueryString]);
+    pushQuery({ query: nextQuery });
+  }, [debouncedSearch, query, pushQuery]);
 
   // Return a new array with the given genre toggled. This function
   // does not perform navigation — it only returns the next genres

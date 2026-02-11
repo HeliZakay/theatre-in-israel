@@ -3,7 +3,7 @@
 import Link from "next/link";
 import styles from "./ShowsFilterBar.module.css";
 import { useShowsFilters } from "@/hooks/useShowsFilters";
-import AppSelect from "@/components/ui/AppSelect/AppSelect";
+import AppSelect from "@/components/AppSelect/AppSelect";
 
 // ShowsFilterBar renders the controls used to filter and sort the
 // shows list. It delegates navigation to the hook helpers so the
