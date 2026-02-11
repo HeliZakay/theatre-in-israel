@@ -62,8 +62,11 @@ export function useShowsFilters({
     [query, theatreFilter, genreFilters, selectedSort],
   );
 
-  const handleSelectChange = (key) => (event) => {
-    const value = event.target.value;
+  const handleSelectChange = (key) => (valueOrEvent) => {
+    const value =
+      typeof valueOrEvent === "string"
+        ? valueOrEvent
+        : valueOrEvent?.target?.value ?? "";
     router.push(`${pathname}${buildQueryString({ [key]: value })}`);
   };
 

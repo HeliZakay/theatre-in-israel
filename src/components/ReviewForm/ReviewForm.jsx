@@ -2,11 +2,12 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import styles from "@/app/reviews/new/page.module.css";
 import ROUTES from "@/constants/routes";
+import AppSelect from "@/components/ui/AppSelect/AppSelect";
 
 const reviewSchema = z.object({
   showId: z.string().min(1, "יש לבחור הצגה"),
@@ -19,6 +20,14 @@ const reviewSchema = z.object({
   comment: z.string().min(10, "תגובה צריכה להכיל לפחות 10 תווים"),
 });
 
+const ratingOptions = [
+  { value: "5", label: "5 - מצוין" },
+  { value: "4", label: "4 - טוב מאוד" },
+  { value: "3", label: "3 - סביר" },
+  { value: "2", label: "2 - פחות" },
+  { value: "1", label: "1 - לא מומלץ" },
+];
+
 export default function ReviewForm({ shows = [], initialShowId = "" }) {
   const router = useRouter();
   const [serverError, setServerError] = useState("");
@@ -26,6 +35,7 @@ export default function ReviewForm({ shows = [], initialShowId = "" }) {
   const timerRef = useRef(null);
 
   const {
+    control,
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
@@ -39,6 +49,11 @@ export default function ReviewForm({ shows = [], initialShowId = "" }) {
       comment: "",
     },
   });
+
+  const showOptions = shows.map((show) => ({
+    value: String(show.id),
+    label: show.title,
+  }));
 
   const onSubmit = async (values) => {
     setServerError("");
@@ -95,16 +110,23 @@ export default function ReviewForm({ shows = [], initialShowId = "" }) {
       {shows.length ? (
         <label className={styles.field}>
           <span className={styles.label}>הצגה</span>
-          <select className={styles.select} {...register("showId")}>
-            <option value="" disabled>
-              בחרו הצגה
-            </option>
-            {shows.map((show) => (
-              <option key={show.id} value={show.id}>
-                {show.title}
-              </option>
-            ))}
-          </select>
+          <Controller
+            name="showId"
+            control={control}
+            render={({ field }) => (
+              <AppSelect
+                id="showId"
+                name={field.name}
+                className={styles.select}
+                ariaLabel="הצגה"
+                value={field.value ?? ""}
+                onValueChange={field.onChange}
+                onBlur={field.onBlur}
+                options={showOptions}
+                placeholder="בחרו הצגה"
+              />
+            )}
+          />
           {errors.showId ? (
             <p className={styles.fieldError}>{errors.showId.message}</p>
           ) : null}
@@ -131,16 +153,23 @@ export default function ReviewForm({ shows = [], initialShowId = "" }) {
 
       <label className={styles.field}>
         <span className={styles.label}>דירוג</span>
-        <select className={styles.select} {...register("rating")}>
-          <option value="" disabled>
-            בחרו דירוג
-          </option>
-          <option value="5">5 - מצוין</option>
-          <option value="4">4 - טוב מאוד</option>
-          <option value="3">3 - סביר</option>
-          <option value="2">2 - פחות</option>
-          <option value="1">1 - לא מומלץ</option>
-        </select>
+        <Controller
+          name="rating"
+          control={control}
+          render={({ field }) => (
+            <AppSelect
+              id="rating"
+              name={field.name}
+              className={styles.select}
+              ariaLabel="דירוג"
+              value={field.value ?? ""}
+              onValueChange={field.onChange}
+              onBlur={field.onBlur}
+              options={ratingOptions}
+              placeholder="בחרו דירוג"
+            />
+          )}
+        />
         {errors.rating ? (
           <p className={styles.fieldError}>{errors.rating.message}</p>
         ) : null}

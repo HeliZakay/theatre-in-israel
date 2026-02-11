@@ -3,6 +3,7 @@
 import Link from "next/link";
 import styles from "./ShowsFilterBar.module.css";
 import { useShowsFilters } from "@/hooks/useShowsFilters";
+import AppSelect from "@/components/ui/AppSelect/AppSelect";
 
 // ShowsFilterBar renders the controls used to filter and sort the
 // shows list. It delegates navigation to the hook helpers so the
@@ -15,6 +16,8 @@ export default function ShowsFilterBar({
   query,
   selectedSort,
 }) {
+  const ALL_THEATRES_VALUE = "__all_theatres__";
+
   const {
     buildQueryString,
     handleSelectChange,
@@ -28,6 +31,16 @@ export default function ShowsFilterBar({
     genreFilters,
     selectedSort,
   });
+
+  const theatreOptions = [
+    { value: ALL_THEATRES_VALUE, label: "הכל" },
+    ...theatres.map((theatre) => ({ value: theatre, label: theatre })),
+  ];
+
+  const sortOptions = [
+    { value: "rating", label: "דירוג גבוה" },
+    { value: "rating-asc", label: "דירוג נמוך" },
+  ];
 
   return (
     <div className={styles.filterBar}>
@@ -47,33 +60,31 @@ export default function ShowsFilterBar({
         <label className={styles.filterLabel} htmlFor="theatre">
           תיאטרון
         </label>
-        <select
+        <AppSelect
           id="theatre"
           name="theatre"
           className={styles.select}
-          value={theatreFilter ?? ""}
-          onChange={handleSelectChange("theatre")}
-        >
-          <option value="">הכל</option>
-          {theatres.map((theatre) => (
-            <option key={theatre} value={theatre}>
-              {theatre}
-            </option>
-          ))}
-        </select>
+          ariaLabel="תיאטרון"
+          value={theatreFilter || ALL_THEATRES_VALUE}
+          onValueChange={(nextValue) =>
+            handleSelectChange("theatre")(
+              nextValue === ALL_THEATRES_VALUE ? "" : nextValue,
+            )
+          }
+          options={theatreOptions}
+        />
         <label className={styles.filterLabel} htmlFor="sort">
           מיון
         </label>
-        <select
+        <AppSelect
           id="sort"
           name="sort"
           className={styles.select}
+          ariaLabel="מיון"
           value={selectedSort}
-          onChange={handleSelectChange("sort")}
-        >
-          <option value="rating">דירוג גבוה</option>
-          <option value="rating-asc">דירוג נמוך</option>
-        </select>
+          onValueChange={handleSelectChange("sort")}
+          options={sortOptions}
+        />
       </div>
       <div className={styles.chipRow}>
         <span className={styles.filterLabel}>ז&apos;אנר</span>
