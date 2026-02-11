@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { useOptimistic, useTransition } from "react";
+import { useCallback, useOptimistic, useState, useTransition } from "react";
 import styles from "./ShowsFilterBar.module.css";
 import AppSelect from "@/components/AppSelect/AppSelect";
 import SearchInput from "@/components/SearchInput/SearchInput";
@@ -23,6 +23,7 @@ export default function ShowsFilterBar({
   const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
+  const [isSearchPending, setIsSearchPending] = useState(false);
   const [optimisticFilters, setOptimisticFilters] = useOptimistic(
     filters,
     (current, overrides: Partial<ShowFilters>) => ({
@@ -31,6 +32,11 @@ export default function ShowsFilterBar({
       page: 1,
     }),
   );
+  const isUpdating = isPending || isSearchPending;
+
+  const handleSearchPendingChange = useCallback((pending: boolean) => {
+    setIsSearchPending(pending);
+  }, []);
 
   // Let the optimistic UI paint first, then start route transition.
   const navigate = (href: string) => {
@@ -66,15 +72,17 @@ export default function ShowsFilterBar({
   ];
 
   return (
-    <div className={styles.filterBar} aria-busy={isPending}>
+    <div className={styles.filterBar} aria-busy={isUpdating}>
       <div className={styles.filterForm}>
         <label className={styles.filterLabel} htmlFor="query">
           חיפוש
         </label>
         <SearchInput
+          key={optimisticFilters.query}
           defaultValue={optimisticFilters.query}
           filters={optimisticFilters}
           className={styles.searchInput}
+          onPendingChange={handleSearchPendingChange}
         />
         <label className={styles.filterLabel} htmlFor="theatre">
           תיאטרון
@@ -141,7 +149,7 @@ export default function ShowsFilterBar({
         })}
       </div>
       <div className={styles.status} role="status" aria-live="polite">
-        {isPending ? (
+        {isUpdating ? (
           <>
             <span className={styles.spinner} aria-hidden="true" />
             <span>מעדכנים תוצאות...</span>

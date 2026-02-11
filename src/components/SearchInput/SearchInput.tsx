@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { buildShowsQueryString } from "@/utils/showsQuery";
 import { useDebounce } from "@/hooks/useDebounce";
@@ -10,42 +10,40 @@ interface SearchInputProps {
   defaultValue?: string;
   filters: ShowFilters;
   className?: string;
+  onPendingChange?: (pending: boolean) => void;
 }
 
 export default function SearchInput({
   defaultValue = "",
   filters,
   className,
+  onPendingChange,
 }: SearchInputProps) {
   const [value, setValue] = useState(defaultValue);
   const debouncedValue = useDebounce(value, 350);
   const router = useRouter();
   const pathname = usePathname();
-  const lastPushed = useRef(defaultValue);
+  const [isPending, startTransition] = useTransition();
 
-  // Sync input when the URL query changes externally (clear, back/forward).
   useEffect(() => {
-    if (defaultValue !== lastPushed.current) {
-      setValue(defaultValue);
-      lastPushed.current = defaultValue;
-    }
-  }, [defaultValue]);
+    onPendingChange?.(isPending);
+  }, [isPending, onPendingChange]);
 
   // Navigate when the debounced search value changes.
   useEffect(() => {
     const trimmed = debouncedValue.trim();
     if (trimmed === (defaultValue ?? "")) return;
 
-    lastPushed.current = trimmed;
-    router.push(
-      `${pathname}${buildShowsQueryString({
-        query: trimmed,
-        theatre: filters.theatre,
-        genres: filters.genres,
-        sort: filters.sort,
-      })}`,
-    );
-  }, [debouncedValue, defaultValue, filters, pathname, router]);
+    const href = `${pathname}${buildShowsQueryString({
+      query: trimmed,
+      theatre: filters.theatre,
+      genres: filters.genres,
+      sort: filters.sort,
+    })}`;
+    startTransition(() => {
+      router.push(href);
+    });
+  }, [debouncedValue, defaultValue, filters, pathname, router, startTransition]);
 
   return (
     <input
