@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { useOptimistic, useEffect, useTransition } from "react";
+import { useState, useEffect, useTransition } from "react";
 import styles from "./ShowsFilterBar.module.css";
 import AppSelect from "@/components/AppSelect/AppSelect";
 import SearchInput from "@/components/SearchInput/SearchInput";
@@ -26,13 +26,17 @@ export default function ShowsFilterBar({
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
 
-  // Optimistic genre state so chips toggle immediately
-  const [optimisticGenres, setOptimisticGenres] = useOptimistic(filters.genres);
+  // Local genre state — updates immediately on click
+  const [selectedGenres, setSelectedGenres] = useState(filters.genres);
 
-  // Wrap navigation in a transition for non-blocking updates
-  const navigate = (href: string, optimisticUpdate?: () => void) => {
+  // Sync local state when server-provided filters change
+  useEffect(() => {
+    setSelectedGenres(filters.genres);
+  }, [filters.genres]);
+
+  // Navigate without blocking the UI
+  const navigate = (href: string) => {
     startTransition(() => {
-      optimisticUpdate?.();
       router.push(href);
     });
     onPendingChange?.(true);
@@ -53,7 +57,7 @@ export default function ShowsFilterBar({
   };
 
   const toggleGenre = (genre: string) => {
-    const current = new Set(optimisticGenres);
+    const current = new Set(selectedGenres);
     if (current.has(genre)) current.delete(genre);
     else current.add(genre);
     return Array.from(current);
@@ -116,17 +120,18 @@ export default function ShowsFilterBar({
         <button
           type="button"
           className={`${styles.chip} ${
-            optimisticGenres.length ? "" : styles.chipActive
+            selectedGenres.length ? "" : styles.chipActive
           }`}
-          aria-current={optimisticGenres.length ? undefined : "true"}
-          onClick={() =>
-            navigate(buildHref({ genres: [] }), () => setOptimisticGenres([]))
-          }
+          aria-current={selectedGenres.length ? undefined : "true"}
+          onClick={() => {
+            setSelectedGenres([]);
+            navigate(buildHref({ genres: [] }));
+          }}
         >
           הכל
         </button>
         {allGenres.map((genre) => {
-          const isActive = optimisticGenres.includes(genre);
+          const isActive = selectedGenres.includes(genre);
           return (
             <button
               type="button"
@@ -135,9 +140,8 @@ export default function ShowsFilterBar({
               aria-current={isActive ? "true" : undefined}
               onClick={() => {
                 const next = toggleGenre(genre);
-                navigate(buildHref({ genres: next }), () =>
-                  setOptimisticGenres(next),
-                );
+                setSelectedGenres(next);
+                navigate(buildHref({ genres: next }));
               }}
             >
               {genre}
