@@ -8,21 +8,13 @@ export default function GlobalLoading() {
       aria-busy="true"
       aria-live="polite"
     >
-      <div className={styles.stageGlow} aria-hidden="true" />
       <section className={styles.card}>
-        <p className={styles.kicker}>תיאטרון בישראל</p>
-        <h2 className={styles.title}>מעלים את המסך...</h2>
-        <p className={styles.subtitle}>טוענים את התוכן הבא עבורך</p>
+        <h2 className={styles.title}>טוענים תוצאות</h2>
+        <p className={styles.subtitle}>זה ייקח רק רגע</p>
 
         <div className={styles.loaderRow}>
           <span className={styles.spinner} aria-hidden="true" />
-          <span className={styles.loaderText}>טוען נתונים</span>
-        </div>
-
-        <div className={styles.dotRow} aria-hidden="true">
-          <span />
-          <span />
-          <span />
+          <span className={styles.loaderText}>מעדכנים נתונים...</span>
         </div>
       </section>
     </main>
