@@ -1,8 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { useState, useEffect, useTransition } from "react";
-import { flushSync } from "react-dom";
+import { useEffect, useTransition } from "react";
 import styles from "./ShowsFilterBar.module.css";
 import AppSelect from "@/components/AppSelect/AppSelect";
 import SearchInput from "@/components/SearchInput/SearchInput";
@@ -14,6 +13,7 @@ interface ShowsFilterBarProps {
   allGenres: string[];
   filters: ShowFilters;
   onPendingChange?: (pending: boolean) => void;
+  onFiltersChange?: (overrides: Partial<ShowFilters>) => void;
 }
 
 export default function ShowsFilterBar({
@@ -21,38 +21,14 @@ export default function ShowsFilterBar({
   allGenres,
   filters,
   onPendingChange,
+  onFiltersChange,
 }: ShowsFilterBarProps) {
   const ALL_THEATRES_VALUE = "__all_theatres__";
   const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
 
-  // Local genre state — updates immediately on click
-  const [selectedGenres, setSelectedGenres] = useState(filters.genres);
-
-  // Sync local state when server-provided filters change (value-based comparison)
-  useEffect(() => {
-    setSelectedGenres((prev) => {
-      const same =
-        prev.length === filters.genres.length &&
-        prev.every((g, i) => g === filters.genres[i]);
-      return same ? prev : filters.genres;
-    });
-  }, [filters.genres]);
-
-  // Navigate: flush the visual update to the DOM first, then start the transition
-  const navigateWithGenres = (nextGenres: string[]) => {
-    // Force React to commit the chip color change to the DOM immediately
-    flushSync(() => {
-      setSelectedGenres(nextGenres);
-    });
-    const href = buildHref({ genres: nextGenres });
-    startTransition(() => {
-      router.push(href);
-    });
-    onPendingChange?.(true);
-  };
-
+  // Navigate without blocking the UI
   const navigate = (href: string) => {
     startTransition(() => {
       router.push(href);
@@ -75,7 +51,7 @@ export default function ShowsFilterBar({
   };
 
   const toggleGenre = (genre: string) => {
-    const current = new Set(selectedGenres);
+    const current = new Set(filters.genres);
     if (current.has(genre)) current.delete(genre);
     else current.add(genre);
     return Array.from(current);
@@ -111,13 +87,11 @@ export default function ShowsFilterBar({
           className={styles.select}
           ariaLabel="תיאטרון"
           value={filters.theatre || ALL_THEATRES_VALUE}
-          onValueChange={(value) =>
-            navigate(
-              buildHref({
-                theatre: value === ALL_THEATRES_VALUE ? "" : value,
-              }),
-            )
-          }
+          onValueChange={(value) => {
+            const theatre = value === ALL_THEATRES_VALUE ? "" : value;
+            onFiltersChange?.({ theatre });
+            navigate(buildHref({ theatre }));
+          }}
           options={theatreOptions}
         />
         <label className={styles.filterLabel} htmlFor="sort">
@@ -129,7 +103,10 @@ export default function ShowsFilterBar({
           className={styles.select}
           ariaLabel="מיון"
           value={filters.sort}
-          onValueChange={(value) => navigate(buildHref({ sort: value }))}
+          onValueChange={(value) => {
+            onFiltersChange?.({ sort: value });
+            navigate(buildHref({ sort: value }));
+          }}
           options={sortOptions}
         />
       </div>
@@ -137,18 +114,17 @@ export default function ShowsFilterBar({
         <span className={styles.filterLabel}>ז&apos;אנר</span>
         <button
           type="button"
-          className={`${styles.chip} ${
-            selectedGenres.length ? "" : styles.chipActive
-          }`}
-          aria-current={selectedGenres.length ? undefined : "true"}
+          className={`${styles.chip} ${filters.genres.length ? "" : styles.chipActive}`}
+          aria-current={filters.genres.length ? undefined : "true"}
           onClick={() => {
-            navigateWithGenres([]);
+            onFiltersChange?.({ genres: [] });
+            navigate(buildHref({ genres: [] }));
           }}
         >
           הכל
         </button>
         {allGenres.map((genre) => {
-          const isActive = selectedGenres.includes(genre);
+          const isActive = filters.genres.includes(genre);
           return (
             <button
               type="button"
@@ -157,7 +133,8 @@ export default function ShowsFilterBar({
               aria-current={isActive ? "true" : undefined}
               onClick={() => {
                 const next = toggleGenre(genre);
-                navigateWithGenres(next);
+                onFiltersChange?.({ genres: next });
+                navigate(buildHref({ genres: next }));
               }}
             >
               {genre}

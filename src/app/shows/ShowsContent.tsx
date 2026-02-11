@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ShowCard from "@/components/ShowCard/ShowCard";
 import ShowsFilterBar from "@/components/ShowsFilterBar/ShowsFilterBar";
 import Pagination from "@/components/Pagination/Pagination";
@@ -23,10 +23,26 @@ export default function ShowsContent({
   filters,
 }: ShowsContentProps) {
   const [isPending, setIsPending] = useState(false);
+  const [optimisticFilters, setOptimisticFilters] = useState(filters);
+
+  useEffect(() => {
+    setOptimisticFilters(filters);
+  }, [filters]);
 
   const handlePendingChange = useCallback((pending: boolean) => {
     setIsPending(pending);
   }, []);
+
+  const handleFiltersChange = useCallback(
+    (overrides: Partial<ShowFilters>) => {
+      setOptimisticFilters((current) => ({
+        ...current,
+        ...overrides,
+        page: 1,
+      }));
+    },
+    [],
+  );
 
   return (
     <>
@@ -36,24 +52,29 @@ export default function ShowsContent({
         <ShowsFilterBar
           theatres={theatres}
           allGenres={genres}
-          filters={filters}
+          filters={optimisticFilters}
           onPendingChange={handlePendingChange}
+          onFiltersChange={handleFiltersChange}
         />
         <div className={styles.filterRow}>
-          {filters.theatre || filters.query || filters.genres.length ? (
+          {optimisticFilters.theatre ||
+          optimisticFilters.query ||
+          optimisticFilters.genres.length ? (
             <>
               <span className={styles.filterLabel}>מסונן לפי:</span>
-              {filters.theatre ? (
-                <span className={styles.filterChip}>{filters.theatre}</span>
+              {optimisticFilters.theatre ? (
+                <span className={styles.filterChip}>
+                  {optimisticFilters.theatre}
+                </span>
               ) : null}
-              {filters.genres.map((genre) => (
+              {optimisticFilters.genres.map((genre) => (
                 <span key={genre} className={styles.filterChip}>
                   {genre}
                 </span>
               ))}
-              {filters.query ? (
+              {optimisticFilters.query ? (
                 <span className={styles.filterChip}>
-                  &quot;{filters.query}&quot;
+                  &quot;{optimisticFilters.query}&quot;
                 </span>
               ) : null}
               <span className={styles.filterCount}>{shows.length} תוצאות</span>
