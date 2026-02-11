@@ -7,6 +7,8 @@ import ROUTES from "@/constants/routes";
 import Link from "next/link";
 import Pagination from "@/components/Pagination/Pagination";
 
+export const dynamic = "force-dynamic";
+
 interface ShowsPageProps {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }

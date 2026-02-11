@@ -5,6 +5,8 @@ import styles from "./page.module.css";
 import ROUTES from "@/constants/routes";
 import { getHomePageData } from "@/lib/showsData";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const {
     suggestions,
