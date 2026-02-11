@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useTransition } from "react";
+import { flushSync } from "react-dom";
 import styles from "./ShowsFilterBar.module.css";
 import AppSelect from "@/components/AppSelect/AppSelect";
 import SearchInput from "@/components/SearchInput/SearchInput";
@@ -28,12 +29,14 @@ export default function ShowsFilterBar({
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
 
-  // Navigate without blocking the UI
+  // Let the optimistic UI paint first, then start route transition.
   const navigate = (href: string) => {
-    startTransition(() => {
-      router.push(href);
-    });
     onPendingChange?.(true);
+    requestAnimationFrame(() => {
+      startTransition(() => {
+        router.push(href);
+      });
+    });
   };
 
   // Notify parent when transition completes
@@ -89,7 +92,9 @@ export default function ShowsFilterBar({
           value={filters.theatre || ALL_THEATRES_VALUE}
           onValueChange={(value) => {
             const theatre = value === ALL_THEATRES_VALUE ? "" : value;
-            onFiltersChange?.({ theatre });
+            flushSync(() => {
+              onFiltersChange?.({ theatre });
+            });
             navigate(buildHref({ theatre }));
           }}
           options={theatreOptions}
@@ -104,7 +109,9 @@ export default function ShowsFilterBar({
           ariaLabel="מיון"
           value={filters.sort}
           onValueChange={(value) => {
-            onFiltersChange?.({ sort: value });
+            flushSync(() => {
+              onFiltersChange?.({ sort: value });
+            });
             navigate(buildHref({ sort: value }));
           }}
           options={sortOptions}
@@ -117,7 +124,9 @@ export default function ShowsFilterBar({
           className={`${styles.chip} ${filters.genres.length ? "" : styles.chipActive}`}
           aria-current={filters.genres.length ? undefined : "true"}
           onClick={() => {
-            onFiltersChange?.({ genres: [] });
+            flushSync(() => {
+              onFiltersChange?.({ genres: [] });
+            });
             navigate(buildHref({ genres: [] }));
           }}
         >
@@ -133,7 +142,9 @@ export default function ShowsFilterBar({
               aria-current={isActive ? "true" : undefined}
               onClick={() => {
                 const next = toggleGenre(genre);
-                onFiltersChange?.({ genres: next });
+                flushSync(() => {
+                  onFiltersChange?.({ genres: next });
+                });
                 navigate(buildHref({ genres: next }));
               }}
             >
