@@ -24,12 +24,12 @@ const reviewSchema = z.object({
   name: z
     .string()
     .trim()
-    .min(REVIEW_NAME_MIN, "הכנס שם חוקי")
+    .min(REVIEW_NAME_MIN, "הכניס.י שם חוקי")
     .max(REVIEW_NAME_MAX, `השם יכול להכיל עד ${REVIEW_NAME_MAX} תווים`),
   title: z
     .string()
     .trim()
-    .min(REVIEW_TITLE_MIN, "הכנס כותרת")
+    .min(REVIEW_TITLE_MIN, "הכניס.י כותרת")
     .max(REVIEW_TITLE_MAX, `הכותרת יכולה להכיל עד ${REVIEW_TITLE_MAX} תווים`),
   rating: z.preprocess(
     (v) => (typeof v === "string" ? parseInt(v, 10) : v),

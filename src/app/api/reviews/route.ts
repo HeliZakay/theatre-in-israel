@@ -34,7 +34,7 @@ const reviewSchema = z.object({
 });
 
 function formatZodErrors(err: z.ZodError): string {
-  if (!err?.issues) return "Invalid input";
+  if (!err?.issues) return "בחר.י דירוג";
   return err.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("; ");
 }
 
