@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { useOptimistic, useTransition } from "react";
+import { useOptimistic, useEffect, useTransition } from "react";
 import styles from "./ShowsFilterBar.module.css";
 import AppSelect from "@/components/AppSelect/AppSelect";
 import SearchInput from "@/components/SearchInput/SearchInput";
@@ -38,10 +38,12 @@ export default function ShowsFilterBar({
     onPendingChange?.(true);
   };
 
-  // Keep parent in sync when transition completes
-  if (!isPending) {
-    onPendingChange?.(false);
-  }
+  // Notify parent when transition completes
+  useEffect(() => {
+    if (!isPending) {
+      onPendingChange?.(false);
+    }
+  }, [isPending, onPendingChange]);
 
   // Build a URL that applies the given overrides on top of the current
   // filters, omitting page so any filter change resets to page 1.
