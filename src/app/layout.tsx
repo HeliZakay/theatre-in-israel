@@ -29,7 +29,7 @@ export default function RootLayout({
             דלג לתוכן הראשי
           </a>
           <Header />
-          {children}
+          <div className="appContent">{children}</div>
           <Footer />
         </RadixDirectionProvider>
       </body>
