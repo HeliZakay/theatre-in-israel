@@ -4,6 +4,8 @@ import ROUTES from "@/constants/routes";
 import { getShows } from "@/lib/shows";
 import ReviewForm from "@/components/ReviewForm/ReviewForm";
 
+export const dynamic = "force-dynamic";
+
 export default async function NewReviewPage() {
   const shows = await getShows();
   return (

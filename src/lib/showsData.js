@@ -1,88 +1,25 @@
-import { getShows } from "./shows";
+import prisma from "./prisma";
 import { normalize } from "../utils/normalize";
 import { parseShowsSearchParams } from "../utils/showsQuery";
 import { enrichShow } from "../utils/showStats";
 
-/**
- * Build a list of unique suggestions from shows (titles, theatres, genres).
- * @param {Array} shows - Array of show objects
- * @returns {Array} Array of unique suggestion strings
- */
-function buildSuggestions(shows) {
-  return Array.from(
-    new Set([
-      ...shows.map((show) => show.title),
-      ...shows.map((show) => show.theatre),
-      ...shows.flatMap((show) => show.genre ?? []),
-    ]),
-  ).filter(Boolean);
-}
+/** Standard include clause for fetching full show data. */
+const showInclude = {
+  genres: { include: { genre: true } },
+  reviews: { orderBy: { date: "desc" } },
+};
 
 /**
- * Normalize filter values for consistent searching.
- * @param {Object} filters
- * @param {string} filters.theatre
- * @param {string} filters.query
- * @param {Array} filters.genres
- * @returns {Object} Normalized filter values
+ * Normalize a Prisma show into the flat shape components expect.
+ * Converts `genres: ShowGenre[]` → `genre: string[]`.
  */
-function normalizeFilters({ theatre, query, genres }) {
+function normalizeShow(show) {
+  if (!show) return null;
+  const { genres, ...rest } = show;
   return {
-    theatreNormalized: normalize(theatre),
-    queryNormalized: normalize(query),
-    genreNormalized: genres.map(normalize).filter(Boolean),
+    ...rest,
+    genre: genres?.map((sg) => sg.genre.name) ?? [],
   };
-}
-
-/**
- * Filter shows by normalized theatre, query, and genre.
- * @param {Array} shows - Array of show objects
- * @param {Object} normalized - Normalized filter values
- * @returns {Array} Filtered shows
- */
-function filterShows(
-  shows,
-  { theatreNormalized, queryNormalized, genreNormalized },
-) {
-  return shows.filter((show) => {
-    const matchesTheatre = theatreNormalized
-      ? normalize(show.theatre) === theatreNormalized
-      : true;
-
-    const matchesQuery = queryNormalized
-      ? [show.title, show.theatre, (show.genre ?? []).join(" ")]
-          .filter(Boolean)
-          .some((field) => normalize(field).includes(queryNormalized))
-      : true;
-
-    const matchesGenre = genreNormalized.length
-      ? (show.genre ?? []).some((genre) =>
-          genreNormalized.includes(normalize(genre)),
-        )
-      : true;
-
-    return matchesTheatre && matchesQuery && matchesGenre;
-  });
-}
-
-/**
- * Sort shows by average rating (desc or asc).
- * @param {Array} shows - Array of enriched show objects
- * @param {string} selectedSort - Sort order ("rating" or "rating-asc")
- * @returns {Array} Sorted shows
- */
-function sortShowsByRating(shows, selectedSort) {
-  if (selectedSort !== "rating" && selectedSort !== "rating-asc") {
-    return shows;
-  }
-
-  return [...shows].sort((a, b) => {
-    const ratingA = a.avgRating ?? -1;
-    const ratingB = b.avgRating ?? -1;
-    return selectedSort === "rating-asc"
-      ? ratingA - ratingB
-      : ratingB - ratingA;
-  });
 }
 
 /**
@@ -90,21 +27,114 @@ function sortShowsByRating(shows, selectedSort) {
  * @returns {Promise<Object>} Homepage data
  */
 export async function getHomePageData() {
-  const shows = await getShows();
-  const suggestions = buildSuggestions(shows);
+  // Build autocomplete suggestions from distinct values.
+  const [showFields, genreNames] = await Promise.all([
+    prisma.show.findMany({ select: { title: true, theatre: true } }),
+    prisma.genre.findMany({ select: { name: true } }),
+  ]);
 
-  const enrichedShows = shows.map(enrichShow);
-  const topRated = enrichedShows
-    .filter((show) => show.avgRating !== null)
-    .sort((a, b) => b.avgRating - a.avgRating)
-    .slice(0, 6);
+  const suggestions = Array.from(
+    new Set([
+      ...showFields.map((s) => s.title),
+      ...showFields.map((s) => s.theatre),
+      ...genreNames.map((g) => g.name),
+    ]),
+  ).filter(Boolean);
 
-  const latestReviewed = enrichedShows
-    .filter((show) => show.latestReviewDate)
-    .sort((a, b) => b.latestReviewDate - a.latestReviewDate)
-    .slice(0, 6);
+  // Top 6 by average rating — raw SQL because Prisma can't orderBy on
+  // an aggregate of a relation.
+  const topRatedIds = await prisma.$queryRaw`
+    SELECT s.id
+    FROM "Show" s
+    LEFT JOIN "Review" r ON r."showId" = s.id
+    GROUP BY s.id
+    HAVING COUNT(r.id) > 0
+    ORDER BY AVG(r.rating) DESC
+    LIMIT 6
+  `;
+
+  const topRatedShows =
+    topRatedIds.length > 0
+      ? await prisma.show.findMany({
+          where: { id: { in: topRatedIds.map((r) => r.id) } },
+          include: showInclude,
+        })
+      : [];
+
+  // Preserve the DB sort order.
+  const topRatedMap = new Map(topRatedShows.map((s) => [s.id, s]));
+  const topRated = topRatedIds
+    .map((r) => topRatedMap.get(r.id))
+    .filter(Boolean)
+    .map(normalizeShow)
+    .map(enrichShow);
+
+  // Latest 6 by most recent review date.
+  const latestReviewedIds = await prisma.$queryRaw`
+    SELECT s.id
+    FROM "Show" s
+    INNER JOIN "Review" r ON r."showId" = s.id
+    GROUP BY s.id
+    ORDER BY MAX(r.date) DESC
+    LIMIT 6
+  `;
+
+  const latestReviewedShows =
+    latestReviewedIds.length > 0
+      ? await prisma.show.findMany({
+          where: { id: { in: latestReviewedIds.map((r) => r.id) } },
+          include: showInclude,
+        })
+      : [];
+
+  const latestMap = new Map(latestReviewedShows.map((s) => [s.id, s]));
+  const latestReviewed = latestReviewedIds
+    .map((r) => latestMap.get(r.id))
+    .filter(Boolean)
+    .map(normalizeShow)
+    .map(enrichShow);
 
   return { suggestions, topRated, latestReviewed };
+}
+
+/**
+ * Build a Prisma `where` clause from parsed search params.
+ */
+function buildWhereClause({ theatre, query, genres }) {
+  const conditions = [];
+
+  if (theatre) {
+    conditions.push({ theatre });
+  }
+
+  if (query) {
+    const q = query;
+    conditions.push({
+      OR: [
+        { title: { contains: q, mode: "insensitive" } },
+        { theatre: { contains: q, mode: "insensitive" } },
+        {
+          genres: {
+            some: {
+              genre: { name: { contains: q, mode: "insensitive" } },
+            },
+          },
+        },
+      ],
+    });
+  }
+
+  if (genres.length > 0) {
+    conditions.push({
+      genres: {
+        some: {
+          genre: { name: { in: genres } },
+        },
+      },
+    });
+  }
+
+  return conditions.length > 0 ? { AND: conditions } : {};
 }
 
 /**
@@ -114,35 +144,116 @@ export async function getHomePageData() {
  */
 export async function getShowsForList(searchParams) {
   const filters = parseShowsSearchParams(searchParams);
-  const shows = (await getShows()).map(enrichShow);
+  const where = buildWhereClause(filters);
 
-  const theatres = Array.from(
-    new Set(shows.map((show) => show.theatre)),
-  ).filter(Boolean);
-  const genres = Array.from(
-    new Set(shows.flatMap((show) => show.genre ?? [])),
-  ).filter(Boolean);
-
-  const normalized = normalizeFilters(filters);
-  const filteredShows = filterShows(shows, normalized);
-  const sortedShows = sortShowsByRating(filteredShows, filters.sort);
-
-  // Pagination: determine page/perPage and slice results.
-  const perPage = 12; // default items per page
+  const perPage = 12;
   const page = filters.page ?? 1;
-  const total = sortedShows.length;
+
+  // Get total count for pagination.
+  const total = await prisma.show.count({ where });
   const totalPages = Math.max(1, Math.ceil(total / perPage));
   const clampedPage = Math.min(Math.max(1, page), totalPages);
-  const start = (clampedPage - 1) * perPage;
-  const end = start + perPage;
-  const paginated = sortedShows.slice(start, end);
+  const skip = (clampedPage - 1) * perPage;
+
+  let shows;
+  const needsRatingSort =
+    filters.sort === "rating" || filters.sort === "rating-asc";
+
+  if (needsRatingSort) {
+    // Use raw SQL to sort by average rating.
+    const direction = filters.sort === "rating-asc" ? "ASC" : "DESC";
+
+    // Build WHERE conditions for raw SQL.
+    // We need to get the filtered + sorted IDs, then fetch full data.
+    const filteredIds = await getFilteredSortedIds(
+      where,
+      direction,
+      skip,
+      perPage,
+    );
+
+    if (filteredIds.length > 0) {
+      const rawShows = await prisma.show.findMany({
+        where: { id: { in: filteredIds } },
+        include: showInclude,
+      });
+      // Preserve sort order from raw query.
+      const showMap = new Map(rawShows.map((s) => [s.id, s]));
+      shows = filteredIds
+        .map((id) => showMap.get(id))
+        .filter(Boolean)
+        .map(normalizeShow)
+        .map(enrichShow);
+    } else {
+      shows = [];
+    }
+  } else {
+    const rawShows = await prisma.show.findMany({
+      where,
+      include: showInclude,
+      skip,
+      take: perPage,
+    });
+    shows = rawShows.map(normalizeShow).map(enrichShow);
+  }
+
+  // Get distinct theatres and genres for filter dropdowns.
+  const [theatreRecords, genreRecords] = await Promise.all([
+    prisma.show.findMany({
+      select: { theatre: true },
+      distinct: ["theatre"],
+      orderBy: { theatre: "asc" },
+    }),
+    prisma.genre.findMany({
+      orderBy: { name: "asc" },
+    }),
+  ]);
+
+  const theatres = theatreRecords.map((t) => t.theatre).filter(Boolean);
+  const genres = genreRecords.map((g) => g.name).filter(Boolean);
 
   return {
-    shows: paginated,
+    shows,
     theatres,
     genres,
     filters: { ...filters, page: clampedPage, perPage, total, totalPages },
   };
+}
+
+/**
+ * Get filtered show IDs sorted by average rating using raw SQL,
+ * then apply pagination.
+ */
+async function getFilteredSortedIds(where, direction, skip, take) {
+  // First get all matching IDs via Prisma (for consistent filtering),
+  // then sort them by avg rating via raw SQL.
+  const matchingShows = await prisma.show.findMany({
+    where,
+    select: { id: true },
+  });
+
+  if (matchingShows.length === 0) return [];
+
+  const ids = matchingShows.map((s) => s.id);
+
+  // Sort by avg rating using raw query. Shows without reviews get
+  // NULL avg which sorts last (via COALESCE).
+  const sorted = await prisma.$queryRawUnsafe(
+    `
+    SELECT s.id
+    FROM "Show" s
+    LEFT JOIN "Review" r ON r."showId" = s.id
+    WHERE s.id = ANY($1)
+    GROUP BY s.id
+    ORDER BY COALESCE(AVG(r.rating), 0) ${direction === "ASC" ? "ASC" : "DESC"}
+    LIMIT $2 OFFSET $3
+    `,
+    ids,
+    take,
+    skip,
+  );
+
+  return sorted.map((r) => r.id);
 }
 
 /**
@@ -151,6 +262,9 @@ export async function getShowsForList(searchParams) {
  * @returns {Promise<Object|null>} Show object or null if not found
  */
 export async function getShowById(showId) {
-  const shows = await getShows();
-  return shows.find((item) => String(item.id) === String(showId)) ?? null;
+  const show = await prisma.show.findUnique({
+    where: { id: Number(showId) },
+    include: showInclude,
+  });
+  return normalizeShow(show);
 }

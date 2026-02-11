@@ -1,18 +1,12 @@
 import Link from "next/link";
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
-import { getShows } from "@/lib/shows";
 import { getShowById } from "@/lib/showsData";
 import ROUTES from "@/constants/routes";
 import ReviewCard from "@/components/ReviewCard/ReviewCard";
 import { getShowStats } from "@/utils/showStats";
 
-export async function generateStaticParams() {
-  const shows = await getShows();
-  return shows.map((show) => ({
-    id: String(show.id),
-  }));
-}
+export const dynamic = "force-dynamic";
 
 export default async function ShowPage({ params }) {
   const { id: showId } = await params;
