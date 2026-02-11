@@ -50,6 +50,11 @@
   text-align: right;
 }
 
+.searchInput:focus,
+.searchInput:focus-visible {
+  outline: none;
+}
+
 .searchInput::placeholder {
   color: #9aa3b2;
 }
@@ -121,9 +126,10 @@
 }
 
 .searchShell:focus-within {
-  border-color: #c5cad3;
+  border-color: rgba(156, 27, 32, 0.45);
   background: #ffffff;
-  box-shadow: 0 0 0 3px rgba(31, 41, 55, 0.08);
+  box-shadow: 0 0 0 4px rgba(156, 27, 32, 0.14);
+  border-radius: 24px;
 }
 
 /* visually hidden label */
