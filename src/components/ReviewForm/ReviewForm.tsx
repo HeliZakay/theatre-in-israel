@@ -17,6 +17,8 @@ import {
   REVIEW_TITLE_MAX,
   REVIEW_TITLE_MIN,
 } from "@/constants/reviewValidation";
+import FallbackImage from "@/components/FallbackImage/FallbackImage";
+import { getShowImagePath } from "@/utils/getShowImagePath";
 import type { Show } from "@/types";
 
 const reviewSchema = z.object({
@@ -90,6 +92,9 @@ export default function ReviewForm({
     value: String(show.id),
     label: show.title,
   }));
+  const selectedShowId = useWatch({ control, name: "showId" }) ?? "";
+  const selectedShow =
+    shows.find((show) => String(show.id) === String(selectedShowId)) ?? null;
   const nameValue = useWatch({ control, name: "name" }) ?? "";
   const titleValue = useWatch({ control, name: "title" }) ?? "";
   const commentValue = useWatch({ control, name: "comment" }) ?? "";
@@ -139,7 +144,7 @@ export default function ReviewForm({
     };
   }, []);
 
-  return (
+  const form = (
     <form className={styles.form} onSubmit={submitHandler} noValidate>
       {shows.length ? (
         <label className={styles.field}>
@@ -276,5 +281,30 @@ export default function ReviewForm({
         </button>
       </div>
     </form>
+  );
+
+  if (!selectedShow) {
+    return form;
+  }
+
+  return (
+    <section className={styles.contentLayout}>
+      <aside
+        className={styles.posterPanel}
+        aria-label={`פוסטר של ${selectedShow.title}`}
+      >
+        <div className={styles.poster}>
+          <FallbackImage
+            src={getShowImagePath(selectedShow.title)}
+            alt={selectedShow.title}
+            fill
+            sizes="(max-width: 900px) 100vw, 280px"
+            className={styles.posterImage}
+          />
+        </div>
+      </aside>
+
+      <div className={styles.formWrap}>{form}</div>
+    </section>
   );
 }
