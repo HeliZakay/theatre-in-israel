@@ -6,7 +6,8 @@ import ROUTES from "@/constants/routes";
 import { getHomePageData } from "@/lib/showsData";
 
 export default async function Home() {
-  const { suggestions, topRated, latestReviewed } = await getHomePageData();
+  const { suggestions, topRated, latestReviewed, comedies, musicals, israeli } =
+    await getHomePageData();
 
   return (
     <main className={styles.page} id="main-content">
@@ -26,6 +27,30 @@ export default async function Home() {
         shows={latestReviewed}
         linkHref="/shows"
         linkText="לכל ההצגות"
+      />
+
+      <ShowsSection
+        kicker="ז'אנר"
+        title="קומדיות"
+        shows={comedies}
+        linkHref={`${ROUTES.SHOWS}?genre=${encodeURIComponent("קומדיה")}`}
+        linkText="לכל הקומדיות"
+      />
+
+      <ShowsSection
+        kicker="ז'אנר"
+        title="מוזיקלי"
+        shows={musicals}
+        linkHref={`${ROUTES.SHOWS}?genre=${encodeURIComponent("מוזיקלי")}`}
+        linkText="לכל המוזיקליים"
+      />
+
+      <ShowsSection
+        kicker="ז'אנר"
+        title="הכי ישראלי"
+        shows={israeli}
+        linkHref={`${ROUTES.SHOWS}?genre=${encodeURIComponent("ישראלי")}`}
+        linkText="לכל הישראליים"
       />
 
       <CtaStrip

@@ -94,7 +94,40 @@ export async function getHomePageData() {
     .map(normalizeShow)
     .map(enrichShow);
 
-  return { suggestions, topRated, latestReviewed };
+  const [comedies, musicals, israeli] = await Promise.all([
+    getShowsByGenres(["קומדיה", "קומדיות"], 5),
+    getShowsByGenres(["מוזיקלי"], 5),
+    getShowsByGenres(["ישראלי"], 5),
+  ]);
+
+  return {
+    suggestions,
+    topRated,
+    latestReviewed,
+    comedies,
+    musicals,
+    israeli,
+  };
+}
+
+async function getShowsByGenres(genreNames, limit = 5) {
+  const rawShows = await prisma.show.findMany({
+    where: {
+      genres: {
+        some: {
+          genre: { name: { in: genreNames } },
+        },
+      },
+    },
+    include: showInclude,
+  });
+
+  return rawShows
+    .map(normalizeShow)
+    .map(enrichShow)
+    .filter((show) => (show.reviews?.length ?? 0) > 0)
+    .sort((a, b) => (b.avgRating ?? 0) - (a.avgRating ?? 0))
+    .slice(0, limit);
 }
 
 /**
