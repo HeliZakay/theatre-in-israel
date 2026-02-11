@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect, useTransition } from "react";
+import { flushSync } from "react-dom";
 import styles from "./ShowsFilterBar.module.css";
 import AppSelect from "@/components/AppSelect/AppSelect";
 import SearchInput from "@/components/SearchInput/SearchInput";
@@ -29,12 +30,29 @@ export default function ShowsFilterBar({
   // Local genre state — updates immediately on click
   const [selectedGenres, setSelectedGenres] = useState(filters.genres);
 
-  // Sync local state when server-provided filters change
+  // Sync local state when server-provided filters change (value-based comparison)
   useEffect(() => {
-    setSelectedGenres(filters.genres);
+    setSelectedGenres((prev) => {
+      const same =
+        prev.length === filters.genres.length &&
+        prev.every((g, i) => g === filters.genres[i]);
+      return same ? prev : filters.genres;
+    });
   }, [filters.genres]);
 
-  // Navigate without blocking the UI
+  // Navigate: flush the visual update to the DOM first, then start the transition
+  const navigateWithGenres = (nextGenres: string[]) => {
+    // Force React to commit the chip color change to the DOM immediately
+    flushSync(() => {
+      setSelectedGenres(nextGenres);
+    });
+    const href = buildHref({ genres: nextGenres });
+    startTransition(() => {
+      router.push(href);
+    });
+    onPendingChange?.(true);
+  };
+
   const navigate = (href: string) => {
     startTransition(() => {
       router.push(href);
@@ -124,8 +142,7 @@ export default function ShowsFilterBar({
           }`}
           aria-current={selectedGenres.length ? undefined : "true"}
           onClick={() => {
-            setSelectedGenres([]);
-            navigate(buildHref({ genres: [] }));
+            navigateWithGenres([]);
           }}
         >
           הכל
@@ -140,8 +157,7 @@ export default function ShowsFilterBar({
               aria-current={isActive ? "true" : undefined}
               onClick={() => {
                 const next = toggleGenre(genre);
-                setSelectedGenres(next);
-                navigate(buildHref({ genres: next }));
+                navigateWithGenres(next);
               }}
             >
               {genre}
