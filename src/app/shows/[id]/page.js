@@ -1,10 +1,12 @@
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import { getShowById } from "@/lib/showsData";
 import ROUTES from "@/constants/routes";
 import ReviewCard from "@/components/ReviewCard/ReviewCard";
 import { getShowStats } from "@/utils/showStats";
+import { getShowImagePath } from "@/utils/getShowImagePath";
 
 export const dynamic = "force-dynamic";
 
@@ -25,7 +27,16 @@ export default async function ShowPage({ params }) {
       </Link>
       <header className={styles.header}>
         <div className={styles.heroGrid}>
-          <div className={styles.poster} aria-hidden />
+          <div className={styles.poster}>
+            <Image
+              src={getShowImagePath(show.title)}
+              alt={show.title}
+              fill
+              sizes="(max-width: 640px) 100vw, 320px"
+              className={styles.posterImage}
+              priority
+            />
+          </div>
           <div className={styles.heroContent}>
             <h1 className={styles.title}>{show.title}</h1>
             <div className={styles.ratingRow}>

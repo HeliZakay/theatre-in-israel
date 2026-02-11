@@ -1,6 +1,7 @@
 import styles from "./Hero.module.css";
 import SearchBar from "../SearchBar/SearchBar";
 import FeaturedShow from "../FeaturedShow/FeaturedShow";
+import { getShowImagePath } from "@/utils/getShowImagePath";
 
 export default function Hero({ suggestions = {}, featuredShow = null }) {
   const featuredTags = featuredShow
@@ -30,7 +31,11 @@ export default function Hero({ suggestions = {}, featuredShow = null }) {
         <div className={styles.left}>
           <FeaturedShow
             title={featuredShow?.title ?? "גבירתי הנאווה"}
-            imageSrc="/my-fair-lady.jpg"
+            imageSrc={
+              featuredShow
+                ? getShowImagePath(featuredShow.title)
+                : "/my-fair-lady.jpg"
+            }
             tags={featuredTags}
             quote={featuredQuote ?? "ממש מצחיק ושחקנים מעולים!"}
             quoteAuthor={featuredAuthor ?? "חלי, רחובות"}

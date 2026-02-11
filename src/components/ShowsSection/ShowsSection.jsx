@@ -1,8 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./ShowsSection.module.css";
 import Tag from "@/components/Tag/Tag";
 import Card from "@/components/Card/Card";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
+import { getShowImagePath } from "@/utils/getShowImagePath";
 
 export default function ShowsSection({
   kicker,
@@ -27,7 +29,15 @@ export default function ShowsSection({
             href={`/shows/${show.id}`}
           >
             <Card as="article" className={styles.card}>
-              <div className={styles.thumb} aria-hidden />
+              <div className={styles.thumb}>
+                <Image
+                  src={getShowImagePath(show.title)}
+                  alt={show.title}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className={styles.thumbImage}
+                />
+              </div>
               <div className={styles.body}>
                 <h3 className={styles.cardTitle}>{show.title}</h3>
                 <p className={styles.meta}>{show.theatre}</p>

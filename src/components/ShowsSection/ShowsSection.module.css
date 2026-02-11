@@ -31,12 +31,18 @@
 }
 
 .thumb {
+  position: relative;
   width: 100%;
   aspect-ratio: 4 / 3;
+  overflow: hidden;
   background:
     linear-gradient(160deg, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.35)),
     radial-gradient(circle at 20% 30%, #f3c78a, transparent 60%),
     radial-gradient(circle at 80% 20%, #e7996a, transparent 55%), #1b1f2a;
+}
+
+.thumbImage {
+  object-fit: cover;
 }
 
 .body {

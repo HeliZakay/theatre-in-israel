@@ -1,8 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./ShowCard.module.css";
 import Tag from "@/components/Tag/Tag";
 import Card from "@/components/Card/Card";
 import { getShowStats } from "@/utils/showStats";
+import { getShowImagePath } from "@/utils/getShowImagePath";
 
 export default function ShowCard({ show }) {
   const { reviewCount, avgRating } = getShowStats(show);
@@ -10,7 +12,15 @@ export default function ShowCard({ show }) {
   return (
     <Link href={`/shows/${show.id}`} className={styles.cardLink}>
       <Card as="article" className={styles.card} aria-label={show.title}>
-        <div className={styles.imagePlaceholder} aria-hidden="true" />
+        <div className={styles.imageWrapper}>
+          <Image
+            src={getShowImagePath(show.title)}
+            alt={show.title}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className={styles.image}
+          />
+        </div>
         <header className={styles.header}>
           <h3 className={styles.title}>{show.title}</h3>
           <span className={styles.theatre}>{show.theatre}</span>
