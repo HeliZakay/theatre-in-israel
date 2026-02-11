@@ -33,7 +33,7 @@ function normalizeShow(show: Record<string, unknown> | null): Show | null {
 interface HomePageData {
   suggestions: Suggestions;
   topRated: EnrichedShow[];
-  latestReviewed: EnrichedShow[];
+  dramas: EnrichedShow[];
   comedies: EnrichedShow[];
   musicals: EnrichedShow[];
   israeli: EnrichedShow[];
@@ -41,7 +41,7 @@ interface HomePageData {
 }
 
 /**
- * Get homepage data: suggestions, top rated, and latest reviewed shows.
+ * Get homepage data: suggestions and curated show groups.
  */
 export async function getHomePageData(): Promise<HomePageData> {
   // Build autocomplete suggestions from distinct values, grouped by type.
@@ -89,33 +89,8 @@ export async function getHomePageData(): Promise<HomePageData> {
 
   const featuredShow = topRated[0] ?? null;
 
-  // Latest 6 by most recent review date.
-  const latestReviewedIds = await prisma.$queryRaw<{ id: number }[]>`
-    SELECT s.id
-    FROM "Show" s
-    INNER JOIN "Review" r ON r."showId" = s.id
-    GROUP BY s.id
-    ORDER BY MAX(r.date) DESC
-    LIMIT 5
-  `;
-
-  const latestReviewedShows =
-    latestReviewedIds.length > 0
-      ? await prisma.show.findMany({
-          where: { id: { in: latestReviewedIds.map((r) => r.id) } },
-          include: showInclude,
-        })
-      : [];
-
-  const latestMap = new Map(latestReviewedShows.map((s) => [s.id, s]));
-  const latestReviewed = latestReviewedIds
-    .map((r) => latestMap.get(r.id))
-    .filter(Boolean)
-    .map((s) => normalizeShow(s as unknown as Record<string, unknown>))
-    .filter((s): s is Show => s !== null)
-    .map(enrichShow);
-
-  const [comedies, musicals, israeli] = await Promise.all([
+  const [dramas, comedies, musicals, israeli] = await Promise.all([
+    getShowsByGenres(["דרמה", "דרמה קומית", "רגשי"], 5),
     getShowsByGenres(["קומדיה", "קומדיות"], 5),
     getShowsByGenres(["מוזיקלי"], 5),
     getShowsByGenres(["ישראלי"], 5),
@@ -124,7 +99,7 @@ export async function getHomePageData(): Promise<HomePageData> {
   return {
     suggestions,
     topRated,
-    latestReviewed,
+    dramas,
     comedies,
     musicals,
     israeli,

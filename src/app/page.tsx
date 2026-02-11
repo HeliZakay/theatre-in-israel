@@ -11,7 +11,7 @@ export default async function Home() {
   const {
     suggestions,
     topRated,
-    latestReviewed,
+    dramas,
     comedies,
     musicals,
     israeli,
@@ -31,11 +31,11 @@ export default async function Home() {
       />
 
       <ShowsSection
-        kicker="חדש"
-        title="ביקורות אחרונות"
-        shows={latestReviewed}
-        linkHref="/shows"
-        linkText="לכל ההצגות"
+        kicker="ז'אנר"
+        title="דרמות"
+        shows={dramas}
+        linkHref={`${ROUTES.SHOWS}?genre=${encodeURIComponent("דרמה")}&genre=${encodeURIComponent("דרמה קומית")}&genre=${encodeURIComponent("רגשי")}`}
+        linkText="לכל הדרמות"
       />
 
       <ShowsSection
