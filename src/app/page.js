@@ -6,12 +6,19 @@ import ROUTES from "@/constants/routes";
 import { getHomePageData } from "@/lib/showsData";
 
 export default async function Home() {
-  const { suggestions, topRated, latestReviewed, comedies, musicals, israeli } =
-    await getHomePageData();
+  const {
+    suggestions,
+    topRated,
+    latestReviewed,
+    comedies,
+    musicals,
+    israeli,
+    featuredShow,
+  } = await getHomePageData();
 
   return (
     <main className={styles.page} id="main-content">
-      <Hero suggestions={suggestions} />
+      <Hero suggestions={suggestions} featuredShow={featuredShow} />
 
       <ShowsSection
         kicker="המובילים"

@@ -69,6 +69,8 @@ export async function getHomePageData() {
     .map(normalizeShow)
     .map(enrichShow);
 
+  const featuredShow = topRated[0] ?? null;
+
   // Latest 6 by most recent review date.
   const latestReviewedIds = await prisma.$queryRaw`
     SELECT s.id
@@ -107,6 +109,7 @@ export async function getHomePageData() {
     comedies,
     musicals,
     israeli,
+    featuredShow,
   };
 }
 

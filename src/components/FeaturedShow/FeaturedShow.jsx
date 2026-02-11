@@ -9,7 +9,12 @@ export default function FeaturedShow({
   tags = [],
   quote,
   quoteAuthor,
+  avgRating,
+  reviewCount,
 }) {
+  const hasRating = typeof avgRating === "number" && !Number.isNaN(avgRating);
+  const formattedRating = hasRating ? avgRating.toFixed(1) : null;
+
   return (
     <article className={styles.card} aria-label="כרטיס הצגה מומלצת">
       <div className={styles.media}>
@@ -46,6 +51,13 @@ export default function FeaturedShow({
             </span>
           ))}
         </div>
+        {hasRating && (
+          <div className={styles.ratingRow}>
+            <span className={styles.ratingValue}>{formattedRating}</span>
+            <span className={styles.stars}>★</span>
+            <span className={styles.reviewCount}>{reviewCount} ביקורות</span>
+          </div>
+        )}
         {quote && (
           <blockquote className={styles.quote}>
             {quote}
