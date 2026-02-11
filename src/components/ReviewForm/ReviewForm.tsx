@@ -263,7 +263,16 @@ export default function ReviewForm({
           type="submit"
           disabled={isSubmitting || success}
         >
-          {success ? "נשלח" : "שליחת ביקורת"}
+          {isSubmitting ? (
+            <>
+              <span className={styles.submitSpinner} aria-hidden="true" />
+              <span>שולחים...</span>
+            </>
+          ) : success ? (
+            "נשלח"
+          ) : (
+            "שליחת ביקורת"
+          )}
         </button>
       </div>
     </form>
