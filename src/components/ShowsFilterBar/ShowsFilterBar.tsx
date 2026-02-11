@@ -1,8 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useTransition } from "react";
-import { flushSync } from "react-dom";
+import { useOptimistic, useTransition } from "react";
 import styles from "./ShowsFilterBar.module.css";
 import AppSelect from "@/components/AppSelect/AppSelect";
 import SearchInput from "@/components/SearchInput/SearchInput";
@@ -13,25 +12,28 @@ interface ShowsFilterBarProps {
   theatres: string[];
   allGenres: string[];
   filters: ShowFilters;
-  onPendingChange?: (pending: boolean) => void;
-  onFiltersChange?: (overrides: Partial<ShowFilters>) => void;
 }
 
 export default function ShowsFilterBar({
   theatres,
   allGenres,
   filters,
-  onPendingChange,
-  onFiltersChange,
 }: ShowsFilterBarProps) {
   const ALL_THEATRES_VALUE = "__all_theatres__";
   const router = useRouter();
   const pathname = usePathname();
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
+  const [optimisticFilters, setOptimisticFilters] = useOptimistic(
+    filters,
+    (current, overrides: Partial<ShowFilters>) => ({
+      ...current,
+      ...overrides,
+      page: 1,
+    }),
+  );
 
   // Let the optimistic UI paint first, then start route transition.
   const navigate = (href: string) => {
-    onPendingChange?.(true);
     requestAnimationFrame(() => {
       startTransition(() => {
         router.push(href);
@@ -39,22 +41,15 @@ export default function ShowsFilterBar({
     });
   };
 
-  // Notify parent when transition completes
-  useEffect(() => {
-    if (!isPending) {
-      onPendingChange?.(false);
-    }
-  }, [isPending, onPendingChange]);
-
   // Build a URL that applies the given overrides on top of the current
   // filters, omitting page so any filter change resets to page 1.
   const buildHref = (overrides: Partial<ShowFilters>) => {
-    const { page, ...current } = filters;
+    const { page, ...current } = optimisticFilters;
     return `${pathname}${buildShowsQueryString({ ...current, ...overrides })}`;
   };
 
   const toggleGenre = (genre: string) => {
-    const current = new Set(filters.genres);
+    const current = new Set(optimisticFilters.genres);
     if (current.has(genre)) current.delete(genre);
     else current.add(genre);
     return Array.from(current);
@@ -77,8 +72,8 @@ export default function ShowsFilterBar({
           חיפוש
         </label>
         <SearchInput
-          defaultValue={filters.query}
-          filters={filters}
+          defaultValue={optimisticFilters.query}
+          filters={optimisticFilters}
           className={styles.searchInput}
         />
         <label className={styles.filterLabel} htmlFor="theatre">
@@ -89,12 +84,10 @@ export default function ShowsFilterBar({
           name="theatre"
           className={styles.select}
           ariaLabel="תיאטרון"
-          value={filters.theatre || ALL_THEATRES_VALUE}
+          value={optimisticFilters.theatre || ALL_THEATRES_VALUE}
           onValueChange={(value) => {
             const theatre = value === ALL_THEATRES_VALUE ? "" : value;
-            flushSync(() => {
-              onFiltersChange?.({ theatre });
-            });
+            setOptimisticFilters({ theatre });
             navigate(buildHref({ theatre }));
           }}
           options={theatreOptions}
@@ -107,11 +100,9 @@ export default function ShowsFilterBar({
           name="sort"
           className={styles.select}
           ariaLabel="מיון"
-          value={filters.sort}
+          value={optimisticFilters.sort}
           onValueChange={(value) => {
-            flushSync(() => {
-              onFiltersChange?.({ sort: value });
-            });
+            setOptimisticFilters({ sort: value });
             navigate(buildHref({ sort: value }));
           }}
           options={sortOptions}
@@ -121,19 +112,17 @@ export default function ShowsFilterBar({
         <span className={styles.filterLabel}>ז&apos;אנר</span>
         <button
           type="button"
-          className={`${styles.chip} ${filters.genres.length ? "" : styles.chipActive}`}
-          aria-current={filters.genres.length ? undefined : "true"}
+          className={`${styles.chip} ${optimisticFilters.genres.length ? "" : styles.chipActive}`}
+          aria-current={optimisticFilters.genres.length ? undefined : "true"}
           onClick={() => {
-            flushSync(() => {
-              onFiltersChange?.({ genres: [] });
-            });
+            setOptimisticFilters({ genres: [] });
             navigate(buildHref({ genres: [] }));
           }}
         >
           הכל
         </button>
         {allGenres.map((genre) => {
-          const isActive = filters.genres.includes(genre);
+          const isActive = optimisticFilters.genres.includes(genre);
           return (
             <button
               type="button"
@@ -142,9 +131,7 @@ export default function ShowsFilterBar({
               aria-current={isActive ? "true" : undefined}
               onClick={() => {
                 const next = toggleGenre(genre);
-                flushSync(() => {
-                  onFiltersChange?.({ genres: next });
-                });
+                setOptimisticFilters({ genres: next });
                 navigate(buildHref({ genres: next }));
               }}
             >

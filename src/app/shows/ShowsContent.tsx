@@ -1,6 +1,3 @@
-"use client";
-
-import { useCallback, useEffect, useState } from "react";
 import ShowCard from "@/components/ShowCard/ShowCard";
 import ShowsFilterBar from "@/components/ShowsFilterBar/ShowsFilterBar";
 import Pagination from "@/components/Pagination/Pagination";
@@ -22,28 +19,6 @@ export default function ShowsContent({
   genres,
   filters,
 }: ShowsContentProps) {
-  const [isPending, setIsPending] = useState(false);
-  const [optimisticFilters, setOptimisticFilters] = useState(filters);
-
-  useEffect(() => {
-    setOptimisticFilters(filters);
-  }, [filters]);
-
-  const handlePendingChange = useCallback((pending: boolean) => {
-    setIsPending(pending);
-  }, []);
-
-  const handleFiltersChange = useCallback(
-    (overrides: Partial<ShowFilters>) => {
-      setOptimisticFilters((current) => ({
-        ...current,
-        ...overrides,
-        page: 1,
-      }));
-    },
-    [],
-  );
-
   return (
     <>
       <header className={styles.header}>
@@ -52,29 +27,23 @@ export default function ShowsContent({
         <ShowsFilterBar
           theatres={theatres}
           allGenres={genres}
-          filters={optimisticFilters}
-          onPendingChange={handlePendingChange}
-          onFiltersChange={handleFiltersChange}
+          filters={filters}
         />
         <div className={styles.filterRow}>
-          {optimisticFilters.theatre ||
-          optimisticFilters.query ||
-          optimisticFilters.genres.length ? (
+          {filters.theatre || filters.query || filters.genres.length ? (
             <>
               <span className={styles.filterLabel}>מסונן לפי:</span>
-              {optimisticFilters.theatre ? (
-                <span className={styles.filterChip}>
-                  {optimisticFilters.theatre}
-                </span>
+              {filters.theatre ? (
+                <span className={styles.filterChip}>{filters.theatre}</span>
               ) : null}
-              {optimisticFilters.genres.map((genre) => (
+              {filters.genres.map((genre) => (
                 <span key={genre} className={styles.filterChip}>
                   {genre}
                 </span>
               ))}
-              {optimisticFilters.query ? (
+              {filters.query ? (
                 <span className={styles.filterChip}>
-                  &quot;{optimisticFilters.query}&quot;
+                  &quot;{filters.query}&quot;
                 </span>
               ) : null}
               <span className={styles.filterCount}>{shows.length} תוצאות</span>
@@ -89,14 +58,7 @@ export default function ShowsContent({
           )}
         </div>
       </header>
-      <section
-        className={styles.grid}
-        style={{
-          opacity: isPending ? 0.6 : 1,
-          transition: "opacity 0.2s ease",
-          pointerEvents: isPending ? "none" : "auto",
-        }}
-      >
+      <section className={styles.grid}>
         {shows.length ? (
           shows.map((show) => <ShowCard key={show.id} show={show} />)
         ) : (
