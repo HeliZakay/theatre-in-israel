@@ -7,12 +7,14 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  height: 100%;
 }
 
 .header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  gap: 10px;
   font-size: 0.95rem;
   color: rgba(26, 26, 26, 0.7);
 }
@@ -21,14 +23,24 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.author {
+  min-width: 0;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .dot {
+  flex-shrink: 0;
   color: rgba(26, 26, 26, 0.4);
 }
 
 .rating {
+  flex-shrink: 0;
   font-weight: 700;
   color: var(--color-curtain-red);
 }
@@ -38,6 +50,7 @@
   line-height: 1.6;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+  min-height: calc(1.6em * 6);
 }
 
 .textTruncated {
@@ -48,6 +61,7 @@
 }
 
 .readMoreBtn {
+  margin-top: auto;
   align-self: flex-start;
   border: none;
   background: transparent;

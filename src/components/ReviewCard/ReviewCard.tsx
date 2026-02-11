@@ -17,7 +17,9 @@ export default function ReviewCard({ review }: ReviewCardProps) {
     <article className={styles.card}>
       <div className={styles.header}>
         <div className={styles.meta}>
-          <span>{review.author}</span>
+          <span className={styles.author} title={review.author}>
+            {review.author}
+          </span>
           {review.date ? (
             <>
               <span className={styles.dot}>•</span>
