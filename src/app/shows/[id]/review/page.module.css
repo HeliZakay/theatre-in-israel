@@ -29,6 +29,44 @@
   font-size: 1rem;
 }
 
+.contentLayout {
+  display: grid;
+  grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+  gap: clamp(20px, 4vw, 40px);
+  align-items: start;
+  direction: ltr;
+}
+
+.posterPanel {
+  direction: rtl;
+}
+
+.poster {
+  position: sticky;
+  top: calc(var(--header-offset) + 16px);
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.14);
+  background: rgba(15, 23, 42, 0.08);
+}
+
+.posterImage {
+  object-fit: cover;
+}
+
+.formWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  direction: rtl;
+}
+
+.cancelRow {
+  margin-top: 4px;
+}
+
 .form {
   display: grid;
   gap: 16px;
@@ -99,6 +137,17 @@
 @media (max-width: 640px) {
   .page {
     padding: 28px 16px;
+  }
+
+  .contentLayout {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .poster {
+    position: static;
+    max-width: 320px;
+    margin-inline: auto;
   }
 
   .form {

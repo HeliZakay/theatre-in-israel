@@ -4,6 +4,8 @@ import Link from "next/link";
 import ROUTES from "@/constants/routes";
 import { getShowById } from "@/lib/showsData";
 import ReviewForm from "@/components/ReviewForm/ReviewForm";
+import FallbackImage from "@/components/FallbackImage/FallbackImage";
+import { getShowImagePath } from "@/utils/getShowImagePath";
 
 export const dynamic = "force-dynamic";
 
@@ -27,12 +29,28 @@ export default async function NewReviewPage({ params }: NewReviewPageProps) {
         <p className={styles.subtitle}>ספרו לקהל מה חשבתם על ההצגה.</p>
       </header>
 
-      <ReviewForm initialShowId={show.id} />
-      <div style={{ marginTop: 12 }}>
-        <Link className={styles.ghostBtn} href={`${ROUTES.SHOWS}/${show.id}`}>
-          חזרה לדף ההצגה
-        </Link>
-      </div>
+      <section className={styles.contentLayout}>
+        <aside className={styles.posterPanel} aria-label={`פוסטר של ${show.title}`}>
+          <div className={styles.poster}>
+            <FallbackImage
+              src={getShowImagePath(show.title)}
+              alt={show.title}
+              fill
+              sizes="(max-width: 900px) 100vw, 280px"
+              className={styles.posterImage}
+            />
+          </div>
+        </aside>
+
+        <div className={styles.formWrap}>
+          <ReviewForm initialShowId={show.id} />
+          <div className={styles.cancelRow}>
+            <Link className={styles.ghostBtn} href={`${ROUTES.SHOWS}/${show.id}`}>
+              חזרה לדף ההצגה
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
