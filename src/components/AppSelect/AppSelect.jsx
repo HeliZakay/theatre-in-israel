@@ -1,6 +1,3 @@
-"use client";
-
-import * as Select from "@radix-ui/react-select";
 import styles from "./AppSelect.module.css";
 
 function cx(...classes) {
@@ -16,54 +13,36 @@ export default function AppSelect({
   placeholder,
   ariaLabel,
   className,
-  contentClassName,
   disabled = false,
   required = false,
   onBlur,
 }) {
   return (
-    <Select.Root
+    <select
+      id={id}
       name={name}
-      value={value || undefined}
-      onValueChange={onValueChange}
+      className={cx(styles.select, className)}
+      aria-label={ariaLabel}
+      value={value}
+      onChange={(e) => onValueChange?.(e.target.value)}
       disabled={disabled}
       required={required}
+      onBlur={onBlur}
     >
-      <Select.Trigger
-        id={id}
-        className={cx(styles.trigger, className)}
-        aria-label={ariaLabel}
-        onBlur={onBlur}
-      >
-        <Select.Value placeholder={placeholder} />
-        <Select.Icon className={styles.icon} aria-hidden>
-          ▾
-        </Select.Icon>
-      </Select.Trigger>
-
-      <Select.Portal>
-        <Select.Content
-          className={cx(styles.content, contentClassName)}
-          position="popper"
-          sideOffset={6}
+      {placeholder && !value ? (
+        <option value="" disabled>
+          {placeholder}
+        </option>
+      ) : null}
+      {options.map((option) => (
+        <option
+          key={option.value}
+          value={option.value}
+          disabled={option.disabled}
         >
-          <Select.Viewport className={styles.viewport}>
-            {options.map((option) => (
-              <Select.Item
-                key={option.value}
-                value={option.value}
-                disabled={option.disabled}
-                className={styles.item}
-              >
-                <Select.ItemText>{option.label}</Select.ItemText>
-                <Select.ItemIndicator className={styles.indicator}>
-                  ✓
-                </Select.ItemIndicator>
-              </Select.Item>
-            ))}
-          </Select.Viewport>
-        </Select.Content>
-      </Select.Portal>
-    </Select.Root>
+          {option.label}
+        </option>
+      ))}
+    </select>
   );
 }
