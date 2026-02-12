@@ -1,11 +1,15 @@
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { cache } from "react";
 import ROUTES from "@/constants/routes";
 import { getShowById } from "@/lib/showsData";
 import ReviewForm from "@/components/ReviewForm/ReviewForm";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import { getShowImagePath } from "@/utils/getShowImagePath";
+import { SITE_NAME } from "@/lib/seo";
+
+import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 
@@ -13,9 +17,36 @@ interface NewReviewPageProps {
   params: Promise<{ id: string }>;
 }
 
+const getShowForReviewPage = cache(async (showId: string) => getShowById(showId));
+
+export async function generateMetadata({
+  params,
+}: NewReviewPageProps): Promise<Metadata> {
+  const { id: showId } = await params;
+  const show = await getShowForReviewPage(showId);
+
+  if (!show) {
+    return {
+      title: "כתיבת ביקורת",
+      robots: { index: false, follow: false },
+    };
+  }
+
+  return {
+    title: `כתיבת ביקורת על ${show.title}`,
+    description: `טופס כתיבת ביקורת להצגה ${show.title}.`,
+    robots: { index: false, follow: false },
+    openGraph: {
+      title: `כתיבת ביקורת על ${show.title} | ${SITE_NAME}`,
+      description: `טופס כתיבת ביקורת להצגה ${show.title}.`,
+      url: `${ROUTES.SHOWS}/${show.id}/review`,
+    },
+  };
+}
+
 export default async function NewReviewPage({ params }: NewReviewPageProps) {
   const { id: showId } = await params;
-  const show = await getShowById(showId);
+  const show = await getShowForReviewPage(showId);
 
   if (!show) {
     notFound();

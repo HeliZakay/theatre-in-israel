@@ -4,6 +4,26 @@ import ShowsSection from "@/components/ShowsSection/ShowsSection";
 import styles from "./page.module.css";
 import ROUTES from "@/constants/routes";
 import { getHomePageData } from "@/lib/showsData";
+import { SITE_NAME } from "@/lib/seo";
+
+import type { Metadata } from "next";
+
+const homeTitle = "הצגות מומלצות, ביקורות ודירוגים";
+const homeDescription =
+  "מצאו הצגות תיאטרון בישראל לפי ביקורות קהל, דירוגים וז׳אנרים מובילים.";
+
+export const metadata: Metadata = {
+  title: homeTitle,
+  description: homeDescription,
+  alternates: {
+    canonical: ROUTES.HOME,
+  },
+  openGraph: {
+    title: `${homeTitle} | ${SITE_NAME}`,
+    description: homeDescription,
+    url: ROUTES.HOME,
+  },
+};
 
 export const dynamic = "force-dynamic";
 

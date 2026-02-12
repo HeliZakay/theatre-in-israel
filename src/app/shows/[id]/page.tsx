@@ -1,12 +1,16 @@
 import Link from "next/link";
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
+import { cache } from "react";
 import { getShowById } from "@/lib/showsData";
 import ROUTES from "@/constants/routes";
 import ReviewCard from "@/components/ReviewCard/ReviewCard";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import { getShowStats } from "@/utils/showStats";
 import { getShowImagePath } from "@/utils/getShowImagePath";
+import { SITE_NAME, toAbsoluteUrl, toJsonLd } from "@/lib/seo";
+
+import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 
@@ -14,18 +18,154 @@ interface ShowPageProps {
   params: Promise<{ id: string }>;
 }
 
+const getShowForPage = cache(async (showId: string) => getShowById(showId));
+
+function buildShowDescription(
+  summary: string,
+  theatre: string,
+  title: string,
+  avgRating: number | null,
+  reviewCount: number,
+): string {
+  const ratingText =
+    avgRating !== null
+      ? `דירוג ${avgRating.toFixed(1)} מתוך 5 על בסיס ${reviewCount} ביקורות.`
+      : `עדיין אין דירוג ממוצע.`;
+
+  const shortSummary =
+    summary.length > 140 ? `${summary.slice(0, 137).trimEnd()}...` : summary;
+
+  return `${title} בתיאטרון ${theatre}. ${ratingText} ${shortSummary}`;
+}
+
+export async function generateMetadata({
+  params,
+}: ShowPageProps): Promise<Metadata> {
+  const { id: showId } = await params;
+  const show = await getShowForPage(showId);
+
+  if (!show) {
+    return {
+      title: "הצגה לא נמצאה",
+      robots: { index: false, follow: false },
+    };
+  }
+
+  const { reviewCount, avgRating } = getShowStats(show);
+  const canonicalPath = `${ROUTES.SHOWS}/${show.id}`;
+  const description = buildShowDescription(
+    show.summary,
+    show.theatre,
+    show.title,
+    avgRating,
+    reviewCount,
+  );
+  const imagePath = getShowImagePath(show.title);
+
+  return {
+    title: `${show.title} - ביקורות`,
+    description,
+    alternates: {
+      canonical: canonicalPath,
+    },
+    openGraph: {
+      title: `${show.title} | ${SITE_NAME}`,
+      description,
+      url: canonicalPath,
+      images: [{ url: imagePath, alt: show.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${show.title} | ${SITE_NAME}`,
+      description,
+      images: [imagePath],
+    },
+  };
+}
+
 export default async function ShowPage({ params }: ShowPageProps) {
   const { id: showId } = await params;
-  const show = await getShowById(showId);
+  const show = await getShowForPage(showId);
 
   if (!show) {
     notFound();
   }
 
   const { reviewCount, avgRating } = getShowStats(show);
+  const canonicalPath = `${ROUTES.SHOWS}/${show.id}`;
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "עמוד הבית",
+        item: toAbsoluteUrl(ROUTES.HOME),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "הצגות",
+        item: toAbsoluteUrl(ROUTES.SHOWS),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: show.title,
+        item: toAbsoluteUrl(canonicalPath),
+      },
+    ],
+  };
+
+  const creativeWorkJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: show.title,
+    description: show.summary,
+    inLanguage: "he-IL",
+    image: toAbsoluteUrl(getShowImagePath(show.title)),
+    genre: show.genre,
+    mainEntityOfPage: toAbsoluteUrl(canonicalPath),
+    aggregateRating:
+      avgRating !== null
+        ? {
+            "@type": "AggregateRating",
+            ratingValue: Number(avgRating.toFixed(1)),
+            reviewCount,
+            bestRating: 5,
+            worstRating: 1,
+          }
+        : undefined,
+    review: show.reviews.slice(0, 5).map((review) => ({
+      "@type": "Review",
+      author: {
+        "@type": "Person",
+        name: review.author,
+      },
+      name: review.title ?? `ביקורת על ${show.title}`,
+      reviewBody: review.text,
+      datePublished: new Date(review.date).toISOString(),
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: review.rating,
+        bestRating: 5,
+        worstRating: 1,
+      },
+    })),
+  };
 
   return (
     <main className={styles.page} id="main-content">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(creativeWorkJsonLd) }}
+      />
       <Link className={styles.backLink} href={ROUTES.SHOWS}>
         לכל ההצגות →
       </Link>
