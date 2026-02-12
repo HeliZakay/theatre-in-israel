@@ -109,30 +109,6 @@ export default function Header() {
     <header className={styles.header} ref={headerRef}>
       <Logo />
       <div className={styles.topControls}>
-        {isAuthenticated && !isLoading ? (
-          <Link
-            href={ROUTES.MY_REVIEWS}
-            className={styles.mobileUserShortcut}
-            aria-label={
-              fullName ? `האזור האישי של ${fullName}` : "האזור האישי"
-            }
-            onClick={closeMenus}
-          >
-            <span className={styles.userAvatar} aria-hidden="true">
-              <svg
-                className={styles.userAvatarIcon}
-                viewBox="0 0 24 24"
-                focusable="false"
-              >
-                <path
-                  fill="currentColor"
-                  d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-3.5 0-6.5 2.2-7.6 5.3a1 1 0 0 0 .9 1.3h13.4a1 1 0 0 0 .9-1.3C18.5 16.2 15.5 14 12 14Z"
-                />
-              </svg>
-            </span>
-          </Link>
-        ) : null}
-
         <button
           type="button"
           className={styles.menuToggle}

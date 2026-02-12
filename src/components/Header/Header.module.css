@@ -52,10 +52,6 @@
   display: none;
 }
 
-.mobileUserShortcut {
-  display: none;
-}
-
 .navList {
   display: flex;
   gap: 16px;
@@ -263,21 +259,8 @@
   .topControls {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 0;
     margin-inline-start: auto;
-  }
-
-  .mobileUserShortcut {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 999px;
-    border: 1px solid rgba(26, 26, 26, 0.2);
-    background: #ffffff;
-    text-decoration: none;
-    color: inherit;
   }
 
   .menuToggle {
@@ -348,7 +331,7 @@
   .navText {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
     padding: 12px 14px;
     border-radius: 12px;
@@ -356,12 +339,6 @@
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0;
-  }
-
-  .navText::after {
-    content: "‹";
-    font-size: 1.1rem;
-    opacity: 0.55;
   }
 
   .navList a[aria-current="page"],

@@ -216,7 +216,7 @@
 
   .poster {
     position: static;
-    max-width: clamp(150px, 52vw, 220px);
+    max-width: clamp(120px, 40vw, 170px);
     margin-inline: auto;
   }
 
@@ -227,6 +227,6 @@
 
 @media (max-width: 420px) {
   .poster {
-    max-width: 180px;
+    max-width: 140px;
   }
 }

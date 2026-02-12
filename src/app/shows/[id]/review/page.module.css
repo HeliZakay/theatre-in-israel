@@ -146,11 +146,17 @@
 
   .poster {
     position: static;
-    max-width: 320px;
+    max-width: clamp(120px, 40vw, 170px);
     margin-inline: auto;
   }
 
   .form {
     max-width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .poster {
+    max-width: 140px;
   }
 }
