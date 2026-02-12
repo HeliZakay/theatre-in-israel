@@ -108,30 +108,62 @@ export default function Header() {
   return (
     <header className={styles.header} ref={headerRef}>
       <Logo />
+      <div className={styles.topControls}>
+        {isAuthenticated && !isLoading ? (
+          <Link
+            href={ROUTES.MY_REVIEWS}
+            className={styles.mobileUserShortcut}
+            aria-label={
+              fullName ? `האזור האישי של ${fullName}` : "האזור האישי"
+            }
+            onClick={closeMenus}
+          >
+            <span className={styles.userAvatar} aria-hidden="true">
+              <svg
+                className={styles.userAvatarIcon}
+                viewBox="0 0 24 24"
+                focusable="false"
+              >
+                <path
+                  fill="currentColor"
+                  d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-3.5 0-6.5 2.2-7.6 5.3a1 1 0 0 0 .9 1.3h13.4a1 1 0 0 0 .9-1.3C18.5 16.2 15.5 14 12 14Z"
+                />
+              </svg>
+            </span>
+          </Link>
+        ) : null}
 
-      <button
-        type="button"
-        className={styles.menuToggle}
-        aria-label={isMobileMenuOpen ? "סגירת תפריט ניווט" : "פתיחת תפריט ניווט"}
-        aria-controls={mobileMenuId}
-        aria-expanded={isMobileMenuOpen}
-        onClick={() => {
-          setIsAccountMenuOpen(false);
-          setIsMobileMenuOpen((prev) => !prev);
-        }}
-      >
-        <svg viewBox="0 0 24 24" className={styles.menuToggleIcon} aria-hidden="true">
-          {isMobileMenuOpen ? (
-            <path
-              fill="currentColor"
-              d="M18.3 5.7 12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z"
-            />
-          ) : (
-            <path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z" />
-          )}
-        </svg>
-        <span className={styles.menuToggleLabel}>תפריט</span>
-      </button>
+        <button
+          type="button"
+          className={styles.menuToggle}
+          aria-label={isMobileMenuOpen ? "סגירת תפריט ניווט" : "פתיחת תפריט ניווט"}
+          aria-controls={mobileMenuId}
+          aria-expanded={isMobileMenuOpen}
+          onClick={() => {
+            setIsAccountMenuOpen(false);
+            setIsMobileMenuOpen((prev) => !prev);
+          }}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            className={styles.menuToggleIcon}
+            aria-hidden="true"
+          >
+            {isMobileMenuOpen ? (
+              <path
+                fill="currentColor"
+                d="M18.3 5.7 12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z"
+              />
+            ) : (
+              <path
+                fill="currentColor"
+                d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"
+              />
+            )}
+          </svg>
+          <span className={styles.menuToggleLabel}>תפריט</span>
+        </button>
+      </div>
 
       {isMobileMenuOpen ? (
         <button
@@ -184,83 +216,105 @@ export default function Header() {
                 טוען...
               </button>
             ) : isAuthenticated ? (
-              <div className={styles.account} ref={accountMenuRef}>
-                <Link
-                  href={ROUTES.MY_REVIEWS}
-                  className={styles.userIndicator}
-                  aria-label={
-                    fullName ? `מחובר/ת כ-${fullName}` : "מחובר/ת לחשבון"
-                  }
-                  onClick={closeMenus}
+              <>
+                <div
+                  className={`${styles.account} ${styles.desktopAccount}`}
+                  ref={accountMenuRef}
                 >
-                  <span className={styles.userAvatar} aria-hidden="true">
-                    <svg
-                      className={styles.userAvatarIcon}
-                      viewBox="0 0 24 24"
-                      focusable="false"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-3.5 0-6.5 2.2-7.6 5.3a1 1 0 0 0 .9 1.3h13.4a1 1 0 0 0 .9-1.3C18.5 16.2 15.5 14 12 14Z"
-                      />
-                    </svg>
-                  </span>
-                  <span className={styles.userName}>{firstName || "מחובר/ת"}</span>
-                </Link>
-
-                <div className={styles.accountMenu}>
-                  <button
-                    type="button"
-                    className={styles.accountMenuTrigger}
-                    aria-label="פעולות חשבון"
-                    aria-haspopup="true"
-                    aria-expanded={isAccountMenuOpen}
-                    aria-controls={accountMenuId}
-                    onClick={() => setIsAccountMenuOpen((prev) => !prev)}
+                  <Link
+                    href={ROUTES.MY_REVIEWS}
+                    className={styles.userIndicator}
+                    aria-label={
+                      fullName ? `מחובר/ת כ-${fullName}` : "מחובר/ת לחשבון"
+                    }
+                    onClick={closeMenus}
                   >
-                    <svg
-                      className={styles.accountMenuTriggerIcon}
-                      viewBox="0 0 24 24"
-                      focusable="false"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M7 10l5 5 5-5z"
-                      />
-                    </svg>
-                  </button>
+                    <span className={styles.userAvatar} aria-hidden="true">
+                      <svg
+                        className={styles.userAvatarIcon}
+                        viewBox="0 0 24 24"
+                        focusable="false"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-3.5 0-6.5 2.2-7.6 5.3a1 1 0 0 0 .9 1.3h13.4a1 1 0 0 0 .9-1.3C18.5 16.2 15.5 14 12 14Z"
+                        />
+                      </svg>
+                    </span>
+                    <span className={styles.userName}>{firstName || "מחובר/ת"}</span>
+                  </Link>
 
-                  {isAccountMenuOpen ? (
-                    <div className={styles.accountDropdown} id={accountMenuId}>
-                      <Link
-                        href={ROUTES.MY_REVIEWS}
-                        className={styles.accountMenuItem}
-                        onClick={closeMenus}
+                  <div className={styles.accountMenu}>
+                    <button
+                      type="button"
+                      className={styles.accountMenuTrigger}
+                      aria-label="פעולות חשבון"
+                      aria-haspopup="true"
+                      aria-expanded={isAccountMenuOpen}
+                      aria-controls={accountMenuId}
+                      onClick={() => setIsAccountMenuOpen((prev) => !prev)}
+                    >
+                      <svg
+                        className={styles.accountMenuTriggerIcon}
+                        viewBox="0 0 24 24"
+                        focusable="false"
+                        aria-hidden="true"
                       >
-                        האזור האישי
-                      </Link>
-                      <Link
-                        href={ROUTES.REVIEWS_NEW}
-                        className={styles.accountMenuItem}
-                        onClick={closeMenus}
-                      >
-                        לכתוב ביקורת
-                      </Link>
-                      <button
-                        className={styles.accountMenuItemButton}
-                        type="button"
-                        onClick={() => {
-                          closeMenus();
-                          signOut({ callbackUrl: ROUTES.HOME });
-                        }}
-                      >
-                        התנתקות
-                      </button>
-                    </div>
-                  ) : null}
+                        <path fill="currentColor" d="M7 10l5 5 5-5z" />
+                      </svg>
+                    </button>
+
+                    {isAccountMenuOpen ? (
+                      <div className={styles.accountDropdown} id={accountMenuId}>
+                        <Link
+                          href={ROUTES.MY_REVIEWS}
+                          className={styles.accountMenuItem}
+                          onClick={closeMenus}
+                        >
+                          האזור האישי
+                        </Link>
+                        <Link
+                          href={ROUTES.REVIEWS_NEW}
+                          className={styles.accountMenuItem}
+                          onClick={closeMenus}
+                        >
+                          לכתוב ביקורת
+                        </Link>
+                        <button
+                          className={styles.accountMenuItemButton}
+                          type="button"
+                          onClick={() => {
+                            closeMenus();
+                            signOut({ callbackUrl: ROUTES.HOME });
+                          }}
+                        >
+                          התנתקות
+                        </button>
+                      </div>
+                    ) : null}
+                  </div>
                 </div>
-              </div>
+
+                <div className={styles.mobileAccountLinks}>
+                  <Link
+                    href={ROUTES.MY_REVIEWS}
+                    className={styles.mobileAccountLink}
+                    onClick={closeMenus}
+                  >
+                    האזור האישי
+                  </Link>
+                  <button
+                    className={styles.mobileAccountButton}
+                    type="button"
+                    onClick={() => {
+                      closeMenus();
+                      signOut({ callbackUrl: ROUTES.HOME });
+                    }}
+                  >
+                    התנתקות
+                  </button>
+                </div>
+              </>
             ) : (
               <button
                 className={styles.authBtn}

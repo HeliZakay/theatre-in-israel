@@ -20,6 +20,10 @@
   font-weight: 700;
 }
 
+.topControls {
+  display: none;
+}
+
 .menuToggle {
   display: none;
   align-items: center;
@@ -45,6 +49,10 @@
 }
 
 .mobileBackdrop {
+  display: none;
+}
+
+.mobileUserShortcut {
   display: none;
 }
 
@@ -98,6 +106,14 @@
   display: flex;
   align-items: center;
   gap: 0.35rem;
+}
+
+.desktopAccount {
+  display: flex;
+}
+
+.mobileAccountLinks {
+  display: none;
 }
 
 .authBtn {
@@ -244,6 +260,26 @@
     gap: 10px;
   }
 
+  .topControls {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-inline-start: auto;
+  }
+
+  .mobileUserShortcut {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    border: 1px solid rgba(26, 26, 26, 0.2);
+    background: #ffffff;
+    text-decoration: none;
+    color: inherit;
+  }
+
   .menuToggle {
     display: inline-flex;
     width: auto;
@@ -356,20 +392,39 @@
     text-align: center;
   }
 
-  .account {
-    justify-content: space-between;
+  .desktopAccount {
+    display: none;
+  }
+
+  .mobileAccountLinks {
+    display: grid;
+    gap: 8px;
+  }
+
+  .mobileAccountLink,
+  .mobileAccountButton {
+    display: flex;
     width: 100%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-decoration: none;
   }
 
-  .userIndicator {
-    flex: 1;
-    min-width: 0;
-    justify-content: flex-start;
-    padding: 6px 10px 6px 6px;
+  .mobileAccountLink {
+    border: 1px solid rgba(26, 26, 26, 0.18);
+    background: #ffffff;
+    color: var(--color-text-primary);
   }
 
-  .userName {
-    display: block;
+  .mobileAccountButton {
+    border: 1px solid rgba(156, 27, 32, 0.25);
+    background: rgba(156, 27, 32, 0.07);
+    color: var(--color-curtain-red);
+    cursor: pointer;
   }
 }
 
