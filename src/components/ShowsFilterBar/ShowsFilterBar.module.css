@@ -55,8 +55,10 @@
   line-height: inherit;
 }
 
-.chip:hover {
-  background: rgba(156, 27, 32, 0.14);
+@media (hover: hover) and (pointer: fine) {
+  .chip:hover {
+    background: rgba(156, 27, 32, 0.14);
+  }
 }
 
 .chip:focus-visible {
@@ -65,6 +67,13 @@
 }
 
 .chipActive {
+  background: var(--color-curtain-red);
+  color: #ffffff;
+}
+
+.chipActive:hover,
+.chipActive:focus-visible,
+.chipActive:active {
   background: var(--color-curtain-red);
   color: #ffffff;
 }
