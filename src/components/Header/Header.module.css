@@ -132,11 +132,11 @@
   background: #fff;
   color: var(--color-text-primary);
   cursor: pointer;
-  list-style: none;
+  padding: 0;
 }
 
-.accountMenuTrigger::-webkit-details-marker {
-  display: none;
+.accountMenuTrigger:hover {
+  background: rgba(26, 26, 26, 0.06);
 }
 
 .accountMenuTriggerIcon {
@@ -144,7 +144,7 @@
   height: 18px;
 }
 
-.accountMenu[open] .accountMenuTrigger {
+.accountMenuTrigger[aria-expanded="true"] {
   background: rgba(26, 26, 26, 0.06);
 }
 

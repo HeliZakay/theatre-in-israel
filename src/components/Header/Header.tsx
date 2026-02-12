@@ -7,6 +7,7 @@ import Logo from "@/components/Logo/Logo";
 import { usePathname } from "next/navigation";
 import Button from "@/components/Button/Button";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Header() {
   const { data: session, status } = useSession();
@@ -15,6 +16,38 @@ export default function Header() {
   const isLoading = status === "loading";
   const fullName = session?.user?.name?.trim() || "";
   const firstName = fullName.split(/\s+/).filter(Boolean)[0] || "";
+  const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
+  const accountMenuRef = useRef<HTMLDivElement | null>(null);
+  const accountMenuId = "header-account-menu";
+
+  useEffect(() => {
+    if (!isAccountMenuOpen) {
+      return;
+    }
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (
+        accountMenuRef.current &&
+        !accountMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsAccountMenuOpen(false);
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsAccountMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isAccountMenuOpen]);
 
   return (
     <header className={styles.header}>
@@ -37,18 +70,6 @@ export default function Header() {
                 </Link>
               </NavigationMenu.Link>
             </NavigationMenu.Item>
-            {isAuthenticated ? (
-              <NavigationMenu.Item>
-                <NavigationMenu.Link
-                  asChild
-                  active={pathname === ROUTES.MY_REVIEWS}
-                >
-                  <Link href={ROUTES.MY_REVIEWS} className={styles.navText}>
-                    האזור האישי
-                  </Link>
-                </NavigationMenu.Link>
-              </NavigationMenu.Item>
-            ) : null}
           </NavigationMenu.List>
         </NavigationMenu.Root>
 
@@ -62,13 +83,14 @@ export default function Header() {
               טוען...
             </button>
           ) : isAuthenticated ? (
-            <div className={styles.account}>
+            <div className={styles.account} ref={accountMenuRef}>
               <Link
                 href={ROUTES.MY_REVIEWS}
                 className={styles.userIndicator}
                 aria-label={
                   fullName ? `מחובר/ת כ-${fullName}` : "מחובר/ת לחשבון"
                 }
+                onClick={() => setIsAccountMenuOpen(false)}
               >
                 <span className={styles.userAvatar} aria-hidden="true">
                   <svg
@@ -85,10 +107,15 @@ export default function Header() {
                 <span className={styles.userName}>{firstName || "מחובר/ת"}</span>
               </Link>
 
-              <details className={styles.accountMenu}>
-                <summary
+              <div className={styles.accountMenu}>
+                <button
+                  type="button"
                   className={styles.accountMenuTrigger}
                   aria-label="פעולות חשבון"
+                  aria-haspopup="true"
+                  aria-expanded={isAccountMenuOpen}
+                  aria-controls={accountMenuId}
+                  onClick={() => setIsAccountMenuOpen((prev) => !prev)}
                 >
                   <svg
                     className={styles.accountMenuTriggerIcon}
@@ -101,26 +128,37 @@ export default function Header() {
                       d="M7 10l5 5 5-5z"
                     />
                   </svg>
-                </summary>
-                <div className={styles.accountDropdown}>
-                  <Link href={ROUTES.MY_REVIEWS} className={styles.accountMenuItem}>
-                    האזור האישי
-                  </Link>
-                  <Link
-                    href={ROUTES.REVIEWS_NEW}
-                    className={styles.accountMenuItem}
-                  >
-                    לכתוב ביקורת
-                  </Link>
-                  <button
-                    className={styles.accountMenuItemButton}
-                    type="button"
-                    onClick={() => signOut({ callbackUrl: ROUTES.HOME })}
-                  >
-                    התנתקות
-                  </button>
-                </div>
-              </details>
+                </button>
+
+                {isAccountMenuOpen ? (
+                  <div className={styles.accountDropdown} id={accountMenuId}>
+                    <Link
+                      href={ROUTES.MY_REVIEWS}
+                      className={styles.accountMenuItem}
+                      onClick={() => setIsAccountMenuOpen(false)}
+                    >
+                      האזור האישי
+                    </Link>
+                    <Link
+                      href={ROUTES.REVIEWS_NEW}
+                      className={styles.accountMenuItem}
+                      onClick={() => setIsAccountMenuOpen(false)}
+                    >
+                      לכתוב ביקורת
+                    </Link>
+                    <button
+                      className={styles.accountMenuItemButton}
+                      type="button"
+                      onClick={() => {
+                        setIsAccountMenuOpen(false);
+                        signOut({ callbackUrl: ROUTES.HOME });
+                      }}
+                    >
+                      התנתקות
+                    </button>
+                  </div>
+                ) : null}
+              </div>
             </div>
           ) : (
             <button
