@@ -31,7 +31,7 @@
   background: #ffffff;
   color: var(--color-text-primary);
   font-weight: 600;
-  min-width: 220px;
+  min-width: 0;
 }
 
 .chipRow {
@@ -109,11 +109,20 @@
 
 @media (max-width: 640px) {
   .filterForm {
+    gap: 8px;
     align-items: stretch;
+  }
+
+  .filterLabel {
+    font-size: 0.92rem;
   }
 
   .select,
   .searchInput {
     width: 100%;
+  }
+
+  .status {
+    font-size: 0.85rem;
   }
 }

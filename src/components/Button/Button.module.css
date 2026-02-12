@@ -15,3 +15,10 @@
 .button:hover {
   background-color: var(--color-curtain-red-hover);
 }
+
+@media (max-width: 640px) {
+  .button {
+    font-size: 1rem;
+    padding: 9px 14px;
+  }
+}

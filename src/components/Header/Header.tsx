@@ -18,7 +18,37 @@ export default function Header() {
   const firstName = fullName.split(/\s+/).filter(Boolean)[0] || "";
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
   const accountMenuRef = useRef<HTMLDivElement | null>(null);
+  const headerRef = useRef<HTMLElement | null>(null);
   const accountMenuId = "header-account-menu";
+
+  useEffect(() => {
+    if (!headerRef.current) return;
+
+    const root = document.documentElement;
+
+    const updateHeaderOffset = () => {
+      const height = Math.ceil(headerRef.current?.getBoundingClientRect().height ?? 0);
+      if (height > 0) {
+        root.style.setProperty("--header-offset", `${height}px`);
+      }
+    };
+
+    updateHeaderOffset();
+
+    const observer =
+      typeof ResizeObserver !== "undefined"
+        ? new ResizeObserver(updateHeaderOffset)
+        : null;
+    observer?.observe(headerRef.current);
+    window.addEventListener("orientationchange", updateHeaderOffset);
+    window.addEventListener("resize", updateHeaderOffset);
+
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener("orientationchange", updateHeaderOffset);
+      window.removeEventListener("resize", updateHeaderOffset);
+    };
+  }, []);
 
   useEffect(() => {
     if (!isAccountMenuOpen) {
@@ -50,7 +80,7 @@ export default function Header() {
   }, [isAccountMenuOpen]);
 
   return (
-    <header className={styles.header}>
+    <header className={styles.header} ref={headerRef}>
       <Logo />
 
       <div className={styles.menu}>
