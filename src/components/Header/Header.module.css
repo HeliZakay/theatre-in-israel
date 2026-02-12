@@ -108,7 +108,16 @@
   display: flex;
 }
 
+.desktopOnlyAction {
+  display: inline-flex;
+}
+
 .mobileAccountLinks {
+  display: none;
+}
+
+.mobileMenuItem,
+.mobileMenuButton {
   display: none;
 }
 
@@ -348,8 +357,7 @@
   }
 
   .actionsSection {
-    border-top: 1px solid rgba(15, 23, 42, 0.1);
-    padding-top: 12px;
+    padding-top: 0;
   }
 
   .actions {
@@ -362,6 +370,10 @@
   .primaryAction {
     width: 100%;
     text-align: center;
+  }
+
+  .desktopOnlyAction {
+    display: none;
   }
 
   .authBtn {
@@ -378,29 +390,27 @@
     gap: 8px;
   }
 
-  .mobileAccountLink,
-  .mobileAccountButton {
+  .mobileMenuItem,
+  .mobileMenuButton {
     display: flex;
     width: 100%;
     align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    padding: 10px 12px;
-    font-size: 0.92rem;
-    font-weight: 600;
-    text-decoration: none;
-  }
-
-  .mobileAccountLink {
-    border: 1px solid rgba(26, 26, 26, 0.18);
-    background: #ffffff;
+    justify-content: flex-start;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    background: rgba(15, 23, 42, 0.04);
     color: var(--color-text-primary);
+    text-decoration: none;
+    border: 0;
   }
 
   .mobileAccountButton {
-    border: 1px solid rgba(156, 27, 32, 0.25);
-    background: rgba(156, 27, 32, 0.07);
-    color: var(--color-curtain-red);
+    font-family: inherit;
+    line-height: inherit;
+    text-align: right;
     cursor: pointer;
   }
 }

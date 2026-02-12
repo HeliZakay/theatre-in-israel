@@ -181,11 +181,18 @@ export default function Header() {
             <Button
               href={ROUTES.REVIEWS_NEW}
               aria-label="כתיבת ביקורת"
-              className={styles.primaryAction}
+              className={`${styles.primaryAction} ${styles.desktopOnlyAction}`}
               onClick={closeMenus}
             >
               לכתוב ביקורת
             </Button>
+            <Link
+              href={ROUTES.REVIEWS_NEW}
+              className={`${styles.navText} ${styles.mobileMenuItem}`}
+              onClick={closeMenus}
+            >
+              לכתוב ביקורת
+            </Link>
 
             {isLoading ? (
               <button className={styles.authBtn} type="button" disabled>
@@ -274,13 +281,13 @@ export default function Header() {
                 <div className={styles.mobileAccountLinks}>
                   <Link
                     href={ROUTES.MY_REVIEWS}
-                    className={styles.mobileAccountLink}
+                    className={`${styles.navText} ${styles.mobileMenuItem}`}
                     onClick={closeMenus}
                   >
                     האזור האישי
                   </Link>
                   <button
-                    className={styles.mobileAccountButton}
+                    className={`${styles.navText} ${styles.mobileMenuButton}`}
                     type="button"
                     onClick={() => {
                       closeMenus();
