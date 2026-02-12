@@ -1,11 +1,14 @@
 import type { MetadataRoute } from "next";
 import ROUTES from "@/constants/routes";
-import { getShows } from "@/lib/shows";
+import prisma from "@/lib/prisma";
 import { toAbsoluteUrl } from "@/lib/seo";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
-  const shows = await getShows();
+  const shows = await prisma.show.findMany({
+    select: { id: true },
+    orderBy: { id: "asc" },
+  });
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {
@@ -23,11 +26,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   const showRoutes: MetadataRoute.Sitemap = shows.map((show) => {
-    const latestReviewDate = show.reviews?.[0]?.date;
-
     return {
       url: toAbsoluteUrl(`${ROUTES.SHOWS}/${show.id}`),
-      lastModified: latestReviewDate ? new Date(latestReviewDate) : now,
+      lastModified: now,
       changeFrequency: "daily",
       priority: 0.8,
     };
