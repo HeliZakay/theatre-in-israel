@@ -20,6 +20,25 @@
   font-weight: 700;
 }
 
+.menuToggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(26, 26, 26, 0.2);
+  background: #ffffff;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  padding: 0;
+}
+
+.menuToggleIcon {
+  width: 22px;
+  height: 22px;
+}
+
 .navList {
   display: flex;
   gap: 16px;
@@ -53,6 +72,10 @@
   gap: 2rem;
   flex-wrap: wrap;
   justify-content: flex-end;
+}
+
+.menuOpen {
+  display: flex;
 }
 
 .actions {
@@ -206,16 +229,43 @@
 
 @media (max-width: 640px) {
   .header {
-    align-items: flex-start;
+    align-items: center;
+  }
+
+  .menuToggle {
+    display: inline-flex;
   }
 
   .menu {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding-top: 8px;
+  }
+
+  .menuOpen {
+    display: flex;
+  }
+
+  .navList {
+    gap: 10px;
+  }
+
+  .navText {
+    display: inline-flex;
+    padding: 6px 0;
+  }
+
+  .actions {
     width: 100%;
     justify-content: space-between;
   }
 
-  .navList {
-    gap: 12px;
+  .actions > :first-child {
+    flex: 1;
+    text-align: center;
   }
 
   .userName {
@@ -233,9 +283,18 @@
 }
 
 @media (max-width: 420px) {
-  .menu {
+  .actions {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .actions > :first-child {
+    width: 100%;
+  }
+
+  .account {
+    justify-content: space-between;
+    width: 100%;
   }
 }

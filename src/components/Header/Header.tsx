@@ -16,10 +16,12 @@ export default function Header() {
   const isLoading = status === "loading";
   const fullName = session?.user?.name?.trim() || "";
   const firstName = fullName.split(/\s+/).filter(Boolean)[0] || "";
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
   const accountMenuRef = useRef<HTMLDivElement | null>(null);
   const headerRef = useRef<HTMLElement | null>(null);
   const accountMenuId = "header-account-menu";
+  const mobileMenuId = "header-mobile-menu";
 
   useEffect(() => {
     if (!headerRef.current) return;
@@ -83,19 +85,50 @@ export default function Header() {
     <header className={styles.header} ref={headerRef}>
       <Logo />
 
-      <div className={styles.menu}>
+      <button
+        type="button"
+        className={styles.menuToggle}
+        aria-label={isMobileMenuOpen ? "סגירת תפריט ניווט" : "פתיחת תפריט ניווט"}
+        aria-controls={mobileMenuId}
+        aria-expanded={isMobileMenuOpen}
+        onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+      >
+        <svg viewBox="0 0 24 24" className={styles.menuToggleIcon} aria-hidden="true">
+          {isMobileMenuOpen ? (
+            <path
+              fill="currentColor"
+              d="M18.3 5.7 12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z"
+            />
+          ) : (
+            <path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z" />
+          )}
+        </svg>
+      </button>
+
+      <div
+        id={mobileMenuId}
+        className={`${styles.menu} ${isMobileMenuOpen ? styles.menuOpen : ""}`}
+      >
         <NavigationMenu.Root>
           <NavigationMenu.List className={styles.navList}>
             <NavigationMenu.Item>
               <NavigationMenu.Link asChild active={pathname === "/"}>
-                <Link href="/" className={styles.navText}>
+                <Link
+                  href="/"
+                  className={styles.navText}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
                   עמוד הבית
                 </Link>
               </NavigationMenu.Link>
             </NavigationMenu.Item>
             <NavigationMenu.Item>
               <NavigationMenu.Link asChild active={pathname === ROUTES.SHOWS}>
-                <Link href={ROUTES.SHOWS} className={styles.navText}>
+                <Link
+                  href={ROUTES.SHOWS}
+                  className={styles.navText}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
                   כל ההצגות
                 </Link>
               </NavigationMenu.Link>
@@ -104,7 +137,11 @@ export default function Header() {
         </NavigationMenu.Root>
 
         <div className={styles.actions}>
-          <Button href={ROUTES.REVIEWS_NEW} aria-label="כתיבת ביקורת">
+          <Button
+            href={ROUTES.REVIEWS_NEW}
+            aria-label="כתיבת ביקורת"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
             לכתוב ביקורת
           </Button>
 
@@ -120,7 +157,10 @@ export default function Header() {
                 aria-label={
                   fullName ? `מחובר/ת כ-${fullName}` : "מחובר/ת לחשבון"
                 }
-                onClick={() => setIsAccountMenuOpen(false)}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setIsAccountMenuOpen(false);
+                }}
               >
                 <span className={styles.userAvatar} aria-hidden="true">
                   <svg
@@ -165,14 +205,20 @@ export default function Header() {
                     <Link
                       href={ROUTES.MY_REVIEWS}
                       className={styles.accountMenuItem}
-                      onClick={() => setIsAccountMenuOpen(false)}
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        setIsAccountMenuOpen(false);
+                      }}
                     >
                       האזור האישי
                     </Link>
                     <Link
                       href={ROUTES.REVIEWS_NEW}
                       className={styles.accountMenuItem}
-                      onClick={() => setIsAccountMenuOpen(false)}
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        setIsAccountMenuOpen(false);
+                      }}
                     >
                       לכתוב ביקורת
                     </Link>
@@ -180,6 +226,7 @@ export default function Header() {
                       className={styles.accountMenuItemButton}
                       type="button"
                       onClick={() => {
+                        setIsMobileMenuOpen(false);
                         setIsAccountMenuOpen(false);
                         signOut({ callbackUrl: ROUTES.HOME });
                       }}
@@ -194,11 +241,12 @@ export default function Header() {
             <button
               className={styles.authBtn}
               type="button"
-              onClick={() =>
+              onClick={() => {
+                setIsMobileMenuOpen(false);
                 signIn("google", {
                   callbackUrl: pathname || ROUTES.HOME,
-                })
-              }
+                });
+              }}
             >
               התחברות עם גוגל
             </button>
