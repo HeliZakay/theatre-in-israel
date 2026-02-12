@@ -22,6 +22,10 @@ export default function Header() {
   const headerRef = useRef<HTMLElement | null>(null);
   const accountMenuId = "header-account-menu";
   const mobileMenuId = "header-mobile-menu";
+  const closeMenus = () => {
+    setIsMobileMenuOpen(false);
+    setIsAccountMenuOpen(false);
+  };
 
   useEffect(() => {
     if (!headerRef.current) return;
@@ -81,6 +85,26 @@ export default function Header() {
     };
   }, [isAccountMenuOpen]);
 
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeMenus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <header className={styles.header} ref={headerRef}>
       <Logo />
@@ -91,7 +115,10 @@ export default function Header() {
         aria-label={isMobileMenuOpen ? "סגירת תפריט ניווט" : "פתיחת תפריט ניווט"}
         aria-controls={mobileMenuId}
         aria-expanded={isMobileMenuOpen}
-        onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+        onClick={() => {
+          setIsAccountMenuOpen(false);
+          setIsMobileMenuOpen((prev) => !prev);
+        }}
       >
         <svg viewBox="0 0 24 24" className={styles.menuToggleIcon} aria-hidden="true">
           {isMobileMenuOpen ? (
@@ -103,154 +130,152 @@ export default function Header() {
             <path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z" />
           )}
         </svg>
+        <span className={styles.menuToggleLabel}>תפריט</span>
       </button>
+
+      {isMobileMenuOpen ? (
+        <button
+          type="button"
+          className={styles.mobileBackdrop}
+          aria-label="סגירת תפריט"
+          onClick={closeMenus}
+        />
+      ) : null}
 
       <div
         id={mobileMenuId}
         className={`${styles.menu} ${isMobileMenuOpen ? styles.menuOpen : ""}`}
+        aria-label="תפריט ניווט"
       >
-        <NavigationMenu.Root>
-          <NavigationMenu.List className={styles.navList}>
-            <NavigationMenu.Item>
-              <NavigationMenu.Link asChild active={pathname === "/"}>
-                <Link
-                  href="/"
-                  className={styles.navText}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  עמוד הבית
-                </Link>
-              </NavigationMenu.Link>
-            </NavigationMenu.Item>
-            <NavigationMenu.Item>
-              <NavigationMenu.Link asChild active={pathname === ROUTES.SHOWS}>
-                <Link
-                  href={ROUTES.SHOWS}
-                  className={styles.navText}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  כל ההצגות
-                </Link>
-              </NavigationMenu.Link>
-            </NavigationMenu.Item>
-          </NavigationMenu.List>
-        </NavigationMenu.Root>
+        <div className={styles.navSection}>
+          <NavigationMenu.Root>
+            <NavigationMenu.List className={styles.navList}>
+              <NavigationMenu.Item>
+                <NavigationMenu.Link asChild active={pathname === "/"}>
+                  <Link href="/" className={styles.navText} onClick={closeMenus}>
+                    עמוד הבית
+                  </Link>
+                </NavigationMenu.Link>
+              </NavigationMenu.Item>
+              <NavigationMenu.Item>
+                <NavigationMenu.Link asChild active={pathname === ROUTES.SHOWS}>
+                  <Link href={ROUTES.SHOWS} className={styles.navText} onClick={closeMenus}>
+                    כל ההצגות
+                  </Link>
+                </NavigationMenu.Link>
+              </NavigationMenu.Item>
+            </NavigationMenu.List>
+          </NavigationMenu.Root>
+        </div>
 
-        <div className={styles.actions}>
-          <Button
-            href={ROUTES.REVIEWS_NEW}
-            aria-label="כתיבת ביקורת"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            לכתוב ביקורת
-          </Button>
+        <div className={styles.actionsSection}>
+          <div className={styles.actions}>
+            <Button
+              href={ROUTES.REVIEWS_NEW}
+              aria-label="כתיבת ביקורת"
+              className={styles.primaryAction}
+              onClick={closeMenus}
+            >
+              לכתוב ביקורת
+            </Button>
 
-          {isLoading ? (
-            <button className={styles.authBtn} type="button" disabled>
-              טוען...
-            </button>
-          ) : isAuthenticated ? (
-            <div className={styles.account} ref={accountMenuRef}>
-              <Link
-                href={ROUTES.MY_REVIEWS}
-                className={styles.userIndicator}
-                aria-label={
-                  fullName ? `מחובר/ת כ-${fullName}` : "מחובר/ת לחשבון"
-                }
+            {isLoading ? (
+              <button className={styles.authBtn} type="button" disabled>
+                טוען...
+              </button>
+            ) : isAuthenticated ? (
+              <div className={styles.account} ref={accountMenuRef}>
+                <Link
+                  href={ROUTES.MY_REVIEWS}
+                  className={styles.userIndicator}
+                  aria-label={
+                    fullName ? `מחובר/ת כ-${fullName}` : "מחובר/ת לחשבון"
+                  }
+                  onClick={closeMenus}
+                >
+                  <span className={styles.userAvatar} aria-hidden="true">
+                    <svg
+                      className={styles.userAvatarIcon}
+                      viewBox="0 0 24 24"
+                      focusable="false"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-3.5 0-6.5 2.2-7.6 5.3a1 1 0 0 0 .9 1.3h13.4a1 1 0 0 0 .9-1.3C18.5 16.2 15.5 14 12 14Z"
+                      />
+                    </svg>
+                  </span>
+                  <span className={styles.userName}>{firstName || "מחובר/ת"}</span>
+                </Link>
+
+                <div className={styles.accountMenu}>
+                  <button
+                    type="button"
+                    className={styles.accountMenuTrigger}
+                    aria-label="פעולות חשבון"
+                    aria-haspopup="true"
+                    aria-expanded={isAccountMenuOpen}
+                    aria-controls={accountMenuId}
+                    onClick={() => setIsAccountMenuOpen((prev) => !prev)}
+                  >
+                    <svg
+                      className={styles.accountMenuTriggerIcon}
+                      viewBox="0 0 24 24"
+                      focusable="false"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M7 10l5 5 5-5z"
+                      />
+                    </svg>
+                  </button>
+
+                  {isAccountMenuOpen ? (
+                    <div className={styles.accountDropdown} id={accountMenuId}>
+                      <Link
+                        href={ROUTES.MY_REVIEWS}
+                        className={styles.accountMenuItem}
+                        onClick={closeMenus}
+                      >
+                        האזור האישי
+                      </Link>
+                      <Link
+                        href={ROUTES.REVIEWS_NEW}
+                        className={styles.accountMenuItem}
+                        onClick={closeMenus}
+                      >
+                        לכתוב ביקורת
+                      </Link>
+                      <button
+                        className={styles.accountMenuItemButton}
+                        type="button"
+                        onClick={() => {
+                          closeMenus();
+                          signOut({ callbackUrl: ROUTES.HOME });
+                        }}
+                      >
+                        התנתקות
+                      </button>
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+            ) : (
+              <button
+                className={styles.authBtn}
+                type="button"
                 onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  setIsAccountMenuOpen(false);
+                  closeMenus();
+                  signIn("google", {
+                    callbackUrl: pathname || ROUTES.HOME,
+                  });
                 }}
               >
-                <span className={styles.userAvatar} aria-hidden="true">
-                  <svg
-                    className={styles.userAvatarIcon}
-                    viewBox="0 0 24 24"
-                    focusable="false"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-3.5 0-6.5 2.2-7.6 5.3a1 1 0 0 0 .9 1.3h13.4a1 1 0 0 0 .9-1.3C18.5 16.2 15.5 14 12 14Z"
-                    />
-                  </svg>
-                </span>
-                <span className={styles.userName}>{firstName || "מחובר/ת"}</span>
-              </Link>
-
-              <div className={styles.accountMenu}>
-                <button
-                  type="button"
-                  className={styles.accountMenuTrigger}
-                  aria-label="פעולות חשבון"
-                  aria-haspopup="true"
-                  aria-expanded={isAccountMenuOpen}
-                  aria-controls={accountMenuId}
-                  onClick={() => setIsAccountMenuOpen((prev) => !prev)}
-                >
-                  <svg
-                    className={styles.accountMenuTriggerIcon}
-                    viewBox="0 0 24 24"
-                    focusable="false"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M7 10l5 5 5-5z"
-                    />
-                  </svg>
-                </button>
-
-                {isAccountMenuOpen ? (
-                  <div className={styles.accountDropdown} id={accountMenuId}>
-                    <Link
-                      href={ROUTES.MY_REVIEWS}
-                      className={styles.accountMenuItem}
-                      onClick={() => {
-                        setIsMobileMenuOpen(false);
-                        setIsAccountMenuOpen(false);
-                      }}
-                    >
-                      האזור האישי
-                    </Link>
-                    <Link
-                      href={ROUTES.REVIEWS_NEW}
-                      className={styles.accountMenuItem}
-                      onClick={() => {
-                        setIsMobileMenuOpen(false);
-                        setIsAccountMenuOpen(false);
-                      }}
-                    >
-                      לכתוב ביקורת
-                    </Link>
-                    <button
-                      className={styles.accountMenuItemButton}
-                      type="button"
-                      onClick={() => {
-                        setIsMobileMenuOpen(false);
-                        setIsAccountMenuOpen(false);
-                        signOut({ callbackUrl: ROUTES.HOME });
-                      }}
-                    >
-                      התנתקות
-                    </button>
-                  </div>
-                ) : null}
-              </div>
-            </div>
-          ) : (
-            <button
-              className={styles.authBtn}
-              type="button"
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                signIn("google", {
-                  callbackUrl: pathname || ROUTES.HOME,
-                });
-              }}
-            >
-              התחברות עם גוגל
-            </button>
-          )}
+                התחברות עם גוגל
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </header>

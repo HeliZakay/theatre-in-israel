@@ -24,6 +24,7 @@
   display: none;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   width: 40px;
   height: 40px;
   border-radius: 10px;
@@ -37,6 +38,14 @@
 .menuToggleIcon {
   width: 22px;
   height: 22px;
+}
+
+.menuToggleLabel {
+  display: none;
+}
+
+.mobileBackdrop {
+  display: none;
 }
 
 .navList {
@@ -230,71 +239,147 @@
 @media (max-width: 640px) {
   .header {
     align-items: center;
+    flex-wrap: nowrap;
+    padding: 12px 14px;
+    gap: 10px;
   }
 
   .menuToggle {
     display: inline-flex;
+    width: auto;
+    padding: 0 10px;
+  }
+
+  .menuToggleLabel {
+    display: inline;
+    font-size: 0.85rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .mobileBackdrop {
+    display: block;
+    position: fixed;
+    top: var(--header-offset);
+    right: 0;
+    left: 0;
+    bottom: 0;
+    border: 0;
+    background: rgba(10, 12, 18, 0.34);
+    z-index: 1001;
+    padding: 0;
   }
 
   .menu {
     display: none;
+    position: fixed;
+    top: var(--header-offset);
+    right: 0;
+    left: 0;
+    z-index: 1002;
     width: 100%;
     flex-direction: column;
     align-items: stretch;
     gap: 14px;
-    padding-top: 8px;
+    padding: 14px 16px 18px;
+    background: #ffffff;
+    border-top: 1px solid rgba(26, 26, 26, 0.1);
+    box-shadow: 0 24px 44px rgba(15, 23, 42, 0.16);
+    max-height: calc(100dvh - var(--header-offset));
+    overflow-y: auto;
   }
 
   .menuOpen {
     display: flex;
   }
 
+  .navSection {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
   .navList {
-    gap: 10px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .navList li {
+    width: 100%;
   }
 
   .navText {
-    display: inline-flex;
-    padding: 6px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.04);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  .navText::after {
+    content: "‹";
+    font-size: 1.1rem;
+    opacity: 0.55;
+  }
+
+  .navList a[aria-current="page"],
+  .navList a[data-active] {
+    background: rgba(156, 27, 32, 0.12);
+    color: var(--color-curtain-red);
+  }
+
+  .actionsSection {
+    border-top: 1px solid rgba(15, 23, 42, 0.1);
+    padding-top: 12px;
   }
 
   .actions {
     width: 100%;
-    justify-content: space-between;
-  }
-
-  .actions > :first-child {
-    flex: 1;
-    text-align: center;
-  }
-
-  .userName {
-    display: none;
-  }
-
-  .userIndicator {
-    padding: 4px;
-  }
-
-  .accountDropdown {
-    inset-inline-start: 0;
-    inset-inline-end: auto;
-  }
-}
-
-@media (max-width: 420px) {
-  .actions {
     flex-direction: column;
     align-items: stretch;
     gap: 10px;
   }
 
-  .actions > :first-child {
+  .primaryAction {
     width: 100%;
+    text-align: center;
+  }
+
+  .authBtn {
+    width: 100%;
+    text-align: center;
   }
 
   .account {
     justify-content: space-between;
     width: 100%;
+  }
+
+  .userIndicator {
+    flex: 1;
+    min-width: 0;
+    justify-content: flex-start;
+    padding: 6px 10px 6px 6px;
+  }
+
+  .userName {
+    display: block;
+  }
+}
+
+@media (max-width: 420px) {
+  .menuToggle {
+    width: 40px;
+    padding: 0;
+  }
+
+  .menuToggleLabel {
+    display: none;
   }
 }
