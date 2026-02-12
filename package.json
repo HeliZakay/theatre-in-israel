@@ -2,6 +2,9 @@
   "name": "theatre-in-israel",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
@@ -13,6 +16,7 @@
     "seed": "node prisma/seed.js"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.11.1",
     "@hookform/resolvers": "^5.2.2",
     "@neondatabase/serverless": "^1.0.2",
     "@prisma/adapter-neon": "^7.3.0",
@@ -24,6 +28,7 @@
     "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-separator": "^1.1.8",
     "next": "16.1.6",
+    "next-auth": "^4.24.13",
     "pg": "^8.18.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",

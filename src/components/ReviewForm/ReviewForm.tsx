@@ -12,8 +12,6 @@ import ShowCombobox from "@/components/ShowCombobox/ShowCombobox";
 import {
   REVIEW_COMMENT_MAX,
   REVIEW_COMMENT_MIN,
-  REVIEW_NAME_MAX,
-  REVIEW_NAME_MIN,
   REVIEW_TITLE_MAX,
   REVIEW_TITLE_MIN,
 } from "@/constants/reviewValidation";
@@ -23,11 +21,6 @@ import type { Show } from "@/types";
 
 const reviewSchema = z.object({
   showId: z.string().trim().min(1, "יש לבחור הצגה"),
-  name: z
-    .string()
-    .trim()
-    .min(REVIEW_NAME_MIN, "הכניס.י שם חוקי")
-    .max(REVIEW_NAME_MAX, `השם יכול להכיל עד ${REVIEW_NAME_MAX} תווים`),
   title: z
     .string()
     .trim()
@@ -81,7 +74,6 @@ export default function ReviewForm({
     resolver: zodResolver(reviewSchema),
     defaultValues: {
       showId: String(initialShowId ?? ""),
-      name: "",
       title: "",
       rating: "",
       comment: "",
@@ -95,7 +87,6 @@ export default function ReviewForm({
   const selectedShowId = useWatch({ control, name: "showId" }) ?? "";
   const selectedShow =
     shows.find((show) => String(show.id) === String(selectedShowId)) ?? null;
-  const nameValue = useWatch({ control, name: "name" }) ?? "";
   const titleValue = useWatch({ control, name: "title" }) ?? "";
   const commentValue = useWatch({ control, name: "comment" }) ?? "";
 
@@ -104,7 +95,6 @@ export default function ReviewForm({
     try {
       const formData = new FormData();
       formData.set("showId", values.showId);
-      formData.set("name", values.name);
       formData.set("title", values.title);
       formData.set("rating", String(values.rating));
       formData.set("comment", values.comment);
@@ -174,21 +164,6 @@ export default function ReviewForm({
       ) : (
         <input type="hidden" {...register("showId")} />
       )}
-
-      <label className={styles.field}>
-        <span className={styles.label}>שם מלא</span>
-        <input
-          className={styles.input}
-          maxLength={REVIEW_NAME_MAX}
-          {...register("name")}
-        />
-        {errors.name ? (
-          <p className={styles.fieldError}>{errors.name.message}</p>
-        ) : null}
-        <p className={styles.charMeta}>
-          {nameValue.length}/{REVIEW_NAME_MAX}
-        </p>
-      </label>
 
       <label className={styles.field}>
         <span className={styles.label}>כותרת הביקורת</span>

@@ -1,0 +1,104 @@
+.page {
+  padding: clamp(32px, 6vw, 72px) clamp(16px, 6vw, 96px);
+  display: grid;
+  gap: 24px;
+}
+
+.header {
+  display: grid;
+  gap: 8px;
+}
+
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.74rem;
+  color: rgba(26, 26, 26, 0.55);
+}
+
+.title {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  color: var(--color-text-primary);
+}
+
+.subtitle {
+  color: rgba(26, 26, 26, 0.7);
+}
+
+.form {
+  display: grid;
+  gap: 16px;
+  max-width: 720px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.input,
+.select,
+.textarea {
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: #ffffff;
+  padding: 12px 14px;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  font-family: inherit;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 170px;
+}
+
+.fieldError {
+  color: var(--color-curtain-red);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.charMeta {
+  font-size: 0.82rem;
+  color: rgba(26, 26, 26, 0.55);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.primaryBtn,
+.ghostBtn {
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.primaryBtn {
+  border: none;
+  background: var(--color-curtain-red);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.primaryBtn:disabled {
+  opacity: 0.82;
+  cursor: not-allowed;
+}
+
+.ghostBtn {
+  border: 1px solid rgba(26, 26, 26, 0.2);
+  background: #ffffff;
+  color: var(--color-text-primary);
+}

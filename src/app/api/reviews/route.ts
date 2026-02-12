@@ -1,22 +1,19 @@
 import { NextResponse, NextRequest } from "next/server";
+import { getServerSession } from "next-auth";
 import { addReview } from "@/lib/shows";
+import { authOptions } from "@/lib/auth";
 import * as z from "zod";
 import {
   REVIEW_COMMENT_MAX,
   REVIEW_COMMENT_MIN,
   REVIEW_NAME_MAX,
-  REVIEW_NAME_MIN,
   REVIEW_TITLE_MAX,
   REVIEW_TITLE_MIN,
 } from "@/constants/reviewValidation";
 
 const reviewSchema = z.object({
   showId: z.string().trim().min(1, "Missing showId"),
-  name: z
-    .string()
-    .trim()
-    .min(REVIEW_NAME_MIN, "Name is too short")
-    .max(REVIEW_NAME_MAX, "Name is too long"),
+  name: z.string().trim().max(REVIEW_NAME_MAX, "Name is too long").optional(),
   title: z
     .string()
     .trim()
@@ -40,6 +37,15 @@ function formatZodErrors(err: z.ZodError): string {
 
 export async function POST(request: NextRequest) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      return NextResponse.json(
+        { error: "יש להתחבר כדי לכתוב ביקורת" },
+        { status: 401 },
+      );
+    }
+
     const formData = await request.formData();
     const payload = Object.fromEntries(formData.entries());
 
@@ -52,14 +58,16 @@ export async function POST(request: NextRequest) {
     }
 
     const { showId, name, title, rating, comment } = result.data;
+    const authorName = session.user.name?.trim() || name?.trim() || "משתמש/ת";
 
     const today = new Date().toISOString().slice(0, 10);
     const added = await addReview(showId, {
-      author: name,
+      author: authorName,
       title,
       text: comment,
       rating,
       date: today,
+      userId: session.user.id,
     });
 
     if (!added) {

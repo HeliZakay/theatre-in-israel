@@ -1,8 +1,10 @@
 import styles from "./page.module.css";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import { cache } from "react";
+import { getServerSession } from "next-auth";
 import ROUTES from "@/constants/routes";
+import { authOptions } from "@/lib/auth";
 import { getShowById } from "@/lib/showsData";
 import ReviewForm from "@/components/ReviewForm/ReviewForm";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
@@ -46,6 +48,14 @@ export async function generateMetadata({
 
 export default async function NewReviewPage({ params }: NewReviewPageProps) {
   const { id: showId } = await params;
+  const session = await getServerSession(authOptions);
+
+  if (!session?.user?.id) {
+    redirect(
+      `${ROUTES.AUTH_SIGNIN}?callbackUrl=${encodeURIComponent(`${ROUTES.SHOWS}/${showId}/review`)}&reason=auth_required`,
+    );
+  }
+
   const show = await getShowForReviewPage(showId);
 
   if (!show) {

@@ -1,12 +1,14 @@
 export interface Review {
   id: number;
   showId?: number;
+  userId?: string | null;
   author: string;
   title?: string | null;
   text: string;
   rating: number;
   date: string | Date;
   createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface Show {

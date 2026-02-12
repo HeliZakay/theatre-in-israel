@@ -55,6 +55,29 @@
   justify-content: flex-end;
 }
 
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.authBtn {
+  border: 1px solid rgba(26, 26, 26, 0.2);
+  background: transparent;
+  color: var(--color-text-primary);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.authBtn:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
 @media (max-width: 900px) {
   .header {
     padding: 14px 18px;

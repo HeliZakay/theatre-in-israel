@@ -2,6 +2,7 @@ import "./globals.css";
 import { Header, Footer } from "@/components";
 import { Noto_Sans_Hebrew } from "next/font/google";
 import RadixDirectionProvider from "@/components/RadixDirectionProvider/RadixDirectionProvider";
+import AuthSessionProvider from "@/components/AuthSessionProvider/AuthSessionProvider";
 import ROUTES from "@/constants/routes";
 import {
   SITE_DESCRIPTION,
@@ -96,22 +97,24 @@ export default function RootLayout({
   return (
     <html lang="he" dir="rtl">
       <body className={textFont.variable}>
-        <RadixDirectionProvider dir="rtl">
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: toJsonLd(websiteJsonLd) }}
-          />
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: toJsonLd(organizationJsonLd) }}
-          />
-          <a href="#main-content" className="skipLink">
-            דלג לתוכן הראשי
-          </a>
-          <Header />
-          <div className="appContent">{children}</div>
-          <Footer />
-        </RadixDirectionProvider>
+        <AuthSessionProvider>
+          <RadixDirectionProvider dir="rtl">
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: toJsonLd(websiteJsonLd) }}
+            />
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: toJsonLd(organizationJsonLd) }}
+            />
+            <a href="#main-content" className="skipLink">
+              דלג לתוכן הראשי
+            </a>
+            <Header />
+            <div className="appContent">{children}</div>
+            <Footer />
+          </RadixDirectionProvider>
+        </AuthSessionProvider>
       </body>
     </html>
   );
