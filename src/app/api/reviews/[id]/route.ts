@@ -9,6 +9,7 @@ import {
   REVIEW_TITLE_MAX,
   REVIEW_TITLE_MIN,
 } from "@/constants/reviewValidation";
+import { containsProfanity } from "@/utils/profanityFilter";
 
 interface ReviewRouteContext {
   params: Promise<{ id: string }>;
@@ -42,7 +43,10 @@ function formatZodErrors(err: z.ZodError): string {
   return err.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("; ");
 }
 
-export async function PATCH(request: NextRequest, { params }: ReviewRouteContext) {
+export async function PATCH(
+  request: NextRequest,
+  { params }: ReviewRouteContext,
+) {
   try {
     const session = await getServerSession(authOptions);
 
@@ -64,6 +68,21 @@ export async function PATCH(request: NextRequest, { params }: ReviewRouteContext
     if (!result.success) {
       return NextResponse.json(
         { error: formatZodErrors(result.error) },
+        { status: 400 },
+      );
+    }
+
+    // Check for profanity in title and comment
+    if (containsProfanity(result.data.title)) {
+      return NextResponse.json(
+        { error: "הכותרת מכילה שפה לא הולמת. אנא נסח.י מחדש." },
+        { status: 400 },
+      );
+    }
+
+    if (containsProfanity(result.data.comment)) {
+      return NextResponse.json(
+        { error: "התגובה מכילה שפה לא הולמת. אנא נסח.י מחדש." },
         { status: 400 },
       );
     }

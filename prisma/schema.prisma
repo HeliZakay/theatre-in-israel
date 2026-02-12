@@ -103,4 +103,5 @@ model Review {
 
   @@index([showId])
   @@index([userId])
+  @@unique([userId, showId])
 }

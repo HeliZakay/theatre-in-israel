@@ -10,6 +10,11 @@ import {
   REVIEW_TITLE_MAX,
   REVIEW_TITLE_MIN,
 } from "@/constants/reviewValidation";
+import { containsProfanity } from "@/utils/profanityFilter";
+import {
+  checkReviewRateLimit,
+  hasExistingReview,
+} from "@/utils/reviewRateLimit";
 
 const reviewSchema = z.object({
   showId: z.string().trim().min(1, "Missing showId"),
@@ -46,6 +51,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Check rate limit
+    const rateLimit = await checkReviewRateLimit(session.user.id);
+    if (rateLimit.isLimited) {
+      return NextResponse.json(
+        {
+          error: `יצרת יותר מדי ביקורות לאחרונה. נסה שוב בעוד ${rateLimit.remainingTime} דקות.`,
+        },
+        { status: 429 },
+      );
+    }
+
     const formData = await request.formData();
     const payload = Object.fromEntries(formData.entries());
 
@@ -58,6 +74,36 @@ export async function POST(request: NextRequest) {
     }
 
     const { showId, name, title, rating, comment } = result.data;
+
+    // Check for profanity in title and comment
+    if (containsProfanity(title)) {
+      return NextResponse.json(
+        { error: "הכותרת מכילה שפה לא הולמת. אנא נסח.י מחדש." },
+        { status: 400 },
+      );
+    }
+
+    if (containsProfanity(comment)) {
+      return NextResponse.json(
+        { error: "התגובה מכילה שפה לא הולמת. אנא נסח.י מחדש." },
+        { status: 400 },
+      );
+    }
+
+    // Check if user already reviewed this show
+    const numericShowId = parseInt(showId, 10);
+    const alreadyReviewed = await hasExistingReview(
+      session.user.id,
+      numericShowId,
+    );
+
+    if (alreadyReviewed) {
+      return NextResponse.json(
+        { error: "כבר כתבת ביקורת להצגה זו. ניתן לערוך את הביקורת הקיימת." },
+        { status: 409 },
+      );
+    }
+
     const authorName = session.user.name?.trim() || name?.trim() || "משתמש/ת";
 
     const today = new Date().toISOString().slice(0, 10);
@@ -76,6 +122,19 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.redirect(new URL(`/shows/${showId}`, request.url), 303);
   } catch (err: unknown) {
+    // Handle unique constraint violation from database
+    if (
+      typeof err === "object" &&
+      err !== null &&
+      "code" in err &&
+      err.code === "P2002"
+    ) {
+      return NextResponse.json(
+        { error: "כבר כתבת ביקורת להצגה זו." },
+        { status: 409 },
+      );
+    }
+
     return NextResponse.json({ error: String(err) }, { status: 500 });
   }
 }

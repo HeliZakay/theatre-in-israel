@@ -77,7 +77,6 @@ export default function ShowsFilterBar({
           חיפוש
         </label>
         <SearchInput
-          key={optimisticFilters.query}
           defaultValue={optimisticFilters.query}
           filters={optimisticFilters}
           className={styles.searchInput}
