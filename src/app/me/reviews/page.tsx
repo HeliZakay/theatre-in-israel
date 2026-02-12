@@ -5,6 +5,7 @@ import ROUTES from "@/constants/routes";
 import { authOptions } from "@/lib/auth";
 import { getReviewsByUser } from "@/lib/shows";
 import { formatDate } from "@/utils/formatDate";
+import Button from "@/components/Button/Button";
 import DeleteReviewButton from "./DeleteReviewButton";
 import styles from "./page.module.css";
 
@@ -77,6 +78,9 @@ export default async function MyReviewsPage() {
       ) : (
         <section className={styles.emptyState}>
           <p>עדיין לא כתבת ביקורות.</p>
+          <Button href={ROUTES.REVIEWS_NEW} aria-label="כתיבת ביקורת">
+            לכתוב ביקורת
+          </Button>
           <Link className={styles.linkBtn} href={ROUTES.SHOWS}>
             מעבר לכל ההצגות
           </Link>
