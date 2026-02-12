@@ -38,21 +38,35 @@ a {
 
 .skipLink {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: #ffffff;
-  color: var(--color-text-primary);
-  padding: 8px 12px;
-  border-radius: 10px;
-  border: 2px solid var(--color-curtain-red);
-  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18);
-  transform: translateY(-200%);
-  transition: transform 0.2s ease;
-  z-index: 1100;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 .skipLink:focus-visible {
-  transform: translateY(0);
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 8px 12px;
+  overflow: visible;
+  clip: auto;
+  clip-path: none;
+  white-space: normal;
+  background: #ffffff;
+  color: var(--color-text-primary);
+  border-radius: 10px;
+  border: 2px solid var(--color-curtain-red);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18);
+  z-index: 1100;
 }
 
 a:focus-visible,

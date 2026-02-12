@@ -38,20 +38,19 @@ export default function ShowsFilterBar({
     setIsSearchPending(pending);
   }, []);
 
-  // Let the optimistic UI paint first, then start route transition.
-  const navigate = (href: string) => {
-    requestAnimationFrame(() => {
-      startTransition(() => {
-        router.push(href);
-      });
-    });
-  };
-
   // Build a URL that applies the given overrides on top of the current
   // filters, omitting page so any filter change resets to page 1.
   const buildHref = (overrides: Partial<ShowFilters>) => {
     const { page, ...current } = optimisticFilters;
     return `${pathname}${buildShowsQueryString({ ...current, ...overrides })}`;
+  };
+
+  const applyFilterUpdate = (overrides: Partial<ShowFilters>) => {
+    const href = buildHref(overrides);
+    startTransition(() => {
+      setOptimisticFilters(overrides);
+      router.push(href);
+    });
   };
 
   const toggleGenre = (genre: string) => {
@@ -95,8 +94,7 @@ export default function ShowsFilterBar({
           value={optimisticFilters.theatre || ALL_THEATRES_VALUE}
           onValueChange={(value) => {
             const theatre = value === ALL_THEATRES_VALUE ? "" : value;
-            setOptimisticFilters({ theatre });
-            navigate(buildHref({ theatre }));
+            applyFilterUpdate({ theatre });
           }}
           options={theatreOptions}
         />
@@ -110,8 +108,7 @@ export default function ShowsFilterBar({
           ariaLabel="מיון"
           value={optimisticFilters.sort}
           onValueChange={(value) => {
-            setOptimisticFilters({ sort: value });
-            navigate(buildHref({ sort: value }));
+            applyFilterUpdate({ sort: value });
           }}
           options={sortOptions}
         />
@@ -123,8 +120,7 @@ export default function ShowsFilterBar({
           className={`${styles.chip} ${optimisticFilters.genres.length ? "" : styles.chipActive}`}
           aria-current={optimisticFilters.genres.length ? undefined : "true"}
           onClick={() => {
-            setOptimisticFilters({ genres: [] });
-            navigate(buildHref({ genres: [] }));
+            applyFilterUpdate({ genres: [] });
           }}
         >
           הכל
@@ -139,8 +135,7 @@ export default function ShowsFilterBar({
               aria-current={isActive ? "true" : undefined}
               onClick={() => {
                 const next = toggleGenre(genre);
-                setOptimisticFilters({ genres: next });
-                navigate(buildHref({ genres: next }));
+                applyFilterUpdate({ genres: next });
               }}
             >
               {genre}

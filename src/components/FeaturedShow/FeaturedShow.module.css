@@ -11,6 +11,14 @@
   flex-direction: column;
   max-width: 720px;
   margin-inline: auto;
+  position: relative;
+}
+
+.cardLinkOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  border-radius: inherit;
 }
 
 .media {
@@ -132,7 +140,7 @@
   background: #f8f8f8;
   color: #1f2937;
   border-radius: 16px;
-  padding: 18px 20px;
+  padding: 18px 52px 18px 20px;
   line-height: 1.6;
   font-size: 1rem;
   position: relative;

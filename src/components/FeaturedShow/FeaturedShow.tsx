@@ -1,4 +1,5 @@
 import * as Separator from "@radix-ui/react-separator";
+import Link from "next/link";
 import styles from "./FeaturedShow.module.css";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
 
@@ -11,6 +12,7 @@ interface FeaturedShowProps {
   quoteAuthor?: string | null;
   avgRating?: number | null;
   reviewCount?: number;
+  href?: string;
 }
 
 export default function FeaturedShow({
@@ -22,12 +24,19 @@ export default function FeaturedShow({
   quoteAuthor,
   avgRating,
   reviewCount,
+  href,
 }: FeaturedShowProps) {
   const hasRating = typeof avgRating === "number" && !Number.isNaN(avgRating);
   const formattedRating = hasRating ? avgRating.toFixed(1) : null;
-
   return (
     <article className={styles.card} aria-label="כרטיס הצגה מומלצת">
+      {href && (
+        <Link
+          href={href}
+          className={styles.cardLinkOverlay}
+          aria-label={`לעמוד ההצגה ${title}`}
+        />
+      )}
       <div className={styles.media}>
         <div className={styles.mediaRatio}>
           <FallbackImage

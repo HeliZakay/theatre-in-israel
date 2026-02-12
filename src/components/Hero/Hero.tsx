@@ -2,6 +2,7 @@ import styles from "./Hero.module.css";
 import SearchBar from "../SearchBar/SearchBar";
 import FeaturedShow from "../FeaturedShow/FeaturedShow";
 import { getShowImagePath } from "@/utils/getShowImagePath";
+import ROUTES from "@/constants/routes";
 import type { EnrichedShow, Suggestions } from "@/types";
 
 interface HeroProps {
@@ -50,6 +51,7 @@ export default function Hero({
             quoteAuthor={featuredAuthor ?? "חלי, רחובות"}
             avgRating={featuredShow?.avgRating ?? null}
             reviewCount={featuredShow?.reviews?.length ?? 0}
+            href={featuredShow ? `${ROUTES.SHOWS}/${featuredShow.id}` : undefined}
           />
         </div>
       </div>
