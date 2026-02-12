@@ -407,6 +407,11 @@
     border: 0;
   }
 
+  .mobileMenuItemActive {
+    background: rgba(156, 27, 32, 0.12);
+    color: var(--color-curtain-red);
+  }
+
   .mobileAccountButton {
     font-family: inherit;
     line-height: inherit;

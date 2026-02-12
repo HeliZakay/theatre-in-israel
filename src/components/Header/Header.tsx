@@ -16,6 +16,10 @@ export default function Header() {
   const isLoading = status === "loading";
   const fullName = session?.user?.name?.trim() || "";
   const firstName = fullName.split(/\s+/).filter(Boolean)[0] || "";
+  const isWriteReviewPage =
+    pathname === ROUTES.REVIEWS_NEW || pathname.endsWith("/review");
+  const isMyAreaPage =
+    pathname === ROUTES.MY_REVIEWS || pathname.startsWith(`${ROUTES.MY_REVIEWS}/`);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
   const accountMenuRef = useRef<HTMLDivElement | null>(null);
@@ -188,7 +192,8 @@ export default function Header() {
             </Button>
             <Link
               href={ROUTES.REVIEWS_NEW}
-              className={`${styles.navText} ${styles.mobileMenuItem}`}
+              className={`${styles.navText} ${styles.mobileMenuItem} ${isWriteReviewPage ? styles.mobileMenuItemActive : ""}`}
+              aria-current={isWriteReviewPage ? "page" : undefined}
               onClick={closeMenus}
             >
               לכתוב ביקורת
@@ -281,7 +286,8 @@ export default function Header() {
                 <div className={styles.mobileAccountLinks}>
                   <Link
                     href={ROUTES.MY_REVIEWS}
-                    className={`${styles.navText} ${styles.mobileMenuItem}`}
+                    className={`${styles.navText} ${styles.mobileMenuItem} ${isMyAreaPage ? styles.mobileMenuItemActive : ""}`}
+                    aria-current={isMyAreaPage ? "page" : undefined}
                     onClick={closeMenus}
                   >
                     האזור האישי
