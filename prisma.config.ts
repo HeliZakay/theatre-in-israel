@@ -4,7 +4,28 @@ import "dotenv/config";
 import { defineConfig } from "prisma/config";
 
 const databaseUrl = process.env["DATABASE_URL"];
-const directDatabaseUrl = process.env["DIRECT_DATABASE_URL"];
+const directDatabaseUrl =
+  process.env["DIRECT_DATABASE_URL"] ?? process.env["POSTGRES_URL_NON_POOLING"];
+
+function deriveDirectUrlFromPooler(url?: string) {
+  if (!url) {
+    return undefined;
+  }
+
+  try {
+    const parsedUrl = new URL(url);
+    if (!parsedUrl.hostname.includes("-pooler.")) {
+      return undefined;
+    }
+
+    parsedUrl.hostname = parsedUrl.hostname.replace("-pooler.", ".");
+    return parsedUrl.toString();
+  } catch {
+    return undefined;
+  }
+}
+
+const derivedDirectDatabaseUrl = deriveDirectUrlFromPooler(databaseUrl);
 
 export default defineConfig({
   schema: "prisma/schema.prisma",
@@ -14,7 +35,7 @@ export default defineConfig({
   },
   datasource: {
     // Prisma Migrate needs a direct Postgres connection (not a pooled `-pooler` URL)
-    // for advisory locks. Fall back to DATABASE_URL for local/dev convenience.
-    url: directDatabaseUrl ?? databaseUrl,
+    // for advisory locks.
+    url: directDatabaseUrl ?? derivedDirectDatabaseUrl ?? databaseUrl,
   },
 });
