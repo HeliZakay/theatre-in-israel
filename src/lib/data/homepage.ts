@@ -43,7 +43,7 @@ async function getTopRated(): Promise<EnrichedShow[]> {
     GROUP BY s.id
     HAVING COUNT(r.id) > 0
     ORDER BY AVG(r.rating) DESC
-    LIMIT 5
+    LIMIT 10
   `;
 
   if (topRatedIds.length === 0) return [];
@@ -123,10 +123,10 @@ export async function getHomePageData(): Promise<HomePageData> {
   ] = await Promise.allSettled([
     getSuggestions(),
     getTopRated(),
-    getShowsByGenres(["דרמה", "דרמה קומית", "רגשי"], 5),
-    getShowsByGenres(["קומדיה", "קומדיות"], 5),
-    getShowsByGenres(["מוזיקלי"], 5),
-    getShowsByGenres(["ישראלי"], 5),
+    getShowsByGenres(["דרמה", "דרמה קומית", "רגשי"], 10),
+    getShowsByGenres(["קומדיה", "קומדיות"], 10),
+    getShowsByGenres(["מוזיקלי"], 10),
+    getShowsByGenres(["ישראלי"], 10),
   ]);
 
   const emptySuggestions: Suggestions = { shows: [], theatres: [], genres: [] };

@@ -15,7 +15,7 @@
 
 /* ── Individual slide ─────────────────────────────────── */
 .slide {
-  flex: 0 0 calc(100% / 5 - 16px * 4 / 5);
+  flex: 0 0 calc(100% / 4 - 16px * 3 / 4);
   min-width: 0;
 }
 

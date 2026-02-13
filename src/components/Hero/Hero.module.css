@@ -65,6 +65,8 @@
     gap: 24px;
     align-items: center;
     text-align: center;
+    position: relative;
+    z-index: 2;
   }
 
   .left {

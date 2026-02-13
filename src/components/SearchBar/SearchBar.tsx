@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useState, useRef, useMemo } from "react";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import Button from "../Button/Button";
 import styles from "./SearchBar.module.css";
 import { useCombobox } from "@/hooks/useCombobox";
@@ -71,9 +72,9 @@ export default function SearchBar({
       action={ROUTES.SHOWS}
       method="get"
     >
-      <label className={styles.srOnly} htmlFor="q">
-        חיפוש
-      </label>
+      <VisuallyHidden.Root asChild>
+        <label htmlFor="q">חיפוש</label>
+      </VisuallyHidden.Root>
 
       <div className={styles.searchShell} ref={rootRef} onBlur={handleBlur}>
         <span className={styles.searchIcon} aria-hidden>

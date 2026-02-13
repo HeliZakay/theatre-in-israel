@@ -78,6 +78,22 @@
   color: #ffffff;
 }
 
+.chipGroup {
+  display: contents;
+}
+
+.chip[data-state="on"] {
+  background: var(--color-curtain-red);
+  color: #ffffff;
+}
+
+.chip[data-state="on"]:hover,
+.chip[data-state="on"]:focus-visible,
+.chip[data-state="on"]:active {
+  background: var(--color-curtain-red);
+  color: #ffffff;
+}
+
 .filterLabel {
   font-weight: 600;
 }

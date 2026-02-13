@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useOptimistic, useState, useTransition } from "react";
+import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import styles from "./ShowsFilterBar.module.css";
 import AppSelect from "@/components/AppSelect/AppSelect";
 import SearchInput from "@/components/SearchInput/SearchInput";
@@ -51,13 +52,6 @@ export default function ShowsFilterBar({
       setOptimisticFilters(overrides);
       router.push(href);
     });
-  };
-
-  const toggleGenre = (genre: string) => {
-    const current = new Set(optimisticFilters.genres);
-    if (current.has(genre)) current.delete(genre);
-    else current.add(genre);
-    return Array.from(current);
   };
 
   const theatreOptions = [
@@ -124,23 +118,22 @@ export default function ShowsFilterBar({
         >
           הכל
         </button>
-        {allGenres.map((genre) => {
-          const isActive = optimisticFilters.genres.includes(genre);
-          return (
-            <button
-              type="button"
+        <ToggleGroup.Root
+          type="multiple"
+          value={optimisticFilters.genres}
+          onValueChange={(genres) => applyFilterUpdate({ genres })}
+          className={styles.chipGroup}
+        >
+          {allGenres.map((genre) => (
+            <ToggleGroup.Item
               key={genre}
-              className={`${styles.chip} ${isActive ? styles.chipActive : ""}`}
-              aria-current={isActive ? "true" : undefined}
-              onClick={() => {
-                const next = toggleGenre(genre);
-                applyFilterUpdate({ genres: next });
-              }}
+              value={genre}
+              className={styles.chip}
             >
               {genre}
-            </button>
-          );
-        })}
+            </ToggleGroup.Item>
+          ))}
+        </ToggleGroup.Root>
       </div>
       <div className={styles.status} role="status" aria-live="polite">
         {isUpdating ? (

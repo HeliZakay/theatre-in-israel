@@ -197,21 +197,18 @@
   height: 18px;
 }
 
-.accountMenuTrigger[aria-expanded="true"] {
+.accountMenuTrigger[data-state="open"] {
   background: rgba(26, 26, 26, 0.06);
 }
 
 .accountDropdown {
-  position: absolute;
-  top: calc(100% + 8px);
-  inset-inline-end: 0;
   min-width: 170px;
   background: #fff;
   border: 1px solid rgba(26, 26, 26, 0.12);
   border-radius: 10px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   overflow: hidden;
-  z-index: 40;
+  z-index: 1100;
 }
 
 .accountMenuItem,
@@ -230,8 +227,11 @@
 }
 
 .accountMenuItem:hover,
-.accountMenuItemButton:hover {
+.accountMenuItemButton:hover,
+.accountMenuItem[data-highlighted],
+.accountMenuItemButton[data-highlighted] {
   background: rgba(26, 26, 26, 0.06);
+  outline: none;
 }
 
 .authBtn:disabled {
@@ -286,7 +286,6 @@
   }
 
   .mobileBackdrop {
-    display: block;
     position: fixed;
     top: var(--header-offset);
     right: 0;
@@ -300,12 +299,15 @@
 
   .menu {
     display: none;
+  }
+
+  .mobileDialogContent {
     position: fixed;
     top: var(--header-offset);
     right: 0;
     left: 0;
     z-index: 1002;
-    width: 100%;
+    display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 14px;
@@ -315,10 +317,6 @@
     box-shadow: 0 24px 44px rgba(15, 23, 42, 0.16);
     max-height: calc(100dvh - var(--header-offset));
     overflow-y: auto;
-  }
-
-  .menuOpen {
-    display: flex;
   }
 
   .navSection {
