@@ -1,8 +1,6 @@
 import Link from "next/link";
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
 import ROUTES from "@/constants/routes";
-import { authOptions } from "@/lib/auth";
+import { requireAuth } from "@/lib/auth";
 import { getReviewsByUser } from "@/lib/shows";
 import { formatDate } from "@/utils/formatDate";
 import Button from "@/components/Button/Button";
@@ -20,16 +18,11 @@ export const metadata: Metadata = {
   },
 };
 
+// Must remain dynamic: requires authentication
 export const dynamic = "force-dynamic";
 
 export default async function MyReviewsPage() {
-  const session = await getServerSession(authOptions);
-
-  if (!session?.user?.id) {
-    redirect(
-      `${ROUTES.AUTH_SIGNIN}?callbackUrl=${encodeURIComponent(ROUTES.MY_REVIEWS)}&reason=auth_required`,
-    );
-  }
+  const session = await requireAuth(ROUTES.MY_REVIEWS);
 
   const reviews = await getReviewsByUser(session.user.id);
 

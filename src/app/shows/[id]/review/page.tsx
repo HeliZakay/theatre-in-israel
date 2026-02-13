@@ -1,11 +1,10 @@
 import styles from "./page.module.css";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import { cache } from "react";
-import { getServerSession } from "next-auth";
 import ROUTES from "@/constants/routes";
-import { authOptions } from "@/lib/auth";
-import { getShowById } from "@/lib/showsData";
+import { requireAuth } from "@/lib/auth";
+import { getShowById } from "@/lib/data/showDetail";
 import ReviewForm from "@/components/ReviewForm/ReviewForm";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import { getShowImagePath } from "@/utils/getShowImagePath";
@@ -19,7 +18,9 @@ interface NewReviewPageProps {
   params: Promise<{ id: string }>;
 }
 
-const getShowForReviewPage = cache(async (showId: string) => getShowById(showId));
+const getShowForReviewPage = cache(async (showId: string) =>
+  getShowById(showId),
+);
 
 export async function generateMetadata({
   params,
@@ -48,13 +49,7 @@ export async function generateMetadata({
 
 export default async function NewReviewPage({ params }: NewReviewPageProps) {
   const { id: showId } = await params;
-  const session = await getServerSession(authOptions);
-
-  if (!session?.user?.id) {
-    redirect(
-      `${ROUTES.AUTH_SIGNIN}?callbackUrl=${encodeURIComponent(`${ROUTES.SHOWS}/${showId}/review`)}&reason=auth_required`,
-    );
-  }
+  await requireAuth(`${ROUTES.SHOWS}/${showId}/review`);
 
   const show = await getShowForReviewPage(showId);
 
@@ -71,7 +66,10 @@ export default async function NewReviewPage({ params }: NewReviewPageProps) {
       </header>
 
       <section className={styles.contentLayout}>
-        <aside className={styles.posterPanel} aria-label={`פוסטר של ${show.title}`}>
+        <aside
+          className={styles.posterPanel}
+          aria-label={`פוסטר של ${show.title}`}
+        >
           <div className={styles.poster}>
             <FallbackImage
               src={getShowImagePath(show.title)}
@@ -86,7 +84,10 @@ export default async function NewReviewPage({ params }: NewReviewPageProps) {
         <div className={styles.formWrap}>
           <ReviewForm initialShowId={show.id} />
           <div className={styles.cancelRow}>
-            <Link className={styles.ghostBtn} href={`${ROUTES.SHOWS}/${show.id}`}>
+            <Link
+              className={styles.ghostBtn}
+              href={`${ROUTES.SHOWS}/${show.id}`}
+            >
               חזרה לדף ההצגה
             </Link>
           </div>

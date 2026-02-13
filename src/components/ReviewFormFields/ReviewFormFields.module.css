@@ -1,0 +1,44 @@
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.input,
+.select,
+.textarea {
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: #ffffff;
+  padding: 12px 14px;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  font-family: inherit;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  font-family: inherit;
+  color: rgba(26, 26, 26, 0.5);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.fieldError {
+  color: var(--color-curtain-red);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.charMeta {
+  font-size: 0.82rem;
+  color: rgba(26, 26, 26, 0.55);
+}

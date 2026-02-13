@@ -60,19 +60,47 @@
   overflow: hidden;
 }
 
+/* Server-component expand/collapse via <details> */
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.details[open] > summary .textTruncated {
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
 .readMoreBtn {
   margin-top: auto;
   align-self: flex-start;
   border: none;
   background: transparent;
-  color: var(--color-curtain-red);
-  font-weight: 700;
   cursor: pointer;
   padding: 0;
   font: inherit;
+  list-style: none;
 }
 
-.readMoreBtn:hover {
+.readMoreBtn::-webkit-details-marker {
+  display: none;
+}
+
+.readMoreLabel {
+  color: var(--color-curtain-red);
+  font-weight: 700;
+}
+
+.readMoreLabel::after {
+  content: attr(data-closed);
+}
+
+.details[open] .readMoreLabel::after {
+  content: attr(data-open);
+}
+
+.readMoreBtn:hover .readMoreLabel {
   text-decoration: underline;
 }
 

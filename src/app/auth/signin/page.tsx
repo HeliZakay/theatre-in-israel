@@ -5,6 +5,11 @@ import styles from "./page.module.css";
 
 import type { Metadata } from "next";
 
+/** Only allow relative URLs that don't start with // (protocol-relative). */
+function isValidCallbackUrl(url: string): boolean {
+  return url.startsWith("/") && !url.startsWith("//");
+}
+
 export const metadata: Metadata = {
   title: "התחברות",
   description: "התחברות לחשבון כדי לכתוב ולנהל ביקורות.",
@@ -20,8 +25,12 @@ interface SignInPageProps {
 
 export default async function SignInPage({ searchParams }: SignInPageProps) {
   const resolvedSearchParams = await searchParams;
-  const callbackUrl = resolvedSearchParams.callbackUrl || ROUTES.HOME;
-  const showAuthRequiredMessage = resolvedSearchParams.reason === "auth_required";
+  const rawCallbackUrl = resolvedSearchParams.callbackUrl || ROUTES.HOME;
+  const callbackUrl = isValidCallbackUrl(rawCallbackUrl)
+    ? rawCallbackUrl
+    : ROUTES.HOME;
+  const showAuthRequiredMessage =
+    resolvedSearchParams.reason === "auth_required";
 
   return (
     <main className={styles.page} id="main-content">

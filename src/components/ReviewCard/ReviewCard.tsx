@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import styles from "./ReviewCard.module.css";
 import { formatDate } from "@/utils/formatDate";
 import type { Review } from "@/types";
@@ -10,7 +7,6 @@ interface ReviewCardProps {
 }
 
 export default function ReviewCard({ review }: ReviewCardProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
   const shouldTruncate = review.text.trim().length > 320;
 
   return (
@@ -29,22 +25,22 @@ export default function ReviewCard({ review }: ReviewCardProps) {
         </div>
         <span className={styles.rating}>★{review.rating}</span>
       </div>
-      <p
-        className={`${styles.text} ${
-          shouldTruncate && !isExpanded ? styles.textTruncated : ""
-        }`}
-      >
-        {review.text}
-      </p>
       {shouldTruncate ? (
-        <button
-          type="button"
-          className={styles.readMoreBtn}
-          onClick={() => setIsExpanded((prev) => !prev)}
-        >
-          {isExpanded ? "קרא פחות" : "קרא עוד"}
-        </button>
-      ) : null}
+        <details className={styles.details}>
+          <summary className={styles.readMoreBtn}>
+            <p className={`${styles.text} ${styles.textTruncated}`}>
+              {review.text}
+            </p>
+            <span
+              className={styles.readMoreLabel}
+              data-open="קרא פחות"
+              data-closed="קרא עוד"
+            />
+          </summary>
+        </details>
+      ) : (
+        <p className={styles.text}>{review.text}</p>
+      )}
     </article>
   );
 }

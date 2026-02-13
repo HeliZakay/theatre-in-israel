@@ -22,7 +22,7 @@ export default function Pagination({ filters }: PaginationProps) {
   for (let p = start; p <= end; p++) pages.push(p);
 
   return (
-    <nav className={styles.pagination} aria-label="Pagination">
+    <nav className={styles.pagination} aria-label="ניווט עמודים">
       {page > 1 ? (
         <Link href={buildPageHref(page - 1)} className={styles.prev}>
           הקודם
@@ -37,6 +37,12 @@ export default function Pagination({ filters }: PaginationProps) {
         </Link>
       ) : null}
 
+      {start > 2 ? (
+        <span className={styles.ellipsis} aria-hidden="true">
+          …
+        </span>
+      ) : null}
+
       {pages.map((p) => (
         <Link
           key={p}
@@ -46,6 +52,12 @@ export default function Pagination({ filters }: PaginationProps) {
           {p}
         </Link>
       ))}
+
+      {end < totalPages - 1 ? (
+        <span className={styles.ellipsis} aria-hidden="true">
+          …
+        </span>
+      ) : null}
 
       {end < totalPages ? (
         <Link href={buildPageHref(totalPages)} className={styles.page}>

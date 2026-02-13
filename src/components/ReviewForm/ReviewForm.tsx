@@ -4,55 +4,21 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Controller, useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import styles from "@/app/reviews/new/page.module.css";
+import type * as z from "zod";
+import styles from "./ReviewForm.module.css";
 import ROUTES from "@/constants/routes";
-import AppSelect from "@/components/AppSelect/AppSelect";
 import ShowCombobox from "@/components/ShowCombobox/ShowCombobox";
-import {
-  REVIEW_COMMENT_MAX,
-  REVIEW_COMMENT_MIN,
-  REVIEW_TITLE_MAX,
-  REVIEW_TITLE_MIN,
-} from "@/constants/reviewValidation";
+import ReviewFormFields from "@/components/ReviewFormFields/ReviewFormFields";
+import { clientReviewSchema } from "@/constants/reviewSchemas";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import type { Show } from "@/types";
 
-const reviewSchema = z.object({
-  showId: z.string().trim().min(1, "יש לבחור הצגה"),
-  title: z
-    .string()
-    .trim()
-    .min(REVIEW_TITLE_MIN, "הכניס.י כותרת")
-    .max(REVIEW_TITLE_MAX, `הכותרת יכולה להכיל עד ${REVIEW_TITLE_MAX} תווים`),
-  rating: z.preprocess(
-    (v) => (typeof v === "string" ? parseInt(v, 10) : v),
-    z.number().int().min(1).max(5),
-  ),
-  comment: z
-    .string()
-    .trim()
-    .min(
-      REVIEW_COMMENT_MIN,
-      `תגובה צריכה להכיל לפחות ${REVIEW_COMMENT_MIN} תווים`,
-    )
-    .max(
-      REVIEW_COMMENT_MAX,
-      `התגובה יכולה להכיל עד ${REVIEW_COMMENT_MAX} תווים`,
-    ),
-});
-
-const ratingOptions = [
-  { value: "5", label: "5 - מצוין" },
-  { value: "4", label: "4 - טוב מאוד" },
-  { value: "3", label: "3 - סביר" },
-  { value: "2", label: "2 - פחות" },
-  { value: "1", label: "1 - לא מומלץ" },
-];
+/** Minimal show data needed for the combobox + poster. */
+export type ShowOption = Pick<Show, "id" | "title">;
 
 interface ReviewFormProps {
-  shows?: Show[];
+  shows?: ShowOption[];
   initialShowId?: number | string;
 }
 
@@ -71,12 +37,12 @@ export default function ReviewForm({
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm({
-    resolver: zodResolver(reviewSchema),
+    resolver: zodResolver(clientReviewSchema),
     defaultValues: {
       showId: String(initialShowId ?? ""),
       title: "",
       rating: "",
-      comment: "",
+      text: "",
     },
   });
 
@@ -88,16 +54,16 @@ export default function ReviewForm({
   const selectedShow =
     shows.find((show) => String(show.id) === String(selectedShowId)) ?? null;
   const titleValue = useWatch({ control, name: "title" }) ?? "";
-  const commentValue = useWatch({ control, name: "comment" }) ?? "";
+  const textValue = useWatch({ control, name: "text" }) ?? "";
 
-  const onSubmit = async (values: z.infer<typeof reviewSchema>) => {
+  const onSubmit = async (values: z.infer<typeof clientReviewSchema>) => {
     setServerError("");
     try {
       const formData = new FormData();
-      formData.set("showId", values.showId);
+      formData.set("showId", String(values.showId));
       formData.set("title", values.title);
       formData.set("rating", String(values.rating));
-      formData.set("comment", values.comment);
+      formData.set("text", values.text);
 
       const res = await fetch(ROUTES.API_REVIEWS, {
         method: "POST",
@@ -165,60 +131,14 @@ export default function ReviewForm({
         <input type="hidden" {...register("showId")} />
       )}
 
-      <label className={styles.field}>
-        <span className={styles.label}>כותרת הביקורת</span>
-        <input
-          className={styles.input}
-          maxLength={REVIEW_TITLE_MAX}
-          {...register("title")}
-        />
-        {errors.title ? (
-          <p className={styles.fieldError}>{errors.title.message}</p>
-        ) : null}
-        <p className={styles.charMeta}>
-          {titleValue.length}/{REVIEW_TITLE_MAX}
-        </p>
-      </label>
-
-      <label className={styles.field}>
-        <span className={styles.label}>דירוג</span>
-        <Controller
-          name="rating"
-          control={control}
-          render={({ field }) => (
-            <AppSelect
-              id="rating"
-              name={field.name}
-              className={styles.select}
-              ariaLabel="דירוג"
-              value={String(field.value ?? "")}
-              onValueChange={field.onChange}
-              onBlur={field.onBlur}
-              options={ratingOptions}
-              placeholder="בחרו דירוג"
-            />
-          )}
-        />
-        {errors.rating ? (
-          <p className={styles.fieldError}>{errors.rating.message}</p>
-        ) : null}
-      </label>
-
-      <label className={styles.field}>
-        <span className={styles.label}>תגובה</span>
-        <textarea
-          className={styles.textarea}
-          rows={6}
-          maxLength={REVIEW_COMMENT_MAX}
-          {...register("comment")}
-        />
-        {errors.comment ? (
-          <p className={styles.fieldError}>{errors.comment.message}</p>
-        ) : null}
-        <p className={styles.charMeta}>
-          {commentValue.length}/{REVIEW_COMMENT_MAX}
-        </p>
-      </label>
+      <ReviewFormFields
+        register={register}
+        control={control}
+        errors={errors}
+        titleValue={titleValue}
+        textValue={textValue}
+        disabled={isSubmitting || success}
+      />
 
       {serverError ? <p className={styles.fieldError}>{serverError}</p> : null}
       <div aria-live="polite" aria-atomic="true">

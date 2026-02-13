@@ -1,46 +1,24 @@
-import { NextResponse, NextRequest } from "next/server";
+import { NextRequest } from "next/server";
 import { getServerSession } from "next-auth";
-import * as z from "zod";
 import { authOptions } from "@/lib/auth";
 import { deleteReviewByOwner, updateReviewByOwner } from "@/lib/shows";
-import {
-  REVIEW_COMMENT_MAX,
-  REVIEW_COMMENT_MIN,
-  REVIEW_TITLE_MAX,
-  REVIEW_TITLE_MIN,
-} from "@/constants/reviewValidation";
+import { updateReviewSchema, formatZodErrors } from "@/constants/reviewSchemas";
 import { containsProfanity } from "@/utils/profanityFilter";
+import { checkEditDeleteRateLimit } from "@/utils/reviewRateLimit";
+import {
+  apiError,
+  apiSuccess,
+  INTERNAL_ERROR_MESSAGE,
+} from "@/utils/apiResponse";
 
 interface ReviewRouteContext {
   params: Promise<{ id: string }>;
 }
 
-const updateReviewSchema = z.object({
-  title: z
-    .string()
-    .trim()
-    .min(REVIEW_TITLE_MIN, "Title is too short")
-    .max(REVIEW_TITLE_MAX, "Title is too long"),
-  rating: z.preprocess(
-    (v) => (typeof v === "string" ? parseInt(v, 10) : v),
-    z.number().int().min(1).max(5),
-  ),
-  comment: z
-    .string()
-    .trim()
-    .min(REVIEW_COMMENT_MIN, "Comment is too short")
-    .max(REVIEW_COMMENT_MAX, "Comment is too long"),
-});
-
 function toReviewId(idParam: string): number | null {
   const reviewId = Number.parseInt(idParam, 10);
   if (!Number.isInteger(reviewId) || reviewId <= 0) return null;
   return reviewId;
-}
-
-function formatZodErrors(err: z.ZodError): string {
-  if (!err?.issues) return "נתונים לא תקינים";
-  return err.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("; ");
 }
 
 export async function PATCH(
@@ -51,55 +29,52 @@ export async function PATCH(
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.id) {
-      return NextResponse.json(
-        { error: "יש להתחבר כדי לערוך ביקורת" },
-        { status: 401 },
+      return apiError("יש להתחבר כדי לערוך ביקורת", 401);
+    }
+
+    // Check rate limit for edit/delete
+    const rateLimit = checkEditDeleteRateLimit(session.user.id);
+    if (rateLimit.isLimited) {
+      return apiError(
+        `ביצעת יותר מדי עריכות לאחרונה. נסה שוב בעוד ${rateLimit.remainingTime} דקות.`,
+        429,
       );
     }
 
     const { id } = await params;
     const reviewId = toReviewId(id);
     if (!reviewId) {
-      return NextResponse.json({ error: "Invalid review id" }, { status: 400 });
+      return apiError("מזהה ביקורת לא תקין", 400);
     }
 
     const payload = await request.json();
     const result = updateReviewSchema.safeParse(payload);
     if (!result.success) {
-      return NextResponse.json(
-        { error: formatZodErrors(result.error) },
-        { status: 400 },
-      );
+      return apiError(formatZodErrors(result.error), 400);
     }
 
-    // Check for profanity in title and comment
+    // Check for profanity in title and text
     if (containsProfanity(result.data.title)) {
-      return NextResponse.json(
-        { error: "הכותרת מכילה שפה לא הולמת. אנא נסח.י מחדש." },
-        { status: 400 },
-      );
+      return apiError("הכותרת מכילה שפה לא הולמת. אנא נסח.י מחדש.", 400);
     }
 
-    if (containsProfanity(result.data.comment)) {
-      return NextResponse.json(
-        { error: "התגובה מכילה שפה לא הולמת. אנא נסח.י מחדש." },
-        { status: 400 },
-      );
+    if (containsProfanity(result.data.text)) {
+      return apiError("התגובה מכילה שפה לא הולמת. אנא נסח.י מחדש.", 400);
     }
 
     const updated = await updateReviewByOwner(reviewId, session.user.id, {
       title: result.data.title,
-      text: result.data.comment,
+      text: result.data.text,
       rating: result.data.rating,
     });
 
     if (!updated) {
-      return NextResponse.json({ error: "Review not found" }, { status: 404 });
+      return apiError("הביקורת לא נמצאה", 404);
     }
 
-    return NextResponse.json({ review: updated }, { status: 200 });
+    return apiSuccess({ review: updated });
   } catch (err: unknown) {
-    return NextResponse.json({ error: String(err) }, { status: 500 });
+    return apiError(INTERNAL_ERROR_MESSAGE, 500, err);
   }
 }
 
@@ -111,25 +86,31 @@ export async function DELETE(
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.id) {
-      return NextResponse.json(
-        { error: "יש להתחבר כדי למחוק ביקורת" },
-        { status: 401 },
+      return apiError("יש להתחבר כדי למחוק ביקורת", 401);
+    }
+
+    // Check rate limit for edit/delete
+    const rateLimit = checkEditDeleteRateLimit(session.user.id);
+    if (rateLimit.isLimited) {
+      return apiError(
+        `ביצעת יותר מדי עריכות לאחרונה. נסה שוב בעוד ${rateLimit.remainingTime} דקות.`,
+        429,
       );
     }
 
     const { id } = await params;
     const reviewId = toReviewId(id);
     if (!reviewId) {
-      return NextResponse.json({ error: "Invalid review id" }, { status: 400 });
+      return apiError("מזהה ביקורת לא תקין", 400);
     }
 
     const deleted = await deleteReviewByOwner(reviewId, session.user.id);
     if (!deleted) {
-      return NextResponse.json({ error: "Review not found" }, { status: 404 });
+      return apiError("הביקורת לא נמצאה", 404);
     }
 
-    return NextResponse.json({ ok: true }, { status: 200 });
+    return apiSuccess({ ok: true });
   } catch (err: unknown) {
-    return NextResponse.json({ error: String(err) }, { status: 500 });
+    return apiError(INTERNAL_ERROR_MESSAGE, 500, err);
   }
 }

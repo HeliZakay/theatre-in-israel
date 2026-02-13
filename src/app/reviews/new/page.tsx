@@ -1,10 +1,8 @@
 import styles from "./page.module.css";
 import Link from "next/link";
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
 import ROUTES from "@/constants/routes";
-import { getShows } from "@/lib/shows";
-import { authOptions } from "@/lib/auth";
+import { getShowOptions } from "@/lib/shows";
+import { requireAuth } from "@/lib/auth";
 import ReviewForm from "@/components/ReviewForm/ReviewForm";
 import { SITE_NAME } from "@/lib/seo";
 
@@ -24,18 +22,13 @@ export const metadata: Metadata = {
   },
 };
 
+// Must remain dynamic: requires authentication
 export const dynamic = "force-dynamic";
 
 export default async function NewReviewPage() {
-  const session = await getServerSession(authOptions);
+  await requireAuth(ROUTES.REVIEWS_NEW);
 
-  if (!session?.user?.id) {
-    redirect(
-      `${ROUTES.AUTH_SIGNIN}?callbackUrl=${encodeURIComponent(ROUTES.REVIEWS_NEW)}&reason=auth_required`,
-    );
-  }
-
-  const shows = await getShows();
+  const shows = await getShowOptions();
   return (
     <main className={styles.page} id="main-content">
       <header className={styles.header}>
@@ -46,7 +39,7 @@ export default async function NewReviewPage() {
 
       <ReviewForm shows={shows} />
 
-      <div style={{ marginTop: 12 }}>
+      <div className={styles.cancelLink}>
         <Link className={styles.ghostBtn} href={ROUTES.SHOWS}>
           ביטול
         </Link>

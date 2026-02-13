@@ -1,14 +1,7 @@
 import Link from "next/link";
 import styles from "./Footer.module.css";
 import ROUTES from "@/constants/routes";
-import { Frank_Ruhl_Libre } from "next/font/google";
-
-const titleFont = Frank_Ruhl_Libre({
-  subsets: ["hebrew", "latin"],
-  weight: ["700"],
-  variable: "--title-font",
-  display: "swap",
-});
+import { titleFont } from "@/lib/fonts";
 
 export default function Footer() {
   return (

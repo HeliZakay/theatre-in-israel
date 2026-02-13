@@ -1,10 +1,9 @@
 import styles from "./Card.module.css";
 
-interface CardProps {
+interface CardProps extends React.HTMLAttributes<HTMLElement> {
   as?: React.ElementType;
   className?: string;
   children: React.ReactNode;
-  [key: string]: unknown;
 }
 
 export default function Card({

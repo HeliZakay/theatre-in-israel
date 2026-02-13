@@ -3,7 +3,7 @@ import CtaStrip from "@/components/CtaStrip/CtaStrip";
 import ShowsSection from "@/components/ShowsSection/ShowsSection";
 import styles from "./page.module.css";
 import ROUTES from "@/constants/routes";
-import { getHomePageData } from "@/lib/showsData";
+import { getHomePageData } from "@/lib/data/homepage";
 import { SITE_NAME } from "@/lib/seo";
 
 import type { Metadata } from "next";
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const dynamic = "force-dynamic";
+export const revalidate = 120; // Re-generate at most every 2 minutes
 
 export default async function Home() {
   const {

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 interface UseComboboxOptions {
   items?: string[];
@@ -33,9 +33,9 @@ export function useCombobox({
   // `filteredItems` is memoized to avoid recalculating the list on every
   // render unless the inputs change (items, value or maxItems).
 
-  const queueActiveIndexUpdate = (nextIndex: number) => {
+  const queueActiveIndexUpdate = useCallback((nextIndex: number) => {
     Promise.resolve().then(() => setActiveIndex(nextIndex));
-  };
+  }, []);
 
   useEffect(() => {
     if (!isOpen) {
@@ -48,7 +48,7 @@ export function useCombobox({
       const nextIndex = filteredItems.length ? 0 : -1;
       if (activeIndex !== nextIndex) queueActiveIndexUpdate(nextIndex);
     }
-  }, [isOpen, filteredItems.length, activeIndex]);
+  }, [isOpen, filteredItems.length, activeIndex, queueActiveIndexUpdate]);
 
   const moveActiveIndex = (direction: "up" | "down") => {
     setIsOpen(true);

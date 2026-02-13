@@ -1,0 +1,33 @@
+.page {
+  padding: clamp(48px, 8vw, 96px) clamp(20px, 6vw, 96px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.02em;
+}
+
+.message {
+  color: rgba(26, 26, 26, 0.7);
+  font-size: 1.1rem;
+}
+
+.homeLink {
+  margin-top: 8px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  background: var(--color-curtain-red);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.homeLink:hover {
+  opacity: 0.85;
+}

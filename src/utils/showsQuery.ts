@@ -52,7 +52,7 @@ export function parseShowsSearchParams(
 
   return {
     theatre: (Array.isArray(theatre) ? theatre[0] : theatre) ?? "",
-    query: (Array.isArray(query) ? query[0] : query) ?? "",
+    query: ((Array.isArray(query) ? query[0] : query) ?? "").slice(0, 200),
     genres,
     sort: (Array.isArray(sort) ? sort[0] : sort) ?? DEFAULT_SORT,
     page,

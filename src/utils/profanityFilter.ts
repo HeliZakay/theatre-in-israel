@@ -31,22 +31,3 @@ filter.add(hebrewProfanity);
 export function containsProfanity(text: string): boolean {
   return filter.check(text);
 }
-
-/**
- * Clean profanity from text by replacing with asterisks
- * @param text - The text to clean
- * @returns Cleaned text with profanity replaced
- */
-export function cleanProfanity(text: string): string {
-  return filter.clean(text);
-}
-
-/**
- * Get a list of profane words found in the text
- * @param text - The text to analyze
- * @returns Array of profane words found
- */
-export function listProfanity(text: string): string[] {
-  const words = text.split(/\s+/);
-  return words.filter((word) => filter.check(word));
-}

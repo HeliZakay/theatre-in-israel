@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import { cache } from "react";
-import { getShowById } from "@/lib/showsData";
+import { getShowById } from "@/lib/data/showDetail";
 import ROUTES from "@/constants/routes";
 import ReviewCard from "@/components/ReviewCard/ReviewCard";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
@@ -12,7 +12,7 @@ import { SITE_NAME, toAbsoluteUrl, toJsonLd } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 120; // Re-generate at most every 2 minutes
 
 interface ShowPageProps {
   params: Promise<{ id: string }>;

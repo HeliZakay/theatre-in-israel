@@ -1,7 +1,6 @@
-import { getServerSession } from "next-auth";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import ROUTES from "@/constants/routes";
-import { authOptions } from "@/lib/auth";
+import { requireAuth } from "@/lib/auth";
 import { getReviewByOwner } from "@/lib/shows";
 import EditReviewForm from "./EditReviewForm";
 import styles from "./page.module.css";
@@ -24,13 +23,7 @@ interface EditReviewPageProps {
 export const dynamic = "force-dynamic";
 
 export default async function EditReviewPage({ params }: EditReviewPageProps) {
-  const session = await getServerSession(authOptions);
-
-  if (!session?.user?.id) {
-    redirect(
-      `${ROUTES.AUTH_SIGNIN}?callbackUrl=${encodeURIComponent(ROUTES.MY_REVIEWS)}&reason=auth_required`,
-    );
-  }
+  const session = await requireAuth(ROUTES.MY_REVIEWS);
 
   const { id } = await params;
   const reviewId = Number.parseInt(id, 10);
@@ -56,7 +49,7 @@ export default async function EditReviewPage({ params }: EditReviewPageProps) {
         showId={review.showId}
         initialTitle={review.title ?? ""}
         initialRating={review.rating}
-        initialComment={review.text}
+        initialText={review.text}
       />
     </main>
   );

@@ -1,26 +1,31 @@
 "use client";
 import Link from "next/link";
+import styles from "./error.module.css";
 
-interface GlobalErrorProps {
+interface ErrorProps {
   error: Error & { digest?: string };
   reset: () => void;
 }
 
-export default function GlobalError({ error, reset }: GlobalErrorProps) {
+export default function Error({ error, reset }: ErrorProps) {
   return (
-    <main style={{ padding: 24 }} id="main-content">
-      <h1>אירעה שגיאה</h1>
-      <p>מצטערים — קרתה שגיאה במהלך טעינת הדף.</p>
-      {error?.message ? (
-        <pre style={{ whiteSpace: "pre-wrap", marginTop: 12 }}>
-          {error.message}
-        </pre>
-      ) : null}
+    <main className={styles.page} id="main-content">
+      <section className={styles.card}>
+        <h1 className={styles.title}>אירעה שגיאה</h1>
+        <p className={styles.message}>מצטערים — קרתה שגיאה במהלך טעינת הדף.</p>
+        {process.env.NODE_ENV === "development" && error?.message ? (
+          <pre className={styles.devError}>{error.message}</pre>
+        ) : null}
 
-      <div style={{ marginTop: 16, display: "flex", gap: 12 }}>
-        <button onClick={() => reset()}>נסה שוב</button>
-        <Link href="/">חזור לדף הבית</Link>
-      </div>
+        <div className={styles.actions}>
+          <button className={styles.retryButton} onClick={() => reset()}>
+            נסה שוב
+          </button>
+          <Link href="/" className={styles.homeLink}>
+            חזור לדף הבית
+          </Link>
+        </div>
+      </section>
     </main>
   );
 }

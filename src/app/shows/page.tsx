@@ -1,21 +1,27 @@
-import { getShowsForList } from "@/lib/showsData";
+import { getShowsForList } from "@/lib/data/showsList";
 import BackLink from "@/components/BackLink/BackLink";
 import ROUTES from "@/constants/routes";
 import { DEFAULT_SORT } from "@/constants/sorts";
 import { SITE_NAME, toAbsoluteUrl, toJsonLd } from "@/lib/seo";
-import { buildShowsQueryString, parseShowsSearchParams } from "@/utils/showsQuery";
+import {
+  buildShowsQueryString,
+  parseShowsSearchParams,
+} from "@/utils/showsQuery";
 import styles from "./page.module.css";
 import ShowsContent from "./ShowsContent";
 
 import type { Metadata } from "next";
 
+// Must remain dynamic: depends on searchParams for filtering/pagination
 export const dynamic = "force-dynamic";
 
 interface ShowsPageProps {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }
 
-function buildShowsSeo(searchParams: Record<string, string | string[] | undefined>) {
+function buildShowsSeo(
+  searchParams: Record<string, string | string[] | undefined>,
+) {
   const filters = parseShowsSearchParams(searchParams);
   const canonicalQuery = buildShowsQueryString({
     query: filters.query || undefined,

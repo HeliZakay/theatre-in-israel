@@ -1,14 +1,7 @@
 import Link from "next/link";
 import styles from "./Logo.module.css";
 import Image from "next/image";
-import { Frank_Ruhl_Libre } from "next/font/google";
-
-const titleFont = Frank_Ruhl_Libre({
-  subsets: ["hebrew"],
-  weight: ["700"],
-  variable: "--title-font",
-  display: "swap",
-});
+import { titleFont } from "@/lib/fonts";
 
 export default function Logo() {
   return (

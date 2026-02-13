@@ -1,53 +1,17 @@
 import prisma from "./prisma";
-import { getAverageRating, getLatestReviewDate } from "../utils/showStats";
-import type { Show, Review } from "@/types";
-
-interface PrismaShowGenre {
-  genre: { name: string };
-}
-
-interface PrismaShow {
-  id: number;
-  title: string;
-  theatre: string;
-  durationMinutes: number;
-  summary: string;
-  genres: PrismaShowGenre[];
-  reviews: Review[];
-}
+import type { Review } from "@/types";
 
 /**
- * Normalize a Prisma show (with genres relation) into the flat shape
- * that components expect: `genre: string[]` instead of
- * `genres: ShowGenre[]`.
+ * Fetch only id and title for show picker dropdowns/comboboxes.
+ * Much lighter than getShows() which loads all reviews.
  */
-function normalizeShow(show: PrismaShow | null): Show | null {
-  if (!show) return null;
-  const { genres, ...rest } = show;
-  return {
-    ...rest,
-    genre: genres?.map((sg) => sg.genre.name) ?? [],
-  };
-}
-
-/** Standard include clause used by most queries. */
-const showInclude = {
-  genres: { include: { genre: true } },
-  reviews: { orderBy: { date: "desc" as const } },
-};
-
-/**
- * Fetch all shows from the database.
- * Returns normalized show objects matching the original JSON shape.
- */
-export async function getShows(): Promise<Show[]> {
-  const shows = await prisma.show.findMany({
-    include: showInclude,
+export async function getShowOptions(): Promise<
+  { id: number; title: string }[]
+> {
+  return prisma.show.findMany({
+    select: { id: true, title: true },
+    orderBy: { title: "asc" },
   });
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return shows
-    .map((s) => normalizeShow(s as any))
-    .filter((s): s is Show => s !== null);
 }
 
 interface ReviewInput {
@@ -84,24 +48,15 @@ interface ReviewUpdateInput {
 
 /**
  * Add a review to the specified show.
- * Returns `{ show, review }` or `null` if the show doesn't exist.
+ * Throws on FK violation (show not found) or unique constraint (duplicate review).
  */
 export async function addReview(
-  showId: string | number,
+  showId: number,
   review: ReviewInput,
-): Promise<{ show: Show; review: Review } | null> {
-  const numericId = Number(showId);
-
-  // Verify the show exists.
-  const existing = await prisma.show.findUnique({
-    where: { id: numericId },
-  });
-
-  if (!existing) return null;
-
+): Promise<Review> {
   const newReview = await prisma.review.create({
     data: {
-      showId: numericId,
+      showId,
       userId: review.userId,
       author: review.author,
       title: review.title ?? null,
@@ -111,17 +66,7 @@ export async function addReview(
     },
   });
 
-  // Re-fetch the full show so the caller gets the updated reviews list.
-  const updatedShow = await prisma.show.findUnique({
-    where: { id: numericId },
-    include: showInclude,
-  });
-
-  return {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    show: normalizeShow(updatedShow as any) as Show,
-    review: newReview as unknown as Review,
-  };
+  return newReview as unknown as Review;
 }
 
 export async function getReviewsByUser(userId: string): Promise<OwnedReview[]> {
@@ -202,5 +147,3 @@ export async function deleteReviewByOwner(
 
   return deleted.count > 0;
 }
-
-export { getAverageRating, getLatestReviewDate };

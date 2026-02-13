@@ -21,7 +21,7 @@ export default function Hero({
           ? `${featuredShow.durationMinutes} דקות`
           : null,
       ].filter((t): t is string => t !== null)
-    : ["מחזמר", "2 שעות"];
+    : [];
 
   const featuredQuote = featuredShow?.reviews?.[0]?.text ?? null;
   const featuredAuthor = featuredShow?.reviews?.[0]?.author ?? null;
@@ -38,22 +38,20 @@ export default function Hero({
           </div>
           <SearchBar suggestions={suggestions} />
         </div>
-        <div className={styles.left}>
-          <FeaturedShow
-            title={featuredShow?.title ?? "גבירתי הנאווה"}
-            imageSrc={
-              featuredShow
-                ? getShowImagePath(featuredShow.title)
-                : "/my-fair-lady.jpg"
-            }
-            tags={featuredTags}
-            quote={featuredQuote ?? "ממש מצחיק ושחקנים מעולים!"}
-            quoteAuthor={featuredAuthor ?? "חלי, רחובות"}
-            avgRating={featuredShow?.avgRating ?? null}
-            reviewCount={featuredShow?.reviews?.length ?? 0}
-            href={featuredShow ? `${ROUTES.SHOWS}/${featuredShow.id}` : undefined}
-          />
-        </div>
+        {featuredShow ? (
+          <div className={styles.left}>
+            <FeaturedShow
+              title={featuredShow.title}
+              imageSrc={getShowImagePath(featuredShow.title)}
+              tags={featuredTags}
+              quote={featuredQuote ?? ""}
+              quoteAuthor={featuredAuthor ?? ""}
+              avgRating={featuredShow.avgRating ?? null}
+              reviewCount={featuredShow.reviews?.length ?? 0}
+              href={`${ROUTES.SHOWS}/${featuredShow.id}`}
+            />
+          </div>
+        ) : null}
       </div>
     </section>
   );

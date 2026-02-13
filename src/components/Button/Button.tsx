@@ -7,7 +7,8 @@ interface ButtonProps {
   href?: string;
   disabled?: boolean;
   type?: "button" | "submit" | "reset";
-  [key: string]: unknown;
+  onClick?: React.MouseEventHandler;
+  "aria-label"?: string;
 }
 
 export default function Button({
@@ -16,6 +17,7 @@ export default function Button({
   href,
   disabled = false,
   type,
+  onClick,
   ...props
 }: ButtonProps) {
   if (href) {
@@ -33,7 +35,12 @@ export default function Button({
     }
 
     return (
-      <Link href={href} className={`${styles.button} ${className}`} {...props}>
+      <Link
+        href={href}
+        className={`${styles.button} ${className}`}
+        onClick={onClick}
+        {...props}
+      >
         {children}
       </Link>
     );
@@ -44,6 +51,7 @@ export default function Button({
       className={`${styles.button} ${className}`}
       disabled={disabled}
       type={type}
+      onClick={onClick}
       {...props}
     >
       {children}
