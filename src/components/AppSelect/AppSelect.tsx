@@ -51,12 +51,7 @@ export default function AppSelect({
       >
         <Select.Value placeholder={placeholder} />
         <Select.Icon className={styles.icon}>
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 12 12"
-            aria-hidden="true"
-          >
+          <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
             <path fill="currentColor" d="M2.5 4.5L6 8l3.5-3.5" />
           </svg>
         </Select.Icon>

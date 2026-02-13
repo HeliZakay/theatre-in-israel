@@ -54,9 +54,7 @@ export default function Header() {
               type="button"
               className={styles.menuToggle}
               aria-label={
-                isMobileMenuOpen
-                  ? "סגירת תפריט ניווט"
-                  : "פתיחת תפריט ניווט"
+                isMobileMenuOpen ? "סגירת תפריט ניווט" : "פתיחת תפריט ניווט"
               }
             >
               <svg

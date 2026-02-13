@@ -125,11 +125,7 @@ export default function ShowsFilterBar({
           className={styles.chipGroup}
         >
           {allGenres.map((genre) => (
-            <ToggleGroup.Item
-              key={genre}
-              value={genre}
-              className={styles.chip}
-            >
+            <ToggleGroup.Item key={genre} value={genre} className={styles.chip}>
               {genre}
             </ToggleGroup.Item>
           ))}
