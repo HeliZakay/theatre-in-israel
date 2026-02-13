@@ -26,6 +26,14 @@ export function useCombobox({
       if (blurTimeoutRef.current) clearTimeout(blurTimeoutRef.current);
     };
   }, []);
+  const blurTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Clean up blur timeout on unmount.
+  useEffect(() => {
+    return () => {
+      if (blurTimeoutRef.current) clearTimeout(blurTimeoutRef.current);
+    };
+  }, []);
 
   const filteredItems = useMemo(() => {
     const unique = Array.from(new Set(items.filter(Boolean)));
