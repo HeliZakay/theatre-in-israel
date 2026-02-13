@@ -33,17 +33,7 @@ export default function MobileMenu({
   onClose,
 }: MobileMenuProps) {
   return (
-    <>
-      {isOpen ? (
-        <div
-          className={styles.mobileBackdrop}
-          role="presentation"
-          aria-hidden="true"
-          onClick={onClose}
-        />
-      ) : null}
-
-      <div className={styles.actionsSection}>
+    <div className={styles.actionsSection}>
         <div className={styles.actions}>
           <Button
             href={ROUTES.REVIEWS_NEW}
@@ -116,6 +106,5 @@ export default function MobileMenu({
           )}
         </div>
       </div>
-    </>
   );
 }

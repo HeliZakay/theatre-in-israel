@@ -86,6 +86,15 @@ export default function Header() {
         </button>
       </div>
 
+      {isMobileMenuOpen && (
+        <div
+          className={styles.mobileBackdrop}
+          role="presentation"
+          aria-hidden="true"
+          onClick={closeMenus}
+        />
+      )}
+
       <div
         id={mobileMenuId}
         className={`${styles.menu} ${isMobileMenuOpen ? styles.menuOpen : ""}`}

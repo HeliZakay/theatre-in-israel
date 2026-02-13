@@ -143,10 +143,8 @@ export default function ShowCombobox({
                   ]
                     .filter(Boolean)
                     .join(" ")}
-                  onMouseDown={(e) => {
-                    e.preventDefault();
-                    handleItemClick(item);
-                  }}
+                  onMouseDown={(e) => e.preventDefault()}
+                  onClick={() => handleItemClick(item)}
                   onMouseEnter={() => setActiveIndex(index)}
                 >
                   {item}

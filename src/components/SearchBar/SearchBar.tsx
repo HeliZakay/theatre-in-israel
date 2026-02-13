@@ -142,11 +142,7 @@ export default function SearchBar({
                       aria-selected={index === activeIndex}
                       onMouseDown={(event) => event.preventDefault()}
                       onMouseEnter={() => setActiveIndex(index)}
-                      onClick={() => {
-                        setValue(item);
-                        setIsOpen(false);
-                        inputRef.current?.focus();
-                      }}
+                      onClick={() => selectItem(item)}
                     >
                       {item}
                     </button>

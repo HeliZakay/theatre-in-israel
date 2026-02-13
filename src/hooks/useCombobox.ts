@@ -18,6 +18,14 @@ export function useCombobox({
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
   const rootRef = useRef<HTMLDivElement>(null);
+  const blurTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Clean up blur timeout on unmount.
+  useEffect(() => {
+    return () => {
+      if (blurTimeoutRef.current) clearTimeout(blurTimeoutRef.current);
+    };
+  }, []);
 
   const filteredItems = useMemo(() => {
     const unique = Array.from(new Set(items.filter(Boolean)));
@@ -100,10 +108,14 @@ export function useCombobox({
 
   const handleBlur = (event: React.FocusEvent) => {
     if (rootRef.current?.contains(event.relatedTarget)) return;
-    setIsOpen(false);
+    if (blurTimeoutRef.current) clearTimeout(blurTimeoutRef.current);
+    blurTimeoutRef.current = setTimeout(() => {
+      setIsOpen(false);
+    }, 200);
   };
 
   const selectItem = (item: string) => {
+    if (blurTimeoutRef.current) clearTimeout(blurTimeoutRef.current);
     onSelect?.(item);
     setIsOpen(false);
   };
