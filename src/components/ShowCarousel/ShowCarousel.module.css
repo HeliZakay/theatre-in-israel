@@ -1,0 +1,88 @@
+.carousel {
+  position: relative;
+}
+
+/* ── Viewport ─────────────────────────────────────────── */
+.viewport {
+  overflow: hidden;
+}
+
+/* ── Slide container (flex row) ───────────────────────── */
+.container {
+  display: flex;
+  gap: 16px;
+}
+
+/* ── Individual slide ─────────────────────────────────── */
+.slide {
+  flex: 0 0 calc(100% / 5 - 16px * 4 / 5);
+  min-width: 0;
+}
+
+/* ── Arrow buttons ────────────────────────────────────── */
+.arrow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-primary, #1a1a1a);
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  padding: 0;
+}
+
+/* Gradient overlay behind arrows */
+.arrowNext {
+  left: 0;
+  background: linear-gradient(
+    to left,
+    transparent,
+    rgba(255, 255, 255, 0.9) 70%
+  );
+}
+
+.arrowPrev {
+  right: 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.9) 70%
+  );
+}
+
+.arrow:hover {
+  color: var(--color-curtain-red, #9c1b20);
+}
+
+.arrow:disabled {
+  display: none;
+}
+
+/* Show arrows on hover */
+.carousel:hover .arrow {
+  opacity: 1;
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .slide {
+    flex: 0 0 calc(100% / 3 - 16px * 2 / 3);
+  }
+}
+
+@media (max-width: 640px) {
+  .slide {
+    flex: 0 0 80%;
+  }
+
+  /* Always hide arrows on mobile — rely on swipe */
+  .arrow {
+    display: none;
+  }
+}
