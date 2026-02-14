@@ -1,0 +1,33 @@
+.button {
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid rgba(26, 26, 26, 0.2);
+  background: transparent;
+  color: var(--color-text-primary);
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+  font-family: inherit;
+}
+
+.button:hover {
+  background: rgba(26, 26, 26, 0.04);
+}
+
+.button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.active {
+  border-color: var(--color-curtain-red);
+  color: var(--color-curtain-red);
+  background: rgba(156, 27, 32, 0.06);
+}
+
+.active:hover {
+  background: rgba(156, 27, 32, 0.1);
+}

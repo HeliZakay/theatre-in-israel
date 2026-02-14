@@ -20,6 +20,7 @@ model Show {
   summary         String
   genres          ShowGenre[]
   reviews         Review[]
+  watchlist       Watchlist[]
 }
 
 model User {
@@ -32,6 +33,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   reviews       Review[]
+  watchlist     Watchlist[]
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }
@@ -105,4 +107,16 @@ model Review {
   @@index([showId])
   @@index([userId])
   @@unique([userId, showId])
+}
+
+model Watchlist {
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  show      Show     @relation(fields: [showId], references: [id], onDelete: Cascade)
+  showId    Int
+  createdAt DateTime @default(now())
+
+  @@id([userId, showId])
+  @@index([userId])
+  @@index([showId])
 }

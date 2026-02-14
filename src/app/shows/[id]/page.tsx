@@ -2,10 +2,14 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import { cache } from "react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import { getShowById } from "@/lib/data/showDetail";
+import { isShowInWatchlist } from "@/lib/watchlist";
 import ROUTES from "@/constants/routes";
 import ReviewCard from "@/components/ReviewCard/ReviewCard";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
+import WatchlistButton from "@/components/WatchlistButton/WatchlistButton";
 import { getShowStats } from "@/utils/showStats";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import {
@@ -101,6 +105,17 @@ export default async function ShowPage({ params }: ShowPageProps) {
 
   const stats = { reviewCount, avgRating, latestReviewDate: null };
 
+  // Check watchlist state for authenticated users
+  let initialInWatchlist = false;
+  try {
+    const session = await getServerSession(authOptions);
+    if (session?.user?.id) {
+      initialInWatchlist = await isShowInWatchlist(session.user.id, show.id);
+    }
+  } catch {
+    // Ignore — unauthenticated users see the default "add" state
+  }
+
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: "עמוד הבית", path: ROUTES.HOME },
     { name: "הצגות", path: ROUTES.SHOWS },
@@ -173,6 +188,10 @@ export default async function ShowPage({ params }: ShowPageProps) {
               >
                 כתבי ביקורת
               </Link>
+              <WatchlistButton
+                showId={show.id}
+                initialInWatchlist={initialInWatchlist}
+              />
             </div>
           </div>
         </div>

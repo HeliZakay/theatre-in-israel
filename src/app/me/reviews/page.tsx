@@ -31,6 +31,9 @@ export default async function MyReviewsPage() {
       <header className={styles.header}>
         <h1 className={styles.title}>הביקורות שלי</h1>
         <p className={styles.subtitle}>ניהול כל הביקורות שכתבת במקום אחד.</p>
+        <Link href={ROUTES.MY_WATCHLIST} className={styles.linkBtn}>
+          לרשימת הצפייה שלי ←
+        </Link>
       </header>
 
       {reviews.length ? (

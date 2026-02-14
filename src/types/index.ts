@@ -60,3 +60,14 @@ export interface SelectOption {
   label: string;
   disabled?: boolean;
 }
+
+export interface WatchlistItem {
+  userId: string;
+  showId: number;
+  createdAt: Date;
+  show: {
+    id: number;
+    title: string;
+    theatre: string;
+  };
+}

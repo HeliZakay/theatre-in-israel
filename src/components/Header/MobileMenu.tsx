@@ -42,7 +42,11 @@ export default function MobileMenu({
         </Button>
         <Link
           href={ROUTES.REVIEWS_NEW}
-          className={cx(styles.navText, styles.mobileMenuItem, isWriteReviewPage && styles.mobileMenuItemActive)}
+          className={cx(
+            styles.navText,
+            styles.mobileMenuItem,
+            isWriteReviewPage && styles.mobileMenuItemActive,
+          )}
           aria-current={isWriteReviewPage ? "page" : undefined}
           onClick={onClose}
         >
@@ -64,11 +68,27 @@ export default function MobileMenu({
             <div className={styles.mobileAccountLinks}>
               <Link
                 href={ROUTES.MY_REVIEWS}
-                className={cx(styles.navText, styles.mobileMenuItem, isMyAreaPage && styles.mobileMenuItemActive)}
+                className={cx(
+                  styles.navText,
+                  styles.mobileMenuItem,
+                  isMyAreaPage && styles.mobileMenuItemActive,
+                )}
                 aria-current={isMyAreaPage ? "page" : undefined}
                 onClick={onClose}
               >
                 האזור האישי
+              </Link>
+              <Link
+                href={ROUTES.MY_WATCHLIST}
+                className={cx(
+                  styles.navText,
+                  styles.mobileMenuItem,
+                  isMyAreaPage && styles.mobileMenuItemActive,
+                )}
+                aria-current={isMyAreaPage ? "page" : undefined}
+                onClick={onClose}
+              >
+                רשימת הצפייה שלי
               </Link>
               <button
                 className={`${styles.navText} ${styles.mobileMenuButton}`}

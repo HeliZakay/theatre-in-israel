@@ -22,7 +22,9 @@ export default function Header() {
     pathname === ROUTES.REVIEWS_NEW || pathname.endsWith("/review");
   const isMyAreaPage =
     pathname === ROUTES.MY_REVIEWS ||
-    pathname.startsWith(`${ROUTES.MY_REVIEWS}/`);
+    pathname.startsWith(`${ROUTES.MY_REVIEWS}/`) ||
+    pathname === ROUTES.MY_WATCHLIST ||
+    pathname.startsWith(`${ROUTES.MY_WATCHLIST}/`);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement | null>(null);
 

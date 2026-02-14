@@ -70,6 +70,11 @@ export default function AccountDropdown({
               </Link>
             </DropdownMenu.Item>
             <DropdownMenu.Item asChild className={styles.accountMenuItem}>
+              <Link href={ROUTES.MY_WATCHLIST} onClick={onNavigate}>
+                רשימת הצפייה שלי
+              </Link>
+            </DropdownMenu.Item>
+            <DropdownMenu.Item asChild className={styles.accountMenuItem}>
               <Link href={ROUTES.REVIEWS_NEW} onClick={onNavigate}>
                 לכתוב ביקורת
               </Link>
