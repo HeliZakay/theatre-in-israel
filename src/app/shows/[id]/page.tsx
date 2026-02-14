@@ -1,5 +1,4 @@
 import Link from "next/link";
-import BackLink from "@/components/BackLink/BackLink";
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import { cache } from "react";
@@ -139,7 +138,9 @@ export default async function ShowPage({ params }: ShowPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: toJsonLd(creativeWorkJsonLd) }}
       />
-      <BackLink href={ROUTES.SHOWS}>לכל ההצגות →</BackLink>
+      <Link className={styles.backLink} href={ROUTES.SHOWS}>
+        לכל ההצגות →
+      </Link>
       <header className={styles.header}>
         <div className={styles.heroGrid}>
           <div className={styles.poster}>
