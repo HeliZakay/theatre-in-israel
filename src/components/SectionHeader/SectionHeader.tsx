@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./SectionHeader.module.css";
+import { cx } from "@/utils/cx";
 
 interface SectionHeaderProps {
   kicker?: string;
@@ -17,7 +18,7 @@ export default function SectionHeader({
   className = "",
 }: SectionHeaderProps) {
   return (
-    <div className={`${styles.header} ${className}`}>
+    <div className={cx(styles.header, className)}>
       <div>
         {kicker ? <p className={styles.kicker}>{kicker}</p> : null}
         <h2 className={styles.title}>{title}</h2>

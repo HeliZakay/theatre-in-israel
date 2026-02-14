@@ -6,10 +6,11 @@ import { Controller, useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type * as z from "zod";
 import styles from "./ReviewForm.module.css";
+import fieldStyles from "@/components/ReviewFormFields/ReviewFormFields.module.css";
 import ROUTES from "@/constants/routes";
 import ShowCombobox from "@/components/ShowCombobox/ShowCombobox";
 import ReviewFormFields from "@/components/ReviewFormFields/ReviewFormFields";
-import { clientReviewSchema } from "@/constants/reviewSchemas";
+import { clientReviewSchema } from "@/lib/reviewSchemas";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import type { Show } from "@/types";
@@ -103,8 +104,8 @@ export default function ReviewForm({
   const form = (
     <form className={styles.form} onSubmit={submitHandler} noValidate>
       {shows.length ? (
-        <label className={styles.field}>
-          <span className={styles.label}>הצגה</span>
+        <label className={fieldStyles.field}>
+          <span className={fieldStyles.label}>הצגה</span>
           <Controller
             name="showId"
             control={control}
@@ -122,7 +123,11 @@ export default function ReviewForm({
             )}
           />
           {errors.showId ? (
-            <p id="showId-error" className={styles.fieldError} role="alert">
+            <p
+              id="showId-error"
+              className={fieldStyles.fieldError}
+              role="alert"
+            >
               {errors.showId.message}
             </p>
           ) : null}
@@ -140,7 +145,9 @@ export default function ReviewForm({
         disabled={isSubmitting || success}
       />
 
-      {serverError ? <p className={styles.fieldError}>{serverError}</p> : null}
+      {serverError ? (
+        <p className={fieldStyles.fieldError}>{serverError}</p>
+      ) : null}
       <div aria-live="polite" aria-atomic="true">
         {success ? (
           <div className={styles.successBanner} role="status">

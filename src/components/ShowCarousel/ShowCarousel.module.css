@@ -13,12 +13,6 @@
   gap: 16px;
 }
 
-/* ── Individual slide ─────────────────────────────────── */
-.slide {
-  flex: 0 0 calc(100% / 4 - 16px * 3 / 4);
-  min-width: 0;
-}
-
 /* ── Arrow buttons ────────────────────────────────────── */
 .arrow {
   position: absolute;
@@ -70,17 +64,7 @@
 }
 
 /* ── Responsive ───────────────────────────────────────── */
-@media (max-width: 1024px) {
-  .slide {
-    flex: 0 0 calc(100% / 3 - 16px * 2 / 3);
-  }
-}
-
 @media (max-width: 640px) {
-  .slide {
-    flex: 0 0 80%;
-  }
-
   /* Always hide arrows on mobile — rely on swipe */
   .arrow {
     display: none;

@@ -89,3 +89,9 @@ textarea:focus-visible {
     --header-offset: 150px;
   }
 }
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import styles from "./Header.module.css";
+import { cx } from "@/utils/cx";
 import ROUTES from "@/constants/routes";
 import Button from "@/components/Button/Button";
 import AccountDropdown from "./AccountDropdown";
@@ -41,7 +42,7 @@ export default function MobileMenu({
         </Button>
         <Link
           href={ROUTES.REVIEWS_NEW}
-          className={`${styles.navText} ${styles.mobileMenuItem} ${isWriteReviewPage ? styles.mobileMenuItemActive : ""}`}
+          className={cx(styles.navText, styles.mobileMenuItem, isWriteReviewPage && styles.mobileMenuItemActive)}
           aria-current={isWriteReviewPage ? "page" : undefined}
           onClick={onClose}
         >
@@ -63,7 +64,7 @@ export default function MobileMenu({
             <div className={styles.mobileAccountLinks}>
               <Link
                 href={ROUTES.MY_REVIEWS}
-                className={`${styles.navText} ${styles.mobileMenuItem} ${isMyAreaPage ? styles.mobileMenuItemActive : ""}`}
+                className={cx(styles.navText, styles.mobileMenuItem, isMyAreaPage && styles.mobileMenuItemActive)}
                 aria-current={isMyAreaPage ? "page" : undefined}
                 onClick={onClose}
               >

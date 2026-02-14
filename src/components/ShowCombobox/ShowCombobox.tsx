@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useCombobox } from "@/hooks/useCombobox";
 import styles from "./ShowCombobox.module.css";
+import { cx } from "@/utils/cx";
 import type { SelectOption } from "@/types";
 
 interface ShowComboboxProps {
@@ -111,7 +112,7 @@ export default function ShowCombobox({
             ? `${listboxId}-option-${activeIndex}`
             : undefined
         }
-        className={`${styles.input} ${invalid ? styles.inputInvalid : ""}`}
+        className={cx(styles.input, invalid && styles.inputInvalid)}
         placeholder={placeholder}
         value={inputValue}
         onChange={handleInputChange}

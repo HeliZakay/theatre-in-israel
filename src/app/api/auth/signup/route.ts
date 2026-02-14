@@ -1,18 +1,29 @@
-import { NextResponse } from "next/server";
+import { z } from "zod";
 import bcrypt from "bcryptjs";
 import prisma from "@/lib/prisma";
+import {
+  apiError,
+  apiSuccess,
+  INTERNAL_ERROR_MESSAGE,
+} from "@/utils/apiResponse";
+
+const signupSchema = z.object({
+  email: z.string().email("כתובת אימייל לא תקינה"),
+  password: z.string().min(6, "הסיסמה חייבת להכיל לפחות 6 תווים"),
+  name: z.string().optional(),
+});
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { email, password, name } = body;
 
-    if (!email || !password) {
-      return NextResponse.json(
-        { error: "חסרים פרטים נדרשים" },
-        { status: 400 },
-      );
+    const result = signupSchema.safeParse(body);
+    if (!result.success) {
+      const firstError = result.error.issues[0]?.message ?? "חסרים פרטים נדרשים";
+      return apiError(firstError, 400);
     }
+
+    const { email, password, name } = result.data;
 
     // Check if user already exists
     const existingUser = await prisma.user.findUnique({
@@ -20,10 +31,7 @@ export async function POST(request: Request) {
     });
 
     if (existingUser) {
-      return NextResponse.json(
-        { error: "משתמש עם אימייל זה כבר קיים" },
-        { status: 400 },
-      );
+      return apiError("משתמש עם אימייל זה כבר קיים", 400);
     }
 
     // Hash password
@@ -38,7 +46,7 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json(
+    return apiSuccess(
       {
         user: {
           id: user.id,
@@ -46,13 +54,9 @@ export async function POST(request: Request) {
           name: user.name,
         },
       },
-      { status: 201 },
+      201,
     );
   } catch (error) {
-    console.error("Signup error:", error);
-    return NextResponse.json(
-      { error: "אירעה שגיאה ביצירת החשבון" },
-      { status: 500 },
-    );
+    return apiError(INTERNAL_ERROR_MESSAGE, 500, error);
   }
 }

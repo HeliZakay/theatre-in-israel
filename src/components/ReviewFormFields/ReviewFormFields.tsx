@@ -7,7 +7,7 @@ import {
   REVIEW_TEXT_MAX,
   REVIEW_TITLE_MAX,
 } from "@/constants/reviewValidation";
-import { ratingOptions } from "@/constants/reviewSchemas";
+import { ratingOptions } from "@/lib/reviewSchemas";
 import styles from "./ReviewFormFields.module.css";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */

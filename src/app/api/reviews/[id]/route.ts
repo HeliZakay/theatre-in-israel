@@ -1,24 +1,18 @@
 import { NextRequest } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { deleteReviewByOwner, updateReviewByOwner } from "@/lib/shows";
-import { updateReviewSchema, formatZodErrors } from "@/constants/reviewSchemas";
-import { containsProfanity } from "@/utils/profanityFilter";
+import { deleteReviewByOwner, updateReviewByOwner } from "@/lib/reviews";
+import { updateReviewSchema, formatZodErrors } from "@/lib/reviewSchemas";
+import { checkFieldsForProfanity } from "@/utils/profanityFilter";
 import { checkEditDeleteRateLimit } from "@/utils/reviewRateLimit";
 import {
   apiError,
   apiSuccess,
   INTERNAL_ERROR_MESSAGE,
 } from "@/utils/apiResponse";
+import { requireApiAuth } from "@/utils/apiMiddleware";
+import { toPositiveInt } from "@/utils/parseId";
 
 interface ReviewRouteContext {
   params: Promise<{ id: string }>;
-}
-
-function toReviewId(idParam: string): number | null {
-  const reviewId = Number.parseInt(idParam, 10);
-  if (!Number.isInteger(reviewId) || reviewId <= 0) return null;
-  return reviewId;
 }
 
 export async function PATCH(
@@ -26,23 +20,16 @@ export async function PATCH(
   { params }: ReviewRouteContext,
 ) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session?.user?.id) {
-      return apiError("יש להתחבר כדי לערוך ביקורת", 401);
-    }
-
-    // Check rate limit for edit/delete
-    const rateLimit = checkEditDeleteRateLimit(session.user.id);
-    if (rateLimit.isLimited) {
-      return apiError(
-        `ביצעת יותר מדי עריכות לאחרונה. נסה שוב בעוד ${rateLimit.remainingTime} דקות.`,
-        429,
-      );
-    }
+    const auth = await requireApiAuth("יש להתחבר כדי לערוך ביקורת", {
+      check: checkEditDeleteRateLimit,
+      message: (t) =>
+        `ביצעת יותר מדי עריכות לאחרונה. נסה שוב בעוד ${t} דקות.`,
+    });
+    if (auth.error) return auth.error;
+    const { session } = auth;
 
     const { id } = await params;
-    const reviewId = toReviewId(id);
+    const reviewId = toPositiveInt(id);
     if (!reviewId) {
       return apiError("מזהה ביקורת לא תקין", 400);
     }
@@ -54,12 +41,16 @@ export async function PATCH(
     }
 
     // Check for profanity in title and text
-    if (containsProfanity(result.data.title)) {
-      return apiError("הכותרת מכילה שפה לא הולמת. אנא נסח.י מחדש.", 400);
-    }
-
-    if (containsProfanity(result.data.text)) {
-      return apiError("התגובה מכילה שפה לא הולמת. אנא נסח.י מחדש.", 400);
+    const profanityMessages: Record<string, string> = {
+      title: "הכותרת מכילה שפה לא הולמת. אנא נסח.י מחדש.",
+      text: "התגובה מכילה שפה לא הולמת. אנא נסח.י מחדש.",
+    };
+    const badField = checkFieldsForProfanity({
+      title: result.data.title,
+      text: result.data.text,
+    });
+    if (badField) {
+      return apiError(profanityMessages[badField], 400);
     }
 
     const updated = await updateReviewByOwner(reviewId, session.user.id, {
@@ -83,23 +74,16 @@ export async function DELETE(
   { params }: ReviewRouteContext,
 ) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session?.user?.id) {
-      return apiError("יש להתחבר כדי למחוק ביקורת", 401);
-    }
-
-    // Check rate limit for edit/delete
-    const rateLimit = checkEditDeleteRateLimit(session.user.id);
-    if (rateLimit.isLimited) {
-      return apiError(
-        `ביצעת יותר מדי עריכות לאחרונה. נסה שוב בעוד ${rateLimit.remainingTime} דקות.`,
-        429,
-      );
-    }
+    const auth = await requireApiAuth("יש להתחבר כדי למחוק ביקורת", {
+      check: checkEditDeleteRateLimit,
+      message: (t) =>
+        `ביצעת יותר מדי עריכות לאחרונה. נסה שוב בעוד ${t} דקות.`,
+    });
+    if (auth.error) return auth.error;
+    const { session } = auth;
 
     const { id } = await params;
-    const reviewId = toReviewId(id);
+    const reviewId = toPositiveInt(id);
     if (!reviewId) {
       return apiError("מזהה ביקורת לא תקין", 400);
     }

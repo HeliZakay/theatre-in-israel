@@ -1,5 +1,5 @@
 import prisma from "./prisma";
-import type { Review } from "@/types";
+import type { Review, ReviewInput } from "@/types";
 
 /**
  * Fetch only id and title for show picker dropdowns/comboboxes.
@@ -12,15 +12,6 @@ export async function getShowOptions(): Promise<
     select: { id: true, title: true },
     orderBy: { title: "asc" },
   });
-}
-
-interface ReviewInput {
-  author: string;
-  title?: string | null;
-  text: string;
-  rating: number;
-  date: string;
-  userId?: string;
 }
 
 export interface OwnedReview {
@@ -66,7 +57,10 @@ export async function addReview(
     },
   });
 
-  return newReview as unknown as Review;
+  return {
+    ...newReview,
+    date: newReview.date.toISOString(),
+  };
 }
 
 export async function getReviewsByUser(userId: string): Promise<OwnedReview[]> {

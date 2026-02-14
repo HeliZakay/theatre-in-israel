@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Button from "@/components/Button/Button";
 import styles from "./CtaStrip.module.css";
 
 interface CtaStripProps {
@@ -20,9 +20,9 @@ export default function CtaStrip({
         <h2 className={styles.title}>{title}</h2>
         {text && <p className={styles.text}>{text}</p>}
       </div>
-      <Link className={styles.button} href={href}>
+      <Button href={href} className={styles.button}>
         {buttonText}
-      </Link>
+      </Button>
     </section>
   );
 }

@@ -5,4 +5,36 @@
   --color-text-primary: #1a1a1a;
   --header-offset: 96px;
   --focus-ring-color: rgba(156, 27, 32, 0.35);
+
+  /* NEW: slate shadow/border at common opacities */
+  --color-slate-006: rgba(15, 23, 42, 0.06);
+  --color-slate-008: rgba(15, 23, 42, 0.08);
+  --color-slate-012: rgba(15, 23, 42, 0.12);
+  --color-slate-015: rgba(15, 23, 42, 0.15);
+  --color-slate-020: rgba(15, 23, 42, 0.2);
+
+  /* NEW: curtain-red alpha variants */
+  --color-curtain-red-004: rgba(156, 27, 32, 0.04);
+  --color-curtain-red-008: rgba(156, 27, 32, 0.08);
+  --color-curtain-red-012: rgba(156, 27, 32, 0.12);
+  --color-curtain-red-014: rgba(156, 27, 32, 0.14);
+  --color-curtain-red-025: rgba(156, 27, 32, 0.25);
+  --color-curtain-red-030: rgba(156, 27, 32, 0.3);
+  --color-curtain-red-070: rgba(156, 27, 32, 0.7);
+
+  /* NEW: border radii */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 18px;
+  --radius-pill: 999px;
+
+  /* NEW: card surface */
+  --card-bg: #ffffff;
+  --card-border: 1px solid var(--color-slate-008);
+  --card-shadow: 0 10px 20px var(--color-slate-006);
+
+  /* NEW: text muted */
+  --color-text-muted: rgba(26, 26, 26, 0.7);
+  --color-text-faint: rgba(26, 26, 26, 0.55);
+  --color-text-placeholder: rgba(26, 26, 26, 0.5);
 }

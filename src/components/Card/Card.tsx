@@ -1,4 +1,5 @@
 import styles from "./Card.module.css";
+import { cx } from "@/utils/cx";
 
 interface CardProps extends React.HTMLAttributes<HTMLElement> {
   as?: React.ElementType;
@@ -13,7 +14,7 @@ export default function Card({
   ...props
 }: CardProps) {
   return (
-    <Component className={`${styles.card} ${className}`} {...props}>
+    <Component className={cx(styles.card, className)} {...props}>
       {children}
     </Component>
   );

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import ROUTES from "@/constants/routes";
 import { requireAuth } from "@/lib/auth";
-import { getReviewsByUser } from "@/lib/shows";
+import { getReviewsByUser } from "@/lib/reviews";
 import { formatDate } from "@/utils/formatDate";
 import Button from "@/components/Button/Button";
 import DeleteReviewButton from "./DeleteReviewButton";

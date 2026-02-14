@@ -1,14 +1,10 @@
 import Link from "next/link";
 import ROUTES from "@/constants/routes";
+import { isValidCallbackUrl } from "@/utils/auth";
 import SignInButton from "./SignInButton";
 import styles from "./page.module.css";
 
 import type { Metadata } from "next";
-
-/** Only allow relative URLs that don't start with // (protocol-relative). */
-function isValidCallbackUrl(url: string): boolean {
-  return url.startsWith("/") && !url.startsWith("//");
-}
 
 export const metadata: Metadata = {
   title: "התחברות",

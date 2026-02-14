@@ -26,7 +26,7 @@
     padding: 8px 10px;
     height: auto;
     min-height: 64px;
-    border-radius: 18px;
+    border-radius: var(--radius-lg);
   }
 
   .searchInput {
@@ -93,7 +93,7 @@
   background: #ffffff;
   border: 1px solid #e1e4ea;
   border-radius: 20px;
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 18px 40px var(--color-slate-012);
   padding: 6px;
   display: grid;
   gap: 4px;
@@ -109,7 +109,7 @@
   border: none;
   background: transparent;
   padding: 10px 12px;
-  border-radius: 12px;
+  border-radius: var(--radius-sm);
   text-align: right;
   font-size: 0.95rem;
   color: #1f2937;
@@ -121,7 +121,7 @@
 
 .suggestion:hover,
 .suggestion:focus {
-  background: rgba(156, 27, 32, 0.08);
+  background: var(--color-curtain-red-008);
   outline: none;
 }
 
@@ -131,7 +131,7 @@
 }
 
 .suggestionActive {
-  background: rgba(156, 27, 32, 0.12);
+  background: var(--color-curtain-red-012);
 }
 
 .groupHeader {
@@ -153,13 +153,13 @@
 .empty {
   padding: 10px 12px;
   font-size: 0.9rem;
-  color: rgba(26, 26, 26, 0.5);
+  color: var(--color-text-placeholder);
   text-align: center;
 }
 
 .searchShell:focus-within {
   border-color: rgba(156, 27, 32, 0.45);
   background: #ffffff;
-  box-shadow: 0 0 0 4px rgba(156, 27, 32, 0.14);
+  box-shadow: 0 0 0 4px var(--color-curtain-red-014);
   border-radius: 24px;
 }

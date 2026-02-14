@@ -1,4 +1,5 @@
 import styles from "./Tag.module.css";
+import { cx } from "@/utils/cx";
 
 interface TagProps {
   children: React.ReactNode;
@@ -6,5 +7,5 @@ interface TagProps {
 }
 
 export default function Tag({ children, className = "" }: TagProps) {
-  return <span className={`${styles.tag} ${className}`}>{children}</span>;
+  return <span className={cx(styles.tag, className)}>{children}</span>;
 }

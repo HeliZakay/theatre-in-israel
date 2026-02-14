@@ -4,6 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useOptimistic, useState, useTransition } from "react";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import styles from "./ShowsFilterBar.module.css";
+import { cx } from "@/utils/cx";
 import AppSelect from "@/components/AppSelect/AppSelect";
 import SearchInput from "@/components/SearchInput/SearchInput";
 import { buildShowsQueryString } from "@/utils/showsQuery";
@@ -110,7 +111,7 @@ export default function ShowsFilterBar({
         <span className={styles.filterLabel}>ז&apos;אנר</span>
         <button
           type="button"
-          className={`${styles.chip} ${optimisticFilters.genres.length ? "" : styles.chipActive}`}
+          className={cx(styles.chip, !optimisticFilters.genres.length && styles.chipActive)}
           aria-current={optimisticFilters.genres.length ? undefined : "true"}
           onClick={() => {
             applyFilterUpdate({ genres: [] });

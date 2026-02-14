@@ -31,3 +31,16 @@ filter.add(hebrewProfanity);
 export function containsProfanity(text: string): boolean {
   return filter.check(text);
 }
+
+/**
+ * Check multiple named fields for profanity.
+ * @returns the name of the first offending field, or `null` if all clean.
+ */
+export function checkFieldsForProfanity(
+  fields: Record<string, string | null | undefined>,
+): string | null {
+  for (const [fieldName, value] of Object.entries(fields)) {
+    if (value && containsProfanity(value)) return fieldName;
+  }
+  return null;
+}

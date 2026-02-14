@@ -1,7 +1,7 @@
 import styles from "./page.module.css";
 import Link from "next/link";
 import ROUTES from "@/constants/routes";
-import { getShowOptions } from "@/lib/shows";
+import { getShowOptions } from "@/lib/reviews";
 import { requireAuth } from "@/lib/auth";
 import ReviewForm from "@/components/ReviewForm/ReviewForm";
 import { SITE_NAME } from "@/lib/seo";

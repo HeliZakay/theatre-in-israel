@@ -1,32 +1,24 @@
 import { NextRequest } from "next/server";
-import { getServerSession } from "next-auth";
-import { addReview } from "@/lib/shows";
-import { authOptions } from "@/lib/auth";
-import { createReviewSchema, formatZodErrors } from "@/constants/reviewSchemas";
-import { containsProfanity } from "@/utils/profanityFilter";
+import { addReview } from "@/lib/reviews";
+import { createReviewSchema, formatZodErrors } from "@/lib/reviewSchemas";
+import { checkFieldsForProfanity } from "@/utils/profanityFilter";
 import { checkReviewRateLimit } from "@/utils/reviewRateLimit";
 import {
   apiError,
   apiSuccess,
   INTERNAL_ERROR_MESSAGE,
 } from "@/utils/apiResponse";
+import { requireApiAuth } from "@/utils/apiMiddleware";
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session?.user?.id) {
-      return apiError("יש להתחבר כדי לכתוב ביקורת", 401);
-    }
-
-    // Check rate limit
-    const rateLimit = await checkReviewRateLimit(session.user.id);
-    if (rateLimit.isLimited) {
-      return apiError(
-        `יצרת יותר מדי ביקורות לאחרונה. נסה שוב בעוד ${rateLimit.remainingTime} דקות.`,
-        429,
-      );
-    }
+    const auth = await requireApiAuth("יש להתחבר כדי לכתוב ביקורת", {
+      check: checkReviewRateLimit,
+      message: (t) =>
+        `יצרת יותר מדי ביקורות לאחרונה. נסה שוב בעוד ${t} דקות.`,
+    });
+    if (auth.error) return auth.error;
+    const { session } = auth;
 
     const formData = await request.formData();
     const payload = Object.fromEntries(formData.entries());
@@ -38,19 +30,17 @@ export async function POST(request: NextRequest) {
 
     const { showId, name, title, rating, text } = result.data;
 
-    // Check for profanity in title, text, and author name
-    if (containsProfanity(title)) {
-      return apiError("הכותרת מכילה שפה לא הולמת. אנא נסח.י מחדש.", 400);
-    }
-
-    if (containsProfanity(text)) {
-      return apiError("התגובה מכילה שפה לא הולמת. אנא נסח.י מחדש.", 400);
-    }
-
     const authorName = session.user.name?.trim() || name?.trim() || "משתמש/ת";
 
-    if (containsProfanity(authorName)) {
-      return apiError("השם מכיל שפה לא הולמת. אנא בחר.י שם אחר.", 400);
+    // Check for profanity in title, text, and author name
+    const profanityMessages: Record<string, string> = {
+      title: "הכותרת מכילה שפה לא הולמת. אנא נסח.י מחדש.",
+      text: "התגובה מכילה שפה לא הולמת. אנא נסח.י מחדש.",
+      authorName: "השם מכיל שפה לא הולמת. אנא בחר.י שם אחר.",
+    };
+    const badField = checkFieldsForProfanity({ title, text, authorName });
+    if (badField) {
+      return apiError(profanityMessages[badField], 400);
     }
 
     const today = new Date().toISOString().slice(0, 10);

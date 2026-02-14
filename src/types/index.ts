@@ -1,14 +1,25 @@
+/** Review as returned from DB / API — all fields present */
 export interface Review {
   id: number;
-  showId?: number;
-  userId?: string | null;
+  showId: number;
+  userId: string | null;
+  author: string;
+  title: string | null;
+  text: string;
+  rating: number;
+  date: string; // standardized to ISO string
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+/** Shape used when creating a review */
+export interface ReviewInput {
   author: string;
   title?: string | null;
   text: string;
   rating: number;
-  date: string | Date;
-  createdAt?: Date;
-  updatedAt?: Date;
+  date: string;
+  userId?: string;
 }
 
 export interface Show {

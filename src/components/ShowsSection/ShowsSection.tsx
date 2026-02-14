@@ -1,6 +1,5 @@
 import Link from "next/link";
 import styles from "./ShowsSection.module.css";
-import carouselStyles from "@/components/ShowCarousel/ShowCarousel.module.css";
 import Tag from "@/components/Tag/Tag";
 import Card from "@/components/Card/Card";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
@@ -36,7 +35,7 @@ export default function ShowsSection({
         {shows.map((show, index) => (
           <div
             key={show.id}
-            className={carouselStyles.slide}
+            className={styles.slide}
             role="group"
             aria-roledescription="slide"
             aria-label={`${index + 1} מתוך ${shows.length}`}

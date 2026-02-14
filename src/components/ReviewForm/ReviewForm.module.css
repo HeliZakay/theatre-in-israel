@@ -15,10 +15,10 @@
   top: calc(var(--header-offset) + 16px);
   width: 100%;
   aspect-ratio: 3 / 4;
-  border-radius: 18px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: 0 12px 28px rgba(15, 23, 42, 0.14);
-  background: rgba(15, 23, 42, 0.08);
+  background: var(--color-slate-008);
 }
 
 .posterImage {
@@ -35,55 +35,10 @@
   max-width: 680px;
 }
 
-.field {
-  display: grid;
-  gap: 8px;
-}
-
-.label {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--color-text-primary);
-}
-
-.input,
-.select,
-.textarea {
-  border-radius: 12px;
-  border: 1px solid rgba(15, 23, 42, 0.12);
-  background: #ffffff;
-  padding: 12px 14px;
-  font-size: 1rem;
-  color: var(--color-text-primary);
-  font-family: inherit;
-}
-
-.input::placeholder,
-.textarea::placeholder {
-  font-family: inherit;
-  color: rgba(26, 26, 26, 0.5);
-}
-
-.textarea {
-  resize: vertical;
-  min-height: 140px;
-}
-
 .actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-}
-
-.fieldError {
-  color: var(--color-curtain-red);
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.charMeta {
-  font-size: 0.82rem;
-  color: rgba(26, 26, 26, 0.55);
 }
 
 .successBanner {
@@ -91,7 +46,7 @@
   align-items: center;
   gap: 12px;
   padding: 12px 14px;
-  border-radius: 12px;
+  border-radius: var(--radius-sm);
   border: 1px solid rgba(20, 108, 67, 0.35);
   background: rgba(20, 108, 67, 0.1);
 }
@@ -123,7 +78,7 @@
 
 .primaryBtn,
 .ghostBtn {
-  border-radius: 12px;
+  border-radius: var(--radius-sm);
   padding: 12px 18px;
   font-size: 1rem;
   font-weight: 600;
@@ -152,13 +107,7 @@
   border-radius: 999px;
   border: 2px solid rgba(255, 255, 255, 0.45);
   border-top-color: #ffffff;
-  animation: submitSpin 0.75s linear infinite;
-}
-
-@keyframes submitSpin {
-  to {
-    transform: rotate(360deg);
-  }
+  animation: spin 0.75s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

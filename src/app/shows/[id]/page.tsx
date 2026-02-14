@@ -8,7 +8,12 @@ import ReviewCard from "@/components/ReviewCard/ReviewCard";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import { getShowStats } from "@/utils/showStats";
 import { getShowImagePath } from "@/utils/getShowImagePath";
-import { SITE_NAME, toAbsoluteUrl, toJsonLd } from "@/lib/seo";
+import {
+  SITE_NAME,
+  toJsonLd,
+  buildBreadcrumbJsonLd,
+  buildCreativeWorkJsonLd,
+} from "@/lib/seo";
 
 import type { Metadata } from "next";
 
@@ -94,67 +99,19 @@ export default async function ShowPage({ params }: ShowPageProps) {
   const { reviewCount, avgRating } = getShowStats(show);
   const canonicalPath = `${ROUTES.SHOWS}/${show.id}`;
 
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "עמוד הבית",
-        item: toAbsoluteUrl(ROUTES.HOME),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "הצגות",
-        item: toAbsoluteUrl(ROUTES.SHOWS),
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: show.title,
-        item: toAbsoluteUrl(canonicalPath),
-      },
-    ],
-  };
+  const stats = { reviewCount, avgRating, latestReviewDate: null };
 
-  const creativeWorkJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    name: show.title,
-    description: show.summary,
-    inLanguage: "he-IL",
-    image: toAbsoluteUrl(getShowImagePath(show.title)),
-    genre: show.genre,
-    mainEntityOfPage: toAbsoluteUrl(canonicalPath),
-    aggregateRating:
-      avgRating !== null
-        ? {
-            "@type": "AggregateRating",
-            ratingValue: Number(avgRating.toFixed(1)),
-            reviewCount,
-            bestRating: 5,
-            worstRating: 1,
-          }
-        : undefined,
-    review: show.reviews.slice(0, 5).map((review) => ({
-      "@type": "Review",
-      author: {
-        "@type": "Person",
-        name: review.author,
-      },
-      name: review.title ?? `ביקורת על ${show.title}`,
-      reviewBody: review.text,
-      datePublished: new Date(review.date).toISOString(),
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: review.rating,
-        bestRating: 5,
-        worstRating: 1,
-      },
-    })),
-  };
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: "עמוד הבית", path: ROUTES.HOME },
+    { name: "הצגות", path: ROUTES.SHOWS },
+    { name: show.title, path: canonicalPath },
+  ]);
+
+  const creativeWorkJsonLd = buildCreativeWorkJsonLd(
+    show,
+    stats,
+    canonicalPath,
+  );
 
   return (
     <main className={styles.page} id="main-content">

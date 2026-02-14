@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { getReviewsByUser } from "@/lib/shows";
+import { getReviewsByUser } from "@/lib/reviews";
 import {
   apiError,
   apiSuccess,

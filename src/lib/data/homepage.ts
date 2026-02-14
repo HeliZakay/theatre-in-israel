@@ -1,8 +1,7 @@
 import { Prisma } from "@prisma/client";
 import prisma from "../prisma";
-import { enrichShow } from "../../utils/showStats";
-import { normalizeShow, showInclude } from "../showHelpers";
-import type { Show, EnrichedShow, Suggestions } from "@/types";
+import { fetchShowsByIds } from "../showHelpers";
+import type { EnrichedShow, Suggestions } from "@/types";
 
 export interface HomePageData {
   suggestions: Suggestions;
@@ -46,21 +45,7 @@ async function getTopRated(): Promise<EnrichedShow[]> {
     LIMIT 10
   `;
 
-  if (topRatedIds.length === 0) return [];
-
-  const topRatedShows = await prisma.show.findMany({
-    where: { id: { in: topRatedIds.map((r) => r.id) } },
-    include: showInclude,
-  });
-
-  // Preserve the DB sort order.
-  const topRatedMap = new Map(topRatedShows.map((s) => [s.id, s]));
-  return topRatedIds
-    .map((r) => topRatedMap.get(r.id))
-    .filter(Boolean)
-    .map((s) => normalizeShow(s!))
-    .filter((s): s is Show => s !== null)
-    .map(enrichShow);
+  return fetchShowsByIds(topRatedIds.map((r) => r.id));
 }
 
 /**
@@ -87,21 +72,7 @@ async function getShowsByGenres(
     `,
   );
 
-  if (topIds.length === 0) return [];
-
-  const rawShows = await prisma.show.findMany({
-    where: { id: { in: topIds.map((r) => r.id) } },
-    include: showInclude,
-  });
-
-  // Preserve DB sort order.
-  const showMap = new Map(rawShows.map((s) => [s.id, s]));
-  return topIds
-    .map((r) => showMap.get(r.id))
-    .filter(Boolean)
-    .map((s) => normalizeShow(s!))
-    .filter((s): s is Show => s !== null)
-    .map(enrichShow);
+  return fetchShowsByIds(topIds.map((r) => r.id));
 }
 
 function settled<T>(result: PromiseSettledResult<T>, fallback: T): T {

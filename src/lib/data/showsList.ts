@@ -2,7 +2,7 @@ import { Prisma } from "@prisma/client";
 import prisma from "../prisma";
 import { parseShowsSearchParams } from "../../utils/showsQuery";
 import { enrichShow } from "../../utils/showStats";
-import { normalizeShow, showInclude } from "../showHelpers";
+import { normalizeShow, showInclude, fetchShowsByIds } from "../showHelpers";
 import type { Show, EnrichedShow, ShowFilters } from "@/types";
 
 export interface ShowsListData {
@@ -134,22 +134,7 @@ export async function getShowsForList(
       perPage,
     );
 
-    if (filteredIds.length > 0) {
-      const rawShows = await prisma.show.findMany({
-        where: { id: { in: filteredIds } },
-        include: showInclude,
-      });
-      // Preserve sort order from raw query.
-      const showMap = new Map(rawShows.map((s) => [s.id, s]));
-      shows = filteredIds
-        .map((id) => showMap.get(id))
-        .filter(Boolean)
-        .map((s) => normalizeShow(s!))
-        .filter((s): s is Show => s !== null)
-        .map(enrichShow);
-    } else {
-      shows = [];
-    }
+    shows = await fetchShowsByIds(filteredIds);
   } else {
     const rawShows = await prisma.show.findMany({
       where,

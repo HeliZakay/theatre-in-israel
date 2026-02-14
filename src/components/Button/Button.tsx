@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./Button.module.css";
+import { cx } from "@/utils/cx";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -24,7 +25,7 @@ export default function Button({
     if (disabled) {
       return (
         <span
-          className={`${styles.button} ${className}`}
+          className={cx(styles.button, className)}
           aria-disabled="true"
           role="link"
           tabIndex={-1}
@@ -37,7 +38,7 @@ export default function Button({
     return (
       <Link
         href={href}
-        className={`${styles.button} ${className}`}
+        className={cx(styles.button, className)}
         onClick={onClick}
         {...props}
       >
@@ -48,7 +49,7 @@ export default function Button({
 
   return (
     <button
-      className={`${styles.button} ${className}`}
+      className={cx(styles.button, className)}
       disabled={disabled}
       type={type}
       onClick={onClick}

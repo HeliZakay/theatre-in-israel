@@ -3,10 +3,7 @@
 import * as Select from "@radix-ui/react-select";
 import styles from "./AppSelect.module.css";
 import type { SelectOption } from "@/types";
-
-function cx(...classes: (string | undefined | false | null)[]): string {
-  return classes.filter(Boolean).join(" ");
-}
+import { cx } from "@/utils/cx";
 
 interface AppSelectProps {
   id?: string;

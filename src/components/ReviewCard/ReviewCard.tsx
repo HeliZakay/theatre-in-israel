@@ -1,5 +1,6 @@
 import styles from "./ReviewCard.module.css";
 import { formatDate } from "@/utils/formatDate";
+import Card from "@/components/Card/Card";
 import type { Review } from "@/types";
 
 interface ReviewCardProps {
@@ -10,7 +11,7 @@ export default function ReviewCard({ review }: ReviewCardProps) {
   const shouldTruncate = review.text.trim().length > 320;
 
   return (
-    <article className={styles.card}>
+    <Card as="article" className={styles.card}>
       <div className={styles.header}>
         <div className={styles.meta}>
           <span className={styles.author} title={review.author}>
@@ -41,6 +42,6 @@ export default function ReviewCard({ review }: ReviewCardProps) {
       ) : (
         <p className={styles.text}>{review.text}</p>
       )}
-    </article>
+    </Card>
   );
 }

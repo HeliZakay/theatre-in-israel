@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import ROUTES from "@/constants/routes";
 import { requireAuth } from "@/lib/auth";
-import { getReviewByOwner } from "@/lib/shows";
+import { getReviewByOwner } from "@/lib/reviews";
+import { toPositiveInt } from "@/utils/parseId";
 import EditReviewForm from "./EditReviewForm";
 import styles from "./page.module.css";
 
@@ -26,8 +27,8 @@ export default async function EditReviewPage({ params }: EditReviewPageProps) {
   const session = await requireAuth(ROUTES.MY_REVIEWS);
 
   const { id } = await params;
-  const reviewId = Number.parseInt(id, 10);
-  if (!Number.isInteger(reviewId) || reviewId <= 0) {
+  const reviewId = toPositiveInt(id);
+  if (!reviewId) {
     notFound();
   }
 

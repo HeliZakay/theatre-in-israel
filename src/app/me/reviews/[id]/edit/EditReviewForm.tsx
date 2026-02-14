@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import type * as z from "zod";
 import ROUTES from "@/constants/routes";
 import ReviewFormFields from "@/components/ReviewFormFields/ReviewFormFields";
-import { clientEditReviewSchema } from "@/constants/reviewSchemas";
+import { clientEditReviewSchema } from "@/lib/reviewSchemas";
 import styles from "./page.module.css";
 
 interface EditReviewFormProps {

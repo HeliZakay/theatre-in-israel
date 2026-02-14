@@ -3,8 +3,8 @@
   flex-direction: column;
   gap: 14px;
   padding: 14px 16px;
-  border-radius: 16px;
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-slate-008);
   background: rgba(156, 27, 32, 0.03);
 }
 
@@ -16,8 +16,8 @@
 }
 
 .select {
-  border-radius: 12px;
-  border: 1px solid rgba(15, 23, 42, 0.2);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-slate-020);
   padding: 8px 12px;
   background: #ffffff;
   color: var(--color-text-primary);
@@ -25,8 +25,8 @@
 }
 
 .searchInput {
-  border-radius: 12px;
-  border: 1px solid rgba(15, 23, 42, 0.2);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-slate-020);
   padding: 8px 12px;
   background: #ffffff;
   color: var(--color-text-primary);
@@ -42,9 +42,9 @@
 }
 
 .chip {
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   padding: 6px 12px;
-  background: rgba(156, 27, 32, 0.08);
+  background: var(--color-curtain-red-008);
   color: var(--color-curtain-red);
   font-weight: 600;
   text-decoration: none;
@@ -57,7 +57,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .chip:hover {
-    background: rgba(156, 27, 32, 0.14);
+    background: var(--color-curtain-red-014);
   }
 }
 
@@ -115,15 +115,9 @@
   width: 14px;
   height: 14px;
   border-radius: 999px;
-  border: 2px solid rgba(156, 27, 32, 0.25);
+  border: 2px solid var(--color-curtain-red-025);
   border-top-color: var(--color-curtain-red);
   animation: spin 0.7s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

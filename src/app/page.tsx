@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 import ROUTES from "@/constants/routes";
 import { getHomePageData } from "@/lib/data/homepage";
 import { SITE_NAME } from "@/lib/seo";
+import { buildShowsQueryString } from "@/utils/showsQuery";
 
 import type { Metadata } from "next";
 
@@ -54,7 +55,7 @@ export default async function Home() {
         kicker="ז'אנר"
         title="דרמות"
         shows={dramas}
-        linkHref={`${ROUTES.SHOWS}?genre=${encodeURIComponent("דרמה")}&genre=${encodeURIComponent("דרמה קומית")}&genre=${encodeURIComponent("רגשי")}`}
+        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: ["דרמה", "דרמה קומית", "רגשי"] })}`}
         linkText="לכל הדרמות"
       />
 
@@ -62,7 +63,7 @@ export default async function Home() {
         kicker="ז'אנר"
         title="קומדיות"
         shows={comedies}
-        linkHref={`${ROUTES.SHOWS}?genre=${encodeURIComponent("קומדיה")}`}
+        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: ["קומדיה"] })}`}
         linkText="לכל הקומדיות"
       />
 
@@ -70,7 +71,7 @@ export default async function Home() {
         kicker="ז'אנר"
         title="מוזיקלי"
         shows={musicals}
-        linkHref={`${ROUTES.SHOWS}?genre=${encodeURIComponent("מוזיקלי")}`}
+        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: ["מוזיקלי"] })}`}
         linkText="לכל המוזיקליים"
       />
 
@@ -78,7 +79,7 @@ export default async function Home() {
         kicker="ז'אנר"
         title="הכי ישראלי"
         shows={israeli}
-        linkHref={`${ROUTES.SHOWS}?genre=${encodeURIComponent("ישראלי")}`}
+        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: ["ישראלי"] })}`}
         linkText="לכל הישראליים"
       />
 
@@ -86,7 +87,7 @@ export default async function Home() {
         title="כתבו ביקורת ועזרו לאחרים לבחור"
         text="כמה דקות של כתיבה יכולות לחסוך לקהל ערב לא מוצלח."
         buttonText="כתיבת ביקורת"
-        href="/reviews/new"
+        href={ROUTES.REVIEWS_NEW}
       />
     </main>
   );

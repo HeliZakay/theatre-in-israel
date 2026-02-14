@@ -4,8 +4,8 @@
 
 .input {
   width: 100%;
-  border-radius: 12px;
-  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-slate-012);
   background: #ffffff;
   padding: 12px 14px;
   font-size: 1rem;
@@ -14,17 +14,17 @@
 }
 
 .inputInvalid {
-  border-color: rgba(156, 27, 32, 0.7);
-  background: rgba(156, 27, 32, 0.04);
+  border-color: var(--color-curtain-red-070);
+  background: var(--color-curtain-red-004);
 }
 
 .input::placeholder {
   font-family: inherit;
-  color: rgba(26, 26, 26, 0.5);
+  color: var(--color-text-placeholder);
 }
 
 .input:focus-visible {
-  outline: 3px solid rgba(156, 27, 32, 0.3);
+  outline: 3px solid var(--color-curtain-red-030);
   outline-offset: 2px;
 }
 
@@ -39,8 +39,8 @@
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
   touch-action: pan-y;
-  border-radius: 12px;
-  border: 1px solid rgba(15, 23, 42, 0.15);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-slate-015);
   background: #ffffff;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18);
   padding: 4px;
@@ -61,7 +61,7 @@
 
 .option:hover,
 .optionActive {
-  background: rgba(156, 27, 32, 0.08);
+  background: var(--color-curtain-red-008);
 }
 
 .optionSelected {
@@ -71,6 +71,6 @@
 .empty {
   padding: 10px 12px;
   font-size: 0.9rem;
-  color: rgba(26, 26, 26, 0.5);
+  color: var(--color-text-placeholder);
   text-align: center;
 }
