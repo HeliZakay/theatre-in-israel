@@ -4,7 +4,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import ROUTES from "@/constants/routes";
-import { GoogleIcon, FacebookIcon } from "@/components/SocialIcons/SocialIcons";
+import { GoogleIcon } from "@/components/SocialIcons/SocialIcons";
 import styles from "../signin/page.module.css";
 
 /* ── component ──────────────────────────────────────── */
@@ -92,15 +92,6 @@ export default function SignUpForm({ callbackUrl }: SignUpFormProps) {
         >
           <GoogleIcon className={styles.socialIcon} />
           הרשמה עם Google
-        </button>
-        <button
-          type="button"
-          className={`${styles.socialBtn} ${styles.facebookBtn}`}
-          onClick={() => signIn("facebook", { callbackUrl })}
-          disabled={isLoading}
-        >
-          <FacebookIcon className={styles.socialIcon} />
-          הרשמה עם Facebook
         </button>
       </div>
 

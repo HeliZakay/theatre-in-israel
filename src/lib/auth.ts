@@ -1,7 +1,6 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import type { NextAuthOptions, Session } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import FacebookProvider from "next-auth/providers/facebook";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
@@ -31,8 +30,6 @@ function envOrWarn(name: string): string {
 
 const googleClientId = envOrWarn("AUTH_GOOGLE_ID");
 const googleClientSecret = envOrWarn("AUTH_GOOGLE_SECRET");
-const facebookClientId = envOrWarn("AUTH_FACEBOOK_ID");
-const facebookClientSecret = envOrWarn("AUTH_FACEBOOK_SECRET");
 
 function getAuthSecret(): string {
   const secret = process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET ?? "";
@@ -64,10 +61,6 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: googleClientId,
       clientSecret: googleClientSecret,
-    }),
-    FacebookProvider({
-      clientId: facebookClientId,
-      clientSecret: facebookClientSecret,
     }),
     CredentialsProvider({
       name: "credentials",

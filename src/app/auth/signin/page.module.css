@@ -157,16 +157,6 @@
   box-shadow: 0 1px 4px rgba(15, 23, 42, 0.12);
 }
 
-.facebookBtn {
-  background: #1877f2;
-  color: #ffffff;
-}
-
-.facebookBtn:hover:not(:disabled) {
-  background: #166fe5;
-  box-shadow: 0 1px 4px rgba(24, 119, 242, 0.35);
-}
-
 .credentialsToggle {
   background: none;
   border: 1px solid rgba(15, 23, 42, 0.15);

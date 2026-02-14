@@ -2,7 +2,7 @@
 
 import { signIn } from "next-auth/react";
 import { useState } from "react";
-import { GoogleIcon, FacebookIcon } from "@/components/SocialIcons/SocialIcons";
+import { GoogleIcon } from "@/components/SocialIcons/SocialIcons";
 import styles from "./page.module.css";
 
 /* ── component ──────────────────────────────────────── */
@@ -53,14 +53,6 @@ export default function SignInButton({ callbackUrl }: SignInButtonProps) {
         >
           <GoogleIcon className={styles.socialIcon} />
           המשך עם Google
-        </button>
-        <button
-          type="button"
-          className={`${styles.socialBtn} ${styles.facebookBtn}`}
-          onClick={() => signIn("facebook", { callbackUrl })}
-        >
-          <FacebookIcon className={styles.socialIcon} />
-          המשך עם Facebook
         </button>
       </div>
 
