@@ -1,12 +1,18 @@
 "use client";
 
+import {
+  useEffect,
+  useOptimistic,
+  useRef,
+  useState,
+  useTransition,
+} from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { useCallback, useOptimistic, useState, useTransition } from "react";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import styles from "./ShowsFilterBar.module.css";
 import { cx } from "@/utils/cx";
 import AppSelect from "@/components/AppSelect/AppSelect";
-import SearchInput from "@/components/SearchInput/SearchInput";
+import { useDebounce } from "@/hooks/useDebounce";
 import { buildShowsQueryString } from "@/utils/showsQuery";
 import type { ShowFilters } from "@/types";
 
@@ -25,7 +31,6 @@ export default function ShowsFilterBar({
   const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
-  const [isSearchPending, setIsSearchPending] = useState(false);
   const [optimisticFilters, setOptimisticFilters] = useOptimistic(
     filters,
     (current, overrides: Partial<ShowFilters>) => ({
@@ -34,11 +39,29 @@ export default function ShowsFilterBar({
       page: 1,
     }),
   );
-  const isUpdating = isPending || isSearchPending;
+  const isUpdating = isPending;
 
-  const handleSearchPendingChange = useCallback((pending: boolean) => {
-    setIsSearchPending(pending);
-  }, []);
+  // --- Search input state (debounced → URL) ---
+  const [searchValue, setSearchValue] = useState(filters.query);
+  const debouncedSearch = useDebounce(searchValue, 350);
+  const lastPushedRef = useRef(filters.query.trim());
+
+  // Sync input when URL changes externally (e.g. "clear filters" link).
+  useEffect(() => {
+    if (filters.query !== lastPushedRef.current) {
+      setSearchValue(filters.query);
+      lastPushedRef.current = filters.query.trim();
+    }
+  }, [filters.query]);
+
+  // Push to URL when the debounced value settles.
+  useEffect(() => {
+    const trimmed = debouncedSearch.trim();
+    if (trimmed === lastPushedRef.current) return;
+    lastPushedRef.current = trimmed;
+    applyFilterUpdate({ query: trimmed });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedSearch]);
 
   // Build a URL that applies the given overrides on top of the current
   // filters, omitting page so any filter change resets to page 1.
@@ -71,11 +94,14 @@ export default function ShowsFilterBar({
         <label className={styles.filterLabel} htmlFor="query">
           חיפוש
         </label>
-        <SearchInput
-          defaultValue={optimisticFilters.query}
-          filters={optimisticFilters}
+        <input
+          id="query"
+          name="query"
+          type="search"
           className={styles.searchInput}
-          onPendingChange={handleSearchPendingChange}
+          placeholder="חפש.י הצגה, תיאטרון או ז'אנר"
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
         />
         <label className={styles.filterLabel} htmlFor="theatre">
           תיאטרון
@@ -111,7 +137,10 @@ export default function ShowsFilterBar({
         <span className={styles.filterLabel}>ז&apos;אנר</span>
         <button
           type="button"
-          className={cx(styles.chip, !optimisticFilters.genres.length && styles.chipActive)}
+          className={cx(
+            styles.chip,
+            !optimisticFilters.genres.length && styles.chipActive,
+          )}
           aria-current={optimisticFilters.genres.length ? undefined : "true"}
           onClick={() => {
             applyFilterUpdate({ genres: [] });

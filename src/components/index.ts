@@ -15,7 +15,6 @@ export { default as RadixDirectionProvider } from "./RadixDirectionProvider/Radi
 export { default as ReviewCard } from "./ReviewCard/ReviewCard";
 export { default as ReviewFormFields } from "./ReviewFormFields/ReviewFormFields";
 export { default as SearchBar } from "./SearchBar/SearchBar";
-export { default as SearchInput } from "./SearchInput/SearchInput";
 export { default as ShowCard } from "./ShowCard/ShowCard";
 export { default as ShowCombobox } from "./ShowCombobox/ShowCombobox";
 export { default as ShowCarousel } from "./ShowCarousel/ShowCarousel";
