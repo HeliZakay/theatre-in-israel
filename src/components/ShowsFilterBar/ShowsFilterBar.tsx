@@ -167,7 +167,7 @@ export default function ShowsFilterBar({
       <div className={styles.status} role="status" aria-live="polite">
         {isUpdating ? (
           <>
-            <span className={styles.spinner} aria-hidden="true" />
+            <span className={styles.spinner} aria-hidden="false" />
             <span>מעדכנים תוצאות...</span>
           </>
         ) : (
