@@ -47,12 +47,15 @@ export default function ShowsFilterBar({
   const lastPushedRef = useRef(filters.query.trim());
 
   // Sync input when URL changes externally (e.g. "clear filters" link).
+  // Skip while our own transition is in-flight — the arriving filters.query
+  // may be from an older navigation and would clobber what the user is typing.
   useEffect(() => {
+    if (isPending) return;
     if (filters.query !== lastPushedRef.current) {
       setSearchValue(filters.query);
       lastPushedRef.current = filters.query.trim();
     }
-  }, [filters.query]);
+  }, [filters.query, isPending]);
 
   // Push to URL when the debounced value settles.
   useEffect(() => {
