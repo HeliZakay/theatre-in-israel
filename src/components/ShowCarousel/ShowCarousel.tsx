@@ -32,10 +32,11 @@ export default function ShowCarousel({ children, label }: ShowCarouselProps) {
 
   useEffect(() => {
     if (!emblaApi) return;
-    onSelect();
+    const timerId = window.setTimeout(onSelect, 0);
     emblaApi.on("select", onSelect);
     emblaApi.on("reInit", onSelect);
     return () => {
+      window.clearTimeout(timerId);
       emblaApi.off("select", onSelect);
       emblaApi.off("reInit", onSelect);
     };

@@ -27,7 +27,9 @@ export default function SearchInput({
 
   // Keep filters in a ref so changes don't re-trigger the navigation effect.
   const filtersRef = useRef(filters);
-  filtersRef.current = filters;
+  useEffect(() => {
+    filtersRef.current = filters;
+  }, [filters]);
 
   // Track the last value we actually navigated to, so we never compare
   // against a potentially stale `defaultValue` prop from the server.

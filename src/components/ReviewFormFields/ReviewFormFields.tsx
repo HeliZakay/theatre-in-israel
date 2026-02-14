@@ -1,7 +1,13 @@
 "use client";
 
 import { Controller } from "react-hook-form";
-import type { Control, UseFormRegister } from "react-hook-form";
+import type {
+  Control,
+  FieldErrors,
+  FieldValues,
+  Path,
+  UseFormRegister,
+} from "react-hook-form";
 import AppSelect from "@/components/AppSelect/AppSelect";
 import {
   REVIEW_TEXT_MAX,
@@ -10,14 +16,13 @@ import {
 import { ratingOptions } from "@/lib/reviewSchemas";
 import styles from "./ReviewFormFields.module.css";
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-interface ReviewFormFieldsProps {
+interface ReviewFormFieldsProps<TFieldValues extends FieldValues> {
   /** react-hook-form register function */
-  register: UseFormRegister<any>;
+  register: UseFormRegister<TFieldValues>;
   /** react-hook-form control object */
-  control: Control<any>;
+  control: Control<TFieldValues>;
   /** Validation errors for the three fields */
-  errors: Record<string, { message?: string } | undefined>;
+  errors: FieldErrors<TFieldValues>;
   /** Current title value (for character counter) */
   titleValue: string;
   /** Current text value (for character counter) */
@@ -27,13 +32,12 @@ interface ReviewFormFieldsProps {
   /** Whether all fields should be disabled */
   disabled?: boolean;
 }
-/* eslint-enable @typescript-eslint/no-explicit-any */
 
 /**
  * Shared title / rating / text fields used by both
  * the create-review and edit-review forms.
  */
-export default function ReviewFormFields({
+export default function ReviewFormFields<TFieldValues extends FieldValues>({
   register,
   control,
   errors,
@@ -41,7 +45,11 @@ export default function ReviewFormFields({
   textValue,
   textRows = 6,
   disabled,
-}: ReviewFormFieldsProps) {
+}: ReviewFormFieldsProps<TFieldValues>) {
+  const titleError = errors.title as { message?: string } | undefined;
+  const ratingError = errors.rating as { message?: string } | undefined;
+  const textError = errors.text as { message?: string } | undefined;
+
   return (
     <>
       <label className={styles.field}>
@@ -50,10 +58,10 @@ export default function ReviewFormFields({
           className={styles.input}
           maxLength={REVIEW_TITLE_MAX}
           disabled={disabled}
-          {...register("title")}
+          {...register("title" as Path<TFieldValues>)}
         />
-        {errors.title ? (
-          <p className={styles.fieldError}>{errors.title.message}</p>
+        {titleError ? (
+          <p className={styles.fieldError}>{titleError.message}</p>
         ) : null}
         <p className={styles.charMeta}>
           {titleValue.length}/{REVIEW_TITLE_MAX}
@@ -63,7 +71,7 @@ export default function ReviewFormFields({
       <label className={styles.field}>
         <span className={styles.label}>דירוג</span>
         <Controller
-          name="rating"
+          name={"rating" as Path<TFieldValues>}
           control={control}
           render={({ field }) => (
             <AppSelect
@@ -80,8 +88,8 @@ export default function ReviewFormFields({
             />
           )}
         />
-        {errors.rating ? (
-          <p className={styles.fieldError}>{errors.rating.message}</p>
+        {ratingError ? (
+          <p className={styles.fieldError}>{ratingError.message}</p>
         ) : null}
       </label>
 
@@ -92,10 +100,10 @@ export default function ReviewFormFields({
           rows={textRows}
           maxLength={REVIEW_TEXT_MAX}
           disabled={disabled}
-          {...register("text")}
+          {...register("text" as Path<TFieldValues>)}
         />
-        {errors.text ? (
-          <p className={styles.fieldError}>{errors.text.message}</p>
+        {textError ? (
+          <p className={styles.fieldError}>{textError.message}</p>
         ) : null}
         <p className={styles.charMeta}>
           {textValue.length}/{REVIEW_TEXT_MAX}

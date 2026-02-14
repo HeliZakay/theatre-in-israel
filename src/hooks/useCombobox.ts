@@ -26,6 +26,7 @@ export function useCombobox({
     const onPointerOutside = (e: PointerEvent) => {
       if (rootRef.current?.contains(e.target as Node)) return;
       setIsOpen(false);
+      setActiveIndex(-1);
     };
 
     // Use pointerdown so it fires for both mouse and touch before any
@@ -46,16 +47,10 @@ export function useCombobox({
       .slice(0, maxItems);
   }, [items, value, maxItems]);
 
-  /* ── keep activeIndex in bounds ── */
-  useEffect(() => {
-    if (!isOpen) {
-      setActiveIndex(-1);
-      return;
-    }
-    if (activeIndex >= filteredItems.length) {
-      setActiveIndex(filteredItems.length ? 0 : -1);
-    }
-  }, [isOpen, filteredItems.length, activeIndex]);
+  const resolvedActiveIndex =
+    isOpen && activeIndex >= 0 && activeIndex < filteredItems.length
+      ? activeIndex
+      : -1;
 
   /* ── keyboard helpers ── */
   const moveActiveIndex = (direction: "up" | "down") => {
@@ -80,15 +75,17 @@ export function useCombobox({
         moveActiveIndex("up");
         break;
       case "Enter":
-        if (!isOpen || activeIndex < 0) break;
+        if (!isOpen || resolvedActiveIndex < 0) break;
         event.preventDefault();
-        onSelect?.(filteredItems[activeIndex]);
+        onSelect?.(filteredItems[resolvedActiveIndex]);
         setIsOpen(false);
+        setActiveIndex(-1);
         break;
       case "Escape":
         if (isOpen) {
           event.preventDefault();
           setIsOpen(false);
+          setActiveIndex(-1);
         }
         break;
       default:
@@ -101,12 +98,13 @@ export function useCombobox({
     (item: string) => {
       onSelect?.(item);
       setIsOpen(false);
+      setActiveIndex(-1);
     },
     [onSelect],
   );
 
   return {
-    activeIndex,
+    activeIndex: resolvedActiveIndex,
     filteredItems,
     handleKeyDown,
     isOpen,
