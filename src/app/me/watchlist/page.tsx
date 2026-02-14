@@ -1,10 +1,10 @@
-import Link from "next/link";
 import ROUTES from "@/constants/routes";
 import { requireAuth } from "@/lib/auth";
 import { getWatchlistShowIds } from "@/lib/watchlist";
 import { fetchShowsByIds } from "@/lib/showHelpers";
 import ShowCard from "@/components/ShowCard/ShowCard";
 import Button from "@/components/Button/Button";
+import BackLink from "@/components/BackLink/BackLink";
 import RemoveFromWatchlistButton from "./RemoveFromWatchlistButton";
 import styles from "./page.module.css";
 
@@ -35,9 +35,7 @@ export default async function MyWatchlistPage() {
         <p className={styles.subtitle}>הצגות ששמרת לצפייה מאוחרת.</p>
       </header>
 
-      <Link className={styles.navLink} href={ROUTES.MY_REVIEWS}>
-        לביקורות שלי ←
-      </Link>
+      <BackLink href={ROUTES.MY_REVIEWS}>לביקורות שלי →</BackLink>
 
       {shows.length ? (
         <section className={styles.grid}>
