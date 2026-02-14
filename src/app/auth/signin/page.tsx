@@ -40,9 +40,15 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
           <p className={styles.notice}>כדי להמשיך, צריך להתחבר קודם לחשבון.</p>
         ) : null}
         <p className={styles.subtitle}>
-          כדי לכתוב ביקורת ולנהל את הביקורות שלך, צריך להתחבר עם חשבון Google.
+          כדי לכתוב ביקורת ולנהל את הביקורות שלך, צריך להתחבר.
         </p>
         <SignInButton callbackUrl={callbackUrl} />
+        <p className={styles.signupPrompt}>
+          עדיין אין לך חשבון?{" "}
+          <Link href={ROUTES.AUTH_SIGNUP} className={styles.signupLink}>
+            הירשם עכשיו
+          </Link>
+        </p>
         <Link className={styles.backLink} href={ROUTES.HOME}>
           חזרה לעמוד הבית
         </Link>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { signIn, signOut } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import styles from "./Header.module.css";
 import ROUTES from "@/constants/routes";
 import Button from "@/components/Button/Button";
@@ -82,22 +82,34 @@ export default function MobileMenu({
             </div>
           </>
         ) : (
-          <button
-            className={styles.authBtn}
-            type="button"
-            onClick={() => {
-              onClose();
-              const safeCallback =
+          <>
+            <Link
+              href={`${ROUTES.AUTH_SIGNIN}?callbackUrl=${encodeURIComponent(
                 pathname &&
-                pathname.startsWith("/") &&
-                !pathname.startsWith("//")
+                  pathname.startsWith("/") &&
+                  !pathname.startsWith("//")
                   ? pathname
-                  : ROUTES.HOME;
-              signIn("google", { callbackUrl: safeCallback });
-            }}
-          >
-            התחברות עם גוגל
-          </button>
+                  : ROUTES.HOME,
+              )}`}
+              className={`${styles.authBtn} ${styles.desktopOnlyAction}`}
+              onClick={onClose}
+            >
+              התחברות
+            </Link>
+            <Link
+              href={`${ROUTES.AUTH_SIGNIN}?callbackUrl=${encodeURIComponent(
+                pathname &&
+                  pathname.startsWith("/") &&
+                  !pathname.startsWith("//")
+                  ? pathname
+                  : ROUTES.HOME,
+              )}`}
+              className={`${styles.navText} ${styles.mobileMenuItem}`}
+              onClick={onClose}
+            >
+              התחברות
+            </Link>
+          </>
         )}
       </div>
     </div>

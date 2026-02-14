@@ -5,6 +5,7 @@ export const ROUTES = {
   REVIEWS_NEW: "/reviews/new",
   API_REVIEWS: "/api/reviews",
   AUTH_SIGNIN: "/auth/signin",
+  AUTH_SIGNUP: "/auth/signup",
   MY_REVIEWS: "/me/reviews",
 } as const;
 

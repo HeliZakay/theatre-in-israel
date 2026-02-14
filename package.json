@@ -31,6 +31,7 @@
     "@radix-ui/react-separator": "^1.1.8",
     "@radix-ui/react-toggle-group": "^1.1.11",
     "@radix-ui/react-visually-hidden": "^1.2.4",
+    "bcryptjs": "^3.0.3",
     "embla-carousel-react": "^8.6.0",
     "leo-profanity": "^1.9.0",
     "next": "16.1.6",
@@ -43,6 +44,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^25.2.3",
     "@types/pg": "^8.16.0",
     "@types/react": "^19.2.14",

@@ -1,10 +1,13 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import type { NextAuthOptions, Session } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import FacebookProvider from "next-auth/providers/facebook";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import prisma from "@/lib/prisma";
 import ROUTES from "@/constants/routes";
+import bcrypt from "bcryptjs";
 
 /** A session that is guaranteed to have a user with an id. */
 export interface AuthenticatedSession extends Session {
@@ -28,6 +31,8 @@ function envOrWarn(name: string): string {
 
 const googleClientId = envOrWarn("AUTH_GOOGLE_ID");
 const googleClientSecret = envOrWarn("AUTH_GOOGLE_SECRET");
+const facebookClientId = envOrWarn("AUTH_FACEBOOK_ID");
+const facebookClientSecret = envOrWarn("AUTH_FACEBOOK_SECRET");
 
 function getAuthSecret(): string {
   const secret = process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET ?? "";
@@ -49,7 +54,7 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   secret: getAuthSecret(),
   session: {
-    strategy: "database",
+    strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   pages: {
@@ -60,13 +65,59 @@ export const authOptions: NextAuthOptions = {
       clientId: googleClientId,
       clientSecret: googleClientSecret,
     }),
+    FacebookProvider({
+      clientId: facebookClientId,
+      clientSecret: facebookClientSecret,
+    }),
+    CredentialsProvider({
+      name: "credentials",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) {
+          throw new Error("Missing credentials");
+        }
+
+        const user = await prisma.user.findUnique({
+          where: { email: credentials.email },
+        });
+
+        if (!user || !user.password) {
+          throw new Error("Invalid credentials");
+        }
+
+        const isPasswordValid = await bcrypt.compare(
+          credentials.password,
+          user.password,
+        );
+
+        if (!isPasswordValid) {
+          throw new Error("Invalid credentials");
+        }
+
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          image: user.image,
+        };
+      },
+    }),
   ],
   callbacks: {
-    session: ({ session, user }) => {
-      if (session.user) {
-        session.user.id = user.id;
+    session: async ({ session, token }) => {
+      if (session.user && token.sub) {
+        session.user.id = token.sub;
       }
       return session;
+    },
+    jwt: async ({ token, user }) => {
+      if (user) {
+        token.sub = user.id;
+      }
+      return token;
     },
   },
 };
@@ -80,7 +131,18 @@ export async function requireAuth(
 ): Promise<AuthenticatedSession> {
   const session = await getServerSession(authOptions);
 
-  if (!session?.user?.id) {
+  if (!session?.user) {
+    redirect(
+      `${ROUTES.AUTH_SIGNIN}?callbackUrl=${encodeURIComponent(callbackUrl)}&reason=auth_required`,
+    );
+  }
+
+  // Fetch the user from DB to ensure they exist
+  const user = await prisma.user.findUnique({
+    where: { id: session.user.id },
+  });
+
+  if (!user) {
     redirect(
       `${ROUTES.AUTH_SIGNIN}?callbackUrl=${encodeURIComponent(callbackUrl)}&reason=auth_required`,
     );
