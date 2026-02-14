@@ -123,7 +123,12 @@ export default function ShowCombobox({
       />
 
       {isOpen && (
-        <ul id={listboxId} role="listbox" className={styles.listbox}>
+        <ul
+          id={listboxId}
+          role="listbox"
+          className={styles.listbox}
+          onMouseDown={(e) => e.preventDefault()}
+        >
           {filteredItems.length === 0 ? (
             <li className={styles.empty}>לא נמצאו תוצאות</li>
           ) : (
