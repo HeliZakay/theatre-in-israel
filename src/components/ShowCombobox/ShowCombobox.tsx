@@ -27,14 +27,10 @@ export default function ShowCombobox({
   ariaDescribedBy,
 }: ShowComboboxProps) {
   const labels = options.map((o) => o.label);
-
-  // Derive the display text from the selected value.
   const selectedLabel = options.find((o) => o.value === value)?.label ?? "";
-
   const [inputValue, setInputValue] = useState(selectedLabel);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Keep display in sync when value changes externally.
   useEffect(() => {
     setInputValue(selectedLabel);
   }, [selectedLabel]);
@@ -53,7 +49,6 @@ export default function ShowCombobox({
   const {
     activeIndex,
     filteredItems,
-    handleBlur: comboboxBlur,
     handleKeyDown,
     isOpen,
     listboxId,
@@ -73,32 +68,36 @@ export default function ShowCombobox({
     const next = e.target.value;
     setInputValue(next);
     setIsOpen(true);
-
-    // If the user clears the input, clear the selection.
     if (!next.trim()) {
       onValueChange?.("");
     }
   };
 
-  const handleFocus = () => {
-    setIsOpen(true);
-  };
+  const handleItemTap = useCallback(
+    (item: string) => (e: React.MouseEvent | React.TouchEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      selectItem(item);
+      inputRef.current?.focus();
+    },
+    [selectItem],
+  );
 
-  const handleItemClick = (item: string) => {
-    selectItem(item);
-  };
-
-  const handleBlurWrapper = (e: React.FocusEvent) => {
-    comboboxBlur(e);
-    // If user typed something that doesn't match, revert to the selected label.
-    if (!options.some((o) => o.label === inputValue)) {
-      setInputValue(selectedLabel);
-    }
-    onBlur?.();
-  };
+  /** Revert text on blur if it doesn't match any option. */
+  const handleBlur = useCallback(
+    (e: React.FocusEvent) => {
+      // Stay open if focus moved within the combobox root.
+      if (rootRef.current?.contains(e.relatedTarget)) return;
+      if (!options.some((o) => o.label === inputValue)) {
+        setInputValue(selectedLabel);
+      }
+      onBlur?.();
+    },
+    [inputValue, options, selectedLabel, onBlur, rootRef],
+  );
 
   return (
-    <div ref={rootRef} className={styles.root} onBlur={handleBlurWrapper}>
+    <div ref={rootRef} className={styles.root} onBlur={handleBlur}>
       <input
         ref={inputRef}
         id={id}
@@ -116,7 +115,7 @@ export default function ShowCombobox({
         placeholder={placeholder}
         value={inputValue}
         onChange={handleInputChange}
-        onFocus={handleFocus}
+        onFocus={() => setIsOpen(true)}
         onKeyDown={handleKeyDown}
         aria-invalid={invalid}
         aria-describedby={ariaDescribedBy}
@@ -143,8 +142,8 @@ export default function ShowCombobox({
                   ]
                     .filter(Boolean)
                     .join(" ")}
-                  onMouseDown={(e) => e.preventDefault()}
-                  onClick={() => handleItemClick(item)}
+                  onTouchEnd={handleItemTap(item)}
+                  onClick={handleItemTap(item)}
                   onMouseEnter={() => setActiveIndex(index)}
                 >
                   {item}

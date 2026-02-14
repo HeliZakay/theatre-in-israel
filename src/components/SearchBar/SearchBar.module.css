@@ -102,6 +102,7 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
+  touch-action: pan-y;
 }
 
 .suggestion {
@@ -113,6 +114,9 @@
   font-size: 0.95rem;
   color: #1f2937;
   cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .suggestion:hover,
