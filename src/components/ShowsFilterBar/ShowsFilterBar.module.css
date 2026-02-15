@@ -31,7 +31,8 @@
   background: #ffffff;
   color: var(--color-text-primary);
   font-weight: 600;
-  min-width: 0;
+  flex: 1 1 auto;
+  min-width: 220px;
 }
 
 .chipRow {
