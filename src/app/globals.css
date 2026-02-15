@@ -90,10 +90,13 @@ textarea:focus-visible {
   }
 }
 
-/* Prevent react-remove-scroll-bar from clobbering the header-offset
-   padding when a Radix Select (or other modal) is open. */
+/* Prevent react-remove-scroll-bar from shifting layout or hiding
+   overflow when a Radix Select dropdown is open. */
 body[data-scroll-locked] {
   padding-top: var(--header-offset) !important;
+  padding-right: 0px !important;
+  overflow: auto !important;
+  margin-right: 0 !important;
 }
 
 @keyframes spin {
