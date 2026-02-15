@@ -91,9 +91,12 @@ textarea:focus-visible {
   }
 }
 
-/* Preserve header-offset padding if scroll-lock is ever applied. */
+/* Neutralise Radix / react-remove-scroll-bar scroll-lock side-effects */
 body[data-scroll-locked] {
   padding-top: var(--header-offset) !important;
+  overflow: auto !important;
+  padding-right: 0px !important;
+  margin-right: 0 !important;
 }
 
 @keyframes spin {
