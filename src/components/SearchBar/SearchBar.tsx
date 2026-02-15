@@ -25,6 +25,9 @@ export default function SearchBar({
   const [value, setValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const isMobile = useMediaQuery(640);
+  const placeholderText = isMobile
+    ? "חפש.י הצגה או ז׳אנר"
+    : "חפש.י הצגה, תיאטרון או ז׳אנר...";
 
   const allItems = useMemo(
     () => [
@@ -89,7 +92,7 @@ export default function SearchBar({
           id="q"
           type="search"
           dir="rtl"
-          placeholder="חפש.י הצגה, תיאטרון או ז'אנר..."
+          placeholder={placeholderText}
           className={styles.searchInput}
           autoComplete="off"
           name="query"
@@ -128,17 +131,12 @@ export default function SearchBar({
                     ? categoryLookup.get(filteredItems[index - 1])
                     : null;
                 const showHeader = cat !== prevCat;
-                const catLabel = CATEGORIES.find(
-                  (c) => c.key === cat,
-                )?.label;
+                const catLabel = CATEGORIES.find((c) => c.key === cat)?.label;
 
                 return (
                   <Fragment key={item}>
                     {showHeader && (
-                      <div
-                        className={styles.groupHeader}
-                        role="presentation"
-                      >
+                      <div className={styles.groupHeader} role="presentation">
                         {catLabel}
                       </div>
                     )}
