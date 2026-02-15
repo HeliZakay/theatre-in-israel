@@ -54,26 +54,24 @@ export default function AppSelect({
         </Select.Icon>
       </Select.Trigger>
 
-      <Select.Portal>
-        <Select.Content
-          className={styles.content}
-          position="popper"
-          sideOffset={4}
-        >
-          <Select.Viewport className={styles.viewport}>
-            {options.map((option) => (
-              <Select.Item
-                key={option.value}
-                value={option.value}
-                className={styles.item}
-                disabled={option.disabled}
-              >
-                <Select.ItemText>{option.label}</Select.ItemText>
-              </Select.Item>
-            ))}
-          </Select.Viewport>
-        </Select.Content>
-      </Select.Portal>
+      <Select.Content
+        className={styles.content}
+        position="popper"
+        sideOffset={4}
+      >
+        <Select.Viewport className={styles.viewport}>
+          {options.map((option) => (
+            <Select.Item
+              key={option.value}
+              value={option.value}
+              className={styles.item}
+              disabled={option.disabled}
+            >
+              <Select.ItemText>{option.label}</Select.ItemText>
+            </Select.Item>
+          ))}
+        </Select.Viewport>
+      </Select.Content>
     </Select.Root>
   );
 }
