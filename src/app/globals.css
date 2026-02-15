@@ -91,17 +91,20 @@ textarea:focus-visible {
   }
 }
 
-/* Neutralise Radix / react-remove-scroll-bar scroll-lock side-effects */
-html[data-scroll-locked],
-body[data-scroll-locked] {
+/* Neutralise Radix / react-remove-scroll-bar scroll-lock side-effects.
+   The library injects a <style> tag at runtime with `!important`, so we need
+   higher specificity (doubled attribute selector) to guarantee our overrides
+   win regardless of source order. */
+html body[data-scroll-locked][data-scroll-locked] {
   overflow: auto !important;
-  padding-right: 0px !important;
-  margin-right: 0 !important;
-  scrollbar-gutter: stable !important;
-}
-
-body[data-scroll-locked] {
+  overscroll-behavior: auto !important;
+  position: static !important;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
   padding-top: var(--header-offset) !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  scrollbar-gutter: stable !important;
 }
 
 @keyframes spin {
