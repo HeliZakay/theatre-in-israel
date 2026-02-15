@@ -38,12 +38,13 @@ if (!globalForPrisma.prisma) {
     });
     globalForPrisma.prisma = new PrismaClient({ adapter });
   } else {
-    // Local / standard PostgreSQL — use the default driver
-    globalForPrisma.prisma = new PrismaClient({
-      datasources: {
-        db: { url: process.env.DATABASE_URL },
-      },
+    // Local / standard PostgreSQL — use the pg driver adapter
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { PrismaPg } = require("@prisma/adapter-pg");
+    const adapter = new PrismaPg({
+      connectionString: process.env.DATABASE_URL,
     });
+    globalForPrisma.prisma = new PrismaClient({ adapter });
   }
 }
 
