@@ -20,9 +20,10 @@ export default function Header() {
   const firstName = fullName.split(/\s+/).filter(Boolean)[0] || "";
   const isWriteReviewPage =
     pathname === ROUTES.REVIEWS_NEW || pathname.endsWith("/review");
-  const isMyAreaPage =
+  const isMyReviewsPage =
     pathname === ROUTES.MY_REVIEWS ||
-    pathname.startsWith(`${ROUTES.MY_REVIEWS}/`) ||
+    pathname.startsWith(`${ROUTES.MY_REVIEWS}/`);
+  const isMyWatchlistPage =
     pathname === ROUTES.MY_WATCHLIST ||
     pathname.startsWith(`${ROUTES.MY_WATCHLIST}/`);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -41,7 +42,8 @@ export default function Header() {
     fullName,
     firstName,
     isWriteReviewPage,
-    isMyAreaPage,
+    isMyReviewsPage,
+    isMyWatchlistPage,
     onClose: closeMenus,
   };
 

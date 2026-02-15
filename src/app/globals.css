@@ -92,11 +92,16 @@ textarea:focus-visible {
 }
 
 /* Neutralise Radix / react-remove-scroll-bar scroll-lock side-effects */
+html[data-scroll-locked],
 body[data-scroll-locked] {
-  padding-top: var(--header-offset) !important;
   overflow: auto !important;
   padding-right: 0px !important;
   margin-right: 0 !important;
+  scrollbar-gutter: stable !important;
+}
+
+body[data-scroll-locked] {
+  padding-top: var(--header-offset) !important;
 }
 
 @keyframes spin {

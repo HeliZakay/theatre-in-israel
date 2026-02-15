@@ -15,7 +15,8 @@ interface MobileMenuProps {
   fullName: string;
   firstName: string;
   isWriteReviewPage: boolean;
-  isMyAreaPage: boolean;
+  isMyReviewsPage: boolean;
+  isMyWatchlistPage: boolean;
   onClose: () => void;
 }
 
@@ -26,7 +27,8 @@ export default function MobileMenu({
   fullName,
   firstName,
   isWriteReviewPage,
-  isMyAreaPage,
+  isMyReviewsPage,
+  isMyWatchlistPage,
   onClose,
 }: MobileMenuProps) {
   return (
@@ -71,9 +73,9 @@ export default function MobileMenu({
                 className={cx(
                   styles.navText,
                   styles.mobileMenuItem,
-                  isMyAreaPage && styles.mobileMenuItemActive,
+                  isMyReviewsPage && styles.mobileMenuItemActive,
                 )}
-                aria-current={isMyAreaPage ? "page" : undefined}
+                aria-current={isMyReviewsPage ? "page" : undefined}
                 onClick={onClose}
               >
                 האזור האישי
@@ -83,9 +85,9 @@ export default function MobileMenu({
                 className={cx(
                   styles.navText,
                   styles.mobileMenuItem,
-                  isMyAreaPage && styles.mobileMenuItemActive,
+                  isMyWatchlistPage && styles.mobileMenuItemActive,
                 )}
-                aria-current={isMyAreaPage ? "page" : undefined}
+                aria-current={isMyWatchlistPage ? "page" : undefined}
                 onClick={onClose}
               >
                 רשימת הצפייה שלי
