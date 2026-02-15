@@ -90,6 +90,12 @@ textarea:focus-visible {
   }
 }
 
+/* Prevent react-remove-scroll-bar from clobbering the header-offset
+   padding when a Radix Select (or other modal) is open. */
+body[data-scroll-locked] {
+  padding-top: var(--header-offset) !important;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
