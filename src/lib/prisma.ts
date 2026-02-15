@@ -39,7 +39,11 @@ if (!globalForPrisma.prisma) {
     globalForPrisma.prisma = new PrismaClient({ adapter });
   } else {
     // Local / standard PostgreSQL — use the default driver
-    globalForPrisma.prisma = new PrismaClient();
+    globalForPrisma.prisma = new PrismaClient({
+      datasources: {
+        db: { url: process.env.DATABASE_URL },
+      },
+    });
   }
 }
 

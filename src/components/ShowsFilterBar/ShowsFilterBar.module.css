@@ -147,6 +147,10 @@
     width: 100%;
   }
 
+  .searchInput::placeholder {
+    font-size: 0.82rem;
+  }
+
   .status {
     font-size: 0.85rem;
   }

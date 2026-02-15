@@ -102,7 +102,7 @@ export default function ShowsFilterBar({
           name="query"
           type="search"
           className={styles.searchInput}
-          placeholder="חפש.י הצגה, תיאטרון או ז'אנר"
+          placeholder="חפש.י הצגה, תיאטרון או ז׳אנר"
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
         />
