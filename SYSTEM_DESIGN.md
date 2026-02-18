@@ -13,7 +13,7 @@ graph TB
 
     subgraph NextServer["Next.js Server (Node.js 20)"]
         MW["Middleware\nCSRF Origin Check\n(all /api/* mutations)"]
-        
+
         subgraph APIRoutes["API Routes"]
             AUTH_API["/api/auth/*\nNextAuth + Signup"]
             REV_API["/api/reviews\nPOST - PATCH - DELETE"]
@@ -80,19 +80,19 @@ graph TB
 
 ## Component Summary
 
-| Component | Technology | Role |
-|-----------|-----------|------|
-| **Client** | React 19 + Next.js App Router | SSR pages + interactive client components |
-| **Server** | Next.js 16 on Node.js 20 | Renders pages (SSR/ISR), hosts API routes, runs middleware |
-| **Data Layer** | `src/lib/data/` | Server-side data-fetching functions consumed by page components |
-| **Service Layer** | `src/lib/` | Business logic for reviews, watchlist, auth |
-| **API Routes** | 7 endpoints under `src/app/api/` | REST-style mutations (reviews CRUD, watchlist CRUD, auth) |
-| **Auth** | NextAuth v4 (JWT sessions) | Google OAuth + credentials provider; Prisma adapter |
-| **ORM** | Prisma 7 with driver adapters | Auto-selects Neon serverless adapter or standard pg |
-| **Database** | PostgreSQL (Neon) | 7 models: User, Show, Review, Watchlist, Genre, ShowGenre, Account/Session |
-| **Middleware** | `src/middleware.ts` | CSRF protection on all `/api/*` mutating requests |
-| **Rate Limiter** | `src/utils/reviewRateLimit.ts` | DB-based (create: 3/hr) + in-memory Map (edit/delete: 10/hr) |
-| **Cache** | Next.js ISR + `React.cache()` | No external cache — ISR for home/show detail; force-dynamic for filtered lists |
+| Component         | Technology                       | Role                                                                           |
+| ----------------- | -------------------------------- | ------------------------------------------------------------------------------ |
+| **Client**        | React 19 + Next.js App Router    | SSR pages + interactive client components                                      |
+| **Server**        | Next.js 16 on Node.js 20         | Renders pages (SSR/ISR), hosts API routes, runs middleware                     |
+| **Data Layer**    | `src/lib/data/`                  | Server-side data-fetching functions consumed by page components                |
+| **Service Layer** | `src/lib/`                       | Business logic for reviews, watchlist, auth                                    |
+| **API Routes**    | 7 endpoints under `src/app/api/` | REST-style mutations (reviews CRUD, watchlist CRUD, auth)                      |
+| **Auth**          | NextAuth v4 (JWT sessions)       | Google OAuth + credentials provider; Prisma adapter                            |
+| **ORM**           | Prisma 7 with driver adapters    | Auto-selects Neon serverless adapter or standard pg                            |
+| **Database**      | PostgreSQL (Neon)                | 7 models: User, Show, Review, Watchlist, Genre, ShowGenre, Account/Session     |
+| **Middleware**    | `src/middleware.ts`              | CSRF protection on all `/api/*` mutating requests                              |
+| **Rate Limiter**  | `src/utils/reviewRateLimit.ts`   | DB-based (create: 3/hr) + in-memory Map (edit/delete: 10/hr)                   |
+| **Cache**         | Next.js ISR + `React.cache()`    | No external cache — ISR for home/show detail; force-dynamic for filtered lists |
 
 ## Data Flow
 
@@ -161,12 +161,12 @@ erDiagram
 
 ## Scaling Improvements
 
-| Area | Current State | Recommendation |
-|------|--------------|----------------|
-| **Caching** | No external cache; ISR only on a few pages | Add **Redis** (Upstash) for API response caching, session storage, and shared rate-limit backend |
-| **Rate Limiting** | Edit/delete uses in-memory `Map` — resets on redeploy, per-instance | Move to **Redis-backed rate limiting** (`@upstash/ratelimit`) |
-| **Database** | Direct queries for every filtered/paginated request | Add a **read replica** for heavy reads and/or CDN-level caching |
-| **Search** | DB `LIKE` queries via URL params | Introduce **full-text search** (Postgres `tsvector` or Meilisearch/Algolia) |
-| **Images** | Static images in `/public` | Offload to **CDN/image service** (Cloudinary, Imgix) for responsive sizing + format conversion |
-| **Background Jobs** | Profanity filtering runs synchronously | Add a **message queue** (Inngest, QStash) for async moderation |
-| **Observability** | No logging/tracing infrastructure | Add **structured logging** (Pino) + **tracing** (OpenTelemetry) + **error tracking** (Sentry) |
+| Area                | Current State                                                       | Recommendation                                                                                   |
+| ------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| **Caching**         | No external cache; ISR only on a few pages                          | Add **Redis** (Upstash) for API response caching, session storage, and shared rate-limit backend |
+| **Rate Limiting**   | Edit/delete uses in-memory `Map` — resets on redeploy, per-instance | Move to **Redis-backed rate limiting** (`@upstash/ratelimit`)                                    |
+| **Database**        | Direct queries for every filtered/paginated request                 | Add a **read replica** for heavy reads and/or CDN-level caching                                  |
+| **Search**          | DB `LIKE` queries via URL params                                    | Introduce **full-text search** (Postgres `tsvector` or Meilisearch/Algolia)                      |
+| **Images**          | Static images in `/public`                                          | Offload to **CDN/image service** (Cloudinary, Imgix) for responsive sizing + format conversion   |
+| **Background Jobs** | Profanity filtering runs synchronously                              | Add a **message queue** (Inngest, QStash) for async moderation                                   |
+| **Observability**   | No logging/tracing infrastructure                                   | Add **structured logging** (Pino) + **tracing** (OpenTelemetry) + **error tracking** (Sentry)    |
