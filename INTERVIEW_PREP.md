@@ -413,4 +413,284 @@ globalThis.prisma = globalThis.prisma || new PrismaClient()
 > - **API:** הוצאת middleware משותף לauth + rate-limit, helpers לprofanity ו-validation
 > - **ניקיון:** מחיקת dead code, unification של cx(), מעבר מ-`comment` ל-`text` בreview
 
+---
+
+# חלק ג׳: סיפור אתגר — Server vs Client Component Boundary
+
+_הסיפור הזה בנוי בפורמט STAR — מציג בעיה, חשיבה, פתרון ותוצאה. תרגלו אותו בקול רם._
+
+---
+
+## הקונטקסט
+
+באפליקציה יש דפי הצגה שמציגים רשימת ביקורות. כל ביקורת יכולה להיות ארוכה, אז יש מנגנון "קרא עוד / קרא פחות" שמקצר את הטקסט ל-3 שורות.
+
+בגרסה הראשונה, ה-`ReviewCard` היה **Client Component** — הוא השתמש ב-`useState` בוליאני (`isExpanded`) ו-`onClick` handler כדי לעשות toggle על הטקסט.
+
+**מה הבעיה?**
+
+Client Component אומר שכל ה-JavaScript של הקומפוננטה נשלח לדפדפן, ואז עובר **hydration** — React צריך "להחיות" את ה-HTML שהגיע מהשרת ולחבר אליו event listeners. בדף הצגה אחד יכולים להיות 10, 20 ביקורות — כל אחד מהם שולח JS ועובר hydration, רק בשביל toggle פשוט.
+
+---
+
+## מה רציתי להשיג
+
+רציתי לשמור על אותה חוויית משתמש — קיצור טקסט עם "קרא עוד/פחות" — אבל בלי לשלם את המחיר של Client Component. השאלה הייתה: **האם ה-interactivity הזו באמת דורשת React state?**
+
+---
+
+## מה עשיתי
+
+גיליתי שב-HTML יש אלמנט מובנה בשם `<details>/<summary>` שעושה בדיוק expand/collapse — בלי שורה אחת של JavaScript. הדפדפן מנהל את ה-state לבד.
+
+**המימוש:**
+
+1. הסרתי את `"use client"` מהקומפוננטה
+2. החלפתי את ה-`useState` + `onClick` ב-`<details>/<summary>` של HTML
+3. הטקסט המקוצר יושב בתוך `<summary>` עם CSS line-clamp של 3 שורות
+4. כשהמשתמש לוחץ, `<details>` נפתח — וב-CSS אני מזהה את המצב `[open]` ומבטל את ה-line-clamp
+5. גם הטקסט של הכפתור ("קרא עוד" ↔ "קרא פחות") מוחלף **רק ב-CSS** — דרך `data-*` attributes ו-`::after` עם `content: attr(data-closed)` / `content: attr(data-open)`
+
+**למה לא להשאיר Client?**
+
+בדף בודד זה לא נורא. אבל הפאטרן חשוב: כל Client Component שאפשר להמיר ל-Server חוסך JavaScript bundle, hydration time, ו-double rendering. כשיש רשימה של 20 ביקורות, זה מצטבר.
+
+---
+
+## התוצאה
+
+**אפס JavaScript** לכל כרטיסי הביקורות. הקומפוננטה מרונדרת על השרת, מגיעה כ-HTML מוכן, ולא שולחת שום קוד לדפדפן. אותה חוויית משתמש, ביצועים טובים יותר.
+
+ותיעדתי את ההחלטה ב-CSS עצמו — הוספתי קומנט `/* Server-component expand/collapse via <details> */` — כדי שמי שקורא את הקוד בעתיד יבין למה זה בנוי ככה.
+
+---
+
+## הפאטרן הרחב יותר
+
+ה-`ReviewCard` הוא דוגמה לעיקרון רחב יותר בפרויקט: **Client Component רק כשמוכרחים**. מתוך 28 קומפוננטות, רק 12 הן Client — וכל אחת עם הצדקה ברורה:
+
+- **`WatchlistButton`** — חייב state אופטימיסטי + fetch mutations
+- **`ShowCarousel`** — ספריית Embla צריכה DOM refs ו-event subscriptions
+- **`ShowsFilterBar`** — `useOptimistic` של React 19 + `useTransition` לניווט
+- **`ReviewForm`** — react-hook-form עם Zod validation
+- **`Header`** — session state, mobile menu, Radix Dialog
+
+לעומת זאת, קומפוננטות כמו `ShowCard`, `Pagination`, `Card`, `Tag` — הן Server כי הן pure render. גם `ShowsContent` הוא Server Component שמרכיב בתוכו ילדים Client — הוא מביא את הנתונים בשרת ומעביר אותם כ-props.
+
+---
+
+## שאלות המשך צפויות ותשובות
+
+**ש: מה ה-trade-off? יש חיסרון ל-`<details>/<summary>`?**
+
+> כן — קצת פחות שליטה באנימציות. עם React state הייתי יכול להוסיף transition חלק על הגובה. עם `<details>` זה מידי. בחרתי ביצועים על אנימציה כי ה-UX הוא תוכן — אנשים רוצים לקרוא ביקורות, לא לראות אנימציות.
+
+**ש: מה קורה עם SEO? הטקסט המוסתר מאונדקס?**
+
+> כן — `<details>` שומר את ה-HTML ב-DOM גם כשהוא סגור. גוגל מאנדקס את כל הטקסט. עם Client Component + conditional render, היה סיכון שגוגל לא יראה את הטקסט המלא.
+
+**ש: איך קובעים מה Server ומה Client כשמתחילים קומפוננטה חדשה?**
+
+> ברירת מחדל — Server. אני שואל: "האם הקומפוננטה הזו צריכה `useState`, `useEffect`, event handler, או browser API?" אם כן — Client. אם לא — Server. ואם רק חלק קטן צריך interactivity, אני שומר את ההורה כ-Server ושם רק את החלק האינטראקטיבי ב-Client — כמו שהדף `shows/[id]/page.tsx` הוא Server שמכיל `WatchlistButton` (Client) בתוכו.
+
+---
+
+# חלק ד׳: שיפור עתידי — Caching בשכבת הנתונים
+
+_כשישאלו "מה היית משפר?" — זה נושא מעולה כי הוא מראה הבנה של איפה יש בזבוז ואיך לפתור את זה בצורה מדורגת._
+
+---
+
+## הבעיה הנוכחית — כל בקשה הולכת ישירות ל-DB
+
+בפרויקט יש caching **ברמת הדף** (ISR עם `revalidate = 120` בעמוד הבית ודפי הצגה), אבל **שכבת הנתונים עצמה לא שומרת כלום בcache**. מה זה אומר בפועל:
+
+**1. API routes — תמיד פונים ל-DB:**
+
+```
+משתמש פותח "הביקורות שלי" → GET /api/me/reviews → שאילתת Prisma → DB
+משתמש מרענן את הדף → GET /api/me/reviews → שאילתת Prisma → DB   (שוב!)
+```
+
+כל GET ל-`/api/me/reviews` ול-`/api/watchlist` עושה שאילתת DB מחדש — גם אם כלום לא השתנה מאז הפעם הקודמת.
+
+**2. עמוד הבית — 6 שאילתות כל 2 דקות:**
+ISR שומר את ה-HTML, אבל כשעוברות 120 שניות ומישהו מבקש את הדף — Next.js בונה אותו מחדש. זה מריץ **6 שאילתות DB במקביל** (featured, top-rated, דרמות, קומדיות, מחזמרים, ישראליות). רוב הנתונים האלה כמעט לא משתנים — הצגה חדשה מתווספת אולי פעם בשבוע.
+
+**3. אותו מידע נשלף כמה פעמים:**
+הרשימות של תיאטראות וז׳אנרים (ל-dropdowns בדף `/shows`) נשלפות מה-DB **בכל בקשה** — למרות שהן כמעט סטטיות.
+
+**בקיצור:** הDB עובד הרבה יותר ממה שצריך. כל פניה = חיבור + שאילתה + CPU בשרת DB. עם traffic גבוה, זה הופך לצוואר בקבוק.
+
+---
+
+## הפתרון: `unstable_cache` של Next.js
+
+Next.js מספק כלי מובנה בשם `unstable_cache` (מ-`next/cache`) שעושה דבר פשוט: **שומר את התוצאה של פונקציה, ובפעם הבאה שקוראים לה — מחזיר את התשובה השמורה במקום לרוץ שוב.**
+
+הרעיון דומה ל-ISR, אבל **ברמת הפונקציה** ולא ברמת הדף. ובנוסף — אפשר לקבוע **תגיות (tags)** שמאפשרות למחוק cache ספציפי כשהנתונים משתנים.
+
+**איך זה עובד — דוגמה פשוטה:**
+
+```typescript
+import { unstable_cache } from "next/cache";
+
+// לפני — כל קריאה הולכת ל-DB
+async function getReviewsByUser(userId: string) {
+  return prisma.review.findMany({ where: { userId } });
+}
+
+// אחרי — התוצאה נשמרת ל-60 שניות
+const getCachedReviewsByUser = unstable_cache(
+  async (userId: string) => {
+    return prisma.review.findMany({ where: { userId } });
+  },
+  ["user-reviews"], // מפתח ייחודי ל-cache
+  {
+    tags: ["reviews"], // תגית — לinvalidation
+    revalidate: 60, // כל 60 שניות לכל היותר
+  },
+);
+```
+
+**מה קורה עכשיו:**
+
+```
+קריאה ראשונה  → DB → שומר בcache → מחזיר תשובה
+קריאה שנייה   → cache hit!      → מחזיר תשובה מיד (בלי DB)
+קריאה אחרי 60 שניות → DB → מעדכן cache → מחזיר תשובה
+```
+
+---
+
+## מה הייתי מוסיף cache — שלושה מקומות
+
+### מקום 1: נתונים סטטיים — רשימות תיאטראות וז׳אנרים
+
+ב-`src/lib/data/showsList.ts`, כל פעם שמשתמש נכנס לדף `/shows`, הפונקציה `getFilterOptions()` שואלת את ה-DB מה הם כל התיאטראות וכל הז׳אנרים הקיימים (כדי להציג אותם ב-dropdowns). אבל הרשימה הזו כמעט לא משתנה — תיאטרון חדש נוסף אולי פעם בחודש.
+
+```typescript
+const getCachedFilterOptions = unstable_cache(
+  getFilterOptions,
+  ["filter-options"],
+  {
+    tags: ["shows"],
+    revalidate: 3600, // שעה — הנתונים כמעט לא משתנים
+  },
+);
+```
+
+**החיסכון:** מעבר מ-2 שאילתות DB בכל כניסה לדף, ל-2 שאילתות בשעה.
+
+### מקום 2: עמוד הבית — 6 שאילתות שרובן יציבות
+
+ב-`src/lib/data/homepage.ts`, ההצגה הנבחרת (featured), דרמות מובילות, קומדיות מובילות — אלה רשימות שמשתנות רק כשמישהו מוסיף ביקורת חדשה. אפשר לשמור אותן בcache עם תגית `"reviews"`:
+
+```typescript
+const getCachedHomePageData = unstable_cache(
+  getHomePageData,
+  ["homepage-data"],
+  {
+    tags: ["reviews", "shows"],
+    revalidate: 300, // 5 דקות
+  },
+);
+```
+
+**החיסכון:** במקום 6 שאילתות כל 2 דקות (בגלל ISR), 6 שאילתות כל 5 דקות — ובינתיים הcache משרת מיד.
+
+### מקום 3: Watchlist status — בדף הצגה בודדת
+
+כשמשתמש מחובר נכנס לדף הצגה (`/shows/[id]`), הקוד בודק "האם ההצגה הזו ברשימת הצפייה שלי?" — שאילתת DB פשוטה שמחזירה true/false. אם המשתמש גולש בין כמה הצגות, כל אחת גורמת לשאילתה.
+
+```typescript
+const getCachedIsInWatchlist = unstable_cache(
+  isShowInWatchlist,
+  ["watchlist-check"],
+  {
+    tags: ["watchlist"],
+    revalidate: 60,
+  },
+);
+```
+
+---
+
+## החלק הכי חשוב — Invalidation (ניקוי cache כשנתונים משתנים)
+
+Cache בלי invalidation = מידע לא עדכני. הכלי הוא `revalidateTag()` מ-`next/cache`:
+
+```typescript
+import { revalidateTag } from "next/cache";
+```
+
+**מתי לקרוא ל-`revalidateTag`:**
+
+| פעולה של המשתמש       | מה קורה                                     | איזה cache ננקה              |
+| --------------------- | ------------------------------------------- | ---------------------------- |
+| כותב ביקורת חדשה      | `POST /api/reviews` → אחרי שמירה ב-DB       | `revalidateTag("reviews")`   |
+| עורך ביקורת           | `PATCH /api/reviews/[id]` → אחרי עדכון ב-DB | `revalidateTag("reviews")`   |
+| מוחק ביקורת           | `DELETE /api/reviews/[id]` → אחרי מחיקה     | `revalidateTag("reviews")`   |
+| מוסיף הצגה לwatchlist | `POST /api/watchlist` → אחרי שמירה          | `revalidateTag("watchlist")` |
+| מסיר הצגה מwatchlist  | `DELETE /api/watchlist/[showId]`            | `revalidateTag("watchlist")` |
+
+**דוגמה בAPI route:**
+
+```typescript
+// src/app/api/reviews/route.ts — POST (יצירת ביקורת)
+
+// ... validation, rate limiting, שמירה ב-DB ...
+await prisma.review.create({ data: reviewData });
+
+// ← שורה אחת חדשה — מנקה את כל ה-caches שתויגו "reviews"
+revalidateTag("reviews");
+
+return NextResponse.json({ success: true });
+```
+
+**מה קורה ברגע שקוראים `revalidateTag("reviews")`:**
+Next.js מסמן את **כל** ה-cached results שיש להם את התגית `"reviews"` כלא-תקפים. בפעם הבאה שמישהו מבקש אותם — הם ירוצו מחדש ויישמרו מחדש. זה כולל את נתוני עמוד הבית ואת הביקורות של המשתמש.
+
+---
+
+## למה זה שיפור טוב לדבר עליו בראיון
+
+**1. לא צריך תלות חיצונית** — `unstable_cache` ו-`revalidateTag` הם חלק מ-Next.js. לא צריך Redis, לא צריך שירות נוסף.
+
+**2. שינוי מינימלי בקוד** — עוטפים פונקציה קיימת ב-`unstable_cache`, מוסיפים שורת `revalidateTag` בAPI routes. לא צריך לשכתב שום דבר.
+
+**3. מראה חשיבה על trade-offs:**
+
+|                   | ללא cache (היום)     | עם cache                                                 |
+| ----------------- | -------------------- | -------------------------------------------------------- |
+| **עדכניות**       | תמיד עדכני           | עד 60 שניות lag (סביר לאתר תוכן)                         |
+| **עומס על DB**    | שאילתה בכל בקשה      | שאילתה רק כשcache פג/נמחק                                |
+| **מורכבות**       | פשוט — שאילתה ותשובה | צריך לחשוב: "מתי לנקות cache?"                           |
+| **סיכון**         | אין — תמיד מה-DB     | cache stale = מידע ישן (אבל `revalidateTag` ממזער את זה) |
+| **תלויות נוספות** | אין                  | אין — מנגנון מובנה של Next.js                            |
+
+---
+
+## שאלות המשך צפויות ותשובות
+
+**ש: למה `unstable_cache` ולא סתם ISR?**
+
+> ISR שומר את **הדף השלם** ב-cache. `unstable_cache` שומר את **תוצאת הפונקציה**. ההבדל חשוב: שני דפים שונים יכולים לקרוא לאותה פונקציה cached. למשל, אם נתוני עמוד הבית ודף הצגה בודדת שניהם צריכים ביקורות — הcache משותף. ובנוסף, `revalidateTag` נותן שליטה מדויקת — אפשר לנקות רק cache של ביקורות בלי לפגוע בcache של הצגות.
+
+**ש: מהו `unstable_cache`? למה הוא "unstable"?**
+
+> זו פונקציה של Next.js שנמצאת בתהליך התייצבות — ה-API עלול להשתנות בגרסאות עתידיות, אבל הפונקציונליות עובדת ויציבה. Next.js משתמשים בה ב-production. השם "unstable" מתייחס ליציבות ה-API, לא ליציבות הביצועים.
+
+**ש: מה קורה אם שכחת לקרוא `revalidateTag` אחרי mutation?**
+
+> המשתמש יראה מידע ישן — עד שה-`revalidate` time יעבור (למשל 60 שניות). זה הסיכון העיקרי. לכן חשוב שה-invalidation יהיה צמוד ל-mutation — באותו API route, מיד אחרי השמירה ל-DB.
+
+**ש: למה לא Redis ל-caching?**
+
+> Redis מוסיף שירות חיצוני, env vars, ותלות שיכולה ליפול. `unstable_cache` מובנה ב-Next.js ועובד בלי שום הגדרה נוספת. לפרויקט בגודל הזה, הכלי המובנה מספיק. Redis שווה כשצריך cache שמשותף בין servers שונים של Next.js, או כשצריך שליטה גרנולרית יותר (TTL פר-key, eviction policies).
+
+**איך לומר את זה בראיון:**
+
+> "היום, כל פנייה ל-API routes הולכת ישירות ל-DB — גם אם הנתונים לא השתנו. אם היה לי עוד זמן, הייתי עוטף את פונקציות הdata ב-`unstable_cache` של Next.js עם תגיות. למשל, נתוני עמוד הבית מתויגים `reviews` — וכשמשתמש כותב ביקורת, קורא `revalidateTag('reviews')` ב-API route. כך הDB עובד רק כשבאמת צריך, בלי להוסיף תלויות חיצוניות."
+
 </div>

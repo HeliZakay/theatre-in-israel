@@ -71,6 +71,7 @@ async function seedShows(shows, genreMap) {
         theatre: show.theatre,
         durationMinutes: show.durationMinutes,
         summary: show.summary,
+        description: show.description ?? null,
         genres: {
           deleteMany: {},
           create: genreCreates,
@@ -86,6 +87,7 @@ async function seedShows(shows, genreMap) {
         theatre: show.theatre,
         durationMinutes: show.durationMinutes,
         summary: show.summary,
+        description: show.description ?? null,
         genres: {
           create: genreCreates,
         },

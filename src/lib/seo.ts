@@ -71,7 +71,7 @@ export function buildCreativeWorkJsonLd(
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     name: show.title,
-    description: show.summary,
+    description: show.description ?? show.summary,
     inLanguage: "he-IL",
     image: toAbsoluteUrl(getShowImagePath(show.title)),
     genre: show.genre,

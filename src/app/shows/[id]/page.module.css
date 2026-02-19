@@ -99,6 +99,19 @@
   line-height: 1.7;
 }
 
+.aboutSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 720px;
+}
+
+.aboutText {
+  color: rgba(26, 26, 26, 0.75);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
 .genreRow {
   display: flex;
   flex-wrap: wrap;

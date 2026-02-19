@@ -18,6 +18,7 @@ model Show {
   theatre         String
   durationMinutes Int
   summary         String
+  description     String?
   genres          ShowGenre[]
   reviews         Review[]
   watchlist       Watchlist[]

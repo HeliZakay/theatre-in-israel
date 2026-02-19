@@ -28,6 +28,7 @@ export interface Show {
   theatre: string;
   durationMinutes: number;
   summary: string;
+  description: string | null;
   genre: string[];
   reviews: Review[];
 }
