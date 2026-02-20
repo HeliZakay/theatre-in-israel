@@ -17,7 +17,7 @@ function titleToSlug(title) {
     .replace(/^-|-$/g, "");
 }
 
-// All 26 shows with found image URLs (Cameri #31 השותפה has no image on their site)
+// All 40 shows with found image URLs (Cameri #31 השותפה has no image on their site)
 const SHOWS = [
   // Direct URLs from initial research
   {
@@ -130,6 +130,64 @@ const SHOWS = [
     title: "רומי + ג\u05F3ולייט",
     url: "https://www.habima.co.il/wp-content/uploads/2024/09/345X465-copy-1.jpg",
   },
+
+  // Beit Lessin shows
+  {
+    title: "בחורים טובים",
+    url: "https://www.lessin.co.il/wp-content/uploads/2024/12/GoodGuys-1500x1000-2.jpg",
+  },
+  {
+    title: "לילה ברומא",
+    url: "https://www.lessin.co.il/wp-content/uploads/2024/08/Night-in-Rome-1920X700.jpg",
+  },
+  {
+    title: "בין קודש לחולון",
+    url: "https://www.lessin.co.il/wp-content/uploads/2023/08/Kodesh-1500x700-1.jpg",
+  },
+  {
+    title: "אמדאוס",
+    url: "https://www.lessin.co.il/wp-content/uploads/2025/09/Amadeus-1900_950.jpg",
+  },
+  {
+    title: "דתילונים",
+    url: "https://www.lessin.co.il/wp-content/uploads/2024/03/Datilonim-1500x1000-2.jpg",
+  },
+  {
+    title: "קרנפים",
+    url: "https://www.lessin.co.il/wp-content/uploads/2025/04/Rhinoceros-1900_950-1.jpg",
+  },
+  {
+    title: "אפס ביחסי אנוש",
+    url: "https://www.lessin.co.il/wp-content/uploads/2019/07/DSC4938-1.jpg",
+  },
+  {
+    title: "אור לגויים",
+    url: "https://www.lessin.co.il/wp-content/uploads/2025/07/1900x950OR.jpg",
+  },
+  {
+    title: "הכל אודות איב",
+    url: "https://www.lessin.co.il/wp-content/uploads/2024/12/%D7%94%D7%9B%D7%9C-%D7%90%D7%95%D7%93%D7%95%D7%AA-%D7%90%D7%99%D7%91-2.jpg",
+  },
+  {
+    title: "קיר זכוכית",
+    url: "https://www.lessin.co.il/wp-content/uploads/2025/12/%D7%A7%D7%99%D7%A8-%D7%96%D7%9B%D7%95%D7%9B%D7%99%D7%AA-GlassWall-1900_950.jpg",
+  },
+  {
+    title: "אף מילה לאמא",
+    url: "https://www.lessin.co.il/wp-content/uploads/2025/10/1900x950-%D7%97.jpg",
+  },
+  {
+    title: "חנאל ומכבית",
+    url: "https://www.lessin.co.il/wp-content/uploads/2025/12/HM-1900_950.jpg",
+  },
+  {
+    title: "מלכת היופי של ירושלים",
+    url: "https://www.lessin.co.il/wp-content/uploads/2025/02/%D7%9E%D7%9C%D7%9B%D7%AA-%D7%9B%D7%A8%D7%9E%D7%9C-1950.jpg",
+  },
+  {
+    title: "משחקים בחצר האחורית",
+    url: "https://www.lessin.co.il/wp-content/uploads/2021/08/backyard-squ_sit-copy-e1630595012964.jpg",
+  },
 ];
 
 async function downloadAndConvert(show) {
@@ -139,7 +197,13 @@ async function downloadAndConvert(show) {
   console.log(`⏳ ${show.title} → ${slug}.webp`);
 
   try {
-    const res = await fetch(show.url);
+    const headers = {};
+    if (show.url.includes("lessin.co.il")) {
+      headers["User-Agent"] =
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
+      headers["Referer"] = "https://www.lessin.co.il/";
+    }
+    const res = await fetch(show.url, { headers });
     if (!res.ok) {
       console.error(`   ❌ HTTP ${res.status} for ${show.url}`);
       return false;
