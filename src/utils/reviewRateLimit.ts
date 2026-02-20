@@ -2,7 +2,7 @@ import prisma from "@/lib/prisma";
 
 // Rate limit configuration
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour in milliseconds
-const MAX_REVIEWS_PER_WINDOW = 3; // Maximum 3 reviews per hour
+const MAX_REVIEWS_PER_WINDOW = 10; // Maximum 10 reviews per hour
 const MAX_EDITS_PER_WINDOW = 10; // Maximum 10 edits/deletes per hour
 
 // In-memory store for edit/delete rate limiting
