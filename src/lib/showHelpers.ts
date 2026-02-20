@@ -5,7 +5,7 @@ import type { Show, EnrichedShow } from "@/types";
 
 /** Standard Prisma include clause for fetching full show data. */
 export const showInclude = {
-  genres: { include: { genre: true } },
+  genres: { include: { genre: true }, orderBy: { order: "asc" as const } },
   reviews: { orderBy: { date: "desc" as const } },
 } as const;
 
@@ -28,10 +28,11 @@ export function normalizeShow(
   return {
     ...rest,
     genre: genres?.map((sg) => sg.genre.name) ?? [],
-    reviews: reviews?.map((r) => ({
-      ...r,
-      date: r.date instanceof Date ? r.date.toISOString() : String(r.date),
-    })) ?? [],
+    reviews:
+      reviews?.map((r) => ({
+        ...r,
+        date: r.date instanceof Date ? r.date.toISOString() : String(r.date),
+      })) ?? [],
   } as Show;
 }
 

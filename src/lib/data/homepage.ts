@@ -48,19 +48,19 @@ async function getTopRated(): Promise<EnrichedShow[]> {
 }
 
 /**
- * Fetch shows matching any of the given genre names, sorted by average
- * rating at the DB level and limited to `limit` results.
+ * Fetch shows whose **first** (principal) genre matches any of the given
+ * names, sorted by average rating and limited to `limit` results.
  */
 async function getShowsByGenres(
   genreNames: string[],
   limit = 5,
 ): Promise<EnrichedShow[]> {
-  // Sort + limit at the DB level using raw SQL.
+  // Only match the principal genre (order = 0).
   const topIds = await prisma.$queryRaw<{ id: number }[]>(
     Prisma.sql`
       SELECT s.id
       FROM "Show" s
-      JOIN "ShowGenre" sg ON sg."showId" = s.id
+      JOIN "ShowGenre" sg ON sg."showId" = s.id AND sg."order" = 0
       JOIN "Genre" g ON g.id = sg."genreId"
       LEFT JOIN "Review" r ON r."showId" = s.id
       WHERE g.name = ANY(${genreNames})

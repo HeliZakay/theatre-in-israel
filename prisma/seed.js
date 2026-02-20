@@ -44,8 +44,9 @@ function buildShowGenreCreates(show, genreMap) {
   return (show.genre ?? [])
     .map((name) => genreMap.get(name))
     .filter(Boolean)
-    .map((genreId) => ({
+    .map((genreId, index) => ({
       genre: { connect: { id: genreId } },
+      order: index,
     }));
 }
 
