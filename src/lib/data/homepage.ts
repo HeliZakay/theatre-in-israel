@@ -40,8 +40,7 @@ async function getTopRated(): Promise<EnrichedShow[]> {
     FROM "Show" s
     LEFT JOIN "Review" r ON r."showId" = s.id
     GROUP BY s.id
-    HAVING COUNT(r.id) > 0
-    ORDER BY AVG(r.rating) DESC
+    ORDER BY AVG(r.rating) DESC NULLS LAST
     LIMIT 10
   `;
 
@@ -66,8 +65,7 @@ async function getShowsByGenres(
       LEFT JOIN "Review" r ON r."showId" = s.id
       WHERE g.name = ANY(${genreNames})
       GROUP BY s.id
-      HAVING COUNT(r.id) > 0
-      ORDER BY AVG(r.rating) DESC
+      ORDER BY AVG(r.rating) DESC NULLS LAST
       LIMIT ${limit}
     `,
   );
