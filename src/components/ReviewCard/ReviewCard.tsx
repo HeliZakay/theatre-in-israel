@@ -26,6 +26,7 @@ export default function ReviewCard({ review }: ReviewCardProps) {
         </div>
         <span className={styles.rating}>★{review.rating}</span>
       </div>
+      {review.title && <h3 className={styles.title}>{review.title}</h3>}
       {shouldTruncate ? (
         <details className={styles.details}>
           <summary className={styles.readMoreBtn}>

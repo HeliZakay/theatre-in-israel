@@ -42,6 +42,13 @@
   color: var(--color-curtain-red);
 }
 
+.title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
 .text {
   color: var(--color-text-primary);
   line-height: 1.6;
