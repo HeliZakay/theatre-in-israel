@@ -55,12 +55,11 @@ async function getShowsByGenres(
   genreNames: string[],
   limit = 5,
 ): Promise<EnrichedShow[]> {
-  // Only match the principal genre (order = 0).
   const topIds = await prisma.$queryRaw<{ id: number }[]>(
     Prisma.sql`
       SELECT s.id
       FROM "Show" s
-      JOIN "ShowGenre" sg ON sg."showId" = s.id AND sg."order" = 0
+      JOIN "ShowGenre" sg ON sg."showId" = s.id
       JOIN "Genre" g ON g.id = sg."genreId"
       LEFT JOIN "Review" r ON r."showId" = s.id
       WHERE g.name = ANY(${genreNames})

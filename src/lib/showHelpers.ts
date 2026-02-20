@@ -5,7 +5,7 @@ import type { Show, EnrichedShow } from "@/types";
 
 /** Standard Prisma include clause for fetching full show data. */
 export const showInclude = {
-  genres: { include: { genre: true }, orderBy: { order: "asc" as const } },
+  genres: { include: { genre: true } },
   reviews: { orderBy: { date: "desc" as const } },
 } as const;
 
