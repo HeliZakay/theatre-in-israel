@@ -60,11 +60,19 @@ export default function ShowsSection({
                     ))}
                   </div>
                   <div className={styles.rating}>
-                    {(show.avgRating ?? 0).toFixed(1)}
-                    <span className={styles.star}>★</span>
+                    {show.avgRating !== null ? (
+                      <>
+                        {show.avgRating.toFixed(1)}
+                        <span className={styles.star}>★</span>
+                      </>
+                    ) : (
+                      <span className={styles.noRating}>טרם דורג</span>
+                    )}
                   </div>
                   <p className={styles.reviewCount}>
-                    {show.reviews.length} ביקורות
+                    {show.reviewCount > 0
+                      ? `${show.reviewCount} ביקורות`
+                      : "אין ביקורות עדיין"}
                   </p>
                 </div>
               </Card>

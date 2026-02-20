@@ -78,6 +78,12 @@
   font-size: 1rem;
 }
 
+.noRating {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: rgba(26, 26, 26, 0.5);
+}
+
 .reviewCount {
   font-size: 0.9rem;
   color: rgba(26, 26, 26, 0.6);
