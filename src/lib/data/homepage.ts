@@ -94,9 +94,9 @@ export async function getHomePageData(): Promise<HomePageData> {
   ] = await Promise.allSettled([
     getSuggestions(),
     getTopRated(),
-    getShowsByGenres(["דרמה", "דרמה קומית", "רגשי"], 10),
-    getShowsByGenres(["קומדיה", "קומדיות"], 10),
-    getShowsByGenres(["מוזיקלי"], 10),
+    getShowsByGenres(["דרמה", "דרמה קומית", "מרגש"], 10),
+    getShowsByGenres(["קומדיה", "קומדיה שחורה", "סאטירה"], 10),
+    getShowsByGenres(["מוזיקלי", "מחזמר"], 10),
     getShowsByGenres(["ישראלי"], 10),
   ]);
 

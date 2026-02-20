@@ -55,7 +55,7 @@ export default async function Home() {
         kicker="ז'אנר"
         title="דרמות"
         shows={dramas}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: ["דרמה", "דרמה קומית", "רגשי"] })}`}
+        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: ["דרמה", "דרמה קומית", "מרגש"] })}`}
         linkText="לכל הדרמות"
       />
 
@@ -63,7 +63,7 @@ export default async function Home() {
         kicker="ז'אנר"
         title="קומדיות"
         shows={comedies}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: ["קומדיה"] })}`}
+        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: ["קומדיה", "קומדיה שחורה", "סאטירה"] })}`}
         linkText="לכל הקומדיות"
       />
 
@@ -71,7 +71,7 @@ export default async function Home() {
         kicker="ז'אנר"
         title="מוזיקלי"
         shows={musicals}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: ["מוזיקלי"] })}`}
+        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: ["מוזיקלי", "מחזמר"] })}`}
         linkText="לכל המוזיקליים"
       />
 
