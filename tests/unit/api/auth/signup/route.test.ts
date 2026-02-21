@@ -2,7 +2,6 @@ jest.mock("@/lib/prisma", () => ({
   __esModule: true,
   default: {
     user: {
-      findUnique: jest.fn(),
       create: jest.fn(),
     },
   },
@@ -10,6 +9,10 @@ jest.mock("@/lib/prisma", () => ({
 
 jest.mock("bcryptjs", () => ({
   hash: jest.fn().mockResolvedValue("hashed-password"),
+}));
+
+jest.mock("@/utils/authRateLimit", () => ({
+  checkSignupRateLimit: jest.fn().mockResolvedValue({ isLimited: false }),
 }));
 
 jest.mock("next/server", () => ({
@@ -26,13 +29,15 @@ import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 
 function createMockRequest(body: any) {
-  return { json: jest.fn().mockResolvedValue(body) } as any;
+  return {
+    json: jest.fn().mockResolvedValue(body),
+    headers: new Headers({ "x-forwarded-for": "127.0.0.1" }),
+  } as any;
 }
 
 describe("POST /api/auth/signup", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    (prisma.user.findUnique as jest.Mock).mockResolvedValue(null);
     (prisma.user.create as jest.Mock).mockResolvedValue({
       id: "new-user-id",
       email: "test@test.com",
@@ -41,7 +46,7 @@ describe("POST /api/auth/signup", () => {
   });
 
   it("returns 400 for invalid email", async () => {
-    const req = createMockRequest({ email: "invalid", password: "123456" });
+    const req = createMockRequest({ email: "invalid", password: "12345678" });
     const res = await POST(req);
     expect(res.status).toBe(400);
     const data = await res.json();
@@ -64,30 +69,31 @@ describe("POST /api/auth/signup", () => {
     expect(data.error).toBeDefined();
   });
 
-  it("returns 400 if user already exists", async () => {
-    (prisma.user.findUnique as jest.Mock).mockResolvedValue({
-      id: "existing-id",
-      email: "test@test.com",
-    });
+  it("returns 400 if user already exists (P2002)", async () => {
+    const prismaError = new Error("Unique constraint failed") as Error & {
+      code: string;
+    };
+    prismaError.code = "P2002";
+    (prisma.user.create as jest.Mock).mockRejectedValue(prismaError);
     const req = createMockRequest({
       email: "test@test.com",
-      password: "123456",
+      password: "12345678",
     });
     const res = await POST(req);
     expect(res.status).toBe(400);
     const data = await res.json();
-    expect(data.error).toBe("משתמש עם אימייל זה כבר קיים");
+    expect(data.error).toBe("לא ניתן ליצור חשבון עם פרטים אלו");
   });
 
   it("creates user successfully", async () => {
     const req = createMockRequest({
       email: "test@test.com",
-      password: "123456",
+      password: "12345678",
       name: "Test User",
     });
     const res = await POST(req);
     expect(res.status).toBe(201);
-    expect(bcrypt.hash).toHaveBeenCalledWith("123456", 10);
+    expect(bcrypt.hash).toHaveBeenCalledWith("12345678", 12);
     expect(prisma.user.create).toHaveBeenCalledWith({
       data: {
         email: "test@test.com",
@@ -100,7 +106,7 @@ describe("POST /api/auth/signup", () => {
   it("returns user data without password", async () => {
     const req = createMockRequest({
       email: "test@test.com",
-      password: "123456",
+      password: "12345678",
       name: "Test User",
     });
     const res = await POST(req);
@@ -121,7 +127,7 @@ describe("POST /api/auth/signup", () => {
     });
     const req = createMockRequest({
       email: "test@test.com",
-      password: "123456",
+      password: "12345678",
     });
     const res = await POST(req);
     expect(res.status).toBe(201);
@@ -134,7 +140,7 @@ describe("POST /api/auth/signup", () => {
     (prisma.user.create as jest.Mock).mockRejectedValue(new Error("DB error"));
     const req = createMockRequest({
       email: "test@test.com",
-      password: "123456",
+      password: "12345678",
       name: "Test User",
     });
     const res = await POST(req);

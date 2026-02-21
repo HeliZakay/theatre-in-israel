@@ -9,10 +9,14 @@ import {
   INTERNAL_ERROR_MESSAGE,
 } from "@/utils/apiResponse";
 import { toPositiveInt } from "@/utils/parseId";
+import { checkWatchlistRateLimit } from "@/utils/watchlistRateLimit";
 
 export async function POST(request: NextRequest) {
   try {
-    const auth = await requireApiAuth("יש להתחבר כדי לנהל רשימת צפייה");
+    const auth = await requireApiAuth("יש להתחבר כדי לנהל רשימת צפייה", {
+      check: checkWatchlistRateLimit,
+      message: () => "יותר מדי פעולות ברשימת הצפייה. נסו שוב מאוחר יותר",
+    });
     if (auth.error) return auth.error;
     const { session } = auth;
 

@@ -33,8 +33,8 @@ export default function SignUpForm({ callbackUrl }: SignUpFormProps) {
       return;
     }
 
-    if (formData.password.length < 6) {
-      setError("הסיסמה חייבת להכיל לפחות 6 תווים");
+    if (formData.password.length < 8) {
+      setError("הסיסמה חייבת להכיל לפחות 8 תווים");
       return;
     }
 

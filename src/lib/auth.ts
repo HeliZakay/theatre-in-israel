@@ -7,6 +7,8 @@ import { getServerSession } from "next-auth";
 import prisma from "@/lib/prisma";
 import ROUTES from "@/constants/routes";
 import bcrypt from "bcryptjs";
+import { headers } from "next/headers";
+import { checkLoginRateLimit } from "@/utils/authRateLimit";
 
 /** A session that is guaranteed to have a user with an id. */
 export interface AuthenticatedSession extends Session {
@@ -71,6 +73,16 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
           throw new Error("Missing credentials");
+        }
+
+        // Get IP for rate limiting
+        const headersList = await headers();
+        const ip =
+          headersList.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+          "unknown";
+        const rateLimit = await checkLoginRateLimit(ip);
+        if (rateLimit.isLimited) {
+          throw new Error("יותר מדי ניסיונות התחברות. נסו שוב מאוחר יותר.");
         }
 
         const user = await prisma.user.findUnique({

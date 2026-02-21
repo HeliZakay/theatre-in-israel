@@ -1,12 +1,10 @@
 import prisma from "@/lib/prisma";
+import { checkRateLimit } from "@/utils/rateLimit";
 
 // Rate limit configuration
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour in milliseconds
 const MAX_REVIEWS_PER_WINDOW = 10; // Maximum 10 reviews per hour
 const MAX_EDITS_PER_WINDOW = 10; // Maximum 10 edits/deletes per hour
-
-// In-memory store for edit/delete rate limiting
-const editDeleteAttempts = new Map<string, number[]>();
 
 /**
  * Check if user has exceeded the rate limit for creating reviews
@@ -53,30 +51,22 @@ export async function checkReviewRateLimit(
 
 /**
  * Check if user has exceeded the rate limit for editing/deleting reviews.
- * Uses an in-memory sliding window (resets on server restart).
+ * Uses a DB-backed sliding window via the shared rate-limit utility.
  */
-export function checkEditDeleteRateLimit(userId: string): {
+export async function checkEditDeleteRateLimit(userId: string): Promise<{
   isLimited: boolean;
   remainingTime?: number;
-} {
-  const now = Date.now();
-  const windowStart = now - RATE_LIMIT_WINDOW_MS;
+}> {
+  const result = await checkRateLimit(
+    `user:${userId}`,
+    "editDelete",
+    MAX_EDITS_PER_WINDOW,
+    RATE_LIMIT_WINDOW_MS,
+  );
 
-  const attempts = editDeleteAttempts.get(userId) ?? [];
-  // Remove expired entries
-  const recent = attempts.filter((t) => t > windowStart);
-
-  if (recent.length >= MAX_EDITS_PER_WINDOW) {
-    const oldest = recent[0];
-    const resetTime = oldest + RATE_LIMIT_WINDOW_MS;
-    const remainingMs = resetTime - now;
-    const remainingMinutes = Math.ceil(remainingMs / (60 * 1000));
-
-    editDeleteAttempts.set(userId, recent);
-    return { isLimited: true, remainingTime: remainingMinutes };
+  if (!result.allowed) {
+    return { isLimited: true, remainingTime: 60 };
   }
 
-  recent.push(now);
-  editDeleteAttempts.set(userId, recent);
   return { isLimited: false };
 }

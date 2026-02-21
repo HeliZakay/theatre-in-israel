@@ -3,64 +3,55 @@ jest.mock("@/lib/prisma", () => ({
   default: {},
 }));
 
+jest.mock("@/utils/rateLimit");
+
 import { checkEditDeleteRateLimit } from "@/utils/reviewRateLimit";
+import { checkRateLimit } from "@/utils/rateLimit";
+
+const mockCheckRateLimit = checkRateLimit as jest.MockedFunction<
+  typeof checkRateLimit
+>;
 
 describe("checkEditDeleteRateLimit", () => {
   beforeEach(() => {
-    jest.useFakeTimers();
+    jest.clearAllMocks();
   });
 
-  afterEach(() => {
-    jest.useRealTimers();
-  });
+  it("returns isLimited: false when allowed", async () => {
+    mockCheckRateLimit.mockResolvedValue({
+      allowed: true,
+      remainingAttempts: 9,
+    });
 
-  it("returns isLimited: false on first call", () => {
-    const result = checkEditDeleteRateLimit("user-first-call");
+    const result = await checkEditDeleteRateLimit("user-123");
     expect(result.isLimited).toBe(false);
+    expect(result.remainingTime).toBeUndefined();
   });
 
-  it("returns isLimited: false when under limit", () => {
-    const userId = "user-under-limit";
-    for (let i = 0; i < 7; i++) {
-      const result = checkEditDeleteRateLimit(userId);
-      expect(result.isLimited).toBe(false);
-    }
-  });
+  it("returns isLimited: true with remainingTime when not allowed", async () => {
+    mockCheckRateLimit.mockResolvedValue({
+      allowed: false,
+      remainingAttempts: 0,
+    });
 
-  it("returns isLimited: true after 10 calls within the window", () => {
-    const userId = "user-at-limit";
-    for (let i = 0; i < 10; i++) {
-      checkEditDeleteRateLimit(userId);
-    }
-    const result = checkEditDeleteRateLimit(userId);
+    const result = await checkEditDeleteRateLimit("user-123");
     expect(result.isLimited).toBe(true);
+    expect(result.remainingTime).toBe(60);
   });
 
-  it("includes remainingTime when limited", () => {
-    const userId = "user-remaining-time";
-    for (let i = 0; i < 10; i++) {
-      checkEditDeleteRateLimit(userId);
-    }
-    const result = checkEditDeleteRateLimit(userId);
-    expect(result.isLimited).toBe(true);
-    expect(result.remainingTime).toBeDefined();
-    expect(typeof result.remainingTime).toBe("number");
-    expect(result.remainingTime).toBeGreaterThan(0);
-  });
+  it("calls checkRateLimit with correct arguments", async () => {
+    mockCheckRateLimit.mockResolvedValue({
+      allowed: true,
+      remainingAttempts: 9,
+    });
 
-  it("resets after window expires", () => {
-    const userId = "user-window-reset";
-    for (let i = 0; i < 10; i++) {
-      checkEditDeleteRateLimit(userId);
-    }
+    await checkEditDeleteRateLimit("user-456");
 
-    const limited = checkEditDeleteRateLimit(userId);
-    expect(limited.isLimited).toBe(true);
-
-    // Advance past the 1-hour window
-    jest.advanceTimersByTime(60 * 60 * 1000 + 1);
-
-    const result = checkEditDeleteRateLimit(userId);
-    expect(result.isLimited).toBe(false);
+    expect(mockCheckRateLimit).toHaveBeenCalledWith(
+      "user:user-456",
+      "editDelete",
+      10, // MAX_EDITS_PER_WINDOW
+      60 * 60 * 1000, // 1 hour in ms
+    );
   });
 });

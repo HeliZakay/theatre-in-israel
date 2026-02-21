@@ -121,3 +121,12 @@ model Watchlist {
   @@index([userId])
   @@index([showId])
 }
+
+model RateLimitAttempt {
+  id        Int      @id @default(autoincrement())
+  key       String
+  action    String
+  createdAt DateTime @default(now())
+
+  @@index([key, action, createdAt])
+}
