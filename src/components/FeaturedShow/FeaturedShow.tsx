@@ -5,6 +5,7 @@ import FallbackImage from "@/components/FallbackImage/FallbackImage";
 
 interface FeaturedShowProps {
   title: string;
+  theatre?: string;
   imageSrc: string;
   imageAlt?: string;
   tags?: string[];
@@ -17,6 +18,7 @@ interface FeaturedShowProps {
 
 export default function FeaturedShow({
   title,
+  theatre,
   imageSrc,
   imageAlt,
   tags = [],
@@ -50,6 +52,7 @@ export default function FeaturedShow({
           <div className={styles.mediaShade} aria-hidden />
           <div className={styles.mediaOverlay}>
             <h3 className={styles.showTitle}>{title}</h3>
+            {theatre && <p className={styles.theatre}>{theatre}</p>}
             <div className={styles.tagRow}>
               {tags.map((tag) => (
                 <span key={tag} className={styles.tag}>
@@ -64,6 +67,7 @@ export default function FeaturedShow({
       <div className={styles.body}>
         <Separator.Root className={styles.separator} />
         <h3 className={styles.mobileTitle}>{title}</h3>
+        {theatre && <p className={styles.theatre}>{theatre}</p>}
         <div className={styles.mobileTags}>
           {tags.map((tag) => (
             <span key={tag} className={styles.tag}>

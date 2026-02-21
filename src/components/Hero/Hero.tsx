@@ -42,6 +42,7 @@ export default function Hero({
           <div className={styles.left}>
             <FeaturedShow
               title={featuredShow.title}
+              theatre={featuredShow.theatre}
               imageSrc={getShowImagePath(featuredShow.title)}
               tags={featuredTags}
               quote={featuredQuote ?? ""}

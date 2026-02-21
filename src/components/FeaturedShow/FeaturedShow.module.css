@@ -80,6 +80,14 @@
   margin-top: 2px;
 }
 
+.theatre {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
 .ratingRow {
   display: flex;
   align-items: center;

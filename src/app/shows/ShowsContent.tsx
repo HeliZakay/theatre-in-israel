@@ -54,8 +54,8 @@ export default function ShowsContent({
               </Link>
             </>
           ) : (
-            <span className={styles.filterPlaceholder} aria-hidden="true">
-              מסונן לפי:
+            <span className={styles.filterCount}>
+              {filters.total ?? shows.length} הצגות
             </span>
           )}
         </div>
