@@ -94,7 +94,7 @@ async function getFilteredSortedIds(
     LEFT JOIN "Review" r ON r."showId" = s.id
     WHERE s.id = ANY(${ids})
     GROUP BY s.id
-    ORDER BY COALESCE(AVG(r.rating), 0) ${sortDirection}
+    ORDER BY COALESCE(AVG(r.rating), 0) ${sortDirection}, s.id ASC
     LIMIT ${take} OFFSET ${skip}
     `,
   );
@@ -140,6 +140,7 @@ export async function getShowsForList(
     const rawShows = await prisma.show.findMany({
       where,
       include: showInclude,
+      orderBy: { id: "asc" },
       skip,
       take: perPage,
     });
