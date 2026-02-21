@@ -27,6 +27,8 @@ function makeShow(overrides: Partial<Show> = {}): Show {
     id: 1,
     title: "Test Show",
     theatre: "Test Theatre",
+    durationMinutes: 90,
+    summary: "A test show",
     genre: ["drama"],
     reviews: [],
     description: null,
