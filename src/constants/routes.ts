@@ -9,6 +9,7 @@ export const ROUTES = {
   MY_REVIEWS: "/me/reviews",
   MY_WATCHLIST: "/me/watchlist",
   API_WATCHLIST: "/api/watchlist",
+  CONTACT: "/contact",
 } as const;
 
 export type Routes = typeof ROUTES;

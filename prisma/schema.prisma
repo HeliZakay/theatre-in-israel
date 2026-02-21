@@ -122,6 +122,14 @@ model Watchlist {
   @@index([showId])
 }
 
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}
+
 model RateLimitAttempt {
   id        Int      @id @default(autoincrement())
   key       String

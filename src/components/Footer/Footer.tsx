@@ -40,7 +40,7 @@ export default function Footer() {
             <h3 className={styles.columnTitle}>צור קשר</h3>
             <ul className={styles.linkList}>
               <li>
-                <a href="mailto:helizakay1@gmail.com">helizakay1@gmail.com</a>
+                <Link href={ROUTES.CONTACT}>שלחו לנו הודעה</Link>
               </li>
             </ul>
           </div>
