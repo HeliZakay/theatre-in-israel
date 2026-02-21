@@ -14,13 +14,18 @@ export async function checkRateLimit(
 ): Promise<{ allowed: boolean; remainingAttempts: number }> {
   const windowStart = new Date(Date.now() - windowMs);
 
-  // Clean up expired entries lazily (don't await — fire and forget)
+  // Clean up expired entries for this key, plus stale entries older than 24h across all keys
   prisma.rateLimitAttempt
     .deleteMany({
-      where: { key, action, createdAt: { lt: windowStart } },
+      where: {
+        OR: [
+          { key, action, createdAt: { lt: windowStart } },
+          { createdAt: { lt: new Date(Date.now() - 24 * 60 * 60 * 1000) } },
+        ],
+      },
     })
-    .catch(() => {
-      // Ignore cleanup errors
+    .catch((err) => {
+      console.error("Rate limit cleanup failed:", err);
     });
 
   const count = await prisma.rateLimitAttempt.count({

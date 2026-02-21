@@ -93,7 +93,7 @@ model ShowGenre {
 
 model Review {
   id        Int       @id @default(autoincrement())
-  show      Show      @relation(fields: [showId], references: [id], onDelete: Cascade)
+  show      Show      @relation(fields: [showId], references: [id], onDelete: Restrict)
   showId    Int
   user      User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
   userId    String?
@@ -113,7 +113,7 @@ model Review {
 model Watchlist {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
-  show      Show     @relation(fields: [showId], references: [id], onDelete: Cascade)
+  show      Show     @relation(fields: [showId], references: [id], onDelete: Restrict)
   showId    Int
   createdAt DateTime @default(now())
 

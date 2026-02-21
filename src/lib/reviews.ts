@@ -104,31 +104,33 @@ export async function updateReviewByOwner(
   userId: string,
   review: ReviewUpdateInput,
 ): Promise<OwnedReview | null> {
-  const existing = await prisma.review.findFirst({
-    where: { id: reviewId, userId },
-    select: { id: true },
-  });
+  return prisma.$transaction(async (tx) => {
+    const existing = await tx.review.findFirst({
+      where: { id: reviewId, userId },
+      select: { id: true },
+    });
 
-  if (!existing) return null;
+    if (!existing) return null;
 
-  const updated = await prisma.review.update({
-    where: { id: reviewId },
-    data: {
-      title: review.title ?? null,
-      text: review.text,
-      rating: review.rating,
-    },
-    include: {
-      show: {
-        select: {
-          id: true,
-          title: true,
+    const updated = await tx.review.update({
+      where: { id: reviewId },
+      data: {
+        title: review.title ?? null,
+        text: review.text,
+        rating: review.rating,
+      },
+      include: {
+        show: {
+          select: {
+            id: true,
+            title: true,
+          },
         },
       },
-    },
-  });
+    });
 
-  return updated;
+    return updated;
+  });
 }
 
 export async function deleteReviewByOwner(

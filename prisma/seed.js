@@ -1,4 +1,13 @@
 require("dotenv/config");
+
+// Prevent accidental seed execution against production database
+if (process.env.NODE_ENV === "production") {
+  console.error(
+    "ERROR: Seed script cannot run in production (NODE_ENV=production)",
+  );
+  process.exit(1);
+}
+
 const fs = require("fs");
 const path = require("path");
 const { Pool } = require("pg");
@@ -76,10 +85,7 @@ async function seedShows(shows, genreMap) {
           deleteMany: {},
           create: genreCreates,
         },
-        reviews: {
-          deleteMany: {},
-          create: reviews,
-        },
+        // Do NOT touch reviews on update — preserve user-created reviews
       },
       create: {
         id: show.id,
