@@ -19,12 +19,14 @@ import type { ShowFilters } from "@/types";
 interface ShowsFilterBarProps {
   theatres: string[];
   allGenres: string[];
+  availableGenres: string[];
   filters: ShowFilters;
 }
 
 export default function ShowsFilterBar({
   theatres,
   allGenres,
+  availableGenres,
   filters,
 }: ShowsFilterBarProps) {
   const ALL_THEATRES_VALUE = "__all_theatres__";
@@ -157,11 +159,19 @@ export default function ShowsFilterBar({
           onValueChange={(genres) => applyFilterUpdate({ genres })}
           className={styles.chipGroup}
         >
-          {allGenres.map((genre) => (
-            <ToggleGroup.Item key={genre} value={genre} className={styles.chip}>
-              {genre}
-            </ToggleGroup.Item>
-          ))}
+          {allGenres.map((genre) => {
+            const isAvailable = availableGenres.includes(genre);
+            return (
+              <ToggleGroup.Item
+                key={genre}
+                value={genre}
+                className={cx(styles.chip, !isAvailable && styles.chipDisabled)}
+                disabled={!isAvailable}
+              >
+                {genre}
+              </ToggleGroup.Item>
+            );
+          })}
         </ToggleGroup.Root>
       </div>
       <div className={styles.status} role="status" aria-live="polite">

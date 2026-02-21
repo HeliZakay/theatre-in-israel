@@ -10,6 +10,7 @@ interface ShowsContentProps {
   shows: EnrichedShow[];
   theatres: string[];
   genres: string[];
+  availableGenres: string[];
   filters: ShowFilters;
 }
 
@@ -17,6 +18,7 @@ export default function ShowsContent({
   shows,
   theatres,
   genres,
+  availableGenres,
   filters,
 }: ShowsContentProps) {
   return (
@@ -27,6 +29,7 @@ export default function ShowsContent({
         <ShowsFilterBar
           theatres={theatres}
           allGenres={genres}
+          availableGenres={availableGenres}
           filters={filters}
         />
         <div className={styles.filterRow}>

@@ -95,6 +95,13 @@
   color: #ffffff;
 }
 
+.chipDisabled,
+.chip[data-disabled] {
+  opacity: 0.35;
+  cursor: default;
+  pointer-events: none;
+}
+
 .filterLabel {
   font-weight: 600;
 }

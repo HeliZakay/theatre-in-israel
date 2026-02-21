@@ -9,6 +9,7 @@ export interface ShowsListData {
   shows: EnrichedShow[];
   theatres: string[];
   genres: string[];
+  availableGenres: string[];
   filters: ShowFilters;
 }
 
@@ -149,24 +150,42 @@ export async function getShowsForList(
   }
 
   // Get distinct theatres and genres for filter dropdowns.
-  const [theatreRecords, genreRecords] = await Promise.all([
-    prisma.show.findMany({
-      select: { theatre: true },
-      distinct: ["theatre"],
-      orderBy: { theatre: "asc" },
-    }),
-    prisma.genre.findMany({
-      orderBy: { name: "asc" },
-    }),
-  ]);
+  const baseWhere = buildWhereClause({
+    theatre: filters.theatre,
+    query: filters.query,
+    genres: [],
+  });
+  const hasBaseFilter = Object.keys(baseWhere).length > 0;
+
+  const [theatreRecords, genreRecords, availableGenreRecords] =
+    await Promise.all([
+      prisma.show.findMany({
+        select: { theatre: true },
+        distinct: ["theatre"],
+        orderBy: { theatre: "asc" },
+      }),
+      prisma.genre.findMany({
+        orderBy: { name: "asc" },
+      }),
+      hasBaseFilter
+        ? prisma.genre.findMany({
+            where: { shows: { some: { show: baseWhere } } },
+            orderBy: { name: "asc" },
+          })
+        : null,
+    ]);
 
   const theatres = theatreRecords.map((t) => t.theatre).filter(Boolean);
   const genres = genreRecords.map((g) => g.name).filter(Boolean);
+  const availableGenres = availableGenreRecords
+    ? availableGenreRecords.map((g) => g.name).filter(Boolean)
+    : genres;
 
   return {
     shows,
     theatres,
     genres,
+    availableGenres,
     filters: { ...filters, page: clampedPage, perPage, total, totalPages },
   };
 }

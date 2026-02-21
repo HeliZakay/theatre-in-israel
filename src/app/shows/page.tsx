@@ -79,7 +79,7 @@ export async function generateMetadata({
 
 export default async function ShowsPage({ searchParams }: ShowsPageProps) {
   const resolvedSearchParams = await searchParams;
-  const { shows, theatres, genres, filters } =
+  const { shows, theatres, genres, availableGenres, filters } =
     await getShowsForList(resolvedSearchParams);
   const seo = buildShowsSeo(resolvedSearchParams);
 
@@ -134,6 +134,7 @@ export default async function ShowsPage({ searchParams }: ShowsPageProps) {
         shows={shows}
         theatres={theatres}
         genres={genres}
+        availableGenres={availableGenres}
         filters={filters}
       />
     </main>
