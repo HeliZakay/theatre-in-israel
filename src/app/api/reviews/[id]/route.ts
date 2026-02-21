@@ -1,5 +1,7 @@
 import { NextRequest } from "next/server";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { deleteReviewByOwner, updateReviewByOwner } from "@/lib/reviews";
+import prisma from "@/lib/prisma";
 import { updateReviewSchema, formatZodErrors } from "@/lib/reviewSchemas";
 import { checkFieldsForProfanity } from "@/utils/profanityFilter";
 import { checkEditDeleteRateLimit } from "@/utils/reviewRateLimit";
@@ -22,8 +24,7 @@ export async function PATCH(
   try {
     const auth = await requireApiAuth("יש להתחבר כדי לערוך ביקורת", {
       check: checkEditDeleteRateLimit,
-      message: (t) =>
-        `ביצעת יותר מדי עריכות לאחרונה. נסה שוב בעוד ${t} דקות.`,
+      message: (t) => `ביצעת יותר מדי עריכות לאחרונה. נסה שוב בעוד ${t} דקות.`,
     });
     if (auth.error) return auth.error;
     const { session } = auth;
@@ -63,6 +64,12 @@ export async function PATCH(
       return apiError("הביקורת לא נמצאה", 404);
     }
 
+    revalidatePath(`/shows/${updated.showId}`);
+    revalidatePath("/shows");
+    revalidatePath("/");
+    revalidateTag("homepage", "max");
+    revalidateTag("shows-list", "max");
+
     return apiSuccess({ review: updated });
   } catch (err: unknown) {
     return apiError(INTERNAL_ERROR_MESSAGE, 500, err);
@@ -76,8 +83,7 @@ export async function DELETE(
   try {
     const auth = await requireApiAuth("יש להתחבר כדי למחוק ביקורת", {
       check: checkEditDeleteRateLimit,
-      message: (t) =>
-        `ביצעת יותר מדי עריכות לאחרונה. נסה שוב בעוד ${t} דקות.`,
+      message: (t) => `ביצעת יותר מדי עריכות לאחרונה. נסה שוב בעוד ${t} דקות.`,
     });
     if (auth.error) return auth.error;
     const { session } = auth;
@@ -88,9 +94,22 @@ export async function DELETE(
       return apiError("מזהה ביקורת לא תקין", 400);
     }
 
+    const reviewToDelete = await prisma.review.findFirst({
+      where: { id: reviewId, userId: session.user.id },
+      select: { showId: true },
+    });
+
     const deleted = await deleteReviewByOwner(reviewId, session.user.id);
     if (!deleted) {
       return apiError("הביקורת לא נמצאה", 404);
+    }
+
+    if (reviewToDelete) {
+      revalidatePath(`/shows/${reviewToDelete.showId}`);
+      revalidatePath("/shows");
+      revalidatePath("/");
+      revalidateTag("homepage", "max");
+      revalidateTag("shows-list", "max");
     }
 
     return apiSuccess({ ok: true });

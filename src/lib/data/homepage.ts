@@ -1,5 +1,6 @@
+import { unstable_cache } from "next/cache";
 import prisma from "../prisma";
-import { fetchShowListItems } from "../showHelpers";
+import { showListInclude } from "../showHelpers";
 import type { ShowListItem, Suggestions } from "@/types";
 
 export interface FeaturedReview {
@@ -37,18 +38,33 @@ async function getSuggestions(): Promise<Suggestions> {
 }
 
 /**
+ * Map a Prisma show (with genres relation via showListInclude) to ShowListItem.
+ */
+function mapToShowListItem(
+  show: Awaited<
+    ReturnType<typeof prisma.show.findMany<{ include: typeof showListInclude }>>
+  >[number],
+): ShowListItem {
+  const { genres, ...rest } = show;
+  return {
+    ...rest,
+    genre: genres?.map((sg) => sg.genre.name) ?? [],
+  } as ShowListItem;
+}
+
+/**
  * Top-rated shows by average review rating.
  * Uses the denormalized avgRating column — no raw SQL aggregation needed.
  */
 async function getTopRated(): Promise<ShowListItem[]> {
-  const topRatedIds = await prisma.show.findMany({
+  const shows = await prisma.show.findMany({
     where: { avgRating: { not: null } },
-    select: { id: true },
+    include: showListInclude,
     orderBy: [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],
     take: 10,
   });
 
-  return fetchShowListItems(topRatedIds.map((s) => s.id));
+  return shows.map(mapToShowListItem);
 }
 
 /**
@@ -60,7 +76,7 @@ async function getShowsByGenres(
   genreNames: string[],
   limit = 5,
 ): Promise<ShowListItem[]> {
-  const topIds = await prisma.show.findMany({
+  const shows = await prisma.show.findMany({
     where: {
       genres: {
         some: {
@@ -68,12 +84,12 @@ async function getShowsByGenres(
         },
       },
     },
-    select: { id: true },
+    include: showListInclude,
     orderBy: [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],
     take: limit,
   });
 
-  return fetchShowListItems(topIds.map((s) => s.id));
+  return shows.map(mapToShowListItem);
 }
 
 function settled<T>(result: PromiseSettledResult<T>, fallback: T): T {
@@ -84,7 +100,7 @@ function settled<T>(result: PromiseSettledResult<T>, fallback: T): T {
  * Get homepage data: suggestions and curated show groups.
  * Uses Promise.allSettled so a single section failure doesn't break the page.
  */
-export async function getHomePageData(): Promise<HomePageData> {
+async function fetchHomePageData(): Promise<HomePageData> {
   const [
     suggestionsResult,
     topRatedResult,
@@ -136,3 +152,9 @@ export async function getHomePageData(): Promise<HomePageData> {
     featuredReview,
   };
 }
+
+export const getHomePageData = unstable_cache(
+  fetchHomePageData,
+  ["homepage-data"],
+  { revalidate: 120, tags: ["homepage"] },
+);

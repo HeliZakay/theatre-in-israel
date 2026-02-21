@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { addReview } from "@/lib/reviews";
 import { createReviewSchema, formatZodErrors } from "@/lib/reviewSchemas";
 import { checkFieldsForProfanity } from "@/utils/profanityFilter";
@@ -14,8 +15,7 @@ export async function POST(request: NextRequest) {
   try {
     const auth = await requireApiAuth("יש להתחבר כדי לכתוב ביקורת", {
       check: checkReviewRateLimit,
-      message: (t) =>
-        `יצרת יותר מדי ביקורות לאחרונה. נסה שוב בעוד ${t} דקות.`,
+      message: (t) => `יצרת יותר מדי ביקורות לאחרונה. נסה שוב בעוד ${t} דקות.`,
     });
     if (auth.error) return auth.error;
     const { session } = auth;
@@ -52,6 +52,12 @@ export async function POST(request: NextRequest) {
       date: today,
       userId: session.user.id,
     });
+
+    revalidatePath(`/shows/${showId}`);
+    revalidatePath("/shows");
+    revalidatePath("/");
+    revalidateTag("homepage", "max");
+    revalidateTag("shows-list", "max");
 
     return apiSuccess({ success: true, showId });
   } catch (err: unknown) {

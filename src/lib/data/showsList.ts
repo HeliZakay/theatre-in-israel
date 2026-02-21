@@ -181,31 +181,35 @@ async function fetchShowsForList(
   };
 }
 
-/** Detect whether the request uses the default (unfiltered) view. */
-function isDefaultView(
-  searchParams?: Record<string, string | string[] | undefined>,
-): boolean {
-  if (!searchParams) return true;
-  const keys = Object.keys(searchParams);
-  return keys.length === 0;
-}
-
-/** Cached version of the default (no-filter) shows list — revalidate every 120 s. */
-const getCachedDefaultShows = unstable_cache(
-  () => fetchShowsForList(),
-  ["shows-default"],
-  { revalidate: 120 },
-);
-
 /**
  * Get shows for list page, filtered and sorted by search params.
- * The default (unfiltered, page-1) view is cached for 120 s.
+ * Filter/sort/page combinations go through `unstable_cache`; free-text search
+ * queries bypass the cache (unbounded key space, and ~300-row scans are fast).
  */
 export async function getShowsForList(
   searchParams?: Record<string, string | string[] | undefined>,
 ): Promise<ShowsListData> {
-  if (isDefaultView(searchParams)) {
-    return getCachedDefaultShows();
+  const filters = parseShowsSearchParams(searchParams);
+
+  // Skip cache for free-text search — the key space is unbounded and DB scans
+  // on ~300 rows are instant.
+  if (filters.query) {
+    return fetchShowsForList(searchParams);
   }
-  return fetchShowsForList(searchParams);
+
+  const cacheKey = [
+    "shows-list",
+    filters.genres.length > 0 ? filters.genres.slice().sort().join(",") : "all",
+    filters.theatre || "all",
+    filters.sort || "default",
+    String(filters.page ?? 1),
+  ];
+
+  const cachedFetch = unstable_cache(
+    () => fetchShowsForList(searchParams),
+    cacheKey,
+    { revalidate: 60, tags: ["shows-list"] },
+  );
+
+  return cachedFetch();
 }
