@@ -13,7 +13,7 @@ import {
   toJsonLd,
 } from "@/lib/seo";
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 const textFont = Noto_Sans_Hebrew({
   subsets: ["hebrew", "latin"],
@@ -22,6 +22,12 @@ const textFont = Noto_Sans_Hebrew({
 });
 
 const siteUrl = getSiteUrl();
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#1a1a2e",
+};
 
 export const metadata: Metadata = {
   metadataBase: getMetadataBase(),
@@ -32,6 +38,9 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   alternates: {
     canonical: ROUTES.HOME,
+    languages: {
+      "he-IL": ROUTES.HOME,
+    },
   },
   openGraph: {
     type: "website",

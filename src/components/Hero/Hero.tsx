@@ -27,7 +27,7 @@ export default function Hero({
   const featuredAuthor = featuredShow?.reviews?.[0]?.author ?? null;
 
   return (
-    <section className={styles.hero} aria-label="Hero">
+    <section className={styles.hero} aria-label="מדור ראשי">
       <div className={styles.inner}>
         <div className={styles.right}>
           <div>

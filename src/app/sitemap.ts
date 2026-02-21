@@ -6,7 +6,14 @@ import { toAbsoluteUrl } from "@/lib/seo";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
   const shows = await prisma.show.findMany({
-    select: { id: true },
+    select: {
+      id: true,
+      reviews: {
+        select: { date: true },
+        orderBy: { date: "desc" },
+        take: 1,
+      },
+    },
     orderBy: { id: "asc" },
   });
 
@@ -26,9 +33,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   const showRoutes: MetadataRoute.Sitemap = shows.map((show) => {
+    const latestReview = show.reviews[0];
     return {
       url: toAbsoluteUrl(`${ROUTES.SHOWS}/${show.id}`),
-      lastModified: now,
+      lastModified: latestReview ? latestReview.date : now,
       changeFrequency: "daily",
       priority: 0.8,
     };

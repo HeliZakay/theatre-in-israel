@@ -23,6 +23,15 @@ import type { Metadata } from "next";
 
 export const revalidate = 120; // Re-generate at most every 2 minutes
 
+export async function generateStaticParams() {
+  const { default: prisma } = await import("@/lib/prisma");
+  const shows = await prisma.show.findMany({
+    select: { id: true },
+    orderBy: { id: "asc" },
+  });
+  return shows.map((show) => ({ id: String(show.id) }));
+}
+
 interface ShowPageProps {
   params: Promise<{ id: string }>;
 }
