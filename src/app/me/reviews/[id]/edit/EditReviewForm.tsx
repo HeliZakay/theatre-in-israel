@@ -7,6 +7,7 @@ import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type * as z from "zod";
 import ROUTES from "@/constants/routes";
+import { updateReview } from "@/app/reviews/actions";
 import ReviewFormFields from "@/components/ReviewFormFields/ReviewFormFields";
 import { clientEditReviewSchema } from "@/lib/reviewSchemas";
 import styles from "./page.module.css";
@@ -49,17 +50,14 @@ export default function EditReviewForm({
   const onSubmit = async (values: z.infer<typeof clientEditReviewSchema>) => {
     setServerError("");
     try {
-      const res = await fetch(`/api/reviews/${reviewId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
+      const result = await updateReview(reviewId, {
+        title: values.title,
+        rating: Number(values.rating),
+        text: values.text,
       });
 
-      if (!res.ok) {
-        const json = await res.json().catch(() => ({}));
-        setServerError(json?.error || "לא הצלחנו לעדכן את הביקורת");
+      if (!result.success) {
+        setServerError(result.error);
         return;
       }
 

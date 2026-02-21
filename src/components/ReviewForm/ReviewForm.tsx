@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import type * as z from "zod";
 import styles from "./ReviewForm.module.css";
 import fieldStyles from "@/components/ReviewFormFields/ReviewFormFields.module.css";
-import ROUTES from "@/constants/routes";
+import { createReview } from "@/app/reviews/actions";
 import ShowCombobox from "@/components/ShowCombobox/ShowCombobox";
 import ReviewFormFields from "@/components/ReviewFormFields/ReviewFormFields";
 import { clientReviewSchema } from "@/lib/reviewSchemas";
@@ -66,14 +66,10 @@ export default function ReviewForm({
       formData.set("rating", String(values.rating));
       formData.set("text", values.text);
 
-      const res = await fetch(ROUTES.API_REVIEWS, {
-        method: "POST",
-        body: formData,
-      });
+      const result = await createReview(formData);
 
-      if (!res.ok) {
-        const json = await res.json().catch(() => ({}));
-        setServerError(json?.error || "שגיאה במהלך שליחת הבקשה");
+      if (!result.success) {
+        setServerError(result.error);
         return;
       }
 

@@ -1,43 +1,52 @@
+"use server";
+
 import prisma from "@/lib/prisma";
 import { contactSchema } from "@/lib/contactSchemas";
 import { checkContactRateLimit } from "@/utils/contactRateLimit";
 import { checkFieldsForProfanity } from "@/utils/profanityFilter";
 import { escapeHtml } from "@/utils/escapeHtml";
+import { headers } from "next/headers";
 import {
-  apiError,
-  apiSuccess,
+  actionSuccess,
+  actionError,
   INTERNAL_ERROR_MESSAGE,
-} from "@/utils/apiResponse";
+  type ActionResult,
+} from "@/types/actionResult";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const CONTACT_RECIPIENT = "helizakay1@gmail.com";
 
-export async function POST(request: Request) {
+export async function sendContactMessage(
+  values: {
+    name: string;
+    email: string;
+    message: string;
+    honeypot?: string;
+  },
+): Promise<ActionResult<{ sent: boolean }>> {
   try {
+    const headersList = await headers();
     const ip =
-      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-      "unknown";
+      headersList.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
 
     const rateLimit = await checkContactRateLimit(ip);
     if (rateLimit.isLimited) {
-      return apiError("יותר מדי הודעות. נסו שוב מאוחר יותר.", 429);
+      return actionError("יותר מדי הודעות. נסו שוב מאוחר יותר.");
     }
 
-    const body = await request.json();
-
-    const result = contactSchema.safeParse(body);
+    const result = contactSchema.safeParse(values);
     if (!result.success) {
       const firstError =
         result.error.issues[0]?.message ?? "חסרים פרטים נדרשים";
-      return apiError(firstError, 400);
+      return actionError(firstError);
     }
 
     const { name, email, message, honeypot } = result.data;
 
     // Silent rejection for bots: if honeypot is filled, pretend success
     if (honeypot) {
-      return apiSuccess({ sent: true });
+      return actionSuccess({ sent: true });
     }
 
     // Profanity check
@@ -47,9 +56,8 @@ export async function POST(request: Request) {
         name: "שם",
         message: "הודעה",
       };
-      return apiError(
+      return actionError(
         `השדה "${fieldNames[profaneField] ?? profaneField}" מכיל תוכן לא הולם`,
-        400,
       );
     }
 
@@ -79,8 +87,8 @@ export async function POST(request: Request) {
       replyTo: email,
     });
 
-    return apiSuccess({ sent: true });
+    return actionSuccess({ sent: true });
   } catch (error) {
-    return apiError(INTERNAL_ERROR_MESSAGE, 500, error);
+    return actionError(INTERNAL_ERROR_MESSAGE, error);
   }
 }

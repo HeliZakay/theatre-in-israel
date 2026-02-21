@@ -3,6 +3,10 @@
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import {
+  addToWatchlistAction,
+  removeFromWatchlistAction,
+} from "@/lib/watchlistActions";
 import styles from "./WatchlistButton.module.css";
 
 interface WatchlistButtonProps {
@@ -32,15 +36,11 @@ export default function WatchlistButton({
     setLoading(true);
 
     try {
-      const res = previous
-        ? await fetch(`/api/watchlist/${showId}`, { method: "DELETE" })
-        : await fetch("/api/watchlist", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ showId }),
-          });
+      const result = previous
+        ? await removeFromWatchlistAction(showId)
+        : await addToWatchlistAction(showId);
 
-      if (!res.ok) {
+      if (!result.success) {
         setInWatchlist(previous);
       }
     } catch {

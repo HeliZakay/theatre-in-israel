@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
+import { deleteReview } from "@/app/reviews/actions";
 import styles from "./page.module.css";
 
 interface DeleteReviewButtonProps {
@@ -23,12 +24,9 @@ export default function DeleteReviewButton({
     setError(null);
 
     try {
-      const res = await fetch(`/api/reviews/${reviewId}`, {
-        method: "DELETE",
-      });
-      if (!res.ok) {
-        const json = await res.json().catch(() => ({}));
-        setError(json?.error || "לא הצלחנו למחוק את הביקורת");
+      const result = await deleteReview(reviewId);
+      if (!result.success) {
+        setError(result.error);
         return;
       }
       setIsOpen(false);

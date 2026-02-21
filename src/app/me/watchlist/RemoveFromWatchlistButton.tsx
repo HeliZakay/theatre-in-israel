@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
+import { removeFromWatchlistAction } from "@/lib/watchlistActions";
 import styles from "./page.module.css";
 
 interface RemoveFromWatchlistButtonProps {
@@ -23,12 +24,9 @@ export default function RemoveFromWatchlistButton({
     setError(null);
 
     try {
-      const res = await fetch(`/api/watchlist/${showId}`, {
-        method: "DELETE",
-      });
-      if (!res.ok) {
-        const json = await res.json().catch(() => ({}));
-        setError(json?.error || "לא הצלחנו להסיר את ההצגה");
+      const result = await removeFromWatchlistAction(showId);
+      if (!result.success) {
+        setError(result.error);
         return;
       }
       setIsOpen(false);

@@ -5,6 +5,7 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 import ROUTES from "@/constants/routes";
 import { GoogleIcon } from "@/components/SocialIcons/SocialIcons";
+import { signup } from "./actions";
 import styles from "../signin/page.module.css";
 
 /* ── component ──────────────────────────────────────── */
@@ -41,34 +42,26 @@ export default function SignUpForm({ callbackUrl }: SignUpFormProps) {
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name || undefined,
-          email: formData.email,
-          password: formData.password,
-        }),
+      const result = await signup({
+        name: formData.name || undefined,
+        email: formData.email,
+        password: formData.password,
       });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        setError(data.error || "אירעה שגיאה ביצירת החשבון");
+      if (!result.success) {
+        setError(result.error);
         setIsLoading(false);
         return;
       }
 
       // Auto sign in after successful signup
-      const result = await signIn("credentials", {
+      const signInResult = await signIn("credentials", {
         email: formData.email,
         password: formData.password,
         redirect: false,
       });
 
-      if (result?.error) {
+      if (signInResult?.error) {
         setError("החשבון נוצר, אבל ההתחברות נכשלה. נסה להתחבר ידנית");
         setIsLoading(false);
       } else {

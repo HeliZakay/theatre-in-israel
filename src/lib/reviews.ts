@@ -1,3 +1,5 @@
+import { revalidatePath, revalidateTag } from "next/cache";
+
 import prisma from "./prisma";
 import { refreshShowStats } from "./showStats";
 import type { Review, ReviewInput } from "@/types";
@@ -161,4 +163,16 @@ export async function deleteReviewByOwner(
   await refreshShowStats(review.showId);
 
   return true;
+}
+
+/**
+ * Revalidate all paths/tags affected by a review change.
+ * Extracted from the repeated 5-call pattern in review API routes.
+ */
+export function revalidateAfterReviewChange(showId: number): void {
+  revalidatePath(`/shows/${showId}`);
+  revalidatePath("/shows");
+  revalidatePath("/");
+  revalidateTag("homepage", "max");
+  revalidateTag("shows-list", "max");
 }

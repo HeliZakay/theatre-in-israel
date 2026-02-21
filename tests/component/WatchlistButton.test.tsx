@@ -2,9 +2,18 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import WatchlistButton from "@/components/WatchlistButton/WatchlistButton";
 import { useSession } from "next-auth/react";
+import {
+  addToWatchlistAction,
+  removeFromWatchlistAction,
+} from "@/lib/watchlistActions";
 
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),
+}));
+
+jest.mock("@/lib/watchlistActions", () => ({
+  addToWatchlistAction: jest.fn(),
+  removeFromWatchlistAction: jest.fn(),
 }));
 
 const mockPush = jest.fn();
@@ -68,20 +77,17 @@ describe("WatchlistButton", () => {
 
   it("adds to watchlist on click (POST)", async () => {
     const user = userEvent.setup();
-    global.fetch = jest.fn().mockResolvedValueOnce({ ok: true });
+    (addToWatchlistAction as jest.Mock).mockResolvedValueOnce({
+      success: true,
+      data: undefined,
+    });
 
     renderButton({ showId: 42, initialInWatchlist: false });
 
     await user.click(screen.getByRole("button"));
 
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalledWith(
-        "/api/watchlist",
-        expect.objectContaining({
-          method: "POST",
-          body: JSON.stringify({ showId: 42 }),
-        }),
-      );
+      expect(addToWatchlistAction).toHaveBeenCalledWith(42);
     });
 
     // Optimistic: button should show "in watchlist" text
@@ -92,22 +98,26 @@ describe("WatchlistButton", () => {
 
   it("removes from watchlist on click (DELETE)", async () => {
     const user = userEvent.setup();
-    global.fetch = jest.fn().mockResolvedValueOnce({ ok: true });
+    (removeFromWatchlistAction as jest.Mock).mockResolvedValueOnce({
+      success: true,
+      data: undefined,
+    });
 
     renderButton({ showId: 42, initialInWatchlist: true });
 
     await user.click(screen.getByRole("button"));
 
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalledWith("/api/watchlist/42", {
-        method: "DELETE",
-      });
+      expect(removeFromWatchlistAction).toHaveBeenCalledWith(42);
     });
   });
 
   it("reverts state on API failure", async () => {
     const user = userEvent.setup();
-    global.fetch = jest.fn().mockResolvedValueOnce({ ok: false });
+    (addToWatchlistAction as jest.Mock).mockResolvedValueOnce({
+      success: false,
+      error: "error",
+    });
 
     renderButton({ showId: 42, initialInWatchlist: false });
 
@@ -123,7 +133,9 @@ describe("WatchlistButton", () => {
 
   it("reverts state on network error", async () => {
     const user = userEvent.setup();
-    global.fetch = jest.fn().mockRejectedValueOnce(new Error("Network error"));
+    (addToWatchlistAction as jest.Mock).mockRejectedValueOnce(
+      new Error("Network error"),
+    );
 
     renderButton({ showId: 42, initialInWatchlist: false });
 
@@ -139,7 +151,7 @@ describe("WatchlistButton", () => {
   it("disables button while loading", async () => {
     const user = userEvent.setup();
     // Use a never-resolving promise to keep loading state
-    global.fetch = jest.fn().mockReturnValue(new Promise(() => {}));
+    (addToWatchlistAction as jest.Mock).mockReturnValue(new Promise(() => {}));
 
     renderButton();
 

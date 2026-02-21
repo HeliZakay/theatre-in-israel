@@ -1,12 +1,16 @@
+"use server";
+
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 import prisma from "@/lib/prisma";
-import {
-  apiError,
-  apiSuccess,
-  INTERNAL_ERROR_MESSAGE,
-} from "@/utils/apiResponse";
 import { checkSignupRateLimit } from "@/utils/authRateLimit";
+import { headers } from "next/headers";
+import {
+  actionSuccess,
+  actionError,
+  INTERNAL_ERROR_MESSAGE,
+  type ActionResult,
+} from "@/types/actionResult";
 
 const BCRYPT_ROUNDS = 12;
 
@@ -19,23 +23,23 @@ const signupSchema = z.object({
   name: z.string().trim().max(100, "השם ארוך מדי").optional(),
 });
 
-export async function POST(request: Request) {
+export async function signup(
+  values: { email: string; password: string; name?: string },
+): Promise<ActionResult<{ user: { id: string; email: string | null; name: string | null } }>> {
   try {
+    const headersList = await headers();
     const ip =
-      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-      "unknown";
+      headersList.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
     const rateLimit = await checkSignupRateLimit(ip);
     if (rateLimit.isLimited) {
-      return apiError("יותר מדי ניסיונות הרשמה. נסו שוב מאוחר יותר.", 429);
+      return actionError("יותר מדי ניסיונות הרשמה. נסו שוב מאוחר יותר.");
     }
 
-    const body = await request.json();
-
-    const result = signupSchema.safeParse(body);
+    const result = signupSchema.safeParse(values);
     if (!result.success) {
       const firstError =
         result.error.issues[0]?.message ?? "חסרים פרטים נדרשים";
-      return apiError(firstError, 400);
+      return actionError(firstError);
     }
 
     const { email, password, name } = result.data;
@@ -44,7 +48,6 @@ export async function POST(request: Request) {
     const hashedPassword = await bcrypt.hash(password, BCRYPT_ROUNDS);
 
     try {
-      // Create user — unique constraint on email prevents duplicates
       const user = await prisma.user.create({
         data: {
           email,
@@ -53,16 +56,13 @@ export async function POST(request: Request) {
         },
       });
 
-      return apiSuccess(
-        {
-          user: {
-            id: user.id,
-            email: user.email,
-            name: user.name,
-          },
+      return actionSuccess({
+        user: {
+          id: user.id,
+          email: user.email,
+          name: user.name,
         },
-        201,
-      );
+      });
     } catch (err: unknown) {
       // Prisma unique constraint violation (P2002) — email already exists
       // Return generic message to prevent user enumeration
@@ -71,11 +71,11 @@ export async function POST(request: Request) {
         "code" in err &&
         (err as { code: string }).code === "P2002"
       ) {
-        return apiError("לא ניתן ליצור חשבון עם פרטים אלו", 400);
+        return actionError("לא ניתן ליצור חשבון עם פרטים אלו");
       }
-      throw err; // re-throw unexpected errors to be caught by outer catch
+      throw err;
     }
   } catch (error) {
-    return apiError(INTERNAL_ERROR_MESSAGE, 500, error);
+    return actionError(INTERNAL_ERROR_MESSAGE, error);
   }
 }

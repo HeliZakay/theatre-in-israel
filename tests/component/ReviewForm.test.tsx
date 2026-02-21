@@ -1,7 +1,12 @@
+jest.mock("@/app/reviews/actions", () => ({
+  createReview: jest.fn(),
+}));
+
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import ReviewForm from "@/components/ReviewForm/ReviewForm";
 import type { ShowOption } from "@/components/ReviewForm/ReviewForm";
+import { createReview } from "@/app/reviews/actions";
 
 // ---------- Mock Radix Select used inside ReviewFormFields ----------
 // Radix Select uses portals and complex internals that are hard to test with
@@ -166,9 +171,9 @@ describe("ReviewForm", () => {
 
   it("submits the form and shows success message", async () => {
     const user = userEvent.setup();
-    global.fetch = jest.fn().mockResolvedValueOnce({
-      ok: true,
-      json: () => Promise.resolve({}),
+    (createReview as jest.Mock).mockResolvedValueOnce({
+      success: true,
+      data: { showId: 1 },
     });
 
     renderReviewForm({ initialShowId: 1 });
@@ -193,17 +198,14 @@ describe("ReviewForm", () => {
       expect(screen.getByText("הביקורת נשלחה בהצלחה")).toBeInTheDocument();
     });
 
-    expect(global.fetch).toHaveBeenCalledWith(
-      "/api/reviews",
-      expect.objectContaining({ method: "POST" }),
-    );
+    expect(createReview).toHaveBeenCalledWith(expect.any(FormData));
   });
 
   it("disables submit button after successful submission", async () => {
     const user = userEvent.setup();
-    global.fetch = jest.fn().mockResolvedValueOnce({
-      ok: true,
-      json: () => Promise.resolve({}),
+    (createReview as jest.Mock).mockResolvedValueOnce({
+      success: true,
+      data: { showId: 1 },
     });
 
     renderReviewForm({ initialShowId: 1 });
@@ -229,9 +231,9 @@ describe("ReviewForm", () => {
 
   it("shows server error when submission fails", async () => {
     const user = userEvent.setup();
-    global.fetch = jest.fn().mockResolvedValueOnce({
-      ok: false,
-      json: () => Promise.resolve({ error: "שגיאה בשרת" }),
+    (createReview as jest.Mock).mockResolvedValueOnce({
+      success: false,
+      error: "שגיאה בשרת",
     });
 
     renderReviewForm({ initialShowId: 1 });
@@ -253,11 +255,11 @@ describe("ReviewForm", () => {
     });
   });
 
-  it("shows fallback error when server returns non-JSON error", async () => {
+  it("shows error from server action", async () => {
     const user = userEvent.setup();
-    global.fetch = jest.fn().mockResolvedValueOnce({
-      ok: false,
-      json: () => Promise.reject(new Error("parse error")),
+    (createReview as jest.Mock).mockResolvedValueOnce({
+      success: false,
+      error: "שגיאה במהלך שליחת הבקשה",
     });
 
     renderReviewForm({ initialShowId: 1 });
@@ -281,7 +283,7 @@ describe("ReviewForm", () => {
 
   it("shows network error message when fetch throws", async () => {
     const user = userEvent.setup();
-    global.fetch = jest.fn().mockRejectedValueOnce(new Error("Network error"));
+    (createReview as jest.Mock).mockRejectedValueOnce(new Error("Network error"));
 
     renderReviewForm({ initialShowId: 1 });
 

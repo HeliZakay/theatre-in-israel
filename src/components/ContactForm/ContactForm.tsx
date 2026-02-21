@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type * as z from "zod";
 import { clientContactSchema } from "@/lib/contactSchemas";
+import { sendContactMessage } from "@/app/contact/actions";
 import {
   CONTACT_NAME_MAX,
   CONTACT_MESSAGE_MAX,
@@ -38,20 +39,16 @@ export default function ContactForm() {
   const onSubmit = async (values: ContactFormValues) => {
     setServerError("");
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...values,
-          honeypot:
-            (document.getElementById("website") as HTMLInputElement)?.value ??
-            "",
-        }),
+      const honeypot =
+        (document.getElementById("website") as HTMLInputElement)?.value ?? "";
+
+      const result = await sendContactMessage({
+        ...values,
+        honeypot,
       });
 
-      if (!res.ok) {
-        const json = await res.json().catch(() => ({}));
-        setServerError(json?.error || "שגיאה במהלך שליחת ההודעה");
+      if (!result.success) {
+        setServerError(result.error);
         return;
       }
 
