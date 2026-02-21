@@ -10,7 +10,6 @@
 /* ── Slide container (flex row) ───────────────────────── */
 .container {
   display: flex;
-  gap: 16px;
 }
 
 /* ── Arrow buttons ────────────────────────────────────── */
