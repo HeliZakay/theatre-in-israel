@@ -17,14 +17,12 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 const CONTACT_RECIPIENT = "helizakay1@gmail.com";
 
-export async function sendContactMessage(
-  values: {
-    name: string;
-    email: string;
-    message: string;
-    honeypot?: string;
-  },
-): Promise<ActionResult<{ sent: boolean }>> {
+export async function sendContactMessage(values: {
+  name: string;
+  email: string;
+  message: string;
+  honeypot?: string;
+}): Promise<ActionResult<{ sent: boolean }>> {
   try {
     const headersList = await headers();
     const ip =

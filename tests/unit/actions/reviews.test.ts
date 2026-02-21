@@ -14,9 +14,17 @@ jest.mock("next/cache", () => ({
   revalidateTag: jest.fn(),
 }));
 
-import { createReview, updateReview, deleteReview } from "@/app/reviews/actions";
+import {
+  createReview,
+  updateReview,
+  deleteReview,
+} from "@/app/reviews/actions";
 import { requireActionAuth } from "@/utils/actionAuth";
-import { addReview, updateReviewByOwner, deleteReviewByOwner } from "@/lib/reviews";
+import {
+  addReview,
+  updateReviewByOwner,
+  deleteReviewByOwner,
+} from "@/lib/reviews";
 import { checkFieldsForProfanity } from "@/utils/profanityFilter";
 import prisma from "@/lib/prisma";
 
@@ -147,7 +155,9 @@ describe("createReview", () => {
   });
 
   it("returns internal error for unexpected errors", async () => {
-    (addReview as jest.Mock).mockRejectedValue(new Error("Something went wrong"));
+    (addReview as jest.Mock).mockRejectedValue(
+      new Error("Something went wrong"),
+    );
 
     const result = await createReview(createFormData(validFormData));
 

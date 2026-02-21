@@ -23,9 +23,15 @@ const signupSchema = z.object({
   name: z.string().trim().max(100, "השם ארוך מדי").optional(),
 });
 
-export async function signup(
-  values: { email: string; password: string; name?: string },
-): Promise<ActionResult<{ user: { id: string; email: string | null; name: string | null } }>> {
+export async function signup(values: {
+  email: string;
+  password: string;
+  name?: string;
+}): Promise<
+  ActionResult<{
+    user: { id: string; email: string | null; name: string | null };
+  }>
+> {
   try {
     const headersList = await headers();
     const ip =

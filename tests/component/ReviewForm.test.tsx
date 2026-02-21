@@ -283,7 +283,9 @@ describe("ReviewForm", () => {
 
   it("shows network error message when fetch throws", async () => {
     const user = userEvent.setup();
-    (createReview as jest.Mock).mockRejectedValueOnce(new Error("Network error"));
+    (createReview as jest.Mock).mockRejectedValueOnce(
+      new Error("Network error"),
+    );
 
     renderReviewForm({ initialShowId: 1 });
 

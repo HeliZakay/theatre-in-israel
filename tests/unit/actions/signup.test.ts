@@ -16,9 +16,9 @@ jest.mock("@/utils/authRateLimit", () => ({
 }));
 
 jest.mock("next/headers", () => ({
-  headers: jest.fn().mockResolvedValue(
-    new Map([["x-forwarded-for", "127.0.0.1"]]),
-  ),
+  headers: jest
+    .fn()
+    .mockResolvedValue(new Map([["x-forwarded-for", "127.0.0.1"]])),
 }));
 
 import { signup } from "@/app/auth/signup/actions";

@@ -11,7 +11,10 @@ export function actionSuccess<T>(data: T): ActionResult<T> {
   return { success: true, data };
 }
 
-export function actionError(message: string, internalError?: unknown): ActionResult<never> {
+export function actionError(
+  message: string,
+  internalError?: unknown,
+): ActionResult<never> {
   if (internalError) {
     console.error("[Action Error]", internalError);
   }
