@@ -23,8 +23,13 @@ export default function Hero({
       ].filter((t): t is string => t !== null)
     : [];
 
-  const featuredQuote = featuredShow?.reviews?.[0]?.text ?? null;
-  const featuredAuthor = featuredShow?.reviews?.[0]?.author ?? null;
+  const bestReview = featuredShow?.reviews?.length
+    ? featuredShow.reviews.reduce((best, r) =>
+        r.rating > best.rating ? r : best
+      )
+    : null;
+  const featuredQuote = bestReview?.text ?? null;
+  const featuredAuthor = bestReview?.author ?? null;
 
   return (
     <section className={styles.hero} aria-label="מדור ראשי">

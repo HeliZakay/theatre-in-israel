@@ -4,7 +4,6 @@ import { getWatchlistShowIds } from "@/lib/watchlist";
 import { fetchShowsByIds } from "@/lib/showHelpers";
 import ShowCard from "@/components/ShowCard/ShowCard";
 import Button from "@/components/Button/Button";
-import BackLink from "@/components/BackLink/BackLink";
 import RemoveFromWatchlistButton from "./RemoveFromWatchlistButton";
 import styles from "./page.module.css";
 
@@ -34,8 +33,6 @@ export default async function MyWatchlistPage() {
         <h1 className={styles.title}>רשימת הצפייה שלי</h1>
         <p className={styles.subtitle}>הצגות ששמרת לצפייה מאוחרת.</p>
       </header>
-
-      <BackLink href={ROUTES.MY_REVIEWS}>לביקורות שלי →</BackLink>
 
       {shows.length ? (
         <section className={styles.grid}>

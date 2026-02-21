@@ -1,9 +1,9 @@
 import styles from "./page.module.css";
-import Link from "next/link";
 import ROUTES from "@/constants/routes";
 import { getShowOptions } from "@/lib/reviews";
 import { requireAuth } from "@/lib/auth";
 import ReviewForm from "@/components/ReviewForm/ReviewForm";
+import CancelButton from "./CancelButton";
 import { SITE_NAME } from "@/lib/seo";
 
 import type { Metadata } from "next";
@@ -39,11 +39,7 @@ export default async function NewReviewPage() {
 
       <ReviewForm shows={shows} />
 
-      <div className={styles.cancelLink}>
-        <Link className={styles.ghostBtn} href={ROUTES.SHOWS}>
-          ביטול
-        </Link>
-      </div>
+      <CancelButton />
     </main>
   );
 }
