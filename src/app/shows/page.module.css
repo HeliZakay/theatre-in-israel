@@ -72,6 +72,12 @@
   grid-template-columns: repeat(4, minmax(240px, 1fr));
   grid-auto-rows: 1fr;
   gap: 20px;
+  transition: opacity 0.2s ease;
+}
+
+.header:has([aria-busy="true"]) ~ .grid {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .emptyState {

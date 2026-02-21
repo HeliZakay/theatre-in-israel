@@ -25,7 +25,7 @@ export default function Hero({
 
   const bestReview = featuredShow?.reviews?.length
     ? featuredShow.reviews.reduce((best, r) =>
-        r.rating > best.rating ? r : best
+        r.rating > best.rating ? r : best,
       )
     : null;
   const featuredQuote = bestReview?.text ?? null;

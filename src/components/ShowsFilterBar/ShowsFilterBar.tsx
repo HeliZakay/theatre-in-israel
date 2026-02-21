@@ -174,7 +174,11 @@ export default function ShowsFilterBar({
           })}
         </ToggleGroup.Root>
       </div>
-      <div className={styles.status} role="status" aria-live="polite">
+      <div
+        className={cx(styles.status, isUpdating && styles.statusVisible)}
+        role="status"
+        aria-live="polite"
+      >
         {isUpdating ? (
           <>
             <span className={styles.spinner} aria-hidden="false" />

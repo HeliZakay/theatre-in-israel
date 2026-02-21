@@ -8,7 +8,11 @@ export default function CancelButton() {
 
   return (
     <div className={styles.cancelLink}>
-      <button className={styles.ghostBtn} type="button" onClick={() => router.back()}>
+      <button
+        className={styles.ghostBtn}
+        type="button"
+        onClick={() => router.back()}
+      >
         ביטול
       </button>
     </div>
