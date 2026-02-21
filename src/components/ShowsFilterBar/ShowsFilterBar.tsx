@@ -79,7 +79,7 @@ export default function ShowsFilterBar({
     const href = buildHref(overrides);
     startTransition(() => {
       setOptimisticFilters(overrides);
-      router.push(href);
+      router.push(href, { scroll: false });
     });
   };
 

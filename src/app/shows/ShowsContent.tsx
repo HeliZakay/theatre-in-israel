@@ -52,7 +52,11 @@ export default function ShowsContent({
               <span className={styles.filterCount}>
                 {filters.total ?? shows.length} תוצאות
               </span>
-              <Link className={styles.clearLink} href={ROUTES.SHOWS}>
+              <Link
+                className={styles.clearLink}
+                href={ROUTES.SHOWS}
+                scroll={false}
+              >
                 נקה סינון
               </Link>
             </>
