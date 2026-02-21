@@ -3,16 +3,19 @@ import SearchBar from "../SearchBar/SearchBar";
 import FeaturedShow from "../FeaturedShow/FeaturedShow";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import ROUTES from "@/constants/routes";
-import type { EnrichedShow, Suggestions } from "@/types";
+import type { ShowListItem, Suggestions } from "@/types";
+import type { FeaturedReview } from "@/lib/data/homepage";
 
 interface HeroProps {
   suggestions?: Suggestions;
-  featuredShow?: EnrichedShow | null;
+  featuredShow?: ShowListItem | null;
+  featuredReview?: FeaturedReview | null;
 }
 
 export default function Hero({
   suggestions = { shows: [], theatres: [], genres: [] },
   featuredShow = null,
+  featuredReview = null,
 }: HeroProps) {
   const featuredTags: string[] = featuredShow
     ? [
@@ -23,13 +26,8 @@ export default function Hero({
       ].filter((t): t is string => t !== null)
     : [];
 
-  const bestReview = featuredShow?.reviews?.length
-    ? featuredShow.reviews.reduce((best, r) =>
-        r.rating > best.rating ? r : best,
-      )
-    : null;
-  const featuredQuote = bestReview?.text ?? null;
-  const featuredAuthor = bestReview?.author ?? null;
+  const featuredQuote = featuredReview?.text ?? null;
+  const featuredAuthor = featuredReview?.author ?? null;
 
   return (
     <section className={styles.hero} aria-label="מדור ראשי">
@@ -53,7 +51,7 @@ export default function Hero({
               quote={featuredQuote ?? ""}
               quoteAuthor={featuredAuthor ?? ""}
               avgRating={featuredShow.avgRating ?? null}
-              reviewCount={featuredShow.reviews?.length ?? 0}
+              reviewCount={featuredShow.reviewCount ?? 0}
               href={`${ROUTES.SHOWS}/${featuredShow.id}`}
             />
           </div>

@@ -1,7 +1,7 @@
 import ROUTES from "@/constants/routes";
 import { requireAuth } from "@/lib/auth";
 import { getWatchlistShowIds } from "@/lib/watchlist";
-import { fetchShowsByIds } from "@/lib/showHelpers";
+import { fetchShowListItems } from "@/lib/showHelpers";
 import ShowCard from "@/components/ShowCard/ShowCard";
 import Button from "@/components/Button/Button";
 import RemoveFromWatchlistButton from "./RemoveFromWatchlistButton";
@@ -25,7 +25,7 @@ export default async function MyWatchlistPage() {
   const session = await requireAuth(ROUTES.MY_WATCHLIST);
 
   const showIds = await getWatchlistShowIds(session.user.id);
-  const shows = await fetchShowsByIds(showIds);
+  const shows = await fetchShowListItems(showIds);
 
   return (
     <main className={styles.page} id="main-content">

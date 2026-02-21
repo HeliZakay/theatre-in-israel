@@ -1,12 +1,17 @@
 import { Prisma } from "@prisma/client";
 import prisma from "./prisma";
 import { enrichShow } from "@/utils/showStats";
-import type { Show, EnrichedShow } from "@/types";
+import type { Show, EnrichedShow, ShowListItem } from "@/types";
 
 /** Standard Prisma include clause for fetching full show data. */
 export const showInclude = {
   genres: { include: { genre: true } },
   reviews: { orderBy: { date: "desc" as const } },
+} as const;
+
+/** Prisma include for list views — genres only, no reviews. */
+export const showListInclude = {
+  genres: { include: { genre: true } },
 } as const;
 
 /** The Prisma result type when a Show is loaded with `showInclude`. */
@@ -53,4 +58,43 @@ export async function fetchShowsByIds(ids: number[]): Promise<EnrichedShow[]> {
     .map((s) => normalizeShow(s!))
     .filter((s): s is Show => s !== null)
     .map(enrichShow);
+}
+
+/**
+ * Fetch lightweight show list items by an ordered list of IDs.
+ * Loads genres only (no reviews) and computes stats via a single raw SQL query.
+ */
+export async function fetchShowListItems(
+  ids: number[],
+): Promise<ShowListItem[]> {
+  if (ids.length === 0) return [];
+
+  const rawShows = await prisma.show.findMany({
+    where: { id: { in: ids } },
+    include: showListInclude,
+  });
+
+  const stats = await prisma.$queryRawUnsafe<
+    { showId: number; avgRating: number; reviewCount: number }[]
+  >(
+    `SELECT "showId", AVG(rating)::float AS "avgRating", COUNT(*)::int AS "reviewCount" FROM "Review" WHERE "showId" = ANY($1) GROUP BY "showId"`,
+    ids,
+  );
+
+  const statsMap = new Map(stats.map((s) => [s.showId, s]));
+  const showMap = new Map(rawShows.map((s) => [s.id, s]));
+
+  return ids
+    .map((id) => showMap.get(id))
+    .filter(Boolean)
+    .map((s) => {
+      const { genres, ...rest } = s!;
+      const stat = statsMap.get(s!.id);
+      return {
+        ...rest,
+        genre: genres?.map((sg) => sg.genre.name) ?? [],
+        avgRating: stat?.avgRating ?? null,
+        reviewCount: stat?.reviewCount ?? 0,
+      } as ShowListItem;
+    });
 }

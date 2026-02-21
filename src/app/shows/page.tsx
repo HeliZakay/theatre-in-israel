@@ -12,9 +12,6 @@ import ShowsContent from "./ShowsContent";
 
 import type { Metadata } from "next";
 
-// Must remain dynamic: depends on searchParams for filtering/pagination
-export const dynamic = "force-dynamic";
-
 interface ShowsPageProps {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }

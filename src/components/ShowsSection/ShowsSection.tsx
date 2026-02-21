@@ -6,12 +6,12 @@ import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import ShowCarousel from "@/components/ShowCarousel/ShowCarousel";
 import { getShowImagePath } from "@/utils/getShowImagePath";
-import type { EnrichedShow } from "@/types";
+import type { ShowListItem } from "@/types";
 
 interface ShowsSectionProps {
   kicker?: string;
   title: string;
-  shows: EnrichedShow[];
+  shows: ShowListItem[];
   linkHref?: string;
   linkText?: string;
 }

@@ -37,11 +37,16 @@ export default async function Home() {
     musicals,
     israeli,
     featuredShow,
+    featuredReview,
   } = await getHomePageData();
 
   return (
     <main className={styles.page} id="main-content">
-      <Hero suggestions={suggestions} featuredShow={featuredShow} />
+      <Hero
+        suggestions={suggestions}
+        featuredShow={featuredShow}
+        featuredReview={featuredReview}
+      />
 
       <ShowsSection
         kicker="המובילים"

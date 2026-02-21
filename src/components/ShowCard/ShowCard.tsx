@@ -3,16 +3,15 @@ import styles from "./ShowCard.module.css";
 import Tag from "@/components/Tag/Tag";
 import Card from "@/components/Card/Card";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
-import { getShowStats } from "@/utils/showStats";
 import { getShowImagePath } from "@/utils/getShowImagePath";
-import type { Show } from "@/types";
+import type { ShowListItem } from "@/types";
 
 interface ShowCardProps {
-  show: Show;
+  show: ShowListItem;
 }
 
 export default function ShowCard({ show }: ShowCardProps) {
-  const { reviewCount, avgRating } = getShowStats(show);
+  const { reviewCount, avgRating } = show;
 
   return (
     <Link href={`/shows/${show.id}`} className={styles.cardLink}>

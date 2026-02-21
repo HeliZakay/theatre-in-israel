@@ -1,12 +1,12 @@
 import { Prisma } from "@prisma/client";
+import { unstable_cache } from "next/cache";
 import prisma from "../prisma";
 import { parseShowsSearchParams } from "../../utils/showsQuery";
-import { enrichShow } from "../../utils/showStats";
-import { normalizeShow, showInclude, fetchShowsByIds } from "../showHelpers";
-import type { Show, EnrichedShow, ShowFilters } from "@/types";
+import { fetchShowListItems, showListInclude } from "../showHelpers";
+import type { ShowListItem, ShowFilters } from "@/types";
 
 export interface ShowsListData {
-  shows: EnrichedShow[];
+  shows: ShowListItem[];
   theatres: string[];
   genres: string[];
   availableGenres: string[];
@@ -71,8 +71,8 @@ async function getFilteredSortedIds(
   skip: number,
   take: number,
 ): Promise<number[]> {
-  // First get all matching IDs via Prisma (for consistent filtering),
-  // then sort them by avg rating via raw SQL.
+  // Get matching IDs via Prisma (for consistent relation filtering),
+  // then sort by avg rating via raw SQL.
   const matchingShows = await prisma.show.findMany({
     where,
     select: { id: true },
@@ -82,8 +82,6 @@ async function getFilteredSortedIds(
 
   const ids = matchingShows.map((s) => s.id);
 
-  // Sort by avg rating using raw query. Shows without reviews get
-  // NULL avg which sorts last (via COALESCE).
   const sortDirection =
     direction === "ASC" ? Prisma.sql`ASC` : Prisma.sql`DESC`;
 
@@ -103,6 +101,74 @@ async function getFilteredSortedIds(
 }
 
 /**
+ * Fetch a page of shows without loading reviews.
+ * Computes avgRating and reviewCount via a single raw SQL aggregation.
+ */
+async function fetchShowsPage(
+  where: Prisma.ShowWhereInput,
+  skip: number,
+  take: number,
+): Promise<ShowListItem[]> {
+  const rawShows = await prisma.show.findMany({
+    where,
+    include: showListInclude,
+    orderBy: { id: "asc" },
+    skip,
+    take,
+  });
+
+  if (rawShows.length === 0) return [];
+
+  const ids = rawShows.map((s) => s.id);
+
+  const stats = await prisma.$queryRawUnsafe<
+    { showId: number; avgRating: number; reviewCount: number }[]
+  >(
+    `SELECT "showId", AVG(rating)::float AS "avgRating", COUNT(*)::int AS "reviewCount" FROM "Review" WHERE "showId" = ANY($1) GROUP BY "showId"`,
+    ids,
+  );
+
+  const statsMap = new Map(stats.map((s) => [s.showId, s]));
+
+  return rawShows.map((s) => {
+    const { genres, ...rest } = s;
+    const stat = statsMap.get(s.id);
+    return {
+      ...rest,
+      genre: genres?.map((sg) => sg.genre.name) ?? [],
+      avgRating: stat?.avgRating ?? null,
+      reviewCount: stat?.reviewCount ?? 0,
+    } as ShowListItem;
+  });
+}
+
+/** Cached: distinct theatre names (stable data, revalidate every 60s). */
+const getCachedTheatres = unstable_cache(
+  async () => {
+    const records = await prisma.show.findMany({
+      select: { theatre: true },
+      distinct: ["theatre"],
+      orderBy: { theatre: "asc" },
+    });
+    return records.map((t) => t.theatre).filter(Boolean);
+  },
+  ["theatres"],
+  { revalidate: 60 },
+);
+
+/** Cached: all genre names (stable data, revalidate every 60s). */
+const getCachedGenres = unstable_cache(
+  async () => {
+    const records = await prisma.genre.findMany({
+      orderBy: { name: "asc" },
+    });
+    return records.map((g) => g.name).filter(Boolean);
+  },
+  ["genres"],
+  { revalidate: 60 },
+);
+
+/**
  * Get shows for list page, filtered and sorted by search params.
  */
 export async function getShowsForList(
@@ -114,43 +180,21 @@ export async function getShowsForList(
   const perPage = 12;
   const page = filters.page ?? 1;
 
-  // Get total count for pagination.
-  const total = await prisma.show.count({ where });
+  // Step 1: count + cached dropdowns in parallel.
+  const [total, theatres, genres] = await Promise.all([
+    prisma.show.count({ where }),
+    getCachedTheatres(),
+    getCachedGenres(),
+  ]);
+
   const totalPages = Math.max(1, Math.ceil(total / perPage));
   const clampedPage = Math.min(Math.max(1, page), totalPages);
   const skip = (clampedPage - 1) * perPage;
 
-  let shows: EnrichedShow[];
+  // Step 2: fetch shows page + available genres in parallel.
   const needsRatingSort =
     filters.sort === "rating" || filters.sort === "rating-asc";
 
-  if (needsRatingSort) {
-    // Use raw SQL to sort by average rating.
-    const direction = filters.sort === "rating-asc" ? "ASC" : "DESC";
-
-    const filteredIds = await getFilteredSortedIds(
-      where,
-      direction,
-      skip,
-      perPage,
-    );
-
-    shows = await fetchShowsByIds(filteredIds);
-  } else {
-    const rawShows = await prisma.show.findMany({
-      where,
-      include: showInclude,
-      orderBy: { id: "asc" },
-      skip,
-      take: perPage,
-    });
-    shows = rawShows
-      .map((s) => normalizeShow(s))
-      .filter((s): s is Show => s !== null)
-      .map(enrichShow);
-  }
-
-  // Get distinct theatres and genres for filter dropdowns.
   const baseWhere = buildWhereClause({
     theatre: filters.theatre,
     query: filters.query,
@@ -158,29 +202,24 @@ export async function getShowsForList(
   });
   const hasBaseFilter = Object.keys(baseWhere).length > 0;
 
-  const [theatreRecords, genreRecords, availableGenreRecords] =
-    await Promise.all([
-      prisma.show.findMany({
-        select: { theatre: true },
-        distinct: ["theatre"],
-        orderBy: { theatre: "asc" },
-      }),
-      prisma.genre.findMany({
-        orderBy: { name: "asc" },
-      }),
-      hasBaseFilter
-        ? prisma.genre.findMany({
+  const [shows, availableGenres] = await Promise.all([
+    needsRatingSort
+      ? getFilteredSortedIds(
+          where,
+          filters.sort === "rating-asc" ? "ASC" : "DESC",
+          skip,
+          perPage,
+        ).then((ids) => fetchShowListItems(ids))
+      : fetchShowsPage(where, skip, perPage),
+    hasBaseFilter
+      ? prisma.genre
+          .findMany({
             where: { shows: { some: { show: baseWhere } } },
             orderBy: { name: "asc" },
           })
-        : null,
-    ]);
-
-  const theatres = theatreRecords.map((t) => t.theatre).filter(Boolean);
-  const genres = genreRecords.map((g) => g.name).filter(Boolean);
-  const availableGenres = availableGenreRecords
-    ? availableGenreRecords.map((g) => g.name).filter(Boolean)
-    : genres;
+          .then((records) => records.map((g) => g.name).filter(Boolean))
+      : Promise.resolve(genres),
+  ]);
 
   return {
     shows,

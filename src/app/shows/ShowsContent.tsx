@@ -3,11 +3,11 @@ import ShowsFilterBar from "@/components/ShowsFilterBar/ShowsFilterBar";
 import Pagination from "@/components/Pagination/Pagination";
 import Link from "next/link";
 import styles from "./page.module.css";
-import type { ShowFilters, EnrichedShow } from "@/types";
+import type { ShowFilters, ShowListItem } from "@/types";
 import ROUTES from "@/constants/routes";
 
 interface ShowsContentProps {
-  shows: EnrichedShow[];
+  shows: ShowListItem[];
   theatres: string[];
   genres: string[];
   availableGenres: string[];

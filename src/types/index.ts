@@ -39,6 +39,19 @@ export interface EnrichedShow extends Show {
   latestReviewDate: Date | null;
 }
 
+/** Lightweight show type for list/card views — carries pre-computed stats instead of full reviews */
+export interface ShowListItem {
+  id: number;
+  title: string;
+  theatre: string;
+  durationMinutes: number;
+  summary: string;
+  description: string | null;
+  genre: string[];
+  reviewCount: number;
+  avgRating: number | null;
+}
+
 export interface Suggestions {
   shows: string[];
   theatres: string[];

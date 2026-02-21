@@ -1,16 +1,22 @@
 import { Prisma } from "@prisma/client";
 import prisma from "../prisma";
-import { fetchShowsByIds } from "../showHelpers";
-import type { EnrichedShow, Suggestions } from "@/types";
+import { fetchShowListItems } from "../showHelpers";
+import type { ShowListItem, Suggestions } from "@/types";
+
+export interface FeaturedReview {
+  text: string;
+  author: string;
+}
 
 export interface HomePageData {
   suggestions: Suggestions;
-  topRated: EnrichedShow[];
-  dramas: EnrichedShow[];
-  comedies: EnrichedShow[];
-  musicals: EnrichedShow[];
-  israeli: EnrichedShow[];
-  featuredShow: EnrichedShow | null;
+  topRated: ShowListItem[];
+  dramas: ShowListItem[];
+  comedies: ShowListItem[];
+  musicals: ShowListItem[];
+  israeli: ShowListItem[];
+  featuredShow: ShowListItem | null;
+  featuredReview: FeaturedReview | null;
 }
 
 /**
@@ -34,7 +40,7 @@ async function getSuggestions(): Promise<Suggestions> {
 /**
  * Top-rated shows by average review rating (raw SQL for ORDER BY aggregate).
  */
-async function getTopRated(): Promise<EnrichedShow[]> {
+async function getTopRated(): Promise<ShowListItem[]> {
   const topRatedIds = await prisma.$queryRaw<{ id: number }[]>`
     SELECT s.id
     FROM "Show" s
@@ -44,7 +50,7 @@ async function getTopRated(): Promise<EnrichedShow[]> {
     LIMIT 10
   `;
 
-  return fetchShowsByIds(topRatedIds.map((r) => r.id));
+  return fetchShowListItems(topRatedIds.map((r) => r.id));
 }
 
 /**
@@ -54,7 +60,7 @@ async function getTopRated(): Promise<EnrichedShow[]> {
 async function getShowsByGenres(
   genreNames: string[],
   limit = 5,
-): Promise<EnrichedShow[]> {
+): Promise<ShowListItem[]> {
   const topIds = await prisma.$queryRaw<{ id: number }[]>(
     Prisma.sql`
       SELECT s.id
@@ -69,7 +75,7 @@ async function getShowsByGenres(
     `,
   );
 
-  return fetchShowsByIds(topIds.map((r) => r.id));
+  return fetchShowListItems(topIds.map((r) => r.id));
 }
 
 function settled<T>(result: PromiseSettledResult<T>, fallback: T): T {
@@ -100,13 +106,26 @@ export async function getHomePageData(): Promise<HomePageData> {
   const emptySuggestions: Suggestions = { shows: [], theatres: [], genres: [] };
 
   const suggestions = settled(suggestionsResult, emptySuggestions);
-  const topRated = settled(topRatedResult, [] as EnrichedShow[]);
-  const dramas = settled(dramasResult, [] as EnrichedShow[]);
-  const comedies = settled(comediesResult, [] as EnrichedShow[]);
-  const musicals = settled(musicalsResult, [] as EnrichedShow[]);
-  const israeli = settled(israeliResult, [] as EnrichedShow[]);
+  const topRated = settled(topRatedResult, [] as ShowListItem[]);
+  const dramas = settled(dramasResult, [] as ShowListItem[]);
+  const comedies = settled(comediesResult, [] as ShowListItem[]);
+  const musicals = settled(musicalsResult, [] as ShowListItem[]);
+  const israeli = settled(israeliResult, [] as ShowListItem[]);
 
   const featuredShow = topRated[0] ?? null;
+
+  // Fetch the best review for the featured show (single targeted query).
+  let featuredReview: FeaturedReview | null = null;
+  if (featuredShow) {
+    const bestReview = await prisma.review.findFirst({
+      where: { showId: featuredShow.id },
+      orderBy: { rating: "desc" },
+      select: { text: true, author: true },
+    });
+    if (bestReview) {
+      featuredReview = { text: bestReview.text, author: bestReview.author };
+    }
+  }
 
   return {
     suggestions,
@@ -116,5 +135,6 @@ export async function getHomePageData(): Promise<HomePageData> {
     musicals,
     israeli,
     featuredShow,
+    featuredReview,
   };
 }
