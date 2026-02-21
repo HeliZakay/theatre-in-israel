@@ -1,4 +1,5 @@
 import prisma from "./prisma";
+import { refreshShowStats } from "./showStats";
 import type { Review, ReviewInput } from "@/types";
 
 /**
@@ -57,6 +58,8 @@ export async function addReview(
     },
   });
 
+  await refreshShowStats(showId);
+
   return {
     ...newReview,
     date: newReview.date.toISOString(),
@@ -104,7 +107,7 @@ export async function updateReviewByOwner(
   userId: string,
   review: ReviewUpdateInput,
 ): Promise<OwnedReview | null> {
-  return prisma.$transaction(async (tx) => {
+  const result = await prisma.$transaction(async (tx) => {
     const existing = await tx.review.findFirst({
       where: { id: reviewId, userId },
       select: { id: true },
@@ -131,15 +134,31 @@ export async function updateReviewByOwner(
 
     return updated;
   });
+
+  if (result) {
+    await refreshShowStats(result.showId);
+  }
+
+  return result;
 }
 
 export async function deleteReviewByOwner(
   reviewId: number,
   userId: string,
 ): Promise<boolean> {
-  const deleted = await prisma.review.deleteMany({
+  // Find the review first to get the showId before deleting
+  const review = await prisma.review.findFirst({
     where: { id: reviewId, userId },
+    select: { id: true, showId: true },
   });
 
-  return deleted.count > 0;
+  if (!review) return false;
+
+  await prisma.review.delete({
+    where: { id: review.id },
+  });
+
+  await refreshShowStats(review.showId);
+
+  return true;
 }

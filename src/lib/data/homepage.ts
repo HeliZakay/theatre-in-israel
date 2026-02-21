@@ -1,4 +1,3 @@
-import { Prisma } from "@prisma/client";
 import prisma from "../prisma";
 import { fetchShowListItems } from "../showHelpers";
 import type { ShowListItem, Suggestions } from "@/types";
@@ -38,44 +37,43 @@ async function getSuggestions(): Promise<Suggestions> {
 }
 
 /**
- * Top-rated shows by average review rating (raw SQL for ORDER BY aggregate).
+ * Top-rated shows by average review rating.
+ * Uses the denormalized avgRating column — no raw SQL aggregation needed.
  */
 async function getTopRated(): Promise<ShowListItem[]> {
-  const topRatedIds = await prisma.$queryRaw<{ id: number }[]>`
-    SELECT s.id
-    FROM "Show" s
-    LEFT JOIN "Review" r ON r."showId" = s.id
-    GROUP BY s.id
-    ORDER BY AVG(r.rating) DESC NULLS LAST
-    LIMIT 10
-  `;
+  const topRatedIds = await prisma.show.findMany({
+    where: { avgRating: { not: null } },
+    select: { id: true },
+    orderBy: [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],
+    take: 10,
+  });
 
-  return fetchShowListItems(topRatedIds.map((r) => r.id));
+  return fetchShowListItems(topRatedIds.map((s) => s.id));
 }
 
 /**
  * Fetch shows whose **first** (principal) genre matches any of the given
  * names, sorted by average rating and limited to `limit` results.
+ * Uses denormalized avgRating column — no raw SQL aggregation needed.
  */
 async function getShowsByGenres(
   genreNames: string[],
   limit = 5,
 ): Promise<ShowListItem[]> {
-  const topIds = await prisma.$queryRaw<{ id: number }[]>(
-    Prisma.sql`
-      SELECT s.id
-      FROM "Show" s
-      JOIN "ShowGenre" sg ON sg."showId" = s.id
-      JOIN "Genre" g ON g.id = sg."genreId"
-      LEFT JOIN "Review" r ON r."showId" = s.id
-      WHERE g.name = ANY(${genreNames})
-      GROUP BY s.id
-      ORDER BY AVG(r.rating) DESC NULLS LAST
-      LIMIT ${limit}
-    `,
-  );
+  const topIds = await prisma.show.findMany({
+    where: {
+      genres: {
+        some: {
+          genre: { name: { in: genreNames } },
+        },
+      },
+    },
+    select: { id: true },
+    orderBy: [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],
+    take: limit,
+  });
 
-  return fetchShowListItems(topIds.map((r) => r.id));
+  return fetchShowListItems(topIds.map((s) => s.id));
 }
 
 function settled<T>(result: PromiseSettledResult<T>, fallback: T): T {

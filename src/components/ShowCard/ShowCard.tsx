@@ -8,9 +8,10 @@ import type { ShowListItem } from "@/types";
 
 interface ShowCardProps {
   show: ShowListItem;
+  priority?: boolean;
 }
 
-export default function ShowCard({ show }: ShowCardProps) {
+export default function ShowCard({ show, priority }: ShowCardProps) {
   const { reviewCount, avgRating } = show;
 
   return (
@@ -23,6 +24,7 @@ export default function ShowCard({ show }: ShowCardProps) {
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className={styles.image}
+            priority={priority}
           />
         </div>
         <header className={styles.header}>

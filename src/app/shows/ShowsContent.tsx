@@ -69,7 +69,9 @@ export default function ShowsContent({
       </header>
       <section className={styles.grid}>
         {shows.length ? (
-          shows.map((show) => <ShowCard key={show.id} show={show} />)
+          shows.map((show, index) => (
+            <ShowCard key={show.id} show={show} priority={index < 4} />
+          ))
         ) : (
           <p className={styles.emptyState}>לא נמצאו הצגות לפי החיפוש.</p>
         )}

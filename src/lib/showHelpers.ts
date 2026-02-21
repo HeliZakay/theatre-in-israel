@@ -62,7 +62,7 @@ export async function fetchShowsByIds(ids: number[]): Promise<EnrichedShow[]> {
 
 /**
  * Fetch lightweight show list items by an ordered list of IDs.
- * Loads genres only (no reviews) and computes stats via a single raw SQL query.
+ * Loads genres only (no reviews). Stats come from denormalized Show columns.
  */
 export async function fetchShowListItems(
   ids: number[],
@@ -74,14 +74,6 @@ export async function fetchShowListItems(
     include: showListInclude,
   });
 
-  const stats = await prisma.$queryRawUnsafe<
-    { showId: number; avgRating: number; reviewCount: number }[]
-  >(
-    `SELECT "showId", AVG(rating)::float AS "avgRating", COUNT(*)::int AS "reviewCount" FROM "Review" WHERE "showId" = ANY($1) GROUP BY "showId"`,
-    ids,
-  );
-
-  const statsMap = new Map(stats.map((s) => [s.showId, s]));
   const showMap = new Map(rawShows.map((s) => [s.id, s]));
 
   return ids
@@ -89,12 +81,9 @@ export async function fetchShowListItems(
     .filter(Boolean)
     .map((s) => {
       const { genres, ...rest } = s!;
-      const stat = statsMap.get(s!.id);
       return {
         ...rest,
         genre: genres?.map((sg) => sg.genre.name) ?? [],
-        avgRating: stat?.avgRating ?? null,
-        reviewCount: stat?.reviewCount ?? 0,
       } as ShowListItem;
     });
 }

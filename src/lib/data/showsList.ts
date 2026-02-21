@@ -2,7 +2,7 @@ import { Prisma } from "@prisma/client";
 import { unstable_cache } from "next/cache";
 import prisma from "../prisma";
 import { parseShowsSearchParams } from "../../utils/showsQuery";
-import { fetchShowListItems, showListInclude } from "../showHelpers";
+import { showListInclude } from "../showHelpers";
 import type { ShowListItem, ShowFilters } from "@/types";
 
 export interface ShowsListData {
@@ -62,82 +62,42 @@ function buildWhereClause({
 }
 
 /**
- * Get filtered show IDs sorted by average rating using raw SQL,
- * then apply pagination.
+ * Map Prisma sort key to an orderBy clause.
+ * Rating sort now uses the denormalized avgRating column — no raw SQL needed.
  */
-async function getFilteredSortedIds(
-  where: Prisma.ShowWhereInput,
-  direction: string,
-  skip: number,
-  take: number,
-): Promise<number[]> {
-  // Get matching IDs via Prisma (for consistent relation filtering),
-  // then sort by avg rating via raw SQL.
-  const matchingShows = await prisma.show.findMany({
-    where,
-    select: { id: true },
-  });
-
-  if (matchingShows.length === 0) return [];
-
-  const ids = matchingShows.map((s) => s.id);
-
-  const sortDirection =
-    direction === "ASC" ? Prisma.sql`ASC` : Prisma.sql`DESC`;
-
-  const sorted = await prisma.$queryRaw<{ id: number }[]>(
-    Prisma.sql`
-    SELECT s.id
-    FROM "Show" s
-    LEFT JOIN "Review" r ON r."showId" = s.id
-    WHERE s.id = ANY(${ids})
-    GROUP BY s.id
-    ORDER BY COALESCE(AVG(r.rating), 0) ${sortDirection}, s.id ASC
-    LIMIT ${take} OFFSET ${skip}
-    `,
-  );
-
-  return sorted.map((r) => r.id);
+function buildOrderBy(sort: string): Prisma.ShowOrderByWithRelationInput[] {
+  switch (sort) {
+    case "rating":
+      return [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }];
+    case "rating-asc":
+      return [{ avgRating: { sort: "asc", nulls: "last" } }, { id: "asc" }];
+    default:
+      return [{ id: "asc" }];
+  }
 }
 
 /**
- * Fetch a page of shows without loading reviews.
- * Computes avgRating and reviewCount via a single raw SQL aggregation.
+ * Fetch a page of shows. Stats come from denormalized columns — no aggregation query needed.
  */
 async function fetchShowsPage(
   where: Prisma.ShowWhereInput,
+  orderBy: Prisma.ShowOrderByWithRelationInput[],
   skip: number,
   take: number,
 ): Promise<ShowListItem[]> {
   const rawShows = await prisma.show.findMany({
     where,
     include: showListInclude,
-    orderBy: { id: "asc" },
+    orderBy,
     skip,
     take,
   });
 
-  if (rawShows.length === 0) return [];
-
-  const ids = rawShows.map((s) => s.id);
-
-  const stats = await prisma.$queryRawUnsafe<
-    { showId: number; avgRating: number; reviewCount: number }[]
-  >(
-    `SELECT "showId", AVG(rating)::float AS "avgRating", COUNT(*)::int AS "reviewCount" FROM "Review" WHERE "showId" = ANY($1) GROUP BY "showId"`,
-    ids,
-  );
-
-  const statsMap = new Map(stats.map((s) => [s.showId, s]));
-
   return rawShows.map((s) => {
     const { genres, ...rest } = s;
-    const stat = statsMap.get(s.id);
     return {
       ...rest,
       genre: genres?.map((sg) => sg.genre.name) ?? [],
-      avgRating: stat?.avgRating ?? null,
-      reviewCount: stat?.reviewCount ?? 0,
     } as ShowListItem;
   });
 }
@@ -169,13 +129,14 @@ const getCachedGenres = unstable_cache(
 );
 
 /**
- * Get shows for list page, filtered and sorted by search params.
+ * Core data fetcher — always hits the database.
  */
-export async function getShowsForList(
+async function fetchShowsForList(
   searchParams?: Record<string, string | string[] | undefined>,
 ): Promise<ShowsListData> {
   const filters = parseShowsSearchParams(searchParams);
   const where = buildWhereClause(filters);
+  const orderBy = buildOrderBy(filters.sort);
 
   const perPage = 12;
   const page = filters.page ?? 1;
@@ -192,9 +153,6 @@ export async function getShowsForList(
   const skip = (clampedPage - 1) * perPage;
 
   // Step 2: fetch shows page + available genres in parallel.
-  const needsRatingSort =
-    filters.sort === "rating" || filters.sort === "rating-asc";
-
   const baseWhere = buildWhereClause({
     theatre: filters.theatre,
     query: filters.query,
@@ -203,14 +161,7 @@ export async function getShowsForList(
   const hasBaseFilter = Object.keys(baseWhere).length > 0;
 
   const [shows, availableGenres] = await Promise.all([
-    needsRatingSort
-      ? getFilteredSortedIds(
-          where,
-          filters.sort === "rating-asc" ? "ASC" : "DESC",
-          skip,
-          perPage,
-        ).then((ids) => fetchShowListItems(ids))
-      : fetchShowsPage(where, skip, perPage),
+    fetchShowsPage(where, orderBy, skip, perPage),
     hasBaseFilter
       ? prisma.genre
           .findMany({
@@ -228,4 +179,33 @@ export async function getShowsForList(
     availableGenres,
     filters: { ...filters, page: clampedPage, perPage, total, totalPages },
   };
+}
+
+/** Detect whether the request uses the default (unfiltered) view. */
+function isDefaultView(
+  searchParams?: Record<string, string | string[] | undefined>,
+): boolean {
+  if (!searchParams) return true;
+  const keys = Object.keys(searchParams);
+  return keys.length === 0;
+}
+
+/** Cached version of the default (no-filter) shows list — revalidate every 120 s. */
+const getCachedDefaultShows = unstable_cache(
+  () => fetchShowsForList(),
+  ["shows-default"],
+  { revalidate: 120 },
+);
+
+/**
+ * Get shows for list page, filtered and sorted by search params.
+ * The default (unfiltered, page-1) view is cached for 120 s.
+ */
+export async function getShowsForList(
+  searchParams?: Record<string, string | string[] | undefined>,
+): Promise<ShowsListData> {
+  if (isDefaultView(searchParams)) {
+    return getCachedDefaultShows();
+  }
+  return fetchShowsForList(searchParams);
 }

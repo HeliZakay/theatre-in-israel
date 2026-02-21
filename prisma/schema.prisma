@@ -19,9 +19,14 @@ model Show {
   durationMinutes Int
   summary         String
   description     String?
+  avgRating       Float?
+  reviewCount     Int         @default(0)
   genres          ShowGenre[]
   reviews         Review[]
   watchlist       Watchlist[]
+
+  @@index([theatre])
+  @@index([avgRating])
 }
 
 model User {
