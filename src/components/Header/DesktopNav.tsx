@@ -31,6 +31,17 @@ export default function DesktopNav({ pathname, onNavigate }: DesktopNavProps) {
               </Link>
             </NavigationMenu.Link>
           </NavigationMenu.Item>
+          <NavigationMenu.Item>
+            <NavigationMenu.Link asChild active={pathname === ROUTES.CONTACT}>
+              <Link
+                href={ROUTES.CONTACT}
+                className={styles.navText}
+                onClick={onNavigate}
+              >
+                יצירת קשר
+              </Link>
+            </NavigationMenu.Link>
+          </NavigationMenu.Item>
         </NavigationMenu.List>
       </NavigationMenu.Root>
     </div>

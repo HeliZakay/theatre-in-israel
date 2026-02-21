@@ -26,6 +26,7 @@ export default function Header() {
   const isMyWatchlistPage =
     pathname === ROUTES.MY_WATCHLIST ||
     pathname.startsWith(`${ROUTES.MY_WATCHLIST}/`);
+  const isContactPage = pathname === ROUTES.CONTACT;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement | null>(null);
 
@@ -42,6 +43,7 @@ export default function Header() {
     fullName,
     firstName,
     isWriteReviewPage,
+    isContactPage,
     isMyReviewsPage,
     isMyWatchlistPage,
     onClose: closeMenus,

@@ -15,6 +15,7 @@ interface MobileMenuProps {
   fullName: string;
   firstName: string;
   isWriteReviewPage: boolean;
+  isContactPage: boolean;
   isMyReviewsPage: boolean;
   isMyWatchlistPage: boolean;
   onClose: () => void;
@@ -27,6 +28,7 @@ export default function MobileMenu({
   fullName,
   firstName,
   isWriteReviewPage,
+  isContactPage,
   isMyReviewsPage,
   isMyWatchlistPage,
   onClose,
@@ -53,6 +55,18 @@ export default function MobileMenu({
           onClick={onClose}
         >
           לכתוב ביקורת
+        </Link>
+        <Link
+          href={ROUTES.CONTACT}
+          className={cx(
+            styles.navText,
+            styles.mobileMenuItem,
+            isContactPage && styles.mobileMenuItemActive,
+          )}
+          aria-current={isContactPage ? "page" : undefined}
+          onClick={onClose}
+        >
+          יצירת קשר
         </Link>
 
         {isLoading ? (
