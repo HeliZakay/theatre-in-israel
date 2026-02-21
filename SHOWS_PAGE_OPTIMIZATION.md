@@ -63,14 +63,14 @@ For the `/shows` page (a filterable, paginated list of ~129–300 theatre shows)
 
 ### Why
 
-| Factor | Weight | Winner |
-|--------|--------|--------|
-| SEO (filtered views indexable) | High (explicitly important to user) | Server |
-| Dataset size (129–300 shows) | Medium | Either works |
-| Scalability to 300+ | Medium | Server |
-| Filter responsiveness | Medium | Client |
-| Implementation effort | Low | Server (already built) |
-| Shareable URLs | High | Server (free) |
+| Factor                         | Weight                              | Winner                 |
+| ------------------------------ | ----------------------------------- | ---------------------- |
+| SEO (filtered views indexable) | High (explicitly important to user) | Server                 |
+| Dataset size (129–300 shows)   | Medium                              | Either works           |
+| Scalability to 300+            | Medium                              | Server                 |
+| Filter responsiveness          | Medium                              | Client                 |
+| Implementation effort          | Low                                 | Server (already built) |
+| Shareable URLs                 | High                                | Server (free)          |
 
 **Key insight**: The problem wasn't the architecture — it was the implementation. The SSR approach was slow because of over-fetching and unoptimized queries, not because SSR is inherently slow.
 
@@ -93,7 +93,7 @@ We briefly considered a hybrid: SSR for initial render (SEO), then hydrate all s
 ```ts
 export const showInclude = {
   genres: { include: { genre: true } },
-  reviews: { orderBy: { date: "desc" } },  // ALL reviews loaded
+  reviews: { orderBy: { date: "desc" } }, // ALL reviews loaded
 };
 ```
 
@@ -162,7 +162,7 @@ The homepage `Hero` component displayed a quote from the best review of the feat
 const bestReview = await prisma.review.findFirst({
   where: { showId: featuredShow.id },
   orderBy: { rating: "desc" },
-  select: { text: true, author: true },  // Only the 2 fields we need
+  select: { text: true, author: true }, // Only the 2 fields we need
 });
 ```
 
@@ -185,31 +185,31 @@ This separation ensures:
 
 ## Files Changed
 
-| File | What changed |
-|------|-------------|
-| `src/types/index.ts` | Added `ShowListItem` interface |
-| `src/lib/showHelpers.ts` | Added `showListInclude`, `fetchShowListItems()` |
-| `src/lib/data/showsList.ts` | Full rewrite: `ShowListItem`, SQL stats, cached dropdowns, parallel queries |
-| `src/components/ShowCard/ShowCard.tsx` | Accepts `ShowListItem`, reads stats directly |
-| `src/app/shows/ShowsContent.tsx` | `EnrichedShow[]` → `ShowListItem[]` |
-| `src/components/ShowsSection/ShowsSection.tsx` | `EnrichedShow[]` → `ShowListItem[]` |
-| `src/lib/data/homepage.ts` | Uses `fetchShowListItems`, targeted featured review query |
-| `src/components/Hero/Hero.tsx` | `ShowListItem` + `FeaturedReview` prop |
-| `src/app/page.tsx` | Passes `featuredReview` to `Hero` |
-| `src/app/me/watchlist/page.tsx` | `fetchShowsByIds` → `fetchShowListItems` |
-| `src/app/shows/page.tsx` | Removed `force-dynamic` |
+| File                                           | What changed                                                                |
+| ---------------------------------------------- | --------------------------------------------------------------------------- |
+| `src/types/index.ts`                           | Added `ShowListItem` interface                                              |
+| `src/lib/showHelpers.ts`                       | Added `showListInclude`, `fetchShowListItems()`                             |
+| `src/lib/data/showsList.ts`                    | Full rewrite: `ShowListItem`, SQL stats, cached dropdowns, parallel queries |
+| `src/components/ShowCard/ShowCard.tsx`         | Accepts `ShowListItem`, reads stats directly                                |
+| `src/app/shows/ShowsContent.tsx`               | `EnrichedShow[]` → `ShowListItem[]`                                         |
+| `src/components/ShowsSection/ShowsSection.tsx` | `EnrichedShow[]` → `ShowListItem[]`                                         |
+| `src/lib/data/homepage.ts`                     | Uses `fetchShowListItems`, targeted featured review query                   |
+| `src/components/Hero/Hero.tsx`                 | `ShowListItem` + `FeaturedReview` prop                                      |
+| `src/app/page.tsx`                             | Passes `featuredReview` to `Hero`                                           |
+| `src/app/me/watchlist/page.tsx`                | `fetchShowsByIds` → `fetchShowListItems`                                    |
+| `src/app/shows/page.tsx`                       | Removed `force-dynamic`                                                     |
 
 ---
 
 ## Performance Before vs. After
 
-| Metric | Before | After |
-|--------|--------|-------|
-| DB queries per filter interaction | 4–6 (sequential) | 2–3 (parallel, 2 cached) |
-| Data loaded per show (list) | Show + ALL reviews | Show metadata + 1 SQL aggregation |
-| Theatre/genre dropdown queries | Every request | Cached (60s revalidation) |
-| ShowCard render computation | `getShowStats()` iterates reviews | Direct property access |
-| `force-dynamic` | Blocks all caching | Removed (Next.js auto-detects) |
+| Metric                            | Before                            | After                             |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| DB queries per filter interaction | 4–6 (sequential)                  | 2–3 (parallel, 2 cached)          |
+| Data loaded per show (list)       | Show + ALL reviews                | Show metadata + 1 SQL aggregation |
+| Theatre/genre dropdown queries    | Every request                     | Cached (60s revalidation)         |
+| ShowCard render computation       | `getShowStats()` iterates reviews | Direct property access            |
+| `force-dynamic`                   | Blocks all caching                | Removed (Next.js auto-detects)    |
 
 ---
 
