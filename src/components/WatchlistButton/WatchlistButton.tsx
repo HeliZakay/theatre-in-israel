@@ -11,11 +11,13 @@ import styles from "./WatchlistButton.module.css";
 
 interface WatchlistButtonProps {
   showId: number;
+  showSlug: string;
   initialInWatchlist: boolean;
 }
 
 export default function WatchlistButton({
   showId,
+  showSlug,
   initialInWatchlist,
 }: WatchlistButtonProps) {
   const { data: session } = useSession();
@@ -26,7 +28,7 @@ export default function WatchlistButton({
   async function handleClick() {
     if (!session) {
       router.push(
-        `/auth/signin?callbackUrl=${encodeURIComponent(`/shows/${showId}`)}`,
+        `/auth/signin?callbackUrl=${encodeURIComponent(`/shows/${showSlug}`)}`,
       );
       return;
     }

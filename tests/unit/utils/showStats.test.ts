@@ -25,6 +25,7 @@ function makeReview(overrides: Partial<Review> = {}): Review {
 function makeShow(overrides: Partial<Show> = {}): Show {
   return {
     id: 1,
+    slug: "test-show",
     title: "Test Show",
     theatre: "Test Theatre",
     durationMinutes: 90,

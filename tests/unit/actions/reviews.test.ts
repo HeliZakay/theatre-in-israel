@@ -2,6 +2,7 @@ jest.mock("@/lib/prisma", () => ({
   __esModule: true,
   default: {
     review: { findFirst: jest.fn() },
+    show: { findUnique: jest.fn().mockResolvedValue({ slug: "test-show" }) },
   },
 }));
 jest.mock("@/lib/auth", () => ({ authOptions: {} }));

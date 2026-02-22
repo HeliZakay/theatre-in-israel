@@ -26,6 +26,46 @@ function loadShows() {
   return JSON.parse(raw);
 }
 
+/**
+ * Convert a show title into a URL-safe slug.
+ * Keeps Hebrew characters, replaces spaces with hyphens,
+ * normalises special characters (ASCII apostrophe → Hebrew geresh ׳).
+ */
+function generateSlug(title) {
+  return title
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/'/g, "\u05F3")
+    .replace(/[?#%|\\/:*"<>]/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+/**
+ * Pre-compute unique slugs for all shows.
+ * If two shows have the same title-based slug, disambiguate by appending the theatre name.
+ */
+function buildSlugs(shows) {
+  const slugMap = new Map(); // slug → [show, ...]
+  for (const show of shows) {
+    const base = generateSlug(show.title);
+    if (!slugMap.has(base)) slugMap.set(base, []);
+    slugMap.get(base).push(show);
+  }
+
+  const result = new Map(); // show.id → slug
+  for (const [base, group] of slugMap) {
+    if (group.length === 1) {
+      result.set(group[0].id, base);
+    } else {
+      for (const show of group) {
+        result.set(show.id, `${base}-${generateSlug(show.theatre)}`);
+      }
+    }
+  }
+  return result;
+}
+
 async function seedGenres(shows) {
   const genreNames = new Set();
   shows.forEach((show) => {
@@ -68,15 +108,17 @@ function buildReviews(show) {
   }));
 }
 
-async function seedShows(shows, genreMap) {
+async function seedShows(shows, genreMap, slugs) {
   for (const show of shows) {
     const genreCreates = buildShowGenreCreates(show, genreMap);
     const reviews = buildReviews(show);
+    const slug = slugs.get(show.id);
 
     await prisma.show.upsert({
       where: { id: show.id },
       update: {
         title: show.title,
+        slug,
         theatre: show.theatre,
         durationMinutes: show.durationMinutes,
         summary: show.summary,
@@ -90,6 +132,7 @@ async function seedShows(shows, genreMap) {
       create: {
         id: show.id,
         title: show.title,
+        slug,
         theatre: show.theatre,
         durationMinutes: show.durationMinutes,
         summary: show.summary,
@@ -108,7 +151,8 @@ async function seedShows(shows, genreMap) {
 async function main() {
   const shows = loadShows();
   const genreMap = await seedGenres(shows);
-  await seedShows(shows, genreMap);
+  const slugs = buildSlugs(shows);
+  await seedShows(shows, genreMap, slugs);
 }
 
 main()

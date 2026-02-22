@@ -32,7 +32,12 @@ function renderButton(
   props: Partial<React.ComponentProps<typeof WatchlistButton>> = {},
 ) {
   return render(
-    <WatchlistButton showId={42} initialInWatchlist={false} {...props} />,
+    <WatchlistButton
+      showId={42}
+      showSlug="test-show"
+      initialInWatchlist={false}
+      {...props}
+    />,
   );
 }
 

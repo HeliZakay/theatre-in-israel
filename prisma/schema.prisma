@@ -15,6 +15,7 @@ datasource db {
 model Show {
   id              Int         @id @default(autoincrement())
   title           String
+  slug            String      @unique
   theatre         String
   durationMinutes Int
   summary         String

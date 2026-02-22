@@ -27,6 +27,16 @@ const pool = new Pool({ connectionString });
 const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
+function generateSlug(title) {
+  return title
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/'/g, "\u05F3")
+    .replace(/[?#%|\\/:*"<>]/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
 function loadNewShows() {
   const dataPath = path.join(__dirname, "..", "prisma", "data", "shows.json");
   const raw = fs.readFileSync(dataPath, "utf8");
@@ -94,6 +104,7 @@ async function addNewShows(shows, genreMap) {
         data: {
           id: show.id,
           title: show.title,
+          slug: generateSlug(show.title),
           theatre: show.theatre,
           durationMinutes: show.durationMinutes,
           summary: show.summary,

@@ -9,10 +9,10 @@ import type { Review, ReviewInput } from "@/types";
  * Much lighter than getShows() which loads all reviews.
  */
 export async function getShowOptions(): Promise<
-  { id: number; title: string }[]
+  { id: number; slug: string; title: string }[]
 > {
   return prisma.show.findMany({
-    select: { id: true, title: true },
+    select: { id: true, slug: true, title: true },
     orderBy: { title: "asc" },
   });
 }
@@ -30,6 +30,7 @@ export interface OwnedReview {
   updatedAt: Date;
   show: {
     id: number;
+    slug: string;
     title: string;
   };
 }
@@ -75,6 +76,7 @@ export async function getReviewsByUser(userId: string): Promise<OwnedReview[]> {
       show: {
         select: {
           id: true,
+          slug: true,
           title: true,
         },
       },
@@ -95,6 +97,7 @@ export async function getReviewByOwner(
       show: {
         select: {
           id: true,
+          slug: true,
           title: true,
         },
       },
@@ -128,6 +131,7 @@ export async function updateReviewByOwner(
         show: {
           select: {
             id: true,
+            slug: true,
             title: true,
           },
         },
@@ -169,8 +173,8 @@ export async function deleteReviewByOwner(
  * Revalidate all paths/tags affected by a review change.
  * Extracted from the repeated 5-call pattern in review API routes.
  */
-export function revalidateAfterReviewChange(showId: number): void {
-  revalidatePath(`/shows/${showId}`);
+export function revalidateAfterReviewChange(showSlug: string): void {
+  revalidatePath(`/shows/${showSlug}`);
   revalidatePath("/shows");
   revalidatePath("/");
   revalidateTag("homepage", "max");

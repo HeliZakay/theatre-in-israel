@@ -55,9 +55,9 @@ jest.mock("@/components/AppSelect/AppSelect", () => {
 });
 
 const SHOWS: ShowOption[] = [
-  { id: 1, title: "המלט" },
-  { id: 2, title: "קברט" },
-  { id: 3, title: "קזבלן" },
+  { id: 1, slug: "המלט", title: "המלט" },
+  { id: 2, slug: "קברט", title: "קברט" },
+  { id: 3, slug: "קזבלן", title: "קזבלן" },
 ];
 
 let mockPush: jest.Mock;

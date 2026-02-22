@@ -14,7 +14,7 @@ import styles from "./page.module.css";
 
 interface EditReviewFormProps {
   reviewId: number;
-  showId: number;
+  showSlug: string;
   initialTitle: string;
   initialRating: number;
   initialText: string;
@@ -22,7 +22,7 @@ interface EditReviewFormProps {
 
 export default function EditReviewForm({
   reviewId,
-  showId,
+  showSlug,
   initialTitle,
   initialRating,
   initialText,
@@ -93,7 +93,7 @@ export default function EditReviewForm({
         <Link className={styles.ghostBtn} href={ROUTES.MY_REVIEWS}>
           ביטול
         </Link>
-        <Link className={styles.ghostBtn} href={`${ROUTES.SHOWS}/${showId}`}>
+        <Link className={styles.ghostBtn} href={`${ROUTES.SHOWS}/${showSlug}`}>
           לדף ההצגה
         </Link>
       </div>

@@ -25,8 +25,14 @@ import {
   type ActionResult,
 } from "@/types/actionResult";
 
-function revalidateAfterReviewChange(showId: number): void {
-  revalidatePath(`/shows/${showId}`);
+async function revalidateAfterReviewChange(showId: number): Promise<void> {
+  const show = await prisma.show.findUnique({
+    where: { id: showId },
+    select: { slug: true },
+  });
+  if (show) {
+    revalidatePath(`/shows/${show.slug}`);
+  }
   revalidatePath("/shows");
   revalidatePath("/");
   revalidateTag("homepage", "max");
@@ -73,7 +79,7 @@ export async function createReview(
       userId: session.user.id,
     });
 
-    revalidateAfterReviewChange(showId);
+    await revalidateAfterReviewChange(showId);
 
     return actionSuccess({ showId });
   } catch (err: unknown) {
@@ -128,7 +134,7 @@ export async function updateReview(
       return actionError("הביקורת לא נמצאה");
     }
 
-    revalidateAfterReviewChange(updated.showId);
+    await revalidateAfterReviewChange(updated.showId);
 
     return actionSuccess({ showId: updated.showId });
   } catch (err: unknown) {
@@ -158,7 +164,7 @@ export async function deleteReview(
     }
 
     if (reviewToDelete) {
-      revalidateAfterReviewChange(reviewToDelete.showId);
+      await revalidateAfterReviewChange(reviewToDelete.showId);
     }
 
     return actionSuccess(undefined);

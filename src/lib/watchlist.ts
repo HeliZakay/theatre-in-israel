@@ -14,6 +14,7 @@ export async function getWatchlistByUser(
       show: {
         select: {
           id: true,
+          slug: true,
           title: true,
           theatre: true,
         },

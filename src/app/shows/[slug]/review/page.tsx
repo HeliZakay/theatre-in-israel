@@ -2,9 +2,9 @@ import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { cache } from "react";
-import ROUTES from "@/constants/routes";
+import ROUTES, { showPath, showReviewPath } from "@/constants/routes";
 import { requireAuth } from "@/lib/auth";
-import { getShowById } from "@/lib/data/showDetail";
+import { getShowBySlug } from "@/lib/data/showDetail";
 import ReviewForm from "@/components/ReviewForm/ReviewForm";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import { getShowImagePath } from "@/utils/getShowImagePath";
@@ -15,18 +15,16 @@ import type { Metadata } from "next";
 export const dynamic = "force-dynamic";
 
 interface NewReviewPageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }
 
-const getShowForReviewPage = cache(async (showId: string) =>
-  getShowById(showId),
-);
+const getShowForReviewPage = cache(async (slug: string) => getShowBySlug(slug));
 
 export async function generateMetadata({
   params,
 }: NewReviewPageProps): Promise<Metadata> {
-  const { id: showId } = await params;
-  const show = await getShowForReviewPage(showId);
+  const { slug } = await params;
+  const show = await getShowForReviewPage(slug);
 
   if (!show) {
     return {
@@ -42,16 +40,16 @@ export async function generateMetadata({
     openGraph: {
       title: `כתיבת ביקורת על ${show.title} | ${SITE_NAME}`,
       description: `טופס כתיבת ביקורת להצגה ${show.title}.`,
-      url: `${ROUTES.SHOWS}/${show.id}/review`,
+      url: showReviewPath(show.slug),
     },
   };
 }
 
 export default async function NewReviewPage({ params }: NewReviewPageProps) {
-  const { id: showId } = await params;
-  await requireAuth(`${ROUTES.SHOWS}/${showId}/review`);
+  const { slug } = await params;
+  await requireAuth(showReviewPath(slug));
 
-  const show = await getShowForReviewPage(showId);
+  const show = await getShowForReviewPage(slug);
 
   if (!show) {
     notFound();
@@ -82,12 +80,9 @@ export default async function NewReviewPage({ params }: NewReviewPageProps) {
         </aside>
 
         <div className={styles.formWrap}>
-          <ReviewForm initialShowId={show.id} />
+          <ReviewForm initialShowId={show.id} initialShowSlug={show.slug} />
           <div className={styles.cancelRow}>
-            <Link
-              className={styles.ghostBtn}
-              href={`${ROUTES.SHOWS}/${show.id}`}
-            >
+            <Link className={styles.ghostBtn} href={showPath(show.slug)}>
               חזרה לדף ההצגה
             </Link>
           </div>

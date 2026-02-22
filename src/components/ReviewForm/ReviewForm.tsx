@@ -16,16 +16,18 @@ import { getShowImagePath } from "@/utils/getShowImagePath";
 import type { Show } from "@/types";
 
 /** Minimal show data needed for the combobox + poster. */
-export type ShowOption = Pick<Show, "id" | "title">;
+export type ShowOption = Pick<Show, "id" | "slug" | "title">;
 
 interface ReviewFormProps {
   shows?: ShowOption[];
   initialShowId?: number | string;
+  initialShowSlug?: string;
 }
 
 export default function ReviewForm({
   shows = [],
   initialShowId = "",
+  initialShowSlug = "",
 }: ReviewFormProps) {
   const router = useRouter();
   const [serverError, setServerError] = useState("");
@@ -76,7 +78,10 @@ export default function ReviewForm({
       // Show inline success and navigate after a short delay
       setSuccess(true);
       timerRef.current = setTimeout(() => {
-        router.push(`/shows/${values.showId}`);
+        const slug =
+          shows.find((s) => String(s.id) === String(values.showId))?.slug ??
+          initialShowSlug;
+        router.push(`/shows/${slug}`);
       }, 1800);
     } catch (err: unknown) {
       setServerError(err instanceof Error ? err.message : String(err));

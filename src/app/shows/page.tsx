@@ -1,6 +1,6 @@
 import { getShowsForList } from "@/lib/data/showsList";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
-import ROUTES from "@/constants/routes";
+import ROUTES, { showPath } from "@/constants/routes";
 import { DEFAULT_SORT } from "@/constants/sorts";
 import {
   SITE_NAME,
@@ -106,7 +106,7 @@ export default async function ShowsPage({ searchParams }: ShowsPageProps) {
             "@type": "ListItem",
             position: index + 1,
             name: show.title,
-            url: toAbsoluteUrl(`${ROUTES.SHOWS}/${show.id}`),
+            url: toAbsoluteUrl(showPath(show.slug)),
           })),
         }
       : null;

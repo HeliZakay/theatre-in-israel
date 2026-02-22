@@ -1,7 +1,7 @@
 import { isValidCallbackUrl } from "@/utils/auth";
 
 describe("isValidCallbackUrl", () => {
-  it.each(["/", "/shows", "/shows/1"])(
+  it.each(["/", "/shows", "/shows/קברט"])(
     "returns true for valid relative path %s",
     (url) => {
       expect(isValidCallbackUrl(url)).toBe(true);
@@ -24,6 +24,6 @@ describe("isValidCallbackUrl", () => {
   });
 
   it("returns false for non-slash-starting paths", () => {
-    expect(isValidCallbackUrl("shows/1")).toBe(false);
+    expect(isValidCallbackUrl("shows/קברט")).toBe(false);
   });
 });

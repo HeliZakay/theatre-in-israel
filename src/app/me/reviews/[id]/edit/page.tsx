@@ -47,7 +47,7 @@ export default async function EditReviewPage({ params }: EditReviewPageProps) {
 
       <EditReviewForm
         reviewId={review.id}
-        showId={review.showId}
+        showSlug={review.show.slug}
         initialTitle={review.title ?? ""}
         initialRating={review.rating}
         initialText={review.text}

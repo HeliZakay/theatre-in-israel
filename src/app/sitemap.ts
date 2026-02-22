@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import ROUTES from "@/constants/routes";
+import ROUTES, { showPath } from "@/constants/routes";
 import prisma from "@/lib/prisma";
 import { toAbsoluteUrl } from "@/lib/seo";
 
@@ -7,7 +7,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
   const shows = await prisma.show.findMany({
     select: {
-      id: true,
+      slug: true,
       reviews: {
         select: { date: true },
         orderBy: { date: "desc" },
@@ -41,7 +41,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const showRoutes: MetadataRoute.Sitemap = shows.map((show) => {
     const latestReview = show.reviews[0];
     return {
-      url: toAbsoluteUrl(`${ROUTES.SHOWS}/${show.id}`),
+      url: toAbsoluteUrl(showPath(show.slug)),
       lastModified: latestReview ? latestReview.date : now,
       changeFrequency: "daily",
       priority: 0.8,

@@ -40,7 +40,7 @@ export default function ShowsSection({
             aria-roledescription="slide"
             aria-label={`${index + 1} מתוך ${shows.length}`}
           >
-            <Link className={styles.cardLink} href={`/shows/${show.id}`}>
+            <Link className={styles.cardLink} href={`/shows/${show.slug}`}>
               <Card as="article" className={styles.card}>
                 <div className={styles.thumb}>
                   <FallbackImage

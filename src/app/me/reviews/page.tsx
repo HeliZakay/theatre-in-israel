@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ROUTES from "@/constants/routes";
+import ROUTES, { showPath } from "@/constants/routes";
 import { requireAuth } from "@/lib/auth";
 import { getReviewsByUser } from "@/lib/reviews";
 import { formatDate } from "@/utils/formatDate";
@@ -40,7 +40,7 @@ export default async function MyReviewsPage() {
               <header className={styles.cardHeader}>
                 <Link
                   className={styles.showLink}
-                  href={`${ROUTES.SHOWS}/${review.show.id}`}
+                  href={showPath(review.show.slug)}
                 >
                   {review.show.title}
                 </Link>

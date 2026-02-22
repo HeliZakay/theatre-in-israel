@@ -24,6 +24,7 @@ export interface ReviewInput {
 
 export interface Show {
   id: number;
+  slug: string;
   title: string;
   theatre: string;
   durationMinutes: number;
@@ -42,6 +43,7 @@ export interface EnrichedShow extends Show {
 /** Lightweight show type for list/card views — carries pre-computed stats instead of full reviews */
 export interface ShowListItem {
   id: number;
+  slug: string;
   title: string;
   theatre: string;
   durationMinutes: number;
@@ -81,6 +83,7 @@ export interface WatchlistItem {
   createdAt: Date;
   show: {
     id: number;
+    slug: string;
     title: string;
     theatre: string;
   };

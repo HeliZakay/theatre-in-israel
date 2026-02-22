@@ -12,4 +12,14 @@ export const ROUTES = {
 
 export type Routes = typeof ROUTES;
 
+/** Build the canonical path for a single show page. */
+export function showPath(slug: string): string {
+  return `${ROUTES.SHOWS}/${slug}`;
+}
+
+/** Build the path for the "write a review" page of a show. */
+export function showReviewPath(slug: string): string {
+  return `${ROUTES.SHOWS}/${slug}/review`;
+}
+
 export default ROUTES;

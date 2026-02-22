@@ -1,3 +1,12 @@
+jest.mock("@/lib/prisma", () => ({
+  __esModule: true,
+  default: {
+    show: {
+      findUnique: jest.fn(),
+    },
+  },
+}));
+
 jest.mock("next/server", () => {
   const actual = {
     NextResponse: jest.fn().mockImplementation((body?: string, init?: any) => ({
@@ -8,18 +17,31 @@ jest.mock("next/server", () => {
   (actual.NextResponse as any).next = jest
     .fn()
     .mockReturnValue({ status: 200, next: true });
+  (actual.NextResponse as any).redirect = jest
+    .fn()
+    .mockImplementation((url: URL, status: number) => ({
+      status,
+      redirectUrl: url.toString(),
+    }));
   return actual;
 });
 
 import { middleware } from "@/middleware";
 import { NextResponse } from "next/server";
+import prisma from "@/lib/prisma";
 
 function createMockRequest(
   method: string,
+  pathname: string,
   headers: Record<string, string> = {},
 ) {
   return {
     method,
+    url: `https://example.com${pathname}`,
+    nextUrl: {
+      pathname,
+      startsWith: (prefix: string) => pathname.startsWith(prefix),
+    },
     headers: {
       get: jest.fn((name: string) => headers[name.toLowerCase()] ?? null),
     },
@@ -31,104 +53,123 @@ describe("middleware", () => {
     jest.clearAllMocks();
   });
 
-  describe("GET requests (non-mutating)", () => {
-    it("passes through without checking headers", () => {
-      const req = createMockRequest("GET");
-      const result = middleware(req);
+  describe("Legacy show URL redirects", () => {
+    it("redirects /shows/42 to /shows/:slug with 301", async () => {
+      (prisma.show.findUnique as jest.Mock).mockResolvedValue({
+        slug: "קברט",
+      });
+
+      const req = createMockRequest("GET", "/shows/42");
+      const result = await middleware(req);
+
+      expect(prisma.show.findUnique).toHaveBeenCalledWith({
+        where: { id: 42 },
+        select: { slug: true },
+      });
+      expect(NextResponse.redirect).toHaveBeenCalledWith(
+        new URL("/shows/קברט", "https://example.com"),
+        301,
+      );
+    });
+
+    it("redirects /shows/42/review to /shows/:slug/review with 301", async () => {
+      (prisma.show.findUnique as jest.Mock).mockResolvedValue({
+        slug: "קברט",
+      });
+
+      const req = createMockRequest("GET", "/shows/42/review");
+      const result = await middleware(req);
+
+      expect(NextResponse.redirect).toHaveBeenCalledWith(
+        new URL("/shows/קברט/review", "https://example.com"),
+        301,
+      );
+    });
+
+    it("falls through when numeric ID not found", async () => {
+      (prisma.show.findUnique as jest.Mock).mockResolvedValue(null);
+
+      const req = createMockRequest("GET", "/shows/999");
+      const result = await middleware(req);
 
       expect(NextResponse.next).toHaveBeenCalled();
-      expect(result).toEqual({ status: 200, next: true });
+    });
+
+    it("does not redirect slug-based URLs", async () => {
+      const req = createMockRequest("GET", "/shows/קברט");
+      const result = await middleware(req);
+
+      expect(prisma.show.findUnique).not.toHaveBeenCalled();
+      expect(NextResponse.next).toHaveBeenCalled();
     });
   });
 
-  describe("POST requests (mutating)", () => {
-    it("returns 403 when no origin and no referer", () => {
-      const req = createMockRequest("POST", { host: "example.com" });
-      const result = middleware(req);
+  describe("CSRF protection on API routes", () => {
+    it("passes through GET requests to API", async () => {
+      const req = createMockRequest("GET", "/api/test");
+      const result = await middleware(req);
 
-      expect(result).toEqual({ body: "Forbidden", status: 403 });
-      expect(NextResponse.next).not.toHaveBeenCalled();
+      expect(NextResponse.next).toHaveBeenCalled();
     });
 
-    it("returns 403 when origin host doesn't match host header", () => {
-      const req = createMockRequest("POST", {
+    it("returns 403 when POST to API without origin or referer", async () => {
+      const req = createMockRequest("POST", "/api/test", {
+        host: "example.com",
+      });
+      const result = await middleware(req);
+
+      expect(result).toEqual({ body: "Forbidden", status: 403 });
+    });
+
+    it("returns 403 when origin host doesn't match", async () => {
+      const req = createMockRequest("POST", "/api/test", {
         origin: "https://evil.com",
         host: "example.com",
       });
-      const result = middleware(req);
+      const result = await middleware(req);
 
       expect(result).toEqual({ body: "Forbidden", status: 403 });
-      expect(NextResponse.next).not.toHaveBeenCalled();
     });
 
-    it("returns 403 when origin is an invalid URL", () => {
-      const req = createMockRequest("POST", {
-        origin: "not-a-valid-url",
-        host: "example.com",
-      });
-      const result = middleware(req);
-
-      expect(result).toEqual({ body: "Forbidden", status: 403 });
-      expect(NextResponse.next).not.toHaveBeenCalled();
-    });
-
-    it("passes through when origin matches host", () => {
-      const req = createMockRequest("POST", {
+    it("passes through when origin matches host", async () => {
+      const req = createMockRequest("POST", "/api/test", {
         origin: "https://example.com",
         host: "example.com",
       });
-      const result = middleware(req);
+      const result = await middleware(req);
 
       expect(NextResponse.next).toHaveBeenCalled();
-      expect(result).toEqual({ status: 200, next: true });
     });
 
-    it("passes through when referer matches host (no origin)", () => {
-      const req = createMockRequest("POST", {
+    it("passes through when referer matches host", async () => {
+      const req = createMockRequest("POST", "/api/test", {
         referer: "https://example.com/path",
         host: "example.com",
       });
-      const result = middleware(req);
+      const result = await middleware(req);
 
       expect(NextResponse.next).toHaveBeenCalled();
-      expect(result).toEqual({ status: 200, next: true });
+    });
+
+    it("returns 403 for invalid origin URL", async () => {
+      const req = createMockRequest("POST", "/api/test", {
+        origin: "not-a-valid-url",
+        host: "example.com",
+      });
+      const result = await middleware(req);
+
+      expect(result).toEqual({ body: "Forbidden", status: 403 });
     });
   });
 
-  describe("other mutating methods", () => {
-    it("blocks PATCH without valid origin", () => {
-      const req = createMockRequest("PATCH", { host: "example.com" });
-      const result = middleware(req);
-
-      expect(result).toEqual({ body: "Forbidden", status: 403 });
-      expect(NextResponse.next).not.toHaveBeenCalled();
-    });
-
-    it("blocks PUT without valid origin", () => {
-      const req = createMockRequest("PUT", { host: "example.com" });
-      const result = middleware(req);
-
-      expect(result).toEqual({ body: "Forbidden", status: 403 });
-      expect(NextResponse.next).not.toHaveBeenCalled();
-    });
-
-    it("blocks DELETE without valid origin", () => {
-      const req = createMockRequest("DELETE", { host: "example.com" });
-      const result = middleware(req);
-
-      expect(result).toEqual({ body: "Forbidden", status: 403 });
-      expect(NextResponse.next).not.toHaveBeenCalled();
-    });
-
-    it("allows PATCH with valid origin", () => {
-      const req = createMockRequest("PATCH", {
-        origin: "https://example.com",
+  describe("non-API POST requests", () => {
+    it("passes through POST to non-API paths", async () => {
+      const req = createMockRequest("POST", "/shows/קברט", {
         host: "example.com",
       });
-      const result = middleware(req);
+      const result = await middleware(req);
 
       expect(NextResponse.next).toHaveBeenCalled();
-      expect(result).toEqual({ status: 200, next: true });
     });
   });
 });

@@ -2,7 +2,7 @@ import styles from "./Hero.module.css";
 import SearchBar from "../SearchBar/SearchBar";
 import FeaturedShow from "../FeaturedShow/FeaturedShow";
 import { getShowImagePath } from "@/utils/getShowImagePath";
-import ROUTES from "@/constants/routes";
+import ROUTES, { showPath } from "@/constants/routes";
 import type { ShowListItem, Suggestions } from "@/types";
 import type { FeaturedReview } from "@/lib/data/homepage";
 
@@ -52,7 +52,7 @@ export default function Hero({
               quoteAuthor={featuredAuthor ?? ""}
               avgRating={featuredShow.avgRating ?? null}
               reviewCount={featuredShow.reviewCount ?? 0}
-              href={`${ROUTES.SHOWS}/${featuredShow.id}`}
+              href={showPath(featuredShow.slug)}
             />
           </div>
         ) : null}

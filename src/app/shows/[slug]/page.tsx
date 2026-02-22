@@ -4,9 +4,9 @@ import { notFound } from "next/navigation";
 import { cache } from "react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { getShowById } from "@/lib/data/showDetail";
+import { getShowBySlug } from "@/lib/data/showDetail";
 import { isShowInWatchlist } from "@/lib/watchlist";
-import ROUTES from "@/constants/routes";
+import ROUTES, { showPath, showReviewPath } from "@/constants/routes";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import ReviewCard from "@/components/ReviewCard/ReviewCard";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
@@ -28,17 +28,17 @@ export const revalidate = 120; // Re-generate at most every 2 minutes
 export async function generateStaticParams() {
   const { default: prisma } = await import("@/lib/prisma");
   const shows = await prisma.show.findMany({
-    select: { id: true },
+    select: { slug: true },
     orderBy: { id: "asc" },
   });
-  return shows.map((show) => ({ id: String(show.id) }));
+  return shows.map((show) => ({ slug: show.slug }));
 }
 
 interface ShowPageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }
 
-const getShowForPage = cache(async (showId: string) => getShowById(showId));
+const getShowForPage = cache(async (slug: string) => getShowBySlug(slug));
 
 function buildShowDescription(
   description: string | null,
@@ -63,8 +63,8 @@ function buildShowDescription(
 export async function generateMetadata({
   params,
 }: ShowPageProps): Promise<Metadata> {
-  const { id: showId } = await params;
-  const show = await getShowForPage(showId);
+  const { slug } = await params;
+  const show = await getShowForPage(slug);
 
   if (!show) {
     return {
@@ -74,7 +74,7 @@ export async function generateMetadata({
   }
 
   const { reviewCount, avgRating } = getShowStats(show);
-  const canonicalPath = `${ROUTES.SHOWS}/${show.id}`;
+  const canonicalPath = showPath(show.slug);
   const description = buildShowDescription(
     show.description,
     show.summary,
@@ -107,15 +107,15 @@ export async function generateMetadata({
 }
 
 export default async function ShowPage({ params }: ShowPageProps) {
-  const { id: showId } = await params;
-  const show = await getShowForPage(showId);
+  const { slug } = await params;
+  const show = await getShowForPage(slug);
 
   if (!show) {
     notFound();
   }
 
   const { reviewCount, avgRating } = getShowStats(show);
-  const canonicalPath = `${ROUTES.SHOWS}/${show.id}`;
+  const canonicalPath = showPath(show.slug);
 
   const stats = { reviewCount, avgRating, latestReviewDate: null };
 
@@ -202,12 +202,13 @@ export default async function ShowPage({ params }: ShowPageProps) {
             <div className={styles.heroActions}>
               <Link
                 className={styles.primaryBtn}
-                href={`/shows/${show.id}/review`}
+                href={showReviewPath(show.slug)}
               >
                 כתבי ביקורת
               </Link>
               <WatchlistButton
                 showId={show.id}
+                showSlug={show.slug}
                 initialInWatchlist={initialInWatchlist}
               />
             </div>
