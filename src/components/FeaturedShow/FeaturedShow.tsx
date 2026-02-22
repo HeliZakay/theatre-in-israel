@@ -68,7 +68,7 @@ export default function FeaturedShow({
       <div className={styles.body}>
         <Separator.Root className={styles.separator} />
         <h3 className={styles.mobileTitle}>{title}</h3>
-        {theatre && <p className={styles.theatre}>{theatre}</p>}
+        {theatre && <p className={styles.mobileTheatre}>{theatre}</p>}
         <div className={styles.mobileTags}>
           {tags.map((tag) => (
             <span key={tag} className={styles.tag}>

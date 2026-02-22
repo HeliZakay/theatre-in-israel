@@ -80,6 +80,15 @@
   margin-top: 2px;
 }
 
+.mobileTheatre {
+  display: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
 .theatre {
   font-size: 0.95rem;
   font-weight: 600;
@@ -251,6 +260,10 @@
   }
 
   .mobileTitle {
+    display: block;
+  }
+
+  .mobileTheatre {
     display: block;
   }
 

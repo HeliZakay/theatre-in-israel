@@ -43,7 +43,6 @@ export default function Header() {
     fullName,
     firstName,
     isWriteReviewPage,
-    isContactPage,
     isMyReviewsPage,
     isMyWatchlistPage,
     onClose: closeMenus,
