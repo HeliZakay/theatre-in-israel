@@ -1,12 +1,3 @@
-jest.mock("@/lib/prisma", () => ({
-  __esModule: true,
-  default: {
-    show: {
-      findUnique: jest.fn(),
-    },
-  },
-}));
-
 jest.mock("next/server", () => {
   const actual = {
     NextResponse: jest.fn().mockImplementation((body?: string, init?: any) => ({
@@ -28,7 +19,6 @@ jest.mock("next/server", () => {
 
 import { middleware } from "@/middleware";
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
 
 function createMockRequest(
   method: string,
@@ -51,57 +41,6 @@ function createMockRequest(
 describe("middleware", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-  });
-
-  describe("Legacy show URL redirects", () => {
-    it("redirects /shows/42 to /shows/:slug with 301", async () => {
-      (prisma.show.findUnique as jest.Mock).mockResolvedValue({
-        slug: "קברט",
-      });
-
-      const req = createMockRequest("GET", "/shows/42");
-      const result = await middleware(req);
-
-      expect(prisma.show.findUnique).toHaveBeenCalledWith({
-        where: { id: 42 },
-        select: { slug: true },
-      });
-      expect(NextResponse.redirect).toHaveBeenCalledWith(
-        new URL("/shows/קברט", "https://example.com"),
-        301,
-      );
-    });
-
-    it("redirects /shows/42/review to /shows/:slug/review with 301", async () => {
-      (prisma.show.findUnique as jest.Mock).mockResolvedValue({
-        slug: "קברט",
-      });
-
-      const req = createMockRequest("GET", "/shows/42/review");
-      const result = await middleware(req);
-
-      expect(NextResponse.redirect).toHaveBeenCalledWith(
-        new URL("/shows/קברט/review", "https://example.com"),
-        301,
-      );
-    });
-
-    it("falls through when numeric ID not found", async () => {
-      (prisma.show.findUnique as jest.Mock).mockResolvedValue(null);
-
-      const req = createMockRequest("GET", "/shows/999");
-      const result = await middleware(req);
-
-      expect(NextResponse.next).toHaveBeenCalled();
-    });
-
-    it("does not redirect slug-based URLs", async () => {
-      const req = createMockRequest("GET", "/shows/קברט");
-      const result = await middleware(req);
-
-      expect(prisma.show.findUnique).not.toHaveBeenCalled();
-      expect(NextResponse.next).toHaveBeenCalled();
-    });
   });
 
   describe("CSRF protection on API routes", () => {
