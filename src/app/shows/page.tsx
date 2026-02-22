@@ -1,8 +1,13 @@
 import { getShowsForList } from "@/lib/data/showsList";
-import BackLink from "@/components/BackLink/BackLink";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import ROUTES from "@/constants/routes";
 import { DEFAULT_SORT } from "@/constants/sorts";
-import { SITE_NAME, toAbsoluteUrl, toJsonLd } from "@/lib/seo";
+import {
+  SITE_NAME,
+  buildBreadcrumbJsonLd,
+  toAbsoluteUrl,
+  toJsonLd,
+} from "@/lib/seo";
 import {
   buildShowsQueryString,
   parseShowsSearchParams,
@@ -86,24 +91,10 @@ export default async function ShowsPage({ searchParams }: ShowsPageProps) {
     await getShowsForList(resolvedSearchParams);
   const seo = buildShowsSeo(resolvedSearchParams);
 
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "עמוד הבית",
-        item: toAbsoluteUrl(ROUTES.HOME),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "הצגות",
-        item: toAbsoluteUrl(seo.canonicalPath),
-      },
-    ],
-  };
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: "עמוד הבית", path: ROUTES.HOME },
+    { name: "הצגות", path: seo.canonicalPath },
+  ]);
 
   const itemListJsonLd =
     shows.length > 0
@@ -132,7 +123,9 @@ export default async function ShowsPage({ searchParams }: ShowsPageProps) {
           dangerouslySetInnerHTML={{ __html: toJsonLd(itemListJsonLd) }}
         />
       ) : null}
-      <BackLink href={ROUTES.HOME} />
+      <Breadcrumb
+        items={[{ label: "עמוד הבית", href: ROUTES.HOME }, { label: "הצגות" }]}
+      />
       <ShowsContent
         shows={shows}
         theatres={theatres}

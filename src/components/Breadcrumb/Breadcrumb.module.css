@@ -1,0 +1,39 @@
+.nav {
+  align-self: flex-end;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+  font-size: 0.875rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.item + .item::before {
+  content: "/";
+  margin-inline: 0.5rem;
+  color: var(--color-text-faint);
+}
+
+.link {
+  color: var(--color-curtain-red);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.current {
+  color: var(--color-text-muted);
+  font-weight: 400;
+}

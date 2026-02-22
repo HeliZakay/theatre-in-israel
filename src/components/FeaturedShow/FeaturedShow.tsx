@@ -2,6 +2,7 @@ import * as Separator from "@radix-ui/react-separator";
 import Link from "next/link";
 import styles from "./FeaturedShow.module.css";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
+import { getShowImageAlt } from "@/lib/seo";
 
 interface FeaturedShowProps {
   title: string;
@@ -43,7 +44,7 @@ export default function FeaturedShow({
         <div className={styles.mediaRatio}>
           <FallbackImage
             src={imageSrc}
-            alt={imageAlt ?? title}
+            alt={imageAlt ?? getShowImageAlt(title)}
             fill
             sizes="(max-width: 900px) 100vw, 45vw"
             className={styles.mediaImage}

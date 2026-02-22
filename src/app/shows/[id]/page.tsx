@@ -7,6 +7,7 @@ import { authOptions } from "@/lib/auth";
 import { getShowById } from "@/lib/data/showDetail";
 import { isShowInWatchlist } from "@/lib/watchlist";
 import ROUTES from "@/constants/routes";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import ReviewCard from "@/components/ReviewCard/ReviewCard";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import WatchlistButton from "@/components/WatchlistButton/WatchlistButton";
@@ -17,6 +18,7 @@ import {
   toJsonLd,
   buildBreadcrumbJsonLd,
   buildCreativeWorkJsonLd,
+  getShowImageAlt,
 } from "@/lib/seo";
 
 import type { Metadata } from "next";
@@ -93,7 +95,7 @@ export async function generateMetadata({
       title: `${show.title} | ${SITE_NAME}`,
       description,
       url: canonicalPath,
-      images: [{ url: imagePath, alt: show.title }],
+      images: [{ url: imagePath, alt: getShowImageAlt(show.title) }],
     },
     twitter: {
       card: "summary_large_image",
@@ -150,15 +152,19 @@ export default async function ShowPage({ params }: ShowPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: toJsonLd(creativeWorkJsonLd) }}
       />
-      <Link className={styles.backLink} href={ROUTES.SHOWS}>
-        לכל ההצגות →
-      </Link>
+      <Breadcrumb
+        items={[
+          { label: "עמוד הבית", href: ROUTES.HOME },
+          { label: "הצגות", href: ROUTES.SHOWS },
+          { label: show.title },
+        ]}
+      />
       <header className={styles.header}>
         <div className={styles.heroGrid}>
           <div className={styles.poster}>
             <FallbackImage
               src={getShowImagePath(show.title)}
-              alt={show.title}
+              alt={getShowImageAlt(show.title)}
               fill
               sizes="(max-width: 640px) 100vw, 320px"
               className={styles.posterImage}

@@ -4,6 +4,7 @@ import Tag from "@/components/Tag/Tag";
 import Card from "@/components/Card/Card";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import { getShowImagePath } from "@/utils/getShowImagePath";
+import { getShowImageAlt } from "@/lib/seo";
 import type { ShowListItem } from "@/types";
 
 interface ShowCardProps {
@@ -20,7 +21,7 @@ export default function ShowCard({ show, priority }: ShowCardProps) {
         <div className={styles.imageWrapper}>
           <FallbackImage
             src={getShowImagePath(show.title)}
-            alt={show.title}
+            alt={getShowImageAlt(show.title)}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className={styles.image}

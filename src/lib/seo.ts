@@ -47,6 +47,10 @@ export function toJsonLd(value: unknown): string {
   return JSON.stringify(value).replace(/</g, "\\u003c");
 }
 
+export function getShowImageAlt(title: string): string {
+  return `פוסטר ההצגה ${title}`;
+}
+
 export function buildBreadcrumbJsonLd(items: { name: string; path: string }[]) {
   return {
     "@context": "https://schema.org",

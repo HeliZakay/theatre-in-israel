@@ -1,6 +1,7 @@
 export { default as AppSelect } from "./AppSelect/AppSelect";
 export { default as AuthSessionProvider } from "./AuthSessionProvider/AuthSessionProvider";
 export { default as BackLink } from "./BackLink/BackLink";
+export { default as Breadcrumb } from "./Breadcrumb/Breadcrumb";
 export { default as Button } from "./Button/Button";
 export { default as Card } from "./Card/Card";
 export { default as ContactForm } from "./ContactForm/ContactForm";
