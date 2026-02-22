@@ -84,6 +84,6 @@ export async function fetchShowListItems(
       return {
         ...rest,
         genre: genres?.map((sg) => sg.genre.name) ?? [],
-      } as ShowListItem;
+      } satisfies ShowListItem;
     });
 }

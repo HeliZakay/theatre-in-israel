@@ -52,7 +52,7 @@ export default function Hero({
               quoteAuthor={featuredAuthor ?? ""}
               avgRating={featuredShow.avgRating ?? null}
               reviewCount={featuredShow.reviewCount ?? 0}
-              href={showPath(featuredShow.slug)}
+              href={showPath(featuredShow.slug ?? String(featuredShow.id))}
             />
           </div>
         ) : null}

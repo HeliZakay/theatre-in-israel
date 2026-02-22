@@ -16,7 +16,7 @@ export default function ShowCard({ show, priority }: ShowCardProps) {
   const { reviewCount, avgRating } = show;
 
   return (
-    <Link href={`/shows/${show.slug}`} className={styles.cardLink}>
+    <Link href={`/shows/${show.slug ?? show.id}`} className={styles.cardLink}>
       <Card as="article" className={styles.card} aria-label={show.title}>
         <div className={styles.imageWrapper}>
           <FallbackImage

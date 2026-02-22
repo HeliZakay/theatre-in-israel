@@ -106,7 +106,7 @@ export default async function ShowsPage({ searchParams }: ShowsPageProps) {
             "@type": "ListItem",
             position: index + 1,
             name: show.title,
-            url: toAbsoluteUrl(showPath(show.slug)),
+            url: toAbsoluteUrl(showPath(show.slug ?? String(show.id))),
           })),
         }
       : null;
