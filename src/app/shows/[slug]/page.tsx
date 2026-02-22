@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import { cache } from "react";
@@ -24,6 +25,22 @@ import {
 import type { Metadata } from "next";
 
 export const revalidate = 120; // Re-generate at most every 2 minutes
+
+/**
+ * If the slug is purely numeric (legacy URL like /shows/42),
+ * look up the show by ID and permanently redirect to /shows/:slug.
+ */
+async function redirectIfLegacyNumericId(slug: string) {
+  if (!/^\d+$/.test(slug)) return;
+  const { default: prisma } = await import("@/lib/prisma");
+  const show = await prisma.show.findUnique({
+    where: { id: Number(slug) },
+    select: { slug: true },
+  });
+  if (show) {
+    redirect(`/shows/${show.slug}`);
+  }
+}
 
 export async function generateStaticParams() {
   const { default: prisma } = await import("@/lib/prisma");
@@ -64,6 +81,7 @@ export async function generateMetadata({
   params,
 }: ShowPageProps): Promise<Metadata> {
   const { slug } = await params;
+  await redirectIfLegacyNumericId(slug);
   const show = await getShowForPage(slug);
 
   if (!show) {
@@ -108,6 +126,7 @@ export async function generateMetadata({
 
 export default async function ShowPage({ params }: ShowPageProps) {
   const { slug } = await params;
+  await redirectIfLegacyNumericId(slug);
   const show = await getShowForPage(slug);
 
   if (!show) {
