@@ -8,6 +8,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "צור קשר",
   description: "יצירת קשר עם צוות תיאטרון בישראל — נשמח לשמוע מכם!",
+  alternates: {
+    canonical: ROUTES.CONTACT,
+  },
   openGraph: {
     title: `צור קשר | ${SITE_NAME}`,
     description: "יצירת קשר עם צוות תיאטרון בישראל — נשמח לשמוע מכם!",

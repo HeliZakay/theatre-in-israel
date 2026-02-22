@@ -4,7 +4,9 @@ Step-by-step instructions for taking the site live and getting it indexed.
 
 ---
 
-## Step 1: Buy a Custom Domain
+## Step 1: Buy a Custom Domain ✅
+
+> **Completed Feb 22, 2026** — Domain `theatre-in-israel.co.il` purchased via Internic. DNS configured (A → `216.198.79.1`, CNAME www → `f7d9d90643e4bfa4.vercel-dns-017.com`). SSL provisioned. `NEXT_PUBLIC_SITE_URL` updated and redeployed.
 
 **Goal:** Get a `.co.il` domain (e.g., `theatre.co.il`) so the site has a real address.
 
@@ -23,7 +25,9 @@ Step-by-step instructions for taking the site live and getting it indexed.
 
 ---
 
-## Step 2: Set Up Google Search Console
+## Step 2: Set Up Google Search Console ✅
+
+> **Completed Feb 22, 2026** — Property `theatre-in-israel.co.il` verified via DNS TXT record. Verification meta tag also added to `layout.tsx` as backup.
 
 **Goal:** Tell Google your site exists and get access to search performance data.
 
@@ -41,7 +45,9 @@ Step-by-step instructions for taking the site live and getting it indexed.
 
 ---
 
-## Step 3: Submit Sitemap to Search Console
+## Step 3: Submit Sitemap to Search Console ✅
+
+> **Completed Feb 22, 2026** — Sitemap submitted at `https://theatre-in-israel.co.il/sitemap.xml`. Initially showed "Couldn't fetch" (DNS propagation delay) — will resolve automatically.
 
 **Goal:** Tell Google about all the pages on your site so it can crawl them.
 
@@ -58,7 +64,9 @@ Step-by-step instructions for taking the site live and getting it indexed.
 
 ---
 
-## Step 4: Request Indexing for Key Pages
+## Step 4: Request Indexing for Key Pages ✅
+
+> **Completed Feb 22, 2026** — Indexing requested for homepage and `/shows`.
 
 **Goal:** Ask Google to prioritize crawling your most important pages.
 
@@ -75,7 +83,9 @@ Step-by-step instructions for taking the site live and getting it indexed.
 
 ---
 
-## Step 5: Validate Structured Data
+## Step 5: Validate Structured Data ✅
+
+> **Completed Feb 22, 2026** — Validated via Schema Markup Validator. Homepage: `Organization` + `WebSite` (0 errors). Show page: `Organization` + `BreadcrumbList` + `CreativeWork` + `WebSite` (0 errors).
 
 **Goal:** Make sure Google can read the structured data (schemas) on your pages correctly.
 
@@ -186,14 +196,14 @@ Step-by-step instructions for taking the site live and getting it indexed.
 
 ## Quick Reference / Timeline
 
-| When                | What to Do                          |
-| ------------------- | ----------------------------------- |
-| **Now**             | Step 1: Buy domain                  |
-| **Right after**     | Step 2: Set up Search Console       |
-| **Same day**        | Step 3: Submit sitemap              |
-| **Same day**        | Step 4: Request indexing            |
-| **Same day**        | Step 5: Validate structured data    |
-| **Same day**        | Step 7: Set up Bing Webmaster Tools |
-| **After deploy**    | Step 6: Test Core Web Vitals        |
-| **Ongoing**         | Step 8: Build backlinks             |
-| **After 1–2 weeks** | Step 9: Monitor coverage            |
+| When                | What to Do                              |
+| ------------------- | --------------------------------------- |
+| **Now**             | ~~Step 1: Buy domain~~ ✅               |
+| **Right after**     | ~~Step 2: Set up Search Console~~ ✅    |
+| **Same day**        | ~~Step 3: Submit sitemap~~ ✅           |
+| **Same day**        | ~~Step 4: Request indexing~~ ✅         |
+| **Same day**        | ~~Step 5: Validate structured data~~ ✅ |
+| **Same day**        | Step 7: Set up Bing Webmaster Tools     |
+| **After deploy**    | Step 6: Test Core Web Vitals            |
+| **Ongoing**         | Step 8: Build backlinks                 |
+| **After 1–2 weeks** | Step 9: Monitor coverage                |

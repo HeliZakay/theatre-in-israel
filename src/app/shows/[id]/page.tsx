@@ -39,6 +39,7 @@ interface ShowPageProps {
 const getShowForPage = cache(async (showId: string) => getShowById(showId));
 
 function buildShowDescription(
+  description: string | null,
   summary: string,
   theatre: string,
   title: string,
@@ -50,10 +51,11 @@ function buildShowDescription(
       ? `דירוג ${avgRating.toFixed(1)} מתוך 5 על בסיס ${reviewCount} ביקורות.`
       : `עדיין אין דירוג ממוצע.`;
 
-  const shortSummary =
-    summary.length > 140 ? `${summary.slice(0, 137).trimEnd()}...` : summary;
+  const text = description ?? summary;
+  const shortText =
+    text.length > 140 ? `${text.slice(0, 137).trimEnd()}...` : text;
 
-  return `${title} בתיאטרון ${theatre}. ${ratingText} ${shortSummary}`;
+  return `${title} בתיאטרון ${theatre}. ${ratingText} ${shortText}`;
 }
 
 export async function generateMetadata({
@@ -72,6 +74,7 @@ export async function generateMetadata({
   const { reviewCount, avgRating } = getShowStats(show);
   const canonicalPath = `${ROUTES.SHOWS}/${show.id}`;
   const description = buildShowDescription(
+    show.description,
     show.summary,
     show.theatre,
     show.title,

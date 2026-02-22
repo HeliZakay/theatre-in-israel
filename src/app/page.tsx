@@ -24,6 +24,12 @@ export const metadata: Metadata = {
     description: homeDescription,
     url: ROUTES.HOME,
   },
+  twitter: {
+    card: "summary_large_image",
+    title: `${homeTitle} | ${SITE_NAME}`,
+    description: homeDescription,
+    images: ["/logo-img.png"],
+  },
 };
 
 export const revalidate = 120; // Re-generate at most every 2 minutes

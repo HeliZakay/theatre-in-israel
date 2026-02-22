@@ -71,6 +71,12 @@ export async function generateMetadata({
       description: seo.description,
       url: seo.canonicalPath,
     },
+    twitter: {
+      card: "summary_large_image",
+      title: `${seo.title} | ${SITE_NAME}`,
+      description: seo.description,
+      images: ["/logo-img.png"],
+    },
   };
 }
 
