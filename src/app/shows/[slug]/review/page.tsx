@@ -23,7 +23,8 @@ const getShowForReviewPage = cache(async (slug: string) => getShowBySlug(slug));
 export async function generateMetadata({
   params,
 }: NewReviewPageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug: rawSlug } = await params;
+  const slug = decodeURIComponent(rawSlug);
   const show = await getShowForReviewPage(slug);
 
   if (!show) {
@@ -46,7 +47,8 @@ export async function generateMetadata({
 }
 
 export default async function NewReviewPage({ params }: NewReviewPageProps) {
-  const { slug } = await params;
+  const { slug: rawSlug } = await params;
+  const slug = decodeURIComponent(rawSlug);
   await requireAuth(showReviewPath(slug));
 
   const show = await getShowForReviewPage(slug);

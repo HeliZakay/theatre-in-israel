@@ -8,8 +8,9 @@ import type { Show } from "@/types";
 export async function getShowBySlug(slug: string): Promise<Show | null> {
   if (!slug) return null;
 
+  const decodedSlug = decodeURIComponent(slug);
   const show = await prisma.show.findUnique({
-    where: { slug },
+    where: { slug: decodedSlug },
     include: showInclude,
   });
   return normalizeShow(show);

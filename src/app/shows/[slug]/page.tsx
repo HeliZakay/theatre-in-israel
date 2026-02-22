@@ -80,7 +80,8 @@ function buildShowDescription(
 export async function generateMetadata({
   params,
 }: ShowPageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug: rawSlug } = await params;
+  const slug = decodeURIComponent(rawSlug);
   await redirectIfLegacyNumericId(slug);
   const show = await getShowForPage(slug);
 
@@ -125,7 +126,8 @@ export async function generateMetadata({
 }
 
 export default async function ShowPage({ params }: ShowPageProps) {
-  const { slug } = await params;
+  const { slug: rawSlug } = await params;
+  const slug = decodeURIComponent(rawSlug);
   await redirectIfLegacyNumericId(slug);
   const show = await getShowForPage(slug);
 
