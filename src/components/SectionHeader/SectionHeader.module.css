@@ -9,7 +9,7 @@
   text-transform: uppercase;
   letter-spacing: 0.28em;
   font-size: 0.7rem;
-  color: rgba(26, 26, 26, 0.55);
+  color: var(--color-text-faint);
 }
 
 .title {

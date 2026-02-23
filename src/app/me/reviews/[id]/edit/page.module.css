@@ -13,7 +13,7 @@
   text-transform: uppercase;
   letter-spacing: 0.24em;
   font-size: 0.74rem;
-  color: rgba(26, 26, 26, 0.55);
+  color: var(--color-text-faint);
 }
 
 .title {
@@ -67,7 +67,7 @@
 
 .charMeta {
   font-size: 0.82rem;
-  color: rgba(26, 26, 26, 0.55);
+  color: var(--color-text-faint);
 }
 
 .actions {
