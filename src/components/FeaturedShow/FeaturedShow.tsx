@@ -52,7 +52,7 @@ export default function FeaturedShow({
           />
           <div className={styles.mediaShade} aria-hidden />
           <div className={styles.mediaOverlay}>
-            <h3 className={styles.showTitle}>{title}</h3>
+            <h2 className={styles.showTitle}>{title}</h2>
             {theatre && <p className={styles.theatre}>{theatre}</p>}
             <div className={styles.tagRow}>
               {tags.map((tag) => (
@@ -67,7 +67,7 @@ export default function FeaturedShow({
 
       <div className={styles.body}>
         <Separator.Root className={styles.separator} />
-        <h3 className={styles.mobileTitle}>{title}</h3>
+        <h2 className={styles.mobileTitle}>{title}</h2>
         {theatre && <p className={styles.mobileTheatre}>{theatre}</p>}
         <div className={styles.mobileTags}>
           {tags.map((tag) => (
