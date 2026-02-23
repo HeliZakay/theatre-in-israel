@@ -12,6 +12,7 @@ export default function Logo() {
         className={styles.logoIcon}
         width={85}
         height={60}
+        priority
       />
 
       <span className={styles.logoTextWrapper}>

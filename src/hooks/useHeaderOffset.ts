@@ -11,11 +11,16 @@ export function useHeaderOffset(ref: RefObject<HTMLElement | null>) {
 
     const root = document.documentElement;
 
+    let rafId = 0;
+
     const update = () => {
-      const height = Math.ceil(el.getBoundingClientRect().height);
-      if (height > 0) {
-        root.style.setProperty("--header-offset", `${height}px`);
-      }
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const height = Math.ceil(el.getBoundingClientRect().height);
+        if (height > 0) {
+          root.style.setProperty("--header-offset", `${height}px`);
+        }
+      });
     };
 
     update();
@@ -27,6 +32,7 @@ export function useHeaderOffset(ref: RefObject<HTMLElement | null>) {
     window.addEventListener("resize", update);
 
     return () => {
+      cancelAnimationFrame(rafId);
       observer?.disconnect();
       window.removeEventListener("orientationchange", update);
       window.removeEventListener("resize", update);
