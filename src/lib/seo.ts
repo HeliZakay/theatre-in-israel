@@ -73,13 +73,13 @@ export function buildCreativeWorkJsonLd(
 
   return {
     "@context": "https://schema.org",
-    "@type": "TheaterEvent",
+    "@type": "CreativeWork",
     name: show.title,
     description: show.description ?? show.summary,
     inLanguage: "he-IL",
     image: toAbsoluteUrl(getShowImagePath(show.title)),
     url: toAbsoluteUrl(canonicalPath),
-    location: {
+    contentLocation: {
       "@type": "PerformingArtsTheater",
       name: show.theatre,
     },
