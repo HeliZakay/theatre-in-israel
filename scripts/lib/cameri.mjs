@@ -5,8 +5,11 @@
  * imported by any script that needs it.
  */
 
-import puppeteer from "puppeteer";
-import { extractImageFromPage, fixDoubleProtocol } from "./image.mjs";
+import { fixDoubleProtocol } from "./image.mjs";
+import { setupRequestInterception } from "./browser.mjs";
+
+// ── Re-export shared browser helpers for backward compatibility ─
+export { launchBrowser, setupRequestInterception } from "./browser.mjs";
 
 // ── Constants ──────────────────────────────────────────────────
 
@@ -14,43 +17,6 @@ export const CAMERI_THEATRE = "תיאטרון הקאמרי";
 export const CAMERI_BASE = "https://www.cameri.co.il";
 export const SCHEDULE_URL =
   "https://www.cameri.co.il/%D7%9C%D7%95%D7%97_%D7%94%D7%A6%D7%92%D7%95%D7%AA_%D7%9E%D7%9C%D7%90";
-
-// ── Browser helpers ────────────────────────────────────────────
-
-/**
- * Launch a headless Puppeteer browser.
- * @returns {Promise<import("puppeteer").Browser>}
- */
-export async function launchBrowser() {
-  return puppeteer.launch({
-    headless: true,
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
-  });
-}
-
-/**
- * Set up lightweight request interception on a page — blocks
- * images, stylesheets, fonts, and media to speed up scraping.
- *
- * @param {import("puppeteer").Page} page
- * @param {{ allowImages?: boolean }} [options]
- */
-export async function setupRequestInterception(
-  page,
-  { allowImages = false } = {},
-) {
-  await page.setRequestInterception(true);
-  const blocked = ["stylesheet", "font", "media"];
-  if (!allowImages) blocked.push("image");
-
-  page.on("request", (req) => {
-    if (blocked.includes(req.resourceType())) {
-      req.abort();
-    } else {
-      req.continue();
-    }
-  });
-}
 
 // ── Schedule page scraper ──────────────────────────────────────
 

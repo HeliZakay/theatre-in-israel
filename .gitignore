@@ -50,3 +50,7 @@ next-env.d.ts
 playwright-report/
 test-results/
 blob-report/
+
+# scraper HTML reports
+missing-cameri-shows.html
+missing-habima-shows.html

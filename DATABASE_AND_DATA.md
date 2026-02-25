@@ -58,11 +58,12 @@ All 133 real shows, 14 genres, and 351 ShowGenre records are inserted via a **Pr
 
 **When to use:** Never for production. Only to populate a test or dev database with fixture data for testing purposes.
 
-### 3. Scraper Script (adding new real shows)
+### 3. Scraper Scripts (adding new real shows)
 
-**Location:** `scripts/find-missing-cameri-shows.mjs`
+**Cameri:** `scripts/find-missing-cameri-shows.mjs`
+**Habima:** `scripts/find-missing-habima-shows.mjs`
 
-- Scrapes the Cameri Theatre website for shows not yet in the local DB
+- Scrapes each theatre's website for shows not yet in the local DB
 - Uses AI (GitHub Models) to generate Hebrew summaries
 - Opens an interactive browser UI where you review, edit, and approve shows
 - Click **"Generate Migration"** to create a Prisma migration SQL file in `prisma/migrations/`
@@ -70,7 +71,7 @@ All 133 real shows, 14 genres, and 351 ShowGenre records are inserted via a **Pr
 - Does **not** insert directly into any database (local or production)
 - Requires `DATABASE_URL` (local) and `GITHUB_TOKEN` env vars
 
-**When to use:** To discover new Cameri Theatre shows and generate a migration for them. After generating the migration, commit and push — Vercel will apply it to production automatically via `prisma migrate deploy`.
+**When to use:** To discover new shows from Cameri or Habima and generate a migration for them. After generating the migration, commit and push — Vercel will apply it to production automatically via `prisma migrate deploy`.
 
 ---
 
@@ -145,6 +146,7 @@ See `prisma/schema.prisma` for the full schema. Notable points:
 | `prisma/seed.js`                        | Test data seeder (reads from `e2e/data/shows.json`)         |
 | `e2e/data/shows.json`                   | 6 fake test shows for E2E (IDs 10001–10006)                 |
 | `scripts/find-missing-cameri-shows.mjs` | Scraper: finds new Cameri shows & generates migration files |
+| `scripts/find-missing-habima-shows.mjs` | Scraper: finds new Habima shows & generates migration files |
 | `scripts/setup-e2e.sh`                  | E2E environment setup (Docker + migrate + seed + test user) |
 | `scripts/teardown-e2e.sh`               | E2E cleanup (stops Docker)                                  |
 
@@ -155,15 +157,16 @@ See `prisma/schema.prisma` for the full schema. Notable points:
 ### Adding a new show to production
 
 ```bash
-# 1. Run the scraper (uses local DB to detect missing shows)
-node scripts/find-missing-cameri-shows.mjs
+# 1. Run the scraper for the relevant theatre
+node scripts/find-missing-cameri-shows.mjs   # Cameri Theatre
+node scripts/find-missing-habima-shows.mjs   # Habima Theatre
 
 # 2. Review and approve shows in the browser UI
 # 3. Click "Generate Migration" — creates a file in prisma/migrations/
 
 # 4. Commit the migration and push
 git add prisma/migrations/
-git commit -m "Add new Cameri shows"
+git commit -m "Add new shows"
 git push
 # Vercel runs prisma migrate deploy automatically — shows appear in prod
 ```
