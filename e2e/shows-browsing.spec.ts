@@ -49,7 +49,7 @@ test.describe("Shows Browsing", () => {
 
     // Type in search
     const searchInput = page.getByPlaceholder(/חיפוש/);
-    await searchInput.fill("המלך");
+    await searchInput.fill("הכוכב");
     // Wait for URL to update (search is debounced)
     await page.waitForURL(/query=/);
 

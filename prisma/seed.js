@@ -21,7 +21,7 @@ const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
 function loadShows() {
-  const dataPath = path.join(__dirname, "data", "shows.json");
+  const dataPath = path.join(__dirname, "..", "e2e", "data", "shows.json");
   const raw = fs.readFileSync(dataPath, "utf8");
   return JSON.parse(raw);
 }

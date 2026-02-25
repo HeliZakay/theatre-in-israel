@@ -47,8 +47,10 @@ src/
 └── utils/            # Utility functions
 prisma/
 ├── schema.prisma     # Database schema
-├── seed.js           # Seed script
-└── data/shows.json   # Seed data
+├── seed.js           # Seed script (E2E/dev only, reads e2e/data/shows.json)
+└── migrations/       # Schema + data migrations (includes production show data)
+e2e/
+└── data/shows.json   # Minimal test fixture (fake shows for E2E tests)
 ```
 
 ## Getting Started
@@ -83,8 +85,10 @@ RESEND_API_KEY="..."
 # Install dependencies
 npm install
 
-# Push the schema & seed the database
+# Apply migrations (creates schema + seeds production show data)
 npx prisma migrate deploy
+
+# Optionally seed fake test shows for local development
 npx prisma db seed
 
 # Start the dev server

@@ -834,42 +834,6 @@ async function insertShowsToDB(selectedShows) {
   return { added, skipped, failed };
 }
 
-async function appendToShowsJson(insertedShows) {
-  const dataPath = path.join(rootDir, "prisma", "data", "shows.json");
-  try {
-    const raw = fs.readFileSync(dataPath, "utf8");
-    const allShows = JSON.parse(raw);
-
-    // Find the next available ID
-    const maxId = allShows.reduce((max, s) => Math.max(max, s.id || 0), 0);
-
-    for (let i = 0; i < insertedShows.length; i++) {
-      const show = insertedShows[i];
-      allShows.push({
-        id: maxId + 1 + i,
-        title: show.title,
-        theatre: show.theatre,
-        durationMinutes: show.durationMinutes ?? 0,
-        summary: show.summary,
-        description: show.description ?? null,
-        genre: show.genre || [],
-        reviews: [],
-      });
-    }
-
-    fs.writeFileSync(
-      dataPath,
-      JSON.stringify(allShows, null, 2) + "\n",
-      "utf8",
-    );
-    console.log(
-      dim(`\n  📄  Updated shows.json (+${insertedShows.length} shows)`),
-    );
-  } catch (err) {
-    console.warn(yellow(`  ⚠ Could not update shows.json: ${err.message}`));
-  }
-}
-
 // ── main ────────────────────────────────────────────────────────
 
 try {
@@ -1087,17 +1051,6 @@ try {
           console.log(
             `\n  📊  Summary: ${green(added + " added")}${skipped ? ", " + yellow(skipped + " skipped") : ""}${failed ? ", " + red(failed + " failed") : ""}\n`,
           );
-
-          // Append successfully inserted shows to shows.json
-          if (added > 0) {
-            const insertedShows = selected.filter((s) => {
-              // A show was inserted if it wasn't skipped or failed
-              // Re-check isn't possible here, so we append all selected
-              // (skipped ones won't cause issues since they already exist in JSON)
-              return true;
-            });
-            await appendToShowsJson(insertedShows);
-          }
         } else {
           console.log(dim("\n  Cancelled — no shows inserted.\n"));
         }
