@@ -1,6 +1,6 @@
 # System Design — Theatre in Israel
 
-Last updated: 2026-02-18
+Last updated: 2026-02-25
 
 ## Architecture Overview
 
@@ -80,19 +80,19 @@ graph TB
 
 ## Component Summary
 
-| Component         | Technology                       | Role                                                                           |
-| ----------------- | -------------------------------- | ------------------------------------------------------------------------------ |
-| **Client**        | React 19 + Next.js App Router    | SSR pages + interactive client components                                      |
-| **Server**        | Next.js 16 on Node.js 20         | Renders pages (SSR/ISR), hosts API routes, runs middleware                     |
-| **Data Layer**    | `src/lib/data/`                  | Server-side data-fetching functions consumed by page components                |
-| **Service Layer** | `src/lib/`                       | Business logic for reviews, watchlist, auth                                    |
-| **API Routes**    | 7 endpoints under `src/app/api/` | REST-style mutations (reviews CRUD, watchlist CRUD, auth)                      |
-| **Auth**          | NextAuth v4 (JWT sessions)       | Google OAuth + credentials provider; Prisma adapter                            |
-| **ORM**           | Prisma 7 with driver adapters    | Auto-selects Neon serverless adapter or standard pg                            |
-| **Database**      | PostgreSQL (Neon)                | 7 models: User, Show, Review, Watchlist, Genre, ShowGenre, Account/Session     |
-| **Middleware**    | `src/middleware.ts`              | CSRF protection on all `/api/*` mutating requests                              |
-| **Rate Limiter**  | `src/utils/reviewRateLimit.ts`   | DB-based (create: 3/hr) + in-memory Map (edit/delete: 10/hr)                   |
-| **Cache**         | Next.js ISR + `React.cache()`    | No external cache — ISR for home/show detail; force-dynamic for filtered lists |
+| Component         | Technology                       | Role                                                                                                           |
+| ----------------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| **Client**        | React 19 + Next.js App Router    | SSR pages + interactive client components                                                                      |
+| **Server**        | Next.js 16 on Node.js 20         | Renders pages (SSR/ISR), hosts API routes, runs middleware                                                     |
+| **Data Layer**    | `src/lib/data/`                  | Server-side data-fetching functions consumed by page components                                                |
+| **Service Layer** | `src/lib/`                       | Business logic for reviews, watchlist, auth                                                                    |
+| **API Routes**    | 7 endpoints under `src/app/api/` | REST-style mutations (reviews CRUD, watchlist CRUD, auth)                                                      |
+| **Auth**          | NextAuth v4 (JWT sessions)       | Google OAuth + credentials provider; Prisma adapter                                                            |
+| **ORM**           | Prisma 7 with driver adapters    | Auto-selects Neon serverless adapter or standard pg                                                            |
+| **Database**      | PostgreSQL (Neon)                | 10 models: User, Show, Review, Watchlist, Genre, ShowGenre, Account, Session, ContactMessage, RateLimitAttempt |
+| **Middleware**    | `src/middleware.ts`              | CSRF protection on all `/api/*` mutating requests                                                              |
+| **Rate Limiter**  | `src/utils/reviewRateLimit.ts`   | DB-based (create: 3/hr) + in-memory Map (edit/delete: 10/hr)                                                   |
+| **Cache**         | Next.js ISR + `React.cache()`    | No external cache — ISR for home/show detail; force-dynamic for filtered lists                                 |
 
 ## Data Flow
 
@@ -120,25 +120,31 @@ erDiagram
         string email UK
         string password
         string image
+        datetime createdAt
+        datetime updatedAt
     }
 
     Show {
         int id PK
         string title
+        string slug UK
+        string theatre
+        int durationMinutes
+        string summary
         string description
-        string theater
-        date startDate
-        date endDate
-        string imageUrl
+        float avgRating
+        int reviewCount
     }
 
     Review {
         int id PK
-        int rating
-        string title
-        string body
-        string userId FK
         int showId FK
+        string userId FK
+        string author
+        string title
+        string text
+        int rating
+        datetime date
         datetime createdAt
         datetime updatedAt
     }
@@ -146,6 +152,7 @@ erDiagram
     Watchlist {
         string userId PK_FK
         int showId PK_FK
+        datetime createdAt
     }
 
     Genre {

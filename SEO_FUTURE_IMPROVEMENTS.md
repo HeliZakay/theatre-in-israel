@@ -6,26 +6,7 @@ Improvements that can further strengthen the site's search engine performance, o
 
 ## High Impact
 
-### 1. Custom Domain (`.co.il`)
-
-Buy a `.co.il` domain (e.g. `theatre-israel.co.il`, `bikorot-theatre.co.il`).
-
-**Why:**
-
-- The `vercel.app` subdomain shares domain authority with every other Vercel project
-- A `.co.il` ccTLD gives a strong geo-relevance boost in Google Israel
-- Builds your own backlink equity over time
-- Looks professional — improves click-through rate from search results
-- Portable — you can move hosting without losing SEO
-
-**Steps:**
-
-1. Purchase domain from a `.co.il` registrar
-2. Add it in Vercel Dashboard → Settings → Domains (Vercel auto-provisions SSL)
-3. Update the `NEXT_PUBLIC_SITE_URL` env variable
-4. Set up 301 redirects from the old `vercel.app` URL (Vercel handles this automatically when a custom domain is configured)
-
-### 2. URL Slugs Instead of Numeric IDs
+### 1. URL Slugs Instead of Numeric IDs
 
 Change `/shows/42` → `/shows/42/קברט` or `/shows/קברט`.
 
@@ -37,45 +18,16 @@ Change `/shows/42` → `/shows/42/קברט` or `/shows/קברט`.
 
 **Steps:**
 
-1. Add a `slug` field to the `Show` model in `prisma/schema.prisma`
-2. Write a migration to generate slugs from existing titles (handle duplicates)
-3. Update all link generation (`ShowCard`, `FeaturedShow`, `sitemap.ts`, etc.)
-4. Add 301 redirects from old `/shows/:id` to `/shows/:slug`
-5. Update canonical URLs and JSON-LD `mainEntityOfPage`
-
-### 3. Google Search Console Setup
-
-Required for monitoring indexing, crawl errors, and search performance.
-
-**Steps:**
-
-1. Verify domain ownership (DNS TXT record or HTML meta tag)
-2. Add `verification.google` to root metadata in `layout.tsx`
-3. Submit `/sitemap.xml`
-4. Request indexing for `/`, `/shows`, and top show pages
-5. See `SEO_SEARCH_CONSOLE_CHECKLIST.md` for full walkthrough
+1. The `slug` field already exists on the `Show` model
+2. Update all link generation (`ShowCard`, `FeaturedShow`, `sitemap.ts`, etc.)
+3. Add 301 redirects from old `/shows/:id` to `/shows/:slug`
+4. Update canonical URLs and JSON-LD `mainEntityOfPage`
 
 ---
 
 ## Medium Impact
 
-### 4. Visible Breadcrumb UI Component
-
-JSON-LD breadcrumbs exist but there's no visible breadcrumb trail on show pages.
-
-**Why:**
-
-- Google prefers breadcrumbs that match between visible UI and structured data
-- Improves user navigation — especially for show detail pages
-- May appear as rich breadcrumbs in search results
-
-**Steps:**
-
-1. Create a `Breadcrumb` component rendering `Home > הצגות > Show Title`
-2. Add it to `/shows` and `/shows/[id]` pages
-3. Style it with RTL support
-
-### 5. `updatedAt` Field on Show Model
+### 2. `updatedAt` Field on Show Model
 
 The sitemap currently uses the latest review date as `lastModified`. An explicit `updatedAt` on the Show model would be more accurate.
 
@@ -90,7 +42,7 @@ The sitemap currently uses the latest review date as `lastModified`. An explicit
 2. Run a migration
 3. Update `sitemap.ts` to use `max(show.updatedAt, latestReviewDate)`
 
-### 6. Bing Webmaster Tools
+### 3. Bing Webmaster Tools
 
 Free secondary search engine coverage.
 
@@ -101,7 +53,7 @@ Free secondary search engine coverage.
 3. Submit sitemap
 4. Add `verification.bing` to root metadata
 
-### 7. Build Backlinks
+### 4. Build Backlinks
 
 Crucial for domain authority, especially with a new domain.
 
@@ -113,11 +65,30 @@ Crucial for domain authority, especially with a new domain.
 - Get listed on Israeli cultural event sites
 - Contact theatre companies to link to their show pages on your site
 
+### 5. Test Core Web Vitals
+
+Run Lighthouse and PageSpeed Insights on key pages to identify performance issues.
+
+**Steps:**
+
+1. Test `/`, `/shows`, and a few `/shows/[slug]` pages
+2. Fix any flagged CLS, LCP, or INP issues
+3. Re-test after fixes
+
+### 6. Monitor Coverage in Search Console
+
+Periodically check Google Search Console for indexing issues.
+
+**Steps:**
+
+1. Review the "Pages" report monthly for crawl errors, excluded pages, and indexing status
+2. Fix any flagged issues (redirect chains, soft 404s, etc.)
+
 ---
 
 ## Low Impact / Nice-to-Have
 
-### 8. Twitter Cards on All Indexable Pages
+### 7. Twitter Cards on All Indexable Pages
 
 Currently only the root layout and show detail pages define Twitter card metadata. The shows listing and homepage inherit the root logo.
 
@@ -125,15 +96,15 @@ Currently only the root layout and show detail pages define Twitter card metadat
 
 - Add `twitter` metadata with contextual images to `src/app/shows/page.tsx` and `src/app/page.tsx`
 
-### 9. Meta Description from `description` Field
+### 8. Meta Description from `description` Field
 
 Show detail meta descriptions currently use the `summary` field. The longer `description` field has richer content.
 
 **Steps:**
 
-- In `buildShowDescription()` in `src/app/shows/[id]/page.tsx`, prefer `description` over `summary` when available, truncated to ~155 characters
+- In `buildShowDescription()` in `src/app/shows/[slug]/page.tsx`, prefer `description` over `summary` when available, truncated to ~155 characters
 
-### 10. English Version / Multi-Language Support
+### 9. English Version / Multi-Language Support
 
 Expands audience to tourists, expats, and international theatre fans.
 
@@ -150,7 +121,7 @@ Expands audience to tourists, expats, and international theatre fans.
 3. Translate UI strings and show content
 4. Add `hreflang` alternates between Hebrew and English versions
 
-### 11. Review Pagination
+### 10. Review Pagination
 
 All reviews for a show load at once. For shows with many reviews, consider:
 
@@ -158,7 +129,7 @@ All reviews for a show load at once. For shows with many reviews, consider:
 - Helps with page weight and initial load time
 - Not a direct SEO factor but improves Core Web Vitals
 
-### 12. Open Graph Images Per Section
+### 11. Open Graph Images Per Section
 
 Generate dynamic OG images for the shows listing page (collage of top shows) instead of the generic logo. Next.js supports `opengraph-image.tsx` for dynamic OG image generation.
 
@@ -168,6 +139,9 @@ Generate dynamic OG images for the shows listing page (collage of top shows) ins
 
 For reference, these SEO features are already in place:
 
+- Custom `.co.il` domain with SSL (Feb 22, 2026)
+- Google Search Console verified, sitemap submitted, indexing requested (Feb 22, 2026)
+- Visible breadcrumb UI component on `/shows` and `/shows/[slug]` pages
 - Per-page `<title>` and `<meta description>` on all routes
 - `metadataBase` configured for absolute URL resolution
 - Canonical URLs on all indexable pages
