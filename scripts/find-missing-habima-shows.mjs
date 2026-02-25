@@ -266,6 +266,22 @@ function generateHtml(results) {
     .url-link { color: #38bdf8; text-decoration: none; word-break: break-all; font-size: 0.85rem; }
     .url-link:hover { text-decoration: underline; }
     .error-text { color: #f87171; font-size: 0.85rem; }
+    .field-invalid {
+      border-color: #f87171 !important;
+      box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.3) !important;
+    }
+    .validation-errors {
+      background: rgba(248, 113, 113, 0.1);
+      border: 1px solid #f87171;
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1rem auto;
+      max-width: 850px;
+      direction: rtl;
+    }
+    .validation-errors h3 { color: #f87171; margin-bottom: 0.5rem; font-size: 1rem; }
+    .validation-errors ul { list-style: none; padding: 0; }
+    .validation-errors li { color: #fca5a5; font-size: 0.85rem; padding: 0.15rem 0; }
     .tag {
       display: inline-block; background: #334155; color: #38bdf8;
       padding: 0.15rem 0.6rem; border-radius: 999px; font-size: 0.85rem; margin: 0.1rem;
@@ -339,9 +355,128 @@ function generateHtml(results) {
       btn.disabled = indices.length === 0;
     }
 
+    function validateShows(indices) {
+      // Clear previous validation state
+      document.querySelectorAll(".field-invalid").forEach(function(el) {
+        el.classList.remove("field-invalid");
+      });
+      var prev = document.querySelector(".validation-errors");
+      if (prev) prev.remove();
+
+      var errors = [];
+      var slugs = {};
+
+      for (var i = 0; i < indices.length; i++) {
+        var idx = indices[i];
+        var card = document.querySelector(".card[data-index='" + idx + "']");
+        var cardNumber = idx + 1;
+
+        // Title
+        var titleEl = card.querySelector(".title-input");
+        if (!titleEl.value.trim()) {
+          titleEl.classList.add("field-invalid");
+          errors.push({ index: idx, cardNumber: cardNumber, field: "title", message: "שם ההצגה חסר" });
+        }
+
+        // Slug
+        var slugEl = card.querySelector(".slug-input");
+        var slugVal = slugEl.value;
+        if (!slugVal.trim()) {
+          slugEl.classList.add("field-invalid");
+          errors.push({ index: idx, cardNumber: cardNumber, field: "slug", message: "slug חסר" });
+        } else if (/\s/.test(slugVal)) {
+          slugEl.classList.add("field-invalid");
+          errors.push({ index: idx, cardNumber: cardNumber, field: "slug", message: "slug מכיל רווחים" });
+        } else if (slugs[slugVal]) {
+          slugEl.classList.add("field-invalid");
+          var firstCard = document.querySelector(".card[data-index='" + slugs[slugVal].index + "']");
+          if (firstCard) firstCard.querySelector(".slug-input").classList.add("field-invalid");
+          errors.push({ index: idx, cardNumber: cardNumber, field: "slug", message: "slug כפול בקבוצה" });
+        } else {
+          slugs[slugVal] = { index: idx, cardNumber: cardNumber };
+        }
+
+        // Theatre
+        var theatreEl = card.querySelector(".theatre-input");
+        if (!theatreEl.value.trim()) {
+          theatreEl.classList.add("field-invalid");
+          errors.push({ index: idx, cardNumber: cardNumber, field: "theatre", message: "תיאטרון חסר" });
+        }
+
+        // Duration
+        var durationEl = card.querySelector(".duration-input");
+        var durVal = durationEl.value;
+        if (!durVal || parseInt(durVal, 10) <= 0 || isNaN(parseInt(durVal, 10))) {
+          durationEl.classList.add("field-invalid");
+          errors.push({ index: idx, cardNumber: cardNumber, field: "duration", message: "משך חסר או לא תקין (חייב להיות מספר חיובי)" });
+        }
+
+        // Summary
+        var summaryEl = card.querySelector(".summary-input");
+        if (!summaryEl.value.trim()) {
+          summaryEl.classList.add("field-invalid");
+          errors.push({ index: idx, cardNumber: cardNumber, field: "summary", message: "תקציר חסר" });
+        }
+
+        // Genres — check for empty items in comma-separated list
+        var genresEl = card.querySelector(".genres-input");
+        var genresVal = genresEl.value;
+        if (genresVal) {
+          var parts = genresVal.split(",");
+          for (var g = 0; g < parts.length; g++) {
+            if (!parts[g].trim()) {
+              genresEl.classList.add("field-invalid");
+              errors.push({ index: idx, cardNumber: cardNumber, field: "genres", message: "ז'אנר ריק ברשימה" });
+              break;
+            }
+          }
+        }
+      }
+
+      return { valid: errors.length === 0, errors: errors };
+    }
+
+    function showValidationErrors(errors) {
+      var container = document.querySelector(".cards-container");
+      var div = document.createElement("div");
+      div.className = "validation-errors";
+
+      var grouped = {};
+      for (var i = 0; i < errors.length; i++) {
+        var err = errors[i];
+        if (!grouped[err.cardNumber]) grouped[err.cardNumber] = [];
+        grouped[err.cardNumber].push(err.message);
+      }
+
+      var html = "<h3>\u26a0\ufe0f שגיאות אימות — יש לתקן לפני יצירת מיגרציה</h3><ul>";
+      var cardNumbers = Object.keys(grouped);
+      for (var j = 0; j < cardNumbers.length; j++) {
+        var num = cardNumbers[j];
+        var msgs = grouped[num];
+        for (var k = 0; k < msgs.length; k++) {
+          html += "<li>הצגה #" + num + ": " + msgs[k] + "</li>";
+        }
+      }
+      html += "</ul>";
+      div.innerHTML = html;
+      container.insertBefore(div, container.firstChild);
+
+      // Scroll to first invalid field
+      var firstInvalid = document.querySelector(".field-invalid");
+      if (firstInvalid) {
+        firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+
     function generateMigration() {
       var indices = getCheckedIndices();
       if (indices.length === 0) return;
+
+      var validation = validateShows(indices);
+      if (!validation.valid) {
+        showValidationErrors(validation.errors);
+        return;
+      }
 
       var bulkBtn = document.getElementById("bulk-btn");
       var bulkStatus = document.getElementById("bulk-status");
@@ -406,8 +541,11 @@ function generateHtml(results) {
       updateBulkCount();
     }
 
-    // Auto-update slug when title changes
+    // Auto-update slug when title changes + clear validation styling
     document.addEventListener("input", function(e) {
+      if (e.target.classList.contains("field-invalid")) {
+        e.target.classList.remove("field-invalid");
+      }
       if (e.target.classList.contains("title-input")) {
         var idx = e.target.getAttribute("data-index");
         var slugInput = document.querySelector(".card[data-index='" + idx + "'] .slug-input");
@@ -437,54 +575,85 @@ function createAIClient() {
   return new OpenAI({ baseURL: AI_ENDPOINT, apiKey: token });
 }
 
-async function processDescription(aiClient, title, rawDescription) {
-  const fallback = { description: rawDescription || null, summary: "" };
-  if (!aiClient || !rawDescription) return fallback;
+async function processDescriptions(aiClient, results) {
+  const BATCH_SIZE = 7;
+  const validResults = results.filter((r) => !r.error && r.rawDescription);
+  if (!aiClient || validResults.length === 0) return;
 
-  try {
-    const response = await aiClient.chat.completions.create({
-      model: AI_MODEL,
-      temperature: 0.4,
-      max_tokens: 700,
-      response_format: { type: "json_object" },
-      messages: [
-        {
-          role: "system",
-          content: [
-            "אתה עורך תיאורי הצגות תיאטרון בעברית. עליך לבצע שתי משימות:",
-            "",
-            "1. ניקוי תיאור: קיבלת טקסט גולמי שנגרד מאתר אינטרנט ועלול להכיל רעשים.",
-            "הסר את כל מה שאינו חלק מתיאור העלילה והתוכן האמנותי של ההצגה:",
-            "רשימות משתתפים, שחקנים, יוצרים, צוות, קרדיטים, צילום, עיצוב,",
-            "מספרי טלפון, כתובות, מידע על הנגשה, הפקה, תמיכה, פרסים,",
-            "הפניות לאתרים, הערות שוליים, וכל טקסט טכני או שיווקי.",
-            "שמור רק את הפסקאות שמתארות את העלילה, הנושא והחוויה התיאטרונית.",
-            "",
-            "2. כתיבת תקציר: כתוב משפט אחד עד שניים (20-40 מילים) שמתאר את ההצגה בסגנון עיתונאי-שיווקי:",
-            "תמציתי, מרתק, כולל את הז'אנר, העלילה המרכזית ואלמנט מושך.",
-            "אל תשתמש במירכאות בתקציר.",
-            "",
-            'החזר JSON בפורמט: { "description": "התיאור הנקי", "summary": "התקציר" }',
-            "ללא הערות או הסברים נוספים.",
-          ].join("\n"),
-        },
-        {
-          role: "user",
-          content: `שם ההצגה: ${title}\n\nטקסט גולמי:\n${rawDescription}`,
-        },
-      ],
-    });
+  // Process in batches of BATCH_SIZE
+  for (let start = 0; start < validResults.length; start += BATCH_SIZE) {
+    const batch = validResults.slice(start, start + BATCH_SIZE);
 
-    const content = response.choices[0]?.message?.content?.trim();
-    if (!content) return fallback;
+    const showList = batch
+      .map(
+        (r, i) =>
+          `${i + 1}. שם: ${r.title}\n   טקסט גולמי:\n${r.rawDescription.slice(0, 1500)}`,
+      )
+      .join("\n\n");
 
-    const parsed = JSON.parse(content);
-    return {
-      description: parsed.description?.trim() || rawDescription,
-      summary: parsed.summary?.trim() || "",
-    };
-  } catch {
-    return fallback;
+    try {
+      const response = await aiClient.chat.completions.create({
+        model: AI_MODEL,
+        temperature: 0.4,
+        max_tokens: 5000,
+        response_format: { type: "json_object" },
+        messages: [
+          {
+            role: "system",
+            content: [
+              "אתה עורך תיאורי הצגות תיאטרון בעברית. עבור כל הצגה, בצע שתי משימות:",
+              "",
+              "1. ניקוי תיאור: קיבלת טקסט גולמי שנגרד מאתר אינטרנט ועלול להכיל רעשים.",
+              "הסר את כל מה שאינו חלק מתיאור העלילה והתוכן האמנותי של ההצגה:",
+              "רשימות משתתפים, שחקנים, יוצרים, צוות, קרדיטים, צילום, עיצוב,",
+              "מספרי טלפון, כתובות, מידע על הנגשה, הפקה, תמיכה, פרסים,",
+              "הפניות לאתרים, הערות שוליים, וכל טקסט טכני או שיווקי.",
+              "שמור רק את הפסקאות שמתארות את העלילה, הנושא והחוויה התיאטרונית.",
+              "",
+              "2. כתיבת תקציר: כתוב משפט אחד עד שניים (20-40 מילים) שמתאר את ההצגה בסגנון עיתונאי-שיווקי:",
+              "תמציתי, מרתק, כולל את הז'אנר, העלילה המרכזית ואלמנט מושך.",
+              "אל תשתמש במירכאות בתקציר.",
+              "",
+              'החזר JSON בפורמט: { "shows": [{ "title": "שם ההצגה", "description": "התיאור הנקי", "summary": "התקציר" }] }',
+              "ללא הערות או הסברים נוספים.",
+            ].join("\n"),
+          },
+          {
+            role: "user",
+            content: `עבד את התיאורים עבור ההצגות הבאות:\n\n${showList}`,
+          },
+        ],
+      });
+
+      const content = response.choices[0]?.message?.content?.trim();
+      if (!content) continue;
+
+      const parsed = JSON.parse(content);
+      const descMap = new Map();
+
+      if (Array.isArray(parsed.shows)) {
+        for (const entry of parsed.shows) {
+          if (entry.title) {
+            descMap.set(normalise(entry.title), {
+              description: entry.description?.trim() || null,
+              summary: entry.summary?.trim() || "",
+            });
+          }
+        }
+      }
+
+      for (const r of batch) {
+        const match = descMap.get(normalise(r.title));
+        if (match) {
+          r.description = match.description || r.rawDescription;
+          r.summary = match.summary;
+        }
+      }
+    } catch (err) {
+      if (!jsonMode) {
+        console.warn(`  ⚠️  Description processing failed: ${err.message}`);
+      }
+    }
   }
 }
 
@@ -555,6 +724,46 @@ async function classifyGenres(aiClient, results) {
 
 // ── Migration SQL generator ─────────────────────────────────────
 
+function validateShowsForMigration(shows) {
+  const errors = [];
+  const slugs = new Set();
+
+  for (let i = 0; i < shows.length; i++) {
+    const show = shows[i];
+    const num = i + 1;
+
+    if (!show.title || !show.title.trim()) {
+      errors.push(`Show #${num}: missing title`);
+    }
+    if (!show.slug || !show.slug.trim()) {
+      errors.push(`Show #${num}: missing slug`);
+    } else if (/\s/.test(show.slug)) {
+      errors.push(`Show #${num}: slug contains whitespace`);
+    } else if (slugs.has(show.slug)) {
+      errors.push(`Show #${num}: duplicate slug "${show.slug}"`);
+    } else {
+      slugs.add(show.slug);
+    }
+    if (!show.theatre || !show.theatre.trim()) {
+      errors.push(`Show #${num}: missing theatre`);
+    }
+    if (
+      show.durationMinutes == null ||
+      isNaN(show.durationMinutes) ||
+      show.durationMinutes <= 0
+    ) {
+      errors.push(
+        `Show #${num} ("${show.title || "?"}"): invalid duration (${show.durationMinutes})`,
+      );
+    }
+    if (!show.summary || !show.summary.trim()) {
+      errors.push(`Show #${num} ("${show.title || "?"}"): missing summary`);
+    }
+  }
+
+  return errors;
+}
+
 function escapeSql(s) {
   if (s == null) return "NULL";
   return "'" + String(s).replace(/'/g, "''") + "'";
@@ -600,7 +809,7 @@ function generateMigrationSQL(shows) {
     const title = escapeSql(show.title);
     const slug = escapeSql(show.slug);
     const theatre = escapeSql(show.theatre);
-    const duration = show.durationMinutes ?? 0;
+    const duration = show.durationMinutes;
     const summary = escapeSql(show.summary);
     const description = show.description ? escapeSql(show.description) : "NULL";
     lines.push(
@@ -727,6 +936,17 @@ async function startServer(results) {
         if (!Array.isArray(shows) || shows.length === 0) {
           res.writeHead(400);
           res.end(JSON.stringify({ error: "Missing or empty 'shows' array" }));
+          return;
+        }
+
+        const validationErrors = validateShowsForMigration(shows);
+        if (validationErrors.length > 0) {
+          res.writeHead(400);
+          res.end(
+            JSON.stringify({
+              error: "Validation failed:\n" + validationErrors.join("\n"),
+            }),
+          );
           return;
         }
 
@@ -860,11 +1080,6 @@ try {
       // Prefer the repertoire title (clean) over the detail page h1
       // (which may include subtitle lines like "מערכונים ושירים מאת חנוך לוין")
       const showTitle = title || details.title;
-      const { description, summary } = await processDescription(
-        aiClient,
-        showTitle,
-        details.description,
-      );
 
       // Download show image
       let imageUrl = details.imageUrl || null;
@@ -878,8 +1093,9 @@ try {
         slug: generateSlug(showTitle),
         theatre: HABIMA_THEATRE,
         durationMinutes: details.durationMinutes,
-        description: description || null,
-        summary,
+        rawDescription: details.description || null,
+        description: details.description || null,
+        summary: "",
         genre: [],
         url,
         imageUrl,
@@ -909,7 +1125,18 @@ try {
     }
   }
 
-  // 4b. Classify genres
+  // 4b. Process descriptions (batch)
+  if (aiClient && results.some((r) => !r.error)) {
+    if (!jsonMode) {
+      process.stdout.write("\n  📝  Processing descriptions… ");
+    }
+    await processDescriptions(aiClient, results);
+    if (!jsonMode) {
+      console.log("✅");
+    }
+  }
+
+  // 4c. Classify genres
   if (aiClient && results.some((r) => !r.error)) {
     if (!jsonMode) {
       process.stdout.write("\n  🏷️  Classifying genres… ");
@@ -919,6 +1146,9 @@ try {
       console.log("✅");
     }
   }
+
+  // Clean up internal field before output
+  for (const r of results) delete r.rawDescription;
 
   await browser.close();
 
