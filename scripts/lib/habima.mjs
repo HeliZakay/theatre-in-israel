@@ -5,7 +5,7 @@
  * imported by any script that needs it.
  */
 
-import { fixDoubleProtocol } from "./image.mjs";
+import { fixDoubleProtocol, extractImageFromPage } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
 
 // ── Constants ──────────────────────────────────────────────────
@@ -133,7 +133,7 @@ export async function scrapeShowDetails(browser, url) {
   await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
   await page.waitForSelector("h1", { timeout: 30_000 });
 
-  const data = await page.evaluate(() => {
+  const data = await page.evaluate((extractImage) => {
     // ── Title ──
     const h1 = document.querySelector("h1");
     let title = h1 ? h1.textContent.trim() : "";
@@ -194,71 +194,11 @@ export async function scrapeShowDetails(browser, url) {
       description = description.replace(/\n{3,}/g, "\n\n").trim();
     }
 
-    // ── Image URL ──
-    let imageUrl = null;
-
-    // Strategy 1: og:image meta tag
-    const ogImage = document.querySelector('meta[property="og:image"]');
-    if (ogImage) {
-      const content = ogImage.getAttribute("content");
-      if (content) imageUrl = content;
-    }
-
-    // Strategy 2: twitter:image meta tag
-    if (!imageUrl) {
-      const twitterImage = document.querySelector('meta[name="twitter:image"]');
-      if (twitterImage) {
-        const content = twitterImage.getAttribute("content");
-        if (content) imageUrl = content;
-      }
-    }
-
-    // Strategy 3: Large visible <img> elements (skip logos/icons)
-    if (!imageUrl) {
-      const imgs = Array.from(document.querySelectorAll("img"));
-      for (const img of imgs) {
-        const src = img.src || img.dataset?.src || "";
-        if (
-          !src ||
-          src.includes("logo") ||
-          src.includes("icon") ||
-          src.includes("facebook") ||
-          src.includes("instagram")
-        )
-          continue;
-        const rect = img.getBoundingClientRect();
-        if (rect.width > 200 && rect.height > 100) {
-          imageUrl = src;
-          break;
-        }
-      }
-    }
-
-    // Strategy 4: Hero/banner background images
-    if (!imageUrl) {
-      const heroSelectors = [
-        ".hero",
-        ".show-hero",
-        ".banner",
-        ".header-image",
-        '[class*="hero"]',
-        '[class*="banner"]',
-      ];
-      for (const selector of heroSelectors) {
-        const el = document.querySelector(selector);
-        if (el) {
-          const bg = getComputedStyle(el).backgroundImage;
-          const match = bg.match(/url\(["']?(.*?)["']?\)/);
-          if (match) {
-            imageUrl = match[1];
-            break;
-          }
-        }
-      }
-    }
+    // ── Image URL (using shared extraction logic) ──
+    const imageUrl = extractImage();
 
     return { title, durationMinutes, description, imageUrl };
-  });
+  }, extractImageFromPage);
 
   // Fix double-protocol URLs outside the browser context
   if (data.imageUrl) {

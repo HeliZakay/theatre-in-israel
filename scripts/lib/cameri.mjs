@@ -5,7 +5,7 @@
  * imported by any script that needs it.
  */
 
-import { fixDoubleProtocol } from "./image.mjs";
+import { fixDoubleProtocol, extractImageFromPage } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
 
 // ── Re-export shared browser helpers for backward compatibility ─
@@ -73,7 +73,7 @@ export async function scrapeShowDetails(browser, url) {
   await page.goto(url, { waitUntil: "networkidle2", timeout: 30_000 });
   await page.waitForSelector("h1", { timeout: 15_000 });
 
-  const data = await page.evaluate((extractImageFn) => {
+  const data = await page.evaluate((extractImage) => {
     // ── Title ──
     const h1 = document.querySelector("h1");
     let title = h1 ? h1.textContent.trim() : "";
@@ -110,80 +110,11 @@ export async function scrapeShowDetails(browser, url) {
         .trim();
     }
 
-    // ── Image URL ──
-    // We can't call an imported function inside page.evaluate, so
-    // the image extraction logic is inlined here (same strategies).
-    let imageUrl = null;
-
-    const ogImage = document.querySelector('meta[property="og:image"]');
-    if (ogImage) {
-      const content = ogImage.getAttribute("content");
-      if (content) imageUrl = content;
-    }
-
-    if (!imageUrl) {
-      const twitterImage = document.querySelector('meta[name="twitter:image"]');
-      if (twitterImage) {
-        const content = twitterImage.getAttribute("content");
-        if (content) imageUrl = content;
-      }
-    }
-
-    if (!imageUrl) {
-      const imgs = Array.from(document.querySelectorAll("img"));
-      for (const img of imgs) {
-        const src = img.src || img.dataset?.src || "";
-        if (src.includes("prdPics")) {
-          imageUrl = src;
-          break;
-        }
-      }
-    }
-
-    if (!imageUrl) {
-      const imgs = Array.from(document.querySelectorAll("img"));
-      for (const img of imgs) {
-        const src = img.src || img.dataset?.src || "";
-        if (
-          !src ||
-          src.includes("logo") ||
-          src.includes("icon") ||
-          src.includes("facebook") ||
-          src.includes("instagram")
-        )
-          continue;
-        const rect = img.getBoundingClientRect();
-        if (rect.width > 200 && rect.height > 100) {
-          imageUrl = src;
-          break;
-        }
-      }
-    }
-
-    if (!imageUrl) {
-      const heroSelectors = [
-        ".hero",
-        ".show-hero",
-        ".banner",
-        ".header-image",
-        '[class*="hero"]',
-        '[class*="banner"]',
-      ];
-      for (const selector of heroSelectors) {
-        const el = document.querySelector(selector);
-        if (el) {
-          const bg = getComputedStyle(el).backgroundImage;
-          const match = bg.match(/url\(["']?(.*?)["']?\)/);
-          if (match) {
-            imageUrl = match[1];
-            break;
-          }
-        }
-      }
-    }
+    // ── Image URL (using shared extraction logic) ──
+    const imageUrl = extractImage();
 
     return { title, durationMinutes, description, imageUrl };
-  });
+  }, extractImageFromPage);
 
   // Fix double-protocol URLs outside the browser context
   if (data.imageUrl) {
