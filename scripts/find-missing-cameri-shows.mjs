@@ -3,15 +3,13 @@
  * find-missing-cameri-shows.mjs
  *
  * Scrapes the Cameri Theatre schedule, finds shows not yet in the
- * database, scrapes details, generates AI summaries, downloads images,
- * and optionally inserts approved shows into the DB.
+ * local database, scrapes details, generates AI summaries, downloads
+ * images, and generates a Prisma migration file with the new shows.
  *
  * Usage:
- *   node scripts/find-missing-cameri-shows.mjs                # interactive
+ *   node scripts/find-missing-cameri-shows.mjs                # interactive (generates migration)
  *   node scripts/find-missing-cameri-shows.mjs --json          # JSON output
- *   node scripts/find-missing-cameri-shows.mjs --db            # DB-ready JSON
  *   node scripts/find-missing-cameri-shows.mjs --html          # HTML report
- *   node scripts/find-missing-cameri-shows.mjs --env=.env.production.local
  */
 
 import dotenv from "dotenv";
@@ -31,23 +29,16 @@ import {
   fetchSchedule,
   scrapeShowDetails,
 } from "./lib/cameri.mjs";
-import {
-  normalise,
-  createPrismaClient,
-  fetchExistingTitles,
-} from "./lib/db.mjs";
-import { bidi, yellow, green, red } from "./lib/cli.mjs";
+import { normalise, fetchExistingTitles } from "./lib/db.mjs";
+import { green, red } from "./lib/cli.mjs";
 
 // ── Setup ───────────────────────────────────────────────────────
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, "..");
 
-const envFlag = process.argv.find((a) => a.startsWith("--env="));
-const envFile = envFlag ? envFlag.split("=")[1] : ".env.local";
-dotenv.config({ path: path.join(rootDir, envFile) });
+dotenv.config({ path: path.join(rootDir, ".env.local") });
 
 const jsonMode = process.argv.includes("--json");
-const dbMode = process.argv.includes("--db");
 const htmlMode = process.argv.includes("--html");
 
 const POLITE_DELAY = 1500;
@@ -148,7 +139,6 @@ function generateHtml(results) {
             </tr>
             ${hasError ? `<tr><td class="label">שגיאה</td><td class="error-text">${esc(r.error)}</td></tr>` : ""}
           </table>
-          ${!hasError ? `<button class="insert-btn" onclick="insertShow(${i})">הוסף למסד נתונים</button>` : ""}
           <div class="card-status" data-index="${i}"></div>
         </div>
       </div>`;
@@ -268,15 +258,6 @@ function generateHtml(results) {
     }
 
     /* ── Buttons ─────────────────────────────── */
-    .insert-btn {
-      background: linear-gradient(135deg, #0ea5e9, #6366f1);
-      color: #fff; border: none; border-radius: 8px;
-      padding: 0.6rem 1.5rem; font-size: 0.95rem; font-weight: 700;
-      cursor: pointer; display: block; margin: 0.75rem auto 0; font-family: inherit;
-    }
-    .insert-btn:hover { filter: brightness(1.15); }
-    .insert-btn:disabled { opacity: 0.5; cursor: not-allowed; background: #475569; filter: none; }
-
     /* ── Status & misc ───────────────────────── */
     .card-status { text-align: center; margin-top: 0.5rem; font-size: 0.9rem; min-height: 1.2em; }
     .status-success { color: #4ade80; font-weight: 600; }
@@ -298,7 +279,7 @@ function generateHtml(results) {
     <span class="spacer"></span>
     <button class="toggle-link" onclick="selectAll()">בחר הכל</button>
     <button class="toggle-link" onclick="deselectAll()">בטל הכל</button>
-    <button class="bulk-btn" id="bulk-btn" onclick="insertBulk()">הוסף נבחרים (${validCount})</button>
+    <button class="bulk-btn" id="bulk-btn" onclick="generateMigration()">צור מיגרציה (${validCount})</button>
     <span class="bulk-status" id="bulk-status"></span>
   </div>
 
@@ -354,81 +335,23 @@ function generateHtml(results) {
     function updateBulkCount() {
       var indices = getCheckedIndices();
       var btn = document.getElementById("bulk-btn");
-      btn.textContent = "הוסף נבחרים (" + indices.length + ")";
+      btn.textContent = "צור מיגרציה (" + indices.length + ")";
       btn.disabled = indices.length === 0;
     }
 
-    function markInserted(idx) {
-      var card = document.querySelector(".card[data-index='" + idx + "']");
-      card.classList.add("inserted");
-      var btn = card.querySelector(".insert-btn");
-      if (btn) { btn.disabled = true; }
-      var cb = card.querySelector(".card-checkbox");
-      if (cb) { cb.checked = false; cb.disabled = true; }
-      var header = card.querySelector(".card-header");
-      if (!header.querySelector(".success-badge")) {
-        var badge = document.createElement("span");
-        badge.className = "success-badge";
-        badge.textContent = "\\u2713 נוסף";
-        header.appendChild(badge);
-      }
-      updateBulkCount();
-    }
-
-    function insertShow(idx) {
-      var card = document.querySelector(".card[data-index='" + idx + "']");
-      var btn = card.querySelector(".insert-btn");
-      var statusEl = card.querySelector(".card-status");
-      btn.disabled = true;
-      btn.textContent = "מוסיף...";
-      statusEl.innerHTML = "";
-
-      var data = getCardData(idx);
-
-      fetch("/api/insert", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ shows: [data] })
-      })
-      .then(function(res) {
-        return res.json().then(function(body) { return { ok: res.ok, body: body }; });
-      })
-      .then(function(result) {
-        if (!result.ok) {
-          statusEl.innerHTML = '<span class="status-error">\\u274c ' + (result.body.error || "שגיאה בהוספה") + "</span>";
-          btn.disabled = false;
-          btn.textContent = "הוסף למסד נתונים";
-          return;
-        }
-        var r = result.body.results ? result.body.results[0] : result.body;
-        if (r.status === "skipped") {
-          statusEl.innerHTML = '<span class="status-skipped">\\u23ed כבר קיים</span>';
-          markInserted(idx);
-        } else {
-          statusEl.innerHTML = '<span class="status-success">\\u2705 נוסף בהצלחה</span>';
-          markInserted(idx);
-        }
-      })
-      .catch(function(err) {
-        statusEl.innerHTML = '<span class="status-error">\\u274c ' + err.message + "</span>";
-        btn.disabled = false;
-        btn.textContent = "הוסף למסד נתונים";
-      });
-    }
-
-    function insertBulk() {
+    function generateMigration() {
       var indices = getCheckedIndices();
       if (indices.length === 0) return;
 
       var bulkBtn = document.getElementById("bulk-btn");
       var bulkStatus = document.getElementById("bulk-status");
       bulkBtn.disabled = true;
-      bulkBtn.textContent = "מוסיף...";
+      bulkBtn.textContent = "יוצר מיגרציה...";
       bulkStatus.innerHTML = "";
 
       var shows = indices.map(function(idx) { return getCardData(idx); });
 
-      fetch("/api/insert", {
+      fetch("/api/generate-migration", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ shows: shows })
@@ -438,35 +361,28 @@ function generateHtml(results) {
       })
       .then(function(result) {
         if (!result.ok) {
-          bulkStatus.innerHTML = '<span class="status-error">\\u274c ' + (result.body.error || "שגיאה בהוספה") + "</span>";
+          bulkStatus.innerHTML = '<span class="status-error">\\u274c ' + (result.body.error || "שגיאה ביצירת מיגרציה") + "</span>";
           bulkBtn.disabled = false;
           updateBulkCount();
           return;
         }
-        var results = result.body.results || [];
-        var added = 0, skipped = 0, failed = 0;
-        results.forEach(function(r, i) {
-          var idx = indices[i];
+        // Mark all selected cards as done
+        indices.forEach(function(idx) {
           var card = document.querySelector(".card[data-index='" + idx + "']");
-          var statusEl = card.querySelector(".card-status");
-          if (r.status === "skipped") {
-            statusEl.innerHTML = '<span class="status-skipped">\\u23ed כבר קיים</span>';
-            markInserted(idx);
-            skipped++;
-          } else if (r.status === "failed") {
-            statusEl.innerHTML = '<span class="status-error">\\u274c ' + (r.error || "שגיאה") + "</span>";
-            failed++;
-          } else {
-            statusEl.innerHTML = '<span class="status-success">\\u2705 נוסף בהצלחה</span>';
-            markInserted(idx);
-            added++;
+          card.classList.add("inserted");
+          var cb = card.querySelector(".card-checkbox");
+          if (cb) { cb.checked = false; cb.disabled = true; }
+          var header = card.querySelector(".card-header");
+          if (!header.querySelector(".success-badge")) {
+            var badge = document.createElement("span");
+            badge.className = "success-badge";
+            badge.textContent = "\\u2713 במיגרציה";
+            header.appendChild(badge);
           }
         });
-        var summary = "";
-        if (added) summary += '<span class="status-success">' + added + " נוספו</span> ";
-        if (skipped) summary += '<span class="status-skipped">' + skipped + " כבר קיימים</span> ";
-        if (failed) summary += '<span class="status-error">' + failed + " נכשלו</span>";
-        bulkStatus.innerHTML = summary;
+        bulkStatus.innerHTML = '<span class="status-success">\\u2705 מיגרציה נוצרה: ' + result.body.filePath + ' (' + result.body.showCount + ' הצגות)</span>';
+        bulkBtn.disabled = true;
+        bulkBtn.textContent = "מיגרציה נוצרה \\u2713";
         updateBulkCount();
       })
       .catch(function(err) {
@@ -631,104 +547,124 @@ async function classifyGenres(aiClient, results) {
       }
     }
   } catch (err) {
-    if (!jsonMode && !dbMode) {
+    if (!jsonMode) {
       console.warn(`  ⚠️  Genre classification failed: ${err.message}`);
     }
   }
 }
 
-// ── DB insertion ────────────────────────────────────────────────
+// ── Migration SQL generator ─────────────────────────────────────
 
-async function insertShowsToDB(selectedShows) {
-  const db = await createPrismaClient();
-  if (!db) {
-    console.error(red("  ✗ DATABASE_URL not set — cannot insert shows."));
-    return { added: 0, skipped: 0, failed: 0, details: [] };
+function escapeSql(s) {
+  if (s == null) return "NULL";
+  return "'" + String(s).replace(/'/g, "''") + "'";
+}
+
+function generateMigrationSQL(shows) {
+  const lines = [
+    "-- Migration: Add new Cameri shows",
+    `-- Generated on ${new Date().toISOString()}`,
+    "-- This migration is idempotent (uses ON CONFLICT DO NOTHING).",
+    "",
+  ];
+
+  // 1. Insert genres
+  const allGenres = new Set();
+  for (const show of shows) {
+    for (const g of show.genre || []) {
+      if (g) allGenres.add(g);
+    }
   }
 
-  const { prisma, pool } = db;
-  let added = 0;
-  let skipped = 0;
-  let failed = 0;
-  const details = [];
-
-  try {
-    // Normalise genre: accept comma-separated strings from the HTML form
-    for (const show of selectedShows) {
-      if (typeof show.genre === "string") {
-        show.genre = show.genre
-          .split(",")
-          .map((g) => g.trim())
-          .filter(Boolean);
-      }
+  if (allGenres.size > 0) {
+    lines.push(
+      "-- ============================================================",
+    );
+    lines.push("-- 1. Insert Genres");
+    lines.push(
+      "-- ============================================================",
+    );
+    for (const name of [...allGenres].sort()) {
+      lines.push(
+        `INSERT INTO "Genre" (name) VALUES (${escapeSql(name)}) ON CONFLICT (name) DO NOTHING;`,
+      );
     }
-
-    // Upsert all genres first
-    const genreNames = new Set();
-    for (const show of selectedShows) {
-      for (const g of show.genre || []) {
-        if (g) genreNames.add(g);
-      }
-    }
-
-    const genreMap = new Map();
-    for (const name of genreNames) {
-      const genre = await prisma.genre.upsert({
-        where: { name },
-        update: {},
-        create: { name },
-      });
-      genreMap.set(name, genre.id);
-    }
-
-    // Insert each show
-    for (const show of selectedShows) {
-      const genreCreates = (show.genre || [])
-        .map((name) => genreMap.get(name))
-        .filter(Boolean)
-        .map((genreId) => ({ genre: { connect: { id: genreId } } }));
-
-      try {
-        await prisma.show.create({
-          data: {
-            title: show.title,
-            slug: show.slug,
-            theatre: show.theatre,
-            durationMinutes: show.durationMinutes ?? 0,
-            summary: show.summary,
-            description: show.description ?? null,
-            genres: { create: genreCreates },
-          },
-        });
-        added++;
-        details.push({ title: show.title, status: "added" });
-        console.log(green(`  ✓ Added: `) + bidi(show.title));
-      } catch (err) {
-        if (err.code === "P2002") {
-          skipped++;
-          details.push({ title: show.title, status: "skipped" });
-          console.log(
-            yellow(`  ⏭ Skipped (already exists): `) + bidi(show.title),
-          );
-        } else {
-          failed++;
-          details.push({
-            title: show.title,
-            status: "failed",
-            error: err.message,
-          });
-          console.log(
-            red(`  ✗ Failed: `) + bidi(show.title) + ` — ${err.message}`,
-          );
-        }
-      }
-    }
-  } finally {
-    await prisma.$disconnect();
-    await pool.end();
+    lines.push("");
   }
 
-  return { added, skipped, failed, details };
+  // 2. Insert shows (no explicit id — let autoincrement handle it)
+  lines.push("-- ============================================================");
+  lines.push("-- 2. Insert Shows");
+  lines.push("-- ============================================================");
+  for (const show of shows) {
+    const title = escapeSql(show.title);
+    const slug = escapeSql(show.slug);
+    const theatre = escapeSql(show.theatre);
+    const duration = show.durationMinutes ?? 0;
+    const summary = escapeSql(show.summary);
+    const description = show.description ? escapeSql(show.description) : "NULL";
+    lines.push(
+      `INSERT INTO "Show" (title, slug, theatre, "durationMinutes", summary, description) ` +
+        `VALUES (${title}, ${slug}, ${theatre}, ${duration}, ${summary}, ${description}) ` +
+        `ON CONFLICT (slug) DO NOTHING;`,
+    );
+  }
+  lines.push("");
+
+  // 3. Insert ShowGenre join records (resolve IDs via subselects)
+  const hasGenreLinks = shows.some((s) => (s.genre || []).length > 0);
+  if (hasGenreLinks) {
+    lines.push(
+      "-- ============================================================",
+    );
+    lines.push("-- 3. Insert ShowGenre join records");
+    lines.push(
+      "-- ============================================================",
+    );
+    for (const show of shows) {
+      for (const genre of show.genre || []) {
+        const slug = escapeSql(show.slug);
+        const genreName = escapeSql(genre);
+        lines.push(
+          `INSERT INTO "ShowGenre" ("showId", "genreId") ` +
+            `SELECT s.id, g.id FROM "Show" s, "Genre" g ` +
+            `WHERE s.slug = ${slug} AND g.name = ${genreName} ` +
+            `ON CONFLICT DO NOTHING;`,
+        );
+      }
+    }
+    lines.push("");
+  }
+
+  // 4. Reset sequences
+  lines.push("-- ============================================================");
+  lines.push("-- 4. Reset sequences");
+  lines.push("-- ============================================================");
+  lines.push(
+    `SELECT setval(pg_get_serial_sequence('"Show"', 'id'), (SELECT MAX(id) FROM "Show"));`,
+  );
+  lines.push(
+    `SELECT setval(pg_get_serial_sequence('"Genre"', 'id'), (SELECT MAX(id) FROM "Genre"));`,
+  );
+  lines.push("");
+
+  return lines.join("\n");
+}
+
+function writeMigrationFile(sql) {
+  const now = new Date();
+  const ts = now.toISOString().replace(/[-:T]/g, "").slice(0, 14);
+  const migrationName = `${ts}_add_cameri_shows`;
+  const migrationDir = path.join(
+    rootDir,
+    "prisma",
+    "migrations",
+    migrationName,
+  );
+  fs.mkdirSync(migrationDir, { recursive: true });
+  const filePath = path.join(migrationDir, "migration.sql");
+  fs.writeFileSync(filePath, sql, "utf-8");
+  return { migrationName, filePath: path.relative(rootDir, filePath) };
 }
 
 // ── HTML report output ──────────────────────────────────────────
@@ -755,7 +691,7 @@ function saveAndOpenHtml(results) {
 
 // ── Interactive server ──────────────────────────────────────────
 
-async function startServer(results, hasDb) {
+async function startServer(results) {
   const html = generateHtml(results);
 
   const server = http.createServer(async (req, res) => {
@@ -777,8 +713,8 @@ async function startServer(results, hasDb) {
       return;
     }
 
-    // ── POST /api/insert — insert shows into the DB ──
-    if (req.method === "POST" && req.url === "/api/insert") {
+    // ── POST /api/generate-migration — generate a Prisma migration file ──
+    if (req.method === "POST" && req.url === "/api/generate-migration") {
       res.setHeader("Access-Control-Allow-Origin", "*");
       res.setHeader("Content-Type", "application/json; charset=utf-8");
 
@@ -794,17 +730,15 @@ async function startServer(results, hasDb) {
           return;
         }
 
-        if (!hasDb) {
-          res.writeHead(503);
-          res.end(JSON.stringify({ error: "DATABASE_URL not configured" }));
-          return;
-        }
+        const sql = generateMigrationSQL(shows);
+        const { migrationName, filePath } = writeMigrationFile(sql);
 
-        const { added, skipped, failed, details } =
-          await insertShowsToDB(shows);
+        console.log(green(`  ✓ Migration created: `) + filePath);
 
         res.writeHead(200);
-        res.end(JSON.stringify({ added, skipped, failed, results: details }));
+        res.end(
+          JSON.stringify({ migrationName, filePath, showCount: shows.length }),
+        );
       } catch (err) {
         console.error(red("  ✗ API error: ") + err.message);
         res.writeHead(500);
@@ -836,7 +770,7 @@ async function startServer(results, hasDb) {
   const url = `http://localhost:${port}`;
   console.log(
     `\n🌐  Server running at ${url}` +
-      `\n📝  Edit shows and click "Insert" to add them to the database.` +
+      `\n📝  Edit shows and click "Generate Migration" to create a Prisma migration file.` +
       `\n⏹  Press Ctrl+C to stop.\n`,
   );
 
@@ -891,7 +825,7 @@ try {
     : allShows;
 
   if (missingShows.length === 0) {
-    if (jsonMode || dbMode) {
+    if (jsonMode) {
       console.log("[]");
     } else {
       console.log("\n🎭  All Cameri shows are already in the database. ✅\n");
@@ -903,7 +837,7 @@ try {
     process.exit(0);
   }
 
-  if (!jsonMode && !dbMode) {
+  if (!jsonMode) {
     const label = hasDb
       ? `Found ${missingShows.length} missing show(s) (out of ${allShows.length} scraped, ${existingSet.size} in DB)`
       : `Scraping details for ${missingShows.length} show(s)`;
@@ -917,7 +851,7 @@ try {
   for (let i = 0; i < missingShows.length; i++) {
     const { title, url } = missingShows[i];
 
-    if (!jsonMode && !dbMode) {
+    if (!jsonMode) {
       process.stdout.write(`  [${i + 1}/${missingShows.length}]  ${title} … `);
     }
 
@@ -949,7 +883,7 @@ try {
         imageUrl,
         imageStatus,
       });
-      if (!jsonMode && !dbMode) console.log("✅");
+      if (!jsonMode) console.log("✅");
     } catch (err) {
       results.push({
         title,
@@ -964,7 +898,7 @@ try {
         imageStatus: null,
         error: err.message,
       });
-      if (!jsonMode && !dbMode) console.log(`⚠️  ${err.message}`);
+      if (!jsonMode) console.log(`⚠️  ${err.message}`);
     }
 
     // Be polite — wait between requests (skip after last one)
@@ -975,11 +909,11 @@ try {
 
   // 4b. Classify genres
   if (aiClient && results.some((r) => !r.error)) {
-    if (!jsonMode && !dbMode) {
+    if (!jsonMode) {
       process.stdout.write("\n  🏷️  Classifying genres… ");
     }
     await classifyGenres(aiClient, results);
-    if (!jsonMode && !dbMode) {
+    if (!jsonMode) {
       console.log("✅");
     }
   }
@@ -987,20 +921,7 @@ try {
   await browser.close();
 
   // 5. Output results
-  if (dbMode) {
-    const dbResults = results
-      .filter((r) => !r.error)
-      .map((r) => ({
-        title: r.title,
-        slug: r.slug,
-        theatre: r.theatre,
-        durationMinutes: r.durationMinutes ?? 0,
-        summary: r.summary,
-        description: r.description ?? null,
-        genre: r.genre || [],
-      }));
-    console.log(JSON.stringify(dbResults, null, 2));
-  } else if (jsonMode) {
+  if (jsonMode) {
     console.log(JSON.stringify(results, null, 2));
   } else if (htmlMode) {
     saveAndOpenHtml(results);
@@ -1012,7 +933,7 @@ try {
       `Done: ${ok} scraped successfully${errCount ? `, ${errCount} failed` : ""}.\n`,
     );
 
-    await startServer(results, hasDb);
+    await startServer(results);
   }
 } catch (err) {
   console.error("❌  Failed:", err.message);
