@@ -18,7 +18,9 @@
     "e2e:headed": "npx playwright test --headed",
     "e2e:setup": "bash scripts/setup-e2e.sh",
     "e2e:teardown": "bash scripts/teardown-e2e.sh",
-    "db:check": "node prisma/check.js"
+    "db:check": "node prisma/check.js",
+    "cameri:find": "node scripts/find-missing-cameri-shows.mjs",
+    "images:download": "node scripts/download-missing-images.mjs"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
