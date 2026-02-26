@@ -1135,8 +1135,16 @@ export async function runPipeline(config) {
           }
           // Copy the downloaded image to the disambiguated slug filename
           if (localImagePath) {
-            const originalFile = path.join(rootDir, "public", `${generateSlug(showTitle)}.webp`);
-            const disambiguatedFile = path.join(rootDir, "public", `${slug}.webp`);
+            const originalFile = path.join(
+              rootDir,
+              "public",
+              `${generateSlug(showTitle)}.webp`,
+            );
+            const disambiguatedFile = path.join(
+              rootDir,
+              "public",
+              `${slug}.webp`,
+            );
             try {
               fs.copyFileSync(originalFile, disambiguatedFile);
               localImagePath = `/${slug}.webp`;
