@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import { cache } from "react";
@@ -38,7 +38,7 @@ async function redirectIfLegacyNumericId(slug: string) {
     select: { slug: true },
   });
   if (show) {
-    redirect(`/shows/${show.slug}`);
+    permanentRedirect(`/shows/${show.slug}`);
   }
 }
 
