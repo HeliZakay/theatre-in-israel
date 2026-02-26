@@ -1038,6 +1038,16 @@ export async function runPipeline(config) {
   const htmlMode = process.argv.includes("--html");
 
   try {
+    // 0. Ensure local DB has all migrations applied
+    if (process.env.DATABASE_URL) {
+      console.log("🔄 Applying pending migrations…");
+      execSync("npx prisma migrate deploy", {
+        cwd: rootDir,
+        stdio: "inherit",
+      });
+      console.log("");
+    }
+
     // 1. DB lookup
     const existingSet = await fetchExistingTitles(theatreConst);
     const existingSlugs = await fetchAllExistingSlugs();
