@@ -116,6 +116,11 @@ export async function fetchShows(browser) {
         title === "לרכישה" ||
         title === "לתאריכים ורכישה" ||
         title === "רוצים לראות עוד?" ||
+        title === "הזמנה מהירה" ||
+        title === "GIFT CARD" ||
+        title === "לוח הצגות" ||
+        title === "אזור אישי" ||
+        title === "דלג לתוכן" ||
         title.length < 2
       )
         continue;
@@ -132,7 +137,9 @@ export async function fetchShows(browser) {
       const href = link.getAttribute("href") || "";
       if (!href.includes("/shows/")) continue;
       const url = href.startsWith("http") ? href : `${base}${href}`;
-      if (!map.has(title)) {
+      // Skip if this title is already mapped, or if this URL is already claimed by another title
+      const existingUrls = new Set([...map.values()]);
+      if (!map.has(title) && !existingUrls.has(url)) {
         map.set(title, url);
       }
     }

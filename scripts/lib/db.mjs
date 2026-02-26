@@ -57,3 +57,28 @@ export async function fetchExistingTitles(theatre) {
     await db.pool.end();
   }
 }
+
+/**
+ * Fetch all existing slugs from the database (across all theatres).
+ * Returns a Map of slug → theatre name, or `null` if DB is unavailable.
+ *
+ * @returns {Promise<Map<string, string> | null>}
+ */
+export async function fetchAllExistingSlugs() {
+  const db = await createPrismaClient();
+  if (!db) return null;
+
+  try {
+    const shows = await db.prisma.show.findMany({
+      select: { slug: true, theatre: true },
+    });
+    const slugMap = new Map();
+    for (const s of shows) {
+      slugMap.set(s.slug, s.theatre);
+    }
+    return slugMap;
+  } finally {
+    await db.prisma.$disconnect();
+    await db.pool.end();
+  }
+}

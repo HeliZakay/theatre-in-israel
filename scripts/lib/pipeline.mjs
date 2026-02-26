@@ -17,7 +17,11 @@ import OpenAI from "openai";
 
 import { generateSlug } from "./slug.mjs";
 import { downloadAndConvert } from "./image.mjs";
-import { normalise, fetchExistingTitles } from "./db.mjs";
+import {
+  normalise,
+  fetchExistingTitles,
+  fetchAllExistingSlugs,
+} from "./db.mjs";
 import { green, red } from "./cli.mjs";
 
 // ── Setup ───────────────────────────────────────────────────────
@@ -950,6 +954,20 @@ async function startServer(theatreName, theatreId, results) {
       return;
     }
 
+    // ── Serve images from public/ ──
+    if (req.method === "GET" && req.url.endsWith(".webp")) {
+      const safeName = path.basename(req.url);
+      const imgPath = path.join(rootDir, "public", safeName);
+      try {
+        const data = fs.readFileSync(imgPath);
+        res.writeHead(200, { "Content-Type": "image/webp" });
+        res.end(data);
+        return;
+      } catch {
+        // fall through to 404
+      }
+    }
+
     // ── 404 — everything else ──
     res.writeHead(404, { "Content-Type": "text/plain" });
     res.end("Not Found");
@@ -1027,6 +1045,7 @@ export async function runPipeline(config) {
   try {
     // 1. DB lookup
     const existingSet = await fetchExistingTitles(theatreConst);
+    const existingSlugs = await fetchAllExistingSlugs();
     const hasDb = existingSet !== null;
 
     const aiClient = createAIClient();
@@ -1100,13 +1119,30 @@ export async function runPipeline(config) {
         // Download show image
         let imageUrl = details.imageUrl || null;
         let imageStatus = null;
+        let localImagePath = null;
         if (imageUrl) {
           imageStatus = await downloadAndConvert(showTitle, imageUrl);
+          if (imageStatus === "success" || imageStatus === "skipped") {
+            localImagePath = `/${generateSlug(showTitle)}.webp`;
+          }
+        }
+
+        // Disambiguate slug if it collides with an existing show from another theatre
+        let slug = generateSlug(showTitle);
+        if (
+          existingSlugs &&
+          existingSlugs.has(slug) &&
+          existingSlugs.get(slug) !== theatreConst
+        ) {
+          slug = `${slug}-${generateSlug(theatreConst)}`;
+          if (!jsonMode) {
+            console.log(`    ⚠️  Slug collision — using "${slug}"`);
+          }
         }
 
         results.push({
           title: showTitle,
-          slug: generateSlug(showTitle),
+          slug,
           theatre: theatreConst,
           durationMinutes: details.durationMinutes,
           rawDescription: details.description || null,
@@ -1114,7 +1150,7 @@ export async function runPipeline(config) {
           summary: "",
           genre: [],
           url,
-          imageUrl,
+          imageUrl: localImagePath || imageUrl,
           imageStatus,
         });
         if (!jsonMode) console.log("✅");
