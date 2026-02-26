@@ -951,7 +951,7 @@ async function startServer(theatreName, theatreId, results) {
 
     // ── Serve images from public/ ──
     if (req.method === "GET" && req.url.endsWith(".webp")) {
-      const safeName = path.basename(req.url);
+      const safeName = path.basename(decodeURIComponent(req.url));
       const imgPath = path.join(rootDir, "public", safeName);
       try {
         const data = fs.readFileSync(imgPath);
