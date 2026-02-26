@@ -528,15 +528,10 @@ function generateHtml(theatreName, results) {
       updateBulkCount();
     }
 
-    // Auto-update slug when title changes + clear validation styling
+    // Clear validation styling on input
     document.addEventListener("input", function(e) {
       if (e.target.classList.contains("field-invalid")) {
         e.target.classList.remove("field-invalid");
-      }
-      if (e.target.classList.contains("title-input")) {
-        var idx = e.target.getAttribute("data-index");
-        var slugInput = document.querySelector(".card[data-index='" + idx + "'] .slug-input");
-        if (slugInput) slugInput.value = slugify(e.target.value);
       }
     });
 
@@ -1138,6 +1133,17 @@ export async function runPipeline(config) {
           if (!jsonMode) {
             console.log(`    ⚠️  Slug collision — using "${slug}"`);
           }
+          // Copy the downloaded image to the disambiguated slug filename
+          if (localImagePath) {
+            const originalFile = path.join(rootDir, "public", `${generateSlug(showTitle)}.webp`);
+            const disambiguatedFile = path.join(rootDir, "public", `${slug}.webp`);
+            try {
+              fs.copyFileSync(originalFile, disambiguatedFile);
+              localImagePath = `/${slug}.webp`;
+            } catch {
+              // If copy fails, keep the original image path
+            }
+          }
         }
 
         results.push({
@@ -1155,9 +1161,17 @@ export async function runPipeline(config) {
         });
         if (!jsonMode) console.log("✅");
       } catch (err) {
+        let errSlug = generateSlug(title);
+        if (
+          existingSlugs &&
+          existingSlugs.has(errSlug) &&
+          existingSlugs.get(errSlug) !== theatreConst
+        ) {
+          errSlug = `${errSlug}-${generateSlug(theatreConst)}`;
+        }
         results.push({
           title,
-          slug: generateSlug(title),
+          slug: errSlug,
           theatre: theatreConst,
           durationMinutes: null,
           description: null,
