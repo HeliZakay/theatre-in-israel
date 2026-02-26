@@ -1,0 +1,277 @@
+# Theatre Scraping & Pipeline Guide
+
+> Reference document for adding new theatre scrapers. Read this before building a scraper for a new theatre.
+
+## 1. Architecture Overview
+
+The scraping system has three layers:
+
+| Layer           | File                                  | Role                                                                                                  |
+| --------------- | ------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| Entry point     | `scripts/find-missing-{id}-shows.mjs` | ~15-line CLI wrapper that wires theatre-specific functions into the pipeline                          |
+| Theatre scraper | `scripts/lib/{id}.mjs`                | Theatre-specific listing + detail scraping logic                                                      |
+| Shared pipeline | `scripts/lib/pipeline.mjs`            | Everything else: DB dedup, AI processing, image download, migration generation, interactive review UI |
+
+**Data flow:**
+
+```
+Listing page → [{title, url}]
+       ↓
+Filter against DB (keep only missing shows)
+       ↓
+Detail pages → [{title, durationMinutes, description, imageUrl}] (1.5s delay between requests)
+       ↓
+Download & convert images to .webp → public/
+       ↓
+AI summaries (GPT-4o-mini, batches of 7) → 20-40 word Hebrew summaries
+       ↓
+AI genre classification (GPT-4o-mini) → 1-3 genres per show
+       ↓
+Interactive review server (localhost:3456+) → user edits & validates
+       ↓
+Generate migration SQL → prisma/migrations/{timestamp}_add_{id}_shows/migration.sql
+```
+
+## 2. The Pipeline Contract
+
+`runPipeline(config)` in `scripts/lib/pipeline.mjs` accepts:
+
+```js
+{
+  theatreId: string,           // lowercase, used in migration filename (e.g. "cameri", "habima", "lessin")
+  theatreName: string,         // Hebrew display name (e.g. "תיאטרון הקאמרי")
+  theatreConst: string,        // Value stored in DB `theatre` column (same as theatreName)
+  fetchListing: Function,      // (browser) → Promise<{title, url}[]>
+  scrapeDetails: Function,     // (browser, url) → Promise<{title, durationMinutes, description, imageUrl}>
+  titlePreference: string,     // "listing-first" | "detail-first"
+  launchBrowser: Function,     // from scripts/lib/browser.mjs
+}
+```
+
+### `fetchListing(browser)`
+
+- Input: Puppeteer `Browser` instance
+- Output: Array of `{title: string, url: string}` — deduplicated by title, sorted alphabetically in Hebrew
+- Must handle: page navigation, waiting for selectors, title cleanup, deduplication
+
+### `scrapeDetails(browser, url)`
+
+- Input: Puppeteer `Browser` instance + show detail page URL
+- Output: `{title: string, durationMinutes: number|null, description: string, imageUrl: string|null}`
+- `title` — cleaned show title from the page
+- `durationMinutes` — integer minutes or `null` (user can edit in review UI)
+- `description` — raw description text (AI will clean and summarize it)
+- `imageUrl` — poster/hero image URL or `null`
+
+### `titlePreference`
+
+- `"listing-first"` — use the title from the listing page; fall back to detail page title. Best when listing titles are cleaner (Habima, Lessin)
+- `"detail-first"` — use the title from the detail page h1; fall back to listing title. Best when listing titles are truncated or inconsistent (Cameri)
+
+## 3. Shared Utilities (Do NOT Reimplement)
+
+| Module                     | Key exports                                                                          | What it does                                                                                                                                                   |
+| -------------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `scripts/lib/browser.mjs`  | `launchBrowser()`, `setupRequestInterception(page, opts)`                            | Launches headless Puppeteer; intercepts requests to block stylesheets/fonts/media (pass `{allowImages: true}` to keep images)                                  |
+| `scripts/lib/image.mjs`    | `extractImageFromPage()`, `downloadAndConvert(title, url)`, `fixDoubleProtocol(url)` | Extracts best image from a page (5 fallback strategies: og:image → twitter:image → CDN → large visible img → background hero); downloads and converts to .webp |
+| `scripts/lib/db.mjs`       | `getExistingTitles(theatreName)`, `getAllExistingSlugs()`                            | Queries local DB for deduplication                                                                                                                             |
+| `scripts/lib/slug.mjs`     | `generateSlug(title)`                                                                | Creates Hebrew-preserving URL slugs                                                                                                                            |
+| `scripts/lib/pipeline.mjs` | `runPipeline(config)`                                                                | Full orchestration: dedup, scrape, AI, review, migration                                                                                                       |
+
+## 4. What Each Theatre Scraper Must Implement
+
+Create `scripts/lib/{id}.mjs` exporting:
+
+1. **Theatre name constant** — e.g. `export const XXX_THEATRE = "שם התיאטרון";`
+2. **Listing function** — e.g. `export async function fetchShows(browser) { ... }`
+3. **Detail function** — `export async function scrapeShowDetails(browser, url) { ... }`
+
+### Listing Function Patterns
+
+Two patterns exist in the codebase:
+
+**Pattern A: Direct link scraping (Cameri)**
+
+- Find all `<a>` tags matching a URL pattern (e.g. `a[href*="/show_"]`)
+- Extract title from the link text or nearby heading
+- Simple and reliable when the link text IS the title
+
+**Pattern B: Heading + parent walk (Habima, Lessin)**
+
+- Find all `<h3>` headings on the page
+- For each h3, walk up the DOM (up to 5 parents) to find the nearest `<a>` matching the URL pattern
+- Fallback: scan remaining links not yet captured
+- Better when titles and links are separate DOM elements
+
+### Detail Function Patterns
+
+| Field           | Common approach                                                                                                                                                        |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Title**       | `document.querySelector('h1')?.textContent.trim()` with theatre-specific cleanup                                                                                       |
+| **Duration**    | Search page text for `משך ההצגה` marker, then parse. Standard format: `X דקות` → parseInt. Some theatres use textual Hebrew — see `scripts/lib/duration.js` for parser |
+| **Description** | Find text between a start marker (e.g. `"על ההצגה"`) and stop markers (e.g. `"יוצרים ושחקנים"`, `"משך ההצגה"`). Clean up credits, phone numbers, promotional lines     |
+| **Image**       | Call `extractImageFromPage` (shared utility). Requires `allowImages: true` in request interception if the image is a DOM `<img>` element rather than a meta tag        |
+
+## 5. Comparison of Existing Scrapers
+
+| Dimension             | Cameri                                                             | Habima                                                                               | Lessin                                                                      |
+| --------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
+| **Module**            | `scripts/lib/cameri.mjs`                                           | `scripts/lib/habima.mjs`                                                             | `scripts/lib/lessin.mjs`                                                    |
+| **Theatre name**      | `"תיאטרון הקאמרי"`                                                 | `"תיאטרון הבימה"`                                                                    | `"תיאטרון בית ליסין"`                                                       |
+| **Listing URL**       | `cameri.co.il/לוח_הצגות_מלא`                                       | `habima.co.il/רפרטואר/`                                                              | `lessin.co.il/` (main page)                                                 |
+| **Link selector**     | `a[href*="/show_"]`                                                | `a[href*="/shows/"]`                                                                 | `a[href*="/shows/"]`                                                        |
+| **Listing pattern**   | Pattern A (direct links)                                           | Pattern B (h3 + parent walk)                                                         | Pattern B (h3 + parent walk)                                                |
+| **Title cleanup**     | Strip `חדש` prefix                                                 | Strip `הצגה אורחת` prefix; filter generic h3s                                        | Strip `(הצגות אחרונות)`, `(הצגה אורחת)` suffixes; filter non-show h3s       |
+| **Duration parsing**  | Standard regex: `X דקות`                                           | Standard regex: `X דקות`                                                             | Custom Hebrew textual parser (`scripts/lib/duration.js`)                    |
+| **Description start** | `"על ההצגה"` marker                                                | No marker — uses h1 position                                                         | `"על ההצגה"` marker                                                         |
+| **Description stops** | `"צוות ושחקנים"`, `"משך ההצגה"`, `"גלריית תמונות"`                 | `"הצגות קרובות"`, `"יוצרים ומשתתפים"`, `"ביקורות"`, `"משך ההצגה"`, `"מנויים מקבלים"` | `"יוצרים ושחקנים"`, `"משך ההצגה"`, `"הביקורות משבחות"`, `"מועמדויות"`       |
+| **Image loading**     | Blocked (uses serialized function)                                 | Allowed (`allowImages: true`)                                                        | Allowed (`allowImages: true`)                                               |
+| **Image extraction**  | `extractImageFromPage` serialized as argument to `page.evaluate()` | `extractImageFromPage` passed directly to `page.evaluate()`                          | Same as Habima                                                              |
+| **Title preference**  | `"detail-first"`                                                   | `"listing-first"`                                                                    | `"listing-first"`                                                           |
+| **Browser export**    | Re-exports `launchBrowser` from own module                         | Imports from `browser.mjs`                                                           | Imports from `browser.mjs`                                                  |
+| **Non-show filters**  | None                                                               | `"לרכישה"`, `"רוצים לראות עוד?"`, etc.                                               | `"הזמנה מהירה"`, `"GIFT CARD"`, `"לוח הצגות"`, `"אזור אישי"`, `"דלג לתוכן"` |
+
+## 6. Step-by-Step: Adding a New Theatre
+
+### Prerequisites
+
+- Node.js, Puppeteer, local PostgreSQL with the app's schema
+- `DATABASE_URL` in `.env.local` pointing to local DB
+- `GITHUB_TOKEN` for AI summaries/genres (optional but recommended)
+
+### Steps
+
+1. **Research the website**: Open the theatre's website in a browser. Identify:
+   - The URL that lists all current shows (repertoire/schedule page)
+   - The CSS selector pattern for show links (e.g. `a[href*="/shows/"]`)
+   - How show titles appear (in the link? in a heading? in a card?)
+   - The show detail page structure: where is the title (h1?), duration, description, image?
+   - Any non-show items that appear in the listing (gift cards, tours, etc.)
+
+2. **Create `scripts/lib/{id}.mjs`**:
+   - Import shared utilities: `fixDoubleProtocol`, `extractImageFromPage` from `./image.mjs`; `setupRequestInterception` from `./browser.mjs`
+   - Export the theatre name constant
+   - Export the listing function (choose Pattern A or B based on research)
+   - Export the detail scraping function
+   - If duration format is non-standard, add a custom parser (see `scripts/lib/duration.js`)
+
+3. **Create `scripts/find-missing-{id}-shows.mjs`**:
+
+   ```js
+   #!/usr/bin/env node
+   import { runPipeline } from "./lib/pipeline.mjs";
+   import { launchBrowser } from "./lib/browser.mjs";
+   import { THEATRE_CONST, fetchXxx, scrapeShowDetails } from "./lib/{id}.mjs";
+
+   await runPipeline({
+     theatreId: "{id}",
+     theatreName: THEATRE_CONST,
+     theatreConst: THEATRE_CONST,
+     fetchListing: fetchXxx,
+     scrapeDetails: scrapeShowDetails,
+     titlePreference: "listing-first", // or "detail-first"
+     launchBrowser,
+   });
+   ```
+
+4. **Run and test**:
+
+   ```bash
+   node scripts/find-missing-{id}-shows.mjs
+   ```
+
+   - Verify listing count looks right
+   - Check titles are clean (no promotional suffixes/prefixes)
+   - Confirm durations parse correctly
+   - Review descriptions in the interactive UI
+   - Generate migration, then: `npx prisma migrate deploy`
+
+5. **Commit**: The migration file + scraper module + entry point script
+
+## 7. Common Pitfalls
+
+- **`extractImageFromPage` serialization**: Puppeteer's `page.evaluate()` can't serialize imported functions as arguments in all cases. Habima/Lessin pass the function directly (`page.evaluate(extractImageFromPage)`); Cameri serializes it differently. **Use the Habima/Lessin pattern for new scrapers.**
+
+- **Request interception — allow images**: If the theatre's show image is a regular `<img>` tag (not just og:image meta), you MUST pass `{allowImages: true}` to `setupRequestInterception()`, otherwise images will be blocked and `extractImageFromPage` won't find them.
+
+- **Hebrew URL encoding**: Some theatre URLs contain Hebrew characters. Use the percent-encoded form in constants for reliability (e.g. `%D7%A8%D7%A4%D7%A8%D7%98%D7%95%D7%90%D7%A8` instead of `רפרטואר`).
+
+- **Title deduplication is by normalized text**: `normalise()` in db.mjs trims and collapses whitespace. If a theatre has subtle title variations (extra spaces, dashes), they'll be treated as the same show.
+
+- **Slug collisions across theatres**: If two theatres have a show with the same title, the pipeline auto-disambiguates slugs by appending the theatre name. The image file is also copied to the disambiguated slug filename.
+
+- **Non-standard durations**: If a theatre uses textual Hebrew durations (like Lessin's `"כשעה וחצי"`), create a dedicated parser. Put it in `scripts/lib/duration.js` (CommonJS for Jest testability) and add unit tests in `tests/unit/`.
+
+- **Non-show entries**: Theatres often have non-show listings (tours, gift cards, youth programs). Filter them in the listing function by checking against a blocklist of known non-show h3 texts.
+
+## 8. Prompt Template for New Theatres
+
+Use this prompt in a new Copilot chat (agent mode) to request a scraper for any theatre. Replace the placeholders:
+
+---
+
+> **Read `THEATRE_SCRAPING_GUIDE.md` first** — it documents our full scraping pipeline architecture.
+>
+> Build a scraper for **{THEATRE_NAME_HEBREW}** (`{WEBSITE_URL}`).
+>
+> **What to create:**
+>
+> 1. `scripts/lib/{THEATRE_ID}.mjs` — theatre-specific scraper module
+> 2. `scripts/find-missing-{THEATRE_ID}-shows.mjs` — thin entry-point script
+>
+> **Before writing code**, research `{WEBSITE_URL}` to understand:
+>
+> - Which page lists all current shows
+> - The CSS selector pattern for show links
+> - How titles appear in the listing (heading? link text? card?)
+> - Detail page structure: title (h1?), duration format, description section, image placement
+> - Non-show items that appear in listings (gift cards, tours, youth programs, etc.)
+>
+> **Follow the exact patterns from existing scrapers** (see the guide for Pattern A vs Pattern B).
+> The pipeline (`runPipeline()`) handles everything after scraping — do NOT reimplement AI summaries, migration generation, or the review UI.
+>
+> **Theatre-specific decisions to make:**
+>
+> - `theatreId`: `"{THEATRE_ID}"`
+> - `theatreName` / `theatreConst`: `"{THEATRE_NAME_HEBREW}"`
+> - `titlePreference`: choose based on which source has cleaner titles
+> - Duration format: standard `X דקות` or needs custom parser?
+> - Description markers: what text signals start/end of description?
+> - Title cleanup: any prefixes/suffixes to strip?
+> - Non-show filter: what non-show h3 texts to exclude?
+
+---
+
+### Ready-to-use prompt for תיאטרון חיפה
+
+Copy-paste this into a new Copilot agent-mode chat:
+
+> **Read `THEATRE_SCRAPING_GUIDE.md` first** — it documents our full scraping pipeline architecture.
+>
+> Build a scraper for **תיאטרון חיפה** (`https://www.haifatheater.co.il/` — verify the actual URL by fetching it).
+>
+> **What to create:**
+>
+> 1. `scripts/lib/haifa.mjs` — theatre-specific scraper module
+> 2. `scripts/find-missing-haifa-shows.mjs` — thin entry-point script
+>
+> **Before writing code**, research the תיאטרון חיפה website to understand:
+>
+> - Which page lists all current shows (repertoire/schedule page)
+> - The CSS selector pattern for show links
+> - How titles appear in the listing
+> - Detail page structure: title, duration format, description section, image placement
+> - Non-show items that appear in listings
+>
+> **Follow the exact patterns from existing scrapers** (see the guide for Pattern A vs Pattern B).
+> The pipeline (`runPipeline()`) handles everything after scraping — do NOT reimplement AI summaries, migration generation, or the review UI.
+>
+> **Theatre-specific decisions to make:**
+>
+> - `theatreId`: `"haifa"`
+> - `theatreName` / `theatreConst`: `"תיאטרון חיפה"`
+> - `titlePreference`: decide based on which source has cleaner titles
+> - Duration format: standard `X דקות` or custom parser needed?
+> - Description markers: what signals start/end of description?
+> - Title cleanup: any prefixes/suffixes to strip?
+> - Non-show filter: what non-show entries to exclude?
