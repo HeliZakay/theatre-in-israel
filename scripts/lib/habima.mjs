@@ -194,15 +194,19 @@ export async function scrapeShowDetails(browser, url) {
       description = description.replace(/\n{3,}/g, "\n\n").trim();
     }
 
-    // ── Image URL (using shared extraction logic) ──
-    const imageUrl = extractImage();
+    return { title, durationMinutes, description };
+  });
 
-    return { title, durationMinutes, description, imageUrl };
-  }, extractImageFromPage);
+  // ── Image URL (using shared extraction logic) ──
+  // extractImageFromPage must be passed as the pageFunction (not as a
+  // serialised argument) because Puppeteer cannot serialise functions.
+  const imageUrl = await page.evaluate(extractImageFromPage);
 
   // Fix double-protocol URLs outside the browser context
-  if (data.imageUrl) {
-    data.imageUrl = fixDoubleProtocol(data.imageUrl);
+  if (imageUrl) {
+    data.imageUrl = fixDoubleProtocol(imageUrl);
+  } else {
+    data.imageUrl = null;
   }
 
   await page.close();
