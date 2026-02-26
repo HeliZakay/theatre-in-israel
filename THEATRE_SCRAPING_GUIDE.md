@@ -204,45 +204,7 @@ Two patterns exist in the codebase:
 
 - **Non-show entries**: Theatres often have non-show listings (tours, gift cards, youth programs). Filter them in the listing function by checking against a blocklist of known non-show h3 texts.
 
-## 8. Prompt Template for New Theatres
-
-Use this prompt in a new Copilot chat (agent mode) to request a scraper for any theatre. Replace the placeholders:
-
----
-
-> **Read `THEATRE_SCRAPING_GUIDE.md` first** — it documents our full scraping pipeline architecture.
->
-> Build a scraper for **{THEATRE_NAME_HEBREW}** (`{WEBSITE_URL}`).
->
-> **What to create:**
->
-> 1. `scripts/lib/{THEATRE_ID}.mjs` — theatre-specific scraper module
-> 2. `scripts/find-missing-{THEATRE_ID}-shows.mjs` — thin entry-point script
->
-> **Before writing code**, research `{WEBSITE_URL}` to understand:
->
-> - Which page lists all current shows
-> - The CSS selector pattern for show links
-> - How titles appear in the listing (heading? link text? card?)
-> - Detail page structure: title (h1?), duration format, description section, image placement
-> - Non-show items that appear in listings (gift cards, tours, youth programs, etc.)
->
-> **Follow the exact patterns from existing scrapers** (see the guide for Pattern A vs Pattern B).
-> The pipeline (`runPipeline()`) handles everything after scraping — do NOT reimplement AI summaries, migration generation, or the review UI.
->
-> **Theatre-specific decisions to make:**
->
-> - `theatreId`: `"{THEATRE_ID}"`
-> - `theatreName` / `theatreConst`: `"{THEATRE_NAME_HEBREW}"`
-> - `titlePreference`: choose based on which source has cleaner titles
-> - Duration format: standard `X דקות` or needs custom parser?
-> - Description markers: what text signals start/end of description?
-> - Title cleanup: any prefixes/suffixes to strip?
-> - Non-show filter: what non-show h3 texts to exclude?
-
----
-
-### Ready-to-use prompt for תיאטרון חיפה
+## 8. Prompt for Adding תיאטרון חיפה
 
 Copy-paste this into a new Copilot agent-mode chat:
 
