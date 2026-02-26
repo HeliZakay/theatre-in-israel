@@ -7,83 +7,16 @@
 
 import { fixDoubleProtocol, extractImageFromPage } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
+import { parseLessinDuration } from "./duration.js";
+
+// Re-export so existing consumers can still import from here
+export { parseLessinDuration };
 
 // ── Constants ──────────────────────────────────────────────────
 
 export const LESSIN_THEATRE = "תיאטרון בית ליסין";
 export const LESSIN_BASE = "https://www.lessin.co.il";
 export const SHOWS_URL = "https://www.lessin.co.il/";
-
-// ── Duration parser ────────────────────────────────────────────
-
-/**
- * Parse a Hebrew textual duration string into minutes.
- *
- * Handles both numeric forms ("90 דקות") and textual forms
- * ("כשעה וחצי", "שעה ו-25 דקות", "כשעתיים", etc.).
- *
- * @param {string | null} text  Raw text after "משך ההצגה:"
- * @returns {number | null}     Duration in minutes, or null if unparsable
- */
-export function parseLessinDuration(text) {
-  if (!text) return null;
-
-  // Try plain numeric form first: "90 דקות" / "120 דקות"
-  const numericMatch = text.match(/(\d+)\s*דקות/);
-  if (numericMatch) {
-    return parseInt(numericMatch[1], 10);
-  }
-
-  // Textual minute words → numeric values
-  const wordToMinutes = {
-    עשר: 10,
-    עשרים: 20,
-    חצי: 30,
-    שלושים: 30,
-    רבע: 15,
-    ארבעים: 40,
-    חמישים: 50,
-  };
-
-  let hours = 0;
-  let minutes = 0;
-
-  // Detect hour base
-  if (/שעתיים/.test(text)) {
-    hours = 2;
-  } else if (/שעה/.test(text)) {
-    hours = 1;
-  }
-
-  if (hours === 0) return null;
-
-  minutes = hours * 60;
-
-  // Check for added textual minutes after the hour base
-  // e.g. "כשעה וחצי", "כשעה ורבע", "כשעה וחמישים", "שעה ו-25 דקות"
-  const afterHour = text.replace(/.*שעתיים|.*שעה/, "").trim();
-
-  if (!afterHour || afterHour === text) {
-    // No additional minutes — just the hour base
-    return minutes;
-  }
-
-  // Try numeric addition: "ו-25 דקות" / "ו25 דקות"
-  const addedNumeric = afterHour.match(/(\d+)/);
-  if (addedNumeric) {
-    return minutes + parseInt(addedNumeric[1], 10);
-  }
-
-  // Try textual addition
-  for (const [word, value] of Object.entries(wordToMinutes)) {
-    if (afterHour.includes(word)) {
-      return minutes + value;
-    }
-  }
-
-  // Hour base only (no parsable addition)
-  return minutes;
-}
 
 // ── Shows listing page scraper ─────────────────────────────────
 
