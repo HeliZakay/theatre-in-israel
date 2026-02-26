@@ -1040,12 +1040,21 @@ export async function runPipeline(config) {
   try {
     // 0. Ensure local DB has all migrations applied
     if (process.env.DATABASE_URL) {
-      console.log("🔄 Applying pending migrations…");
-      execSync("npx prisma migrate deploy", {
-        cwd: rootDir,
-        stdio: "inherit",
-      });
-      console.log("");
+      try {
+        console.log("🔄 Applying pending migrations…");
+        execSync("npx prisma migrate deploy", {
+          cwd: rootDir,
+          stdio: "inherit",
+        });
+        console.log("");
+      } catch {
+        console.warn(
+          "⚠️  prisma migrate deploy failed — continuing with current DB state.",
+        );
+        console.warn(
+          "   If your local DB is out of sync, resolve manually with: npx prisma migrate resolve\n",
+        );
+      }
     }
 
     // 1. DB lookup
