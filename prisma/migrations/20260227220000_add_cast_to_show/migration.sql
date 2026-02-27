@@ -1,2 +1,2 @@
 -- AlterTable
-ALTER TABLE "Show" ADD COLUMN     "cast" TEXT;
+ALTER TABLE "Show" ADD COLUMN IF NOT EXISTS "cast" TEXT;

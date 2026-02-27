@@ -2,6 +2,8 @@
 -- Generated on 2026-02-27T20:21:46.074Z
 -- 23 show(s) updated
 
+ALTER TABLE "Show" ADD COLUMN IF NOT EXISTS "cast" TEXT;
+
 UPDATE "Show" SET "cast" = 'מאת: ענת גוב
 בימוי: מתן דרעי בדש
 תפאורה: אדם קלר
