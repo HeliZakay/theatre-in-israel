@@ -155,9 +155,9 @@ describe("ReviewForm", () => {
     const rating = screen.getByTestId("rating-select");
     await user.selectOptions(rating, "5");
 
-    // Type short text (min 10)
+    // Type short text (min 2)
     const textarea = screen.getByRole("textbox", { name: /תגובה/i });
-    await user.type(textarea, "קצר");
+    await user.type(textarea, "ק");
 
     const submitBtn = screen.getByRole("button", { name: "שלח.י ביקורת" });
     await user.click(submitBtn);
