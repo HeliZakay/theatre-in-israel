@@ -38,7 +38,7 @@ export async function signup(values: {
       headersList.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
     const rateLimit = await checkSignupRateLimit(ip);
     if (rateLimit.isLimited) {
-      return actionError("יותר מדי ניסיונות הרשמה. נסו שוב מאוחר יותר.");
+      return actionError("יותר מדי ניסיונות הרשמה. נס.י שוב מאוחר יותר.");
     }
 
     const result = signupSchema.safeParse(values);

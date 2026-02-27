@@ -19,10 +19,10 @@ export default function Error({ error, reset }: ErrorProps) {
 
         <div className={styles.actions}>
           <button className={styles.retryButton} onClick={() => reset()}>
-            נסה שוב
+            נס.י שוב
           </button>
           <Link href="/" className={styles.homeLink}>
-            חזור לדף הבית
+            חזר.י לדף הבית
           </Link>
         </div>
       </section>

@@ -55,7 +55,7 @@ export default function ContactForm() {
       setSuccess(true);
       reset();
     } catch {
-      setServerError("שגיאה בחיבור לשרת. נסו שוב.");
+      setServerError("שגיאה בחיבור לשרת. נס.י שוב.");
     }
   };
 
@@ -130,7 +130,7 @@ export default function ContactForm() {
         <span className={styles.label}>הודעה</span>
         <textarea
           className={styles.textarea}
-          placeholder="מה תרצו לשתף?"
+          placeholder="מה תרצ.י לשתף?"
           maxLength={CONTACT_MESSAGE_MAX}
           disabled={isSubmitting}
           rows={5}

@@ -21,4 +21,4 @@ export function actionError(
   return { success: false, error: message };
 }
 
-export const INTERNAL_ERROR_MESSAGE = "שגיאה פנימית, נסו שוב מאוחר יותר";
+export const INTERNAL_ERROR_MESSAGE = "שגיאה פנימית, נס.י שוב מאוחר יותר";

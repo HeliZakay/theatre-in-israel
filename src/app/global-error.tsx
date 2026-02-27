@@ -20,8 +20,8 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
           ) : null}
 
           <div style={{ marginTop: 16, display: "flex", gap: 12 }}>
-            <button onClick={() => reset()}>נסה שוב</button>
-            <Link href="/">חזור לדף הבית</Link>
+            <button onClick={() => reset()}>נס.י שוב</button>
+            <Link href="/">חזר.י לדף הבית</Link>
           </div>
         </main>
       </body>

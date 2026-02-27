@@ -5,7 +5,7 @@ test.describe("Contact Form", () => {
     await page.goto("/contact");
 
     await expect(
-      page.getByRole("heading", { name: "שלחו לנו הודעה", level: 1 }),
+      page.getByRole("heading", { name: "שלח.י לנו הודעה", level: 1 }),
     ).toBeVisible();
     await expect(
       page.getByText("שאלה, הצעה, או סתם רוצים להגיד שלום? נשמח לשמוע מכם."),

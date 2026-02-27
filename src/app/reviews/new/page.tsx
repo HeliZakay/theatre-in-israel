@@ -34,7 +34,7 @@ export default async function NewReviewPage() {
       <header className={styles.header}>
         <p className={styles.kicker}>ביקורת חדשה</p>
         <h1 className={styles.title}>כתיבת ביקורת</h1>
-        <p className={styles.subtitle}>בחרו הצגה ולאחר מכן כתבו ביקורת.</p>
+        <p className={styles.subtitle}>בחר.י הצגה ולאחר מכן כתב.י ביקורת.</p>
       </header>
 
       <ReviewForm shows={shows} />

@@ -76,7 +76,7 @@ export default function AccountDropdown({
             </DropdownMenu.Item>
             <DropdownMenu.Item asChild className={styles.accountMenuItem}>
               <Link href={ROUTES.REVIEWS_NEW} onClick={onNavigate}>
-                לכתוב ביקורת
+                כתב.י ביקורת
               </Link>
             </DropdownMenu.Item>
             <DropdownMenu.Item

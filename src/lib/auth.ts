@@ -82,7 +82,7 @@ export const authOptions: NextAuthOptions = {
           "unknown";
         const rateLimit = await checkLoginRateLimit(ip);
         if (rateLimit.isLimited) {
-          throw new Error("יותר מדי ניסיונות התחברות. נסו שוב מאוחר יותר.");
+          throw new Error("יותר מדי ניסיונות התחברות. נס.י שוב מאוחר יותר.");
         }
 
         const user = await prisma.user.findUnique({

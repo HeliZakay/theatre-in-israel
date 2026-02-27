@@ -58,7 +58,7 @@ test.describe("Create Review", () => {
     await page.goto(`/shows/${firstShow.slug}`);
 
     // Click write review button
-    await page.getByRole("link", { name: "כתבי ביקורת" }).click();
+    await page.getByRole("link", { name: "כתב.י ביקורת" }).click();
     await expect(page).toHaveURL(new RegExp(`/shows/${firstShow.slug}/review`));
 
     // Show should be pre-selected (no combobox visible)

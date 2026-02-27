@@ -225,7 +225,7 @@ export default async function ShowPage({ params }: ShowPageProps) {
                 className={styles.primaryBtn}
                 href={showReviewPath(show.slug)}
               >
-                כתבי ביקורת
+                כתב.י ביקורת
               </Link>
               <WatchlistButton
                 showId={show.id}

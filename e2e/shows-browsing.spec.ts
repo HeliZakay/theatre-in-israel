@@ -15,7 +15,7 @@ test.describe("Shows Browsing", () => {
 
     // CTA strip
     await expect(
-      page.getByRole("heading", { name: "כתבו ביקורת ועזרו לאחרים לבחור" }),
+      page.getByRole("heading", { name: "כתב.י ביקורת ועזר.י לאחרים לבחור" }),
     ).toBeVisible();
   });
 
@@ -99,7 +99,9 @@ test.describe("Shows Browsing", () => {
     await expect(page.locator("text=דקות")).toBeVisible();
 
     // Write review button
-    await expect(page.getByRole("link", { name: "כתבי ביקורת" })).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: "כתב.י ביקורת" }),
+    ).toBeVisible();
 
     // Watchlist button
     await expect(

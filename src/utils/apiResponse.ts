@@ -23,4 +23,4 @@ export function apiSuccess<T>(data: T, status = 200): NextResponse {
 }
 
 /** Generic Hebrew 500 message for end users. */
-export const INTERNAL_ERROR_MESSAGE = "שגיאה פנימית, נסו שוב מאוחר יותר";
+export const INTERNAL_ERROR_MESSAGE = "שגיאה פנימית, נס.י שוב מאוחר יותר";

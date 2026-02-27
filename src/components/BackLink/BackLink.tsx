@@ -9,7 +9,7 @@ interface BackLinkProps {
 export default function BackLink({ href = "/", children }: BackLinkProps) {
   return (
     <Link className={styles.backLink} href={href}>
-      {children ?? "חזרה לעמוד הבית →"}
+      {children ?? "חזרה לדף הבית →"}
     </Link>
   );
 }

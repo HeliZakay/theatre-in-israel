@@ -37,10 +37,10 @@ export default function Footer() {
           </div>
 
           <div className={styles.column}>
-            <h3 className={styles.columnTitle}>צור קשר</h3>
+            <h3 className={styles.columnTitle}>צר.י קשר</h3>
             <ul className={styles.linkList}>
               <li>
-                <Link href={ROUTES.CONTACT}>שלחו לנו הודעה</Link>
+                <Link href={ROUTES.CONTACT}>שלח.י לנו הודעה</Link>
               </li>
             </ul>
           </div>

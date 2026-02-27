@@ -62,13 +62,13 @@ export default function SignUpForm({ callbackUrl }: SignUpFormProps) {
       });
 
       if (signInResult?.error) {
-        setError("החשבון נוצר, אבל ההתחברות נכשלה. נסה להתחבר ידנית");
+        setError("החשבון נוצר, אבל ההתחברות נכשלה. נס.י להתחבר ידנית");
         setIsLoading(false);
       } else {
         window.location.href = callbackUrl;
       }
     } catch {
-      setError("אירעה שגיאה, נסה שנית");
+      setError("אירעה שגיאה, נס.י שוב");
       setIsLoading(false);
     }
   };
@@ -151,7 +151,7 @@ export default function SignUpForm({ callbackUrl }: SignUpFormProps) {
             className={styles.signInBtn}
             disabled={isLoading}
           >
-            {isLoading ? "יוצר חשבון..." : "הרשמה"}
+            {isLoading ? "יוצרים חשבון..." : "הרשמה"}
           </button>
         </form>
       )}
@@ -159,7 +159,7 @@ export default function SignUpForm({ callbackUrl }: SignUpFormProps) {
       <p className={styles.signupPrompt}>
         כבר יש לך חשבון?{" "}
         <Link href={ROUTES.AUTH_SIGNIN} className={styles.signupLink}>
-          התחבר
+          התחבר.י
         </Link>
       </p>
     </div>

@@ -16,10 +16,10 @@ export async function loginViaUI(
 ): Promise<void> {
   await page.goto("/auth/signin");
   // Expand credentials form
-  await page.getByRole("button", { name: "התחבר עם אימייל וסיסמה" }).click();
+  await page.getByRole("button", { name: "התחבר.י עם אימייל וסיסמה" }).click();
   await page.getByPlaceholder("אימייל").fill(email);
   await page.getByPlaceholder("סיסמה").fill(password);
-  await page.getByRole("button", { name: "התחבר" }).click();
+  await page.getByRole("button", { name: "התחבר.י" }).click();
   // Wait for redirect away from signin
   await page.waitForURL((url) => !url.pathname.includes("/auth/signin"), {
     timeout: 15_000,

@@ -40,7 +40,7 @@ export default function MobileMenu({
           className={`${styles.primaryAction} ${styles.desktopOnlyAction}`}
           onClick={onClose}
         >
-          לכתוב ביקורת
+          כתב.י ביקורת
         </Button>
         <Link
           href={ROUTES.REVIEWS_NEW}
@@ -52,7 +52,7 @@ export default function MobileMenu({
           aria-current={isWriteReviewPage ? "page" : undefined}
           onClick={onClose}
         >
-          לכתוב ביקורת
+          כתב.י ביקורת
         </Link>
 
         {isLoading ? (

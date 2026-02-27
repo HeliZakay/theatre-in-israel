@@ -30,7 +30,7 @@ export async function sendContactMessage(values: {
 
     const rateLimit = await checkContactRateLimit(ip);
     if (rateLimit.isLimited) {
-      return actionError("יותר מדי הודעות. נסו שוב מאוחר יותר.");
+      return actionError("יותר מדי הודעות. נס.י שוב מאוחר יותר.");
     }
 
     const result = contactSchema.safeParse(values);

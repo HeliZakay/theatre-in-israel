@@ -86,7 +86,7 @@ test.describe("Navigation", () => {
 
     await page.goto("/");
 
-    await footer.getByRole("link", { name: "שלחו לנו הודעה" }).click();
+    await footer.getByRole("link", { name: "שלח.י לנו הודעה" }).click();
     await expect(page).toHaveURL("/contact");
   });
 });

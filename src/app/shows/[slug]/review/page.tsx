@@ -62,7 +62,7 @@ export default async function NewReviewPage({ params }: NewReviewPageProps) {
       <header className={styles.header}>
         <p className={styles.kicker}>ביקורת חדשה</p>
         <h1 className={styles.title}>{show.title}</h1>
-        <p className={styles.subtitle}>ספרו לקהל מה חשבתם על ההצגה.</p>
+        <p className={styles.subtitle}>ספר.י לקהל מה חשבת על ההצגה.</p>
       </header>
 
       <section className={styles.contentLayout}>

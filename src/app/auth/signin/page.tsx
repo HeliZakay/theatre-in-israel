@@ -42,11 +42,11 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
         <p className={styles.signupPrompt}>
           עדיין אין לך חשבון?{" "}
           <Link href={ROUTES.AUTH_SIGNUP} className={styles.signupLink}>
-            הירשם עכשיו
+            הירשמ.י עכשיו
           </Link>
         </p>
         <Link className={styles.backLink} href={ROUTES.HOME}>
-          חזרה לעמוד הבית
+          חזרה לדף הבית
         </Link>
       </section>
     </main>

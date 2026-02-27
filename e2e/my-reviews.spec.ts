@@ -15,7 +15,7 @@ test.describe("My Reviews", () => {
     ).toBeVisible();
     await expect(page.getByText("עדיין לא כתבת ביקורות.")).toBeVisible();
     await expect(
-      page.getByRole("link", { name: "לכתוב ביקורת" }),
+      page.getByRole("link", { name: "כתב.י ביקורת" }),
     ).toBeVisible();
   });
 

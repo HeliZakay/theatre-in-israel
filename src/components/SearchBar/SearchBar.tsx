@@ -160,7 +160,7 @@ export default function SearchBar({
           </div>
         )}
 
-        <Button type="submit">לחפש הצגה</Button>
+        <Button type="submit">חפש.י הצגה</Button>
       </div>
     </form>
   );

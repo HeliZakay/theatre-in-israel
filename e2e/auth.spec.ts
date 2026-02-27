@@ -17,9 +17,11 @@ test.describe("Authentication", () => {
       page.getByRole("button", { name: "המשך עם Google" }),
     ).toBeVisible();
     await expect(
-      page.getByRole("button", { name: "התחבר עם אימייל וסיסמה" }),
+      page.getByRole("button", { name: "התחבר.י עם אימייל וסיסמה" }),
     ).toBeVisible();
-    await expect(page.getByRole("link", { name: "הירשם עכשיו" })).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: "הירשמ.י עכשיו" }),
+    ).toBeVisible();
   });
 
   test("sign in with valid credentials", async ({ page }) => {
@@ -30,10 +32,12 @@ test.describe("Authentication", () => {
 
   test("sign in with wrong password shows error", async ({ page }) => {
     await page.goto("/auth/signin");
-    await page.getByRole("button", { name: "התחבר עם אימייל וסיסמה" }).click();
+    await page
+      .getByRole("button", { name: "התחבר.י עם אימייל וסיסמה" })
+      .click();
     await page.getByPlaceholder("אימייל").fill(TEST_USER.email);
     await page.getByPlaceholder("סיסמה").fill("WrongPassword123!");
-    await page.getByRole("button", { name: "התחבר" }).click();
+    await page.getByRole("button", { name: "התחבר.י" }).click();
 
     await expect(page.getByText("אימייל או סיסמה שגויים")).toBeVisible();
     // Should stay on sign in page

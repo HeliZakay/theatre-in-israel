@@ -45,7 +45,7 @@ export async function createReview(
   try {
     const auth = await requireActionAuth("יש להתחבר כדי לכתוב ביקורת", {
       check: checkReviewRateLimit,
-      message: (t) => `יצרת יותר מדי ביקורות לאחרונה. נסה שוב בעוד ${t} דקות.`,
+      message: (t) => `יצרת יותר מדי ביקורות לאחרונה. נס.י שוב בעוד ${t} דקות.`,
     });
     if (auth.error) return auth.error;
     const { session } = auth;
@@ -102,7 +102,7 @@ export async function updateReview(
   try {
     const auth = await requireActionAuth("יש להתחבר כדי לערוך ביקורת", {
       check: checkEditDeleteRateLimit,
-      message: (t) => `ביצעת יותר מדי עריכות לאחרונה. נסה שוב בעוד ${t} דקות.`,
+      message: (t) => `ביצעת יותר מדי עריכות לאחרונה. נס.י שוב בעוד ${t} דקות.`,
     });
     if (auth.error) return auth.error;
     const { session } = auth;
@@ -148,7 +148,7 @@ export async function deleteReview(
   try {
     const auth = await requireActionAuth("יש להתחבר כדי למחוק ביקורת", {
       check: checkEditDeleteRateLimit,
-      message: (t) => `ביצעת יותר מדי עריכות לאחרונה. נסה שוב בעוד ${t} דקות.`,
+      message: (t) => `ביצעת יותר מדי עריכות לאחרונה. נס.י שוב בעוד ${t} דקות.`,
     });
     if (auth.error) return auth.error;
     const { session } = auth;

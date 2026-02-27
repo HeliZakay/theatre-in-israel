@@ -36,7 +36,7 @@ export default function SignInButton({ callbackUrl }: SignInButtonProps) {
         window.location.href = callbackUrl;
       }
     } catch {
-      setError("אירעה שגיאה, נסה שנית");
+      setError("אירעה שגיאה, נס.י שוב");
     } finally {
       setIsLoading(false);
     }
@@ -67,7 +67,7 @@ export default function SignInButton({ callbackUrl }: SignInButtonProps) {
           className={styles.credentialsToggle}
           onClick={() => setShowCredentials(true)}
         >
-          התחבר עם אימייל וסיסמה
+          התחבר.י עם אימייל וסיסמה
         </button>
       ) : (
         <form
@@ -99,7 +99,7 @@ export default function SignInButton({ callbackUrl }: SignInButtonProps) {
             className={styles.signInBtn}
             disabled={isLoading}
           >
-            {isLoading ? "מתחבר..." : "התחבר"}
+            {isLoading ? "מתחברים..." : "התחבר.י"}
           </button>
         </form>
       )}

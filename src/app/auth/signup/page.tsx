@@ -31,11 +31,11 @@ export default async function SignUpPage({ searchParams }: SignUpPageProps) {
       <section className={styles.card}>
         <h1 className={styles.title}>הרשמה לאתר</h1>
         <p className={styles.subtitle}>
-          צור חשבון חדש כדי לכתוב ביקורות ולנהל את הביקורות שלך.
+          צר.י חשבון חדש כדי לכתוב ביקורות ולנהל את הביקורות שלך.
         </p>
         <SignUpForm callbackUrl={callbackUrl} />
         <Link className={styles.backLink} href={ROUTES.HOME}>
-          חזרה לעמוד הבית
+          חזרה לדף הבית
         </Link>
       </section>
     </main>

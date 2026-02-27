@@ -65,6 +65,6 @@ describe("apiSuccess", () => {
 
 describe("INTERNAL_ERROR_MESSAGE", () => {
   it("exports the correct Hebrew error string", () => {
-    expect(INTERNAL_ERROR_MESSAGE).toBe("שגיאה פנימית, נסו שוב מאוחר יותר");
+    expect(INTERNAL_ERROR_MESSAGE).toBe("שגיאה פנימית, נס.י שוב מאוחר יותר");
   });
 });
