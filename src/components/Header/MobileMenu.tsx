@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { signOut } from "next-auth/react";
 import styles from "./Header.module.css";
 import { cx } from "@/utils/cx";
 import ROUTES from "@/constants/routes";
@@ -67,42 +66,12 @@ export default function MobileMenu({
               onNavigate={onClose}
             />
 
-            <div className={styles.mobileAccountLinks}>
-              <Link
-                href={ROUTES.MY_REVIEWS}
-                className={cx(
-                  styles.navText,
-                  styles.mobileMenuItem,
-                  isMyReviewsPage && styles.mobileMenuItemActive,
-                )}
-                aria-current={isMyReviewsPage ? "page" : undefined}
-                onClick={onClose}
-              >
-                האזור האישי
-              </Link>
-              <Link
-                href={ROUTES.MY_WATCHLIST}
-                className={cx(
-                  styles.navText,
-                  styles.mobileMenuItem,
-                  isMyWatchlistPage && styles.mobileMenuItemActive,
-                )}
-                aria-current={isMyWatchlistPage ? "page" : undefined}
-                onClick={onClose}
-              >
-                רשימת הצפייה שלי
-              </Link>
-              <button
-                className={`${styles.navText} ${styles.mobileMenuButton}`}
-                type="button"
-                onClick={() => {
-                  onClose();
-                  signOut({ callbackUrl: ROUTES.HOME });
-                }}
-              >
-                התנתקות
-              </button>
-            </div>
+            <AccountDropdown
+              fullName={fullName}
+              firstName={firstName}
+              onNavigate={onClose}
+              mobile
+            />
           </>
         ) : (
           <>

@@ -10,45 +10,41 @@ interface AccountDropdownProps {
   fullName: string;
   firstName: string;
   onNavigate: () => void;
+  mobile?: boolean;
 }
 
 export default function AccountDropdown({
   fullName,
   firstName,
   onNavigate,
+  mobile,
 }: AccountDropdownProps) {
   return (
-    <div className={`${styles.account} ${styles.desktopAccount}`}>
-      <Link
-        href={ROUTES.MY_REVIEWS}
-        className={styles.userIndicator}
-        aria-label={fullName ? `מחובר/ת כ-${fullName}` : "מחובר/ת לחשבון"}
-        onClick={onNavigate}
-      >
-        <span className={styles.userAvatar} aria-hidden="true">
-          <svg
-            className={styles.userAvatarIcon}
-            viewBox="0 0 24 24"
-            focusable="false"
-          >
-            <path
-              fill="currentColor"
-              d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-3.5 0-6.5 2.2-7.6 5.3a1 1 0 0 0 .9 1.3h13.4a1 1 0 0 0 .9-1.3C18.5 16.2 15.5 14 12 14Z"
-            />
-          </svg>
-        </span>
-        <span className={styles.userName}>{firstName || "מחובר/ת"}</span>
-      </Link>
-
+    <div
+      className={`${styles.account} ${mobile ? styles.mobileAccount : styles.desktopAccount}`}
+    >
       <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild>
           <button
             type="button"
-            className={styles.accountMenuTrigger}
-            aria-label="פעולות חשבון"
+            className={styles.userIndicator}
+            aria-label={fullName ? `מחובר/ת כ-${fullName}` : "פעולות חשבון"}
           >
+            <span className={styles.userAvatar} aria-hidden="true">
+              <svg
+                className={styles.userAvatarIcon}
+                viewBox="0 0 24 24"
+                focusable="false"
+              >
+                <path
+                  fill="currentColor"
+                  d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-3.5 0-6.5 2.2-7.6 5.3a1 1 0 0 0 .9 1.3h13.4a1 1 0 0 0 .9-1.3C18.5 16.2 15.5 14 12 14Z"
+                />
+              </svg>
+            </span>
+            <span className={styles.userName}>{firstName || "מחובר/ת"}</span>
             <svg
-              className={styles.accountMenuTriggerIcon}
+              className={styles.chevronIcon}
               viewBox="0 0 24 24"
               focusable="false"
               aria-hidden="true"

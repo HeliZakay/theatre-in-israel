@@ -33,14 +33,14 @@ test.describe("Navigation", () => {
   test("header shows user name when authenticated", async ({ authedPage }) => {
     const page = authedPage;
     await page.goto("/");
-    await expect(page.getByRole("link", { name: /מחובר\/ת/ })).toBeVisible();
+    await expect(page.getByRole("button", { name: /מחובר\/ת/ })).toBeVisible();
   });
 
   test("sign out flow", async ({ authedPage }) => {
     const page = authedPage;
     await page.goto("/");
 
-    await page.getByRole("button", { name: "פעולות חשבון" }).click();
+    await page.getByRole("button", { name: /מחובר\/ת|פעולות חשבון/ }).click();
     await page.getByRole("menuitem", { name: "התנתקות" }).click();
 
     await page.waitForURL(/\//);

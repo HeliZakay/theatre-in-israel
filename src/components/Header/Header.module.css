@@ -8,9 +8,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px 24px;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #ede9e3;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-  background: var(--background);
+  background: var(--header-background);
   gap: 16px;
   flex-wrap: wrap;
 }
@@ -112,6 +112,10 @@
   display: inline-flex;
 }
 
+.mobileAccount {
+  display: none;
+}
+
 .mobileAccountLinks {
   display: none;
 }
@@ -142,6 +146,20 @@
   background: rgba(26, 26, 26, 0.03);
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.userIndicator:hover {
+  background: rgba(26, 26, 26, 0.07);
+  border-color: rgba(26, 26, 26, 0.25);
+}
+
+.userIndicator[data-state="open"] {
+  background: rgba(26, 26, 26, 0.07);
+  border-color: rgba(26, 26, 26, 0.25);
 }
 
 .userAvatar {
@@ -174,31 +192,17 @@
   position: relative;
 }
 
-.accountMenuTrigger {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
-  border: 1px solid rgba(26, 26, 26, 0.18);
-  background: #fff;
-  color: var(--color-text-primary);
-  cursor: pointer;
-  padding: 0;
+.chevronIcon {
+  width: 16px;
+  height: 16px;
+  color: rgba(26, 26, 26, 0.55);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  margin-inline-start: -0.1rem;
 }
 
-.accountMenuTrigger:hover {
-  background: rgba(26, 26, 26, 0.06);
-}
-
-.accountMenuTriggerIcon {
-  width: 18px;
-  height: 18px;
-}
-
-.accountMenuTrigger[data-state="open"] {
-  background: rgba(26, 26, 26, 0.06);
+.userIndicator[data-state="open"] .chevronIcon {
+  transform: rotate(180deg);
 }
 
 .accountDropdown {
@@ -383,9 +387,44 @@
     display: none;
   }
 
+  .mobileAccount {
+    display: flex;
+  }
+
+  .mobileAccount .userIndicator {
+    width: 100%;
+    padding: 8px 14px 8px 8px;
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.04);
+    border: 1px solid rgba(26, 26, 26, 0.12);
+    gap: 0.6rem;
+  }
+
+  .mobileAccount .userIndicator:hover,
+  .mobileAccount .userIndicator[data-state="open"] {
+    background: rgba(15, 23, 42, 0.08);
+  }
+
+  .mobileAccount .userAvatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .mobileAccount .userName {
+    font-size: 1rem;
+    font-weight: 700;
+    max-width: none;
+    flex: 1;
+  }
+
+  .mobileAccount .chevronIcon {
+    width: 18px;
+    height: 18px;
+    margin-inline-start: auto;
+  }
+
   .mobileAccountLinks {
-    display: grid;
-    gap: 8px;
+    display: none;
   }
 
   .mobileMenuItem,
