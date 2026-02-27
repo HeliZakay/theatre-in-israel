@@ -3,6 +3,9 @@ import prisma from "../prisma";
 import { showListInclude } from "../showHelpers";
 import type { ShowListItem, Suggestions } from "@/types";
 
+const DISPLAY_LIMIT = 10;
+const FETCH_LIMIT = 20;
+
 export interface FeaturedReview {
   text: string;
   author: string;
@@ -61,7 +64,7 @@ async function getTopRated(): Promise<ShowListItem[]> {
     where: { avgRating: { not: null } },
     include: showListInclude,
     orderBy: [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],
-    take: 10,
+    take: FETCH_LIMIT,
   });
 
   return shows.map(mapToShowListItem);
@@ -92,6 +95,57 @@ async function getShowsByGenres(
   return shows.map(mapToShowListItem);
 }
 
+/**
+ * Deduplicate shows across homepage sections so each show appears in at most
+ * one section. Sections are processed in priority order. When a section has
+ * fewer than `displayLimit` unique shows, it is back-filled from its original
+ * list (allowing duplicates across sections) to avoid empty-looking rows.
+ */
+export function deduplicateSections(
+  sections: { key: string; shows: ShowListItem[] }[],
+  displayLimit = DISPLAY_LIMIT,
+  initialSeenIds: number[] = [],
+): Record<string, ShowListItem[]> {
+  const seen = new Set<number>(initialSeenIds);
+  const result: Record<string, ShowListItem[]> = {};
+
+  for (const { key, shows } of sections) {
+    // 1. Collect unique shows (not yet seen) up to displayLimit
+    const unique: ShowListItem[] = [];
+    for (const show of shows) {
+      if (unique.length >= displayLimit) break;
+      if (!seen.has(show.id)) {
+        unique.push(show);
+      }
+    }
+
+    // 2. If fewer than displayLimit unique shows, fill from originals
+    let selected: ShowListItem[];
+    if (unique.length < displayLimit) {
+      const uniqueIds = new Set(unique.map((s) => s.id));
+      const filler: ShowListItem[] = [];
+      for (const show of shows) {
+        if (filler.length >= displayLimit - unique.length) break;
+        if (!uniqueIds.has(show.id)) {
+          filler.push(show);
+        }
+      }
+      selected = [...unique, ...filler];
+    } else {
+      selected = unique;
+    }
+
+    // 3. Mark all selected IDs as seen
+    for (const show of selected) {
+      seen.add(show.id);
+    }
+
+    result[key] = selected;
+  }
+
+  return result;
+}
+
 function settled<T>(result: PromiseSettledResult<T>, fallback: T): T {
   return result.status === "fulfilled" ? result.value : fallback;
 }
@@ -111,10 +165,10 @@ async function fetchHomePageData(): Promise<HomePageData> {
   ] = await Promise.allSettled([
     getSuggestions(),
     getTopRated(),
-    getShowsByGenres(["דרמה", "דרמה קומית", "מרגש"], 10),
-    getShowsByGenres(["קומדיה", "קומדיה שחורה", "סאטירה"], 10),
-    getShowsByGenres(["מוזיקלי", "מחזמר"], 10),
-    getShowsByGenres(["ישראלי"], 10),
+    getShowsByGenres(["דרמה", "דרמה קומית", "מרגש"], FETCH_LIMIT),
+    getShowsByGenres(["קומדיה", "קומדיה שחורה", "סאטירה"], FETCH_LIMIT),
+    getShowsByGenres(["מוזיקלי", "מחזמר"], FETCH_LIMIT),
+    getShowsByGenres(["ישראלי"], FETCH_LIMIT),
   ]);
 
   const emptySuggestions: Suggestions = { shows: [], theatres: [], genres: [] };
@@ -141,13 +195,27 @@ async function fetchHomePageData(): Promise<HomePageData> {
     }
   }
 
+  // Deduplicate sections: each show appears in at most one section.
+  // Priority order matches display order; featured show is pre-excluded.
+  const deduped = deduplicateSections(
+    [
+      { key: "topRated", shows: topRated },
+      { key: "dramas", shows: dramas },
+      { key: "comedies", shows: comedies },
+      { key: "musicals", shows: musicals },
+      { key: "israeli", shows: israeli },
+    ],
+    DISPLAY_LIMIT,
+    featuredShow ? [featuredShow.id] : [],
+  );
+
   return {
     suggestions,
-    topRated,
-    dramas,
-    comedies,
-    musicals,
-    israeli,
+    topRated: deduped.topRated,
+    dramas: deduped.dramas,
+    comedies: deduped.comedies,
+    musicals: deduped.musicals,
+    israeli: deduped.israeli,
     featuredShow,
     featuredReview,
   };

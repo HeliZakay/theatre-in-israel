@@ -5,6 +5,18 @@
  * Extracts all common logic (AI processing, HTML generation,
  * migration SQL, interactive server) so each theatre scraper
  * is a thin wrapper that passes its config here.
+ *
+ * Exports:
+ *   runPipeline(config)                  — full single-theatre pipeline (original entry point)
+ *   collectMissingShows(config, options) — phases 1-4c only (no dotenv, no migrate, no output)
+ *   generateHtml(title, groups)          — multi-theatre HTML report
+ *   startServer(title, theatreId, groups)— interactive server with migration endpoint
+ *   saveAndOpenHtml(title, theatreId, groups)
+ *   createAIClient()
+ *   processDescriptions(aiClient, results, opts)
+ *   classifyGenres(aiClient, results, opts)
+ *   generateMigrationSQL(shows, theatreId)
+ *   writeMigrationFile(sql, theatreId)
  */
 
 import dotenv from "dotenv";
@@ -67,20 +79,43 @@ function esc(s) {
     .replace(/"/g, "&quot;");
 }
 
-function generateHtml(theatreName, results) {
+/**
+ * Generate an interactive HTML report for one or more theatres.
+ *
+ * @param {string} title          — page title
+ * @param {Array}  groupsOrResults — either a plain results array or array of { theatreName, results } groups
+ */
+export function generateHtml(title, groupsOrResults) {
+  // Backward compat: plain results array → wrap in single group
+  const groups =
+    Array.isArray(groupsOrResults) &&
+    groupsOrResults.length > 0 &&
+    Array.isArray(groupsOrResults[0]?.results)
+      ? groupsOrResults
+      : [{ theatreName: title, results: groupsOrResults || [] }];
+
   const now = new Date().toLocaleString("he-IL", {
     dateStyle: "long",
     timeStyle: "short",
   });
-  const total = results.length;
-  const errorCount = results.filter((r) => r.error).length;
-  const validCount = total - errorCount;
 
-  const cards = results
-    .map((r, i) => {
-      const hasError = !!r.error;
-      const genres = (r.genre || []).join(", ");
-      return `
+  // Build flat results array and card HTML with global indices
+  let globalIndex = 0;
+  const allResults = [];
+
+  const cardSections = groups
+    .map((group) => {
+      const groupTotal = group.results.length;
+      const groupErrors = group.results.filter((r) => r.error).length;
+      const groupValid = groupTotal - groupErrors;
+
+      const groupCards = group.results
+        .map((r) => {
+          const i = globalIndex++;
+          allResults.push(r);
+          const hasError = !!r.error;
+          const genres = (r.genre || []).join(", ");
+          return `
       <div class="card${hasError ? " error-card" : ""}" data-index="${i}">
         <div class="card-header">
           ${!hasError ? `<input type="checkbox" class="card-checkbox" checked data-index="${i}">` : ""}
@@ -129,15 +164,40 @@ function generateHtml(theatreName, results) {
           <div class="card-status" data-index="${i}"></div>
         </div>
       </div>`;
+        })
+        .join("\n");
+
+      if (groups.length > 1) {
+        return `
+      <div class="theatre-group-header">
+        <h2>${esc(group.theatreName)}</h2>
+        <span class="theatre-group-meta">${groupValid} תקינות מתוך ${groupTotal}</span>
+      </div>
+${groupCards}`;
+      }
+      return groupCards;
     })
     .join("\n");
+
+  const total = allResults.length;
+  const errorCount = allResults.filter((r) => r.error).length;
+  const validCount = total - errorCount;
+
+  let metaHtml = `${esc(now)} · ${total} הצגות (${validCount} תקינות)`;
+  if (groups.length > 1) {
+    const parts = groups.map((g) => {
+      const gv = g.results.filter((r) => !r.error).length;
+      return `${esc(g.theatreName)}: ${gv}`;
+    });
+    metaHtml += ` | ${parts.join(", ")}`;
+  }
 
   return `<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>הצגות חסרות - ${esc(theatreName)}</title>
+  <title>הצגות חסרות - ${esc(title)}</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -177,6 +237,21 @@ function generateHtml(theatreName, results) {
     .cards-container {
       max-width: 850px; margin: 1.5rem auto; padding: 0 1rem;
       display: flex; flex-direction: column; gap: 1.5rem;
+    }
+
+    /* ── Theatre group header (multi-theatre) ── */
+    .theatre-group-header {
+      background: linear-gradient(135deg, #1e3a5f, #2d1b69);
+      padding: 0.75rem 1.25rem;
+      border-radius: 12px;
+      display: flex; align-items: center; gap: 1rem;
+      border: 1px solid #334155;
+    }
+    .theatre-group-header h2 {
+      color: #38bdf8; font-size: 1.1rem; margin: 0;
+    }
+    .theatre-group-meta {
+      color: #94a3b8; font-size: 0.85rem;
     }
 
     /* ── Card ────────────────────────────────── */
@@ -277,8 +352,8 @@ function generateHtml(theatreName, results) {
 </head>
 <body>
   <div class="top-bar">
-    <h1>🎭 הצגות חסרות - ${esc(theatreName)}</h1>
-    <span class="meta">${esc(now)} · ${total} הצגות (${validCount} תקינות)</span>
+    <h1>🎭 הצגות חסרות - ${esc(title)}</h1>
+    <span class="meta">${metaHtml}</span>
     <span class="spacer"></span>
     <button class="toggle-link" onclick="selectAll()">בחר הכל</button>
     <button class="toggle-link" onclick="deselectAll()">בטל הכל</button>
@@ -287,11 +362,11 @@ function generateHtml(theatreName, results) {
   </div>
 
   <div class="cards-container">
-    ${cards}
+    ${cardSections}
   </div>
 
   <script>
-    var SHOWS = ${JSON.stringify(results).replace(/<\//g, "<\\/")};
+    var SHOWS = ${JSON.stringify(allResults).replace(/<\//g, "<\\/")};
 
     function slugify(title) {
       return title.trim().replace(/\\s+/g, "-");
@@ -551,13 +626,17 @@ function generateHtml(theatreName, results) {
 
 // ── AI description processing ───────────────────────────────────
 
-function createAIClient() {
+export function createAIClient() {
   const token = process.env.GITHUB_TOKEN;
   if (!token) return null;
   return new OpenAI({ baseURL: AI_ENDPOINT, apiKey: token });
 }
 
-async function processDescriptions(aiClient, results, { quiet = false } = {}) {
+export async function processDescriptions(
+  aiClient,
+  results,
+  { quiet = false } = {},
+) {
   const BATCH_SIZE = 7;
   const validResults = results.filter((r) => !r.error && r.rawDescription);
   if (!aiClient || validResults.length === 0) return;
@@ -639,7 +718,11 @@ async function processDescriptions(aiClient, results, { quiet = false } = {}) {
   }
 }
 
-async function classifyGenres(aiClient, results, { quiet = false } = {}) {
+export async function classifyGenres(
+  aiClient,
+  results,
+  { quiet = false } = {},
+) {
   const validResults = results.filter((r) => !r.error);
   if (!aiClient || validResults.length === 0) return;
 
@@ -751,7 +834,7 @@ function escapeSql(s) {
   return "'" + String(s).replace(/'/g, "''") + "'";
 }
 
-function generateMigrationSQL(shows, theatreId) {
+export function generateMigrationSQL(shows, theatreId) {
   const lines = [
     `-- Migration: Add new ${theatreId} shows`,
     `-- Generated on ${new Date().toISOString()}`,
@@ -842,7 +925,7 @@ function generateMigrationSQL(shows, theatreId) {
   return lines.join("\n");
 }
 
-function writeMigrationFile(sql, theatreId) {
+export function writeMigrationFile(sql, theatreId) {
   const now = new Date();
   const ts = now.toISOString().replace(/[-:T]/g, "").slice(0, 14);
   const migrationName = `${ts}_add_${theatreId}_shows`;
@@ -860,8 +943,16 @@ function writeMigrationFile(sql, theatreId) {
 
 // ── HTML report output ──────────────────────────────────────────
 
-function saveAndOpenHtml(theatreName, theatreId, results) {
-  const html = generateHtml(theatreName, results);
+export function saveAndOpenHtml(title, theatreId, groupsOrResults) {
+  // Backward compat: plain results array → wrap in single group
+  const groups =
+    Array.isArray(groupsOrResults) &&
+    groupsOrResults.length > 0 &&
+    Array.isArray(groupsOrResults[0]?.results)
+      ? groupsOrResults
+      : [{ theatreName: title, results: groupsOrResults || [] }];
+
+  const html = generateHtml(title, groups);
   const outPath = path.join(rootDir, `missing-${theatreId}-shows.html`);
   fs.writeFileSync(outPath, html, "utf-8");
   console.log(`\n📄  Report saved to ${outPath}`);
@@ -882,8 +973,16 @@ function saveAndOpenHtml(theatreName, theatreId, results) {
 
 // ── Interactive server ──────────────────────────────────────────
 
-async function startServer(theatreName, theatreId, results) {
-  const html = generateHtml(theatreName, results);
+export async function startServer(title, theatreId, groupsOrResults) {
+  // Backward compat: plain results array → wrap in single group
+  const groups =
+    Array.isArray(groupsOrResults) &&
+    groupsOrResults.length > 0 &&
+    Array.isArray(groupsOrResults[0]?.results)
+      ? groupsOrResults
+      : [{ theatreName: title, results: groupsOrResults || [] }];
+
+  const html = generateHtml(title, groups);
 
   const server = http.createServer(async (req, res) => {
     // ── GET / — serve the interactive HTML page ──
@@ -1007,6 +1106,231 @@ async function startServer(theatreName, theatreId, results) {
   return new Promise(() => {});
 }
 
+// ── Collect missing shows (phases 1–4c) ─────────────────────────
+
+/**
+ * Scrape a single theatre and return its missing shows with AI-enriched data.
+ *
+ * Does NOT call dotenv.config() or prisma migrate — the caller is responsible.
+ * Does NOT branch on --json/--html — the caller decides how to present results.
+ *
+ * @param {object} config              — same shape as runPipeline's config
+ * @param {object} [options]
+ * @param {boolean} [options.quiet=false]           — suppress progress logs
+ * @param {Set|null} [options.existingTitles]       — pre-fetched DB titles (null = no DB)
+ * @param {Map|null} [options.existingSlugs]        — pre-fetched slug→theatre map
+ * @param {object|null} [options.aiClient]          — OpenAI client instance
+ * @returns {Promise<{theatreId,theatreName,theatreConst,results:Array}|null>}
+ *          null when there are no missing shows.
+ */
+export async function collectMissingShows(config, options = {}) {
+  const {
+    theatreId,
+    theatreName,
+    theatreConst,
+    fetchListing,
+    scrapeDetails,
+    titlePreference,
+    launchBrowser,
+  } = config;
+
+  const quiet = options.quiet ?? false;
+
+  // ── Resolve DB state ──────────────────────────────────────────
+  const titlesProvided = "existingTitles" in options;
+  const existingSet = titlesProvided
+    ? options.existingTitles
+    : await fetchExistingTitles(theatreConst);
+
+  const slugsProvided = "existingSlugs" in options;
+  const slugMap = slugsProvided
+    ? options.existingSlugs
+    : await fetchAllExistingSlugs();
+
+  const hasDb = existingSet !== null;
+
+  // ── Resolve AI client ─────────────────────────────────────────
+  const aiProvided = "aiClient" in options;
+  const ai = aiProvided ? options.aiClient : createAIClient();
+
+  // Print warnings only in standalone mode (caller did not supply values)
+  if (!aiProvided && !ai) {
+    console.warn("⚠️  GITHUB_TOKEN not set — AI summaries will be skipped\n");
+  }
+  if (!titlesProvided && !hasDb) {
+    console.warn(
+      "⚠️  DATABASE_URL not set — will scrape details for ALL shows\n",
+    );
+  }
+
+  // ── Scrape listing page ───────────────────────────────────────
+  const browser = await launchBrowser();
+
+  let allShows;
+  try {
+    allShows = await fetchListing(browser);
+  } catch (err) {
+    await browser.close();
+    throw err;
+  }
+
+  // ── Filter to missing shows ───────────────────────────────────
+  const missingShows = hasDb
+    ? allShows.filter((s) => !existingSet.has(normalise(s.title)))
+    : allShows;
+
+  if (missingShows.length === 0) {
+    if (!quiet) {
+      console.log(
+        `\n🎭  All ${theatreName} shows are already in the database. ✅\n`,
+      );
+      console.log(
+        `   (${allShows.length} scraped · ${existingSet?.size ?? 0} in DB)\n`,
+      );
+    }
+    await browser.close();
+    return null;
+  }
+
+  if (!quiet) {
+    const label = hasDb
+      ? `Found ${missingShows.length} missing show(s) (out of ${allShows.length} scraped, ${existingSet.size} in DB)`
+      : `Scraping details for ${missingShows.length} show(s)`;
+    console.log(`\n🎭  ${label}\n`);
+    console.log("   Fetching details for each show…\n");
+  }
+
+  // ── Scrape each missing show's detail page ────────────────────
+  const results = [];
+
+  for (let i = 0; i < missingShows.length; i++) {
+    const { title, url } = missingShows[i];
+
+    if (!quiet) {
+      process.stdout.write(`  [${i + 1}/${missingShows.length}]  ${title} … `);
+    }
+
+    try {
+      const details = await scrapeDetails(browser, url);
+      const showTitle =
+        titlePreference === "detail-first"
+          ? details.title || title
+          : title || details.title;
+
+      // Download show image
+      let imageUrl = details.imageUrl || null;
+      let imageStatus = null;
+      let localImagePath = null;
+      if (imageUrl) {
+        imageStatus = await downloadAndConvert(showTitle, imageUrl);
+        if (imageStatus === "success" || imageStatus === "skipped") {
+          localImagePath = `/${generateSlug(showTitle)}.webp`;
+        }
+      }
+
+      // Disambiguate slug if it collides with an existing show from another theatre
+      let slug = generateSlug(showTitle);
+      if (slugMap && slugMap.has(slug) && slugMap.get(slug) !== theatreConst) {
+        slug = `${slug}-${generateSlug(theatreConst)}`;
+        if (!quiet) {
+          console.log(`    ⚠️  Slug collision — using "${slug}"`);
+        }
+        // Copy the downloaded image to the disambiguated slug filename
+        if (localImagePath) {
+          const originalFile = path.join(
+            rootDir,
+            "public",
+            `${generateSlug(showTitle)}.webp`,
+          );
+          const disambiguatedFile = path.join(
+            rootDir,
+            "public",
+            `${slug}.webp`,
+          );
+          try {
+            fs.copyFileSync(originalFile, disambiguatedFile);
+            localImagePath = `/${slug}.webp`;
+          } catch {
+            // If copy fails, keep the original image path
+          }
+        }
+      }
+
+      results.push({
+        title: showTitle,
+        slug,
+        theatre: theatreConst,
+        durationMinutes: details.durationMinutes,
+        rawDescription: details.description || null,
+        description: details.description || null,
+        summary: "",
+        genre: [],
+        url,
+        imageUrl: localImagePath || imageUrl,
+        imageStatus,
+      });
+      if (!quiet) console.log("✅");
+    } catch (err) {
+      let errSlug = generateSlug(title);
+      if (
+        slugMap &&
+        slugMap.has(errSlug) &&
+        slugMap.get(errSlug) !== theatreConst
+      ) {
+        errSlug = `${errSlug}-${generateSlug(theatreConst)}`;
+      }
+      results.push({
+        title,
+        slug: errSlug,
+        theatre: theatreConst,
+        durationMinutes: null,
+        description: null,
+        summary: "",
+        genre: [],
+        url,
+        imageUrl: null,
+        imageStatus: null,
+        error: err.message,
+      });
+      if (!quiet) console.log(`⚠️  ${err.message}`);
+    }
+
+    // Be polite — wait between requests (skip after last one)
+    if (i < missingShows.length - 1) {
+      await sleep(POLITE_DELAY);
+    }
+  }
+
+  // ── Process descriptions (batch) ──────────────────────────────
+  if (ai && results.some((r) => !r.error)) {
+    if (!quiet) {
+      process.stdout.write("\n  📝  Processing descriptions… ");
+    }
+    await processDescriptions(ai, results, { quiet });
+    if (!quiet) {
+      console.log("✅");
+    }
+  }
+
+  // ── Classify genres ───────────────────────────────────────────
+  if (ai && results.some((r) => !r.error)) {
+    if (!quiet) {
+      process.stdout.write("\n  🏷️  Classifying genres… ");
+    }
+    await classifyGenres(ai, results, { quiet });
+    if (!quiet) {
+      console.log("✅");
+    }
+  }
+
+  // Clean up internal field before output
+  for (const r of results) delete r.rawDescription;
+
+  await browser.close();
+
+  return { theatreId, theatreName, theatreConst, results };
+}
+
 // ── Main pipeline ───────────────────────────────────────────────
 
 /**
@@ -1058,9 +1382,9 @@ export async function runPipeline(config) {
     }
 
     // 1. DB lookup
-    const existingSet = await fetchExistingTitles(theatreConst);
+    const existingTitles = await fetchExistingTitles(theatreConst);
     const existingSlugs = await fetchAllExistingSlugs();
-    const hasDb = existingSet !== null;
+    const hasDb = existingTitles !== null;
 
     const aiClient = createAIClient();
     if (!aiClient) {
@@ -1072,178 +1396,22 @@ export async function runPipeline(config) {
       );
     }
 
-    // 2. Scrape listing page
-    const browser = await launchBrowser();
+    // 2–4c. Collect missing shows
+    const collected = await collectMissingShows(config, {
+      existingTitles,
+      existingSlugs,
+      aiClient,
+      quiet: jsonMode,
+    });
 
-    let allShows;
-    try {
-      allShows = await fetchListing(browser);
-    } catch (err) {
-      await browser.close();
-      throw err;
-    }
-
-    // 3. Filter to missing shows only
-    const missingShows = hasDb
-      ? allShows.filter((s) => !existingSet.has(normalise(s.title)))
-      : allShows;
-
-    if (missingShows.length === 0) {
+    if (!collected) {
       if (jsonMode) {
         console.log("[]");
-      } else {
-        console.log(
-          `\n🎭  All ${theatreName} shows are already in the database. ✅\n`,
-        );
-        console.log(
-          `   (${allShows.length} scraped · ${existingSet?.size ?? 0} in DB)\n`,
-        );
       }
-      await browser.close();
       process.exit(0);
     }
 
-    if (!jsonMode) {
-      const label = hasDb
-        ? `Found ${missingShows.length} missing show(s) (out of ${allShows.length} scraped, ${existingSet.size} in DB)`
-        : `Scraping details for ${missingShows.length} show(s)`;
-      console.log(`\n🎭  ${label}\n`);
-      console.log("   Fetching details for each show…\n");
-    }
-
-    // 4. Scrape each missing show's detail page
-    const results = [];
-
-    for (let i = 0; i < missingShows.length; i++) {
-      const { title, url } = missingShows[i];
-
-      if (!jsonMode) {
-        process.stdout.write(
-          `  [${i + 1}/${missingShows.length}]  ${title} … `,
-        );
-      }
-
-      try {
-        const details = await scrapeDetails(browser, url);
-        const showTitle =
-          titlePreference === "detail-first"
-            ? details.title || title
-            : title || details.title;
-
-        // Download show image
-        let imageUrl = details.imageUrl || null;
-        let imageStatus = null;
-        let localImagePath = null;
-        if (imageUrl) {
-          imageStatus = await downloadAndConvert(showTitle, imageUrl);
-          if (imageStatus === "success" || imageStatus === "skipped") {
-            localImagePath = `/${generateSlug(showTitle)}.webp`;
-          }
-        }
-
-        // Disambiguate slug if it collides with an existing show from another theatre
-        let slug = generateSlug(showTitle);
-        if (
-          existingSlugs &&
-          existingSlugs.has(slug) &&
-          existingSlugs.get(slug) !== theatreConst
-        ) {
-          slug = `${slug}-${generateSlug(theatreConst)}`;
-          if (!jsonMode) {
-            console.log(`    ⚠️  Slug collision — using "${slug}"`);
-          }
-          // Copy the downloaded image to the disambiguated slug filename
-          if (localImagePath) {
-            const originalFile = path.join(
-              rootDir,
-              "public",
-              `${generateSlug(showTitle)}.webp`,
-            );
-            const disambiguatedFile = path.join(
-              rootDir,
-              "public",
-              `${slug}.webp`,
-            );
-            try {
-              fs.copyFileSync(originalFile, disambiguatedFile);
-              localImagePath = `/${slug}.webp`;
-            } catch {
-              // If copy fails, keep the original image path
-            }
-          }
-        }
-
-        results.push({
-          title: showTitle,
-          slug,
-          theatre: theatreConst,
-          durationMinutes: details.durationMinutes,
-          rawDescription: details.description || null,
-          description: details.description || null,
-          summary: "",
-          genre: [],
-          url,
-          imageUrl: localImagePath || imageUrl,
-          imageStatus,
-        });
-        if (!jsonMode) console.log("✅");
-      } catch (err) {
-        let errSlug = generateSlug(title);
-        if (
-          existingSlugs &&
-          existingSlugs.has(errSlug) &&
-          existingSlugs.get(errSlug) !== theatreConst
-        ) {
-          errSlug = `${errSlug}-${generateSlug(theatreConst)}`;
-        }
-        results.push({
-          title,
-          slug: errSlug,
-          theatre: theatreConst,
-          durationMinutes: null,
-          description: null,
-          summary: "",
-          genre: [],
-          url,
-          imageUrl: null,
-          imageStatus: null,
-          error: err.message,
-        });
-        if (!jsonMode) console.log(`⚠️  ${err.message}`);
-      }
-
-      // Be polite — wait between requests (skip after last one)
-      if (i < missingShows.length - 1) {
-        await sleep(POLITE_DELAY);
-      }
-    }
-
-    // 4b. Process descriptions (batch)
-    if (aiClient && results.some((r) => !r.error)) {
-      if (!jsonMode) {
-        process.stdout.write("\n  📝  Processing descriptions… ");
-      }
-      await processDescriptions(aiClient, results, { quiet: jsonMode });
-      if (!jsonMode) {
-        console.log("✅");
-      }
-    }
-
-    // 4c. Classify genres
-    if (aiClient && results.some((r) => !r.error)) {
-      if (!jsonMode) {
-        process.stdout.write("\n  🏷️  Classifying genres… ");
-      }
-      await classifyGenres(aiClient, results, { quiet: jsonMode });
-      if (!jsonMode) {
-        console.log("✅");
-      }
-    }
-
-    // Clean up internal field before output
-    for (const r of results) delete r.rawDescription;
-
-    await browser.close();
+    const { results } = collected;
 
     // 5. Output results
     if (jsonMode) {
