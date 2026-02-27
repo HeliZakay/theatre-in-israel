@@ -65,13 +65,6 @@ export default function MobileMenu({
               firstName={firstName}
               onNavigate={onClose}
             />
-
-            <AccountDropdown
-              fullName={fullName}
-              firstName={firstName}
-              onNavigate={onClose}
-              mobile
-            />
           </>
         ) : (
           <>
@@ -84,19 +77,6 @@ export default function MobileMenu({
                   : ROUTES.HOME,
               )}`}
               className={`${styles.authBtn} ${styles.desktopOnlyAction}`}
-              onClick={onClose}
-            >
-              התחברות
-            </Link>
-            <Link
-              href={`${ROUTES.AUTH_SIGNIN}?callbackUrl=${encodeURIComponent(
-                pathname &&
-                  pathname.startsWith("/") &&
-                  !pathname.startsWith("//")
-                  ? pathname
-                  : ROUTES.HOME,
-              )}`}
-              className={`${styles.navText} ${styles.mobileMenuItem}`}
               onClick={onClose}
             >
               התחברות

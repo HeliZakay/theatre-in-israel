@@ -4,10 +4,12 @@ import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import styles from "./Header.module.css";
 import ROUTES from "@/constants/routes";
 import Logo from "@/components/Logo/Logo";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useRef, useState } from "react";
 import { useHeaderOffset } from "@/hooks/useHeaderOffset";
+import AccountDropdown from "./AccountDropdown";
 import DesktopNav from "./DesktopNav";
 import MobileMenu from "./MobileMenu";
 
@@ -54,6 +56,24 @@ export default function Header() {
 
       <Dialog.Root open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
         <div className={styles.topControls}>
+          {!isLoading && isAuthenticated && (
+            <span className={styles.topBarAccount}>
+              <AccountDropdown
+                fullName={fullName}
+                firstName={firstName}
+                onNavigate={closeMenus}
+                mobile
+              />
+            </span>
+          )}
+          {!isLoading && !isAuthenticated && (
+            <Link
+              className={styles.topBarLogin}
+              href={`${ROUTES.AUTH_SIGNIN}?callbackUrl=${encodeURIComponent(pathname && pathname.startsWith("/") && !pathname.startsWith("//") ? pathname : ROUTES.HOME)}`}
+            >
+              התחברות
+            </Link>
+          )}
           <Dialog.Trigger asChild>
             <button
               type="button"
