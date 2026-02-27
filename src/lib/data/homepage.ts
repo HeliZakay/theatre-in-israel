@@ -4,7 +4,7 @@ import { showListInclude } from "../showHelpers";
 import type { ShowListItem, Suggestions } from "@/types";
 
 const DISPLAY_LIMIT = 10;
-const FETCH_LIMIT = 20;
+const FETCH_LIMIT = 40;
 
 export interface FeaturedReview {
   text: string;
