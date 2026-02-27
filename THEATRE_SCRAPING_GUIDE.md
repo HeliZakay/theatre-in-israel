@@ -204,7 +204,37 @@ Two patterns exist in the codebase:
 
 - **Non-show entries**: Theatres often have non-show listings (tours, gift cards, youth programs). Filter them in the listing function by checking against a blocklist of known non-show h3 texts.
 
-## 8. Prompt for Adding תיאטרון חיפה
+## 8. Excluded Shows
+
+When you generate a migration from the interactive review UI, any **unchecked** shows are automatically saved to `scripts/data/excluded-shows.json`. On subsequent scraping runs, these excluded shows are filtered out and won't appear again.
+
+### How it works
+
+1. Scraper finds shows missing from DB
+2. Pipeline filters out shows in `excluded-shows.json` (matched by normalised title + theatre name)
+3. Interactive UI shows only non-excluded shows
+4. On "Generate Migration": checked shows → migration SQL, unchecked shows → exclusion list
+5. Console logs `⏭ Skipping N previously excluded show(s)` when exclusions are applied
+
+### File format
+
+`scripts/data/excluded-shows.json` — an array of objects:
+
+```json
+[
+  {
+    "title": "normalised show title",
+    "theatre": "תיאטרון הקאמרי",
+    "excludedAt": "2026-02-27T10:30:00.000Z"
+  }
+]
+```
+
+### Un-excluding a show
+
+To make an excluded show reappear in future scraping runs, manually remove its entry from `scripts/data/excluded-shows.json`.
+
+## 9. Prompt for Adding תיאטרון חיפה
 
 Copy-paste this into a new Copilot agent-mode chat:
 

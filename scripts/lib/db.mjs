@@ -5,6 +5,13 @@
  * if the dependencies are missing or DATABASE_URL is not set.
  */
 
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const EXCLUDED_FILE = path.join(__dirname, "..", "data", "excluded-shows.json");
+
 /**
  * Normalise a title for comparison:
  * 1. Unify geresh / apostrophe variants (׳ U+05F3, ' U+2019, ʼ U+02BC) → ASCII '
@@ -86,4 +93,76 @@ export async function fetchAllExistingSlugs() {
     await db.prisma.$disconnect();
     await db.pool.end();
   }
+}
+
+// ── Excluded shows persistence ──────────────────────────────────
+
+/**
+ * Build a composite key for exclusion lookups.
+ * @param {string} title — raw title (will be normalised)
+ * @param {string} theatre — theatre name
+ * @returns {string}
+ */
+function exclusionKey(title, theatre) {
+  return normalise(title) + "||" + theatre;
+}
+
+/**
+ * Load the set of excluded shows from `scripts/data/excluded-shows.json`.
+ * Returns a Set of composite keys (`normalisedTitle||theatre`).
+ * Returns an empty Set if the file doesn't exist.
+ *
+ * @returns {Set<string>}
+ */
+export function loadExcludedShows() {
+  try {
+    const raw = fs.readFileSync(EXCLUDED_FILE, "utf-8");
+    const entries = JSON.parse(raw);
+    return new Set(entries.map((e) => exclusionKey(e.title, e.theatre)));
+  } catch {
+    return new Set();
+  }
+}
+
+/**
+ * Persist newly excluded shows to `scripts/data/excluded-shows.json`.
+ * Merges with existing entries (deduplicates by composite key),
+ * then writes back sorted alphabetically by theatre → title.
+ *
+ * @param {{ title: string, theatre: string }[]} newExclusions
+ */
+export function saveExcludedShows(newExclusions) {
+  if (!newExclusions || newExclusions.length === 0) return;
+
+  let existing = [];
+  try {
+    const raw = fs.readFileSync(EXCLUDED_FILE, "utf-8");
+    existing = JSON.parse(raw);
+  } catch {
+    // file missing or corrupt — start fresh
+  }
+
+  const seen = new Set(existing.map((e) => exclusionKey(e.title, e.theatre)));
+  const now = new Date().toISOString();
+
+  for (const { title, theatre } of newExclusions) {
+    const key = exclusionKey(title, theatre);
+    if (!seen.has(key)) {
+      seen.add(key);
+      existing.push({ title: normalise(title), theatre, excludedAt: now });
+    }
+  }
+
+  // Sort by theatre, then title
+  existing.sort(
+    (a, b) =>
+      a.theatre.localeCompare(b.theatre, "he") ||
+      a.title.localeCompare(b.title, "he"),
+  );
+
+  fs.writeFileSync(
+    EXCLUDED_FILE,
+    JSON.stringify(existing, null, 2) + "\n",
+    "utf-8",
+  );
 }

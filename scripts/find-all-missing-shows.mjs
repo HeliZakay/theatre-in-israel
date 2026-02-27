@@ -28,7 +28,7 @@ import {
   startServer,
   saveAndOpenHtml,
 } from "./lib/pipeline.mjs";
-import { fetchAllExistingSlugs } from "./lib/db.mjs";
+import { fetchAllExistingSlugs, loadExcludedShows } from "./lib/db.mjs";
 import { green, red, cyan, bold, separator } from "./lib/cli.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -99,6 +99,7 @@ async function main() {
   // 3. Shared resources (fetched once, reused across all theatres)
   const existingSlugs = await fetchAllExistingSlugs();
   const aiClient = createAIClient();
+  const excludedShows = loadExcludedShows();
 
   if (!jsonMode) {
     if (!aiClient) {
@@ -127,6 +128,7 @@ async function main() {
       const result = await collectMissingShows(config, {
         existingSlugs,
         aiClient,
+        excludedShows,
         quiet: jsonMode,
       });
 

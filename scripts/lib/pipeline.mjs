@@ -33,6 +33,8 @@ import {
   normalise,
   fetchExistingTitles,
   fetchAllExistingSlugs,
+  loadExcludedShows,
+  saveExcludedShows,
 } from "./db.mjs";
 import { green, red } from "./cli.mjs";
 
@@ -548,10 +550,26 @@ ${groupCards}`;
 
       var shows = indices.map(function(idx) { return getCardData(idx); });
 
+      // Collect unchecked (non-error) shows for exclusion
+      var checkedSet = {};
+      indices.forEach(function(idx) { checkedSet[idx] = true; });
+      var excludedShows = [];
+      document.querySelectorAll(".card").forEach(function(card) {
+        if (card.classList.contains("error-card")) return;
+        if (card.classList.contains("inserted")) return;
+        var idx = parseInt(card.getAttribute("data-index"), 10);
+        if (!checkedSet[idx]) {
+          excludedShows.push({
+            title: card.querySelector(".title-input").value,
+            theatre: card.querySelector(".theatre-input").value
+          });
+        }
+      });
+
       fetch("/api/generate-migration", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ shows: shows })
+        body: JSON.stringify({ shows: shows, excludedShows: excludedShows })
       })
       .then(function(res) {
         return res.json().then(function(body) { return { ok: res.ok, body: body }; });
@@ -1034,6 +1052,19 @@ export async function startServer(title, theatreId, groupsOrResults) {
         const sql = generateMigrationSQL(shows, theatreId);
         const { migrationName, filePath } = writeMigrationFile(sql, theatreId);
 
+        // Persist unchecked shows to exclusion list
+        if (
+          Array.isArray(body.excludedShows) &&
+          body.excludedShows.length > 0
+        ) {
+          saveExcludedShows(body.excludedShows);
+          console.log(
+            green(
+              `  ✓ ${body.excludedShows.length} show(s) added to exclusion list`,
+            ),
+          );
+        }
+
         console.log(green(`  ✓ Migration created: `) + filePath);
 
         res.writeHead(200);
@@ -1179,13 +1210,25 @@ export async function collectMissingShows(config, options = {}) {
     ? allShows.filter((s) => !existingSet.has(normalise(s.title)))
     : allShows;
 
-  if (missingShows.length === 0) {
+  // ── Filter out previously excluded shows ──────────────────────
+  const excludedSet = options.excludedShows ?? loadExcludedShows();
+  const afterExclusion = missingShows.filter(
+    (s) => !excludedSet.has(normalise(s.title) + "||" + theatreConst),
+  );
+  const excludedCount = missingShows.length - afterExclusion.length;
+  if (excludedCount > 0 && !quiet) {
+    console.log(`   ⏭  Skipping ${excludedCount} previously excluded show(s)`);
+  }
+
+  if (afterExclusion.length === 0) {
     if (!quiet) {
       console.log(
         `\n🎭  All ${theatreName} shows are already in the database. ✅\n`,
       );
       console.log(
-        `   (${allShows.length} scraped · ${existingSet?.size ?? 0} in DB)\n`,
+        `   (${allShows.length} scraped · ${existingSet?.size ?? 0} in DB` +
+          (excludedCount > 0 ? ` · ${excludedCount} excluded` : "") +
+          `)\n`,
       );
     }
     await browser.close();
@@ -1194,8 +1237,10 @@ export async function collectMissingShows(config, options = {}) {
 
   if (!quiet) {
     const label = hasDb
-      ? `Found ${missingShows.length} missing show(s) (out of ${allShows.length} scraped, ${existingSet.size} in DB)`
-      : `Scraping details for ${missingShows.length} show(s)`;
+      ? `Found ${afterExclusion.length} missing show(s) (out of ${allShows.length} scraped, ${existingSet.size} in DB` +
+        (excludedCount > 0 ? `, ${excludedCount} excluded` : "") +
+        `)`
+      : `Scraping details for ${afterExclusion.length} show(s)`;
     console.log(`\n🎭  ${label}\n`);
     console.log("   Fetching details for each show…\n");
   }
@@ -1203,11 +1248,13 @@ export async function collectMissingShows(config, options = {}) {
   // ── Scrape each missing show's detail page ────────────────────
   const results = [];
 
-  for (let i = 0; i < missingShows.length; i++) {
-    const { title, url } = missingShows[i];
+  for (let i = 0; i < afterExclusion.length; i++) {
+    const { title, url } = afterExclusion[i];
 
     if (!quiet) {
-      process.stdout.write(`  [${i + 1}/${missingShows.length}]  ${title} … `);
+      process.stdout.write(
+        `  [${i + 1}/${afterExclusion.length}]  ${title} … `,
+      );
     }
 
     try {
@@ -1296,7 +1343,7 @@ export async function collectMissingShows(config, options = {}) {
     }
 
     // Be polite — wait between requests (skip after last one)
-    if (i < missingShows.length - 1) {
+    if (i < afterExclusion.length - 1) {
       await sleep(POLITE_DELAY);
     }
   }
@@ -1396,11 +1443,14 @@ export async function runPipeline(config) {
       );
     }
 
+    const excludedShows = loadExcludedShows();
+
     // 2–4c. Collect missing shows
     const collected = await collectMissingShows(config, {
       existingTitles,
       existingSlugs,
       aiClient,
+      excludedShows,
       quiet: jsonMode,
     });
 
