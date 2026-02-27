@@ -188,6 +188,32 @@ export async function scrapeShowDetails(browser, url) {
     data.imageUrl = null;
   }
 
+  // ── Cast ──
+  data.cast = await page.evaluate(() => {
+    const body = document.body.innerText;
+    const castMarker = "יוצרים ושחקנים";
+    const idx = body.indexOf(castMarker);
+    if (idx === -1) return null;
+
+    let rest = body.slice(idx);
+
+    const endMarkers = [
+      "משך ההצגה",
+      "הביקורות משבחות",
+      "מועמדויות",
+      "לרכישת כרטיסים",
+      "תאריכי הצגות",
+    ];
+    let endIdx = rest.length;
+    for (const marker of endMarkers) {
+      const eIdx = rest.indexOf(marker);
+      if (eIdx !== -1 && eIdx < endIdx) endIdx = eIdx;
+    }
+
+    const castText = rest.slice(0, endIdx).trim();
+    return castText || null;
+  });
+
   await page.close();
   return data;
 }

@@ -30,6 +30,7 @@ export interface Show {
   durationMinutes: number;
   summary: string;
   description: string | null;
+  cast: string | null;
   genre: string[];
   reviews: Review[];
 }

@@ -188,6 +188,40 @@ export async function scrapeShowDetails(browser, url) {
     data.imageUrl = null;
   }
 
+  // ── Cast ──
+  data.cast = await page.evaluate(() => {
+    const tabContent = document.querySelector(".Show-Tabs-Content-Inner");
+    if (!tabContent) return null;
+
+    const text = tabContent.innerText.trim();
+
+    // Credits start at the earliest credit marker
+    const creditMarkers = ["\nמאת:", "\nמאת ובבימוי:", "\nעיצוב:"];
+
+    let startIdx = -1;
+    for (const marker of creditMarkers) {
+      const idx = text.indexOf(marker);
+      if (idx !== -1 && (startIdx === -1 || idx < startIdx)) {
+        startIdx = idx;
+      }
+    }
+
+    if (startIdx === -1) return null;
+
+    let rest = text.slice(startIdx).trim();
+
+    // Stop at non-credit sections
+    const endMarkers = ["ביקורות וכתבות", "הדפס", "הוסף תגובה", "לוח מופעים"];
+    let endIdx = rest.length;
+    for (const marker of endMarkers) {
+      const eIdx = rest.indexOf(marker);
+      if (eIdx !== -1 && eIdx < endIdx) endIdx = eIdx;
+    }
+
+    const castText = rest.slice(0, endIdx).trim();
+    return castText || null;
+  });
+
   await page.close();
   return data;
 }

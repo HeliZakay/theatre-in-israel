@@ -191,6 +191,33 @@ export async function scrapeShowDetails(browser, url) {
     return { title, durationMinutes, description };
   });
 
+  // ── Cast extraction ──
+  const cast = await page.evaluate(() => {
+    const body = document.body.innerText;
+    const marker = "שחקנים ויוצרים";
+    const idx = body.indexOf(marker);
+    if (idx === -1) return null;
+
+    let rest = body.slice(idx + marker.length).trim();
+
+    // Stop at footer / unrelated sections
+    const stopMarkers = [
+      "תיאטרון חיפה - התיאטרון של חיפה והצפון",
+      "עקבו אחרינו",
+      "כרטיסים",
+      "הצגות נוספות",
+    ];
+    let endIdx = rest.length;
+    for (const m of stopMarkers) {
+      const i = rest.indexOf(m);
+      if (i !== -1 && i < endIdx) endIdx = i;
+    }
+
+    const text = rest.slice(0, endIdx).trim();
+    return text || null;
+  });
+  data.cast = cast;
+
   // ── Image URL (using shared extraction logic) ──
   // extractImageFromPage must be passed as the pageFunction (not as a
   // serialised argument) because Puppeteer cannot serialise functions.

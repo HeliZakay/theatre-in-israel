@@ -230,6 +230,69 @@ export async function scrapeShowDetails(browser, url) {
     return { title, durationMinutes: null, durationText, description };
   });
 
+  // ── Cast extraction ──
+  const cast = await page.evaluate(() => {
+    const body = document.body.innerText;
+    const creditLabels = [
+      "בימוי:",
+      "עיבוד:",
+      "תרגום:",
+      "תפאורה:",
+      "תאורה:",
+      "עיצוב תלבושות:",
+      "עיצוב במה:",
+      "לבוש:",
+      "מוזיקה:",
+      "כוריאוגרפיה:",
+      "עיצוב תנועה:",
+      "עיצוב אור:",
+      "עיצוב שיער ואיפור:",
+      "הפקה:",
+      "הפקת מקור:",
+      "משחק:",
+      "שחקנים:",
+      "בהשתתפות:",
+    ];
+
+    // Find the first credit label in the body text
+    let firstIdx = body.length;
+    for (const label of creditLabels) {
+      const i = body.indexOf(label);
+      if (i !== -1 && i < firstIdx) firstIdx = i;
+    }
+    if (firstIdx === body.length) return null;
+
+    // Take the block of text starting from the first credit label
+    let rest = body.slice(firstIdx);
+
+    // Stop at footer / unrelated sections
+    const footerStops = [
+      "לפרטים ורכישה",
+      "הצגות נוספות",
+      "כל הזכויות",
+      "תיאטרון החאן",
+    ];
+    let endIdx = rest.length;
+    for (const stop of footerStops) {
+      const i = rest.indexOf(stop);
+      if (i !== -1 && i < endIdx) endIdx = i;
+    }
+
+    rest = rest.slice(0, endIdx).trim();
+
+    // Keep only lines that look like "role: name" credit lines
+    const lines = rest
+      .split("\n")
+      .map((l) => l.trim())
+      .filter(Boolean);
+    const creditLines = lines.filter((line) =>
+      creditLabels.some((label) => line.startsWith(label)),
+    );
+
+    return creditLines.length > 0 ? creditLines.join("\n") : null;
+  });
+  data.cast = cast;
+
   // ── Parse textual duration outside the browser context ──
   if (data.durationText) {
     data.durationMinutes = parseLessinDuration(data.durationText);

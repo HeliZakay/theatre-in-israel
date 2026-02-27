@@ -193,6 +193,35 @@ export async function scrapeShowDetails(browser, url) {
     data.imageUrl = null;
   }
 
+  // ── Cast ──
+  data.cast = await page.evaluate(() => {
+    const body = document.body.innerText;
+    const castMarkers = ["יוצרים:", "משתתפים:"];
+    const endMarkers = ["שתפו חברים", "תאריכי הצגות", "הזמנת כרטיסים"];
+
+    // Find the earliest cast marker
+    let startIdx = -1;
+    for (const marker of castMarkers) {
+      const idx = body.indexOf(marker);
+      if (idx !== -1 && (startIdx === -1 || idx < startIdx)) {
+        startIdx = idx;
+      }
+    }
+
+    if (startIdx === -1) return null;
+
+    let rest = body.slice(startIdx);
+
+    let endIdx = rest.length;
+    for (const marker of endMarkers) {
+      const idx = rest.indexOf(marker);
+      if (idx !== -1 && idx < endIdx) endIdx = idx;
+    }
+
+    const castText = rest.slice(0, endIdx).trim();
+    return castText || null;
+  });
+
   await page.close();
   return data;
 }

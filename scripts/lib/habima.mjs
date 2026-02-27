@@ -209,6 +209,44 @@ export async function scrapeShowDetails(browser, url) {
     data.imageUrl = null;
   }
 
+  // ── Cast ──
+  const cast = await page.evaluate(() => {
+    const body = document.body.innerText;
+    const markers = ["יוצרים ומשתתפים", "יוצרים ושחקנים"];
+    let idx = -1;
+    let markerLen = 0;
+    for (const marker of markers) {
+      const i = body.indexOf(marker);
+      if (i !== -1 && (idx === -1 || i < idx)) {
+        idx = i;
+        markerLen = marker.length;
+      }
+    }
+    if (idx === -1) return null;
+
+    let rest = body.slice(idx + markerLen).trim();
+
+    // Stop at the next major section
+    const stopMarkers = [
+      "הצגות קרובות",
+      "ביקורות",
+      "משך ההצגה",
+      "מנויים מקבלים",
+    ];
+    let endIdx = rest.length;
+    for (const stop of stopMarkers) {
+      const i = rest.indexOf(stop);
+      if (i !== -1 && i < endIdx) endIdx = i;
+    }
+
+    const text = rest
+      .slice(0, endIdx)
+      .replace(/\n{3,}/g, "\n\n")
+      .trim();
+    return text || null;
+  });
+  data.cast = cast;
+
   await page.close();
   return data;
 }

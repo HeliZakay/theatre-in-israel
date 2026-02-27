@@ -20,6 +20,7 @@ model Show {
   durationMinutes Int
   summary         String
   description     String?
+  cast            String?
   avgRating       Float?
   reviewCount     Int         @default(0)
   genres          ShowGenre[]

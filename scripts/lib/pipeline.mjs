@@ -158,6 +158,10 @@ export function generateHtml(title, groupsOrResults) {
               <td><textarea class="field-textarea description-input" rows="5" data-index="${i}">${esc(r.description || "")}</textarea></td>
             </tr>
             <tr>
+              <td class="label">שחקנים</td>
+              <td><textarea class="field-textarea cast-input" rows="3" data-index="${i}">${esc(r.cast || "")}</textarea></td>
+            </tr>
+            <tr>
               <td class="label">URL</td>
               <td><a href="${esc(r.url)}" target="_blank" class="url-link" dir="ltr">${esc(r.url)}</a></td>
             </tr>
@@ -396,6 +400,8 @@ ${groupCards}`;
       var summary = card.querySelector(".summary-input").value;
       var descEl = card.querySelector(".description-input");
       var description = descEl ? descEl.value || null : null;
+      var castEl = card.querySelector(".cast-input");
+      var cast = castEl ? castEl.value || null : null;
       return {
         title: title,
         slug: slug,
@@ -404,6 +410,7 @@ ${groupCards}`;
         genre: genres,
         summary: summary,
         description: description,
+        cast: cast,
         url: SHOWS[idx].url,
         imageUrl: SHOWS[idx].imageUrl
       };
@@ -963,9 +970,10 @@ export function generateMigrationSQL(shows, theatreId) {
     const duration = show.durationMinutes;
     const summary = escapeSql(show.summary);
     const description = show.description ? escapeSql(show.description) : "NULL";
+    const cast = show.cast ? escapeSql(show.cast) : "NULL";
     lines.push(
-      `INSERT INTO "Show" (title, slug, theatre, "durationMinutes", summary, description) ` +
-        `VALUES (${title}, ${slug}, ${theatre}, ${duration}, ${summary}, ${description}) ` +
+      `INSERT INTO "Show" (title, slug, theatre, "durationMinutes", summary, description, "cast") ` +
+        `VALUES (${title}, ${slug}, ${theatre}, ${duration}, ${summary}, ${description}, ${cast}) ` +
         `ON CONFLICT (slug) DO NOTHING;`,
     );
   }
@@ -1417,6 +1425,7 @@ export async function collectMissingShows(config, options = {}) {
         rawDescription: details.description || null,
         description: details.description || null,
         summary: "",
+        cast: details.cast || null,
         genre: [],
         url,
         imageUrl: localImagePath || imageUrl,
@@ -1439,6 +1448,7 @@ export async function collectMissingShows(config, options = {}) {
         durationMinutes: null,
         description: null,
         summary: "",
+        cast: null,
         genre: [],
         url,
         imageUrl: null,
