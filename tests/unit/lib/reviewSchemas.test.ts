@@ -45,12 +45,12 @@ describe("createReviewSchema", () => {
     expect(result.success).toBe(false);
   });
 
-  it("rejects text shorter than 10 chars", () => {
+  it("rejects text shorter than 2 chars", () => {
     const result = createReviewSchema.safeParse({
       showId: 1,
       title: "Great",
       rating: 5,
-      text: "Short",
+      text: "A",
     });
     expect(result.success).toBe(false);
   });

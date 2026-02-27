@@ -6,6 +6,7 @@ import {
   REVIEW_TITLE_MAX,
   REVIEW_TITLE_MIN,
 } from "@/constants/reviewValidation";
+import { containsHebrewProfanity } from "@/utils/profanityFilter";
 
 /**
  * Rating field shared between create and update schemas.
@@ -22,7 +23,10 @@ const titleField = z
   .string()
   .trim()
   .min(REVIEW_TITLE_MIN, "הכניס.י כותרת")
-  .max(REVIEW_TITLE_MAX, `הכותרת יכולה להכיל עד ${REVIEW_TITLE_MAX} תווים`);
+  .max(REVIEW_TITLE_MAX, `הכותרת יכולה להכיל עד ${REVIEW_TITLE_MAX} תווים`)
+  .refine((val) => !containsHebrewProfanity(val), {
+    message: "הכותרת מכילה שפה לא הולמת. אנא נסח.י מחדש.",
+  });
 
 /**
  * Text field shared between create and update schemas.
@@ -31,7 +35,10 @@ const textField = z
   .string()
   .trim()
   .min(REVIEW_TEXT_MIN, `תגובה צריכה להכיל לפחות ${REVIEW_TEXT_MIN} תווים`)
-  .max(REVIEW_TEXT_MAX, `התגובה יכולה להכיל עד ${REVIEW_TEXT_MAX} תווים`);
+  .max(REVIEW_TEXT_MAX, `התגובה יכולה להכיל עד ${REVIEW_TEXT_MAX} תווים`)
+  .refine((val) => !containsHebrewProfanity(val), {
+    message: "התגובה מכילה שפה לא הולמת. אנא נסח.י מחדש.",
+  });
 
 /**
  * Schema for creating a new review (API POST /api/reviews).
