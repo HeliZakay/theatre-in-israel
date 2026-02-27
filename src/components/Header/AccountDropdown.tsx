@@ -61,6 +61,11 @@ export default function AccountDropdown({
             sideOffset={8}
           >
             <DropdownMenu.Item asChild className={styles.accountMenuItem}>
+              <Link href={ROUTES.MY_PROFILE} onClick={onNavigate}>
+                האזור האישי
+              </Link>
+            </DropdownMenu.Item>
+            <DropdownMenu.Item asChild className={styles.accountMenuItem}>
               <Link href={ROUTES.MY_REVIEWS} onClick={onNavigate}>
                 הביקורות שלי
               </Link>

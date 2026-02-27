@@ -1,0 +1,109 @@
+.form {
+  display: grid;
+  gap: 16px;
+  max-width: 420px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.input {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-slate-012);
+  background: #ffffff;
+  padding: 12px 14px;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  font-family: inherit;
+}
+
+.input::placeholder {
+  font-family: inherit;
+  color: var(--color-text-placeholder);
+}
+
+.input:focus {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 1px;
+  border-color: var(--color-curtain-red);
+}
+
+.fieldError {
+  color: var(--color-curtain-red);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.successMessage {
+  color: #0f5132;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.primaryBtn {
+  border-radius: var(--radius-sm);
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: var(--color-curtain-red);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 100px;
+  font-family: inherit;
+}
+
+.primaryBtn:hover {
+  background: var(--color-curtain-red-hover);
+}
+
+.primaryBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.submitSpinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  border-top-color: #ffffff;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .submitSpinner {
+    animation-duration: 1.8s;
+  }
+}
+
+@media (max-width: 640px) {
+  .form {
+    max-width: 100%;
+  }
+}

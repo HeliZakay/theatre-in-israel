@@ -118,9 +118,13 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     },
-    jwt: async ({ token, user }) => {
+    jwt: async ({ token, user, trigger, session: updateData }) => {
       if (user) {
         token.sub = user.id;
+      }
+      // When session.update() is called from the client, refresh the token
+      if (trigger === "update" && updateData?.name !== undefined) {
+        token.name = updateData.name;
       }
       return token;
     },

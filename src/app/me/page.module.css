@@ -1,0 +1,143 @@
+.page {
+  padding: clamp(32px, 6vw, 72px) clamp(16px, 6vw, 96px);
+  display: grid;
+  gap: 28px;
+  max-width: 680px;
+}
+
+.header {
+  display: grid;
+  gap: 10px;
+}
+
+.title {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  color: var(--color-text-primary);
+}
+
+.subtitle {
+  color: rgba(26, 26, 26, 0.7);
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+/* ── Profile card ────────────────────────── */
+
+.profileCard {
+  display: grid;
+  gap: 20px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+  padding: 24px;
+}
+
+.avatarRow {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatarFallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--color-curtain-red);
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.avatarIcon {
+  width: 36px;
+  height: 36px;
+}
+
+.infoRow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.infoLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(26, 26, 26, 0.6);
+  min-width: 60px;
+}
+
+.infoValue {
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  word-break: break-all;
+}
+
+/* ── Stats ──────────────────────────────── */
+
+.statsRow {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: grid;
+  gap: 2px;
+  text-align: center;
+  min-width: 80px;
+}
+
+.statValue {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.statLabel {
+  font-size: 0.82rem;
+  color: rgba(26, 26, 26, 0.6);
+}
+
+/* ── Sections ───────────────────────────── */
+
+.section {
+  display: grid;
+  gap: 12px;
+}
+
+.sectionTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.sectionDescription {
+  font-size: 0.92rem;
+  color: rgba(26, 26, 26, 0.7);
+  line-height: 1.6;
+  max-width: 50ch;
+}
+
+@media (max-width: 640px) {
+  .profileCard {
+    padding: 18px;
+  }
+
+  .statsRow {
+    gap: 16px;
+  }
+
+  .stat {
+    min-width: 70px;
+  }
+}

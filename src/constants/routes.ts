@@ -5,6 +5,7 @@ export const ROUTES = {
   REVIEWS_NEW: "/reviews/new",
   AUTH_SIGNIN: "/auth/signin",
   AUTH_SIGNUP: "/auth/signup",
+  MY_PROFILE: "/me",
   MY_REVIEWS: "/me/reviews",
   MY_WATCHLIST: "/me/watchlist",
   CONTACT: "/contact",
