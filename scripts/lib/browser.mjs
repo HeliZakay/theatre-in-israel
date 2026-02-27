@@ -23,14 +23,15 @@ export async function launchBrowser() {
  * images, stylesheets, fonts, and media to speed up scraping.
  *
  * @param {import("puppeteer").Page} page
- * @param {{ allowImages?: boolean }} [options]
+ * @param {{ allowImages?: boolean, allowStylesheets?: boolean }} [options]
  */
 export async function setupRequestInterception(
   page,
-  { allowImages = false } = {},
+  { allowImages = false, allowStylesheets = false } = {},
 ) {
   await page.setRequestInterception(true);
-  const blocked = ["stylesheet", "font", "media"];
+  const blocked = ["font", "media"];
+  if (!allowStylesheets) blocked.push("stylesheet");
   if (!allowImages) blocked.push("image");
 
   page.on("request", (req) => {

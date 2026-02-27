@@ -37,9 +37,9 @@ export const REPERTOIRE_URL =
  * Returns an array of `{ title, url }` with deduplicated titles,
  * sorted alphabetically in Hebrew.
  *
- * Uses Pattern B (h2 + parent walk): show titles live in `<h2>`
- * elements; for each h2 we walk up the DOM to find the nearest
- * `<a>` whose href matches `/repertoire/a/view/`.
+ * Uses card-based scraping: finds `a.showItemBox-button-click`
+ * buttons in each show card, then walks up to the card container
+ * to extract the `h2.showItemBox-title` heading.
  *
  * @param {import("puppeteer").Browser} browser
  * @returns {Promise<Array<{ title: string, url: string }>>}
@@ -52,11 +52,14 @@ export async function fetchShows(browser) {
     waitUntil: "networkidle2",
     timeout: 60_000,
   });
-  await page.waitForSelector('a[href*="/repertoire/a/view/"]', {
+
+  // The site uses relative hrefs (e.g. "../view/?ContentID=2868")
+  // so we wait for the card-specific class instead of an href pattern.
+  await page.waitForSelector("a.showItemBox-button-click", {
     timeout: 30_000,
   });
 
-  const shows = await page.evaluate((base) => {
+  const shows = await page.evaluate(() => {
     const map = new Map();
 
     // Non-show h2 texts to skip
@@ -72,68 +75,37 @@ export async function fetchShows(browser) {
       "דלג לסרגל הניווט",
     ]);
 
-    const headings = document.querySelectorAll("h2");
+    // Each show card has an <a class="showItemBox-button-click"> with the
+    // correct resolved href, and a sibling <h2 class="showItemBox-title">.
+    const buttons = document.querySelectorAll("a.showItemBox-button-click");
 
-    for (const h2 of headings) {
-      let title = h2.textContent.trim();
-      if (!title) continue;
-      title = title.replace(/\s+/g, " ").trim();
+    for (const btn of buttons) {
+      const url = btn.href; // resolved absolute URL
+      if (!url || !url.includes("/repertoire/a/view/")) continue;
 
-      if (skipTexts.has(title) || title.length < 2) continue;
-
-      // Walk up to find a parent container with a show link
-      let container = h2.parentElement;
-      let link = null;
+      // Walk up to the card container and find the title heading
+      let container = btn.parentElement;
+      let h2 = null;
       for (let i = 0; i < 5 && container; i++) {
-        link = container.querySelector('a[href*="/repertoire/a/view/"]');
-        if (link) break;
+        h2 =
+          container.querySelector("h2.showItemBox-title") ||
+          container.querySelector("h2");
+        if (h2) break;
         container = container.parentElement;
       }
 
-      if (!link) continue;
+      if (!h2) continue;
 
-      const href = link.getAttribute("href") || "";
-      if (!href.includes("/repertoire/a/view/")) continue;
-
-      const url = href.startsWith("http") ? href : `${base}${href}`;
+      let title = h2.textContent.trim().replace(/\s+/g, " ");
+      if (!title || title.length < 2 || skipTexts.has(title)) continue;
 
       if (!map.has(title)) {
         map.set(title, url);
       }
     }
 
-    // Fallback: collect any /repertoire/a/view/ links not yet captured
-    const allLinks = document.querySelectorAll(
-      'a[href*="/repertoire/a/view/"]',
-    );
-    for (const a of allLinks) {
-      const href = a.getAttribute("href") || "";
-      if (!href.includes("/repertoire/a/view/")) continue;
-
-      const url = href.startsWith("http") ? href : `${base}${href}`;
-
-      const existingUrls = new Set([...map.values()]);
-      if (existingUrls.has(url)) continue;
-
-      // Try to find a title from a nearby h2
-      let container = a.parentElement;
-      let h2 = null;
-      for (let i = 0; i < 5 && container; i++) {
-        h2 = container.querySelector("h2");
-        if (h2) break;
-        container = container.parentElement;
-      }
-
-      if (h2) {
-        let title = h2.textContent.trim().replace(/\s+/g, " ");
-        if (title && title.length >= 2 && !map.has(title)) {
-          map.set(title, url);
-        }
-      }
-    }
-
     return [...map.entries()].map(([title, url]) => ({ title, url }));
-  }, GESHER_BASE);
+  });
 
   await page.close();
   return shows.sort((a, b) => a.title.localeCompare(b.title, "he"));
