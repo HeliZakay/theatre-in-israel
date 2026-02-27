@@ -58,7 +58,7 @@ export default function DeleteReviewButton({
         <AlertDialog.Overlay className={styles.dialogOverlay} />
         <AlertDialog.Content className={styles.dialogContent}>
           <AlertDialog.Title className={styles.dialogTitle}>
-            מחיקת ביקורת
+            מחק.י ביקורת
           </AlertDialog.Title>
           <AlertDialog.Description className={styles.dialogDescription}>
             {error || "למחוק את הביקורת? לא ניתן לשחזר פעולה זו."}

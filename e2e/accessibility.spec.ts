@@ -44,7 +44,7 @@ test.describe("Accessibility", () => {
     await authedPage.goto("/me/reviews");
     await authedPage.getByRole("button", { name: "מחיקה" }).click();
 
-    const dialogText = authedPage.getByText("מחיקת ביקורת");
+    const dialogText = authedPage.getByText("מחק.י ביקורת");
     await expect(dialogText).toBeVisible();
 
     await authedPage.keyboard.press("Escape");

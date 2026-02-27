@@ -38,7 +38,7 @@ export default function DesktopNav({ pathname, onNavigate }: DesktopNavProps) {
                 className={styles.navText}
                 onClick={onNavigate}
               >
-                יצירת קשר
+                צר.י קשר
               </Link>
             </NavigationMenu.Link>
           </NavigationMenu.Item>

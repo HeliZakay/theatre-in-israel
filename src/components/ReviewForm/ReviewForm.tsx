@@ -179,7 +179,7 @@ export default function ReviewForm({
           ) : success ? (
             "נשלח"
           ) : (
-            "שליחת ביקורת"
+            "שלח.י ביקורת"
           )}
         </button>
       </div>

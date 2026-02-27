@@ -22,7 +22,7 @@ test.describe("Review Validation", () => {
       .locator('textarea[name="text"]')
       .fill("טקסט ביקורת ארוך מספיק כדי לעבור ולידציה של אורך מינימלי");
 
-    await page.getByRole("button", { name: "שליחת ביקורת" }).click();
+    await page.getByRole("button", { name: "שלח.י ביקורת" }).click();
 
     await expect(
       page.locator('[role="alert"]').or(page.getByText(/שדה חובה|יש לבחור/)),
@@ -51,7 +51,7 @@ test.describe("Review Validation", () => {
       .locator('textarea[name="text"]')
       .fill("טקסט ביקורת ארוך מספיק כדי לעבור ולידציה של אורך מינימלי");
 
-    await page.getByRole("button", { name: "שליחת ביקורת" }).click();
+    await page.getByRole("button", { name: "שלח.י ביקורת" }).click();
 
     await expect(
       page.locator('[role="alert"]').or(page.getByText(/שדה חובה|יש לבחור/)),
@@ -82,7 +82,7 @@ test.describe("Review Validation", () => {
     // Fill text with too-short content
     await page.locator('textarea[name="text"]').fill("קצר");
 
-    await page.getByRole("button", { name: "שליחת ביקורת" }).click();
+    await page.getByRole("button", { name: "שלח.י ביקורת" }).click();
 
     await expect(
       page.locator('[role="alert"]').or(page.getByText(/קצר מדי|תווים/)),
@@ -113,7 +113,7 @@ test.describe("Review Validation", () => {
       .fill("טקסט ביקורת ארוך מספיק כדי לעבור ולידציה של אורך מינימלי");
 
     // Leave title empty
-    await page.getByRole("button", { name: "שליחת ביקורת" }).click();
+    await page.getByRole("button", { name: "שלח.י ביקורת" }).click();
 
     await expect(
       page.locator('[role="alert"]').or(page.getByText(/שדה חובה/)),
@@ -154,7 +154,7 @@ test.describe("Review Validation", () => {
       .locator('textarea[name="text"]')
       .fill("טקסט ביקורת ארוך מספיק כדי לעבור ולידציה של אורך מינימלי");
 
-    await page.getByRole("button", { name: "שליחת ביקורת" }).click();
+    await page.getByRole("button", { name: "שלח.י ביקורת" }).click();
 
     // Should show duplicate error
     await expect(

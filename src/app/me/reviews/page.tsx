@@ -71,7 +71,7 @@ export default async function MyReviewsPage() {
       ) : (
         <section className={styles.emptyState}>
           <p>עדיין לא כתבת ביקורות.</p>
-          <Button href={ROUTES.REVIEWS_NEW} aria-label="כתיבת ביקורת">
+          <Button href={ROUTES.REVIEWS_NEW} aria-label="כתב.י ביקורת">
             כתב.י ביקורת
           </Button>
           <Link className={styles.linkBtn} href={ROUTES.SHOWS}>

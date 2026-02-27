@@ -88,7 +88,7 @@ export default function EditReviewForm({
           type="submit"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "שומרים..." : "שמירת שינויים"}
+          {isSubmitting ? "שומרים..." : "שמר.י שינויים"}
         </button>
         <Link className={styles.ghostBtn} href={ROUTES.MY_REVIEWS}>
           ביטול

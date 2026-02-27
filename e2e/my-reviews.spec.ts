@@ -71,7 +71,7 @@ test.describe("My Reviews", () => {
     await page.getByRole("button", { name: "מחיקה" }).click();
 
     // Confirmation dialog should appear
-    await expect(page.getByText("מחיקת ביקורת")).toBeVisible();
+    await expect(page.getByText("מחק.י ביקורת")).toBeVisible();
     await expect(
       page.getByText("למחוק את הביקורת? לא ניתן לשחזר פעולה זו."),
     ).toBeVisible();

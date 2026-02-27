@@ -40,7 +40,7 @@ export default async function EditReviewPage({ params }: EditReviewPageProps) {
   return (
     <main className={styles.page} id="main-content">
       <header className={styles.header}>
-        <p className={styles.kicker}>עריכת ביקורת</p>
+        <p className={styles.kicker}>ערכ.י ביקורת</p>
         <h1 className={styles.title}>{review.show.title}</h1>
         <p className={styles.subtitle}>עדכנו את הכותרת, הדירוג או הטקסט.</p>
       </header>

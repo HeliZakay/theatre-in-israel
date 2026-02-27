@@ -16,7 +16,7 @@ test.describe("Navigation", () => {
     await header.getByRole("link", { name: "כל ההצגות" }).click();
     await expect(page).toHaveURL("/shows");
 
-    await header.getByRole("link", { name: "יצירת קשר" }).click();
+    await header.getByRole("link", { name: "צר.י קשר" }).click();
     await expect(page).toHaveURL("/contact");
 
     await header.getByRole("link", { name: "עמוד הבית" }).click();
@@ -72,7 +72,7 @@ test.describe("Navigation", () => {
 
     await page.getByRole("button", { name: "פתיחת תפריט ניווט" }).click();
 
-    await page.getByRole("link", { name: "יצירת קשר" }).click();
+    await page.getByRole("link", { name: "צר.י קשר" }).click();
     await expect(page).toHaveURL(/\/contact/);
   });
 

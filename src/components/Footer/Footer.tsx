@@ -31,7 +31,7 @@ export default function Footer() {
                 <Link href={ROUTES.SHOWS}>כל ההצגות</Link>
               </li>
               <li>
-                <Link href="/reviews/new">כתיבת ביקורת</Link>
+                <Link href="/reviews/new">כתב.י ביקורת</Link>
               </li>
             </ul>
           </div>

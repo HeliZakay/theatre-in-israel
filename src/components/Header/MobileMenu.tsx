@@ -36,7 +36,7 @@ export default function MobileMenu({
       <div className={styles.actions}>
         <Button
           href={ROUTES.REVIEWS_NEW}
-          aria-label="כתיבת ביקורת"
+          aria-label="כתב.י ביקורת"
           className={`${styles.primaryAction} ${styles.desktopOnlyAction}`}
           onClick={onClose}
         >

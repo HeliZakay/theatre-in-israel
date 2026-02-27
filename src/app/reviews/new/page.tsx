@@ -33,7 +33,7 @@ export default async function NewReviewPage() {
     <main className={styles.page} id="main-content">
       <header className={styles.header}>
         <p className={styles.kicker}>ביקורת חדשה</p>
-        <h1 className={styles.title}>כתיבת ביקורת</h1>
+        <h1 className={styles.title}>כתב.י ביקורת</h1>
         <p className={styles.subtitle}>בחר.י הצגה ולאחר מכן כתב.י ביקורת.</p>
       </header>
 

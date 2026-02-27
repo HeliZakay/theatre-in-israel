@@ -109,7 +109,7 @@ describe("ReviewForm", () => {
   it("renders the submit button", () => {
     renderReviewForm();
     expect(
-      screen.getByRole("button", { name: "שליחת ביקורת" }),
+      screen.getByRole("button", { name: "שלח.י ביקורת" }),
     ).toBeInTheDocument();
   });
 
@@ -119,7 +119,7 @@ describe("ReviewForm", () => {
     const user = userEvent.setup();
     renderReviewForm();
 
-    const submitBtn = screen.getByRole("button", { name: "שליחת ביקורת" });
+    const submitBtn = screen.getByRole("button", { name: "שלח.י ביקורת" });
     await user.click(submitBtn);
 
     await waitFor(() => {
@@ -136,7 +136,7 @@ describe("ReviewForm", () => {
     const titleInput = screen.getByRole("textbox", { name: /כותרת/i });
     await user.type(titleInput, "a");
 
-    const submitBtn = screen.getByRole("button", { name: "שליחת ביקורת" });
+    const submitBtn = screen.getByRole("button", { name: "שלח.י ביקורת" });
     await user.click(submitBtn);
 
     await waitFor(() => {
@@ -159,7 +159,7 @@ describe("ReviewForm", () => {
     const textarea = screen.getByRole("textbox", { name: /תגובה/i });
     await user.type(textarea, "קצר");
 
-    const submitBtn = screen.getByRole("button", { name: "שליחת ביקורת" });
+    const submitBtn = screen.getByRole("button", { name: "שלח.י ביקורת" });
     await user.click(submitBtn);
 
     await waitFor(() => {
@@ -191,7 +191,7 @@ describe("ReviewForm", () => {
     await user.type(textarea, "הצגה מדהימה! ממליץ/ה בחום");
 
     // Submit
-    const submitBtn = screen.getByRole("button", { name: "שליחת ביקורת" });
+    const submitBtn = screen.getByRole("button", { name: "שלח.י ביקורת" });
     await user.click(submitBtn);
 
     await waitFor(() => {
@@ -219,7 +219,7 @@ describe("ReviewForm", () => {
     const textarea = screen.getByRole("textbox", { name: /תגובה/i });
     await user.type(textarea, "הצגה מדהימה! ממליץ/ה בחום");
 
-    const submitBtn = screen.getByRole("button", { name: "שליחת ביקורת" });
+    const submitBtn = screen.getByRole("button", { name: "שלח.י ביקורת" });
     await user.click(submitBtn);
 
     await waitFor(() => {
@@ -247,7 +247,7 @@ describe("ReviewForm", () => {
     const textarea = screen.getByRole("textbox", { name: /תגובה/i });
     await user.type(textarea, "הצגה לא רעה בכלל הצגה מצוינת");
 
-    const submitBtn = screen.getByRole("button", { name: "שליחת ביקורת" });
+    const submitBtn = screen.getByRole("button", { name: "שלח.י ביקורת" });
     await user.click(submitBtn);
 
     await waitFor(() => {
@@ -273,7 +273,7 @@ describe("ReviewForm", () => {
     const textarea = screen.getByRole("textbox", { name: /תגובה/i });
     await user.type(textarea, "הצגה לא רעה בכלל הצגה מצוינת");
 
-    const submitBtn = screen.getByRole("button", { name: "שליחת ביקורת" });
+    const submitBtn = screen.getByRole("button", { name: "שלח.י ביקורת" });
     await user.click(submitBtn);
 
     await waitFor(() => {
@@ -298,7 +298,7 @@ describe("ReviewForm", () => {
     const textarea = screen.getByRole("textbox", { name: /תגובה/i });
     await user.type(textarea, "הצגה לא רעה בכלל הצגה מצוינת");
 
-    const submitBtn = screen.getByRole("button", { name: "שליחת ביקורת" });
+    const submitBtn = screen.getByRole("button", { name: "שלח.י ביקורת" });
     await user.click(submitBtn);
 
     await waitFor(() => {

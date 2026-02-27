@@ -165,7 +165,7 @@ export default function ContactForm() {
               <span>שולחים...</span>
             </>
           ) : (
-            "שליחת הודעה"
+            "שלח.י הודעה"
           )}
         </button>
       </div>

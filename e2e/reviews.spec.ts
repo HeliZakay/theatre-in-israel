@@ -14,7 +14,7 @@ test.describe("Create Review", () => {
     await page.goto("/reviews/new");
 
     await expect(
-      page.getByRole("heading", { name: "כתיבת ביקורת" }),
+      page.getByRole("heading", { name: "כתב.י ביקורת" }),
     ).toBeVisible();
 
     // Select a show via combobox
@@ -41,7 +41,7 @@ test.describe("Create Review", () => {
       );
 
     // Submit
-    await page.getByRole("button", { name: "שליחת ביקורת" }).click();
+    await page.getByRole("button", { name: "שלח.י ביקורת" }).click();
 
     // Wait for success
     await expect(page.getByText("הביקורת נשלחה בהצלחה")).toBeVisible();
@@ -76,7 +76,7 @@ test.describe("Create Review", () => {
         "ביקורת בדיקה שנכתבה ישירות מעמוד ההצגה. חוויה תיאטרלית מדהימה, שחקנים מעולים ובמאי מבריק.",
       );
 
-    await page.getByRole("button", { name: "שליחת ביקורת" }).click();
+    await page.getByRole("button", { name: "שלח.י ביקורת" }).click();
 
     // Wait for success and redirect
     await expect(page.getByText("הביקורת נשלחה בהצלחה")).toBeVisible();

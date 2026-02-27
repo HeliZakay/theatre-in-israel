@@ -97,7 +97,7 @@ export default async function Home() {
       <CtaStrip
         title="כתב.י ביקורת ועזר.י לאחרים לבחור"
         text="כמה דקות של כתיבה יכולות לחסוך לקהל ערב לא מוצלח."
-        buttonText="כתיבת ביקורת"
+        buttonText="כתב.י ביקורת"
         href={ROUTES.REVIEWS_NEW}
       />
     </main>
