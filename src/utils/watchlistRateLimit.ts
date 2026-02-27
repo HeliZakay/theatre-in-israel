@@ -1,7 +1,7 @@
 import { checkRateLimit } from "@/utils/rateLimit";
 
 const WATCHLIST_WINDOW_MS = 60 * 60 * 1000; // 1 hour
-const WATCHLIST_MAX_ATTEMPTS = 30;
+const WATCHLIST_MAX_ATTEMPTS = 100;
 
 interface RateLimitResult {
   isLimited: boolean;

@@ -17,7 +17,7 @@ describe("checkWatchlistRateLimit", () => {
   it("returns isLimited: false when allowed", async () => {
     mockCheckRateLimit.mockResolvedValue({
       allowed: true,
-      remainingAttempts: 29,
+      remainingAttempts: 99,
     });
 
     const result = await checkWatchlistRateLimit("user-123");
@@ -39,7 +39,7 @@ describe("checkWatchlistRateLimit", () => {
   it("calls checkRateLimit with correct arguments", async () => {
     mockCheckRateLimit.mockResolvedValue({
       allowed: true,
-      remainingAttempts: 29,
+      remainingAttempts: 99,
     });
 
     await checkWatchlistRateLimit("user-456");
@@ -47,7 +47,7 @@ describe("checkWatchlistRateLimit", () => {
     expect(mockCheckRateLimit).toHaveBeenCalledWith(
       "user-456",
       "watchlist_modify",
-      30, // WATCHLIST_MAX_ATTEMPTS
+      100, // WATCHLIST_MAX_ATTEMPTS
       60 * 60 * 1000, // 1 hour in ms
     );
   });

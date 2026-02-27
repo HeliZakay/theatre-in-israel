@@ -57,7 +57,7 @@ describe("checkEditDeleteRateLimit", () => {
     expect(mockCheckRateLimit).toHaveBeenCalledWith(
       "user:user-456",
       "editDelete",
-      10, // MAX_EDITS_PER_WINDOW
+      50, // MAX_EDITS_PER_WINDOW
       60 * 60 * 1000, // 1 hour in ms
     );
   });
@@ -87,9 +87,9 @@ describe("checkReviewRateLimit", () => {
   });
 
   it("returns isLimited: true with remainingMinutes when at the limit", async () => {
-    // 10 reviews, oldest created 30 minutes ago → resets in 30 minutes
+    // 50 reviews, oldest created 30 minutes ago → resets in 30 minutes
     const oldestTime = new Date("2026-02-23T11:30:00Z");
-    const reviews = Array.from({ length: 10 }, (_, i) => ({
+    const reviews = Array.from({ length: 50 }, (_, i) => ({
       createdAt: new Date(oldestTime.getTime() + i * 60_000),
     }));
 
