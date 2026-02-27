@@ -54,9 +54,64 @@ describe("updateProfile", () => {
   });
 
   it("returns error for name too long", async () => {
-    const result = await updateProfile({ name: "א".repeat(51) });
+    const result = await updateProfile({ name: "א".repeat(21) });
 
     expect(result.success).toBe(false);
+  });
+
+  it("returns error for name with emojis", async () => {
+    const result = await updateProfile({ name: "יוסי 😀" });
+
+    expect(result.success).toBe(false);
+  });
+
+  it("returns error for name with HTML", async () => {
+    const result = await updateProfile({ name: "<script>alert</script>" });
+
+    expect(result.success).toBe(false);
+  });
+
+  it("returns error for name with numbers", async () => {
+    const result = await updateProfile({ name: "יוסי123" });
+
+    expect(result.success).toBe(false);
+  });
+
+  it("accepts multilingual names", async () => {
+    (prisma.$transaction as jest.Mock).mockImplementation(async (fn) => {
+      const tx = {
+        user: { update: jest.fn().mockResolvedValue({}) },
+        review: {
+          findMany: jest.fn().mockResolvedValue([]),
+          updateMany: jest.fn().mockResolvedValue({ count: 0 }),
+        },
+      };
+      return fn(tx);
+    });
+
+    const result = await updateProfile({ name: "أحمد محمد" });
+
+    expect(result.success).toBe(true);
+  });
+
+  it("accepts names with apostrophes", async () => {
+    (prisma.$transaction as jest.Mock).mockImplementation(async (fn) => {
+      const tx = {
+        user: { update: jest.fn().mockResolvedValue({}) },
+        review: {
+          findMany: jest.fn().mockResolvedValue([]),
+          updateMany: jest.fn().mockResolvedValue({ count: 0 }),
+        },
+      };
+      return fn(tx);
+    });
+
+    const result = await updateProfile({ name: "דני'אל" });
+
+    expect(result.success).toBe(true);
+    if (result.success) {
+      expect(result.data).toEqual({ name: "דני'אל" });
+    }
   });
 
   it("returns error for profanity in name", async () => {

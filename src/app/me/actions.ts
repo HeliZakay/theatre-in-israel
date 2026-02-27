@@ -42,11 +42,17 @@ export async function updateProfile(values: {
       return actionError("השם מכיל שפה לא הולמת. אנא בחר.י שם אחר.");
     }
 
+    // Defence-in-depth: sanitise before persisting
+    const safeName = name
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+
     // Update user name + bulk-update review authors in a transaction
     const affectedShowIds = await prisma.$transaction(async (tx) => {
       await tx.user.update({
         where: { id: session.user.id },
-        data: { name },
+        data: { name: safeName },
       });
 
       // Get all show IDs of the user's reviews before updating
@@ -59,7 +65,7 @@ export async function updateProfile(values: {
       // Bulk-update author name on all user's reviews
       await tx.review.updateMany({
         where: { userId: session.user.id },
-        data: { author: name },
+        data: { author: safeName },
       });
 
       return reviews.map((r) => r.showId);
@@ -83,7 +89,7 @@ export async function updateProfile(values: {
     revalidateTag("homepage", "max");
     revalidateTag("shows-list", "max");
 
-    return actionSuccess({ name });
+    return actionSuccess({ name: safeName });
   } catch (err: unknown) {
     return actionError(INTERNAL_ERROR_MESSAGE, err);
   }

@@ -2,6 +2,7 @@ import ROUTES from "@/constants/routes";
 import { requireAuth } from "@/lib/auth";
 import { getUserProfile } from "@/lib/data/profile";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { formatDate } from "@/utils/formatDate";
 import EditProfileForm from "@/components/EditProfileForm/EditProfileForm";
 import styles from "./page.module.css";
@@ -73,14 +74,14 @@ export default async function MyProfilePage() {
 
         {/* Stats */}
         <div className={styles.statsRow}>
-          <div className={styles.stat}>
+          <Link href={ROUTES.MY_REVIEWS} className={styles.statLink}>
             <span className={styles.statValue}>{profile.reviewCount}</span>
             <span className={styles.statLabel}>ביקורות</span>
-          </div>
-          <div className={styles.stat}>
+          </Link>
+          <Link href={ROUTES.MY_WATCHLIST} className={styles.statLink}>
             <span className={styles.statValue}>{profile.watchlistCount}</span>
             <span className={styles.statLabel}>ברשימת צפייה</span>
-          </div>
+          </Link>
           <div className={styles.stat}>
             <span className={styles.statValue}>
               {formatDate(profile.createdAt.toISOString())}

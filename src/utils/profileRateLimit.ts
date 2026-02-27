@@ -1,3 +1,4 @@
+import prisma from "@/lib/prisma";
 import { checkRateLimit } from "@/utils/rateLimit";
 
 const PROFILE_WINDOW_MS = 60 * 60 * 1000; // 1 hour
@@ -17,7 +18,28 @@ export async function checkProfileRateLimit(
   );
 
   if (!result.allowed) {
-    return { isLimited: true, remainingTime: 60 };
+    const windowStart = new Date(Date.now() - PROFILE_WINDOW_MS);
+    const oldestAttempt = await prisma.rateLimitAttempt.findFirst({
+      where: {
+        key: `user:${userId}`,
+        action: "profileUpdate",
+        createdAt: { gte: windowStart },
+      },
+      orderBy: { createdAt: "asc" },
+      select: { createdAt: true },
+    });
+
+    let remainingTime = 1;
+    if (oldestAttempt) {
+      const windowExpiry =
+        oldestAttempt.createdAt.getTime() + PROFILE_WINDOW_MS;
+      remainingTime = Math.max(
+        1,
+        Math.ceil((windowExpiry - Date.now()) / (1000 * 60)),
+      );
+    }
+
+    return { isLimited: true, remainingTime };
   }
 
   return { isLimited: false };

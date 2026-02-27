@@ -97,6 +97,22 @@
   min-width: 80px;
 }
 
+.statLink {
+  display: grid;
+  gap: 2px;
+  text-align: center;
+  min-width: 80px;
+  text-decoration: none;
+  color: inherit;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.statLink:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
 .statValue {
   font-size: 1.15rem;
   font-weight: 700;
