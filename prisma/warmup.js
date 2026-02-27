@@ -49,7 +49,11 @@ pool
   .query("SELECT 1")
   .then(() => {
     console.log("Database is warm and responsive");
-    return pool.end();
+    // Hold the connection open briefly so the Neon compute stays warm
+    // until `prisma migrate deploy` connects in the next build step.
+    return new Promise((resolve) => setTimeout(resolve, 2000)).then(() =>
+      pool.end(),
+    );
   })
   .catch((err) => {
     console.warn("Database warmup failed (non-fatal):", err.message);

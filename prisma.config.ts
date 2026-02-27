@@ -31,6 +31,28 @@ function deriveDirectUrlFromPooler(url?: string) {
 
 const derivedDirectDatabaseUrl = deriveDirectUrlFromPooler(databaseUrl);
 
+/**
+ * Append `connect_timeout` to a PostgreSQL connection URL so Prisma Migrate
+ * has enough time for Neon serverless cold-starts (default libpq timeout is
+ * too short for suspended computes).
+ */
+function withConnectTimeout(url?: string, seconds = 30): string | undefined {
+  if (!url) return undefined;
+  try {
+    const parsed = new URL(url);
+    if (!parsed.searchParams.has("connect_timeout")) {
+      parsed.searchParams.set("connect_timeout", String(seconds));
+    }
+    return parsed.toString();
+  } catch {
+    return url;
+  }
+}
+
+const migrationUrl = withConnectTimeout(
+  directDatabaseUrl ?? derivedDirectDatabaseUrl ?? databaseUrl,
+);
+
 export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: {
@@ -39,7 +61,7 @@ export default defineConfig({
   },
   datasource: {
     // Prisma Migrate needs a direct Postgres connection (not a pooled `-pooler` URL)
-    // for advisory locks.
-    url: directDatabaseUrl ?? derivedDirectDatabaseUrl ?? databaseUrl,
+    // for advisory locks. We also add connect_timeout=30 to handle Neon cold starts.
+    url: migrationUrl,
   },
 });
