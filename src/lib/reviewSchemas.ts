@@ -21,8 +21,7 @@ const ratingField = z.preprocess(
   },
   z
     .number({
-      required_error: "בחר.י דירוג",
-      invalid_type_error: "בחר.י דירוג",
+      error: "בחר.י דירוג",
     })
     .int()
     .min(1, "בחר.י דירוג")
