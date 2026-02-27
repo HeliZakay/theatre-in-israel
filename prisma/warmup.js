@@ -17,7 +17,10 @@ if (!url) {
   process.exit(0);
 }
 
-const pool = new Pool({ connectionString: url, connectionTimeoutMillis: 30000 });
+const pool = new Pool({
+  connectionString: url,
+  connectionTimeoutMillis: 30000,
+});
 
 pool
   .query("SELECT 1")
