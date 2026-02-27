@@ -6,12 +6,17 @@
  */
 
 /**
- * Normalise a title for comparison: trim + collapse whitespace.
+ * Normalise a title for comparison:
+ * 1. Unify geresh / apostrophe variants (׳ U+05F3, ' U+2019, ʼ U+02BC) → ASCII '
+ * 2. Trim + collapse whitespace.
  * @param {string} title
  * @returns {string}
  */
 export function normalise(title) {
-  return title.trim().replace(/\s+/g, " ");
+  return title
+    .replace(/[\u05F3\u2019\u02BC]/g, "'")
+    .trim()
+    .replace(/\s+/g, " ");
 }
 
 /**
