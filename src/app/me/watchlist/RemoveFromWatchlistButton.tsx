@@ -50,7 +50,7 @@ export default function RemoveFromWatchlistButton({
     >
       <AlertDialog.Trigger asChild>
         <button type="button" className={styles.removeBtn}>
-          הסרה מהרשימה
+          הסיר.י מהרשימה
         </button>
       </AlertDialog.Trigger>
 
@@ -58,7 +58,7 @@ export default function RemoveFromWatchlistButton({
         <AlertDialog.Overlay className={styles.dialogOverlay} />
         <AlertDialog.Content className={styles.dialogContent}>
           <AlertDialog.Title className={styles.dialogTitle}>
-            הסרה מרשימת הצפייה
+            הסיר.י מרשימת הצפייה
           </AlertDialog.Title>
           <AlertDialog.Description className={styles.dialogDescription}>
             {error || "להסיר את ההצגה מרשימת הצפייה?"}

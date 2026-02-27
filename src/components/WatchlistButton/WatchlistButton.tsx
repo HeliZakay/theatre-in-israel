@@ -58,7 +58,11 @@ export default function WatchlistButton({
 
   return (
     <button className={className} onClick={handleClick} disabled={loading}>
-      {loading ? "..." : inWatchlist ? "ברשימת הצפייה ✓" : "הוספה לרשימת צפייה"}
+      {loading
+        ? "..."
+        : inWatchlist
+          ? "ברשימת הצפייה ✓"
+          : "הוסיפ.י לרשימת צפייה"}
     </button>
   );
 }

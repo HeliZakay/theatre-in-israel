@@ -54,7 +54,7 @@ describe("WatchlistButton", () => {
   it("shows 'add to watchlist' text when not in watchlist", () => {
     renderButton({ initialInWatchlist: false });
     expect(
-      screen.getByRole("button", { name: /הוספה לרשימת צפייה/ }),
+      screen.getByRole("button", { name: /הוסיפ.י לרשימת צפייה/ }),
     ).toBeInTheDocument();
   });
 
@@ -131,7 +131,7 @@ describe("WatchlistButton", () => {
     await waitFor(() => {
       // Should revert to "add" state after failure
       expect(
-        screen.getByRole("button", { name: /הוספה לרשימת צפייה/ }),
+        screen.getByRole("button", { name: /הוסיפ.י לרשימת צפייה/ }),
       ).toBeInTheDocument();
     });
   });
@@ -148,7 +148,7 @@ describe("WatchlistButton", () => {
 
     await waitFor(() => {
       expect(
-        screen.getByRole("button", { name: /הוספה לרשימת צפייה/ }),
+        screen.getByRole("button", { name: /הוסיפ.י לרשימת צפייה/ }),
       ).toBeInTheDocument();
     });
   });

@@ -105,7 +105,7 @@ test.describe("Shows Browsing", () => {
 
     // Watchlist button
     await expect(
-      page.getByRole("button", { name: /הוספה לרשימת צפייה|ברשימת הצפייה/ }),
+      page.getByRole("button", { name: /הוסיפ.י לרשימת צפייה|ברשימת הצפייה/ }),
     ).toBeVisible();
 
     // Reviews section heading

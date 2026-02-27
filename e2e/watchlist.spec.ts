@@ -15,7 +15,7 @@ test.describe("Watchlist", () => {
 
     // Click add to watchlist
     const watchlistBtn = page.getByRole("button", {
-      name: "הוספה לרשימת צפייה",
+      name: "הוסיפ.י לרשימת צפייה",
     });
     await expect(watchlistBtn).toBeVisible();
     await watchlistBtn.click();
@@ -34,7 +34,7 @@ test.describe("Watchlist", () => {
 
     // Add to watchlist from show page
     await page.goto(`/shows/${firstShow.slug}`);
-    await page.getByRole("button", { name: "הוספה לרשימת צפייה" }).click();
+    await page.getByRole("button", { name: "הוסיפ.י לרשימת צפייה" }).click();
     await expect(
       page.getByRole("button", { name: "ברשימת הצפייה ✓" }),
     ).toBeVisible({ timeout: 5_000 });
@@ -54,7 +54,7 @@ test.describe("Watchlist", () => {
 
     // First add to watchlist
     await page.goto(`/shows/${firstShow.slug}`);
-    await page.getByRole("button", { name: "הוספה לרשימת צפייה" }).click();
+    await page.getByRole("button", { name: "הוסיפ.י לרשימת צפייה" }).click();
     await expect(
       page.getByRole("button", { name: "ברשימת הצפייה ✓" }),
     ).toBeVisible({ timeout: 5_000 });
@@ -64,10 +64,10 @@ test.describe("Watchlist", () => {
     await expect(page.getByText(firstShow.title)).toBeVisible();
 
     // Click remove
-    await page.getByRole("button", { name: "הסרה מהרשימה" }).click();
+    await page.getByRole("button", { name: "הסיר.י מהרשימה" }).click();
 
     // Confirmation dialog
-    await expect(page.getByText("הסרה מרשימת הצפייה")).toBeVisible();
+    await expect(page.getByText("הסיר.י מרשימת הצפייה")).toBeVisible();
     await expect(page.getByText("להסיר את ההצגה מרשימת הצפייה?")).toBeVisible();
 
     // Confirm
@@ -89,7 +89,7 @@ test.describe("Watchlist", () => {
     await page.waitForURL(/\/shows\/.+/);
 
     // Click watchlist button
-    await page.getByRole("button", { name: "הוספה לרשימת צפייה" }).click();
+    await page.getByRole("button", { name: "הוסיפ.י לרשימת צפייה" }).click();
 
     // Should redirect to signin
     await expect(page).toHaveURL(/\/auth\/signin/);
