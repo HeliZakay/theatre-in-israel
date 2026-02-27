@@ -12,8 +12,21 @@ import { containsHebrewProfanity } from "@/utils/profanityFilter";
  * Rating field shared between create and update schemas.
  */
 const ratingField = z.preprocess(
-  (v) => (typeof v === "string" ? parseInt(v, 10) : v),
-  z.number().int().min(1, "בחר.י דירוג").max(5, "דירוג לא תקין"),
+  (v) => {
+    if (typeof v === "string") {
+      const n = parseInt(v, 10);
+      return Number.isNaN(n) ? undefined : n;
+    }
+    return v;
+  },
+  z
+    .number({
+      required_error: "בחר.י דירוג",
+      invalid_type_error: "בחר.י דירוג",
+    })
+    .int()
+    .min(1, "בחר.י דירוג")
+    .max(5, "דירוג לא תקין"),
 );
 
 /**
