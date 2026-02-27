@@ -233,6 +233,13 @@ ${groupCards}`;
     }
     .bulk-btn:hover { filter: brightness(1.15); }
     .bulk-btn:disabled { opacity: 0.5; cursor: not-allowed; background: #475569; filter: none; }
+    .save-exclusions-btn {
+      background: none; color: #f59e0b; border: 2px solid #f59e0b; border-radius: 8px;
+      padding: 0.55rem 1.4rem; font-size: 0.95rem; font-weight: 700;
+      cursor: pointer; font-family: inherit; white-space: nowrap; display: none;
+    }
+    .save-exclusions-btn:hover { background: rgba(245, 158, 11, 0.15); }
+    .save-exclusions-btn:disabled { opacity: 0.5; cursor: not-allowed; }
     .bulk-status { font-size: 0.85rem; min-height: 1em; }
 
     /* ── Cards container ────────────────────── */
@@ -360,6 +367,7 @@ ${groupCards}`;
     <button class="toggle-link" onclick="selectAll()">בחר הכל</button>
     <button class="toggle-link" onclick="deselectAll()">בטל הכל</button>
     <button class="bulk-btn" id="bulk-btn" onclick="generateMigration()">צור מיגרציה (${validCount})</button>
+    <button class="save-exclusions-btn" id="save-exclusions-btn" onclick="saveExclusions()">שמור דילוגים</button>
     <span class="bulk-status" id="bulk-status"></span>
   </div>
 
@@ -412,11 +420,26 @@ ${groupCards}`;
       return indices;
     }
 
+    function getExcludableCount() {
+      var count = 0;
+      document.querySelectorAll(".card").forEach(function(card) {
+        if (card.classList.contains("error-card")) return;
+        if (card.classList.contains("inserted")) return;
+        var cb = card.querySelector(".card-checkbox");
+        if (cb && !cb.checked) count++;
+      });
+      return count;
+    }
+
     function updateBulkCount() {
       var indices = getCheckedIndices();
       var btn = document.getElementById("bulk-btn");
+      var exclBtn = document.getElementById("save-exclusions-btn");
       btn.textContent = "צור מיגרציה (" + indices.length + ")";
       btn.disabled = indices.length === 0;
+      var excludable = getExcludableCount();
+      exclBtn.style.display = (indices.length === 0 && excludable > 0) ? "inline-block" : "none";
+      exclBtn.textContent = "שמור דילוגים (" + excludable + ")";
     }
 
     function validateShows(indices) {
@@ -619,6 +642,51 @@ ${groupCards}`;
         if (!cb.disabled) cb.checked = false;
       });
       updateBulkCount();
+    }
+
+    function saveExclusions() {
+      var excludedShows = [];
+      document.querySelectorAll(".card").forEach(function(card) {
+        if (card.classList.contains("error-card")) return;
+        if (card.classList.contains("inserted")) return;
+        var cb = card.querySelector(".card-checkbox");
+        if (cb && !cb.checked) {
+          excludedShows.push({
+            title: card.querySelector(".title-input").value,
+            theatre: card.querySelector(".theatre-input").value
+          });
+        }
+      });
+      if (excludedShows.length === 0) return;
+
+      var exclBtn = document.getElementById("save-exclusions-btn");
+      var bulkStatus = document.getElementById("bulk-status");
+      exclBtn.disabled = true;
+      exclBtn.textContent = "שומר דילוגים...";
+      bulkStatus.innerHTML = "";
+
+      fetch("/api/save-exclusions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ excludedShows: excludedShows })
+      })
+      .then(function(res) {
+        return res.json().then(function(body) { return { ok: res.ok, body: body }; });
+      })
+      .then(function(result) {
+        if (!result.ok) {
+          bulkStatus.innerHTML = '<span class="status-error">\\u274c ' + (result.body.error || "שגיאה בשמירת דילוגים") + "</span>";
+          exclBtn.disabled = false;
+          return;
+        }
+        bulkStatus.innerHTML = '<span class="status-success">\\u2705 ' + result.body.count + ' הצגות נשמרו ברשימת הדילוגים</span>';
+        exclBtn.disabled = true;
+        exclBtn.textContent = "דילוגים נשמרו \\u2713";
+      })
+      .catch(function(err) {
+        bulkStatus.innerHTML = '<span class="status-error">\\u274c ' + err.message + "</span>";
+        exclBtn.disabled = false;
+      });
     }
 
     // Clear validation styling on input
@@ -1018,6 +1086,44 @@ export async function startServer(title, theatreId, groupsOrResults) {
         "Access-Control-Allow-Headers": "Content-Type",
       });
       res.end();
+      return;
+    }
+
+    // ── POST /api/save-exclusions — save excluded shows without migration ──
+    if (req.method === "POST" && req.url === "/api/save-exclusions") {
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Content-Type", "application/json; charset=utf-8");
+
+      try {
+        const chunks = [];
+        for await (const chunk of req) chunks.push(chunk);
+        const body = JSON.parse(Buffer.concat(chunks).toString());
+
+        if (
+          !Array.isArray(body.excludedShows) ||
+          body.excludedShows.length === 0
+        ) {
+          res.writeHead(400);
+          res.end(
+            JSON.stringify({ error: "Missing or empty 'excludedShows' array" }),
+          );
+          return;
+        }
+
+        saveExcludedShows(body.excludedShows);
+        console.log(
+          green(
+            `  ✓ ${body.excludedShows.length} show(s) added to exclusion list`,
+          ),
+        );
+
+        res.writeHead(200);
+        res.end(JSON.stringify({ count: body.excludedShows.length }));
+      } catch (err) {
+        console.error(red("  ✗ API error: ") + err.message);
+        res.writeHead(500);
+        res.end(JSON.stringify({ error: err.message }));
+      }
       return;
     }
 
