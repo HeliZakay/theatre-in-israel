@@ -57,13 +57,19 @@ function mapToShowListItem(
 
 /**
  * Top-rated shows by average review rating.
+ * Ties on avg rating are broken by review count (higher wins),
+ * then by id for deterministic ordering.
  * Uses the denormalized avgRating column — no raw SQL aggregation needed.
  */
 async function getTopRated(): Promise<ShowListItem[]> {
   const shows = await prisma.show.findMany({
     where: { avgRating: { not: null } },
     include: showListInclude,
-    orderBy: [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],
+    orderBy: [
+      { avgRating: { sort: "desc", nulls: "last" } },
+      { reviewCount: "desc" },
+      { id: "asc" },
+    ],
     take: FETCH_LIMIT,
   });
 
