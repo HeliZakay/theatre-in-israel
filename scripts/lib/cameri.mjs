@@ -64,7 +64,7 @@ export async function fetchSchedule(browser) {
  *
  * @param {import("puppeteer").Browser} browser
  * @param {string} url
- * @returns {Promise<{ title: string, durationMinutes: number | null, description: string, imageUrl: string | null }>}
+ * @returns {Promise<{ title: string, durationMinutes: number | null, description: string, imageUrl: string | null, cast: string | null }>}
  */
 export async function scrapeShowDetails(browser, url) {
   const page = await browser.newPage();
@@ -110,10 +110,32 @@ export async function scrapeShowDetails(browser, url) {
         .trim();
     }
 
+    // ── Cast ──
+    let cast = null;
+    const castMarker = "משתתפים";
+    const castStopMarkers = ["נגנים", "גלריית תמונות", "ביקורות"];
+    const castIdx = body.indexOf(castMarker);
+    if (castIdx !== -1) {
+      let castRest = body.slice(castIdx + castMarker.length).trim();
+      let castEndIdx = castRest.length;
+      for (const marker of castStopMarkers) {
+        const idx = castRest.indexOf(marker);
+        if (idx !== -1 && idx < castEndIdx) castEndIdx = idx;
+      }
+      const rawCast = castRest.slice(0, castEndIdx).trim();
+      if (rawCast) {
+        cast = rawCast
+          .replace(/\n/g, " ")
+          .replace(/\s{2,}/g, " ")
+          .replace(/,\s*$/, "")
+          .trim();
+      }
+    }
+
     // ── Image URL (using shared extraction logic) ──
     const imageUrl = extractImage();
 
-    return { title, durationMinutes, description, imageUrl };
+    return { title, durationMinutes, description, imageUrl, cast };
   }, extractImageFromPage);
 
   // Fix double-protocol URLs outside the browser context
