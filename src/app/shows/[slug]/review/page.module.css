@@ -145,7 +145,7 @@
   }
 
   .poster {
-    position: static;
+    position: relative;
     max-width: clamp(120px, 40vw, 170px);
     margin-inline: auto;
   }
