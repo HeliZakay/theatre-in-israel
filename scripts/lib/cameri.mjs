@@ -146,3 +146,47 @@ export async function scrapeShowDetails(browser, url) {
   await page.close();
   return data;
 }
+
+/**
+ * Scrape only cast data from a Cameri show detail page.
+ * Used by the cast backfill pipeline.
+ *
+ * @param {import("puppeteer").Browser} browser
+ * @param {string} url — detail page URL
+ * @returns {Promise<string | null>}
+ */
+export async function scrapeCast(browser, url) {
+  const page = await browser.newPage();
+  await setupRequestInterception(page);
+  try {
+    await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
+    await page.waitForSelector("h1", { timeout: 30_000 });
+
+    const cast = await page.evaluate(() => {
+      const body = document.body.innerText;
+      const castMarker = "משתתפים";
+      const castStopMarkers = ["נגנים", "גלריית תמונות", "ביקורות"];
+      const castIdx = body.indexOf(castMarker);
+      if (castIdx === -1) return "";
+
+      let castRest = body.slice(castIdx + castMarker.length).trim();
+      let castEndIdx = castRest.length;
+      for (const marker of castStopMarkers) {
+        const idx = castRest.indexOf(marker);
+        if (idx !== -1 && idx < castEndIdx) castEndIdx = idx;
+      }
+      const rawCast = castRest.slice(0, castEndIdx).trim();
+      if (!rawCast) return "";
+
+      return rawCast
+        .replace(/\n/g, " ")
+        .replace(/\s{2,}/g, " ")
+        .replace(/,\s*$/, "")
+        .trim();
+    });
+
+    return cast || null;
+  } finally {
+    await page.close();
+  }
+}

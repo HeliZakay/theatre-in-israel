@@ -28,15 +28,23 @@ export const THEATRE_IDS = [
  */
 const LOADERS = {
   async cameri() {
-    const { CAMERI_THEATRE, launchBrowser, fetchSchedule, scrapeShowDetails } =
-      await import("./cameri.mjs");
+    const {
+      CAMERI_THEATRE,
+      launchBrowser,
+      fetchSchedule,
+      scrapeShowDetails,
+      scrapeCast,
+    } = await import("./cameri.mjs");
 
     return {
       theatreId: "cameri",
       theatreName: CAMERI_THEATRE,
       theatreConst: CAMERI_THEATRE,
+      theatreLabel: "Cameri Theatre (תיאטרון הקאמרי)",
+      websiteUrl: "cameri.co.il",
       fetchListing: fetchSchedule,
       scrapeDetails: scrapeShowDetails,
+      scrapeCast,
       titlePreference: "detail-first",
       launchBrowser,
     };
@@ -51,8 +59,12 @@ const LOADERS = {
       theatreId: "habima",
       theatreName: HABIMA_THEATRE,
       theatreConst: HABIMA_THEATRE,
+      theatreLabel: "Habima Theatre (תיאטרון הבימה)",
+      websiteUrl: "habima.co.il",
       fetchListing: fetchRepertoire,
       scrapeDetails: scrapeShowDetails,
+      scrapeCast: async (browser, url) =>
+        (await scrapeShowDetails(browser, url)).cast || null,
       titlePreference: "listing-first",
       launchBrowser,
     };
@@ -67,8 +79,12 @@ const LOADERS = {
       theatreId: "gesher",
       theatreName: GESHER_THEATRE,
       theatreConst: GESHER_THEATRE,
+      theatreLabel: "Gesher Theatre (תיאטרון גשר)",
+      websiteUrl: "gesher-theatre.co.il",
       fetchListing: fetchShows,
       scrapeDetails: scrapeShowDetails,
+      scrapeCast: async (browser, url) =>
+        (await scrapeShowDetails(browser, url)).cast || null,
       titlePreference: "listing-first",
       launchBrowser,
     };
@@ -83,8 +99,12 @@ const LOADERS = {
       theatreId: "lessin",
       theatreName: LESSIN_THEATRE,
       theatreConst: LESSIN_THEATRE,
+      theatreLabel: "Beit Lessin Theatre (תיאטרון בית ליסין)",
+      websiteUrl: "lessin.co.il",
       fetchListing: fetchShows,
       scrapeDetails: scrapeShowDetails,
+      scrapeCast: async (browser, url) =>
+        (await scrapeShowDetails(browser, url)).cast || null,
       titlePreference: "listing-first",
       launchBrowser,
     };
@@ -99,15 +119,19 @@ const LOADERS = {
       theatreId: "haifa",
       theatreName: HAIFA_THEATRE,
       theatreConst: HAIFA_THEATRE,
+      theatreLabel: "Haifa Theatre (תיאטרון חיפה)",
+      websiteUrl: "ht1.co.il",
       fetchListing: fetchShows,
       scrapeDetails: scrapeShowDetails,
+      scrapeCast: async (browser, url) =>
+        (await scrapeShowDetails(browser, url)).cast || null,
       titlePreference: "listing-first",
       launchBrowser,
     };
   },
 
   async "beer-sheva"() {
-    const { BEER_SHEVA_THEATRE, fetchShows, scrapeShowDetails } =
+    const { BEER_SHEVA_THEATRE, fetchShows, scrapeShowDetails, scrapeCast } =
       await import("./beer-sheva.mjs");
     const { launchBrowser } = await import("./browser.mjs");
 
@@ -115,15 +139,18 @@ const LOADERS = {
       theatreId: "beer-sheva",
       theatreName: BEER_SHEVA_THEATRE,
       theatreConst: BEER_SHEVA_THEATRE,
+      theatreLabel: "Beer Sheva Theatre (תיאטרון באר שבע)",
+      websiteUrl: "b7t.co.il",
       fetchListing: fetchShows,
       scrapeDetails: scrapeShowDetails,
+      scrapeCast,
       titlePreference: "listing-first",
       launchBrowser,
     };
   },
 
   async hakahn() {
-    const { KHAN_THEATRE, fetchShows, scrapeShowDetails } =
+    const { KHAN_THEATRE, fetchShows, scrapeShowDetails, scrapeCast } =
       await import("./hakahn.mjs");
     const { launchBrowser } = await import("./browser.mjs");
 
@@ -131,8 +158,11 @@ const LOADERS = {
       theatreId: "hakahn",
       theatreName: KHAN_THEATRE,
       theatreConst: KHAN_THEATRE,
+      theatreLabel: "Khan Theatre (תיאטרון החאן)",
+      websiteUrl: "khan.co.il",
       fetchListing: fetchShows,
       scrapeDetails: scrapeShowDetails,
+      scrapeCast,
       titlePreference: "listing-first",
       launchBrowser,
     };
@@ -147,8 +177,12 @@ const LOADERS = {
       theatreId: "hebrew-theatre",
       theatreName: HEBREW_THEATRE,
       theatreConst: HEBREW_THEATRE,
+      theatreLabel: "Hebrew Theatre (התיאטרון העברי)",
+      websiteUrl: "teatron.org.il",
       fetchListing: fetchShows,
       scrapeDetails: scrapeShowDetails,
+      scrapeCast: async (browser, url) =>
+        (await scrapeShowDetails(browser, url)).cast || null,
       titlePreference: "listing-first",
       launchBrowser,
     };
@@ -163,15 +197,19 @@ const LOADERS = {
       theatreId: "tmuna",
       theatreName: TMUNA_THEATRE,
       theatreConst: TMUNA_THEATRE,
+      theatreLabel: "Tmuna Theatre (תיאטרון תמונע)",
+      websiteUrl: "tmu-na.org.il",
       fetchListing: fetchShows,
       scrapeDetails: scrapeShowDetails,
+      scrapeCast: async (browser, url) =>
+        (await scrapeShowDetails(browser, url)).cast || null,
       titlePreference: "listing-first",
       launchBrowser,
     };
   },
 
   async tzavta() {
-    const { TZAVTA_THEATRE, fetchShows, scrapeShowDetails } =
+    const { TZAVTA_THEATRE, fetchShows, scrapeShowDetails, scrapeCast } =
       await import("./tzavta.mjs");
     const { launchBrowser } = await import("./browser.mjs");
 
@@ -179,8 +217,11 @@ const LOADERS = {
       theatreId: "tzavta",
       theatreName: TZAVTA_THEATRE,
       theatreConst: TZAVTA_THEATRE,
+      theatreLabel: "Tzavta Theatre (תיאטרון צוותא)",
+      websiteUrl: "tzavta.co.il",
       fetchListing: fetchShows,
       scrapeDetails: scrapeShowDetails,
+      scrapeCast,
       titlePreference: "listing-first",
       launchBrowser,
     };

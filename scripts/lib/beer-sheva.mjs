@@ -245,3 +245,62 @@ export async function scrapeShowDetails(browser, url) {
   await page.close();
   return data;
 }
+
+/**
+ * Scrape only cast data from a Beer Sheva show detail page.
+ * Extracts from the "משתתפים" section in body text.
+ * Used by the cast backfill pipeline.
+ *
+ * @param {import("puppeteer").Browser} browser
+ * @param {string} url — detail page URL
+ * @returns {Promise<string | null>}
+ */
+export async function scrapeCast(browser, url) {
+  const page = await browser.newPage();
+  await setupRequestInterception(page);
+  try {
+    await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
+    await page.waitForSelector("h1", { timeout: 30_000 });
+
+    const cast = await page.evaluate(() => {
+      const body = document.body.innerText;
+      const marker = "משתתפים";
+      const idx = body.indexOf(marker);
+      if (idx === -1) return "";
+
+      let rest = body.slice(idx + marker.length).trim();
+
+      const stopMarkers = [
+        "תוכניית ההצגה",
+        "רכישת כרטיסים",
+        "טריילר",
+        "גלרייה",
+        "מנוי לתיאטרון",
+        "סיור מאחורי",
+        "כל הזכויות",
+        "הפרטיות שלכם",
+        "Created by",
+        "Powered by",
+        "Facebook",
+        "צור קשר",
+        "הצהרת נגישות",
+      ];
+      let end = rest.length;
+      for (const m of stopMarkers) {
+        const i = rest.indexOf(m);
+        if (i !== -1 && i < end) end = i;
+      }
+      rest = rest.slice(0, end).trim();
+
+      return rest
+        .replace(/\n+/g, " ")
+        .replace(/\s{2,}/g, " ")
+        .trim();
+    });
+
+    return cast || null;
+  } finally {
+    await page.close();
+    await new Promise((r) => setTimeout(r, 1500));
+  }
+}

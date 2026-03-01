@@ -261,3 +261,54 @@ export async function scrapeShowDetails(browser, url) {
   await page.close();
   return data;
 }
+
+/**
+ * Scrape only cast data from a Khan show detail page.
+ * Tries ensemble-actors links first, then falls back to inline text.
+ * Used by the cast backfill pipeline.
+ *
+ * @param {import("puppeteer").Browser} browser
+ * @param {string} url — detail page URL
+ * @returns {Promise<string | null>}
+ */
+export async function scrapeCast(browser, url) {
+  const page = await browser.newPage();
+  await setupRequestInterception(page);
+  try {
+    await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
+    await page.waitForSelector("h1", { timeout: 30_000 });
+
+    // Try ensemble-actors links first
+    let cast = await page.evaluate(() => {
+      const links = [
+        ...document.querySelectorAll('a[href*="/ensemble-actors/"]'),
+      ];
+      return links
+        .map((a) => a.textContent.trim())
+        .filter((n) => n.length > 0)
+        .join(", ");
+    });
+
+    // Fallback: check for inline cast in description text
+    if (!cast) {
+      cast = await page.evaluate(() => {
+        const body = document.body.innerText;
+        const castMatch = body.match(
+          /שחקנים(?:\s+יוצרים)?:\s*([^\n]+(?:\n[^\n]+)?)/,
+        );
+        if (castMatch) {
+          return castMatch[1]
+            .replace(/משך ה(?:הצגה|מופע).*$/s, "")
+            .replace(/\n/g, ", ")
+            .replace(/\s{2,}/g, " ")
+            .trim();
+        }
+        return "";
+      });
+    }
+
+    return cast || null;
+  } finally {
+    await page.close();
+  }
+}

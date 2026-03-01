@@ -363,3 +363,160 @@ export async function scrapeShowDetails(browser, url) {
   await page.close();
   return data;
 }
+
+/**
+ * Scrape only cast data from a Tzavta show detail page.
+ * Extracts from the show_content_insert div using cast/end markers.
+ * Used by the cast backfill pipeline.
+ *
+ * @param {import("puppeteer").Browser} browser
+ * @param {string} url — detail page URL
+ * @returns {Promise<string | null>}
+ */
+export async function scrapeCast(browser, url) {
+  const page = await browser.newPage();
+  await setupRequestInterception(page);
+  try {
+    await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
+    await page.waitForSelector("h1", { timeout: 30_000 });
+
+    const cast = await page.evaluate(() => {
+      const contentDiv = document.querySelector(".show_content_insert");
+      if (!contentDiv) return "";
+      const text = contentDiv.innerText;
+
+      const castMarkers = [
+        "בכיכובם של:",
+        "בכיכובם של",
+        "בכיכוב:",
+        "שחקנים/ות יוצרים/ות:",
+        "שחקנים/ות:",
+        "שחקנים יוצרים:",
+        "שחקנים:",
+        "בהשתתפות:",
+        "יוצרים־מבצעים:",
+        "יוצרים-מבצעים:",
+        "משתתפים:",
+      ];
+
+      let castStart = -1;
+      let markerLen = 0;
+      for (const marker of castMarkers) {
+        const idx = text.indexOf(marker);
+        if (idx !== -1 && (castStart === -1 || idx < castStart)) {
+          castStart = idx;
+          markerLen = marker.length;
+        }
+      }
+      if (castStart === -1) return "";
+
+      let castText = text.slice(castStart + markerLen);
+
+      const endMarkers = [
+        "מאת:",
+        "מאת ",
+        "בימוי:",
+        "בימוי ",
+        "לחנים:",
+        "לחנים ",
+        "עיבוד:",
+        "עיבוד ",
+        "תאורה:",
+        "תפאורה:",
+        "הלבשה:",
+        "עיצוב ",
+        "עיצוב:",
+        "כוריאוגרפיה:",
+        "סאונד:",
+        "הפקה:",
+        "להקה:",
+        "ניהול מוסיקלי",
+        "משך ה",
+        "צילום:",
+        "תרגום:",
+        "נוסח עברי",
+        "ע. במאי",
+        "עוזר במאי",
+        "עוזרת במאי",
+        "כתיבה ",
+        "הלחנה ",
+        "ניהול ",
+        "תנועה:",
+        "עבודה קולית",
+        "מערכונים ",
+        "דרמטורג",
+        "במאי:",
+        "במאי ",
+        "כותב:",
+        "כותב ",
+        "מילים:",
+        "מילים ",
+        "לחן:",
+        "לחן ",
+        "מוזיקה:",
+        "מוזיקה ",
+        "תלבושות:",
+        "תלבושות ",
+        "ליווי אמנותי",
+        "ליווי אומנותי",
+        "הביקורות",
+        "זוכת פרס",
+        "זוכה פרס",
+      ];
+
+      let endIdx = castText.length;
+      for (const marker of endMarkers) {
+        const idx = castText.indexOf(marker);
+        if (idx !== -1 && idx < endIdx) endIdx = idx;
+      }
+
+      const dblNewline = castText.indexOf("\n\n");
+      if (dblNewline !== -1 && dblNewline < endIdx) endIdx = dblNewline;
+
+      castText = castText.slice(0, endIdx).trim();
+      castText = castText.replace(/\n+/g, ", ");
+      castText = castText.replace(/,\s*,/g, ",");
+      castText = castText.replace(/\s{2,}/g, " ");
+      castText = castText.trim();
+      castText = castText.replace(/,\s*$/, "").trim();
+      castText = castText.replace(/[.\s]+$/, "").trim();
+
+      const creditRoles = [
+        "בימוי",
+        "עיצוב",
+        "תפאורה",
+        "תלבושות",
+        "יוזמה",
+        "הפקה",
+        "סאונד",
+        "כוריאוגרפיה",
+        "דרמטורגיה",
+      ];
+      let changed = true;
+      while (changed) {
+        changed = false;
+        for (const role of creditRoles) {
+          if (castText.endsWith(role) || castText.endsWith(role + " ו")) {
+            const suffix = castText.endsWith(role + " ו") ? role + " ו" : role;
+            castText = castText
+              .slice(0, -suffix.length)
+              .trim()
+              .replace(/,\s*$/, "")
+              .trim();
+            changed = true;
+          }
+        }
+        if (castText.endsWith(" ו")) {
+          castText = castText.slice(0, -2).trim().replace(/,\s*$/, "").trim();
+          changed = true;
+        }
+      }
+
+      return castText;
+    });
+
+    return cast || null;
+  } finally {
+    await page.close();
+  }
+}
