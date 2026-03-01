@@ -109,15 +109,69 @@ export async function fetchShows(browser) {
   return shows.sort((a, b) => a.title.localeCompare(b.title, "he"));
 }
 
+// ── Cast extraction helpers ────────────────────────────────────
+
+/**
+ * Crew-role keywords — lines whose left side (role label) contains
+ * any of these are crew, not cast.  Shared with Habima; extended
+ * with Lessin-specific entries (`מאת`).
+ */
+const crewKeywords = [
+  "מאת",
+  "מחזה",
+  "בימוי",
+  "עיצוב",
+  "מוסיקה",
+  "תאורה",
+  "תלבושות",
+  "וידאו",
+  "תנועה",
+  "קריינות",
+  "צילום",
+  'עפ"י',
+  "ע.במאי",
+  "דרמטורג",
+  "תרגום",
+  "הפקה",
+  "כוריאוגרפיה",
+  "עריכה",
+  "הלחנה",
+  "ליווי",
+  "עיבוד",
+  "פוסטר",
+  "לחן",
+  "מילים",
+  "עיבוד מוסיקלי",
+  "ניהול מוסיקלי",
+  "עיצוב סאונד",
+  "סאונד",
+  "הנחיה",
+  "ייעוץ",
+  "פיקוח",
+  "תסריט",
+  "עריכת",
+  "ניהול",
+  "במאי",
+  "מעצב",
+  "מלחין",
+  "מתרגם",
+  "כתיבה",
+  "תפאורה",
+  "קונספט",
+  "עוזר",
+  "עוזרת",
+  "הפקת",
+];
+
 // ── Detail page scraper ────────────────────────────────────────
 
 /**
  * Scrape a single Beit Lessin show page for title, duration,
- * description, and image.
+ * description, image, and cast.
  *
  * @param {import('puppeteer').Browser} browser
  * @param {string} url  Full URL of the show page
- * @returns {Promise<{title: string, durationMinutes: number|null, description: string, imageUrl: string|null}>}
+ * @returns {Promise<{title: string, durationMinutes: number|null, description: string, imageUrl: string|null, cast: string}>}
  */
 export async function scrapeShowDetails(browser, url) {
   const page = await browser.newPage();
@@ -126,7 +180,7 @@ export async function scrapeShowDetails(browser, url) {
   await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
   await page.waitForSelector("h1", { timeout: 30_000 });
 
-  const data = await page.evaluate(() => {
+  const data = await page.evaluate((_crewKeywords) => {
     const suffixRe = /\s*\((?:הצגות אחרונות|הצגה אורחת)\)\s*$/;
 
     const h1 = document.querySelector("h1");
@@ -148,7 +202,7 @@ export async function scrapeShowDetails(browser, url) {
 
     // Extract description using "על ההצגה" as start marker
     let description = "";
-    const stopMarkers = [
+    const descStopMarkers = [
       "יוצרים ושחקנים",
       "משך ההצגה",
       "הביקורות משבחות",
@@ -158,7 +212,7 @@ export async function scrapeShowDetails(browser, url) {
     if (startIdx !== -1) {
       let rest = body.slice(startIdx + "על ההצגה".length).trim();
       let endIdx = rest.length;
-      for (const marker of stopMarkers) {
+      for (const marker of descStopMarkers) {
         const idx = rest.indexOf(marker);
         if (idx !== -1 && idx < endIdx) endIdx = idx;
       }
@@ -174,8 +228,75 @@ export async function scrapeShowDetails(browser, url) {
       description = description.replace(/\n{3,}/g, "\n\n").trim();
     }
 
-    return { title, durationText, description };
-  });
+    // ── Cast extraction ──
+    // The "יוצרים ושחקנים" section lists role: name pairs.
+    // We filter out crew roles and keep only actors.
+    let cast = "";
+    const castSectionMarkers = ["יוצרים ושחקנים", "יוצרים ומשתתפים"];
+    const castStopMarkers = [
+      "משך ההצגה",
+      "להזמנת מנוי",
+      "להורדת התכנייה",
+      "קופה וכרטיסים",
+      "רוצים לראות עוד",
+      "מנויים מקבלים",
+    ];
+
+    let castSectionStart = -1;
+    for (const marker of castSectionMarkers) {
+      const idx = body.indexOf(marker);
+      if (idx !== -1) {
+        castSectionStart = idx + marker.length;
+        break;
+      }
+    }
+
+    if (castSectionStart !== -1) {
+      let castText = body.slice(castSectionStart);
+
+      // Trim at the earliest stop marker
+      for (const stop of castStopMarkers) {
+        const idx = castText.indexOf(stop);
+        if (idx !== -1) castText = castText.slice(0, idx);
+      }
+
+      const lines = castText
+        .split("\n")
+        .map((l) => l.trim())
+        .filter(Boolean);
+      const actors = [];
+
+      for (const line of lines) {
+        if (!line.includes(":") && !line.includes("：")) continue;
+
+        // Split on the LAST colon to handle role names that might contain colons
+        const colonIdx = line.lastIndexOf(":");
+        if (colonIdx === -1) continue;
+
+        const left = line.slice(0, colonIdx).trim();
+        const right = line.slice(colonIdx + 1).trim();
+
+        if (!left || !right) continue;
+
+        // Check if the left side is a crew role
+        const isCrew = _crewKeywords.some((kw) => left.includes(kw));
+        if (isCrew) continue;
+
+        // right side contains actor name(s), possibly with / for alternates
+        // Normalize slash separators: ensure spaces around /
+        const cleaned = right
+          .replace(/\s*\/\s*/g, " / ")
+          .replace(/\s+/g, " ")
+          .trim();
+
+        if (cleaned) actors.push(cleaned);
+      }
+
+      cast = actors.join(", ");
+    }
+
+    return { title, durationText, description, cast };
+  }, crewKeywords);
 
   // Parse duration in Node context
   data.durationMinutes = parseLessinDuration(data.durationText);
