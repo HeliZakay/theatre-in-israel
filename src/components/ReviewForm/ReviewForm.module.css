@@ -14,7 +14,7 @@
   position: sticky;
   top: calc(var(--header-offset) + 16px);
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 3;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: 0 12px 28px rgba(15, 23, 42, 0.14);
@@ -124,8 +124,10 @@
 
   .poster {
     position: relative;
-    max-width: clamp(120px, 40vw, 170px);
+    top: auto;
+    max-width: clamp(180px, 55vw, 260px);
     margin-inline: auto;
+    margin-bottom: 4px;
   }
 
   .form {
@@ -135,6 +137,6 @@
 
 @media (max-width: 420px) {
   .poster {
-    max-width: 140px;
+    max-width: clamp(160px, 50vw, 220px);
   }
 }
