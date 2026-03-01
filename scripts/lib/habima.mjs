@@ -120,11 +120,11 @@ export async function fetchRepertoire(browser) {
 
 /**
  * Scrape a single Habima show detail page.
- * Returns `{ title, durationMinutes, description, imageUrl }`.
+ * Returns `{ title, durationMinutes, description, imageUrl, cast }`.
  *
  * @param {import("puppeteer").Browser} browser
  * @param {string} url
- * @returns {Promise<{ title: string, durationMinutes: number | null, description: string, imageUrl: string | null }>}
+ * @returns {Promise<{ title: string, durationMinutes: number | null, description: string, imageUrl: string | null, cast: string }>}
  */
 export async function scrapeShowDetails(browser, url) {
   const page = await browser.newPage();
@@ -194,7 +194,112 @@ export async function scrapeShowDetails(browser, url) {
       description = description.replace(/\n{3,}/g, "\n\n").trim();
     }
 
-    return { title, durationMinutes, description };
+    // ── Cast ──
+    let cast = "";
+    const castSectionMarkers = ["יוצרים ושחקנים", "יוצרים ומשתתפים"];
+    const castStopMarkers = [
+      "להורדת התכנייה",
+      "רוצים לראות עוד",
+      "מנויים מקבלים",
+    ];
+
+    // Crew-role keywords — lines whose LEFT side contains any of these are crew, not cast
+    const crewKeywords = [
+      "מחזה",
+      "בימוי",
+      "עיצוב",
+      "מוסיקה",
+      "תאורה",
+      "תלבושות",
+      "וידאו",
+      "תנועה",
+      "קריינות",
+      "צילום",
+      'עפ"י',
+      "ע.במאי",
+      "דרמטורג",
+      "תרגום",
+      "הפקה",
+      "כוריאוגרפיה",
+      "עריכה",
+      "הלחנה",
+      "ליווי",
+      "עיבוד",
+      "פוסטר",
+      "לחן",
+      "מילים",
+      "עיבוד מוסיקלי",
+      "ניהול מוסיקלי",
+      "עיצוב סאונד",
+      "סאונד",
+      "הנחיה",
+      "ייעוץ",
+      "פיקוח",
+      "תסריט",
+      "עריכת",
+      "ניהול",
+      "במאי",
+      "מעצב",
+      "מלחין",
+      "מתרגם",
+      "כתיבה",
+    ];
+
+    let castSectionStart = -1;
+    for (const marker of castSectionMarkers) {
+      const idx = body.indexOf(marker);
+      if (idx !== -1) {
+        castSectionStart = idx + marker.length;
+        break;
+      }
+    }
+
+    if (castSectionStart !== -1) {
+      let castText = body.slice(castSectionStart);
+
+      // Trim at the earliest stop marker
+      for (const stop of castStopMarkers) {
+        const idx = castText.indexOf(stop);
+        if (idx !== -1) castText = castText.slice(0, idx);
+      }
+
+      const lines = castText
+        .split("\n")
+        .map((l) => l.trim())
+        .filter(Boolean);
+      const actors = [];
+
+      for (const line of lines) {
+        if (!line.includes(":") && !line.includes("：")) continue;
+
+        // Split on the LAST colon to handle role names that might contain colons
+        const colonIdx = line.lastIndexOf(":");
+        if (colonIdx === -1) continue;
+
+        const left = line.slice(0, colonIdx).trim();
+        const right = line.slice(colonIdx + 1).trim();
+
+        if (!left || !right) continue;
+
+        // Check if the left side is a crew role
+        const leftLower = left;
+        const isCrew = crewKeywords.some((kw) => leftLower.includes(kw));
+        if (isCrew) continue;
+
+        // right side contains actor name(s), possibly with / for alternates
+        // Normalize slash separators: ensure spaces around /
+        const cleaned = right
+          .replace(/\s*\/\s*/g, " / ")
+          .replace(/\s+/g, " ")
+          .trim();
+
+        if (cleaned) actors.push(cleaned);
+      }
+
+      cast = actors.join(", ");
+    }
+
+    return { title, durationMinutes, description, cast };
   });
 
   // ── Image URL (using shared extraction logic) ──
