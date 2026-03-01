@@ -308,6 +308,39 @@ export async function scrapeShowDetails(browser, url) {
         // Remove trailing period or stray punctuation
         raw = raw.replace(/[.\s]+$/, "").trim();
 
+        // Strip trailing credit roles that leaked past end-markers
+        const creditRoles = [
+          "בימוי",
+          "עיצוב",
+          "תפאורה",
+          "תלבושות",
+          "יוזמה",
+          "הפקה",
+          "סאונד",
+          "כוריאוגרפיה",
+          "דרמטורגיה",
+        ];
+        let changed = true;
+        while (changed) {
+          changed = false;
+          for (const role of creditRoles) {
+            if (raw.endsWith(role) || raw.endsWith(role + " ו")) {
+              const suffix = raw.endsWith(role + " ו") ? role + " ו" : role;
+              raw = raw
+                .slice(0, -suffix.length)
+                .trim()
+                .replace(/,\s*$/, "")
+                .trim();
+              changed = true;
+            }
+          }
+          // Also strip trailing " ו" (lonely Hebrew "and")
+          if (raw.endsWith(" ו")) {
+            raw = raw.slice(0, -2).trim().replace(/,\s*$/, "").trim();
+            changed = true;
+          }
+        }
+
         cast = raw || null;
       }
     }

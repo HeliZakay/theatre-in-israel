@@ -228,6 +228,41 @@ async function main() {
         // Remove trailing period or stray punctuation
         castText = castText.replace(/[.\s]+$/, "").trim();
 
+        // Strip trailing credit roles that leaked past end-markers
+        const creditRoles = [
+          "בימוי",
+          "עיצוב",
+          "תפאורה",
+          "תלבושות",
+          "יוזמה",
+          "הפקה",
+          "סאונד",
+          "כוריאוגרפיה",
+          "דרמטורגיה",
+        ];
+        let changed = true;
+        while (changed) {
+          changed = false;
+          for (const role of creditRoles) {
+            if (castText.endsWith(role) || castText.endsWith(role + " ו")) {
+              const suffix = castText.endsWith(role + " ו")
+                ? role + " ו"
+                : role;
+              castText = castText
+                .slice(0, -suffix.length)
+                .trim()
+                .replace(/,\s*$/, "")
+                .trim();
+              changed = true;
+            }
+          }
+          // Also strip trailing " ו" (lonely Hebrew "and")
+          if (castText.endsWith(" ו")) {
+            castText = castText.slice(0, -2).trim().replace(/,\s*$/, "").trim();
+            changed = true;
+          }
+        }
+
         return castText;
       });
 
