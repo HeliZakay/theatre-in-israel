@@ -219,10 +219,53 @@ export async function scrapeShowDetails(browser, url) {
       }
     }
 
-    // Clean cast text
+    // Clean cast text — truncate at end-of-cast markers
     if (cast) {
-      cast = cast.replace(/[.\u200F\u200E]+$/, ""); // trailing period / bidi marks
+      const endMarkers = [
+        "תודות:",
+        "תודות ",
+        "הדפס",
+        "הוסף תגובה",
+        "לוח מופעים",
+        "ביקורות",
+        "מן העיתונות",
+        "הרשמה לניוזלטר",
+        "תיאטרון תמונע",
+        "דלג על",
+        "**גילאי",
+        "**גילאים",
+        "*גילאי",
+        "גילאי ",
+        "קראתי ואני",
+        "מדיניות פרטיות",
+        "דרונט דיגיטל",
+        "שונצינו 8",
+      ];
+
+      let endIdx = cast.length;
+      for (const marker of endMarkers) {
+        const idx = cast.indexOf(marker);
+        if (idx !== -1 && idx < endIdx) endIdx = idx;
+      }
+
+      // Also stop at double-newline
+      const dblNewline = cast.indexOf("\n\n");
+      if (dblNewline !== -1 && dblNewline < endIdx) endIdx = dblNewline;
+
+      // Also stop at the show title echoed back
+      if (title) {
+        const titleIdx = cast.indexOf(title);
+        if (titleIdx !== -1 && titleIdx < endIdx) endIdx = titleIdx;
+      }
+
+      cast = cast.slice(0, endIdx).trim();
+
+      // Remove trailing punctuation, bidi marks, stray title echoes
+      cast = cast.replace(/[.\u200F\u200E]+$/, "");
       cast = cast.replace(/\s{2,}/g, " ").trim();
+      // Strip trailing comma
+      cast = cast.replace(/,\s*$/, "").trim();
+
       if (!cast) cast = null;
     }
 
