@@ -129,7 +129,7 @@ export async function fetchShows(browser) {
  *
  * @param {import("puppeteer").Browser} browser
  * @param {string} url
- * @returns {Promise<{ title: string, durationMinutes: number|null, description: string, imageUrl: string|null }>}
+ * @returns {Promise<{ title: string, durationMinutes: number|null, description: string, imageUrl: string|null, cast: string|null }>}
  */
 export async function scrapeShowDetails(browser, url) {
   const page = await browser.newPage();
@@ -137,6 +137,7 @@ export async function scrapeShowDetails(browser, url) {
 
   await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
   await page.waitForSelector("h1", { timeout: 30_000 });
+  await page.waitForSelector(".showTeam", { timeout: 15_000 }).catch(() => {});
 
   const data = await page.evaluate(() => {
     // ── Title ──
@@ -206,12 +207,41 @@ export async function scrapeShowDetails(browser, url) {
       description = tagline || bodyText;
     }
 
-    return { title, durationText, description };
+    // ── Cast from "שחקנים" section inside .showTeam ──
+    let cast = "";
+    const teamEls = document.querySelectorAll(".showTeam");
+    for (const teamEl of teamEls) {
+      const teamText = teamEl.innerText;
+      const castMarker = "שחקנים";
+      const castIdx = teamText.indexOf(castMarker);
+      if (castIdx === -1) continue;
+      const castSection = teamText.slice(castIdx + castMarker.length).trim();
+
+      const names = [];
+      for (const line of castSection.split("\n")) {
+        const trimmed = line.trim();
+        if (!trimmed) continue;
+        if (trimmed.endsWith(":")) continue; // role-only line
+        if (trimmed.includes(":")) {
+          // "role: actor" — take text after the last colon
+          const afterColon = trimmed.slice(trimmed.lastIndexOf(":") + 1).trim();
+          if (afterColon) names.push(afterColon);
+        } else {
+          names.push(trimmed);
+        }
+      }
+      cast = names.filter(Boolean).join(", ");
+      if (cast) break;
+    }
+
+    return { title, durationText, description, cast };
   });
 
   // Parse duration in Node context using the shared Hebrew parser
   data.durationMinutes = parseLessinDuration(data.durationText);
   delete data.durationText;
+
+  data.cast = data.cast || null;
 
   // ── Image URL (using shared extraction logic) ──
   const imageUrl = await page.evaluate(extractImageFromPage);

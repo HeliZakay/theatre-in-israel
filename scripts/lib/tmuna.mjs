@@ -177,7 +177,56 @@ export async function scrapeShowDetails(browser, url) {
     description = description.replace(/מופע עמידה.*$/gm, "");
     description = description.replace(/\n{3,}/g, "\n\n").trim();
 
-    return { title, durationMinutes, description };
+    // ── Cast ──
+    // Credits appear in a "//" -separated format, e.g.
+    //   מאת: ... // בימוי: ... // שחקנים: name1, name2 ושם3
+    const castMarkers = [
+      "שחקנים ושחקניות:",
+      "שחקנים/ות:",
+      "שחקניות:",
+      "שחקנים:",
+      "משחקות:",
+      "משחק:",
+      "בכיכוב:",
+      "בהשתתפות:",
+    ];
+
+    let cast = null;
+
+    // Strategy 1: split by "//" and find a segment starting with a cast marker
+    const segments = body.split("//").map((s) => s.trim());
+    for (const marker of castMarkers) {
+      if (cast) break;
+      for (const seg of segments) {
+        if (seg.startsWith(marker)) {
+          cast = seg.slice(marker.length).trim();
+          break;
+        }
+      }
+    }
+
+    // Strategy 2: line-based fallback — look for lines starting with a cast marker
+    if (!cast) {
+      const lines = body.split("\n").map((l) => l.trim());
+      for (const marker of castMarkers) {
+        if (cast) break;
+        for (const line of lines) {
+          if (line.startsWith(marker)) {
+            cast = line.slice(marker.length).trim();
+            break;
+          }
+        }
+      }
+    }
+
+    // Clean cast text
+    if (cast) {
+      cast = cast.replace(/[.\u200F\u200E]+$/, ""); // trailing period / bidi marks
+      cast = cast.replace(/\s{2,}/g, " ").trim();
+      if (!cast) cast = null;
+    }
+
+    return { title, durationMinutes, description, cast };
   });
 
   // ── Image URL (using shared extraction logic) ──
