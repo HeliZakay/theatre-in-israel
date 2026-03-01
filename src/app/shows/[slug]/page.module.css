@@ -133,6 +133,26 @@
   gap: 12px;
 }
 
+.castBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 720px;
+}
+
+.castLabel {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.castText {
+  color: rgba(26, 26, 26, 0.75);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: justify;
+}
+
 .primaryBtn,
 .ghostBtn {
   border-radius: 12px;

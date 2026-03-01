@@ -244,6 +244,13 @@ export default async function ShowPage({ params }: ShowPageProps) {
         </section>
       )}
 
+      {show.cast && (
+        <section className={styles.aboutSection}>
+          <h2 className={styles.sectionTitle}>משתתפים</h2>
+          <p className={styles.aboutText}>{show.cast}</p>
+        </section>
+      )}
+
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>ביקורות אחרונות</h2>
         {show.reviews.length ? (
