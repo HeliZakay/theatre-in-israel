@@ -124,11 +124,11 @@ export async function fetchShows(browser) {
 
 /**
  * Scrape a single Hebrew Theatre show detail page.
- * Returns `{ title, durationMinutes, description, imageUrl }`.
+ * Returns `{ title, durationMinutes, description, imageUrl, cast }`.
  *
  * @param {import("puppeteer").Browser} browser
  * @param {string} url
- * @returns {Promise<{ title: string, durationMinutes: number | null, description: string, imageUrl: string | null }>}
+ * @returns {Promise<{ title: string, durationMinutes: number | null, description: string, imageUrl: string | null, cast: string | null }>}
  */
 export async function scrapeShowDetails(browser, url) {
   const page = await browser.newPage();
@@ -178,7 +178,41 @@ export async function scrapeShowDetails(browser, url) {
       description = description.replace(/\n{3,}/g, "\n\n").trim();
     }
 
-    return { title, durationMinutes, description };
+    // ── Cast ──
+    let cast = null;
+    const castMarker = "משתתפים:";
+    const castStopMarkers = ["שתפו חברים", "תאריכי הצגות"];
+    const castIdx = body.indexOf(castMarker);
+    if (castIdx !== -1) {
+      let castText = body.slice(castIdx + castMarker.length).trim();
+
+      // Find the earliest stop marker
+      let castEnd = castText.length;
+      for (const marker of castStopMarkers) {
+        const idx = castText.indexOf(marker);
+        if (idx !== -1 && idx < castEnd) castEnd = idx;
+      }
+
+      castText = castText.slice(0, castEnd).trim();
+
+      // Collapse to a single line and normalize whitespace
+      castText = castText
+        .replace(/\n+/g, " ")
+        .replace(/\s{2,}/g, " ")
+        .trim();
+
+      // Normalize spacing after commas: ",ניר" → ", ניר"
+      castText = castText.replace(/,([^\s])/g, ", $1");
+
+      // Remove trailing period if present
+      castText = castText.replace(/\.\s*$/, "").trim();
+
+      if (castText) {
+        cast = castText;
+      }
+    }
+
+    return { title, durationMinutes, description, cast };
   });
 
   // ── Image URL (using shared extraction logic) ──
