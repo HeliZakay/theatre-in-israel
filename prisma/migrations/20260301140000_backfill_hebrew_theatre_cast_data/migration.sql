@@ -1,50 +1,26 @@
--- Backfill cast data for התיאטרון העברי (Hebrew Theatre) shows.
+-- Backfill cast data for Hebrew Theatre shows.
 -- Cast strings extracted from individual show pages at teatron.org.il.
 -- 22 shows total.
 
 UPDATE "Show" SET "cast" = 'יגאל עדיקא, דין הפנר, שרון מלכי, פיני טבגר, מיכאל וילוז׳ני.' WHERE "slug" = 'זוגיות-AI';
-
-UPDATE "Show" SET "cast" = 'נתן דטנר, מיקה צור, אלי גורנשטיין, אלון אופיר, פנינה ברט צדקה, נמרוד גרינבוים, קארין שיפרין, נירית אהרוני, ניר שיבר, ארז וייס, עמית בורשטיין, יניב לוי, מירית פרג''ון, ענאל שדה, אדיר פלדבלום, אורי זילברשטיין, גאיה אלבס, דור ירדני, חן כהן, טל אליאס, נועה קאירי , נועם אלדר, נטעלי חכם, ניתאי א?- Backfill cast data for התיאטרון העברי (Hebrew Theatre) shows.
--- Cast strings extracted from individual show pages at teatron.org.ilho-- Cast strings extracted from individual show pages at teatron.org.il.
--- 2??- 22 shows total.
-
-UPDATE "Show" SET "cast" = 'יגאל עדיקא, ת?UPDATE "Show" SEow"
-UPDATE "Show" SET "cast" = 'נתן דטנר, מיקה צור, אלי גורנשטיין, אלון אופיר, פנינה ברט צדקה, נמרוד גרינבוים?ו-- Cast strings extracted from individual show pages at teatron.org.ilho-- Cast strings extracted from individual show pages at teatron.org.il.
--- 2??- 22 shows total.
-
-UPDATE "Show" SET "cast" = 'יגאל עדיקא, ת?UPDATE "Show" SEow"
-UPDATE "Show" SET "cast" = 'נתן דטנר, מיקה צור, אלי גורנשטיין, אלון אופיר, פנינה ברט צדקה, נמרוד גרינבוים?ו-- Cast strings extracted from individual show pages at teatron.org.ilho-- Cast strings extracted from individual show pages at teatron.org.il.
--- 2??- 22 shows total.
-
-UPDATE "Show" SET "cast" = 'י?'-- 2??- 22 shows total.
-
-UPDATE "Show" SET "cast" = 'יגאל עדיקא, ת?UPDATE "Show" SEow"
-UPDATE "Show" SET "cast" = 'נתן דטנר??UPDATE "Show" SET "casנ?PDATE "Show" SET "cast" = 'נתן דטנר, מיקה צור, אלי גי-- 2??- 22 shows total.
-
-UPDATE "Show" SET "cast" = 'יגאל עדיקא, ת?UPDATE "Show" SEow"
-UPDATE "Show" SET "cast" = 'נתן דטנר, מיקה צור, אלי גורנשטיין, אלון אופיר, פנינה ברט צדקה, נמרוד גרינבוים?ו-- Cast strings extracted from individual s ?UPDATE "Show" SET "cas,גUPDATE "Show" SET "cast" = 'נתן דטנר, מיקה צור, אלי גT -- 2??- 22 shows total.
-
-UPDATE "Show" SET "cast" = 'י?'-- 2??- 22 shows total.
-
-UPDATE "Show" SET "cast" = 'יגאל עדיקא, ת?UPDATE "Show" SEow"
-UPDATE "Show" SET "cast" = 'נתן דטנר??UPDATE "Show" SET "casנ?PDATE "Show" SET "cast" = 'נתן דטנר, מיקה צור, אלי גי-- 2??- ?'
-UPDATE "Show" SET "casast
-UPDATE "Show" SET "cast" = 'יגאל עדיקא, ת?Uי?PDATE "Show" SET "cast" = 'נתן דטנר??UPDATE "Show" SET "casנ??
-UPDATE "Show" SET "cast" = 'יגאל עדיקא, ת?UPDATE "Show" SEow"
-UPDATE "Show" SET "cast" = 'נתן דטנר, מיקה צור, אלי גורנשטיין, אלד?PDATE "Show" SET "cast" = 'נתן דטנר, מיקה צור, אלי ג??UPDATE "Show" SET "cast" = 'י?'-- 2??- 22 shows total.
-
-UPDATE "Show" SET "cast" = 'יגאל עדיקא, ת?UPDATE "Show" SEow"
-UPDATE "Show" SET "cast" = 'נתן דטנר??UPDATE "Show" SET "casנ?PDATE "Show" SET "cast" = 'נתן דטנר, מיקה צור, אלי גי-- 2??- ?'
-UPDATE "Show" SET "casast
-UPDATE "Show" SET "ca?י
-UPDATE "Show" SET "cast" = 'יגאל עדי, ספיר ב?PDATE "Show" SET "cast" = 'נתן דטנר??UPDATE "Show" SET "casנ?UUPDATE "Show" SET "casast
-UPDATE "Show" SET "cast" = 'יגאל עדיקא, ת?Uי?PDATE "Show" SET "cast" = 'נתן דטנר??UPDATE "Show" SET "casנן UPDATE "Show" SET "cast"??PDATE "Show" SET "cast" = 'יגאל עדיקא, ת?UPDATE "Show" SEow"
-UPDATE "Show" SET "cast" = 'נתן דטנר, מיקה צ 'UPDATE "Show" SET "cast" = 'נתן דטנר, מיקה צור, אלי ג ?UPDATE "Show" SET "cast" = 'יגאל עדיקא, ת?UPDATE "Show" SEow"
-UPDATE "Show" SET "cast" = 'נתן דטנר??UPDATE "Show" SET "casנ?PDATE "Show" SET "cast" = 'נתן דטנר, מיקה צור, אלי גי-- 2???נUPDATE "Show" SET "cast" = 'נתן דטנר??UPDATE "Show" SET "casנ??UPDATE "Show" SET "casast
-UPDATE "Show" SET "ca?י
-UPDATE "Show" SET "cast" = 'יגאל עדי, ספיר ב?PDATE "Show" SET "cast" = 'נתן דטנר????PDATE "Show" SET "ca?יצUPDATE "Show" SET "castרUPDATE "Show" SET "cast" = 'יגאל עדיקא, ת?Uי?PDATE "Show" SET "cast" = 'נתן דטנר??UPDATE "Show" SET "casנן UPDATE "Show" SET "cast"" UPDATE "Show" SET "cast" = 'נתן דטנר, מיקה צ 'UPDATE "Show" SET "cast" = 'נתן דטנר, מיקה צור, אלי ג ?UPDATE "Show" SET "cast" = 'יגאל עדיקא, ת?UPDATE "Show" SEow"
-UPDATE "Show" SET , מיUPDATE "Show" SET "cast" = 'נתן דטנר??UPDATE "Show" SET "casנ?PDATE "Show" SET "cast" = 'נתן דטנר, מיקה צור, אלי גי-- 2???נUPDATE "Show" SET "cast" = 'נתן דטנר??UPD ?PDATE "Show" SET "ca?י
-UPDATE "Show" SET "cast" = 'יגאל עדי, ספיר ב?PDATE "Show" SET "cast" = 'נתן דטנר????PDATE "Show" SET "ca?יצUPDATE "Show" SET "castרUPDATE "Show" SET "cast" = 'יגאל עדיקא, ת?Uי?PDATE "Show".'UPDATE "Show" SET "castלUPDATE "Show" SET , מיUPDATE "Show" SET "cast" = 'נתן דטנר??UPDATE "Show" SET "casנ?PDATE "Show" SET "cast" = 'נתן דטנר, מיקה צור, אלי גי-- 2???נUPDATE "Show" SET "cast" = 'נתן דטנר??UPD ?PDATE "Show" SET "ca?י
-UPDATE "Show" SET "cast" = 'יגאל עדי, ספיר ב?PDATE "Show" SET "cast" = 'נתן דטנר????PDATE "Show" SET "ca?יצUPDATE "Show" SET "castרUPDATE "Show" SET "cast" = 'יגאל עדיקא, ת?Uי?PDATE "Show".'UPDATE "Show" SET "castלUPDA?כא?PDATE "Show" SET "cast" = 'יגאל עדי, ספיר ב?PDATE "Show" SET "cast" = 'נתן דטנר????PDATE "Show" SET "ca?יצUPDATE "Show" SET "castרUPDATE "Show" SET "cast" = 'יגאל עדיקא, ת?Uי?PDATE "Show".'UPDATE "Show" SET "cast??UPDATE "Show" SET "cast" = 'יגאל עדי, ספיר ב?PDATE "Show" SET "cast" = 'נתן דטנר????PDATE "Show" SET "ca?יצUPDATE "Show" SET "castרUPDATE "Show" SET "cast" = 'יגאל עדיקא, ת?Uי?PDATE "Show".'UPDATE "Show" SET "castלUPDA?כא?PDATE "Show" SET "cast" = 'יגאל עדי, ספיר ב?PDATE "Show" SET "cast" = 'נתן דטנר????PDATE "Show" SET "ca?יצUPDATE "Show" SET "castרUPDATE "Show" SET "cast" = 'יגאל עדיקא, ת?Uי?PDATE "Show".'UPDATE "Show" ס / דבי יבלונקה (בתפקיד רוחל''ה).' WHERE "slug" = 'זוג-משמיים';
-
+UPDATE "Show" SET "cast" = 'נתן דטנר, מיקה צור, אלי גורנשטיין, אלון אופיר, פנינה ברט צדקה, נמרוד גרינבוים, קארין שיפרין, נירית אהרוני, ניר שיבר, ארז וייס, עמית בורשטיין, יניב לוי, מירית פרג׳ון, ענאל שדה, אדיר פלדבלום, אורי זילברשטיין, גאיה אלבס, דור ירדני, חן כהן, טל אליאס, נועה קאירי , נועם אלדר, נטעלי חכם, ניתאי אוליבר יורן, עומר חלמיש, עומר קרמר, שני לנדס, תמר כהנא' WHERE "slug" = 'גבירתי-הנאווה';
+UPDATE "Show" SET "cast" = 'טוביה צפיר, יעל עמית,ניר שיבר, אודי רוטשילד ודניאל היב' WHERE "slug" = 'אהבה-בהפתעה';
+UPDATE "Show" SET "cast" = 'משה פרץ, ליבי פנקר, חן אהרוני, אוראל גלעד, ניצן אשל ,שיר בודק ,יונתן סודאי, לאון שניידרובסקי, דמיאן פאוור, הוד שמיר פרנקפורטר, אסף פינקלשטיין, נינה דבש אמדורסקי, הילה אטדגי, עילי נאור, רוי שמש , נעם חליו, גל מדמוני, יעל אבירם ,שי אלמוג, ים אייזנברג, עופר גורדון' WHERE "slug" = 'עפרה';
+UPDATE "Show" SET "cast" = 'שלומי שבת, אריאל דימנט, סהר טויטו, שרונה אלימלך, טל בן אהרון, דביר עונה, עמית שקל, יאיר נהון, נינה דבש אמדורסקי, נגה לוי, מירי פרנקל, רננה הלוי' WHERE "slug" = 'בגלל-הרוח';
+UPDATE "Show" SET "cast" = 'יונית טובי,אסף שגב/אולג רודובילסקי,נירית אהרוני/הילה גונן , עדי איזנמן, מיכאל גמליאל, ניצן אשל, ספיר ברייר, נינה דבש אמדורסקי, טל עמר.' WHERE "slug" = 'התשמע-קולי';
+UPDATE "Show" SET "cast" = 'קובי אפללו, מורן אהרוני, אמרי זיו/חן אהרוני , ספיר בראיר, שרון מלכי, מורן מלכה, אשוט גספריאן, עוז ניסן, טל עמר, חן כהן,גל אילון' WHERE "slug" = 'הלב-שלי-בחר';
+UPDATE "Show" SET "cast" = 'יניב פולישוק, סופי צדקה/מעיין אשכנזי, גיל וסרמן / אסף פרי, מורן מלכה, דניאל היב / שרי גבעתי, פיני טבגר/ניר ברק, יובל אברמוביץ׳/ארז וייס/אלון לשם.' WHERE "slug" = 'אני-פה-בגלל-אשתי';
+UPDATE "Show" SET "cast" = 'נטע פלוטניק, גיל וינברג, גבריאל דמידוב, איימוס איינו, עדי אלמו, טובית סמאי, אורן חבוט, יפתח קמינר, ארז וייס, שני שרים.' WHERE "slug" = 'הברונית-רוטשילד';
+UPDATE "Show" SET "cast" = 'נתן דטנר, אלי גורנשטיין, נילי צרויה, אודיה ירון, אורי זלצמן, גל פופלר, דן טויטו , דוריאל זוהר , דור ירדני, אביחי סזגר / בן סיידוף' WHERE "slug" = 'מראה-מעל-הגשר';
+UPDATE "Show" SET "cast" = 'מאיה יצחקי, נויה אביגדור, רוי שמש , נינה דבש , עמית בורנשטיין / זיו שליט, הראל גרינפלד, גלי נקאש, ספיר ברייר, אופיר מרדכייב' WHERE "slug" = 'פים-פם-פה';
+UPDATE "Show" SET "cast" = 'שלום אסייג, קובי מאור, דני שטג, חי דוידוב/טל דנינו, דבי יבלונקה, לאה אלון מגן, עומר מאירי, ליאור שמואל, מיכאל רוז׳צ׳קי, אור גלוברמן, רננה הלוי, דני מימון.' WHERE "slug" = 'השוטר-אזולאי';
+UPDATE "Show" SET "cast" = 'נתן דטנר, סנדרה שדה/שרה וינו אלעד, שרי צוריאל, קובי מאור, ספיר באומוול, יעל שטולמן, עדן אזר, ערן שראל, רועי ויינברג, עמנואל דמידוב, יובל לבני, ארז וייס, אסף שגב, גבריאלה שטרנפלד, מאור לוי, אשוט גספריאן, ניר שיבר, מירית פרג׳ון, נירית אהרוני,  עומרי סמסון, רוני אנוך, תום שיניצקי, טל רוגצ׳וב, עומר קרמר, אורי זילברשטיין, פיני יעקב,ליאור זמלסון' WHERE "slug" = 'כנר-על-הגג-–-המחזמר';
+UPDATE "Show" SET "cast" = 'מיקה צור, ניר שיבר, טוביה צפיר, דניאל היב , גל פופולר, קארין שיפרין, ענאל שדה, גיל וינברג, עילי נאור, עינבל שלום, מייק פרידלנד, מיכאל רוזצ׳קי, נועה אנגל, רז סלמון, יעל אברם, יעלי אייקנאר, יותם גבריאל, יולי ונטורה, אריאל דימנט, הראל גרינפלד, נויה אביגדור מסינגר / אלה סבג, איתמר שטורך / יהלי ווטסון, מיקה בראל / עדן גלסקי, יובל לוין בלכרוביץ׳/ עומר מורן, אריאל לוין בלכרוביץ׳ / דניאל יעקובי.' WHERE "slug" = 'צלילי-המוזיקה';
+UPDATE "Show" SET "cast" = 'גיל וסרמן, שרון מלכי, יורם יוספסברג, ארז וייס, שאול עזר, ורדי מוסקוביץ/טל דנינו.' WHERE "slug" = 'קנאביס';
+UPDATE "Show" SET "cast" = 'פנינה ברט-צדקה' WHERE "slug" = 'קברט-ז׳בוטינסקי';
+UPDATE "Show" SET "cast" = 'טוביה צפיר,סנדרה שדה, יניב פולישוק / ניר ברק , דניאל היב/ מעיין אשכנזי , איימוס איינו, מיכאל רוזצקי / אולג רודובילסקי' WHERE "slug" = 'הכל-נשאר-במשפחה';
+UPDATE "Show" SET "cast" = 'בר צברי, ניצן אשל, קובי מאור, ליבי פנקר, ג׳ולייטה, דנה לפידות ועוד הרבה שחקנים ורקדנים.' WHERE "slug" = 'הפרח-בגני';
+UPDATE "Show" SET "cast" = 'חי דוידוב, ענת עצמון, שושנה בנדבה' WHERE "slug" = 'שיעור-באהבה';
+UPDATE "Show" SET "cast" = 'ארז שלם, פנינה ברט, טיטי איינאו , יורם יוספסברג' WHERE "slug" = 'שוקו-וניל';
+UPDATE "Show" SET "cast" = 'ארז שלם (בתפקיד הרשל), דניאל היב (בתפקיד טלי), אסף פרי (בתפקיד בן), סיגלית פוקס / דבי יבלונקה (בתפקיד רוחל׳ה).' WHERE "slug" = 'זוג-משמיים';
 UPDATE "Show" SET "cast" = 'נתן דטנר , פולי רשף, נטע פלוטניק, עינבר דנון ,רוי מילר' WHERE "slug" = 'רוחל׳ה-מתחתנת';
