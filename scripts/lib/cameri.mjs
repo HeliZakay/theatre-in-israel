@@ -121,36 +121,6 @@ export async function scrapeShowDetails(browser, url) {
     data.imageUrl = fixDoubleProtocol(data.imageUrl);
   }
 
-  // ── Cast ──
-  const cast = await page.evaluate(() => {
-    const body = document.body.innerText;
-    const marker = "צוות ושחקנים";
-    const idx = body.indexOf(marker);
-    if (idx === -1) return null;
-
-    let rest = body.slice(idx + marker.length).trim();
-
-    // Stop at the next major section
-    const stopMarkers = [
-      "משך ההצגה",
-      "גלריית תמונות",
-      "הצגות קרובות",
-      "ביקורות",
-    ];
-    let endIdx = rest.length;
-    for (const stop of stopMarkers) {
-      const i = rest.indexOf(stop);
-      if (i !== -1 && i < endIdx) endIdx = i;
-    }
-
-    const text = rest
-      .slice(0, endIdx)
-      .replace(/\n{3,}/g, "\n\n")
-      .trim();
-    return text || null;
-  });
-  data.cast = cast;
-
   await page.close();
   return data;
 }

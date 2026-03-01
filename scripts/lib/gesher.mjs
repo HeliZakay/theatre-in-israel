@@ -222,15 +222,6 @@ export async function scrapeShowDetails(browser, url) {
     data.imageUrl = null;
   }
 
-  // ── Cast ──
-  const cast = await page.evaluate(() => {
-    const el = document.querySelector(".showTeam");
-    if (!el) return null;
-    const text = el.innerText.replace(/\n{3,}/g, "\n\n").trim();
-    return text || null;
-  });
-  data.cast = cast;
-
   await page.close();
   return data;
 }

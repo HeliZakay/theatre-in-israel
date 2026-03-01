@@ -220,50 +220,6 @@ export async function scrapeShowDetails(browser, url) {
     data.imageUrl = null;
   }
 
-  // ── Cast ──
-  data.cast = await page.evaluate(() => {
-    const contentDiv = document.querySelector(".show_content_insert");
-    if (!contentDiv) return null;
-
-    const text = contentDiv.innerText.trim();
-
-    // Credits start at the earliest credit marker
-    const creditMarkers = [
-      "מאת:",
-      "מאת ",
-      "בכיכובם של",
-      "בכיכוב:",
-      "שחקנים:",
-      "בימוי:",
-      "בימוי ",
-      "לחנים:",
-      "לחנים ",
-    ];
-
-    let startIdx = -1;
-    for (const marker of creditMarkers) {
-      const idx = text.indexOf(marker);
-      if (idx !== -1 && (startIdx === -1 || idx < startIdx)) {
-        startIdx = idx;
-      }
-    }
-
-    if (startIdx === -1) return null;
-
-    let rest = text.slice(startIdx).trim();
-
-    // Stop at duration or review sections
-    const endMarkers = ["משך ההצגה", "משך הצגה", "הביקורות משבחות", "זוכת פרס"];
-    let endIdx = rest.length;
-    for (const marker of endMarkers) {
-      const eIdx = rest.indexOf(marker);
-      if (eIdx !== -1 && eIdx < endIdx) endIdx = eIdx;
-    }
-
-    const castText = rest.slice(0, endIdx).trim();
-    return castText || null;
-  });
-
   await page.close();
   return data;
 }

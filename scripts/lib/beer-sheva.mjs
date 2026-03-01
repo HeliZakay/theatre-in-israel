@@ -195,40 +195,6 @@ export async function scrapeShowDetails(browser, url) {
     return { title, durationMinutes, description };
   });
 
-  // ── Cast extraction ──
-  const cast = await page.evaluate(() => {
-    const body = document.body.innerText;
-    const sectionMarkers = ["צוות היוצרים", "יוצרים", "משתתפים"];
-    const footerStops = [
-      "תוכניית ההצגה",
-      "רכישת כרטיסים",
-      "טריילר",
-      "גלרייה",
-      "הצגות נוספות",
-    ];
-
-    const parts = [];
-    for (const marker of sectionMarkers) {
-      const idx = body.indexOf(marker);
-      if (idx === -1) continue;
-
-      let rest = body.slice(idx + marker.length).trim();
-
-      // Find the earliest stop (another section marker or footer)
-      let endIdx = rest.length;
-      for (const stop of [...sectionMarkers, ...footerStops]) {
-        const i = rest.indexOf(stop);
-        if (i !== -1 && i < endIdx) endIdx = i;
-      }
-
-      const text = rest.slice(0, endIdx).trim();
-      if (text) parts.push(text);
-    }
-
-    return parts.length > 0 ? parts.join("\n") : null;
-  });
-  data.cast = cast;
-
   // ── Image URL (using shared extraction logic) ──
   // extractImageFromPage must be passed as the pageFunction (not as a
   // serialised argument) because Puppeteer cannot serialise functions.
