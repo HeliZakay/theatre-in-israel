@@ -227,7 +227,16 @@ export async function scrapeShowDetails(browser, url) {
       }
     }
 
-    return { title, durationMinutes: null, durationText, description };
+    // ── Cast ──
+    const castLinks = [
+      ...document.querySelectorAll('a[href*="/ensemble-actors/"]'),
+    ];
+    const cast = castLinks
+      .map((a) => a.textContent.trim())
+      .filter((name) => name.length > 0)
+      .join(", ");
+
+    return { title, durationMinutes: null, durationText, description, cast };
   });
 
   // ── Parse textual duration outside the browser context ──

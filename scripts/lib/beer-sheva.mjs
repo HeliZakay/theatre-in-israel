@@ -192,7 +192,39 @@ export async function scrapeShowDetails(browser, url) {
       description = description.replace(/\n{3,}/g, "\n\n").trim();
     }
 
-    return { title, durationMinutes, description };
+    // ── Cast (משתתפים) ──
+    let cast = "";
+    const castMarker = "משתתפים";
+    const castIdx = body.indexOf(castMarker);
+    if (castIdx !== -1) {
+      let castRest = body.slice(castIdx + castMarker.length).trim();
+      // Stop at common section boundaries
+      const castStopMarkers = [
+        "תוכניית ההצגה",
+        "רכישת כרטיסים",
+        "טריילר",
+        "גלרייה",
+        "מנוי לתיאטרון",
+        "סיור מאחורי",
+        "כל הזכויות",
+        "הפרטיות שלכם",
+        "Created by",
+        "Powered by",
+        "Facebook",
+        "צור קשר",
+        "הצהרת נגישות",
+      ];
+      let castEnd = castRest.length;
+      for (const m of castStopMarkers) {
+        const idx = castRest.indexOf(m);
+        if (idx !== -1 && idx < castEnd) castEnd = idx;
+      }
+      cast = castRest.slice(0, castEnd).trim();
+      // Collapse newlines/whitespace into single spaces
+      cast = cast.replace(/\n+/g, " ").replace(/\s{2,}/g, " ").trim();
+    }
+
+    return { title, durationMinutes, description, cast: cast || null };
   });
 
   // ── Image URL (using shared extraction logic) ──
