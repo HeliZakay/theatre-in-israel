@@ -136,11 +136,11 @@ export async function fetchShows(browser) {
 
 /**
  * Scrape a single Tzavta show detail page for title, duration,
- * description, and image.
+ * description, cast, and image.
  *
  * @param {import('puppeteer').Browser} browser
  * @param {string} url  Full URL of the show page
- * @returns {Promise<{title: string, durationMinutes: number|null, description: string, imageUrl: string|null}>}
+ * @returns {Promise<{title: string, durationMinutes: number|null, description: string, imageUrl: string|null, cast: string|null}>}
  */
 export async function scrapeShowDetails(browser, url) {
   const page = await browser.newPage();
@@ -205,7 +205,114 @@ export async function scrapeShowDetails(browser, url) {
       description = description.replace(/\n{3,}/g, "\n\n").trim();
     }
 
-    return { title, durationText, description };
+    // ── Cast ──
+    let cast = null;
+    if (contentDiv) {
+      const text = contentDiv.innerText.trim();
+
+      const castMarkers = [
+        "בכיכובם של:",
+        "בכיכובם של",
+        "בכיכוב:",
+        "שחקנים/ות יוצרים/ות:",
+        "שחקנים/ות:",
+        "שחקנים יוצרים:",
+        "שחקנים:",
+        "בהשתתפות:",
+        "יוצרים־מבצעים:",
+        "יוצרים-מבצעים:",
+        "משתתפים:",
+      ];
+
+      let castStart = -1;
+      let markerLen = 0;
+      for (const marker of castMarkers) {
+        const idx = text.indexOf(marker);
+        if (idx !== -1 && (castStart === -1 || idx < castStart)) {
+          castStart = idx;
+          markerLen = marker.length;
+        }
+      }
+
+      if (castStart !== -1) {
+        let raw = text.slice(castStart + markerLen);
+
+        const endCastMarkers = [
+          "מאת:",
+          "מאת ",
+          "בימוי:",
+          "בימוי ",
+          "במאי:",
+          "במאי ",
+          "כותב:",
+          "כותב ",
+          "מילים:",
+          "מילים ",
+          "לחנים:",
+          "לחנים ",
+          "לחן:",
+          "לחן ",
+          "מוזיקה:",
+          "מוזיקה ",
+          "עיבוד:",
+          "עיבוד ",
+          "תאורה:",
+          "תפאורה:",
+          "תלבושות:",
+          "תלבושות ",
+          "הלבשה:",
+          "עיצוב ",
+          "עיצוב:",
+          "כוריאוגרפיה:",
+          "סאונד:",
+          "הפקה:",
+          "להקה:",
+          "ניהול מוסיקלי",
+          "משך ה",
+          "צילום:",
+          "תרגום:",
+          "נוסח עברי",
+          "ע. במאי",
+          "עוזר במאי",
+          "עוזרת במאי",
+          "כתיבה ",
+          "הלחנה ",
+          "ניהול ",
+          "תנועה:",
+          "עבודה קולית",
+          "מערכונים ",
+          "דרמטורג",
+          "ליווי אמנותי",
+          "ליווי אומנותי",
+          "הביקורות",
+          "זוכת פרס",
+          "זוכה פרס",
+        ];
+
+        let endIdx = raw.length;
+        for (const marker of endCastMarkers) {
+          const idx = raw.indexOf(marker);
+          if (idx !== -1 && idx < endIdx) endIdx = idx;
+        }
+
+        // Also stop at double-newline
+        const dblNewline = raw.indexOf("\n\n");
+        if (dblNewline !== -1 && dblNewline < endIdx) endIdx = dblNewline;
+
+        raw = raw.slice(0, endIdx).trim();
+        raw = raw.replace(/\n+/g, ", ");
+        raw = raw.replace(/,\s*,/g, ",");
+        raw = raw.replace(/\s{2,}/g, " ");
+        raw = raw.trim();
+        raw = raw.replace(/,\s*$/, "");
+        // Remove trailing period or stray punctuation
+        raw = raw.replace(/[.\s]+$/, "").trim();
+
+        cast = raw || null;
+      }
+    }
+
+    return { title, durationText, description, cast };
   });
 
   // Parse duration in Node context (access to our custom parser)

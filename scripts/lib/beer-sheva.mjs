@@ -221,7 +221,10 @@ export async function scrapeShowDetails(browser, url) {
       }
       cast = castRest.slice(0, castEnd).trim();
       // Collapse newlines/whitespace into single spaces
-      cast = cast.replace(/\n+/g, " ").replace(/\s{2,}/g, " ").trim();
+      cast = cast
+        .replace(/\n+/g, " ")
+        .replace(/\s{2,}/g, " ")
+        .trim();
     }
 
     return { title, durationMinutes, description, cast: cast || null };

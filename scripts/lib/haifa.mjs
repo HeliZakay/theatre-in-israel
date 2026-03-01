@@ -76,11 +76,11 @@ export async function fetchShows(browser) {
 
 /**
  * Scrape a single Haifa Theatre show detail page.
- * Returns `{ title, durationMinutes, description, imageUrl }`.
+ * Returns `{ title, durationMinutes, description, imageUrl, cast }`.
  *
  * @param {import("puppeteer").Browser} browser
  * @param {string} url
- * @returns {Promise<{ title: string, durationMinutes: number | null, description: string, imageUrl: string | null }>}
+ * @returns {Promise<{ title: string, durationMinutes: number | null, description: string, imageUrl: string | null, cast: string | null }>}
  */
 export async function scrapeShowDetails(browser, url) {
   const page = await browser.newPage();
@@ -188,7 +188,49 @@ export async function scrapeShowDetails(browser, url) {
       }
     }
 
-    return { title, durationMinutes, description };
+    // ── Cast ──
+    // Haifa show pages list cast under "בהשתתפות:" as a comma-separated
+    // list of actor names. Alternates use "/" (e.g. "עידן אלתרמן/משה אשכנזי").
+    // The text may span multiple lines before the next section.
+    let cast = null;
+    const castMarker = "בהשתתפות:";
+    const castIdx = body.indexOf(castMarker);
+    if (castIdx !== -1) {
+      let rest = body.slice(castIdx + castMarker.length).trim();
+
+      // Stop markers for end of cast section
+      const castStopMarkers = [
+        "נגנים:",
+        "נגינה בהקלטות:",
+        "נגינה:",
+        "צילום:",
+        "צילום ועיצוב",
+        "צילום ועריכת",
+        "תיאטרון חיפה - התיאטרון של חיפה והצפון",
+        "עקבו אחרינו",
+        "משך ההצגה",
+        "כרטיסים",
+      ];
+
+      let endIdx = rest.length;
+      for (const marker of castStopMarkers) {
+        const idx = rest.indexOf(marker);
+        if (idx !== -1 && idx < endIdx) endIdx = idx;
+      }
+
+      cast = rest.slice(0, endIdx).trim();
+      // Collapse newlines into a single space (cast often wraps)
+      cast = cast
+        .replace(/\n+/g, " ")
+        .replace(/\s{2,}/g, " ")
+        .trim();
+      // Remove trailing period
+      cast = cast.replace(/\.\s*$/, "").trim();
+      // If empty after cleaning, set to null
+      if (!cast) cast = null;
+    }
+
+    return { title, durationMinutes, description, cast };
   });
 
   // ── Image URL (using shared extraction logic) ──
