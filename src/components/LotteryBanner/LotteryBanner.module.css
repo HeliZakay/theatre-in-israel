@@ -1,9 +1,24 @@
 .banner {
+  position: relative;
+  overflow: hidden;
   margin: 0 clamp(20px, 6vw, 96px);
-  padding: clamp(18px, 3.5vw, 28px) clamp(20px, 4vw, 32px);
+  padding: clamp(20px, 4vw, 32px) clamp(24px, 5vw, 40px);
   border-radius: var(--radius-md);
-  background: var(--color-lottery-gold-light);
-  border: 1px solid var(--color-lottery-gold);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 14px 34px rgba(73, 14, 24, 0.34);
+  background:
+    radial-gradient(
+      circle at 14% 18%,
+      rgba(255, 200, 128, 0.28),
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 86% 10%,
+      rgba(255, 130, 98, 0.24),
+      transparent 46%
+    ),
+    linear-gradient(125deg, #4f0f17 0%, #7d1724 44%, #942a36 100%);
+  color: #ffffff;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -20,21 +35,27 @@
 .headline {
   font-size: clamp(1.1rem, 2.5vw, 1.4rem);
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: #ffffff;
 }
 
 .subtitle {
   font-size: 0.95rem;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .button {
   background-color: var(--color-lottery-gold);
   color: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .button:hover {
   background-color: var(--color-lottery-gold-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
 }
 
 @media (max-width: 640px) {

@@ -13,6 +13,7 @@ import ReviewCard from "@/components/ReviewCard/ReviewCard";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import WatchlistButton from "@/components/WatchlistButton/WatchlistButton";
 import LotteryBadge from "@/components/LotteryBadge/LotteryBadge";
+import StickyReviewCTA from "@/components/StickyReviewCTA/StickyReviewCTA";
 import { getShowStats } from "@/utils/showStats";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import {
@@ -221,7 +222,7 @@ export default async function ShowPage({ params }: ShowPageProps) {
               ))}
             </div>
             <p className={styles.description}>{show.summary}</p>
-            <div className={styles.heroActions}>
+            <div className={styles.heroActions} id="hero-actions">
               <Link
                 className={styles.primaryBtn}
                 href={showReviewPath(show.slug)}
@@ -265,6 +266,8 @@ export default async function ShowPage({ params }: ShowPageProps) {
           <p className={styles.emptyState}>עדיין אין ביקורות להצגה הזו.</p>
         )}
       </section>
+
+      <StickyReviewCTA reviewHref={showReviewPath(show.slug)} />
     </main>
   );
 }

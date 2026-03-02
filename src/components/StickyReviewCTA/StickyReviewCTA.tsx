@@ -1,0 +1,68 @@
+"use client";
+
+import { useEffect, useState, useCallback } from "react";
+import Link from "next/link";
+import { isLotteryActive } from "@/constants/lottery";
+import { cx } from "@/utils/cx";
+import styles from "./StickyReviewCTA.module.css";
+
+const DISMISS_KEY = "stickyReviewCTA_dismissed";
+
+interface StickyReviewCTAProps {
+  reviewHref: string;
+}
+
+export default function StickyReviewCTA({ reviewHref }: StickyReviewCTAProps) {
+  const [visible, setVisible] = useState(false);
+  const [dismissed, setDismissed] = useState(true);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (sessionStorage.getItem(DISMISS_KEY)) return;
+    setDismissed(false);
+  }, []);
+
+  useEffect(() => {
+    if (dismissed) return;
+    const target = document.getElementById("hero-actions");
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(!entry.isIntersecting),
+      { threshold: 0 },
+    );
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [dismissed]);
+
+  const handleDismiss = useCallback(() => {
+    setDismissed(true);
+    setVisible(false);
+    try {
+      sessionStorage.setItem(DISMISS_KEY, "1");
+    } catch {}
+  }, []);
+
+  if (!isLotteryActive() || dismissed) return null;
+
+  return (
+    <div
+      className={cx(styles.bar, visible && styles.barVisible)}
+      role="complementary"
+      aria-label="הגרלת כרטיסים"
+    >
+      <span className={styles.text}>🎟️ כתב.י ביקורת ואולי תזכ.י בכרטיסים!</span>
+      <Link href={reviewHref} className={styles.cta}>
+        כתב.י ביקורת
+      </Link>
+      <button
+        type="button"
+        className={styles.close}
+        onClick={handleDismiss}
+        aria-label="סגירה"
+      >
+        ×
+      </button>
+    </div>
+  );
+}
