@@ -132,4 +132,62 @@ describe("SearchBar", () => {
     // Second item is "קברט"
     expect(input).toHaveValue("קברט");
   });
+
+  // ── Branch coverage improvements ──
+
+  it("uses shorter placeholder on mobile", () => {
+    // Override matchMedia to return matches: true (mobile)
+    window.matchMedia = jest.fn().mockImplementation((query: string) => ({
+      matches: true,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    }));
+
+    renderSearchBar();
+
+    const input = screen.getByPlaceholderText("חפש.י הצגה או ז׳אנר");
+    expect(input).toBeInTheDocument();
+
+    // On mobile there is no combobox role
+    expect(screen.queryByRole("combobox")).not.toBeInTheDocument();
+
+    // Restore
+    window.matchMedia = jest.fn().mockImplementation((query: string) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    }));
+  });
+
+  it("handles suggestions with missing category keys", async () => {
+    const user = userEvent.setup();
+    render(<SearchBar suggestions={{ shows: ["המלט"] } as any} />);
+
+    const input = screen.getByRole("combobox");
+    await user.click(input);
+
+    // Should show the one available item without crashing
+    expect(screen.getByRole("option")).toHaveTextContent("המלט");
+  });
+
+  it("handles empty suggestions object", async () => {
+    const user = userEvent.setup();
+    render(<SearchBar suggestions={{} as any} />);
+
+    const input = screen.getByRole("combobox");
+    await user.click(input);
+    await user.type(input, "test");
+
+    expect(screen.getByText("לא נמצאו תוצאות")).toBeInTheDocument();
+  });
 });

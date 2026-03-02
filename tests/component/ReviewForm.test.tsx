@@ -1,12 +1,13 @@
 jest.mock("@/app/reviews/actions", () => ({
   createReview: jest.fn(),
+  createAnonymousReview: jest.fn(),
 }));
 
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import ReviewForm from "@/components/ReviewForm/ReviewForm";
 import type { ShowOption } from "@/components/ReviewForm/ReviewForm";
-import { createReview } from "@/app/reviews/actions";
+import { createReview, createAnonymousReview } from "@/app/reviews/actions";
 
 // ---------- Mock Radix Select used inside ReviewFormFields ----------
 // Radix Select uses portals and complex internals that are hard to test with
@@ -61,9 +62,10 @@ const SHOWS: ShowOption[] = [
 ];
 
 let mockPush: jest.Mock;
+const stablePush = jest.fn();
 jest.mock("next/navigation", () => ({
   useRouter: () => ({
-    push: (mockPush = jest.fn()),
+    push: (mockPush = stablePush),
     replace: jest.fn(),
     back: jest.fn(),
     prefetch: jest.fn(),
@@ -81,6 +83,7 @@ function renderReviewForm(
 describe("ReviewForm", () => {
   beforeEach(() => {
     jest.restoreAllMocks();
+    stablePush.mockClear();
   });
 
   // ── Rendering ──
@@ -328,5 +331,115 @@ describe("ReviewForm", () => {
     await user.type(titleInput, "test");
 
     expect(screen.getByText("4/120")).toBeInTheDocument();
+  });
+
+  // ── Branch coverage improvements ──
+
+  // ── Anonymous mode ──
+
+  it("shows name field and sign-in hint in anonymous mode", () => {
+    renderReviewForm({ initialShowId: 1, isAuthenticated: false });
+    expect(screen.getByPlaceholderText("אנונימי")).toBeInTheDocument();
+    expect(screen.getByText(/יש לך חשבון/)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "התחבר.י" })).toBeInTheDocument();
+  });
+
+  it("submits anonymous review with createAnonymousReview action", async () => {
+    const user = userEvent.setup();
+    (createAnonymousReview as jest.Mock).mockResolvedValueOnce({
+      success: true,
+      data: { showId: 1 },
+    });
+
+    renderReviewForm({ initialShowId: 1, isAuthenticated: false });
+
+    const titleInput = screen.getByRole("textbox", { name: /כותרת/i });
+    await user.type(titleInput, "ביקורת אנונימית");
+
+    const rating = screen.getByTestId("rating-select");
+    await user.selectOptions(rating, "4");
+
+    const textarea = screen.getByRole("textbox", { name: /תגובה/i });
+    await user.type(textarea, "הצגה מדהימה! ממליץ/ה בחום");
+
+    const submitBtn = screen.getByRole("button", { name: "שלח.י ביקורת" });
+    await user.click(submitBtn);
+
+    await waitFor(() => {
+      expect(createAnonymousReview).toHaveBeenCalledWith(expect.any(FormData));
+    });
+  });
+
+  // ── Non-Error thrown ──
+
+  it("handles non-Error thrown from action", async () => {
+    const user = userEvent.setup();
+    (createReview as jest.Mock).mockRejectedValueOnce("string error");
+
+    renderReviewForm({ initialShowId: 1 });
+
+    const titleInput = screen.getByRole("textbox", { name: /כותרת/i });
+    await user.type(titleInput, "ביקורת נהדרת");
+
+    const rating = screen.getByTestId("rating-select");
+    await user.selectOptions(rating, "3");
+
+    const textarea = screen.getByRole("textbox", { name: /תגובה/i });
+    await user.type(textarea, "הצגה לא רעה בכלל הצגה מצוינת");
+
+    const submitBtn = screen.getByRole("button", { name: "שלח.י ביקורת" });
+    await user.click(submitBtn);
+
+    await waitFor(() => {
+      expect(screen.getByText("string error")).toBeInTheDocument();
+    });
+  });
+
+  // ── Redirect after success ──
+
+  it("redirects to show page after successful submission", async () => {
+    jest.useFakeTimers();
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+
+    (createReview as jest.Mock).mockResolvedValueOnce({
+      success: true,
+      data: { showId: 1 },
+    });
+
+    renderReviewForm({ initialShowId: 1, initialShowSlug: "hamlet" });
+
+    const titleInput = screen.getByRole("textbox", { name: /כותרת/i });
+    await user.type(titleInput, "ביקורת נהדרת");
+
+    const rating = screen.getByTestId("rating-select");
+    await user.selectOptions(rating, "5");
+
+    const textarea = screen.getByRole("textbox", { name: /תגובה/i });
+    await user.type(textarea, "הצגה מדהימה! ממליץ/ה בחום");
+
+    const submitBtn = screen.getByRole("button", { name: "שלח.י ביקורת" });
+    await user.click(submitBtn);
+
+    await waitFor(() => {
+      expect(screen.getByText("הביקורת נשלחה בהצלחה")).toBeInTheDocument();
+    });
+
+    // Capture the current mockPush reference after re-renders
+    const currentPush = mockPush;
+
+    await act(async () => {
+      jest.advanceTimersByTime(2000);
+    });
+
+    expect(stablePush).toHaveBeenCalledWith("/shows/המלט");
+    jest.useRealTimers();
+  });
+
+  // ── Default props ──
+
+  it("renders without shows prop (uses default empty array)", () => {
+    const { container } = render(<ReviewForm />);
+    const hidden = container.querySelector('input[type="hidden"]');
+    expect(hidden).toBeInTheDocument();
   });
 });

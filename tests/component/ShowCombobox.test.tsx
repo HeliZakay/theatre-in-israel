@@ -145,4 +145,68 @@ describe("ShowCombobox", () => {
 
     expect(onValueChange).toHaveBeenCalledWith("");
   });
+
+  // ── Branch coverage improvements ──
+
+  it("renders with all default props", () => {
+    render(<ShowCombobox />);
+    expect(screen.getByRole("combobox")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("חפש.י הצגה…")).toBeInTheDocument();
+  });
+
+  it("renders without id and uses default listbox id", async () => {
+    const user = userEvent.setup();
+    render(
+      <ShowCombobox
+        options={OPTIONS}
+        value=""
+        onValueChange={jest.fn()}
+        onBlur={jest.fn()}
+      />,
+    );
+
+    const input = screen.getByRole("combobox");
+    await user.click(input);
+
+    const listbox = screen.getByRole("listbox");
+    expect(listbox).toHaveAttribute("id", "show-combobox-listbox");
+  });
+
+  it("selects an option without onValueChange provided", async () => {
+    const user = userEvent.setup();
+    render(<ShowCombobox options={OPTIONS} value="" />);
+
+    const input = screen.getByRole("combobox");
+    await user.click(input);
+
+    // Should not throw when clicking an option without onValueChange
+    await user.click(screen.getByText("קזבלן"));
+  });
+
+  it("reverts input text on blur when it does not match any option", async () => {
+    const user = userEvent.setup();
+    const onBlur = jest.fn();
+    const { container } = render(
+      <div>
+        <ShowCombobox
+          options={OPTIONS}
+          value="1"
+          onValueChange={jest.fn()}
+          onBlur={onBlur}
+        />
+        <button>outside</button>
+      </div>,
+    );
+
+    const input = screen.getByRole("combobox");
+    await user.clear(input);
+    await user.type(input, "nonexistent");
+
+    // Click outside to trigger blur
+    await user.click(screen.getByText("outside"));
+
+    // Input should revert to the selected option's label
+    expect(input).toHaveValue("המלט");
+    expect(onBlur).toHaveBeenCalled();
+  });
 });
