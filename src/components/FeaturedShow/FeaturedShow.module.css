@@ -205,9 +205,6 @@
   color: var(--color-curtain-red);
   font-weight: 700;
   font-size: 0.9rem;
-  position: relative;
-  z-index: 11;
-  cursor: pointer;
 }
 
 .actions {
