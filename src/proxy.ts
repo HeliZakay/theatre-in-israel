@@ -3,13 +3,13 @@ import { NextResponse, type NextRequest } from "next/server";
 const MUTATING_METHODS = new Set(["POST", "PATCH", "PUT", "DELETE"]);
 
 /**
- * Middleware handles CSRF protection on mutating API requests.
+ * Proxy handles CSRF protection on mutating API requests.
  *
  * Legacy numeric URL redirects (/shows/:id → /shows/:slug) are handled
  * in the [slug] page component to avoid bundling Prisma into the Edge
  * Function (which would exceed the 1 MB size limit).
  */
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   // ── CSRF protection on API routes ───────────────────────────
   if (
     request.nextUrl.pathname.startsWith("/api/") &&
