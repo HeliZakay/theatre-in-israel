@@ -72,3 +72,63 @@
 .item[data-state="checked"] {
   color: var(--color-curtain-red);
 }
+
+/* ── Native mobile select ── */
+
+.nativeWrapper {
+  display: none;
+  position: relative;
+}
+
+.nativeSelect {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-slate-020);
+  background: #ffffff;
+  color: var(--color-text-primary);
+  padding: 8px 12px 8px 32px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+  cursor: pointer;
+}
+
+.nativeSelect:focus-visible {
+  outline: 3px solid var(--color-curtain-red-030);
+  outline-offset: 2px;
+}
+
+.nativeSelect:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.nativeIcon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-text-primary);
+}
+
+.radixWrapper {
+  display: contents;
+}
+
+/* ── Responsive swap ── */
+
+@media (max-width: 640px) {
+  .nativeWrapper {
+    display: block;
+  }
+
+  .radixWrapper {
+    display: none;
+  }
+}
