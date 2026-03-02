@@ -28,19 +28,6 @@ test.describe("Shows Filtering", () => {
     await page.waitForURL(/theatre=/);
   });
 
-  test("change sort order updates URL", async ({ page }) => {
-    await page.goto("/shows");
-
-    // Open the sort Radix Select
-    const sortSelect = page.getByRole("combobox", { name: "מיון" });
-    await sortSelect.click();
-
-    // Select "דירוג נמוך"
-    await page.getByRole("option", { name: "דירוג נמוך" }).click();
-
-    await page.waitForURL(/sort=rating-asc/);
-  });
-
   test("combine genre and search filters", async ({ page }) => {
     await page.goto("/shows");
 

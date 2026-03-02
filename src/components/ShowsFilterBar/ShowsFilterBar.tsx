@@ -88,11 +88,6 @@ export default function ShowsFilterBar({
     ...theatres.map((theatre) => ({ value: theatre, label: theatre })),
   ];
 
-  const sortOptions = [
-    { value: "rating", label: "דירוג גבוה" },
-    { value: "rating-asc", label: "דירוג נמוך" },
-  ];
-
   return (
     <div className={styles.filterBar} aria-busy={isUpdating}>
       <div className={styles.filterForm}>
@@ -122,20 +117,6 @@ export default function ShowsFilterBar({
             applyFilterUpdate({ theatre });
           }}
           options={theatreOptions}
-        />
-        <label className={styles.filterLabel} htmlFor="sort">
-          מיון
-        </label>
-        <AppSelect
-          id="sort"
-          name="sort"
-          className={styles.select}
-          ariaLabel="מיון"
-          value={optimisticFilters.sort}
-          onValueChange={(value) => {
-            applyFilterUpdate({ sort: value });
-          }}
-          options={sortOptions}
         />
       </div>
       <div className={styles.chipRow}>
