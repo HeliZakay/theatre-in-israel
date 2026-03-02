@@ -85,9 +85,20 @@ export default function FeaturedShow({
         )}
         {quote && (
           <blockquote className={styles.quote}>
-            {quote}
+            <p
+              className={
+                quote.trim().length > 200
+                  ? `${styles.quoteText} ${styles.quoteTextTruncated}`
+                  : styles.quoteText
+              }
+            >
+              {quote}
+            </p>
             {quoteAuthor && (
               <span className={styles.quoteAuthor}>{quoteAuthor}</span>
+            )}
+            {quote.trim().length > 200 && (
+              <span className={styles.readMore}>קרא עוד</span>
             )}
           </blockquote>
         )}
