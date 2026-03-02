@@ -34,10 +34,10 @@ export default function AppSelect({
 }: AppSelectProps) {
   return (
     <>
-      <div className={cx(styles.nativeWrapper, className)}>
+      <div className={styles.nativeWrapper}>
         <select
           id={id ? `${id}-native` : undefined}
-          className={styles.nativeSelect}
+          className={cx(styles.nativeSelect, className)}
           aria-label={ariaLabel}
           value={value}
           onChange={(e) => onValueChange?.(e.target.value)}
