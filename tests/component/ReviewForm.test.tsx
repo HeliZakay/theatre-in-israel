@@ -428,7 +428,7 @@ describe("ReviewForm", () => {
     const currentPush = mockPush;
 
     await act(async () => {
-      jest.advanceTimersByTime(2000);
+      jest.advanceTimersByTime(4000);
     });
 
     expect(stablePush).toHaveBeenCalledWith("/shows/המלט");

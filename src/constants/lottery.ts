@@ -1,5 +1,5 @@
 export const LOTTERY_CONFIG = {
-  enabled: true,
+  enabled: false,
   startDate: new Date("2026-03-02"),
   prize: "זוג כרטיסים לתיאטרון",
 } as const;
