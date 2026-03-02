@@ -1,6 +1,7 @@
 import {
   createReviewSchema,
   updateReviewSchema,
+  clientAnonymousReviewSchema,
   formatZodErrors,
 } from "@/lib/reviewSchemas";
 import { ZodError } from "zod";
@@ -131,5 +132,71 @@ describe("formatZodErrors", () => {
     const fakeError = {} as ZodError;
     const formatted = formatZodErrors(fakeError);
     expect(formatted).toBe("נתונים לא תקינים");
+  });
+});
+
+describe("clientAnonymousReviewSchema", () => {
+  it("accepts valid anonymous input with name", () => {
+    const result = clientAnonymousReviewSchema.safeParse({
+      showId: "1",
+      name: "דני",
+      title: "Great",
+      rating: 5,
+      text: "A valid review text here",
+      honeypot: "",
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("accepts valid input without name", () => {
+    const result = clientAnonymousReviewSchema.safeParse({
+      showId: "1",
+      title: "Great",
+      rating: 5,
+      text: "A valid review text here",
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("accepts empty honeypot", () => {
+    const result = clientAnonymousReviewSchema.safeParse({
+      showId: "1",
+      title: "Great",
+      rating: 5,
+      text: "A valid review text here",
+      honeypot: "",
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("accepts filled honeypot (validation passes, checked in action)", () => {
+    const result = clientAnonymousReviewSchema.safeParse({
+      showId: "1",
+      title: "Great",
+      rating: 5,
+      text: "A valid review text here",
+      honeypot: "bot-value",
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects name longer than 80 chars", () => {
+    const result = clientAnonymousReviewSchema.safeParse({
+      showId: "1",
+      name: "א".repeat(81),
+      title: "Great",
+      rating: 5,
+      text: "A valid review text here",
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("requires showId", () => {
+    const result = clientAnonymousReviewSchema.safeParse({
+      title: "Great",
+      rating: 5,
+      text: "A valid review text here",
+    });
+    expect(result.success).toBe(false);
   });
 });

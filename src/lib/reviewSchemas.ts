@@ -66,6 +66,7 @@ export const createReviewSchema = z.object({
   title: titleField,
   rating: ratingField,
   text: textField,
+  honeypot: z.string().optional(),
 });
 
 /**
@@ -86,6 +87,26 @@ export const clientReviewSchema = z.object({
   title: titleField,
   rating: ratingField,
   text: textField,
+});
+
+/**
+ * Client-side schema for anonymous (unauthenticated) review form.
+ * Adds an optional display name and a honeypot field.
+ */
+export const clientAnonymousReviewSchema = z.object({
+  showId: z.string().trim().min(1, "יש לבחור הצגה"),
+  name: z
+    .string()
+    .trim()
+    .max(REVIEW_NAME_MAX, `השם יכול להכיל עד ${REVIEW_NAME_MAX} תווים`)
+    .optional()
+    .refine((val) => !val || !containsHebrewProfanity(val), {
+      message: "השם מכיל שפה לא הולמת. אנא בחר.י שם אחר.",
+    }),
+  title: titleField,
+  rating: ratingField,
+  text: textField,
+  honeypot: z.string().optional(),
 });
 
 /**
@@ -115,3 +136,6 @@ export function formatZodErrors(err: z.ZodError): string {
 
 export type CreateReviewInput = z.infer<typeof createReviewSchema>;
 export type UpdateReviewInput = z.infer<typeof updateReviewSchema>;
+export type ClientAnonymousReviewInput = z.infer<
+  typeof clientAnonymousReviewSchema
+>;

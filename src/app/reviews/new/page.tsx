@@ -1,10 +1,12 @@
 import styles from "./page.module.css";
 import ROUTES from "@/constants/routes";
 import { getShowOptions } from "@/lib/reviews";
-import { requireAuth } from "@/lib/auth";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import ReviewForm from "@/components/ReviewForm/ReviewForm";
 import CancelButton from "./CancelButton";
 import { SITE_NAME } from "@/lib/seo";
+import ReviewAuthGateway from "@/components/ReviewAuthGateway/ReviewAuthGateway";
 
 import type { Metadata } from "next";
 
@@ -22,11 +24,22 @@ export const metadata: Metadata = {
   },
 };
 
-// Must remain dynamic: requires authentication
+// Must remain dynamic: checks authentication status
 export const dynamic = "force-dynamic";
 
-export default async function NewReviewPage() {
-  await requireAuth(ROUTES.REVIEWS_NEW);
+export default async function NewReviewPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const session = await getServerSession(authOptions);
+  const { guest } = await searchParams;
+
+  const isAuthenticated = !!session;
+
+  if (!isAuthenticated && guest !== "1") {
+    return <ReviewAuthGateway callbackUrl={ROUTES.REVIEWS_NEW} />;
+  }
 
   const shows = await getShowOptions();
   return (
@@ -37,7 +50,7 @@ export default async function NewReviewPage() {
         <p className={styles.subtitle}>בחר.י הצגה ולאחר מכן כתב.י ביקורת.</p>
       </header>
 
-      <ReviewForm shows={shows} />
+      <ReviewForm shows={shows} isAuthenticated={isAuthenticated} />
 
       <CancelButton />
     </main>

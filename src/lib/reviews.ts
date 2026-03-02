@@ -58,6 +58,7 @@ export async function addReview(
       text: review.text,
       rating: review.rating,
       date: new Date(review.date),
+      ip: review.ip,
     },
   });
 

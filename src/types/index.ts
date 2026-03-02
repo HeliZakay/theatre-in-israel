@@ -20,6 +20,7 @@ export interface ReviewInput {
   rating: number;
   date: string;
   userId?: string;
+  ip?: string;
 }
 
 export interface Show {

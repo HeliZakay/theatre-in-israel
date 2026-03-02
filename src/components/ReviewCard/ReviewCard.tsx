@@ -16,6 +16,9 @@ export default function ReviewCard({ review }: ReviewCardProps) {
         <div className={styles.meta}>
           <span className={styles.author} title={review.author}>
             {review.author}
+            {review.userId === null && (
+              <span className={styles.guestBadge}>(אורח/ת)</span>
+            )}
           </span>
           {review.date ? (
             <>

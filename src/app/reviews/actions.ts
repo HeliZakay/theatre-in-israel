@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath, revalidateTag } from "next/cache";
+import { headers } from "next/headers";
 import {
   addReview,
   updateReviewByOwner,
@@ -16,6 +17,7 @@ import { checkFieldsForProfanity } from "@/utils/profanityFilter";
 import {
   checkReviewRateLimit,
   checkEditDeleteRateLimit,
+  checkAnonymousReviewRateLimit,
 } from "@/utils/reviewRateLimit";
 import { requireActionAuth } from "@/utils/actionAuth";
 import {
@@ -77,6 +79,80 @@ export async function createReview(
       rating,
       date: today,
       userId: session.user.id,
+    });
+
+    await revalidateAfterReviewChange(showId);
+
+    return actionSuccess({ showId });
+  } catch (err: unknown) {
+    if (typeof err === "object" && err !== null && "code" in err) {
+      if (err.code === "P2002") {
+        return actionError("כבר כתבת ביקורת להצגה זו.");
+      }
+      if (err.code === "P2003") {
+        return actionError("ההצגה לא נמצאה");
+      }
+    }
+    return actionError(INTERNAL_ERROR_MESSAGE, err);
+  }
+}
+
+export async function createAnonymousReview(
+  formData: FormData,
+): Promise<ActionResult<{ showId: number }>> {
+  try {
+    const headersList = await headers();
+    const ip =
+      headersList.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+
+    const payload = Object.fromEntries(formData.entries());
+
+    // Silent bot rejection: if honeypot is filled, pretend success
+    if (payload.honeypot) {
+      const showId = Number(payload.showId) || 0;
+      return actionSuccess({ showId });
+    }
+
+    const rateLimit = await checkAnonymousReviewRateLimit(ip);
+    if (rateLimit.isLimited) {
+      return actionError("יצרת יותר מדי ביקורות לאחרונה. נס.י שוב מאוחר יותר.");
+    }
+
+    const result = createReviewSchema.safeParse(payload);
+    if (!result.success) {
+      return actionError(formatZodErrors(result.error));
+    }
+
+    const { showId, name, title, rating, text } = result.data;
+    const authorName = name?.trim() || "אנונימי";
+
+    const profanityMessages: Record<string, string> = {
+      title: "הכותרת מכילה שפה לא הולמת. אנא נסח.י מחדש.",
+      text: "התגובה מכילה שפה לא הולמת. אנא נסח.י מחדש.",
+      authorName: "השם מכיל שפה לא הולמת. אנא בחר.י שם אחר.",
+    };
+    const badField = checkFieldsForProfanity({ title, text, authorName });
+    if (badField) {
+      return actionError(profanityMessages[badField]);
+    }
+
+    // IP-based dedup: one anonymous review per IP per show
+    const existingAnonymousReview = await prisma.review.findFirst({
+      where: { ip, showId, userId: null },
+      select: { id: true },
+    });
+    if (existingAnonymousReview) {
+      return actionError("כבר כתבת ביקורת להצגה זו.");
+    }
+
+    const today = new Date().toISOString().slice(0, 10);
+    await addReview(showId, {
+      author: authorName,
+      title,
+      text,
+      rating,
+      date: today,
+      ip,
     });
 
     await revalidateAfterReviewChange(showId);

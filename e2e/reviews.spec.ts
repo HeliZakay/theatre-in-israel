@@ -83,10 +83,24 @@ test.describe("Create Review", () => {
     await page.waitForURL(`/shows/${firstShow.slug}`, { timeout: 10_000 });
   });
 
-  test("review form requires authentication", async ({ page }) => {
+  test("review form is accessible without authentication", async ({ page }) => {
     await page.goto("/reviews/new");
-    // Should redirect to sign in
-    await expect(page).toHaveURL(/\/auth\/signin/);
-    expect(page.url()).toContain("callbackUrl");
+
+    // Should show the auth gateway first
+    await expect(
+      page.getByRole("heading", { name: "כתיבת ביקורת" }),
+    ).toBeVisible();
+
+    // Click through the gateway as guest
+    await page.getByRole("link", { name: "המשך בלי חשבון" }).click();
+
+    // Now the form should be visible
+    await expect(
+      page.getByRole("heading", { name: "כתב.י ביקורת" }),
+    ).toBeVisible();
+    // Anonymous users should see the name field
+    await expect(page.locator('input[name="name"]')).toBeVisible();
+    // Should show sign-in hint
+    await expect(page.getByText("יש לך חשבון?")).toBeVisible();
   });
 });

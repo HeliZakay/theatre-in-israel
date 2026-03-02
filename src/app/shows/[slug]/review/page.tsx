@@ -2,10 +2,12 @@ import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { cache } from "react";
-import ROUTES, { showPath, showReviewPath } from "@/constants/routes";
-import { requireAuth } from "@/lib/auth";
+import { showPath, showReviewPath } from "@/constants/routes";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import { getShowBySlug } from "@/lib/data/showDetail";
 import ReviewForm from "@/components/ReviewForm/ReviewForm";
+import ReviewAuthGateway from "@/components/ReviewAuthGateway/ReviewAuthGateway";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import { SITE_NAME } from "@/lib/seo";
@@ -16,6 +18,7 @@ export const dynamic = "force-dynamic";
 
 interface NewReviewPageProps {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 const getShowForReviewPage = cache(async (slug: string) => getShowBySlug(slug));
@@ -46,15 +49,30 @@ export async function generateMetadata({
   };
 }
 
-export default async function NewReviewPage({ params }: NewReviewPageProps) {
+export default async function NewReviewPage({
+  params,
+  searchParams,
+}: NewReviewPageProps) {
   const { slug: rawSlug } = await params;
   const slug = decodeURIComponent(rawSlug);
-  await requireAuth(showReviewPath(slug));
+  const session = await getServerSession(authOptions);
+  const { guest } = await searchParams;
 
   const show = await getShowForReviewPage(slug);
 
   if (!show) {
     notFound();
+  }
+
+  const isAuthenticated = !!session;
+
+  if (!isAuthenticated && guest !== "1") {
+    return (
+      <ReviewAuthGateway
+        callbackUrl={showReviewPath(slug)}
+        backUrl={showPath(slug)}
+      />
+    );
   }
 
   return (
@@ -82,7 +100,11 @@ export default async function NewReviewPage({ params }: NewReviewPageProps) {
         </aside>
 
         <div className={styles.formWrap}>
-          <ReviewForm initialShowId={show.id} initialShowSlug={show.slug} />
+          <ReviewForm
+            initialShowId={show.id}
+            initialShowSlug={show.slug}
+            isAuthenticated={isAuthenticated}
+          />
           <div className={styles.cancelRow}>
             <Link className={styles.ghostBtn} href={showPath(show.slug)}>
               חזרה לדף ההצגה

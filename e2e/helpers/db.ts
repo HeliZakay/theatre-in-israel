@@ -33,6 +33,18 @@ export async function cleanupTestData(userId: string): Promise<void> {
 }
 
 /**
+ * Clean up anonymous reviews created during E2E tests (identified by IP).
+ * Also cleans up rate limit attempts.
+ */
+export async function cleanupAnonymousTestData(
+  ip: string = "127.0.0.1",
+): Promise<void> {
+  const db = getTestPrisma();
+  await db.review.deleteMany({ where: { ip, userId: null } });
+  await db.rateLimitAttempt.deleteMany({});
+}
+
+/**
  * Create a review directly in the DB for test setup.
  */
 export async function createTestReview(

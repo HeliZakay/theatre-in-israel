@@ -2,17 +2,23 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Controller, useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type * as z from "zod";
 import styles from "./ReviewForm.module.css";
 import fieldStyles from "@/components/ReviewFormFields/ReviewFormFields.module.css";
-import { createReview } from "@/app/reviews/actions";
+import { createReview, createAnonymousReview } from "@/app/reviews/actions";
 import ShowCombobox from "@/components/ShowCombobox/ShowCombobox";
 import ReviewFormFields from "@/components/ReviewFormFields/ReviewFormFields";
-import { clientReviewSchema } from "@/lib/reviewSchemas";
+import {
+  clientReviewSchema,
+  clientAnonymousReviewSchema,
+} from "@/lib/reviewSchemas";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import { getShowImagePath } from "@/utils/getShowImagePath";
+import { REVIEW_NAME_MAX } from "@/constants/reviewValidation";
+import ROUTES from "@/constants/routes";
 import type { Show } from "@/types";
 
 /** Minimal show data needed for the combobox + poster. */
@@ -22,17 +28,23 @@ interface ReviewFormProps {
   shows?: ShowOption[];
   initialShowId?: number | string;
   initialShowSlug?: string;
+  isAuthenticated?: boolean;
 }
 
 export default function ReviewForm({
   shows = [],
   initialShowId = "",
   initialShowSlug = "",
+  isAuthenticated = true,
 }: ReviewFormProps) {
   const router = useRouter();
   const [serverError, setServerError] = useState("");
   const [success, setSuccess] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const schema = isAuthenticated
+    ? clientReviewSchema
+    : clientAnonymousReviewSchema;
 
   const {
     control,
@@ -40,12 +52,13 @@ export default function ReviewForm({
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm({
-    resolver: zodResolver(clientReviewSchema),
+    resolver: zodResolver(schema),
     defaultValues: {
       showId: String(initialShowId ?? ""),
       title: "",
       rating: "",
       text: "",
+      ...(isAuthenticated ? {} : { name: "", honeypot: "" }),
     },
   });
 
@@ -59,16 +72,22 @@ export default function ReviewForm({
   const titleValue = useWatch({ control, name: "title" }) ?? "";
   const textValue = useWatch({ control, name: "text" }) ?? "";
 
-  const onSubmit = async (values: z.infer<typeof clientReviewSchema>) => {
+  const onSubmit = async (values: Record<string, unknown>) => {
     setServerError("");
     try {
       const formData = new FormData();
       formData.set("showId", String(values.showId));
-      formData.set("title", values.title);
+      formData.set("title", String(values.title));
       formData.set("rating", String(values.rating));
-      formData.set("text", values.text);
+      formData.set("text", String(values.text));
 
-      const result = await createReview(formData);
+      if (!isAuthenticated) {
+        formData.set("name", String(values.name ?? ""));
+        formData.set("honeypot", String(values.honeypot ?? ""));
+      }
+
+      const action = isAuthenticated ? createReview : createAnonymousReview;
+      const result = await action(formData);
 
       if (!result.success) {
         setServerError(result.error);
@@ -88,9 +107,6 @@ export default function ReviewForm({
     }
   };
 
-  // Wrap react-hook-form's `handleSubmit` so we don't call it during
-  // render (some lint rules flag calling it directly in JSX). This
-  // returns an event handler that will invoke the RHF submit logic.
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     handleSubmit(onSubmit)(e);
@@ -135,6 +151,40 @@ export default function ReviewForm({
         </label>
       ) : (
         <input type="hidden" {...register("showId")} />
+      )}
+
+      {!isAuthenticated && (
+        <>
+          <label className={fieldStyles.field}>
+            <span className={fieldStyles.label}>שם (לא חובה)</span>
+            <input
+              className={fieldStyles.input}
+              type="text"
+              placeholder="אנונימי"
+              maxLength={REVIEW_NAME_MAX}
+              disabled={isSubmitting || success}
+              {...(register as Function)("name")}
+            />
+            {(errors as Record<string, { message?: string }>).name ? (
+              <p className={fieldStyles.fieldError} role="alert">
+                {(errors as Record<string, { message?: string }>).name?.message}
+              </p>
+            ) : null}
+          </label>
+
+          {/* Honeypot field — hidden from real users, filled by bots */}
+          <div className={styles.honeypot} aria-hidden="true">
+            <label>
+              <span>Leave this empty</span>
+              <input
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                {...(register as Function)("honeypot")}
+              />
+            </label>
+          </div>
+        </>
       )}
 
       <ReviewFormFields
@@ -183,6 +233,13 @@ export default function ReviewForm({
           )}
         </button>
       </div>
+
+      {!isAuthenticated && (
+        <p className={styles.signInHint}>
+          יש לך חשבון? <Link href={ROUTES.AUTH_SIGNIN}>התחבר.י</Link> כדי לערוך
+          ביקורות בעתיד
+        </p>
+      )}
     </form>
   );
 

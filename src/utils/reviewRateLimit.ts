@@ -70,3 +70,31 @@ export async function checkEditDeleteRateLimit(userId: string): Promise<{
 
   return { isLimited: false };
 }
+
+const ANONYMOUS_REVIEW_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+const ANONYMOUS_MAX_REVIEWS = 20; // max 20 anonymous reviews per hour per IP
+const ANONYMOUS_UNKNOWN_IP_MAX = 5; // only 5 if IP is unknown
+
+/**
+ * Check if an anonymous visitor (identified by IP) has exceeded the
+ * rate limit for creating reviews.
+ */
+export async function checkAnonymousReviewRateLimit(
+  ip: string,
+): Promise<{ isLimited: boolean; remainingTime?: number }> {
+  const maxAttempts =
+    ip === "unknown" ? ANONYMOUS_UNKNOWN_IP_MAX : ANONYMOUS_MAX_REVIEWS;
+
+  const result = await checkRateLimit(
+    `ip:${ip}`,
+    "anonymous-review",
+    maxAttempts,
+    ANONYMOUS_REVIEW_WINDOW_MS,
+  );
+
+  if (!result.allowed) {
+    return { isLimited: true, remainingTime: 60 };
+  }
+
+  return { isLimited: false };
+}

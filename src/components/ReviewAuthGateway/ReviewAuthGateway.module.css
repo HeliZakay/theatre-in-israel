@@ -1,0 +1,124 @@
+.page {
+  min-height: calc(100vh - var(--header-offset));
+  padding: clamp(32px, 6vw, 72px) clamp(16px, 6vw, 96px);
+  display: grid;
+  place-items: center;
+}
+
+.card {
+  width: min(100%, 520px);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+  padding: clamp(28px, 4vw, 40px);
+  display: grid;
+  gap: 16px;
+  text-align: center;
+}
+
+.title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--color-text-primary);
+  font-weight: 700;
+}
+
+.subtitle {
+  color: rgba(26, 26, 26, 0.72);
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.actions {
+  display: grid;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.primaryBtn {
+  display: block;
+  border: none;
+  border-radius: 10px;
+  background: var(--color-curtain-red);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 14px 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.primaryBtn:hover {
+  opacity: 0.9;
+}
+
+.secondaryBtn {
+  display: block;
+  border: 1px solid rgba(15, 23, 42, 0.2);
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 14px 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s;
+}
+
+.secondaryBtn:hover {
+  background: rgba(15, 23, 42, 0.04);
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.12);
+}
+
+.benefitNote {
+  font-size: 0.85rem;
+  color: rgba(26, 26, 26, 0.55);
+  line-height: 1.5;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(26, 26, 26, 0.5);
+  font-size: 0.9rem;
+  margin: 4px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(15, 23, 42, 0.15);
+}
+
+.guestLink {
+  color: var(--color-curtain-red);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: text-decoration 0.2s;
+}
+
+.guestLink:hover {
+  text-decoration: underline;
+}
+
+.backLink {
+  color: var(--color-text-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 4px;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
