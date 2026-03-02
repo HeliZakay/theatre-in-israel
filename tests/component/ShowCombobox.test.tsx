@@ -2,6 +2,12 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import ShowCombobox from "@/components/ShowCombobox/ShowCombobox";
 
+/* ── Mock useMediaQuery so desktop tests keep the inline dropdown ── */
+const mockUseMediaQuery = jest.fn(() => false);
+jest.mock("@/hooks/useMediaQuery", () => ({
+  useMediaQuery: (...args: unknown[]) => mockUseMediaQuery(...args),
+}));
+
 const OPTIONS = [
   { value: "1", label: "המלט" },
   { value: "2", label: "קברט" },
@@ -208,5 +214,105 @@ describe("ShowCombobox", () => {
     // Input should revert to the selected option's label
     expect(input).toHaveValue("המלט");
     expect(onBlur).toHaveBeenCalled();
+  });
+});
+
+/* ── Mobile bottom-sheet variant ── */
+
+describe("ShowCombobox (mobile)", () => {
+  beforeEach(() => {
+    mockUseMediaQuery.mockReturnValue(true);
+  });
+
+  afterEach(() => {
+    mockUseMediaQuery.mockReturnValue(false);
+  });
+
+  it("renders a trigger button instead of a combobox input", () => {
+    render(
+      <ShowCombobox
+        options={OPTIONS}
+        value=""
+        onValueChange={jest.fn()}
+        placeholder="חפש.י הצגה…"
+      />,
+    );
+    expect(screen.queryByRole("combobox")).not.toBeInTheDocument();
+    const trigger = screen.getByRole("button", { name: /חפש.י הצגה…/ });
+    expect(trigger).toBeInTheDocument();
+  });
+
+  it("shows the selected option label in the trigger", () => {
+    render(
+      <ShowCombobox options={OPTIONS} value="3" onValueChange={jest.fn()} />,
+    );
+    expect(screen.getByRole("button")).toHaveTextContent("שיכור");
+  });
+
+  it("opens a dialog sheet when trigger is tapped", async () => {
+    const user = userEvent.setup();
+    render(
+      <ShowCombobox options={OPTIONS} value="" onValueChange={jest.fn()} />,
+    );
+
+    await user.click(screen.getByRole("button"));
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    expect(screen.getByRole("listbox")).toBeInTheDocument();
+    expect(screen.getAllByRole("option")).toHaveLength(OPTIONS.length);
+  });
+
+  it("filters options via the search input inside the sheet", async () => {
+    const user = userEvent.setup();
+    render(
+      <ShowCombobox options={OPTIONS} value="" onValueChange={jest.fn()} />,
+    );
+
+    await user.click(screen.getByRole("button"));
+    const searchInput = screen.getByPlaceholderText("חפש.י הצגה…");
+    await user.type(searchInput, "קב");
+
+    const options = screen.getAllByRole("option");
+    expect(options).toHaveLength(1);
+    expect(options[0]).toHaveTextContent("קברט");
+  });
+
+  it("calls onValueChange and closes sheet on option tap", async () => {
+    const user = userEvent.setup();
+    const onValueChange = jest.fn();
+    render(
+      <ShowCombobox options={OPTIONS} value="" onValueChange={onValueChange} />,
+    );
+
+    await user.click(screen.getByRole("button"));
+    await user.click(screen.getByText("קזבלן"));
+
+    expect(onValueChange).toHaveBeenCalledWith("4");
+    // Dialog should close after selection
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
+
+  it("shows empty message when no match in sheet", async () => {
+    const user = userEvent.setup();
+    render(
+      <ShowCombobox options={OPTIONS} value="" onValueChange={jest.fn()} />,
+    );
+
+    await user.click(screen.getByRole("button"));
+    const searchInput = screen.getByPlaceholderText("חפש.י הצגה…");
+    await user.type(searchInput, "xyz123");
+
+    expect(screen.getByText("לא נמצאו תוצאות")).toBeInTheDocument();
+  });
+
+  it("marks aria-invalid on trigger when invalid", () => {
+    render(
+      <ShowCombobox
+        options={OPTIONS}
+        value=""
+        onValueChange={jest.fn()}
+        invalid
+      />,
+    );
+    expect(screen.getByRole("button")).toHaveAttribute("aria-invalid", "true");
   });
 });

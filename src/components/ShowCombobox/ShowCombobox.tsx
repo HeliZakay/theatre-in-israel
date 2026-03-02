@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useCombobox } from "@/hooks/useCombobox";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
+import ShowComboboxSheet from "./ShowComboboxSheet";
 import styles from "./ShowCombobox.module.css";
 import { cx } from "@/utils/cx";
 import type { SelectOption } from "@/types";
@@ -18,6 +20,50 @@ interface ShowComboboxProps {
 }
 
 export default function ShowCombobox({
+  options = [],
+  value = "",
+  onValueChange,
+  placeholder = "חפש.י הצגה…",
+  id,
+  onBlur,
+  invalid = false,
+  ariaDescribedBy,
+}: ShowComboboxProps) {
+  const isMobile = useMediaQuery(768);
+
+  // On mobile, render the bottom-sheet variant
+  if (isMobile) {
+    return (
+      <ShowComboboxSheet
+        options={options}
+        value={value}
+        onValueChange={onValueChange}
+        placeholder={placeholder}
+        id={id}
+        invalid={invalid}
+        ariaDescribedBy={ariaDescribedBy}
+      />
+    );
+  }
+
+  // Desktop: inline combobox dropdown
+  return (
+    <DesktopCombobox
+      options={options}
+      value={value}
+      onValueChange={onValueChange}
+      placeholder={placeholder}
+      id={id}
+      onBlur={onBlur}
+      invalid={invalid}
+      ariaDescribedBy={ariaDescribedBy}
+    />
+  );
+}
+
+/* ── Desktop dropdown variant ── */
+
+function DesktopCombobox({
   options = [],
   value = "",
   onValueChange,
@@ -75,7 +121,7 @@ export default function ShowCombobox({
   };
 
   const handleItemTap = useCallback(
-    (item: string) => (e: React.MouseEvent | React.TouchEvent) => {
+    (item: string) => (e: React.MouseEvent) => {
       e.preventDefault();
       e.stopPropagation();
       selectItem(item);
@@ -127,7 +173,7 @@ export default function ShowCombobox({
           id={listboxId}
           role="listbox"
           className={styles.listbox}
-          onMouseDown={(e) => e.preventDefault()}
+          onPointerDown={(e) => e.preventDefault()}
         >
           {filteredItems.length === 0 ? (
             <li className={styles.empty}>לא נמצאו תוצאות</li>
@@ -148,7 +194,6 @@ export default function ShowCombobox({
                   ]
                     .filter(Boolean)
                     .join(" ")}
-                  onTouchEnd={handleItemTap(item)}
                   onClick={handleItemTap(item)}
                   onMouseEnter={() => setActiveIndex(index)}
                 >
