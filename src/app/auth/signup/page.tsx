@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ROUTES from "@/constants/routes";
 import { isValidCallbackUrl } from "@/utils/auth";
+import { isLotteryActive } from "@/constants/lottery";
 import SignUpForm from "./SignUpForm";
 import styles from "../signin/page.module.css";
 
@@ -33,6 +34,11 @@ export default async function SignUpPage({ searchParams }: SignUpPageProps) {
         <p className={styles.subtitle}>
           צר.י חשבון חדש כדי לכתוב ביקורות ולנהל את הביקורות שלך.
         </p>
+        {isLotteryActive() && (
+          <p className={styles.lotteryIncentive}>
+            🎟️ הרשמ.י וכתב.י ביקורות כדי להשתתף בהגרלה לזוג כרטיסים לתיאטרון!
+          </p>
+        )}
         <SignUpForm callbackUrl={callbackUrl} />
         <Link className={styles.backLink} href={ROUTES.HOME}>
           חזרה לדף הבית

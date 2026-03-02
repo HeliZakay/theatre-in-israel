@@ -5,6 +5,9 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { formatDate } from "@/utils/formatDate";
 import EditProfileForm from "@/components/EditProfileForm/EditProfileForm";
+import { isLotteryActive } from "@/constants/lottery";
+import { getLotteryEntriesCount } from "@/lib/lottery";
+import LotterySection from "./LotterySection";
 import styles from "./page.module.css";
 
 import type { Metadata } from "next";
@@ -28,6 +31,11 @@ export default async function MyProfilePage() {
   if (!profile) {
     redirect(ROUTES.AUTH_SIGNIN);
   }
+
+  const lotteryActive = isLotteryActive();
+  const lotteryEntries = lotteryActive
+    ? await getLotteryEntriesCount(session.user.id)
+    : 0;
 
   return (
     <main className={styles.page} id="main-content">
@@ -88,7 +96,17 @@ export default async function MyProfilePage() {
             </span>
             <span className={styles.statLabel}>תאריך הצטרפות</span>
           </div>
+          {lotteryActive && (
+            <div className={styles.stat}>
+              <span className={`${styles.statValue} ${styles.statValueGold}`}>
+                {lotteryEntries}
+              </span>
+              <span className={styles.statLabel}>🎟️ כרטיסי הגרלה</span>
+            </div>
+          )}
         </div>
+
+        {lotteryActive && <LotterySection entries={lotteryEntries} />}
       </section>
 
       {/* Display name edit */}

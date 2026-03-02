@@ -1,6 +1,8 @@
 import Hero from "@/components/Hero/Hero";
 import CtaStrip from "@/components/CtaStrip/CtaStrip";
 import ShowsSection from "@/components/ShowsSection/ShowsSection";
+import LotteryBanner from "@/components/LotteryBanner/LotteryBanner";
+import { isLotteryActive } from "@/constants/lottery";
 import styles from "./page.module.css";
 import ROUTES from "@/constants/routes";
 import { getHomePageData } from "@/lib/data/homepage";
@@ -54,6 +56,8 @@ export default async function Home() {
         featuredReview={featuredReview}
       />
 
+      <LotteryBanner />
+
       <ShowsSection
         kicker="המובילים"
         title="דירוגים גבוהים"
@@ -96,7 +100,11 @@ export default async function Home() {
 
       <CtaStrip
         title="כתב.י ביקורת ועזר.י לאחרים לבחור"
-        text="כמה דקות של כתיבה יכולות לחסוך לקהל ערב לא מוצלח."
+        text={
+          isLotteryActive()
+            ? "כל ביקורת = כרטיס להגרלה על זוג כרטיסים לתיאטרון! 🎟️"
+            : "כמה דקות של כתיבה יכולות לחסוך לקהל ערב לא מוצלח."
+        }
         buttonText="כתב.י ביקורת"
         href={ROUTES.REVIEWS_NEW}
       />

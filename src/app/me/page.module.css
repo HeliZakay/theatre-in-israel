@@ -157,3 +157,53 @@
     min-width: 70px;
   }
 }
+
+/* ── Lottery ────────────────────────────── */
+
+.statValueGold {
+  color: var(--color-lottery-gold);
+}
+
+.lotterySection {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 10px;
+  background: var(--color-lottery-gold-light);
+  border: 1px solid rgba(212, 160, 23, 0.2);
+}
+
+.lotteryCta {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.6;
+}
+
+.lotteryActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.lotteryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  border-radius: 8px;
+  background: var(--color-lottery-gold);
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    transform 0.15s;
+}
+
+.lotteryButton:hover {
+  background: var(--color-lottery-gold-hover);
+  transform: translateY(-1px);
+}

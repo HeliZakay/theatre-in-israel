@@ -12,6 +12,7 @@ import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import ReviewCard from "@/components/ReviewCard/ReviewCard";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import WatchlistButton from "@/components/WatchlistButton/WatchlistButton";
+import LotteryBadge from "@/components/LotteryBadge/LotteryBadge";
 import { getShowStats } from "@/utils/showStats";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import {
@@ -233,6 +234,7 @@ export default async function ShowPage({ params }: ShowPageProps) {
                 initialInWatchlist={initialInWatchlist}
               />
             </div>
+            <LotteryBadge text="🎟️ כתיבת ביקורת = כרטיס להגרלה" />
           </div>
         </div>
       </header>

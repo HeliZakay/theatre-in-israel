@@ -20,6 +20,8 @@ import {
   checkAnonymousReviewRateLimit,
 } from "@/utils/reviewRateLimit";
 import { requireActionAuth } from "@/utils/actionAuth";
+import { getLotteryEntriesCount } from "@/lib/lottery";
+import { isLotteryActive } from "@/constants/lottery";
 import {
   actionSuccess,
   actionError,
@@ -43,7 +45,7 @@ async function revalidateAfterReviewChange(showId: number): Promise<void> {
 
 export async function createReview(
   formData: FormData,
-): Promise<ActionResult<{ showId: number }>> {
+): Promise<ActionResult<{ showId: number; lotteryEntries?: number }>> {
   try {
     const auth = await requireActionAuth("יש להתחבר כדי לכתוב ביקורת", {
       check: checkReviewRateLimit,
@@ -82,6 +84,11 @@ export async function createReview(
     });
 
     await revalidateAfterReviewChange(showId);
+
+    if (isLotteryActive()) {
+      const lotteryEntries = await getLotteryEntriesCount(session.user.id);
+      return actionSuccess({ showId, lotteryEntries });
+    }
 
     return actionSuccess({ showId });
   } catch (err: unknown) {

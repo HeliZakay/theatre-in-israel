@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ROUTES } from "@/constants/routes";
+import { isLotteryActive } from "@/constants/lottery";
 import styles from "./ReviewAuthGateway.module.css";
 
 interface ReviewAuthGatewayProps {
@@ -11,11 +12,19 @@ export default function ReviewAuthGateway({
   callbackUrl,
   backUrl,
 }: ReviewAuthGatewayProps) {
+  const lotteryActive = isLotteryActive();
+
   return (
     <main className={styles.page}>
       <section className={styles.card}>
         <h1 className={styles.title}>כתיבת ביקורת</h1>
         <p className={styles.subtitle}>איך תרצה להמשיך?</p>
+
+        {lotteryActive && (
+          <p className={styles.lotteryCallout}>
+            🎟️ כל ביקורת = כרטיס להגרלה לזוג כרטיסים!
+          </p>
+        )}
 
         <div className={styles.actions}>
           <Link
@@ -34,6 +43,7 @@ export default function ReviewAuthGateway({
 
         <p className={styles.benefitNote}>
           עם חשבון תוכל.י לערוך ולמחוק ביקורות
+          {lotteryActive ? " ולהשתתף בהגרלה" : ""}
         </p>
 
         <div className={styles.divider}>או</div>
@@ -41,6 +51,12 @@ export default function ReviewAuthGateway({
         <Link className={styles.guestLink} href={`${callbackUrl}?guest=1`}>
           המשך בלי חשבון
         </Link>
+
+        {lotteryActive && (
+          <p className={styles.guestExclusion}>
+            (ביקורות אנונימיות לא משתתפות בהגרלה)
+          </p>
+        )}
 
         <Link className={styles.backLink} href={backUrl || ROUTES.HOME}>
           → חזרה

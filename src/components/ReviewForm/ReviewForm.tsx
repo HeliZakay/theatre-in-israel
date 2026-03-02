@@ -11,6 +11,7 @@ import fieldStyles from "@/components/ReviewFormFields/ReviewFormFields.module.c
 import { createReview, createAnonymousReview } from "@/app/reviews/actions";
 import ShowCombobox from "@/components/ShowCombobox/ShowCombobox";
 import ReviewFormFields from "@/components/ReviewFormFields/ReviewFormFields";
+import ShareButtons from "@/components/ShareButtons/ShareButtons";
 import {
   clientReviewSchema,
   clientAnonymousReviewSchema,
@@ -18,6 +19,7 @@ import {
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import { REVIEW_NAME_MAX } from "@/constants/reviewValidation";
+import { isLotteryActive } from "@/constants/lottery";
 import ROUTES from "@/constants/routes";
 import type { Show } from "@/types";
 
@@ -37,9 +39,11 @@ export default function ReviewForm({
   initialShowSlug = "",
   isAuthenticated = true,
 }: ReviewFormProps) {
+  const isAnonymous = !isAuthenticated;
   const router = useRouter();
   const [serverError, setServerError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [lotteryEntries, setLotteryEntries] = useState<number | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const schema = isAuthenticated
@@ -94,14 +98,27 @@ export default function ReviewForm({
         return;
       }
 
+      // Store lottery entries if returned (authenticated + lottery active)
+      if (
+        result.success &&
+        "lotteryEntries" in result.data &&
+        typeof result.data.lotteryEntries === "number"
+      ) {
+        setLotteryEntries(result.data.lotteryEntries);
+      }
+
       // Show inline success and navigate after a short delay
+      // Longer timeout for authenticated reviews when lottery is active to allow sharing
       setSuccess(true);
-      timerRef.current = setTimeout(() => {
-        const slug =
-          shows.find((s) => String(s.id) === String(values.showId))?.slug ??
-          initialShowSlug;
-        router.push(`/shows/${slug}`);
-      }, 1800);
+      timerRef.current = setTimeout(
+        () => {
+          const slug =
+            shows.find((s) => String(s.id) === String(values.showId))?.slug ??
+            initialShowSlug;
+          router.push(`/shows/${slug}`);
+        },
+        !isAnonymous && isLotteryActive() ? 4000 : 1800,
+      );
     } catch (err: unknown) {
       setServerError(err instanceof Error ? err.message : String(err));
     }
@@ -210,6 +227,26 @@ export default function ReviewForm({
               <p className={styles.successSubtitle}>
                 מעבירים אותך לעמוד ההצגה...
               </p>
+            </div>
+          </div>
+        ) : null}
+        {success &&
+        !isAnonymous &&
+        isLotteryActive() &&
+        lotteryEntries !== null ? (
+          <div className={styles.lotterySection}>
+            <p className={styles.lotteryTitle}>🎟️ קיבלת כרטיס להגרלה!</p>
+            <p className={styles.lotteryCount}>
+              יש לך {lotteryEntries} כרטיס{lotteryEntries === 1 ? "" : "ים"}{" "}
+              להגרלה
+            </p>
+            <div className={styles.lotteryShare}>
+              <ShareButtons
+                text="כתבתי ביקורת באתר תיאטרון בישראל והשתתפתי בהגרלה לזוג כרטיסים! כתבו גם אתם 🎭"
+                url={
+                  typeof window !== "undefined" ? window.location.origin : "/"
+                }
+              />
             </div>
           </div>
         ) : null}

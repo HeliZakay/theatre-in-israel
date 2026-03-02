@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.container a,
+.container button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.container a:hover,
+.container button:hover {
+  opacity: 0.85;
+}
+
+.whatsapp {
+  background: #25d366;
+  color: #ffffff;
+}
+
+.copy {
+  background: var(--color-slate-008);
+  color: var(--color-text-primary);
+  min-width: 110px;
+}
+
+.twitter {
+  background: #000000;
+  color: #ffffff;
+}
+
+.native {
+  background: var(--color-curtain-red);
+  color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .container {
+    width: 100%;
+  }
+
+  .container a,
+  .container button {
+    flex: 1;
+    min-width: 0;
+  }
+}

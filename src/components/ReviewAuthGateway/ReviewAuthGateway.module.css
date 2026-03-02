@@ -76,6 +76,17 @@
   box-shadow: 0 1px 4px rgba(15, 23, 42, 0.12);
 }
 
+.lotteryCallout {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #7a5a00;
+  background: var(--color-lottery-gold-light);
+  border: 1px solid var(--color-lottery-gold);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  line-height: 1.5;
+}
+
 .benefitNote {
   font-size: 0.85rem;
   color: rgba(26, 26, 26, 0.55);
@@ -109,6 +120,13 @@
 
 .guestLink:hover {
   text-decoration: underline;
+}
+
+.guestExclusion {
+  font-size: 0.8rem;
+  color: rgba(26, 26, 26, 0.5);
+  line-height: 1.4;
+  margin-top: -8px;
 }
 
 .backLink {
