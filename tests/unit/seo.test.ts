@@ -236,7 +236,7 @@ describe("seo", () => {
         "/shows/hamlet",
       );
       expect(result["@context"]).toBe("https://schema.org");
-      expect(result["@type"]).toBe("CreativeWork");
+      expect(result["@type"]).toBe("CreativeWorkSeries");
       expect(result.name).toBe("המלט");
     });
 

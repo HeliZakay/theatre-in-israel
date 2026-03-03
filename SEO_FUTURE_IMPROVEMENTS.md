@@ -147,7 +147,7 @@ For reference, these SEO features are already in place:
 - Canonical URLs on all indexable pages
 - OpenGraph metadata (type, locale, siteName, images)
 - Twitter card on root layout + show detail pages
-- JSON-LD: WebSite (with SearchAction), Organization, BreadcrumbList, ItemList, CreativeWork with AggregateRating + Reviews
+- JSON-LD: WebSite (with SearchAction), Organization, BreadcrumbList, ItemList, CreativeWorkSeries with AggregateRating + Reviews
 - `robots.txt` blocking API routes, auth pages, user pages, and form pages
 - Dynamic sitemap from database with per-show `lastModified` from latest review
 - Smart `noindex` for filtered/paginated/search results
