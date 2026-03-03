@@ -11,6 +11,7 @@ import {
   INTERNAL_ERROR_MESSAGE,
   type ActionResult,
 } from "@/types/actionResult";
+import { notifyUserSignup } from "@/lib/email";
 
 const BCRYPT_ROUNDS = 12;
 
@@ -61,6 +62,8 @@ export async function signup(values: {
           name: name || null,
         },
       });
+
+      notifyUserSignup({ email, name }).catch(console.error);
 
       return actionSuccess({
         user: {

@@ -28,6 +28,7 @@ import {
   INTERNAL_ERROR_MESSAGE,
   type ActionResult,
 } from "@/types/actionResult";
+import { notifyNewReview } from "@/lib/email";
 
 async function revalidateAfterReviewChange(showId: number): Promise<void> {
   const show = await prisma.show.findUnique({
@@ -84,6 +85,19 @@ export async function createReview(
     });
 
     await revalidateAfterReviewChange(showId);
+
+    const show = await prisma.show.findUnique({
+      where: { id: showId },
+      select: { title: true },
+    });
+    notifyNewReview({
+      authorName,
+      showTitle: show?.title ?? `הצגה #${showId}`,
+      rating,
+      title,
+      text,
+      isAnonymous: false,
+    }).catch(console.error);
 
     if (isLotteryActive()) {
       const lotteryEntries = await getLotteryEntriesCount(session.user.id);
@@ -163,6 +177,19 @@ export async function createAnonymousReview(
     });
 
     await revalidateAfterReviewChange(showId);
+
+    const show = await prisma.show.findUnique({
+      where: { id: showId },
+      select: { title: true },
+    });
+    notifyNewReview({
+      authorName,
+      showTitle: show?.title ?? `הצגה #${showId}`,
+      rating,
+      title,
+      text,
+      isAnonymous: true,
+    }).catch(console.error);
 
     return actionSuccess({ showId });
   } catch (err: unknown) {

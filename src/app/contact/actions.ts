@@ -12,10 +12,7 @@ import {
   INTERNAL_ERROR_MESSAGE,
   type ActionResult,
 } from "@/types/actionResult";
-import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
-const CONTACT_RECIPIENT = "helizakay1@gmail.com";
+import { resend, NOTIFICATION_RECIPIENT } from "@/lib/email";
 
 export async function sendContactMessage(values: {
   name: string;
@@ -71,7 +68,7 @@ export async function sendContactMessage(values: {
 
     await resend.emails.send({
       from: "תיאטרון בישראל <onboarding@resend.dev>",
-      to: CONTACT_RECIPIENT,
+      to: NOTIFICATION_RECIPIENT,
       subject: `הודעה חדשה מטופס יצירת קשר — ${name}`,
       html: `
         <div dir="rtl" style="font-family: sans-serif; line-height: 1.6;">
