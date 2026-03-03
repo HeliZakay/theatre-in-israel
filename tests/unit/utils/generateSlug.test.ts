@@ -32,9 +32,7 @@ describe("generateSlug", () => {
   });
 
   it("handles quotes", () => {
-    expect(generateSlug('חנה לסלאו היא ד"ר רות')).toBe(
-      "חנה-לסלאו-היא-ד-ר-רות",
-    );
+    expect(generateSlug('חנה לסלאו היא ד"ר רות')).toBe("חנה-לסלאו-היא-ד-ר-רות");
   });
 
   it("trims whitespace", () => {
@@ -45,5 +43,9 @@ describe("generateSlug", () => {
     expect(generateSlug("המאסטר (אלוף הבונים שלי)")).toBe(
       "המאסטר-(אלוף-הבונים-שלי)",
     );
+  });
+
+  it("strips ampersand to avoid invalid XML in sitemap", () => {
+    expect(generateSlug("Mix & Match")).toBe("Mix-Match");
   });
 });

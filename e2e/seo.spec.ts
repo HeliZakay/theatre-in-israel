@@ -20,6 +20,15 @@ test.describe("SEO & Meta", () => {
     expect(text).toMatch(/<\?xml|<urlset/);
   });
 
+  test("sitemap.xml is valid XML with no bare ampersands", async ({ page }) => {
+    const response = await page.request.get("/sitemap.xml");
+    const text = await response.text();
+
+    // Bare & not followed by amp; lt; gt; quot; apos; or #
+    const bareAmpersand = /&(?!amp;|lt;|gt;|quot;|apos;|#)/;
+    expect(text).not.toMatch(bareAmpersand);
+  });
+
   test("manifest returns valid JSON with app info", async ({ page }) => {
     const response = await page.request.get("/manifest.webmanifest");
     expect(response.ok()).toBe(true);

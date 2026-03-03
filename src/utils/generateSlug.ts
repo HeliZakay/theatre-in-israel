@@ -7,13 +7,14 @@
  * @example generateSlug("קברט") → "קברט"
  * @example generateSlug("צ'ילבות") → "צ׳ילבות"
  * @example generateSlug("מה קרה לעולם?") → "מה-קרה-לעולם"
+ * @example generateSlug("Mix & Match") → "Mix-Match"
  */
 export function generateSlug(title: string): string {
   return title
     .trim()
     .replace(/\s+/g, "-")
     .replace(/'/g, "\u05F3")
-    .replace(/[?#%|\\/:*"<>]/g, "-")
+    .replace(/[?#%&|\\/:*"<>]/g, "-")
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "");
 }

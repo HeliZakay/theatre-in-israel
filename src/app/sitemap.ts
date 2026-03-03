@@ -41,7 +41,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const showRoutes: MetadataRoute.Sitemap = shows.map((show) => {
     const latestReview = show.reviews[0];
     return {
-      url: toAbsoluteUrl(showPath(show.slug)),
+      url: toAbsoluteUrl(showPath(show.slug)).replace(/&/g, "&amp;"),
       lastModified: latestReview ? latestReview.date : now,
       changeFrequency: "daily",
       priority: 0.8,
