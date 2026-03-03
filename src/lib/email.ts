@@ -6,6 +6,8 @@ export const resend = new Resend(process.env.RESEND_API_KEY);
 export const NOTIFICATION_RECIPIENT = "helizakay1@gmail.com";
 const FROM_ADDRESS = "תיאטרון בישראל <onboarding@resend.dev>";
 
+const isProduction = process.env.NODE_ENV === "production";
+
 export async function notifyUserSignup({
   email,
   name,
@@ -13,6 +15,7 @@ export async function notifyUserSignup({
   email: string;
   name?: string | null;
 }): Promise<void> {
+  if (!isProduction) return;
   try {
     const safeEmail = escapeHtml(email);
     const safeName = name ? escapeHtml(name) : "לא צוין";
@@ -50,6 +53,7 @@ export async function notifyNewReview({
   text: string;
   isAnonymous: boolean;
 }): Promise<void> {
+  if (!isProduction) return;
   try {
     const safeAuthor = escapeHtml(authorName);
     const safeShowTitle = escapeHtml(showTitle);
