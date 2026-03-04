@@ -210,10 +210,10 @@ async function fetchSectionsData(): Promise<SectionsData> {
     israeliResult,
   ] = await Promise.allSettled([
     getTopRated(),
-    getShowsByGenres(["דרמה", "דרמה קומית"], FETCH_LIMIT),
-    getShowsByGenres(["קומדיה", "קומדיה שחורה", "סאטירה"], FETCH_LIMIT),
-    getShowsByGenres(["מוזיקלי", "מחזמר"], FETCH_LIMIT),
-    getShowsByGenres(["ישראלי"], FETCH_LIMIT),
+    getShowsByGenres([...GENRE_SECTIONS.dramas.genres], FETCH_LIMIT),
+    getShowsByGenres([...GENRE_SECTIONS.comedies.genres], FETCH_LIMIT),
+    getShowsByGenres([...GENRE_SECTIONS.musicals.genres], FETCH_LIMIT),
+    getShowsByGenres([...GENRE_SECTIONS.israeli.genres], FETCH_LIMIT),
   ]);
 
   const topRated = settled(topRatedResult, [] as ShowListItem[]);
@@ -250,82 +250,5 @@ async function fetchSectionsData(): Promise<SectionsData> {
 export const getSectionsData = unstable_cache(
   fetchSectionsData,
   ["homepage-sections"],
-  { revalidate: 120, tags: ["homepage"] },
-);
-
-/**
- * Get homepage data: suggestions and curated show groups.
- * Uses Promise.allSettled so a single section failure doesn't break the page.
- */
-async function fetchHomePageData(): Promise<HomePageData> {
-  const [
-    suggestionsResult,
-    topRatedResult,
-    dramasResult,
-    comediesResult,
-    musicalsResult,
-    israeliResult,
-  ] = await Promise.allSettled([
-    getSuggestions(),
-    getTopRated(),
-    getShowsByGenres(["דרמה", "דרמה קומית"], FETCH_LIMIT),
-    getShowsByGenres(["קומדיה", "קומדיה שחורה", "סאטירה"], FETCH_LIMIT),
-    getShowsByGenres(["מוזיקלי", "מחזמר"], FETCH_LIMIT),
-    getShowsByGenres(["ישראלי"], FETCH_LIMIT),
-  ]);
-
-  const emptySuggestions: Suggestions = { shows: [], theatres: [], genres: [] };
-
-  const suggestions = settled(suggestionsResult, emptySuggestions);
-  const topRated = settled(topRatedResult, [] as ShowListItem[]);
-  const dramas = settled(dramasResult, [] as ShowListItem[]);
-  const comedies = settled(comediesResult, [] as ShowListItem[]);
-  const musicals = settled(musicalsResult, [] as ShowListItem[]);
-  const israeli = settled(israeliResult, [] as ShowListItem[]);
-
-  const featuredShow = topRated[0] ?? null;
-
-  // Fetch the best review for the featured show (single targeted query).
-  let featuredReview: FeaturedReview | null = null;
-  if (featuredShow) {
-    const bestReview = await prisma.review.findFirst({
-      where: { showId: featuredShow.id },
-      orderBy: { rating: "desc" },
-      select: { text: true, author: true },
-    });
-    if (bestReview) {
-      featuredReview = { text: bestReview.text, author: bestReview.author };
-    }
-  }
-
-  // Deduplicate sections: each show appears in at most one section.
-  // Priority order matches display order; featured show is pre-excluded.
-  const deduped = deduplicateSections(
-    [
-      { key: "topRated", shows: topRated },
-      { key: "dramas", shows: dramas },
-      { key: "comedies", shows: comedies },
-      { key: "musicals", shows: musicals },
-      { key: "israeli", shows: israeli },
-    ],
-    DISPLAY_LIMIT,
-    featuredShow ? [featuredShow.id] : [],
-  );
-
-  return {
-    suggestions,
-    topRated: deduped.topRated,
-    dramas: deduped.dramas,
-    comedies: deduped.comedies,
-    musicals: deduped.musicals,
-    israeli: deduped.israeli,
-    featuredShow,
-    featuredReview,
-  };
-}
-
-export const getHomePageData = unstable_cache(
-  fetchHomePageData,
-  ["homepage-data"],
   { revalidate: 120, tags: ["homepage"] },
 );

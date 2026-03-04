@@ -6,6 +6,10 @@ jest.mock("@/lib/prisma", () => ({
   },
 }));
 jest.mock("@/lib/auth", () => ({ authOptions: {} }));
+jest.mock("@/lib/email", () => ({
+  notifyNewReview: jest.fn().mockResolvedValue(undefined),
+  notifyUserSignup: jest.fn().mockResolvedValue(undefined),
+}));
 jest.mock("@/utils/actionAuth");
 jest.mock("@/lib/reviews");
 jest.mock("@/utils/profanityFilter");

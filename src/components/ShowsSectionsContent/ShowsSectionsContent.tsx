@@ -2,6 +2,7 @@ import ShowsSection from "@/components/ShowsSection/ShowsSection";
 import { getSectionsData } from "@/lib/data/homepage";
 import ROUTES from "@/constants/routes";
 import { buildShowsQueryString } from "@/utils/showsQuery";
+import { GENRE_SECTIONS } from "@/constants/genreGroups";
 
 export default async function ShowsSectionsContent() {
   const { topRated, dramas, comedies, musicals, israeli } =
@@ -18,35 +19,35 @@ export default async function ShowsSectionsContent() {
       />
 
       <ShowsSection
-        kicker="ז'אנר"
-        title="דרמות"
+        kicker={GENRE_SECTIONS.dramas.kicker}
+        title={GENRE_SECTIONS.dramas.title}
         shows={dramas}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: ["דרמה", "דרמה קומית"] })}`}
-        linkText="לכל הדרמות"
+        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.dramas.genres] })}`}
+        linkText={GENRE_SECTIONS.dramas.linkText}
       />
 
       <ShowsSection
-        kicker="ז'אנר"
-        title="קומדיות"
+        kicker={GENRE_SECTIONS.comedies.kicker}
+        title={GENRE_SECTIONS.comedies.title}
         shows={comedies}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: ["קומדיה", "קומדיה שחורה", "סאטירה"] })}`}
-        linkText="לכל הקומדיות"
+        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.comedies.genres] })}`}
+        linkText={GENRE_SECTIONS.comedies.linkText}
       />
 
       <ShowsSection
-        kicker="ז'אנר"
-        title="מוזיקלי"
+        kicker={GENRE_SECTIONS.musicals.kicker}
+        title={GENRE_SECTIONS.musicals.title}
         shows={musicals}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: ["מוזיקלי", "מחזמר"] })}`}
-        linkText="לכל המוזיקליים"
+        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.musicals.genres] })}`}
+        linkText={GENRE_SECTIONS.musicals.linkText}
       />
 
       <ShowsSection
-        kicker="ז'אנר"
-        title="הכי ישראלי"
+        kicker={GENRE_SECTIONS.israeli.kicker}
+        title={GENRE_SECTIONS.israeli.title}
         shows={israeli}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: ["ישראלי"] })}`}
-        linkText="לכל הישראליים"
+        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.israeli.genres] })}`}
+        linkText={GENRE_SECTIONS.israeli.linkText}
       />
     </>
   );

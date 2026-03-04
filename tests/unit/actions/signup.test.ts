@@ -7,6 +7,11 @@ jest.mock("@/lib/prisma", () => ({
   },
 }));
 
+jest.mock("@/lib/email", () => ({
+  notifyUserSignup: jest.fn().mockResolvedValue(undefined),
+  notifyNewReview: jest.fn().mockResolvedValue(undefined),
+}));
+
 jest.mock("bcryptjs", () => ({
   hash: jest.fn().mockResolvedValue("hashed-password"),
 }));

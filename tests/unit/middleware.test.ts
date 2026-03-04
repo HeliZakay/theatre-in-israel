@@ -17,7 +17,7 @@ jest.mock("next/server", () => {
   return actual;
 });
 
-import { middleware } from "@/middleware";
+import { proxy as middleware } from "@/proxy";
 import { NextResponse } from "next/server";
 
 function createMockRequest(
