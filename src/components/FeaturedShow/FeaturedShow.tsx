@@ -49,6 +49,7 @@ export default function FeaturedShow({
             sizes="(max-width: 900px) 100vw, 45vw"
             className={styles.mediaImage}
             priority
+            fetchPriority="high"
           />
           <div className={styles.mediaShade} aria-hidden />
           <div className={styles.mediaOverlay}>
