@@ -58,7 +58,7 @@ export default function ShowsSection({
                   <h3 className={styles.cardTitle}>{show.title}</h3>
                   <p className={styles.meta}>{show.theatre}</p>
                   <div className={styles.genreRow}>
-                    {(show.genre ?? []).slice(0, 2).map((item) => (
+                    {(show.genre ?? []).slice(0, 3).map((item) => (
                       <Tag key={item}>{item}</Tag>
                     ))}
                   </div>

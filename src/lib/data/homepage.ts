@@ -2,6 +2,7 @@ import { unstable_cache } from "next/cache";
 import prisma from "../prisma";
 import { showListInclude } from "../showHelpers";
 import type { ShowListItem, Suggestions } from "@/types";
+import { GENRE_SECTIONS } from "@/constants/genreGroups";
 
 const DISPLAY_LIMIT = 10;
 const FETCH_LIMIT = 40;
@@ -9,17 +10,6 @@ const FETCH_LIMIT = 40;
 export interface FeaturedReview {
   text: string;
   author: string;
-}
-
-export interface HomePageData {
-  suggestions: Suggestions;
-  topRated: ShowListItem[];
-  dramas: ShowListItem[];
-  comedies: ShowListItem[];
-  musicals: ShowListItem[];
-  israeli: ShowListItem[];
-  featuredShow: ShowListItem | null;
-  featuredReview: FeaturedReview | null;
 }
 
 export interface HeroData {
