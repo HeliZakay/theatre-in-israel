@@ -82,7 +82,7 @@
 .noRating {
   font-size: 0.85rem;
   font-weight: 400;
-  color: rgba(26, 26, 26, 0.5);
+  color: var(--color-text-faint);
 }
 
 .reviewCount {
