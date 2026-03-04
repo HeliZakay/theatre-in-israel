@@ -1,13 +1,14 @@
+import { Suspense } from "react";
 import Hero from "@/components/Hero/Hero";
 import CtaStrip from "@/components/CtaStrip/CtaStrip";
-import ShowsSection from "@/components/ShowsSection/ShowsSection";
+import ShowsSectionsContent from "@/components/ShowsSectionsContent/ShowsSectionsContent";
+import ShowsSectionsSkeleton from "@/components/ShowsSectionsSkeleton/ShowsSectionsSkeleton";
 import LotteryBanner from "@/components/LotteryBanner/LotteryBanner";
 import { isLotteryActive } from "@/constants/lottery";
 import styles from "./page.module.css";
 import ROUTES from "@/constants/routes";
-import { getHomePageData } from "@/lib/data/homepage";
+import { getHeroData } from "@/lib/data/homepage";
 import { SITE_NAME } from "@/lib/seo";
-import { buildShowsQueryString } from "@/utils/showsQuery";
 
 import type { Metadata } from "next";
 
@@ -37,16 +38,7 @@ export const metadata: Metadata = {
 export const revalidate = 120; // Re-generate at most every 2 minutes
 
 export default async function Home() {
-  const {
-    suggestions,
-    topRated,
-    dramas,
-    comedies,
-    musicals,
-    israeli,
-    featuredShow,
-    featuredReview,
-  } = await getHomePageData();
+  const { suggestions, featuredShow, featuredReview } = await getHeroData();
 
   return (
     <main className={styles.page} id="main-content">
@@ -58,45 +50,9 @@ export default async function Home() {
 
       <LotteryBanner />
 
-      <ShowsSection
-        kicker="המובילים"
-        title="דירוגים גבוהים"
-        shows={topRated}
-        linkHref={ROUTES.SHOWS}
-        linkText="לכל ההצגות"
-      />
-
-      <ShowsSection
-        kicker="ז'אנר"
-        title="דרמות"
-        shows={dramas}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: ["דרמה", "דרמה קומית", "מרגש"] })}`}
-        linkText="לכל הדרמות"
-      />
-
-      <ShowsSection
-        kicker="ז'אנר"
-        title="קומדיות"
-        shows={comedies}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: ["קומדיה", "קומדיה שחורה", "סאטירה"] })}`}
-        linkText="לכל הקומדיות"
-      />
-
-      <ShowsSection
-        kicker="ז'אנר"
-        title="מוזיקלי"
-        shows={musicals}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: ["מוזיקלי", "מחזמר"] })}`}
-        linkText="לכל המוזיקליים"
-      />
-
-      <ShowsSection
-        kicker="ז'אנר"
-        title="הכי ישראלי"
-        shows={israeli}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: ["ישראלי"] })}`}
-        linkText="לכל הישראליים"
-      />
+      <Suspense fallback={<ShowsSectionsSkeleton />}>
+        <ShowsSectionsContent />
+      </Suspense>
 
       <CtaStrip
         title="כתב.י ביקורת ועזר.י לאחרים לבחור"

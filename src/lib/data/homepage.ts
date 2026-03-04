@@ -22,6 +22,21 @@ export interface HomePageData {
   featuredReview: FeaturedReview | null;
 }
 
+export interface HeroData {
+  suggestions: Suggestions;
+  featuredShow: ShowListItem | null;
+  featuredReview: FeaturedReview | null;
+}
+
+export interface SectionsData {
+  topRated: ShowListItem[];
+  dramas: ShowListItem[];
+  comedies: ShowListItem[];
+  musicals: ShowListItem[];
+  israeli: ShowListItem[];
+  featuredShowId: number | null;
+}
+
 /**
  * Build autocomplete suggestions from distinct show values.
  */
@@ -155,6 +170,98 @@ export function deduplicateSections(
 function settled<T>(result: PromiseSettledResult<T>, fallback: T): T {
   return result.status === "fulfilled" ? result.value : fallback;
 }
+
+/**
+ * Lightweight hero data: suggestions + featured show + featured review.
+ * Only 3-4 DB queries — fast enough to block initial HTML without hurting TTFB.
+ */
+async function fetchHeroData(): Promise<HeroData> {
+  const [suggestionsResult, topRatedResult] = await Promise.allSettled([
+    getSuggestions(),
+    getTopRated(),
+  ]);
+
+  const emptySuggestions: Suggestions = { shows: [], theatres: [], genres: [] };
+  const suggestions = settled(suggestionsResult, emptySuggestions);
+  const topRated = settled(topRatedResult, [] as ShowListItem[]);
+
+  const featuredShow = topRated[0] ?? null;
+
+  let featuredReview: FeaturedReview | null = null;
+  if (featuredShow) {
+    const bestReview = await prisma.review.findFirst({
+      where: { showId: featuredShow.id },
+      orderBy: { rating: "desc" },
+      select: { text: true, author: true },
+    });
+    if (bestReview) {
+      featuredReview = { text: bestReview.text, author: bestReview.author };
+    }
+  }
+
+  return { suggestions, featuredShow, featuredReview };
+}
+
+export const getHeroData = unstable_cache(fetchHeroData, ["homepage-hero"], {
+  revalidate: 120,
+  tags: ["homepage"],
+});
+
+/**
+ * Heavier section data: 5 genre/category queries + deduplication.
+ * Designed to be called inside a Suspense boundary so it doesn't block initial HTML.
+ */
+async function fetchSectionsData(): Promise<SectionsData> {
+  const [
+    topRatedResult,
+    dramasResult,
+    comediesResult,
+    musicalsResult,
+    israeliResult,
+  ] = await Promise.allSettled([
+    getTopRated(),
+    getShowsByGenres(["דרמה", "דרמה קומית", "מרגש"], FETCH_LIMIT),
+    getShowsByGenres(["קומדיה", "קומדיה שחורה", "סאטירה"], FETCH_LIMIT),
+    getShowsByGenres(["מוזיקלי", "מחזמר"], FETCH_LIMIT),
+    getShowsByGenres(["ישראלי"], FETCH_LIMIT),
+  ]);
+
+  const topRated = settled(topRatedResult, [] as ShowListItem[]);
+  const dramas = settled(dramasResult, [] as ShowListItem[]);
+  const comedies = settled(comediesResult, [] as ShowListItem[]);
+  const musicals = settled(musicalsResult, [] as ShowListItem[]);
+  const israeli = settled(israeliResult, [] as ShowListItem[]);
+
+  const featuredShow = topRated[0] ?? null;
+  const featuredShowId = featuredShow?.id ?? null;
+
+  const deduped = deduplicateSections(
+    [
+      { key: "topRated", shows: topRated },
+      { key: "dramas", shows: dramas },
+      { key: "comedies", shows: comedies },
+      { key: "musicals", shows: musicals },
+      { key: "israeli", shows: israeli },
+    ],
+    DISPLAY_LIMIT,
+    featuredShowId ? [featuredShowId] : [],
+  );
+
+  return {
+    topRated: deduped.topRated,
+    dramas: deduped.dramas,
+    comedies: deduped.comedies,
+    musicals: deduped.musicals,
+    israeli: deduped.israeli,
+    featuredShowId,
+  };
+}
+
+export const getSectionsData = unstable_cache(
+  fetchSectionsData,
+  ["homepage-sections"],
+  { revalidate: 120, tags: ["homepage"] },
+);
 
 /**
  * Get homepage data: suggestions and curated show groups.
