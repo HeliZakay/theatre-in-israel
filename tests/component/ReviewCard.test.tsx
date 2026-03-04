@@ -64,4 +64,31 @@ describe("ReviewCard", () => {
     render(<ReviewCard review={makeReview({ text: shortText })} />);
     expect(screen.getByText(shortText).closest("details")).toBeNull();
   });
+
+  describe("isOwn", () => {
+    it("renders 'הביקורת שלי' badge when isOwn is true", () => {
+      render(<ReviewCard review={makeReview()} isOwn />);
+      expect(screen.getByText("הביקורת שלי")).toBeInTheDocument();
+    });
+
+    it("does not show guest badge when isOwn is true", () => {
+      render(<ReviewCard review={makeReview({ userId: null })} isOwn />);
+      expect(screen.queryByText("(אורח/ת)")).not.toBeInTheDocument();
+    });
+
+    it("does not show own badge when isOwn is false", () => {
+      render(<ReviewCard review={makeReview()} />);
+      expect(screen.queryByText("הביקורת שלי")).not.toBeInTheDocument();
+    });
+
+    it("does not render edit or delete actions", () => {
+      render(<ReviewCard review={makeReview()} isOwn />);
+      expect(
+        screen.queryByRole("link", { name: "עריכה" }),
+      ).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("button", { name: "מחיקה" }),
+      ).not.toBeInTheDocument();
+    });
+  });
 });

@@ -13,6 +13,11 @@ test.describe("Shows Browsing", () => {
     ).toBeVisible();
     await expect(page.getByRole("heading", { name: "דרמות" })).toBeVisible();
 
+    // Community banner
+    await expect(
+      page.getByRole("heading", { name: "בואו להיות חלק מהקהילה" }),
+    ).toBeVisible();
+
     // CTA strip
     await expect(
       page.getByRole("heading", { name: "כתב.י ביקורת ועזר.י לאחרים לבחור" }),

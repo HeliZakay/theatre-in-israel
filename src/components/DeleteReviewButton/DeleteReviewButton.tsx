@@ -4,14 +4,16 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { deleteReview } from "@/app/reviews/actions";
-import styles from "./page.module.css";
+import styles from "./DeleteReviewButton.module.css";
 
 interface DeleteReviewButtonProps {
   reviewId: number;
+  className?: string;
 }
 
 export default function DeleteReviewButton({
   reviewId,
+  className,
 }: DeleteReviewButtonProps) {
   const router = useRouter();
   const [isDeleting, setIsDeleting] = useState(false);
@@ -49,7 +51,7 @@ export default function DeleteReviewButton({
       }}
     >
       <AlertDialog.Trigger asChild>
-        <button type="button" className={styles.deleteBtn}>
+        <button type="button" className={className ?? styles.deleteBtn}>
           מחיקה
         </button>
       </AlertDialog.Trigger>

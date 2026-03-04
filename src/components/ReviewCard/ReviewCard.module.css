@@ -119,3 +119,22 @@
   font-weight: 400;
   margin-inline-start: 4px;
 }
+
+/* ── Own-review highlight ── */
+.cardOwn {
+  border-inline-start: 4px solid var(--color-curtain-red);
+  background: linear-gradient(135deg, #fdfaf7 0%, #fef6ee 100%);
+  box-shadow: 0 12px 28px rgba(156, 27, 32, 0.08);
+}
+
+.ownBadge {
+  display: inline-block;
+  font-size: 0.78em;
+  color: var(--color-curtain-red);
+  background: rgba(156, 27, 32, 0.08);
+  border-radius: 999px;
+  padding: 1px 8px;
+  font-weight: 600;
+  margin-inline-start: 6px;
+  white-space: nowrap;
+}

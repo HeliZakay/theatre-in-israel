@@ -151,12 +151,19 @@ export default async function ShowPage({ params }: ShowPageProps) {
 
   const stats = { reviewCount, avgRating, latestReviewDate: null };
 
-  // Check watchlist state for authenticated users
+  // Check watchlist + own-review state for authenticated users
   let initialInWatchlist = false;
+  let userReview: (typeof show.reviews)[number] | null = null;
+  let otherReviews = show.reviews;
   try {
     const session = await getServerSession(authOptions);
     if (session?.user?.id) {
       initialInWatchlist = await isShowInWatchlist(session.user.id, show.id);
+      const idx = show.reviews.findIndex((r) => r.userId === session.user?.id);
+      if (idx !== -1) {
+        userReview = show.reviews[idx];
+        otherReviews = show.reviews.filter((_, i) => i !== idx);
+      }
     }
   } catch {
     // Ignore — unauthenticated users see the default "add" state
@@ -266,19 +273,30 @@ export default async function ShowPage({ params }: ShowPageProps) {
 
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>ביקורות אחרונות</h2>
-        {show.reviews.length ? (
-          <>
-            <div className={styles.reviewList}>
-              {show.reviews.map((review) => (
-                <ReviewCard key={review.id} review={review} />
-              ))}
-            </div>
-            <ReviewEncouragement
-              variant="after-reviews"
-              reviewHref={showReviewPath(show.slug)}
-            />
-          </>
-        ) : (
+
+        {userReview && (
+          <div className={styles.ownReviewBlock}>
+            <span className={styles.ownReviewLabel}>הביקורת שלי</span>
+            <ReviewCard review={userReview} isOwn />
+          </div>
+        )}
+
+        {otherReviews.length > 0 && (
+          <div className={styles.reviewList}>
+            {otherReviews.map((review) => (
+              <ReviewCard key={review.id} review={review} />
+            ))}
+          </div>
+        )}
+
+        {!userReview && show.reviews.length > 0 && (
+          <ReviewEncouragement
+            variant="after-reviews"
+            reviewHref={showReviewPath(show.slug)}
+          />
+        )}
+
+        {show.reviews.length === 0 && (
           <ReviewEncouragement
             variant="empty"
             reviewHref={showReviewPath(show.slug)}
@@ -286,7 +304,9 @@ export default async function ShowPage({ params }: ShowPageProps) {
         )}
       </section>
 
-      <StickyReviewCTA reviewHref={showReviewPath(show.slug)} />
+      {!userReview && (
+        <StickyReviewCTA reviewHref={showReviewPath(show.slug)} />
+      )}
     </main>
   );
 }

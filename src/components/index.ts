@@ -4,6 +4,8 @@ export { default as BackLink } from "./BackLink/BackLink";
 export { default as Breadcrumb } from "./Breadcrumb/Breadcrumb";
 export { default as Button } from "./Button/Button";
 export { default as Card } from "./Card/Card";
+export { default as CommunityBanner } from "./CommunityBanner/CommunityBanner";
+export { default as DeleteReviewButton } from "./DeleteReviewButton/DeleteReviewButton";
 export { default as ContactForm } from "./ContactForm/ContactForm";
 export { default as CtaStrip } from "./CtaStrip/CtaStrip";
 export { default as FallbackImage } from "./FallbackImage/FallbackImage";

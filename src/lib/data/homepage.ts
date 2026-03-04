@@ -252,3 +252,43 @@ export const getSectionsData = unstable_cache(
   ["homepage-sections"],
   { revalidate: 120, tags: ["homepage"] },
 );
+
+export interface CommunityBannerShow {
+  id: number;
+  slug: string;
+  title: string;
+  theatre: string;
+}
+
+/**
+ * Fetch up to 50 random shows for the CommunityBanner shuffle grid.
+ * Results are cached for 300s so the "random" pick rotates every ~5 minutes.
+ */
+async function fetchCommunityBannerShows(): Promise<CommunityBannerShow[]> {
+  const theatres = ["תיאטרון הבימה", "תיאטרון הקאמרי", "תיאטרון בית ליסין"];
+
+  const perTheatre = await Promise.all(
+    theatres.map((theatre) =>
+      prisma.show.findMany({
+        where: { theatre },
+        select: { id: true, slug: true, title: true, theatre: true },
+      }),
+    ),
+  );
+
+  const all = perTheatre.flat();
+
+  // Shuffle using Fisher-Yates
+  for (let i = all.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [all[i], all[j]] = [all[j], all[i]];
+  }
+
+  return all.slice(0, 50);
+}
+
+export const getCommunityBannerShows = unstable_cache(
+  fetchCommunityBannerShows,
+  ["community-banner-shows"],
+  { revalidate: 300, tags: ["homepage"] },
+);

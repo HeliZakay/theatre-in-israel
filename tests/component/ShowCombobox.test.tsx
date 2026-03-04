@@ -3,9 +3,9 @@ import userEvent from "@testing-library/user-event";
 import ShowCombobox from "@/components/ShowCombobox/ShowCombobox";
 
 /* ── Mock useMediaQuery so desktop tests keep the inline dropdown ── */
-const mockUseMediaQuery = jest.fn(() => false);
+const mockUseMediaQuery = jest.fn((_width: number) => false);
 jest.mock("@/hooks/useMediaQuery", () => ({
-  useMediaQuery: (...args: unknown[]) => mockUseMediaQuery(...args),
+  useMediaQuery: (width: number) => mockUseMediaQuery(width),
 }));
 
 const OPTIONS = [

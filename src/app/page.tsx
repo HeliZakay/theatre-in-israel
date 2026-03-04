@@ -4,10 +4,11 @@ import CtaStrip from "@/components/CtaStrip/CtaStrip";
 import ShowsSectionsContent from "@/components/ShowsSectionsContent/ShowsSectionsContent";
 import ShowsSectionsSkeleton from "@/components/ShowsSectionsSkeleton/ShowsSectionsSkeleton";
 import LotteryBanner from "@/components/LotteryBanner/LotteryBanner";
+import CommunityBanner from "@/components/CommunityBanner/CommunityBanner";
 import { isLotteryActive } from "@/constants/lottery";
 import styles from "./page.module.css";
 import ROUTES from "@/constants/routes";
-import { getHeroData } from "@/lib/data/homepage";
+import { getHeroData, getCommunityBannerShows } from "@/lib/data/homepage";
 import { SITE_NAME } from "@/lib/seo";
 
 import type { Metadata } from "next";
@@ -35,10 +36,11 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 120; // Re-generate at most every 2 minutes
+export const revalidate = 120;
 
 export default async function Home() {
-  const { suggestions, featuredShow, featuredReview } = await getHeroData();
+  const [{ suggestions, featuredShow, featuredReview }, communityShows] =
+    await Promise.all([getHeroData(), getCommunityBannerShows()]);
 
   return (
     <main className={styles.page} id="main-content">
@@ -48,21 +50,21 @@ export default async function Home() {
         featuredReview={featuredReview}
       />
 
-      <LotteryBanner />
+      {isLotteryActive() ? (
+        <LotteryBanner />
+      ) : (
+        <CommunityBanner shows={communityShows} />
+      )}
 
       <Suspense fallback={<ShowsSectionsSkeleton />}>
         <ShowsSectionsContent />
       </Suspense>
 
       <CtaStrip
-        title="כתב.י ביקורת ועזר.י לאחרים לבחור"
-        text={
-          isLotteryActive()
-            ? "כל ביקורת = כרטיס להגרלה על זוג כרטיסים לתיאטרון! 🎟️"
-            : "כמה דקות של כתיבה יכולות לחסוך לקהל ערב לא מוצלח."
-        }
-        buttonText="כתב.י ביקורת"
-        href={ROUTES.REVIEWS_NEW}
+        title="גלו את ההצגות החמות של העונה"
+        text="מאות הצגות מכל התיאטראות בארץ — מצאו את ההצגה הבאה שלכם."
+        buttonText="לכל ההצגות"
+        href={ROUTES.SHOWS}
       />
     </main>
   );

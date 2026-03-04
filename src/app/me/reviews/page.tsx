@@ -4,7 +4,7 @@ import { requireAuth } from "@/lib/auth";
 import { getReviewsByUser } from "@/lib/reviews";
 import { formatDate } from "@/utils/formatDate";
 import Button from "@/components/Button/Button";
-import DeleteReviewButton from "./DeleteReviewButton";
+import DeleteReviewButton from "@/components/DeleteReviewButton/DeleteReviewButton";
 import styles from "./page.module.css";
 
 import type { Metadata } from "next";

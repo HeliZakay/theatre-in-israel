@@ -212,3 +212,16 @@
     margin-inline: auto;
   }
 }
+
+/* ── Own-review pinned block ── */
+.ownReviewBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ownReviewLabel {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-curtain-red);
+}

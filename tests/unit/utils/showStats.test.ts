@@ -33,6 +33,7 @@ function makeShow(overrides: Partial<Show> = {}): Show {
     genre: ["drama"],
     reviews: [],
     description: null,
+    cast: null,
     ...overrides,
   };
 }
