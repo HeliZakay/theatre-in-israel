@@ -253,7 +253,7 @@ export const getSectionsData = unstable_cache(
   { revalidate: 120, tags: ["homepage"] },
 );
 
-export interface CommunityBannerShow {
+export interface ExploreBannerShow {
   id: number;
   slug: string;
   title: string;
@@ -261,10 +261,10 @@ export interface CommunityBannerShow {
 }
 
 /**
- * Fetch up to 50 random shows for the CommunityBanner shuffle grid.
+ * Fetch up to 50 random shows for the ExploreBanner shuffle grid.
  * Results are cached for 300s so the "random" pick rotates every ~5 minutes.
  */
-async function fetchCommunityBannerShows(): Promise<CommunityBannerShow[]> {
+async function fetchExploreBannerShows(): Promise<ExploreBannerShow[]> {
   const theatres = ["תיאטרון הבימה", "תיאטרון הקאמרי", "תיאטרון בית ליסין"];
 
   const perTheatre = await Promise.all(
@@ -287,8 +287,8 @@ async function fetchCommunityBannerShows(): Promise<CommunityBannerShow[]> {
   return all.slice(0, 50);
 }
 
-export const getCommunityBannerShows = unstable_cache(
-  fetchCommunityBannerShows,
-  ["community-banner-shows"],
+export const getExploreBannerShows = unstable_cache(
+  fetchExploreBannerShows,
+  ["explore-banner-shows"],
   { revalidate: 300, tags: ["homepage"] },
 );

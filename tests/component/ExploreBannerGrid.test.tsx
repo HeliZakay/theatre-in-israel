@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
-import CommunityBannerGrid from "@/components/CommunityBanner/CommunityBannerGrid";
+import ExploreBannerGrid from "@/components/ExploreBanner/ExploreBannerGrid";
 
 // Mock FallbackImage to a plain <img>
 jest.mock("@/components/FallbackImage/FallbackImage", () => {
@@ -19,26 +19,28 @@ const mockPool = Array.from({ length: 12 }, (_, i) => ({
   theatre: `תיאטרון ${i % 3}`,
 }));
 
-describe("CommunityBannerGrid", () => {
+describe("ExploreBannerGrid", () => {
+  const initial = mockPool.slice(0, 4);
+
   it("renders exactly 4 show cards", () => {
-    render(<CommunityBannerGrid pool={mockPool} />);
+    render(<ExploreBannerGrid pool={mockPool} initial={initial} />);
     const links = screen.getAllByRole("link");
     expect(links).toHaveLength(4);
   });
 
-  it("each card links to the review page", () => {
-    render(<CommunityBannerGrid pool={mockPool} />);
+  it("each card links to the show page", () => {
+    render(<ExploreBannerGrid pool={mockPool} initial={initial} />);
     const links = screen.getAllByRole("link");
     links.forEach((link) => {
       expect(link).toHaveAttribute(
         "href",
-        expect.stringMatching(/^\/shows\/show-\d+\/review$/),
+        expect.stringMatching(/^\/shows\/show-\d+$/),
       );
     });
   });
 
   it("renders show images with alt text", () => {
-    render(<CommunityBannerGrid pool={mockPool} />);
+    render(<ExploreBannerGrid pool={mockPool} initial={initial} />);
     const images = screen.getAllByRole("img");
     expect(images).toHaveLength(4);
     images.forEach((img) => {
@@ -47,7 +49,7 @@ describe("CommunityBannerGrid", () => {
   });
 
   it("renders show titles", () => {
-    render(<CommunityBannerGrid pool={mockPool} />);
+    render(<ExploreBannerGrid pool={mockPool} initial={initial} />);
     const links = screen.getAllByRole("link");
     // Each link should contain a visible title text
     const titles = links.map((link) => link.textContent);
@@ -58,26 +60,26 @@ describe("CommunityBannerGrid", () => {
   });
 
   it("renders shuffle button", () => {
-    render(<CommunityBannerGrid pool={mockPool} />);
+    render(<ExploreBannerGrid pool={mockPool} initial={initial} />);
     expect(
       screen.getByRole("button", { name: "הצגות נוספות" }),
     ).toBeInTheDocument();
   });
 
   it("shuffle button has accessible label", () => {
-    render(<CommunityBannerGrid pool={mockPool} />);
+    render(<ExploreBannerGrid pool={mockPool} initial={initial} />);
     const button = screen.getByRole("button", { name: "הצגות נוספות" });
     expect(button).toHaveAttribute("aria-label", "הצגות נוספות");
   });
 
   it("initial render shows the first 4 from pool (no randomization)", () => {
-    render(<CommunityBannerGrid pool={mockPool} />);
+    render(<ExploreBannerGrid pool={mockPool} initial={initial} />);
     const links = screen.getAllByRole("link");
     expect(links.map((l) => l.getAttribute("href"))).toEqual([
-      "/shows/show-1/review",
-      "/shows/show-2/review",
-      "/shows/show-3/review",
-      "/shows/show-4/review",
+      "/shows/show-1",
+      "/shows/show-2",
+      "/shows/show-3",
+      "/shows/show-4",
     ]);
   });
 
@@ -85,7 +87,7 @@ describe("CommunityBannerGrid", () => {
     jest.useFakeTimers();
     const randomSpy = jest.spyOn(Math, "random").mockReturnValue(0);
 
-    render(<CommunityBannerGrid pool={mockPool} />);
+    render(<ExploreBannerGrid pool={mockPool} initial={initial} />);
 
     const titlesBefore = screen
       .getAllByRole("link")

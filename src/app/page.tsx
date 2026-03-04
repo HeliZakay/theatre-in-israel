@@ -4,11 +4,11 @@ import CtaStrip from "@/components/CtaStrip/CtaStrip";
 import ShowsSectionsContent from "@/components/ShowsSectionsContent/ShowsSectionsContent";
 import ShowsSectionsSkeleton from "@/components/ShowsSectionsSkeleton/ShowsSectionsSkeleton";
 import LotteryBanner from "@/components/LotteryBanner/LotteryBanner";
-import CommunityBanner from "@/components/CommunityBanner/CommunityBanner";
+import ExploreBanner from "@/components/ExploreBanner/ExploreBanner";
 import { isLotteryActive } from "@/constants/lottery";
 import styles from "./page.module.css";
 import ROUTES from "@/constants/routes";
-import { getHeroData, getCommunityBannerShows } from "@/lib/data/homepage";
+import { getHeroData, getExploreBannerShows } from "@/lib/data/homepage";
 import { SITE_NAME } from "@/lib/seo";
 
 import type { Metadata } from "next";
@@ -39,8 +39,8 @@ export const metadata: Metadata = {
 export const revalidate = 120;
 
 export default async function Home() {
-  const [{ suggestions, featuredShow, featuredReview }, communityShows] =
-    await Promise.all([getHeroData(), getCommunityBannerShows()]);
+  const [{ suggestions, featuredShow, featuredReview }, exploreShows] =
+    await Promise.all([getHeroData(), getExploreBannerShows()]);
 
   return (
     <main className={styles.page} id="main-content">
@@ -53,7 +53,7 @@ export default async function Home() {
       {isLotteryActive() ? (
         <LotteryBanner />
       ) : (
-        <CommunityBanner shows={communityShows} />
+        <ExploreBanner shows={exploreShows} />
       )}
 
       <Suspense fallback={<ShowsSectionsSkeleton />}>

@@ -1,27 +1,27 @@
 import { render, screen } from "@testing-library/react";
-import CommunityBanner from "@/components/CommunityBanner/CommunityBanner";
+import ExploreBanner from "@/components/ExploreBanner/ExploreBanner";
 
-// Mock the client island — CommunityBannerHeadline
-jest.mock("@/components/CommunityBanner/CommunityBannerHeadline", () => {
+// Mock the headline sub-component
+jest.mock("@/components/ExploreBanner/ExploreBannerHeadline", () => {
   const MockHeadline = () => <h2>mock headline</h2>;
-  MockHeadline.displayName = "MockCommunityBannerHeadline";
+  MockHeadline.displayName = "MockExploreBannerHeadline";
   return { __esModule: true, default: MockHeadline };
 });
 
-// Mock CommunityBannerGrid — renders pool prop for verification
-jest.mock("@/components/CommunityBanner/CommunityBannerGrid", () => {
+// Mock ExploreBannerGrid — renders pool prop for verification
+jest.mock("@/components/ExploreBanner/ExploreBannerGrid", () => {
   const MockGrid = ({
     pool,
   }: {
     pool: Array<{ id: number; slug: string }>;
   }) => (
-    <div data-testid="community-grid">
+    <div data-testid="explore-grid">
       {pool.map((s) => (
         <span key={s.id}>{s.slug}</span>
       ))}
     </div>
   );
-  MockGrid.displayName = "MockCommunityBannerGrid";
+  MockGrid.displayName = "MockExploreBannerGrid";
   return { __esModule: true, default: MockGrid };
 });
 
@@ -32,24 +32,24 @@ const mockShows = Array.from({ length: 12 }, (_, i) => ({
   theatre: `תיאטרון ${i % 4}`,
 }));
 
-describe("CommunityBanner", () => {
+describe("ExploreBanner", () => {
   it("passes all shows to the grid as pool", () => {
-    render(<CommunityBanner shows={mockShows} />);
-    const grid = screen.getByTestId("community-grid");
+    render(<ExploreBanner shows={mockShows} />);
+    const grid = screen.getByTestId("explore-grid");
     mockShows.forEach((show) => {
       expect(grid).toHaveTextContent(show.slug);
     });
   });
 
   it("has an accessible section label", () => {
-    render(<CommunityBanner shows={mockShows} />);
+    render(<ExploreBanner shows={mockShows} />);
     expect(
-      screen.getByRole("region", { name: "הצטרפו לקהילה" }),
+      screen.getByRole("region", { name: "גלו הצגות חדשות" }),
     ).toBeInTheDocument();
   });
 
   it("renders the headline island", () => {
-    render(<CommunityBanner shows={mockShows} />);
+    render(<ExploreBanner shows={mockShows} />);
     expect(
       screen.getByRole("heading", { name: "mock headline" }),
     ).toBeInTheDocument();

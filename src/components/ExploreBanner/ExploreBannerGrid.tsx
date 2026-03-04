@@ -3,16 +3,16 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import Link from "next/link";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
-import { showReviewPath } from "@/constants/routes";
+import { showPath } from "@/constants/routes";
 import { getShowImagePath } from "@/utils/getShowImagePath";
-import type { CommunityBannerShow } from "@/lib/data/homepage";
+import type { ExploreBannerShow } from "@/lib/data/homepage";
 import { cx } from "@/utils/cx";
-import styles from "./CommunityBanner.module.css";
+import styles from "./ExploreBanner.module.css";
 
 function pickRandom(
-  pool: CommunityBannerShow[],
+  pool: ExploreBannerShow[],
   count: number,
-): CommunityBannerShow[] {
+): ExploreBannerShow[] {
   const copy = [...pool];
   for (let i = copy.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -21,16 +21,16 @@ function pickRandom(
   return copy.slice(0, count);
 }
 
-interface CommunityBannerGridProps {
-  pool: CommunityBannerShow[];
-  initial: CommunityBannerShow[];
+interface ExploreBannerGridProps {
+  pool: ExploreBannerShow[];
+  initial: ExploreBannerShow[];
 }
 
-export default function CommunityBannerGrid({
+export default function ExploreBannerGrid({
   pool,
   initial,
-}: CommunityBannerGridProps) {
-  const [visible, setVisible] = useState<CommunityBannerShow[]>(initial);
+}: ExploreBannerGridProps) {
+  const [visible, setVisible] = useState<ExploreBannerShow[]>(initial);
   const [fading, setFading] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -84,7 +84,7 @@ export default function CommunityBannerGrid({
         {visible.map((show) => (
           <Link
             key={show.id}
-            href={showReviewPath(show.slug)}
+            href={showPath(show.slug)}
             className={styles.cardLink}
           >
             <div className={styles.card}>
