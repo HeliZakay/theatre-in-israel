@@ -1,0 +1,68 @@
+.card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+/* ── Empty-state variant ── */
+.empty {
+  padding: 32px 24px;
+  border-style: dashed;
+  border-color: rgba(156, 27, 32, 0.2);
+  background: #fdfaf7;
+}
+
+.emoji {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+/* ── After-reviews variant ── */
+.afterReviews {
+  padding: 20px 18px;
+  border-style: dashed;
+  border-color: var(--color-slate-008);
+  background: #fdfaf7;
+}
+
+/* ── Shared text styles ── */
+.headline {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.body {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+.button {
+  margin-top: 4px;
+  font-size: 1rem;
+  padding: 10px 20px;
+}
+
+@media (max-width: 640px) {
+  .empty {
+    padding: 24px 16px;
+  }
+
+  .afterReviews {
+    padding: 18px 14px;
+  }
+
+  .headline {
+    font-size: 1.05rem;
+  }
+
+  .body {
+    font-size: 0.9rem;
+  }
+}

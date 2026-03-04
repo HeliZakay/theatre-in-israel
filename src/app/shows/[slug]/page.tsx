@@ -14,6 +14,7 @@ import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import WatchlistButton from "@/components/WatchlistButton/WatchlistButton";
 import LotteryBadge from "@/components/LotteryBadge/LotteryBadge";
 import StickyReviewCTA from "@/components/StickyReviewCTA/StickyReviewCTA";
+import ReviewEncouragement from "@/components/ReviewEncouragement/ReviewEncouragement";
 import { getShowStats } from "@/utils/showStats";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import {
@@ -266,13 +267,22 @@ export default async function ShowPage({ params }: ShowPageProps) {
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>ביקורות אחרונות</h2>
         {show.reviews.length ? (
-          <div className={styles.reviewList}>
-            {show.reviews.map((review) => (
-              <ReviewCard key={review.id} review={review} />
-            ))}
-          </div>
+          <>
+            <div className={styles.reviewList}>
+              {show.reviews.map((review) => (
+                <ReviewCard key={review.id} review={review} />
+              ))}
+            </div>
+            <ReviewEncouragement
+              variant="after-reviews"
+              reviewHref={showReviewPath(show.slug)}
+            />
+          </>
         ) : (
-          <p className={styles.emptyState}>עדיין אין ביקורות להצגה הזו.</p>
+          <ReviewEncouragement
+            variant="empty"
+            reviewHref={showReviewPath(show.slug)}
+          />
         )}
       </section>
 
