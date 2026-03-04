@@ -2,6 +2,7 @@
 const nextConfig = {
   poweredByHeader: false,
   experimental: {
+    useBrowserslistForSwc: true,
     optimizeCss: true,
     optimizePackageImports: [
       "@radix-ui/react-dialog",
