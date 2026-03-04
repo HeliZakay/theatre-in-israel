@@ -84,47 +84,55 @@ export async function generateMetadata({
 }: ShowPageProps): Promise<Metadata> {
   const { slug: rawSlug } = await params;
   const slug = decodeURIComponent(rawSlug);
-  await redirectIfLegacyNumericId(slug);
-  const show = await getShowForPage(slug);
 
-  if (!show) {
+  try {
+    await redirectIfLegacyNumericId(slug);
+    const show = await getShowForPage(slug);
+
+    if (!show) {
+      return {
+        title: "הצגה לא נמצאה",
+        robots: { index: false, follow: false },
+      };
+    }
+
+    const { reviewCount, avgRating } = getShowStats(show);
+    const canonicalPath = showPath(show.slug);
+    const description = buildShowDescription(
+      show.description,
+      show.summary,
+      show.theatre,
+      show.title,
+      avgRating,
+      reviewCount,
+    );
+    const imagePath = getShowImagePath(show.title);
+
+    return {
+      title: `${show.title} - ביקורות`,
+      description,
+      alternates: {
+        canonical: canonicalPath,
+      },
+      openGraph: {
+        title: `${show.title} | ${SITE_NAME}`,
+        description,
+        url: canonicalPath,
+        images: [{ url: imagePath, alt: getShowImageAlt(show.title) }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: `${show.title} | ${SITE_NAME}`,
+        description,
+        images: [imagePath],
+      },
+    };
+  } catch {
     return {
       title: "הצגה לא נמצאה",
       robots: { index: false, follow: false },
     };
   }
-
-  const { reviewCount, avgRating } = getShowStats(show);
-  const canonicalPath = showPath(show.slug);
-  const description = buildShowDescription(
-    show.description,
-    show.summary,
-    show.theatre,
-    show.title,
-    avgRating,
-    reviewCount,
-  );
-  const imagePath = getShowImagePath(show.title);
-
-  return {
-    title: `${show.title} - ביקורות`,
-    description,
-    alternates: {
-      canonical: canonicalPath,
-    },
-    openGraph: {
-      title: `${show.title} | ${SITE_NAME}`,
-      description,
-      url: canonicalPath,
-      images: [{ url: imagePath, alt: getShowImageAlt(show.title) }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${show.title} | ${SITE_NAME}`,
-      description,
-      images: [imagePath],
-    },
-  };
 }
 
 export default async function ShowPage({ params }: ShowPageProps) {
