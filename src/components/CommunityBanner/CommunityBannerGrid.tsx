@@ -23,14 +23,14 @@ function pickRandom(
 
 interface CommunityBannerGridProps {
   pool: CommunityBannerShow[];
+  initial: CommunityBannerShow[];
 }
 
 export default function CommunityBannerGrid({
   pool,
+  initial,
 }: CommunityBannerGridProps) {
-  const [visible, setVisible] = useState<CommunityBannerShow[]>(() =>
-    pool.slice(0, 4),
-  );
+  const [visible, setVisible] = useState<CommunityBannerShow[]>(initial);
   const [fading, setFading] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 

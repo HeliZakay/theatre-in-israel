@@ -8,12 +8,15 @@ interface Props {
 }
 
 export default function CommunityBanner({ shows }: Props) {
+  const initial = shows.slice(0, 4);
+  const pool = shows;
+
   return (
     <section className={styles.banner} aria-label="הצטרפו לקהילה">
       <div className={styles.content}>
         <CommunityBannerHeadline />
       </div>
-      <CommunityBannerGrid pool={shows} />
+      <CommunityBannerGrid pool={pool} initial={initial} />
     </section>
   );
 }
