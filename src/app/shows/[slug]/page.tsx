@@ -200,6 +200,7 @@ export default async function ShowPage({ params }: ShowPageProps) {
               sizes="(max-width: 640px) 100vw, 320px"
               className={styles.posterImage}
               priority
+              fetchPriority="high"
             />
           </div>
           <div className={styles.heroContent}>
