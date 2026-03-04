@@ -21,7 +21,7 @@ export default async function ShowsSectionsContent() {
         kicker="ז'אנר"
         title="דרמות"
         shows={dramas}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: ["דרמה", "דרמה קומית", "מרגש"] })}`}
+        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: ["דרמה", "דרמה קומית"] })}`}
         linkText="לכל הדרמות"
       />
 

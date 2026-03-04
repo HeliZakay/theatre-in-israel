@@ -220,7 +220,7 @@ async function fetchSectionsData(): Promise<SectionsData> {
     israeliResult,
   ] = await Promise.allSettled([
     getTopRated(),
-    getShowsByGenres(["דרמה", "דרמה קומית", "מרגש"], FETCH_LIMIT),
+    getShowsByGenres(["דרמה", "דרמה קומית"], FETCH_LIMIT),
     getShowsByGenres(["קומדיה", "קומדיה שחורה", "סאטירה"], FETCH_LIMIT),
     getShowsByGenres(["מוזיקלי", "מחזמר"], FETCH_LIMIT),
     getShowsByGenres(["ישראלי"], FETCH_LIMIT),
@@ -278,7 +278,7 @@ async function fetchHomePageData(): Promise<HomePageData> {
   ] = await Promise.allSettled([
     getSuggestions(),
     getTopRated(),
-    getShowsByGenres(["דרמה", "דרמה קומית", "מרגש"], FETCH_LIMIT),
+    getShowsByGenres(["דרמה", "דרמה קומית"], FETCH_LIMIT),
     getShowsByGenres(["קומדיה", "קומדיה שחורה", "סאטירה"], FETCH_LIMIT),
     getShowsByGenres(["מוזיקלי", "מחזמר"], FETCH_LIMIT),
     getShowsByGenres(["ישראלי"], FETCH_LIMIT),
