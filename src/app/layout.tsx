@@ -1,5 +1,6 @@
 import "./globals.css";
-import { Header, Footer } from "@/components";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 import { Noto_Sans_Hebrew } from "next/font/google";
 import RadixDirectionProvider from "@/components/RadixDirectionProvider/RadixDirectionProvider";
 import AuthSessionProvider from "@/components/AuthSessionProvider/AuthSessionProvider";
