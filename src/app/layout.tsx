@@ -3,6 +3,8 @@ import { Header, Footer } from "@/components";
 import { Noto_Sans_Hebrew } from "next/font/google";
 import RadixDirectionProvider from "@/components/RadixDirectionProvider/RadixDirectionProvider";
 import AuthSessionProvider from "@/components/AuthSessionProvider/AuthSessionProvider";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import ROUTES from "@/constants/routes";
 import {
   SITE_DESCRIPTION,
@@ -121,6 +123,8 @@ export default function RootLayout({
             <Footer />
           </RadixDirectionProvider>
         </AuthSessionProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
