@@ -10,6 +10,19 @@
   gap: 12px;
   padding: 12px 20px;
   padding-bottom: max(12px, env(safe-area-inset-bottom));
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+/* Default (non-lottery) — wine-red gradient */
+.barDefault {
+  background: linear-gradient(135deg, #4f0f17 0%, #7d1724 50%, #942a36 100%);
+}
+
+/* Lottery active — wine-red with gold glow accent */
+.barLottery {
   background:
     radial-gradient(
       circle at 15% 50%,
@@ -17,10 +30,6 @@
       transparent 50%
     ),
     linear-gradient(135deg, #4f0f17 0%, #7d1724 50%, #942a36 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
 }
 
 .barVisible {
@@ -37,7 +46,6 @@
 .cta {
   display: inline-flex;
   align-items: center;
-  background: var(--color-lottery-gold);
   color: #ffffff;
   border-radius: 8px;
   padding: 8px 16px;
@@ -48,7 +56,22 @@
   transition: background 0.2s ease;
 }
 
-.cta:hover {
+/* Default CTA — white outline style */
+.barDefault .cta {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.barDefault .cta:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Lottery CTA — gold style */
+.barLottery .cta {
+  background: var(--color-lottery-gold);
+}
+
+.barLottery .cta:hover {
   background: var(--color-lottery-gold-hover);
 }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { isLotteryActive } from "@/constants/lottery";
 import { cx } from "@/utils/cx";
 import styles from "./StickyReviewCTA.module.css";
@@ -44,15 +44,25 @@ export default function StickyReviewCTA({
     } catch {}
   }, []);
 
-  if (!isLotteryActive() || dismissed) return null;
+  const lottery = useMemo(() => isLotteryActive(), []);
+
+  if (dismissed) return null;
 
   return (
     <div
-      className={cx(styles.bar, visible && styles.barVisible)}
+      className={cx(
+        styles.bar,
+        visible && styles.barVisible,
+        lottery ? styles.barLottery : styles.barDefault,
+      )}
       role="complementary"
-      aria-label="הגרלת כרטיסים"
+      aria-label={lottery ? "הגרלת כרטיסים" : "כתיבת ביקורת"}
     >
-      <span className={styles.text}>🎟️ כתב.י ביקורת ואולי תזכ.י בכרטיסים!</span>
+      <span className={styles.text}>
+        {lottery
+          ? "🎟️ כתב.י ביקורת ואולי תזכ.י בכרטיסים!"
+          : "ראיתם את ההצגה? ספרו מה חשבתם"}
+      </span>
       <a
         href="#write-review"
         className={styles.cta}
