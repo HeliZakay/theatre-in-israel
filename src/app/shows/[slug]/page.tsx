@@ -14,6 +14,7 @@ import WatchlistButton from "@/components/WatchlistButton/WatchlistButton";
 import LotteryBadge from "@/components/LotteryBadge/LotteryBadge";
 import StickyReviewCTA from "@/components/StickyReviewCTA/StickyReviewCTA";
 import InlineReviewForm from "@/components/InlineReviewForm/InlineReviewForm";
+import ReviewEncouragement from "@/components/ReviewEncouragement/ReviewEncouragement";
 import ScrollToReviewButton from "@/components/ScrollToReviewButton/ScrollToReviewButton";
 import ShareDropdown from "@/components/ShareDropdown/ShareDropdown";
 import WebReviewSummary from "@/components/WebReviewSummary/WebReviewSummary";
@@ -249,7 +250,11 @@ export default async function ShowPage({ params }: ShowPageProps) {
             <p className={styles.description}>{show.summary}</p>
             <div className={styles.heroActions} id="hero-actions">
               {!userReview && (
-                <ScrollToReviewButton className={styles.primaryBtn} />
+                <ScrollToReviewButton
+                  className={styles.primaryBtn}
+                  reviewCount={reviewCount}
+                  avgRating={avgRating}
+                />
               )}
               <WatchlistButton
                 showId={show.id}
@@ -273,6 +278,15 @@ export default async function ShowPage({ params }: ShowPageProps) {
           <h2 className={styles.sectionTitle}>על ההצגה</h2>
           <p className={styles.aboutText}>{show.description}</p>
         </section>
+      )}
+
+      {!userReview && (
+        <InlineReviewForm
+          showId={show.id}
+          showSlug={show.slug}
+          isAuthenticated={!!session}
+          variant={show.reviews.length === 0 ? "empty" : "after-reviews"}
+        />
       )}
 
       {show.cast && (
@@ -300,16 +314,14 @@ export default async function ShowPage({ params }: ShowPageProps) {
             ))}
           </div>
         )}
-
-        {!userReview && (
-          <InlineReviewForm
-            showId={show.id}
-            showSlug={show.slug}
-            isAuthenticated={!!session}
-            variant={show.reviews.length === 0 ? "empty" : "after-reviews"}
-          />
-        )}
       </section>
+
+      {!userReview && (
+        <ReviewEncouragement
+          variant={show.reviews.length === 0 ? "empty" : "after-reviews"}
+          reviewHref={showReviewPath(show.slug)}
+        />
+      )}
 
       {!userReview && (
         <StickyReviewCTA reviewHref={showReviewPath(show.slug)} />

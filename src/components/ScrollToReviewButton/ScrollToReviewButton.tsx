@@ -2,10 +2,20 @@
 
 interface ScrollToReviewButtonProps {
   className?: string;
+  reviewCount: number;
+  avgRating: number | null;
+}
+
+function getButtonLabel(reviewCount: number): string {
+  if (reviewCount === 0) return "היו הראשונים לדרג! ⭐";
+  if (reviewCount <= 5) return `הצטרפו ל-${reviewCount} ביקורות`;
+  return "כתב.י ביקורת";
 }
 
 export default function ScrollToReviewButton({
   className,
+  reviewCount,
+  avgRating,
 }: ScrollToReviewButtonProps) {
   const handleClick = () => {
     const target = document.getElementById("write-review");
@@ -16,7 +26,7 @@ export default function ScrollToReviewButton({
 
   return (
     <button type="button" className={className} onClick={handleClick}>
-      כתב.י ביקורת
+      {getButtonLabel(reviewCount)}
     </button>
   );
 }
