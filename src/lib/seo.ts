@@ -40,7 +40,8 @@ export function getMetadataBase(): URL {
 
 export function toAbsoluteUrl(path: string): string {
   if (/^https?:\/\//i.test(path)) return path;
-  return new URL(path, `${getSiteUrl()}/`).toString();
+  const base = getSiteUrl();
+  return path.startsWith("/") ? `${base}${path}` : `${base}/${path}`;
 }
 
 export function toJsonLd(value: unknown): string {

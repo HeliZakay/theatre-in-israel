@@ -20,6 +20,7 @@ import { getShowImagePath } from "@/utils/getShowImagePath";
 import {
   SITE_NAME,
   toJsonLd,
+  toAbsoluteUrl,
   buildBreadcrumbJsonLd,
   buildCreativeWorkJsonLd,
   getShowImageAlt,
@@ -113,12 +114,12 @@ export async function generateMetadata({
       title: `${show.title} - ביקורות`,
       description,
       alternates: {
-        canonical: canonicalPath,
+        canonical: toAbsoluteUrl(canonicalPath),
       },
       openGraph: {
         title: `${show.title} | ${SITE_NAME}`,
         description,
-        url: canonicalPath,
+        url: toAbsoluteUrl(canonicalPath),
         images: [{ url: imagePath, alt: getShowImageAlt(show.title) }],
       },
       twitter: {

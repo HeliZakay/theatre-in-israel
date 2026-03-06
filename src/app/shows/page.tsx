@@ -66,7 +66,7 @@ export async function generateMetadata({
     title: seo.title,
     description: seo.description,
     alternates: {
-      canonical: seo.canonicalPath,
+      canonical: toAbsoluteUrl(seo.canonicalPath),
     },
     robots: seo.shouldNoindex
       ? { index: false, follow: true }
@@ -74,7 +74,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${seo.title} | ${SITE_NAME}`,
       description: seo.description,
-      url: seo.canonicalPath,
+      url: toAbsoluteUrl(seo.canonicalPath),
     },
     twitter: {
       card: "summary_large_image",
