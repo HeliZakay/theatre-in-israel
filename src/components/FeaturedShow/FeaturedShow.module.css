@@ -63,6 +63,32 @@
   );
 }
 
+.badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(10, 12, 18, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(244, 201, 109, 0.35);
+  color: #f4c96d;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+.badge::before {
+  content: "★";
+  font-size: 0.8rem;
+}
+
 .showTitle {
   font-size: clamp(1.5rem, 2.5vw, 2.1rem);
   font-weight: 800;

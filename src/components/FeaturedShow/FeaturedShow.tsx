@@ -52,6 +52,7 @@ export default function FeaturedShow({
             fetchPriority="high"
           />
           <div className={styles.mediaShade} aria-hidden />
+          <span className={styles.badge}>הצגת השבוע</span>
           <div className={styles.mediaOverlay}>
             <h2 className={styles.showTitle}>{title}</h2>
             {theatre && <p className={styles.theatre}>{theatre}</p>}
