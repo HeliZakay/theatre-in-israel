@@ -23,8 +23,10 @@ interface SignInPageProps {
 export default async function SignInPage({ searchParams }: SignInPageProps) {
   const resolvedSearchParams = await searchParams;
   const rawCallbackUrl = resolvedSearchParams.callbackUrl || ROUTES.HOME;
+  // encodeURI keeps the path structure (/shows/...) but encodes Hebrew chars
+  // so they're safe for HTTP Location headers during OAuth redirects.
   const callbackUrl = isValidCallbackUrl(rawCallbackUrl)
-    ? rawCallbackUrl
+    ? encodeURI(rawCallbackUrl)
     : ROUTES.HOME;
   const showAuthRequiredMessage =
     resolvedSearchParams.reason === "auth_required";
