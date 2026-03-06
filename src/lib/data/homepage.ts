@@ -277,6 +277,8 @@ export interface ExploreBannerShow {
   slug: string;
   title: string;
   theatre: string;
+  genre: string[];
+  avgRating: number | null;
 }
 
 /**
@@ -284,18 +286,25 @@ export interface ExploreBannerShow {
  * Results are cached for 300s so the "random" pick rotates every ~5 minutes.
  */
 async function fetchExploreBannerShows(): Promise<ExploreBannerShow[]> {
-  const theatres = ["תיאטרון הבימה", "תיאטרון הקאמרי", "תיאטרון בית ליסין"];
+  const rows = await prisma.show.findMany({
+    select: {
+      id: true,
+      slug: true,
+      title: true,
+      theatre: true,
+      avgRating: true,
+      genres: { select: { genre: { select: { name: true } } } },
+    },
+  });
 
-  const perTheatre = await Promise.all(
-    theatres.map((theatre) =>
-      prisma.show.findMany({
-        where: { theatre },
-        select: { id: true, slug: true, title: true, theatre: true },
-      }),
-    ),
-  );
-
-  const all = perTheatre.flat();
+  const all: ExploreBannerShow[] = rows.map((r) => ({
+    id: r.id,
+    slug: r.slug,
+    title: r.title,
+    theatre: r.theatre,
+    avgRating: r.avgRating,
+    genre: r.genres.map((g) => g.genre.name),
+  }));
 
   // Shuffle using Fisher-Yates
   for (let i = all.length - 1; i > 0; i--) {

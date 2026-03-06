@@ -3,7 +3,9 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import Link from "next/link";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
+import Tag from "@/components/Tag/Tag";
 import { showPath } from "@/constants/routes";
+import ROUTES from "@/constants/routes";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import type { ExploreBannerShow } from "@/lib/data/homepage";
 import { cx } from "@/utils/cx";
@@ -57,7 +59,7 @@ export default function ExploreBannerGrid({
           type="button"
           className={styles.shuffleButton}
           onClick={handleShuffle}
-          aria-label="הצגות נוספות"
+          aria-label="ערבבו שוב"
         >
           <svg
             width="18"
@@ -77,8 +79,11 @@ export default function ExploreBannerGrid({
             <path d="M15 15l6 6" />
             <path d="M4 4l5 5" />
           </svg>
-          הצגות נוספות
+          ערבבו שוב
         </button>
+        <Link href={ROUTES.SHOWS} className={styles.browseLink}>
+          לכל ההצגות ←
+        </Link>
       </div>
       <div className={cx(styles.grid, fading && styles.gridFading)}>
         {visible.map((show) => (
@@ -99,6 +104,14 @@ export default function ExploreBannerGrid({
               </div>
               <div className={styles.cardBody}>
                 <span className={styles.cardTitle}>{show.title}</span>
+                <span className={styles.cardMeta}>{show.theatre}</span>
+                {show.genre.length > 0 && (
+                  <div className={styles.cardGenres}>
+                    {show.genre.slice(0, 2).map((g) => (
+                      <Tag key={g}>{g}</Tag>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </Link>
