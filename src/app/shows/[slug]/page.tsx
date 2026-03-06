@@ -285,16 +285,7 @@ export default async function ShowPage({ params }: ShowPageProps) {
       <WebReviewSummary summary={show.webReviewSummary} />
 
       <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>ביקורות אחרונות</h2>
-
-        {!userReview && (
-          <InlineReviewForm
-            showId={show.id}
-            showSlug={show.slug}
-            isAuthenticated={!!session}
-            variant={show.reviews.length === 0 ? "empty" : "after-reviews"}
-          />
-        )}
+        <h2 className={styles.sectionTitle}>ביקורות של אנשים</h2>
 
         {userReview && (
           <div className={styles.ownReviewBlock}>
@@ -308,6 +299,15 @@ export default async function ShowPage({ params }: ShowPageProps) {
               <ReviewCard key={review.id} review={review} />
             ))}
           </div>
+        )}
+
+        {!userReview && (
+          <InlineReviewForm
+            showId={show.id}
+            showSlug={show.slug}
+            isAuthenticated={!!session}
+            variant={show.reviews.length === 0 ? "empty" : "after-reviews"}
+          />
         )}
       </section>
 
