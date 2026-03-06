@@ -15,6 +15,7 @@ import LotteryBadge from "@/components/LotteryBadge/LotteryBadge";
 import StickyReviewCTA from "@/components/StickyReviewCTA/StickyReviewCTA";
 import InlineReviewForm from "@/components/InlineReviewForm/InlineReviewForm";
 import ScrollToReviewButton from "@/components/ScrollToReviewButton/ScrollToReviewButton";
+import ShareDropdown from "@/components/ShareDropdown/ShareDropdown";
 import { getShowStats } from "@/utils/showStats";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import {
@@ -250,6 +251,12 @@ export default async function ShowPage({ params }: ShowPageProps) {
                 showId={show.id}
                 showSlug={show.slug}
                 initialInWatchlist={initialInWatchlist}
+              />
+              <ShareDropdown
+                url={showPath(show.slug)}
+                title={show.title}
+                theatre={show.theatre}
+                className={styles.ghostBtn}
               />
             </div>
             <LotteryBadge text="🎟️ כתיבת ביקורת = כרטיס להגרלה" />

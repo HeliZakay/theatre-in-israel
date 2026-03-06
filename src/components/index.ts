@@ -26,6 +26,7 @@ export { default as StickyReviewCTA } from "./StickyReviewCTA/StickyReviewCTA";
 export { default as ShowCombobox } from "./ShowCombobox/ShowCombobox";
 export { default as ShowCarousel } from "./ShowCarousel/ShowCarousel";
 export { default as ShareButtons } from "./ShareButtons/ShareButtons";
+export { default as ShareDropdown } from "./ShareDropdown/ShareDropdown";
 export { default as ShowsFilterBar } from "./ShowsFilterBar/ShowsFilterBar";
 export { default as ShowsSection } from "./ShowsSection/ShowsSection";
 export { default as SectionHeader } from "./SectionHeader/SectionHeader";
