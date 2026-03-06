@@ -285,7 +285,7 @@ export default async function ShowPage({ params }: ShowPageProps) {
       <WebReviewSummary summary={show.webReviewSummary} />
 
       <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>ביקורות של אנשים</h2>
+        <h2 className={styles.sectionTitle}>ביקורות הקהל</h2>
 
         {userReview && (
           <div className={styles.ownReviewBlock}>
