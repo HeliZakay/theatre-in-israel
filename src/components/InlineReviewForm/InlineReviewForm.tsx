@@ -126,10 +126,16 @@ export default function InlineReviewForm({
 
       timerRef.current = setTimeout(
         () => {
-          // Hard reload to force a full server re-render.
-          // router.refresh() / router.push() to the same URL can be
-          // deduplicated by Next.js, leaving the success banner stuck.
-          window.location.reload();
+          setSuccess(false);
+          setLotteryEntries(null);
+          setIsExpanded(false);
+          reset({
+            showId: String(showId),
+            title: "",
+            rating: "",
+            text: "",
+            ...(isAnonymous ? { name: "", honeypot: "" } : {}),
+          });
         },
         !isAnonymous && isLotteryActive() ? 4000 : 2000,
       );
@@ -160,9 +166,7 @@ export default function InlineReviewForm({
           </span>
           <div>
             <p className={styles.successTitle}>הביקורת פורסמה בהצלחה!</p>
-            <p className={styles.successSubtitle}>
-              הביקורת שלך תופיע כאן בעוד רגע…
-            </p>
+            <p className={styles.successSubtitle}>תודה על חוות הדעת שלך!</p>
           </div>
         </div>
         {!isAnonymous && isLotteryActive() && lotteryEntries !== null && (
