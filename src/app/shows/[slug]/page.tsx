@@ -297,23 +297,25 @@ export default async function ShowPage({ params }: ShowPageProps) {
 
       <WebReviewSummary summary={show.webReviewSummary} />
 
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>ביקורות הקהל</h2>
+      {(userReview || otherReviews.length > 0) && (
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>ביקורות הקהל</h2>
 
-        {userReview && (
-          <div className={styles.ownReviewBlock}>
-            <ReviewCard review={userReview} isOwn />
-          </div>
-        )}
+          {userReview && (
+            <div className={styles.ownReviewBlock}>
+              <ReviewCard review={userReview} isOwn />
+            </div>
+          )}
 
-        {otherReviews.length > 0 && (
-          <div className={styles.reviewList}>
-            {otherReviews.map((review) => (
-              <ReviewCard key={review.id} review={review} />
-            ))}
-          </div>
-        )}
-      </section>
+          {otherReviews.length > 0 && (
+            <div className={styles.reviewList}>
+              {otherReviews.map((review) => (
+                <ReviewCard key={review.id} review={review} />
+              ))}
+            </div>
+          )}
+        </section>
+      )}
 
       {!userReview && (
         <StickyReviewCTA reviewHref={showReviewPath(show.slug)} />
