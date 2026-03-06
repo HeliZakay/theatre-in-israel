@@ -36,24 +36,6 @@
   outline: none;
 }
 
-.whatsappDot,
-.facebookDot,
-.copyDot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+.brandIcon {
   flex-shrink: 0;
-}
-
-.whatsappDot {
-  background: #25d366;
-}
-
-.facebookDot {
-  background: #1877f2;
-}
-
-.copyDot {
-  background: var(--color-slate-008, #64748b);
 }

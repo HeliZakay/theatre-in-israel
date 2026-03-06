@@ -110,6 +110,9 @@ export async function generateMetadata({
       reviewCount,
     );
     const imagePath = getShowImagePath(show.title);
+    const absoluteImageUrl = toAbsoluteUrl(
+      `/${encodeURIComponent(imagePath.slice(1))}`,
+    );
 
     return {
       title: `${show.title} - ביקורות`,
@@ -118,13 +121,13 @@ export async function generateMetadata({
         title: `${show.title} | ${SITE_NAME}`,
         description,
         url: toAbsoluteUrl(canonicalPath),
-        images: [{ url: imagePath, alt: getShowImageAlt(show.title) }],
+        images: [{ url: absoluteImageUrl, alt: getShowImageAlt(show.title) }],
       },
       twitter: {
         card: "summary_large_image",
         title: `${show.title} | ${SITE_NAME}`,
         description,
-        images: [imagePath],
+        images: [absoluteImageUrl],
       },
     };
   } catch {
