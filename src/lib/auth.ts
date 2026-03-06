@@ -58,6 +58,7 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: ROUTES.AUTH_SIGNIN,
+    error: ROUTES.AUTH_ERROR,
   },
   providers: [
     GoogleProvider({
