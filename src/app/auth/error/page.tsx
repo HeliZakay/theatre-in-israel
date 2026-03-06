@@ -16,11 +16,9 @@ export const metadata: Metadata = {
 const ERROR_MESSAGES: Record<string, string> = {
   OAuthAccountNotLinked:
     "כתובת האימייל הזו כבר משויכת לחשבון קיים עם שיטת התחברות אחרת. נס.י להתחבר עם השיטה המקורית.",
-  Configuration:
-    "יש בעיה בהגדרות השרת. נא לפנות למנהלי האתר.",
+  Configuration: "יש בעיה בהגדרות השרת. נא לפנות למנהלי האתר.",
   AccessDenied: "הגישה נדחתה. אין לך הרשאה להתחבר.",
-  Verification:
-    "קישור האימות פג תוקף או שכבר נעשה בו שימוש. נס.י שוב.",
+  Verification: "קישור האימות פג תוקף או שכבר נעשה בו שימוש. נס.י שוב.",
   OAuthSignin: "אירעה שגיאה בתחילת תהליך ההתחברות. נס.י שוב.",
   OAuthCallback: "אירעה שגיאה בתהליך ההתחברות מול Google. נס.י שוב.",
   Default: "אירעה שגיאה בלתי צפויה בתהליך ההתחברות. נס.י שוב.",
@@ -32,8 +30,7 @@ interface ErrorPageProps {
 
 export default async function AuthErrorPage({ searchParams }: ErrorPageProps) {
   const { error } = await searchParams;
-  const message =
-    ERROR_MESSAGES[error ?? ""] ?? ERROR_MESSAGES.Default;
+  const message = ERROR_MESSAGES[error ?? ""] ?? ERROR_MESSAGES.Default;
 
   return (
     <main className={styles.page} id="main-content">
