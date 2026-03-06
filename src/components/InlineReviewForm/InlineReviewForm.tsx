@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import styles from "./InlineReviewForm.module.css";
@@ -34,6 +35,7 @@ export default function InlineReviewForm({
   variant,
 }: InlineReviewFormProps) {
   const isAnonymous = !isAuthenticated;
+  const pathname = usePathname();
   const [isExpanded, setIsExpanded] = useState(false);
   const [serverError, setServerError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -224,7 +226,12 @@ export default function InlineReviewForm({
                   ℹ️
                 </span>
                 <p>
-                  יש לך חשבון? <Link href={ROUTES.AUTH_SIGNIN}>התחבר.י</Link>{" "}
+                  יש לך חשבון?{" "}
+                  <Link
+                    href={`${ROUTES.AUTH_SIGNIN}?callbackUrl=${encodeURIComponent(pathname)}`}
+                  >
+                    התחבר.י
+                  </Link>{" "}
                   כדי לערוך ביקורות בעתיד
                 </p>
               </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { Controller, useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -41,6 +41,7 @@ export default function ReviewForm({
 }: ReviewFormProps) {
   const isAnonymous = !isAuthenticated;
   const router = useRouter();
+  const pathname = usePathname();
   const [serverError, setServerError] = useState("");
   const [success, setSuccess] = useState(false);
   const [lotteryEntries, setLotteryEntries] = useState<number | null>(null);
@@ -143,8 +144,13 @@ export default function ReviewForm({
             ℹ️
           </span>
           <p>
-            יש לך חשבון? <Link href={ROUTES.AUTH_SIGNIN}>התחבר.י</Link> כדי
-            לערוך ביקורות בעתיד
+            יש לך חשבון?{" "}
+            <Link
+              href={`${ROUTES.AUTH_SIGNIN}?callbackUrl=${encodeURIComponent(pathname)}`}
+            >
+              התחבר.י
+            </Link>{" "}
+            כדי לערוך ביקורות בעתיד
           </p>
         </div>
       )}
