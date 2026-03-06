@@ -58,7 +58,8 @@
 }
 
 .expandInner {
-  overflow: hidden;
+  overflow: clip;
+  overflow-clip-margin: 8px;
 }
 
 .form {
