@@ -8,12 +8,12 @@
 
 The anonymous review infrastructure is fully built and working — the problem is purely **discoverability** and **timing**:
 
-| Leak | Location | Problem |
-|------|----------|---------|
-| 1 | `StickyReviewCTA` | Completely dead — gated behind `isLotteryActive()` which returns `false` |
-| 2 | Show page layout | `InlineReviewForm` buried below 4 sections (description, cast, web summary, ALL reviews) |
-| 3 | `ScrollToReviewButton` | Plain button, no urgency, no social proof |
-| 4 | Homepage | Zero review CTAs — entire page is consumption-only |
+| Leak | Location               | Problem                                                                                  |
+| ---- | ---------------------- | ---------------------------------------------------------------------------------------- |
+| 1    | `StickyReviewCTA`      | Completely dead — gated behind `isLotteryActive()` which returns `false`                 |
+| 2    | Show page layout       | `InlineReviewForm` buried below 4 sections (description, cast, web summary, ALL reviews) |
+| 3    | `ScrollToReviewButton` | Plain button, no urgency, no social proof                                                |
+| 4    | Homepage               | Zero review CTAs — entire page is consumption-only                                       |
 
 ## Solution: 4 Targeted Changes
 
@@ -104,11 +104,11 @@ The anonymous review infrastructure is fully built and working — the problem i
 
 ## Design Decisions
 
-| Decision | Reasoning |
-|----------|-----------|
-| Move form after description, not after cast | Description gives users enough context to feel qualified to review. Cast/web summaries are supplementary |
-| Second banner slot, not replacing `ExploreBanner` | Explore drives discovery (future reviews). Review CTA targets past viewers. Both serve the funnel at different stages |
-| Wine-red banner, not cream | Matches `CtaStrip` "take action" color language vs. cream "browse" language. Users instantly read it as different |
-| Simple CTA link to `/reviews/new`, not inline stars | `/reviews/new` already has show picker, validation, anonymous support. Homepage's job is to direct, not host forms |
-| `ReviewEncouragement` at reviews bottom as fallback | Reuses dead code, costs nothing, catches "read all reviews, want to add mine" users |
-| Always render ReviewCTABanner (no auth check) | Anonymous reviews are first-class. Most users are anonymous. No reason to gate |
+| Decision                                            | Reasoning                                                                                                             |
+| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Move form after description, not after cast         | Description gives users enough context to feel qualified to review. Cast/web summaries are supplementary              |
+| Second banner slot, not replacing `ExploreBanner`   | Explore drives discovery (future reviews). Review CTA targets past viewers. Both serve the funnel at different stages |
+| Wine-red banner, not cream                          | Matches `CtaStrip` "take action" color language vs. cream "browse" language. Users instantly read it as different     |
+| Simple CTA link to `/reviews/new`, not inline stars | `/reviews/new` already has show picker, validation, anonymous support. Homepage's job is to direct, not host forms    |
+| `ReviewEncouragement` at reviews bottom as fallback | Reuses dead code, costs nothing, catches "read all reviews, want to add mine" users                                   |
+| Always render ReviewCTABanner (no auth check)       | Anonymous reviews are first-class. Most users are anonymous. No reason to gate                                        |
