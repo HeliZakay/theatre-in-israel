@@ -49,17 +49,27 @@
 .expandWrapper {
   display: grid;
   grid-template-rows: 0fr;
+  overflow: hidden;
   transition: grid-template-rows 0.35s ease;
   width: 100%;
+  padding: 0 6px;
+  margin: 0 -6px;
 }
 
 .expandWrapper.expanded {
   grid-template-rows: 1fr;
+  overflow: visible;
+  transition:
+    grid-template-rows 0.35s ease,
+    overflow 0s 0.35s;
 }
 
 .expandInner {
-  overflow: clip;
-  overflow-clip-margin: 8px;
+  min-height: 0;
+}
+
+.form :is(input, textarea, select):focus-visible {
+  outline-offset: -3px;
 }
 
 .form {

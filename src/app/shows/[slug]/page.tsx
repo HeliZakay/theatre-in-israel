@@ -286,7 +286,6 @@ export default async function ShowPage({ params }: ShowPageProps) {
 
         {userReview && (
           <div className={styles.ownReviewBlock}>
-            <span className={styles.ownReviewLabel}>הביקורת שלי</span>
             <ReviewCard review={userReview} isOwn />
           </div>
         )}
