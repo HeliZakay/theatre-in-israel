@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { permanentRedirect } from "next/navigation";
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
@@ -14,7 +13,8 @@ import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import WatchlistButton from "@/components/WatchlistButton/WatchlistButton";
 import LotteryBadge from "@/components/LotteryBadge/LotteryBadge";
 import StickyReviewCTA from "@/components/StickyReviewCTA/StickyReviewCTA";
-import ReviewEncouragement from "@/components/ReviewEncouragement/ReviewEncouragement";
+import InlineReviewForm from "@/components/InlineReviewForm/InlineReviewForm";
+import ScrollToReviewButton from "@/components/ScrollToReviewButton/ScrollToReviewButton";
 import { getShowStats } from "@/utils/showStats";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import {
@@ -155,11 +155,15 @@ export default async function ShowPage({ params }: ShowPageProps) {
   let initialInWatchlist = false;
   let userReview: (typeof show.reviews)[number] | null = null;
   let otherReviews = show.reviews;
+  let session: Awaited<
+    ReturnType<typeof getServerSession<typeof authOptions>>
+  > = null;
   try {
-    const session = await getServerSession(authOptions);
+    session = await getServerSession(authOptions);
     if (session?.user?.id) {
       initialInWatchlist = await isShowInWatchlist(session.user.id, show.id);
-      const idx = show.reviews.findIndex((r) => r.userId === session.user?.id);
+      const userId = session.user.id;
+      const idx = show.reviews.findIndex((r) => r.userId === userId);
       if (idx !== -1) {
         userReview = show.reviews[idx];
         otherReviews = show.reviews.filter((_, i) => i !== idx);
@@ -240,12 +244,9 @@ export default async function ShowPage({ params }: ShowPageProps) {
             </div>
             <p className={styles.description}>{show.summary}</p>
             <div className={styles.heroActions} id="hero-actions">
-              <Link
-                className={styles.primaryBtn}
-                href={showReviewPath(show.slug)}
-              >
-                כתב.י ביקורת
-              </Link>
+              {!userReview && (
+                <ScrollToReviewButton className={styles.primaryBtn} />
+              )}
               <WatchlistButton
                 showId={show.id}
                 showSlug={show.slug}
@@ -274,6 +275,15 @@ export default async function ShowPage({ params }: ShowPageProps) {
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>ביקורות אחרונות</h2>
 
+        {!userReview && (
+          <InlineReviewForm
+            showId={show.id}
+            showSlug={show.slug}
+            isAuthenticated={!!session}
+            variant={show.reviews.length === 0 ? "empty" : "after-reviews"}
+          />
+        )}
+
         {userReview && (
           <div className={styles.ownReviewBlock}>
             <span className={styles.ownReviewLabel}>הביקורת שלי</span>
@@ -287,20 +297,6 @@ export default async function ShowPage({ params }: ShowPageProps) {
               <ReviewCard key={review.id} review={review} />
             ))}
           </div>
-        )}
-
-        {!userReview && show.reviews.length > 0 && (
-          <ReviewEncouragement
-            variant="after-reviews"
-            reviewHref={showReviewPath(show.slug)}
-          />
-        )}
-
-        {show.reviews.length === 0 && (
-          <ReviewEncouragement
-            variant="empty"
-            reviewHref={showReviewPath(show.slug)}
-          />
         )}
       </section>
 

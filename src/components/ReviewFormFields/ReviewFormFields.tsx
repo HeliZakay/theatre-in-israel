@@ -31,6 +31,8 @@ interface ReviewFormFieldsProps<TFieldValues extends FieldValues> {
   textRows?: number;
   /** Whether all fields should be disabled */
   disabled?: boolean;
+  /** Hide the rating field (when rating is handled externally, e.g. StarRating) */
+  hideRating?: boolean;
 }
 
 /**
@@ -45,6 +47,7 @@ export default function ReviewFormFields<TFieldValues extends FieldValues>({
   textValue,
   textRows = 6,
   disabled,
+  hideRating = false,
 }: ReviewFormFieldsProps<TFieldValues>) {
   const titleError = errors.title as { message?: string } | undefined;
   const ratingError = errors.rating as { message?: string } | undefined;
@@ -68,30 +71,32 @@ export default function ReviewFormFields<TFieldValues extends FieldValues>({
         </p>
       </label>
 
-      <label className={styles.field}>
-        <span className={styles.label}>דירוג</span>
-        <Controller
-          name={"rating" as Path<TFieldValues>}
-          control={control}
-          render={({ field }) => (
-            <AppSelect
-              id="rating"
-              name={field.name}
-              className={styles.select}
-              ariaLabel="דירוג"
-              value={String(field.value ?? "")}
-              onValueChange={field.onChange}
-              onBlur={field.onBlur}
-              options={ratingOptions}
-              placeholder="בחרו דירוג"
-              disabled={disabled}
-            />
-          )}
-        />
-        {ratingError ? (
-          <p className={styles.fieldError}>{ratingError.message}</p>
-        ) : null}
-      </label>
+      {!hideRating && (
+        <label className={styles.field}>
+          <span className={styles.label}>דירוג</span>
+          <Controller
+            name={"rating" as Path<TFieldValues>}
+            control={control}
+            render={({ field }) => (
+              <AppSelect
+                id="rating"
+                name={field.name}
+                className={styles.select}
+                ariaLabel="דירוג"
+                value={String(field.value ?? "")}
+                onValueChange={field.onChange}
+                onBlur={field.onBlur}
+                options={ratingOptions}
+                placeholder="בחרו דירוג"
+                disabled={disabled}
+              />
+            )}
+          />
+          {ratingError ? (
+            <p className={styles.fieldError}>{ratingError.message}</p>
+          ) : null}
+        </label>
+      )}
 
       <label className={styles.field}>
         <span className={styles.label}>תגובה</span>

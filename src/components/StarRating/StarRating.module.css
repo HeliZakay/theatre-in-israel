@@ -1,0 +1,73 @@
+.container {
+  display: inline-flex;
+  gap: 4px;
+  direction: ltr;
+}
+
+.star {
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease;
+}
+
+.star:hover {
+  transform: scale(1.15);
+}
+
+.star:focus-visible {
+  outline: 3px solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+.star:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.star:disabled:hover {
+  transform: none;
+}
+
+.starSvg {
+  width: 36px;
+  height: 36px;
+  transition:
+    fill 0.1s ease,
+    stroke 0.1s ease;
+}
+
+.starFilled {
+  fill: #f59e0b;
+  stroke: #d97706;
+  stroke-width: 1;
+}
+
+.starEmpty {
+  fill: #e5e7eb;
+  stroke: #d1d5db;
+  stroke-width: 1;
+}
+
+.starHover {
+  fill: #fbbf24;
+  stroke: #d97706;
+  stroke-width: 1;
+}
+
+@media (max-width: 640px) {
+  .container {
+    gap: 2px;
+  }
+
+  .starSvg {
+    width: 42px;
+    height: 42px;
+  }
+}

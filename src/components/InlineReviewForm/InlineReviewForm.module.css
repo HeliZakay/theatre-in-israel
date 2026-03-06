@@ -1,0 +1,258 @@
+.card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  border-style: dashed;
+  border-color: rgba(156, 27, 32, 0.2);
+  background: #fdfaf7;
+  scroll-margin-top: calc(var(--header-offset) + 16px);
+}
+
+.prompt {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0;
+}
+
+.ratingRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.ratingLabel {
+  font-size: 0.85rem;
+  color: var(--color-text-faint);
+  font-weight: 500;
+}
+
+.ratingError {
+  color: var(--color-curtain-red);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* ── Expandable form area ── */
+.expandWrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+  width: 100%;
+}
+
+.expandWrapper.expanded {
+  grid-template-rows: 1fr;
+}
+
+.expandInner {
+  overflow: hidden;
+}
+
+.form {
+  display: grid;
+  gap: 16px;
+  text-align: right;
+  padding-top: 16px;
+  max-width: 680px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── Anonymous banner ── */
+.signInBanner {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(156, 27, 32, 0.04);
+  border: 1px solid rgba(156, 27, 32, 0.12);
+  font-size: 0.92rem;
+  color: var(--color-text-primary);
+  text-align: right;
+}
+
+.signInBanner a {
+  color: var(--color-curtain-red);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.signInBannerIcon {
+  flex-shrink: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* ── Honeypot field — hidden from real users ── */
+.honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Actions ── */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.primaryBtn {
+  border-radius: var(--radius-sm);
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: var(--color-curtain-red);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 140px;
+}
+
+.primaryBtn:disabled {
+  opacity: 0.85;
+  cursor: not-allowed;
+}
+
+.cancelBtn {
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+}
+
+.cancelBtn:hover {
+  background: var(--color-slate-006);
+}
+
+/* ── Submit spinner ── */
+.submitSpinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  border-top-color: #ffffff;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Success state ── */
+.successBanner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(20, 108, 67, 0.35);
+  background: rgba(20, 108, 67, 0.1);
+  width: 100%;
+  text-align: right;
+}
+
+.successIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: #146c43;
+}
+
+.successTitle {
+  color: #0f5132;
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.successSubtitle {
+  margin-top: 2px;
+  color: rgba(15, 81, 50, 0.85);
+  font-size: 0.9rem;
+}
+
+/* ── Lottery ── */
+.lotterySection {
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--color-lottery-gold-light);
+  border: 1px solid rgba(212, 160, 23, 0.25);
+  text-align: center;
+  width: 100%;
+}
+
+.lotteryTitle {
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--color-lottery-gold-hover);
+}
+
+.lotteryCount {
+  font-size: 0.9rem;
+  margin-top: 4px;
+  color: var(--color-text-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .expandWrapper {
+    transition: none;
+  }
+
+  .submitSpinner {
+    animation-duration: 1.8s;
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: 20px 16px;
+  }
+
+  .prompt {
+    font-size: 1.05rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .form {
+    padding-top: 12px;
+  }
+}
