@@ -152,6 +152,43 @@
   opacity: 0;
 }
 
+/* --- Sign-in info banner (top of form for anonymous users) --- */
+.signInBanner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  background: rgba(59, 130, 246, 0.08);
+  font-size: 0.95rem;
+  color: var(--color-body-fg, #1e293b);
+  text-align: right;
+}
+
+.signInBannerIcon {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.signInBanner p {
+  margin: 0;
+}
+
+.signInBanner a {
+  color: var(--color-curtain-red);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.signInBanner a:hover {
+  text-decoration: none;
+}
+
+/* Legacy hint (kept for future re-use) */
+/*
 .signInHint {
   font-size: 0.88rem;
   color: var(--color-muted-fg, #64748b);
@@ -169,6 +206,7 @@
 .signInHint a:hover {
   text-decoration: none;
 }
+*/
 
 /* Lottery success section */
 .lotterySection {

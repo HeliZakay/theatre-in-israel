@@ -7,6 +7,7 @@ import ReviewForm from "@/components/ReviewForm/ReviewForm";
 import CancelButton from "./CancelButton";
 import { SITE_NAME } from "@/lib/seo";
 import ReviewAuthGateway from "@/components/ReviewAuthGateway/ReviewAuthGateway";
+import { ENABLE_REVIEW_AUTH_GATEWAY } from "@/constants/featureFlags";
 
 import type { Metadata } from "next";
 
@@ -37,7 +38,7 @@ export default async function NewReviewPage({
 
   const isAuthenticated = !!session;
 
-  if (!isAuthenticated && guest !== "1") {
+  if (ENABLE_REVIEW_AUTH_GATEWAY && !isAuthenticated && guest !== "1") {
     return <ReviewAuthGateway callbackUrl={ROUTES.REVIEWS_NEW} />;
   }
 

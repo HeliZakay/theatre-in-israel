@@ -20,11 +20,7 @@ test.describe("Anonymous Reviews", () => {
     await page.getByRole("link", { name: "כתב.י ביקורת" }).click();
     await expect(page).toHaveURL(new RegExp(`/shows/${firstShow.slug}/review`));
 
-    // Gateway shows for anonymous users — click through
-    await page.getByRole("link", { name: "המשך בלי חשבון" }).click();
-    await expect(page).toHaveURL(new RegExp(`\\?guest=1`));
-
-    // Should see name field (anonymous mode)
+    // Anonymous users go straight to the review form (gateway is disabled)
     await expect(page.locator('input[name="name"]')).toBeVisible();
 
     // Fill review fields
@@ -53,7 +49,7 @@ test.describe("Anonymous Reviews", () => {
     page,
     firstShow,
   }) => {
-    await page.goto(`/shows/${firstShow.slug}/review?guest=1`);
+    await page.goto(`/shows/${firstShow.slug}/review`);
 
     // Leave name field empty (should default to "אנונימי")
     await page.locator('input[name="title"]').fill("ביקורת ללא שם");
@@ -77,13 +73,14 @@ test.describe("Anonymous Reviews", () => {
     page,
     firstShow,
   }) => {
-    await page.goto(`/shows/${firstShow.slug}/review?guest=1`);
+    await page.goto(`/shows/${firstShow.slug}/review`);
 
     await expect(page.getByText("יש לך חשבון?")).toBeVisible();
     await expect(page.getByRole("link", { name: "התחבר.י" })).toBeVisible();
   });
 
-  test("shows auth gateway for anonymous users", async ({
+  // Skipped: ENABLE_REVIEW_AUTH_GATEWAY is currently false
+  test.skip("shows auth gateway for anonymous users", async ({
     page,
     firstShow,
   }) => {

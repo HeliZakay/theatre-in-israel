@@ -8,6 +8,7 @@ import { authOptions } from "@/lib/auth";
 import { getShowBySlug } from "@/lib/data/showDetail";
 import ReviewForm from "@/components/ReviewForm/ReviewForm";
 import ReviewAuthGateway from "@/components/ReviewAuthGateway/ReviewAuthGateway";
+import { ENABLE_REVIEW_AUTH_GATEWAY } from "@/constants/featureFlags";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import { SITE_NAME } from "@/lib/seo";
@@ -66,7 +67,7 @@ export default async function NewReviewPage({
 
   const isAuthenticated = !!session;
 
-  if (!isAuthenticated && guest !== "1") {
+  if (ENABLE_REVIEW_AUTH_GATEWAY && !isAuthenticated && guest !== "1") {
     return (
       <ReviewAuthGateway
         callbackUrl={showReviewPath(slug)}

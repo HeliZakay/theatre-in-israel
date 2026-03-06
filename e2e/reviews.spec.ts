@@ -86,15 +86,7 @@ test.describe("Create Review", () => {
   test("review form is accessible without authentication", async ({ page }) => {
     await page.goto("/reviews/new");
 
-    // Should show the auth gateway first
-    await expect(
-      page.getByRole("heading", { name: "כתיבת ביקורת" }),
-    ).toBeVisible();
-
-    // Click through the gateway as guest
-    await page.getByRole("link", { name: "המשך בלי חשבון" }).click();
-
-    // Now the form should be visible
+    // Anonymous users go straight to the form (gateway is disabled)
     await expect(
       page.getByRole("heading", { name: "כתב.י ביקורת" }),
     ).toBeVisible();

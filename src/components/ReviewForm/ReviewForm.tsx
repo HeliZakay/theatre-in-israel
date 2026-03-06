@@ -137,6 +137,18 @@ export default function ReviewForm({
 
   const form = (
     <form className={styles.form} onSubmit={submitHandler} noValidate>
+      {isAnonymous && (
+        <div className={styles.signInBanner}>
+          <span className={styles.signInBannerIcon} aria-hidden="true">
+            ℹ️
+          </span>
+          <p>
+            יש לך חשבון? <Link href={ROUTES.AUTH_SIGNIN}>התחבר.י</Link> כדי
+            לערוך ביקורות בעתיד
+          </p>
+        </div>
+      )}
+
       {shows.length ? (
         <label className={fieldStyles.field}>
           <span className={fieldStyles.label}>הצגה</span>
@@ -270,13 +282,6 @@ export default function ReviewForm({
           )}
         </button>
       </div>
-
-      {!isAuthenticated && (
-        <p className={styles.signInHint}>
-          יש לך חשבון? <Link href={ROUTES.AUTH_SIGNIN}>התחבר.י</Link> כדי לערוך
-          ביקורות בעתיד
-        </p>
-      )}
     </form>
   );
 
