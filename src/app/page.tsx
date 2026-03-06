@@ -50,14 +50,16 @@ export default async function Home() {
         featuredReview={featuredReview}
       />
 
-      {isLotteryActive() ? (
-        <LotteryBanner />
-      ) : (
-        <ExploreBanner shows={exploreShows} />
-      )}
-
       <Suspense fallback={<ShowsSectionsSkeleton />}>
-        <ShowsSectionsContent />
+        <ShowsSectionsContent
+          banner={
+            isLotteryActive() ? (
+              <LotteryBanner />
+            ) : (
+              <ExploreBanner shows={exploreShows} />
+            )
+          }
+        />
       </Suspense>
 
       <CtaStrip

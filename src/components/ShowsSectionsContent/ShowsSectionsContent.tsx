@@ -1,10 +1,15 @@
+import type { ReactNode } from "react";
 import ShowsSection from "@/components/ShowsSection/ShowsSection";
 import { getSectionsData } from "@/lib/data/homepage";
 import ROUTES from "@/constants/routes";
 import { buildShowsQueryString } from "@/utils/showsQuery";
 import { GENRE_SECTIONS } from "@/constants/genreGroups";
 
-export default async function ShowsSectionsContent() {
+interface Props {
+  banner?: ReactNode;
+}
+
+export default async function ShowsSectionsContent({ banner }: Props) {
   const { topRated, dramas, comedies, musicals, israeli } =
     await getSectionsData();
 
@@ -25,6 +30,8 @@ export default async function ShowsSectionsContent() {
         linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.dramas.genres] })}`}
         linkText={GENRE_SECTIONS.dramas.linkText}
       />
+
+      {banner}
 
       <ShowsSection
         kicker={GENRE_SECTIONS.comedies.kicker}
