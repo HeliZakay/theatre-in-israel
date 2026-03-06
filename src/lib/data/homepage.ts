@@ -3,6 +3,7 @@ import prisma from "../prisma";
 import { showListInclude } from "../showHelpers";
 import type { ShowListItem, Suggestions } from "@/types";
 import { GENRE_SECTIONS } from "@/constants/genreGroups";
+import { FEATURED_SHOW_SLUG } from "@/constants/featuredShow";
 
 const DISPLAY_LIMIT = 10;
 const FETCH_LIMIT = 40;
@@ -162,6 +163,22 @@ function settled<T>(result: PromiseSettledResult<T>, fallback: T): T {
 }
 
 /**
+ * If a manual featured-show slug is configured, fetch that specific show.
+ * Returns `null` when no override is set or the slug doesn't match a valid show.
+ */
+async function getManualFeaturedShow(): Promise<ShowListItem | null> {
+  if (!FEATURED_SHOW_SLUG) return null;
+
+  const show = await prisma.show.findUnique({
+    where: { slug: FEATURED_SHOW_SLUG },
+    include: showListInclude,
+  });
+
+  if (!show) return null;
+  return mapToShowListItem(show);
+}
+
+/**
  * Lightweight hero data: suggestions + featured show + featured review.
  * Only 3-4 DB queries — fast enough to block initial HTML without hurting TTFB.
  */
@@ -175,7 +192,8 @@ async function fetchHeroData(): Promise<HeroData> {
   const suggestions = settled(suggestionsResult, emptySuggestions);
   const topRated = settled(topRatedResult, [] as ShowListItem[]);
 
-  const featuredShow = topRated[0] ?? null;
+  const manualFeatured = await getManualFeaturedShow();
+  const featuredShow = manualFeatured ?? topRated[0] ?? null;
 
   let featuredReview: FeaturedReview | null = null;
   if (featuredShow) {
@@ -222,7 +240,8 @@ async function fetchSectionsData(): Promise<SectionsData> {
   const musicals = settled(musicalsResult, [] as ShowListItem[]);
   const israeli = settled(israeliResult, [] as ShowListItem[]);
 
-  const featuredShow = topRated[0] ?? null;
+  const manualFeatured = await getManualFeaturedShow();
+  const featuredShow = manualFeatured ?? topRated[0] ?? null;
   const featuredShowId = featuredShow?.id ?? null;
 
   const deduped = deduplicateSections(
