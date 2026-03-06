@@ -7,13 +7,9 @@ import { GENRE_SECTIONS } from "@/constants/genreGroups";
 
 interface Props {
   banner?: ReactNode;
-  reviewBanner?: ReactNode;
 }
 
-export default async function ShowsSectionsContent({
-  banner,
-  reviewBanner,
-}: Props) {
+export default async function ShowsSectionsContent({ banner }: Props) {
   const { topRated, dramas, comedies, musicals, israeli } =
     await getSectionsData();
 
@@ -52,8 +48,6 @@ export default async function ShowsSectionsContent({
         linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.musicals.genres] })}`}
         linkText={GENRE_SECTIONS.musicals.linkText}
       />
-
-      {reviewBanner}
 
       <ShowsSection
         kicker={GENRE_SECTIONS.israeli.kicker}

@@ -5,7 +5,6 @@ import ShowsSectionsContent from "@/components/ShowsSectionsContent/ShowsSection
 import ShowsSectionsSkeleton from "@/components/ShowsSectionsSkeleton/ShowsSectionsSkeleton";
 import LotteryBanner from "@/components/LotteryBanner/LotteryBanner";
 import ExploreBanner from "@/components/ExploreBanner/ExploreBanner";
-import ReviewCTABanner from "@/components/ReviewCTABanner/ReviewCTABanner";
 import { isLotteryActive } from "@/constants/lottery";
 import styles from "./page.module.css";
 import ROUTES from "@/constants/routes";
@@ -60,7 +59,6 @@ export default async function Home() {
               <ExploreBanner shows={exploreShows} />
             )
           }
-          reviewBanner={<ReviewCTABanner />}
         />
       </Suspense>
 
