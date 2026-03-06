@@ -21,6 +21,7 @@ model Show {
   summary         String
   description     String?
   cast            String?
+  webReviewSummary String?
   avgRating       Float?
   reviewCount     Int         @default(0)
   genres          ShowGenre[]

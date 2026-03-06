@@ -34,6 +34,7 @@ function makeShow(overrides: Partial<Show> = {}): Show {
     reviews: [],
     description: null,
     cast: null,
+    webReviewSummary: null,
     ...overrides,
   };
 }

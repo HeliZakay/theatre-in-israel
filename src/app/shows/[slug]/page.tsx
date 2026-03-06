@@ -16,6 +16,7 @@ import StickyReviewCTA from "@/components/StickyReviewCTA/StickyReviewCTA";
 import InlineReviewForm from "@/components/InlineReviewForm/InlineReviewForm";
 import ScrollToReviewButton from "@/components/ScrollToReviewButton/ScrollToReviewButton";
 import ShareDropdown from "@/components/ShareDropdown/ShareDropdown";
+import WebReviewSummary from "@/components/WebReviewSummary/WebReviewSummary";
 import { getShowStats } from "@/utils/showStats";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import {
@@ -280,6 +281,8 @@ export default async function ShowPage({ params }: ShowPageProps) {
           <p className={styles.aboutText}>{show.cast}</p>
         </section>
       )}
+
+      <WebReviewSummary summary={show.webReviewSummary} />
 
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>ביקורות אחרונות</h2>

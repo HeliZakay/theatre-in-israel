@@ -32,6 +32,7 @@ export interface Show {
   summary: string;
   description: string | null;
   cast: string | null;
+  webReviewSummary: string | null;
   genre: string[];
   reviews: Review[];
 }

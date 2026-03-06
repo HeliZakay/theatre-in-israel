@@ -123,6 +123,7 @@ async function seedShows(shows, genreMap, slugs) {
         durationMinutes: show.durationMinutes,
         summary: show.summary,
         description: show.description ?? null,
+        webReviewSummary: show.webReviewSummary ?? null,
         genres: {
           deleteMany: {},
           create: genreCreates,
@@ -137,6 +138,7 @@ async function seedShows(shows, genreMap, slugs) {
         durationMinutes: show.durationMinutes,
         summary: show.summary,
         description: show.description ?? null,
+        webReviewSummary: show.webReviewSummary ?? null,
         genres: {
           create: genreCreates,
         },

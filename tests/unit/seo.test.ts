@@ -33,6 +33,7 @@ const makeShow = (overrides: Partial<Show> = {}): Show => ({
   summary: "הצגה קלאסית",
   description: "תיאור ארוך",
   cast: "שחקן 1, שחקן 2",
+  webReviewSummary: null,
   genre: ["דרמה"],
   reviews: [
     {
