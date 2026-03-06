@@ -65,9 +65,6 @@ export async function generateMetadata({
   return {
     title: seo.title,
     description: seo.description,
-    alternates: {
-      canonical: toAbsoluteUrl(seo.canonicalPath),
-    },
     robots: seo.shouldNoindex
       ? { index: false, follow: true }
       : { index: true, follow: true },
@@ -113,6 +110,7 @@ export default async function ShowsPage({ searchParams }: ShowsPageProps) {
 
   return (
     <main className={styles.page} id="main-content">
+      <link rel="canonical" href={toAbsoluteUrl(seo.canonicalPath)} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: toJsonLd(breadcrumbJsonLd) }}

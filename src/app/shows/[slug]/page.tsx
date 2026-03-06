@@ -113,9 +113,6 @@ export async function generateMetadata({
     return {
       title: `${show.title} - ביקורות`,
       description,
-      alternates: {
-        canonical: toAbsoluteUrl(canonicalPath),
-      },
       openGraph: {
         title: `${show.title} | ${SITE_NAME}`,
         description,
@@ -188,6 +185,7 @@ export default async function ShowPage({ params }: ShowPageProps) {
 
   return (
     <main className={styles.page} id="main-content">
+      <link rel="canonical" href={toAbsoluteUrl(canonicalPath)} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: toJsonLd(breadcrumbJsonLd) }}
