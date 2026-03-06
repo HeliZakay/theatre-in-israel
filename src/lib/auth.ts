@@ -65,6 +65,14 @@ export const authOptions: NextAuthOptions = {
       clientId: googleClientId,
       clientSecret: googleClientSecret,
       allowDangerousEmailAccountLinking: true,
+      profile(profile) {
+        return {
+          id: profile.sub,
+          name: profile.name?.slice(0, 20) ?? null,
+          email: profile.email,
+          image: profile.picture,
+        };
+      },
     }),
     CredentialsProvider({
       name: "credentials",
@@ -113,6 +121,15 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  debug: process.env.NODE_ENV !== "production",
+  logger: {
+    error(code, metadata) {
+      console.error("[auth][error]", code, metadata);
+    },
+    warn(code) {
+      console.warn("[auth][warn]", code);
+    },
+  },
   callbacks: {
     session: async ({ session, token }) => {
       if (session.user && token.sub) {
