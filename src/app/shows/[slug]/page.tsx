@@ -14,7 +14,6 @@ import WatchlistButton from "@/components/WatchlistButton/WatchlistButton";
 import LotteryBadge from "@/components/LotteryBadge/LotteryBadge";
 import StickyReviewCTA from "@/components/StickyReviewCTA/StickyReviewCTA";
 import InlineReviewForm from "@/components/InlineReviewForm/InlineReviewForm";
-import ReviewEncouragement from "@/components/ReviewEncouragement/ReviewEncouragement";
 import ScrollToReviewButton from "@/components/ScrollToReviewButton/ScrollToReviewButton";
 import ShareDropdown from "@/components/ShareDropdown/ShareDropdown";
 import WebReviewSummary from "@/components/WebReviewSummary/WebReviewSummary";
@@ -315,13 +314,6 @@ export default async function ShowPage({ params }: ShowPageProps) {
           </div>
         )}
       </section>
-
-      {!userReview && (
-        <ReviewEncouragement
-          variant={show.reviews.length === 0 ? "empty" : "after-reviews"}
-          reviewHref={showReviewPath(show.slug)}
-        />
-      )}
 
       {!userReview && (
         <StickyReviewCTA reviewHref={showReviewPath(show.slug)} />
