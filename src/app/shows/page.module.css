@@ -38,6 +38,7 @@
   font-size: 0.95rem;
   color: rgba(26, 26, 26, 0.65);
   min-height: 40px;
+  scroll-margin-top: 80px;
 }
 
 .filterPlaceholder {
@@ -73,7 +74,6 @@
   grid-auto-rows: 1fr;
   gap: 20px;
   transition: opacity 0.2s ease;
-  scroll-margin-top: 16px;
 }
 
 .header:has([aria-busy="true"]) ~ .grid {

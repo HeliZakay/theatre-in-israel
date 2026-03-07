@@ -32,7 +32,7 @@ export default function ShowsContent({
           availableGenres={availableGenres}
           filters={filters}
         />
-        <div className={styles.filterRow}>
+        <div id="results" className={styles.filterRow}>
           {filters.theatre || filters.query || filters.genres.length ? (
             <>
               <span className={styles.filterLabel}>מסונן לפי:</span>
@@ -67,7 +67,7 @@ export default function ShowsContent({
           )}
         </div>
       </header>
-      <section id="results" className={styles.grid}>
+      <section className={styles.grid}>
         {shows.length ? (
           shows.map((show, index) => (
             <ShowCard key={show.id} show={show} priority={index < 4} />
