@@ -216,7 +216,10 @@
     max-width: none;
   }
 
-  .grid > * {
-    flex: 0 0 calc((100% - 16px) / 2);
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    overflow-x: visible;
+    scroll-snap-type: none;
   }
 }
