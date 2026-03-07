@@ -190,11 +190,20 @@
 
 @media (max-width: 1024px) {
   .grid {
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
-  .grid > :nth-child(4) {
+  .grid::-webkit-scrollbar {
     display: none;
+  }
+
+  .grid > * {
+    flex: 0 0 calc((100% - 32px) / 3);
+    scroll-snap-align: start;
   }
 }
 
@@ -207,7 +216,7 @@
     max-width: none;
   }
 
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
+  .grid > * {
+    flex: 0 0 calc((100% - 16px) / 2);
   }
 }

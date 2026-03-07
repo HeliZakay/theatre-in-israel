@@ -99,7 +99,7 @@ export default function ExploreBannerGrid({
                   alt={show.title}
                   fill
                   className={styles.thumbImage}
-                  sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 22vw"
+                  sizes="(max-width: 640px) 45vw, (max-width: 1024px) 33vw, 22vw"
                 />
               </div>
               <div className={styles.cardBody}>
