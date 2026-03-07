@@ -71,7 +71,7 @@ export default function SearchBar({
       className={styles.search}
       role="search"
       aria-label="חיפוש הצגות"
-      action={ROUTES.SHOWS}
+      action={`${ROUTES.SHOWS}#results`}
       method="get"
     >
       <VisuallyHidden.Root asChild>

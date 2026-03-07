@@ -67,7 +67,7 @@ export default function ShowsContent({
           )}
         </div>
       </header>
-      <section className={styles.grid}>
+      <section id="results" className={styles.grid}>
         {shows.length ? (
           shows.map((show, index) => (
             <ShowCard key={show.id} show={show} priority={index < 4} />

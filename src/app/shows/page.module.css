@@ -73,6 +73,7 @@
   grid-auto-rows: 1fr;
   gap: 20px;
   transition: opacity 0.2s ease;
+  scroll-margin-top: 16px;
 }
 
 .header:has([aria-busy="true"]) ~ .grid {

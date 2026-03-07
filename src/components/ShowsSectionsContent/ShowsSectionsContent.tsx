@@ -19,7 +19,7 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         kicker="המובילים"
         title="דירוגים גבוהים"
         shows={topRated}
-        linkHref={ROUTES.SHOWS}
+        linkHref={`${ROUTES.SHOWS}#results`}
         linkText="לכל ההצגות"
       />
 
@@ -27,7 +27,7 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         kicker={GENRE_SECTIONS.dramas.kicker}
         title={GENRE_SECTIONS.dramas.title}
         shows={dramas}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.dramas.genres] })}`}
+        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.dramas.genres] })}#results`}
         linkText={GENRE_SECTIONS.dramas.linkText}
       />
 
@@ -37,7 +37,7 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         kicker={GENRE_SECTIONS.comedies.kicker}
         title={GENRE_SECTIONS.comedies.title}
         shows={comedies}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.comedies.genres] })}`}
+        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.comedies.genres] })}#results`}
         linkText={GENRE_SECTIONS.comedies.linkText}
       />
 
@@ -45,7 +45,7 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         kicker={GENRE_SECTIONS.musicals.kicker}
         title={GENRE_SECTIONS.musicals.title}
         shows={musicals}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.musicals.genres] })}`}
+        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.musicals.genres] })}#results`}
         linkText={GENRE_SECTIONS.musicals.linkText}
       />
 
@@ -53,7 +53,7 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         kicker={GENRE_SECTIONS.israeli.kicker}
         title={GENRE_SECTIONS.israeli.title}
         shows={israeli}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.israeli.genres] })}`}
+        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.israeli.genres] })}#results`}
         linkText={GENRE_SECTIONS.israeli.linkText}
       />
     </>
