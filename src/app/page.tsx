@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import Hero from "@/components/Hero/Hero";
-import CtaStrip from "@/components/CtaStrip/CtaStrip";
 import ShowsSectionsContent from "@/components/ShowsSectionsContent/ShowsSectionsContent";
 import ShowsSectionsSkeleton from "@/components/ShowsSectionsSkeleton/ShowsSectionsSkeleton";
 import LotteryBanner from "@/components/LotteryBanner/LotteryBanner";
@@ -61,13 +60,6 @@ export default async function Home() {
           }
         />
       </Suspense>
-
-      <CtaStrip
-        title="גלו את ההצגות החמות של העונה"
-        text="מאות הצגות מכל התיאטראות בארץ — מצאו את ההצגה הבאה שלכם."
-        buttonText="לכל ההצגות"
-        href={ROUTES.SHOWS}
-      />
     </main>
   );
 }

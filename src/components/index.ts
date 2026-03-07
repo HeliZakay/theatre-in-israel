@@ -7,7 +7,6 @@ export { default as Card } from "./Card/Card";
 export { default as ExploreBanner } from "./ExploreBanner/ExploreBanner";
 export { default as DeleteReviewButton } from "./DeleteReviewButton/DeleteReviewButton";
 export { default as ContactForm } from "./ContactForm/ContactForm";
-export { default as CtaStrip } from "./CtaStrip/CtaStrip";
 export { default as FallbackImage } from "./FallbackImage/FallbackImage";
 export { default as FeaturedShow } from "./FeaturedShow/FeaturedShow";
 export { default as Footer } from "./Footer/Footer";
