@@ -15,6 +15,7 @@ interface StickyReviewCTAProps {
 export default function StickyReviewCTA({ href }: StickyReviewCTAProps) {
   const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(true);
+  const [formInView, setFormInView] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -35,6 +36,19 @@ export default function StickyReviewCTA({ href }: StickyReviewCTAProps) {
     return () => observer.disconnect();
   }, [dismissed]);
 
+  useEffect(() => {
+    if (dismissed) return;
+    const form = document.getElementById("write-review");
+    if (!form) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setFormInView(entry.isIntersecting),
+      { threshold: 0 },
+    );
+    observer.observe(form);
+    return () => observer.disconnect();
+  }, [dismissed]);
+
   const handleDismiss = useCallback(() => {
     setDismissed(true);
     setVisible(false);
@@ -51,7 +65,7 @@ export default function StickyReviewCTA({ href }: StickyReviewCTAProps) {
     <div
       className={cx(
         styles.bar,
-        visible && styles.barVisible,
+        visible && !formInView && styles.barVisible,
         lottery ? styles.barLottery : styles.barDefault,
       )}
       role="complementary"
