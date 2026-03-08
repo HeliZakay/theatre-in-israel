@@ -1,0 +1,105 @@
+.card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  border: 1px solid rgba(20, 108, 67, 0.25);
+  background: #f0fdf4;
+  scroll-margin-top: calc(var(--header-offset) + 16px);
+}
+
+/* ── Success banner ── */
+.successBanner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(20, 108, 67, 0.35);
+  background: rgba(20, 108, 67, 0.1);
+  width: 100%;
+  text-align: right;
+}
+
+.successTitle {
+  color: #0f5132;
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.successSubtitle {
+  margin-top: 2px;
+  color: rgba(15, 81, 50, 0.85);
+  font-size: 0.9rem;
+}
+
+/* ── Review preview ── */
+.reviewPreview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 20px 18px;
+  border-radius: var(--radius-sm);
+  background: var(--color-slate-006, rgba(0, 0, 0, 0.04));
+  width: 100%;
+  text-align: center;
+}
+
+.previewStars {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  direction: ltr;
+}
+
+.previewStars svg {
+  width: 28px;
+  height: 28px;
+}
+
+.starFilled {
+  fill: #e8a840;
+}
+
+.starEmpty {
+  fill: #d1d5db;
+}
+
+.previewTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 4px 0 0;
+}
+
+.previewText {
+  font-size: 0.92rem;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Share section ── */
+.shareSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.shareHeading {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: 20px 16px;
+  }
+}

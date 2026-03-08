@@ -14,6 +14,7 @@ import WatchlistButton from "@/components/WatchlistButton/WatchlistButton";
 import LotteryBadge from "@/components/LotteryBadge/LotteryBadge";
 import StickyReviewCTA from "@/components/StickyReviewCTA/StickyReviewCTA";
 import InlineReviewForm from "@/components/InlineReviewForm/InlineReviewForm";
+import ReviewSuccessBanner from "@/components/ReviewSuccessBanner/ReviewSuccessBanner";
 import ScrollToReviewButton from "@/components/ScrollToReviewButton/ScrollToReviewButton";
 import ShareDropdown from "@/components/ShareDropdown/ShareDropdown";
 import WebReviewSummary from "@/components/WebReviewSummary/WebReviewSummary";
@@ -59,6 +60,7 @@ export async function generateStaticParams() {
 
 interface ShowPageProps {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ review?: string; count?: string }>;
 }
 
 const getShowForPage = cache(async (slug: string) => getShowBySlug(slug));
@@ -139,8 +141,14 @@ export async function generateMetadata({
   }
 }
 
-export default async function ShowPage({ params }: ShowPageProps) {
-  const { slug: rawSlug } = await params;
+export default async function ShowPage({
+  params,
+  searchParams,
+}: ShowPageProps) {
+  const [{ slug: rawSlug }, resolvedSearchParams] = await Promise.all([
+    params,
+    searchParams,
+  ]);
   const slug = decodeURIComponent(rawSlug);
   await redirectIfLegacyNumericId(slug);
   const show = await getShowForPage(slug);
@@ -304,6 +312,21 @@ export default async function ShowPage({ params }: ShowPageProps) {
 
           {userReview && (
             <div className={styles.ownReviewBlock}>
+              {resolvedSearchParams.review === "success" && (
+                <ReviewSuccessBanner
+                  showSlug={show.slug}
+                  reviewCount={
+                    resolvedSearchParams.count
+                      ? Number(resolvedSearchParams.count)
+                      : null
+                  }
+                  review={{
+                    rating: userReview.rating,
+                    title: userReview.title,
+                    text: userReview.text,
+                  }}
+                />
+              )}
               <ReviewCard review={userReview} isOwn />
             </div>
           )}

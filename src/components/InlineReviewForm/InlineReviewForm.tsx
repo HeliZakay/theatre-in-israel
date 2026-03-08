@@ -2,14 +2,14 @@
 
 import { useState, useRef, useCallback } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import styles from "./InlineReviewForm.module.css";
 import fieldStyles from "@/components/ReviewFormFields/ReviewFormFields.module.css";
 import Card from "@/components/Card/Card";
 import StarRating from "@/components/StarRating/StarRating";
-import ShareButtons from "@/components/ShareButtons/ShareButtons";
+import ReviewSuccessBanner from "@/components/ReviewSuccessBanner/ReviewSuccessBanner";
 import ReviewFormFields from "@/components/ReviewFormFields/ReviewFormFields";
 import { createReview, createAnonymousReview } from "@/app/reviews/actions";
 import {
@@ -44,6 +44,7 @@ export default function InlineReviewForm({
 }: InlineReviewFormProps) {
   const isAnonymous = !isAuthenticated;
   const pathname = usePathname();
+  const router = useRouter();
   const [isExpanded, setIsExpanded] = useState(false);
   const [serverError, setServerError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -125,17 +126,34 @@ export default function InlineReviewForm({
         return;
       }
 
+      const resultReviewCount =
+        "reviewCount" in result.data &&
+        typeof result.data.reviewCount === "number"
+          ? result.data.reviewCount
+          : null;
+
+      if (isAuthenticated) {
+        // Navigate with search param so the server-rendered banner survives revalidation
+        const params = new URLSearchParams();
+        params.set("review", "success");
+        if (resultReviewCount !== null) {
+          params.set("count", String(resultReviewCount));
+        }
+        router.replace(`/shows/${showSlug}?${params.toString()}`, {
+          scroll: false,
+        });
+        return;
+      }
+
+      // Anonymous users: keep local success state (form stays mounted)
       setSubmittedReview({
         rating: Number(values.rating),
         title: String(values.title),
         text: String(values.text),
       });
 
-      if (
-        "reviewCount" in result.data &&
-        typeof result.data.reviewCount === "number"
-      ) {
-        setReviewCount(result.data.reviewCount);
+      if (resultReviewCount !== null) {
+        setReviewCount(resultReviewCount);
       }
 
       setSuccess(true);
@@ -151,59 +169,15 @@ export default function InlineReviewForm({
 
   const numericRating = ratingValue ? parseInt(String(ratingValue), 10) : null;
 
-  if (success) {
-    const shareUrl = `/shows/${showSlug}`;
-    const shareText = `\u2B50 כתבתי ביקורת על ההצגה הזו! בואו לקרוא ולשתף את הדעה שלכם.`;
-
+  if (success && submittedReview) {
     return (
-      <Card className={styles.card} id="write-review">
-        <div className={styles.successBanner} role="status">
-          <div>
-            <p className={styles.successTitle}>הביקורת שלך פורסמה! 🎉</p>
-            {reviewCount !== null && (
-              <p className={styles.successSubtitle}>
-                {reviewCount === 1
-                  ? "את.ה ראשונ.ה! 🥇 הביקורת הראשונה על ההצגה הזו!"
-                  : `הביקורת ה-${reviewCount} על ההצגה הזו`}
-              </p>
-            )}
-          </div>
-        </div>
-
-        {submittedReview && (
-          <div className={styles.reviewPreview}>
-            <div
-              className={styles.previewStars}
-              aria-label={`דירוג ${submittedReview.rating} מתוך 5`}
-            >
-              {[1, 2, 3, 4, 5].map((star) => (
-                <svg
-                  key={star}
-                  className={
-                    star <= submittedReview.rating
-                      ? styles.starFilled
-                      : styles.starEmpty
-                  }
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                >
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                </svg>
-              ))}
-            </div>
-            {submittedReview.title && (
-              <p className={styles.previewTitle}>״{submittedReview.title}״</p>
-            )}
-            <p className={styles.previewText}>{submittedReview.text}</p>
-          </div>
-        )}
-
-        <div className={styles.shareSection}>
-          <p className={styles.shareHeading}>שתפ.י את הביקורת שלך</p>
-          <ShareButtons url={shareUrl} text={shareText} />
-        </div>
-      </Card>
+      <ReviewSuccessBanner
+        showSlug={showSlug}
+        reviewCount={reviewCount}
+        review={submittedReview}
+        cleanUrl={false}
+        id="write-review"
+      />
     );
   }
 
