@@ -173,6 +173,7 @@ export default function InlineReviewForm({
     return (
       <ReviewSuccessBanner
         showSlug={showSlug}
+        showTitle={showTitle}
         reviewCount={reviewCount}
         review={submittedReview}
         cleanUrl={false}

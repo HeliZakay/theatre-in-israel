@@ -315,6 +315,7 @@ export default async function ShowPage({
               {resolvedSearchParams.review === "success" && (
                 <ReviewSuccessBanner
                   showSlug={show.slug}
+                  showTitle={show.title}
                   reviewCount={
                     resolvedSearchParams.count
                       ? Number(resolvedSearchParams.count)

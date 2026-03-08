@@ -7,6 +7,7 @@ import ShareButtons from "@/components/ShareButtons/ShareButtons";
 
 interface ReviewSuccessBannerProps {
   showSlug: string;
+  showTitle: string;
   reviewCount: number | null;
   review: {
     rating: number;
@@ -21,6 +22,7 @@ interface ReviewSuccessBannerProps {
 
 export default function ReviewSuccessBanner({
   showSlug,
+  showTitle,
   reviewCount,
   review,
   cleanUrl = true,
@@ -39,8 +41,7 @@ export default function ReviewSuccessBanner({
   }, [cleanUrl, showSlug]);
 
   const shareUrl = `/shows/${showSlug}`;
-  const shareText =
-    "\u2B50 כתבתי ביקורת על ההצגה הזו! בואו לקרוא ולשתף את הדעה שלכם.";
+  const shareText = `כתבתי ביקורת על ${showTitle} באתר תיאטרון בישראל \uD83C\uDFAD`;
 
   return (
     <Card className={styles.card} id={id}>
@@ -50,7 +51,7 @@ export default function ReviewSuccessBanner({
           {reviewCount !== null && (
             <p className={styles.successSubtitle}>
               {reviewCount === 1
-                ? "את.ה ראשונ.ה! 🥇 הביקורת הראשונה על ההצגה הזו!"
+                ? "🏆 הביקורת הראשונה על ההצגה הזו!"
                 : `הביקורת ה-${reviewCount} על ההצגה הזו`}
             </p>
           )}

@@ -23,7 +23,7 @@ export default function ShareDropdown({
 
   const shareText = `\uD83C\uDFAD ראיתם כבר את ״${title}״ ב${theatre}? בואו לקרוא ביקורות ולשתף את הדעה שלכם!`;
 
-  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(`${shareText}\n${fullUrl}`)}`;
+  const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(`${shareText}\n${fullUrl}`)}`;
   const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fullUrl)}`;
 
   return (

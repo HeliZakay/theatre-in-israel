@@ -13,7 +13,7 @@ export default function ShareButtons({ text, url }: ShareButtonsProps) {
       ? new URL(url, window.location.origin).href
       : url;
 
-  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(`${text}\n${fullUrl}`)}`;
+  const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(`${text}\n${fullUrl}`)}`;
   const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fullUrl)}`;
 
   return (
