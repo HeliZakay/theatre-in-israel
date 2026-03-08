@@ -6,7 +6,7 @@
   gap: 12px;
   text-align: center;
   border: 1px solid rgba(20, 108, 67, 0.25);
-  background: #f0fdf4;
+  background: #fafafa;
   scroll-margin-top: calc(var(--header-offset) + 16px);
 }
 
