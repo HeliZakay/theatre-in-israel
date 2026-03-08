@@ -20,7 +20,9 @@ export default function LotterySection({ entries }: LotterySectionProps) {
           כתב.י ביקורת
         </Link>
         <ShareButtons
-          text="אני משתתף.ת בהגרלה לזוג כרטיסים לתיאטרון! כתבו ביקורות גם אתם 🎭"
+          text={
+            "אני משתתף.ת בהגרלה לזוג כרטיסים לתיאטרון! כתבו ביקורות גם אתם \uD83C\uDFAD"
+          }
           url="/"
         />
       </div>

@@ -260,7 +260,9 @@ export default function ReviewForm({
             </p>
             <div className={styles.lotteryShare}>
               <ShareButtons
-                text="כתבתי ביקורת באתר תיאטרון בישראל והשתתפתי בהגרלה לזוג כרטיסים! כתבו גם אתם 🎭"
+                text={
+                  "כתבתי ביקורת באתר תיאטרון בישראל והשתתפתי בהגרלה לזוג כרטיסים! כתבו גם אתם \uD83C\uDFAD"
+                }
                 url={
                   typeof window !== "undefined" ? window.location.origin : "/"
                 }

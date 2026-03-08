@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useForm, useWatch } from "react-hook-form";
@@ -9,6 +9,7 @@ import styles from "./InlineReviewForm.module.css";
 import fieldStyles from "@/components/ReviewFormFields/ReviewFormFields.module.css";
 import Card from "@/components/Card/Card";
 import StarRating from "@/components/StarRating/StarRating";
+import ShareButtons from "@/components/ShareButtons/ShareButtons";
 import ReviewFormFields from "@/components/ReviewFormFields/ReviewFormFields";
 import { createReview, createAnonymousReview } from "@/app/reviews/actions";
 import {
@@ -16,13 +17,19 @@ import {
   clientAnonymousReviewSchema,
 } from "@/lib/reviewSchemas";
 import { REVIEW_NAME_MAX } from "@/constants/reviewValidation";
-import { isLotteryActive } from "@/constants/lottery";
 import ROUTES from "@/constants/routes";
 import { cx } from "@/utils/cx";
+
+interface SubmittedReview {
+  rating: number;
+  title: string;
+  text: string;
+}
 
 interface InlineReviewFormProps {
   showId: number;
   showSlug: string;
+  showTitle: string;
   isAuthenticated: boolean;
   /** Controls the prompt text */
   variant: "empty" | "after-reviews";
@@ -31,6 +38,7 @@ interface InlineReviewFormProps {
 export default function InlineReviewForm({
   showId,
   showSlug,
+  showTitle,
   isAuthenticated,
   variant,
 }: InlineReviewFormProps) {
@@ -39,8 +47,9 @@ export default function InlineReviewForm({
   const [isExpanded, setIsExpanded] = useState(false);
   const [serverError, setServerError] = useState("");
   const [success, setSuccess] = useState(false);
-  const [lotteryEntries, setLotteryEntries] = useState<number | null>(null);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [submittedReview, setSubmittedReview] =
+    useState<SubmittedReview | null>(null);
+  const [reviewCount, setReviewCount] = useState<number | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   const schema = isAuthenticated
@@ -83,6 +92,8 @@ export default function InlineReviewForm({
   const handleCancel = useCallback(() => {
     setIsExpanded(false);
     setServerError("");
+    setSubmittedReview(null);
+    setReviewCount(null);
     reset({
       showId: String(showId),
       title: "",
@@ -114,31 +125,20 @@ export default function InlineReviewForm({
         return;
       }
 
+      setSubmittedReview({
+        rating: Number(values.rating),
+        title: String(values.title),
+        text: String(values.text),
+      });
+
       if (
-        result.success &&
-        "lotteryEntries" in result.data &&
-        typeof result.data.lotteryEntries === "number"
+        "reviewCount" in result.data &&
+        typeof result.data.reviewCount === "number"
       ) {
-        setLotteryEntries(result.data.lotteryEntries);
+        setReviewCount(result.data.reviewCount);
       }
 
       setSuccess(true);
-
-      timerRef.current = setTimeout(
-        () => {
-          setSuccess(false);
-          setLotteryEntries(null);
-          setIsExpanded(false);
-          reset({
-            showId: String(showId),
-            title: "",
-            rating: "",
-            text: "",
-            ...(isAnonymous ? { name: "", honeypot: "" } : {}),
-          });
-        },
-        !isAnonymous && isLotteryActive() ? 4000 : 2000,
-      );
     } catch (err: unknown) {
       setServerError(err instanceof Error ? err.message : String(err));
     }
@@ -149,35 +149,60 @@ export default function InlineReviewForm({
     handleSubmit(onSubmit)(e);
   };
 
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, []);
-
   const numericRating = ratingValue ? parseInt(String(ratingValue), 10) : null;
 
   if (success) {
+    const shareUrl = `/shows/${showSlug}`;
+    const shareText = `\u2B50 כתבתי ביקורת על ההצגה הזו! בואו לקרוא ולשתף את הדעה שלכם.`;
+
     return (
       <Card className={styles.card} id="write-review">
         <div className={styles.successBanner} role="status">
-          <span className={styles.successIcon} aria-hidden="true">
-            ✓
-          </span>
           <div>
-            <p className={styles.successTitle}>הביקורת פורסמה בהצלחה!</p>
-            <p className={styles.successSubtitle}>תודה על חוות הדעת שלך!</p>
+            <p className={styles.successTitle}>הביקורת שלך פורסמה! 🎉</p>
+            {reviewCount !== null && (
+              <p className={styles.successSubtitle}>
+                {reviewCount === 1
+                  ? "את.ה ראשונ.ה! 🥇 הביקורת הראשונה על ההצגה הזו!"
+                  : `הביקורת ה-${reviewCount} על ההצגה הזו`}
+              </p>
+            )}
           </div>
         </div>
-        {!isAnonymous && isLotteryActive() && lotteryEntries !== null && (
-          <div className={styles.lotterySection}>
-            <p className={styles.lotteryTitle}>🎟️ קיבלת כרטיס להגרלה!</p>
-            <p className={styles.lotteryCount}>
-              יש לך {lotteryEntries} כרטיס{lotteryEntries === 1 ? "" : "ים"}{" "}
-              להגרלה
-            </p>
+
+        {submittedReview && (
+          <div className={styles.reviewPreview}>
+            <div
+              className={styles.previewStars}
+              aria-label={`דירוג ${submittedReview.rating} מתוך 5`}
+            >
+              {[1, 2, 3, 4, 5].map((star) => (
+                <svg
+                  key={star}
+                  className={
+                    star <= submittedReview.rating
+                      ? styles.starFilled
+                      : styles.starEmpty
+                  }
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+              ))}
+            </div>
+            {submittedReview.title && (
+              <p className={styles.previewTitle}>״{submittedReview.title}״</p>
+            )}
+            <p className={styles.previewText}>{submittedReview.text}</p>
           </div>
         )}
+
+        <div className={styles.shareSection}>
+          <p className={styles.shareHeading}>שתפ.י את הביקורת שלך</p>
+          <ShareButtons url={shareUrl} text={shareText} />
+        </div>
       </Card>
     );
   }

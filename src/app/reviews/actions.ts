@@ -46,7 +46,9 @@ async function revalidateAfterReviewChange(showId: number): Promise<void> {
 
 export async function createReview(
   formData: FormData,
-): Promise<ActionResult<{ showId: number; lotteryEntries?: number }>> {
+): Promise<
+  ActionResult<{ showId: number; reviewCount: number; lotteryEntries?: number }>
+> {
   try {
     const auth = await requireActionAuth("יש להתחבר כדי לכתוב ביקורת", {
       check: checkReviewRateLimit,
@@ -88,7 +90,7 @@ export async function createReview(
 
     const show = await prisma.show.findUnique({
       where: { id: showId },
-      select: { title: true },
+      select: { title: true, reviewCount: true },
     });
     notifyNewReview({
       authorName,
@@ -99,12 +101,14 @@ export async function createReview(
       isAnonymous: false,
     }).catch(console.error);
 
+    const reviewCount = show?.reviewCount ?? 1;
+
     if (isLotteryActive()) {
       const lotteryEntries = await getLotteryEntriesCount(session.user.id);
-      return actionSuccess({ showId, lotteryEntries });
+      return actionSuccess({ showId, reviewCount, lotteryEntries });
     }
 
-    return actionSuccess({ showId });
+    return actionSuccess({ showId, reviewCount });
   } catch (err: unknown) {
     if (typeof err === "object" && err !== null && "code" in err) {
       if (err.code === "P2002") {
@@ -120,7 +124,7 @@ export async function createReview(
 
 export async function createAnonymousReview(
   formData: FormData,
-): Promise<ActionResult<{ showId: number }>> {
+): Promise<ActionResult<{ showId: number; reviewCount: number }>> {
   try {
     const headersList = await headers();
     const ip =
@@ -131,7 +135,7 @@ export async function createAnonymousReview(
     // Silent bot rejection: if honeypot is filled, pretend success
     if (payload.honeypot) {
       const showId = Number(payload.showId) || 0;
-      return actionSuccess({ showId });
+      return actionSuccess({ showId, reviewCount: 1 });
     }
 
     const rateLimit = await checkAnonymousReviewRateLimit(ip);
@@ -180,7 +184,7 @@ export async function createAnonymousReview(
 
     const show = await prisma.show.findUnique({
       where: { id: showId },
-      select: { title: true },
+      select: { title: true, reviewCount: true },
     });
     notifyNewReview({
       authorName,
@@ -191,7 +195,9 @@ export async function createAnonymousReview(
       isAnonymous: true,
     }).catch(console.error);
 
-    return actionSuccess({ showId });
+    const reviewCount = show?.reviewCount ?? 1;
+
+    return actionSuccess({ showId, reviewCount });
   } catch (err: unknown) {
     if (typeof err === "object" && err !== null && "code" in err) {
       if (err.code === "P2002") {

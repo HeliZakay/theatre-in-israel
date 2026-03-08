@@ -182,7 +182,7 @@
 /* ── Success state ── */
 .successBanner {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   padding: 16px 18px;
   border-radius: var(--radius-sm);
@@ -190,20 +190,6 @@
   background: rgba(20, 108, 67, 0.1);
   width: 100%;
   text-align: right;
-}
-
-.successIcon {
-  width: 28px;
-  height: 28px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #ffffff;
-  background: #146c43;
 }
 
 .successTitle {
@@ -218,26 +204,67 @@
   font-size: 0.9rem;
 }
 
-/* ── Lottery ── */
-.lotterySection {
-  padding: 12px 14px;
+/* ── Review preview ── */
+.reviewPreview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 20px 18px;
   border-radius: var(--radius-sm);
-  background: var(--color-lottery-gold-light);
-  border: 1px solid rgba(212, 160, 23, 0.25);
+  background: var(--color-slate-006, rgba(0, 0, 0, 0.04));
+  width: 100%;
   text-align: center;
+}
+
+.previewStars {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  direction: ltr;
+}
+
+.previewStars svg {
+  width: 28px;
+  height: 28px;
+}
+
+.starFilled {
+  fill: #e8a840;
+}
+
+.starEmpty {
+  fill: #d1d5db;
+}
+
+.previewTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 4px 0 0;
+}
+
+.previewText {
+  font-size: 0.92rem;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Share section ── */
+.shareSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
   width: 100%;
 }
 
-.lotteryTitle {
-  font-weight: 700;
-  font-size: 0.98rem;
-  color: var(--color-lottery-gold-hover);
-}
-
-.lotteryCount {
-  font-size: 0.9rem;
-  margin-top: 4px;
+.shareHeading {
+  font-size: 0.95rem;
+  font-weight: 600;
   color: var(--color-text-primary);
+  margin: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

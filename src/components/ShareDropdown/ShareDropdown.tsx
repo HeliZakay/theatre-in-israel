@@ -21,7 +21,7 @@ export default function ShareDropdown({
       ? new URL(url, window.location.origin).href
       : url;
 
-  const shareText = `🎭 ראיתם כבר את ״${title}״ ב${theatre}? בואו לקרוא ביקורות ולשתף את הדעה שלכם!`;
+  const shareText = `\uD83C\uDFAD ראיתם כבר את ״${title}״ ב${theatre}? בואו לקרוא ביקורות ולשתף את הדעה שלכם!`;
 
   const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(`${shareText}\n${fullUrl}`)}`;
   const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fullUrl)}`;

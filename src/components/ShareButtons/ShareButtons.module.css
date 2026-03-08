@@ -9,12 +9,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   padding: 8px 16px;
   border-radius: var(--radius-sm);
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  border: none;
+  border: 1.5px solid transparent;
   text-decoration: none;
   transition: opacity 0.2s ease;
 }
@@ -24,25 +25,16 @@
   opacity: 0.85;
 }
 
-.whatsapp {
-  background: #25d366;
-  color: #ffffff;
+.container .whatsapp {
+  background: transparent;
+  color: #25d366;
+  border-color: #25d366;
 }
 
-.copy {
-  background: var(--color-slate-008);
-  color: var(--color-text-primary);
-  min-width: 110px;
-}
-
-.twitter {
-  background: #000000;
-  color: #ffffff;
-}
-
-.native {
-  background: var(--color-curtain-red);
-  color: #ffffff;
+.container .facebook {
+  background: transparent;
+  color: #1877f2;
+  border-color: #1877f2;
 }
 
 @media (max-width: 640px) {

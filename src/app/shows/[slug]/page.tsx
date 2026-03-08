@@ -283,6 +283,7 @@ export default async function ShowPage({ params }: ShowPageProps) {
         <InlineReviewForm
           showId={show.id}
           showSlug={show.slug}
+          showTitle={show.title}
           isAuthenticated={!!session}
           variant={show.reviews.length === 0 ? "empty" : "after-reviews"}
         />
