@@ -9,7 +9,6 @@ import styles from "./InlineReviewForm.module.css";
 import fieldStyles from "@/components/ReviewFormFields/ReviewFormFields.module.css";
 import Card from "@/components/Card/Card";
 import StarRating from "@/components/StarRating/StarRating";
-import ReviewSuccessBanner from "@/components/ReviewSuccessBanner/ReviewSuccessBanner";
 import ReviewFormFields from "@/components/ReviewFormFields/ReviewFormFields";
 import { createReview, createAnonymousReview } from "@/app/reviews/actions";
 import {
@@ -19,12 +18,6 @@ import {
 import { REVIEW_NAME_MAX } from "@/constants/reviewValidation";
 import ROUTES from "@/constants/routes";
 import { cx } from "@/utils/cx";
-
-interface SubmittedReview {
-  rating: number;
-  title: string;
-  text: string;
-}
 
 interface InlineReviewFormProps {
   showId: number;
@@ -47,10 +40,6 @@ export default function InlineReviewForm({
   const router = useRouter();
   const [isExpanded, setIsExpanded] = useState(false);
   const [serverError, setServerError] = useState("");
-  const [success, setSuccess] = useState(false);
-  const [submittedReview, setSubmittedReview] =
-    useState<SubmittedReview | null>(null);
-  const [reviewCount, setReviewCount] = useState<number | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   const schema = isAuthenticated
@@ -93,8 +82,6 @@ export default function InlineReviewForm({
   const handleCancel = useCallback(() => {
     setIsExpanded(false);
     setServerError("");
-    setSubmittedReview(null);
-    setReviewCount(null);
     reset({
       showId: String(showId),
       title: "",
@@ -132,31 +119,15 @@ export default function InlineReviewForm({
           ? result.data.reviewCount
           : null;
 
-      if (isAuthenticated) {
-        // Navigate with search param so the server-rendered banner survives revalidation
-        const params = new URLSearchParams();
-        params.set("review", "success");
-        if (resultReviewCount !== null) {
-          params.set("count", String(resultReviewCount));
-        }
-        router.replace(`/shows/${showSlug}?${params.toString()}`, {
-          scroll: false,
-        });
-        return;
-      }
-
-      // Anonymous users: keep local success state (form stays mounted)
-      setSubmittedReview({
-        rating: Number(values.rating),
-        title: String(values.title),
-        text: String(values.text),
-      });
-
+      // Navigate with search param so the server-rendered banner survives revalidation
+      const params = new URLSearchParams();
+      params.set("review", "success");
       if (resultReviewCount !== null) {
-        setReviewCount(resultReviewCount);
+        params.set("count", String(resultReviewCount));
       }
-
-      setSuccess(true);
+      router.replace(`/shows/${showSlug}?${params.toString()}`, {
+        scroll: false,
+      });
     } catch (err: unknown) {
       setServerError(err instanceof Error ? err.message : String(err));
     }
@@ -168,19 +139,6 @@ export default function InlineReviewForm({
   };
 
   const numericRating = ratingValue ? parseInt(String(ratingValue), 10) : null;
-
-  if (success && submittedReview) {
-    return (
-      <ReviewSuccessBanner
-        showSlug={showSlug}
-        showTitle={showTitle}
-        reviewCount={reviewCount}
-        review={submittedReview}
-        cleanUrl={false}
-        id="write-review"
-      />
-    );
-  }
 
   return (
     <Card className={styles.card} id="write-review">

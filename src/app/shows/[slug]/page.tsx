@@ -3,8 +3,10 @@ import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 import { getServerSession } from "next-auth";
+import { headers } from "next/headers";
 import { authOptions } from "@/lib/auth";
 import { getShowBySlug } from "@/lib/data/showDetail";
+import prisma from "@/lib/prisma";
 import { isShowInWatchlist } from "@/lib/watchlist";
 import ROUTES, { showPath, showReviewPath } from "@/constants/routes";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
@@ -178,6 +180,24 @@ export default async function ShowPage({
       if (idx !== -1) {
         userReview = show.reviews[idx];
         otherReviews = show.reviews.filter((_, i) => i !== idx);
+      }
+    } else {
+      // Anonymous visitor: check if they already reviewed (by IP)
+      const headersList = await headers();
+      const ip =
+        headersList.get("x-forwarded-for")?.split(",")[0]?.trim() || null;
+      if (ip) {
+        const anonReview = await prisma.review.findFirst({
+          where: { ip, showId: show.id, userId: null },
+          select: { id: true },
+        });
+        if (anonReview) {
+          const idx = show.reviews.findIndex((r) => r.id === anonReview.id);
+          if (idx !== -1) {
+            userReview = show.reviews[idx];
+            otherReviews = show.reviews.filter((_, i) => i !== idx);
+          }
+        }
       }
     }
   } catch {
