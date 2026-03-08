@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
 import styles from "./ReviewSuccessBanner.module.css";
 import Card from "@/components/Card/Card";
 import ShareButtons from "@/components/ShareButtons/ShareButtons";
@@ -27,16 +26,17 @@ export default function ReviewSuccessBanner({
   cleanUrl = true,
   id = "review-success",
 }: ReviewSuccessBannerProps) {
-  const router = useRouter();
   const cleanedRef = useRef(false);
 
   useEffect(() => {
     if (!cleanUrl) return;
     if (cleanedRef.current) return;
     cleanedRef.current = true;
-    // Clean the URL so the banner doesn't reappear on refresh/bookmark
-    router.replace(`/shows/${showSlug}`, { scroll: false });
-  }, [cleanUrl, router, showSlug]);
+    // Clean the URL so the banner doesn't reappear on refresh/bookmark.
+    // Use history.replaceState instead of router.replace to avoid triggering
+    // a Next.js server re-render that would remove the banner from the page.
+    window.history.replaceState(null, "", `/shows/${showSlug}`);
+  }, [cleanUrl, showSlug]);
 
   const shareUrl = `/shows/${showSlug}`;
   const shareText =
