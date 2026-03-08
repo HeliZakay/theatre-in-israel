@@ -3,7 +3,7 @@ jest.mock("@/app/reviews/actions", () => ({
   createAnonymousReview: jest.fn(),
 }));
 
-import { render, screen, waitFor, act } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import ReviewForm from "@/components/ReviewForm/ReviewForm";
 import type { ShowOption } from "@/components/ReviewForm/ReviewForm";
@@ -172,14 +172,14 @@ describe("ReviewForm", () => {
 
   // ── Successful submission ──
 
-  it("submits the form and shows success message", async () => {
+  it("submits the form and redirects immediately on success", async () => {
     const user = userEvent.setup();
     (createReview as jest.Mock).mockResolvedValueOnce({
       success: true,
-      data: { showId: 1 },
+      data: { showId: 1, reviewCount: 3 },
     });
 
-    renderReviewForm({ initialShowId: 1 });
+    renderReviewForm({ initialShowId: 1, initialShowSlug: "המלט" });
 
     // Fill title
     const titleInput = screen.getByRole("textbox", { name: /כותרת/i });
@@ -198,20 +198,22 @@ describe("ReviewForm", () => {
     await user.click(submitBtn);
 
     await waitFor(() => {
-      expect(screen.getByText("הביקורת נשלחה בהצלחה")).toBeInTheDocument();
+      expect(stablePush).toHaveBeenCalledWith(
+        "/shows/המלט?review=success&count=3",
+      );
     });
 
     expect(createReview).toHaveBeenCalledWith(expect.any(FormData));
   });
 
-  it("disables submit button after successful submission", async () => {
+  it("redirects immediately without showing disabled button after success", async () => {
     const user = userEvent.setup();
     (createReview as jest.Mock).mockResolvedValueOnce({
       success: true,
-      data: { showId: 1 },
+      data: { showId: 1, reviewCount: 5 },
     });
 
-    renderReviewForm({ initialShowId: 1 });
+    renderReviewForm({ initialShowId: 1, initialShowSlug: "המלט" });
 
     const titleInput = screen.getByRole("textbox", { name: /כותרת/i });
     await user.type(titleInput, "ביקורת נהדרת");
@@ -226,7 +228,9 @@ describe("ReviewForm", () => {
     await user.click(submitBtn);
 
     await waitFor(() => {
-      expect(screen.getByRole("button", { name: "נשלח" })).toBeDisabled();
+      expect(stablePush).toHaveBeenCalledWith(
+        "/shows/המלט?review=success&count=5",
+      );
     });
   });
 
@@ -397,13 +401,12 @@ describe("ReviewForm", () => {
 
   // ── Redirect after success ──
 
-  it("redirects to show page after successful submission", async () => {
-    jest.useFakeTimers();
-    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+  it("redirects to show page with query params after successful submission", async () => {
+    const user = userEvent.setup();
 
     (createReview as jest.Mock).mockResolvedValueOnce({
       success: true,
-      data: { showId: 1 },
+      data: { showId: 1, reviewCount: 7 },
     });
 
     renderReviewForm({ initialShowId: 1, initialShowSlug: "hamlet" });
@@ -421,18 +424,10 @@ describe("ReviewForm", () => {
     await user.click(submitBtn);
 
     await waitFor(() => {
-      expect(screen.getByText("הביקורת נשלחה בהצלחה")).toBeInTheDocument();
+      expect(stablePush).toHaveBeenCalledWith(
+        "/shows/המלט?review=success&count=7",
+      );
     });
-
-    // Capture the current mockPush reference after re-renders
-    const currentPush = mockPush;
-
-    await act(async () => {
-      jest.advanceTimersByTime(4000);
-    });
-
-    expect(stablePush).toHaveBeenCalledWith("/shows/המלט");
-    jest.useRealTimers();
   });
 
   // ── Default props ──
