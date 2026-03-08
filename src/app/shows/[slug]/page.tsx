@@ -8,6 +8,8 @@ import { authOptions } from "@/lib/auth";
 import { getShowBySlug } from "@/lib/data/showDetail";
 import prisma from "@/lib/prisma";
 import { isShowInWatchlist } from "@/lib/watchlist";
+import Link from "next/link";
+import { ENABLE_REVIEW_AUTH_GATEWAY } from "@/constants/featureFlags";
 import ROUTES, { showPath, showReviewPath } from "@/constants/routes";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import ReviewCard from "@/components/ReviewCard/ReviewCard";
@@ -204,6 +206,8 @@ export default async function ShowPage({
     // Ignore — unauthenticated users see the default "add" state
   }
 
+  const showGateway = ENABLE_REVIEW_AUTH_GATEWAY && !session;
+
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: "עמוד הבית", path: ROUTES.HOME },
     { name: "הצגות", path: ROUTES.SHOWS },
@@ -281,6 +285,7 @@ export default async function ShowPage({
                   className={styles.primaryBtn}
                   reviewCount={reviewCount}
                   avgRating={avgRating}
+                  href={showGateway ? `/shows/${show.slug}/review` : undefined}
                 />
               )}
               <WatchlistButton
@@ -307,15 +312,25 @@ export default async function ShowPage({
         </section>
       )}
 
-      {!userReview && (
-        <InlineReviewForm
-          showId={show.id}
-          showSlug={show.slug}
-          showTitle={show.title}
-          isAuthenticated={!!session}
-          variant={show.reviews.length === 0 ? "empty" : "after-reviews"}
-        />
-      )}
+      {!userReview &&
+        (showGateway ? (
+          <section id="write-review" className={styles.reviewCta}>
+            <Link
+              href={`/shows/${show.slug}/review`}
+              className={styles.reviewCtaLink}
+            >
+              ✍️ כתוב.י ביקורת
+            </Link>
+          </section>
+        ) : (
+          <InlineReviewForm
+            showId={show.id}
+            showSlug={show.slug}
+            showTitle={show.title}
+            isAuthenticated={!!session}
+            variant={show.reviews.length === 0 ? "empty" : "after-reviews"}
+          />
+        ))}
 
       {show.cast && (
         <section className={styles.aboutSection}>
@@ -363,7 +378,9 @@ export default async function ShowPage({
       )}
 
       {!userReview && (
-        <StickyReviewCTA reviewHref={showReviewPath(show.slug)} />
+        <StickyReviewCTA
+          href={showGateway ? showReviewPath(show.slug) : undefined}
+        />
       )}
     </main>
   );

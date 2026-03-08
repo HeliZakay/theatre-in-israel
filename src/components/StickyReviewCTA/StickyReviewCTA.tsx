@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback, useMemo } from "react";
+import Link from "next/link";
 import { isLotteryActive } from "@/constants/lottery";
 import { cx } from "@/utils/cx";
 import styles from "./StickyReviewCTA.module.css";
@@ -8,12 +9,10 @@ import styles from "./StickyReviewCTA.module.css";
 const DISMISS_KEY = "stickyReviewCTA_dismissed";
 
 interface StickyReviewCTAProps {
-  reviewHref?: string;
+  href?: string;
 }
 
-export default function StickyReviewCTA({
-  reviewHref: _reviewHref,
-}: StickyReviewCTAProps) {
+export default function StickyReviewCTA({ href }: StickyReviewCTAProps) {
   const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(true);
 
@@ -63,18 +62,24 @@ export default function StickyReviewCTA({
           ? "🎟️ כתב.י ביקורת ואולי תזכ.י בכרטיסים!"
           : "ראיתם את ההצגה? ספרו מה חשבתם"}
       </span>
-      <a
-        href="#write-review"
-        className={styles.cta}
-        onClick={(e) => {
-          e.preventDefault();
-          document
-            .getElementById("write-review")
-            ?.scrollIntoView({ behavior: "smooth" });
-        }}
-      >
-        כתב.י ביקורת
-      </a>
+      {href ? (
+        <Link href={href} className={styles.cta}>
+          כתב.י ביקורת
+        </Link>
+      ) : (
+        <a
+          href="#write-review"
+          className={styles.cta}
+          onClick={(e) => {
+            e.preventDefault();
+            document
+              .getElementById("write-review")
+              ?.scrollIntoView({ behavior: "smooth" });
+          }}
+        >
+          כתב.י ביקורת
+        </a>
+      )}
       <button
         type="button"
         className={styles.close}

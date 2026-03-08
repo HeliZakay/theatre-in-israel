@@ -83,17 +83,21 @@ _Date: March 8, 2026_
 - **ReviewForm** (full-page): was showing local `useState` success → inline "redirecting..." message → `setTimeout` (1.8–4s) → `router.push('/shows/slug')` without `?review=success`
 - **Fix applied:** `ReviewForm` now redirects immediately with `?review=success&count=N`, matching the inline flow. Lottery inline display removed (entries still recorded server-side).
 
-### B. Feature Flag Asymmetry
+### B. Feature Flag Asymmetry — FIXED
 
-`ENABLE_REVIEW_AUTH_GATEWAY` is `false`. When enabled, it gates `/reviews/new` and `/shows/[slug]/review` but **not** the inline form on the show page. Turning it on creates two paths with different auth friction.
+`ENABLE_REVIEW_AUTH_GATEWAY` is `false`. When enabled, it gates `/reviews/new` and `/shows/[slug]/review` but previously **not** the inline form on the show page.
+
+- **Fix applied:** Show page now checks `ENABLE_REVIEW_AUTH_GATEWAY && !session`. When true, the inline form is replaced with a CTA link to `/shows/[slug]/review` (which shows the gateway). `StickyReviewCTA` and `ScrollToReviewButton` also link there instead of scrolling to `#write-review`. All three entry points are now gated consistently.
 
 ### C. Dual Uniqueness Mechanisms
 
 Auth dedup: `@@unique([userId, showId])` DB constraint. Anon dedup: app-level IP check. PostgreSQL treats `NULL` as distinct in unique constraints, so the DB constraint does NOT prevent multiple anonymous reviews. If either mechanism is modified without understanding the other, duplicates can slip through.
 
-### D. Stale Rate Limit Documentation
+### D. Stale Rate Limit Documentation — FIXED
 
-`SYSTEM_DESIGN.md` says "Create: 3/hr, Edit: 10/hr." Actual code: 50/hr for both (authenticated). Significantly out of date.
+`SYSTEM_DESIGN.md` previously said "Create: 3/hr, Edit: 10/hr (in-memory Map)." Actual code: Auth 50/hr, Anon 20/hr (5/hr unknown IP), Edit/delete 50/hr — all DB-backed.
+
+- **Fix applied:** Updated Mermaid diagram, Component Summary table, and Scaling Improvements section in `SYSTEM_DESIGN.md` to match the actual values and implementation.
 
 ### E. No Edit/Delete for Anonymous Reviews
 

@@ -1,9 +1,12 @@
 "use client";
 
+import Link from "next/link";
+
 interface ScrollToReviewButtonProps {
   className?: string;
   reviewCount: number;
   avgRating: number | null;
+  href?: string;
 }
 
 function getButtonLabel(reviewCount: number): string {
@@ -16,7 +19,18 @@ export default function ScrollToReviewButton({
   className,
   reviewCount,
   avgRating,
+  href,
 }: ScrollToReviewButtonProps) {
+  const label = getButtonLabel(reviewCount);
+
+  if (href) {
+    return (
+      <Link href={href} className={className}>
+        {label}
+      </Link>
+    );
+  }
+
   const handleClick = () => {
     const target = document.getElementById("write-review");
     if (target) {
@@ -26,7 +40,7 @@ export default function ScrollToReviewButton({
 
   return (
     <button type="button" className={className} onClick={handleClick}>
-      {getButtonLabel(reviewCount)}
+      {label}
     </button>
   );
 }

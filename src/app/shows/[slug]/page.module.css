@@ -213,6 +213,27 @@
   }
 }
 
+/* ── Gateway review CTA (shown when auth gateway is active + user not signed in) ── */
+.reviewCta {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+}
+
+.reviewCtaLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: var(--radius-sm);
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: var(--color-curtain-red);
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 /* ── Own-review pinned block ── */
 .ownReviewBlock {
   display: flex;

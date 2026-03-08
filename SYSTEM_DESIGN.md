@@ -34,7 +34,7 @@ graph TB
             SHOW_SVC["showHelpers.ts\nnormalizeShow\nfetchShowsByIds"]
         end
 
-        RL["Rate Limiter\nCreate: 3/hr (DB query)\nEdit: 10/hr (in-memory Map)"]
+        RL["Rate Limiter\nAuth: 50/hr · Anon: 20/hr\nEdit/Delete: 50/hr\nAll DB-backed"]
         PRISMA["Prisma Client\n(Singleton, auto-selects\nNeon or pg adapter)"]
     end
 
@@ -91,7 +91,7 @@ graph TB
 | **ORM**           | Prisma 7 with driver adapters    | Auto-selects Neon serverless adapter or standard pg                                                            |
 | **Database**      | PostgreSQL (Neon)                | 10 models: User, Show, Review, Watchlist, Genre, ShowGenre, Account, Session, ContactMessage, RateLimitAttempt |
 | **Middleware**    | `src/middleware.ts`              | CSRF protection on all `/api/*` mutating requests                                                              |
-| **Rate Limiter**  | `src/utils/reviewRateLimit.ts`   | DB-based (create: 3/hr) + in-memory Map (edit/delete: 10/hr)                                                   |
+| **Rate Limiter**  | `src/utils/reviewRateLimit.ts`   | All DB-backed (RateLimitAttempt). Auth create: 50/hr, Anon: 20/hr (5/hr unknown IP), Edit/delete: 50/hr        |
 | **Cache**         | Next.js ISR + `React.cache()`    | No external cache — ISR for home/show detail; force-dynamic for filtered lists                                 |
 
 ## Data Flow
@@ -168,12 +168,12 @@ erDiagram
 
 ## Scaling Improvements
 
-| Area                | Current State                                                       | Recommendation                                                                                   |
-| ------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| **Caching**         | No external cache; ISR only on a few pages                          | Add **Redis** (Upstash) for API response caching, session storage, and shared rate-limit backend |
-| **Rate Limiting**   | Edit/delete uses in-memory `Map` — resets on redeploy, per-instance | Move to **Redis-backed rate limiting** (`@upstash/ratelimit`)                                    |
-| **Database**        | Direct queries for every filtered/paginated request                 | Add a **read replica** for heavy reads and/or CDN-level caching                                  |
-| **Search**          | DB `LIKE` queries via URL params                                    | Introduce **full-text search** (Postgres `tsvector` or Meilisearch/Algolia)                      |
-| **Images**          | Static images in `/public`                                          | Offload to **CDN/image service** (Cloudinary, Imgix) for responsive sizing + format conversion   |
-| **Background Jobs** | Profanity filtering runs synchronously                              | Add a **message queue** (Inngest, QStash) for async moderation                                   |
-| **Observability**   | No logging/tracing infrastructure                                   | Add **structured logging** (Pino) + **tracing** (OpenTelemetry) + **error tracking** (Sentry)    |
+| Area                | Current State                                                   | Recommendation                                                                                   |
+| ------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| **Caching**         | No external cache; ISR only on a few pages                      | Add **Redis** (Upstash) for API response caching, session storage, and shared rate-limit backend |
+| **Rate Limiting**   | All DB-backed via `RateLimitAttempt` model — survives redeploys | Consider **Redis-backed rate limiting** (`@upstash/ratelimit`) for lower-latency checks          |
+| **Database**        | Direct queries for every filtered/paginated request             | Add a **read replica** for heavy reads and/or CDN-level caching                                  |
+| **Search**          | DB `LIKE` queries via URL params                                | Introduce **full-text search** (Postgres `tsvector` or Meilisearch/Algolia)                      |
+| **Images**          | Static images in `/public`                                      | Offload to **CDN/image service** (Cloudinary, Imgix) for responsive sizing + format conversion   |
+| **Background Jobs** | Profanity filtering runs synchronously                          | Add a **message queue** (Inngest, QStash) for async moderation                                   |
+| **Observability**   | No logging/tracing infrastructure                               | Add **structured logging** (Pino) + **tracing** (OpenTelemetry) + **error tracking** (Sentry)    |
