@@ -22,6 +22,11 @@ import ReviewSuccessBanner from "@/components/ReviewSuccessBanner/ReviewSuccessB
 import ScrollToReviewButton from "@/components/ScrollToReviewButton/ScrollToReviewButton";
 import ShareDropdown from "@/components/ShareDropdown/ShareDropdown";
 import WebReviewSummary from "@/components/WebReviewSummary/WebReviewSummary";
+import ShowsSection from "@/components/ShowsSection/ShowsSection";
+import {
+  getRelatedByTheatre,
+  getRelatedByGenres,
+} from "@/lib/data/relatedShows";
 import { getShowStats } from "@/utils/showStats";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import {
@@ -206,6 +211,16 @@ export default async function ShowPage({
     // Ignore — unauthenticated users see the default "add" state
   }
 
+  // Fetch related shows in parallel
+  const [sameTheatreShows, sameGenreShows] = await Promise.all([
+    getRelatedByTheatre(show.theatre, show.id),
+    getRelatedByGenres(show.genre, show.id),
+  ]);
+
+  // Deduplicate: remove shows already in the theatre carousel from the genre carousel
+  const theatreIds = new Set(sameTheatreShows.map((s) => s.id));
+  const similarShows = sameGenreShows.filter((s) => !theatreIds.has(s.id));
+
   const showGateway = ENABLE_REVIEW_AUTH_GATEWAY && !session;
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
@@ -375,6 +390,24 @@ export default async function ShowPage({
             </div>
           )}
         </section>
+      )}
+
+      {sameTheatreShows.length > 0 && (
+        <ShowsSection
+          title={`עוד הצגות ב${show.theatre}`}
+          shows={sameTheatreShows}
+          linkHref={`${ROUTES.SHOWS}?theatre=${encodeURIComponent(show.theatre)}`}
+          linkText="לכל ההצגות"
+        />
+      )}
+
+      {similarShows.length > 0 && (
+        <ShowsSection
+          title="הצגות דומות"
+          shows={similarShows}
+          linkHref={ROUTES.SHOWS}
+          linkText="לכל ההצגות"
+        />
       )}
 
       {!userReview && (
