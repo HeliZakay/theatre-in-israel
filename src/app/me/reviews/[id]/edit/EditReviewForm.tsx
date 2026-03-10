@@ -51,7 +51,7 @@ export default function EditReviewForm({
     setServerError("");
     try {
       const result = await updateReview(reviewId, {
-        title: values.title,
+        title: values.title ?? "",
         rating: Number(values.rating),
         text: values.text,
       });
