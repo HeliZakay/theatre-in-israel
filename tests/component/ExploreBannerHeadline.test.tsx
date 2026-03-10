@@ -2,10 +2,10 @@ import { render, screen } from "@testing-library/react";
 import ExploreBannerHeadline from "@/components/ExploreBanner/ExploreBannerHeadline";
 
 describe("ExploreBannerHeadline", () => {
-  it('renders headline "גלו הצגות חדשות"', () => {
+  it('renders headline "גלו הצגות"', () => {
     render(<ExploreBannerHeadline />);
     expect(
-      screen.getByRole("heading", { name: "גלו הצגות חדשות" }),
+      screen.getByRole("heading", { name: "גלו הצגות" }),
     ).toBeInTheDocument();
   });
 
@@ -13,7 +13,7 @@ describe("ExploreBannerHeadline", () => {
     render(<ExploreBannerHeadline />);
     expect(
       screen.getByText(
-        /מגוון הצגות מהתיאטרונים המובילים בארץ — בחרו את ההצגה הבאה שלכם/,
+        /מגוון הצגות מכל התיאטרונים בארץ — בחרו את ההצגה הבאה שלכם/,
       ),
     ).toBeInTheDocument();
   });

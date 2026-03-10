@@ -12,6 +12,7 @@ type TestFixtures = {
   firstShow: { id: number; title: string; slug: string };
 };
 
+/* eslint-disable react-hooks/rules-of-hooks -- Playwright's `use` fixture helper is not a React hook */
 export const test = base.extend<TestFixtures>({
   testUserId: async ({}, use) => {
     const id = await getTestUserId(TEST_USER.email);
@@ -31,5 +32,6 @@ export const test = base.extend<TestFixtures>({
     await use(show);
   },
 });
+/* eslint-enable react-hooks/rules-of-hooks */
 
 export { expect } from "@playwright/test";

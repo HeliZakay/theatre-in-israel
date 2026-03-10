@@ -30,6 +30,8 @@ const mockShows = Array.from({ length: 12 }, (_, i) => ({
   slug: `show-${i + 1}`,
   title: `הצגה ${i + 1}`,
   theatre: `תיאטרון ${i % 4}`,
+  genre: ["דרמה"],
+  avgRating: i % 2 === 0 ? 4.5 : null,
 }));
 
 describe("ExploreBanner", () => {
@@ -44,7 +46,7 @@ describe("ExploreBanner", () => {
   it("has an accessible section label", () => {
     render(<ExploreBanner shows={mockShows} />);
     expect(
-      screen.getByRole("region", { name: "גלו הצגות חדשות" }),
+      screen.getByRole("region", { name: "גלו הצגות" }),
     ).toBeInTheDocument();
   });
 

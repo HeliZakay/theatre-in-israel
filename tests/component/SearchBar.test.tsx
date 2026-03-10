@@ -107,7 +107,7 @@ describe("SearchBar", () => {
   it("has correct form action", () => {
     renderSearchBar();
     const form = screen.getByRole("search");
-    expect(form).toHaveAttribute("action", "/shows");
+    expect(form).toHaveAttribute("action", "/shows#results");
   });
 
   it("input name is 'query' for form submission", () => {

@@ -20,6 +20,7 @@ export default function StickyReviewCTA({ href }: StickyReviewCTAProps) {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (sessionStorage.getItem(DISMISS_KEY)) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: hydration-safe check of sessionStorage
     setDismissed(false);
   }, []);
 

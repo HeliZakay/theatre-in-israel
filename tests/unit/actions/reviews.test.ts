@@ -101,7 +101,8 @@ describe("createReview", () => {
 
     expect(result.success).toBe(true);
     if (result.success) {
-      expect(result.data).toEqual({ showId: 1 });
+      expect(result.data).toEqual(expect.objectContaining({ showId: 1 }));
+      expect(result.data).toHaveProperty("reviewCount");
     }
     expect(addReview).toHaveBeenCalledWith(
       1,

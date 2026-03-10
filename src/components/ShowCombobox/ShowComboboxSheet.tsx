@@ -37,6 +37,7 @@ export default function ShowComboboxSheet({
   // Reset search text when sheet opens
   useEffect(() => {
     if (open) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: reset ephemeral UI state when sheet opens
       setSearch("");
       // Focus the search input after the sheet animates in
       requestAnimationFrame(() => {
