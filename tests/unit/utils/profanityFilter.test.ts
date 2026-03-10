@@ -133,6 +133,36 @@ describe("containsHebrewProfanity", () => {
       expect(containsHebrewProfanity("מעולה! ממליץ בחום.")).toBe(false);
     });
   });
+
+  describe("no false positives on words containing profanity substrings", () => {
+    it.each([
+      ["שאחראי", "responsible — contains חרא"],
+      ["אחראית", "responsible (f.) — contains חרא"],
+      ["מכוסה", "covered — contains כוס"],
+      ["כוסות", "cups — contains כוס"],
+      ["בכוסות", "in cups — contains כוס"],
+      ["הזינוק", "the leap — contains זין"],
+      ["מזיני", "my food-providers — contains זין"],
+    ])('allows "%s" (%s)', (word) => {
+      expect(containsHebrewProfanity(word)).toBe(false);
+    });
+
+    it("allows a real-world review paragraph containing שאחראי", () => {
+      const review =
+        "וברור לי שיש לזקוף זאת גם לזכותו של אלי ביזאווי שאחראי על הנוסח העברי";
+      expect(containsHebrewProfanity(review)).toBe(false);
+    });
+
+    it("allows clean multi-line text with no profanity", () => {
+      const text = "הצגה מדהימה\nהשחקנים היו מעולים\nאני ממליץ בחום";
+      expect(containsHebrewProfanity(text)).toBe(false);
+    });
+
+    it("still detects actual profanity in multi-line text", () => {
+      const text = "הצגה מדהימה\nאבל חרא של סוף\nלא מומלץ";
+      expect(containsHebrewProfanity(text)).toBe(true);
+    });
+  });
 });
 
 describe("containsProfanity – integration (Hebrew + English)", () => {

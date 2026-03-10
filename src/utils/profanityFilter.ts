@@ -18,9 +18,6 @@ filter.add(filter.getDictionary("en"));
 /** O(1) lookup set for single Hebrew profanity words */
 const hebrewWordSet = new Set(HEBREW_PROFANITY_WORDS);
 
-/** Regex that matches any single bad word as a substring inside a token */
-const hebrewSubstringRegex = new RegExp(HEBREW_PROFANITY_WORDS.join("|"));
-
 // ---------------------------------------------------------------------------
 // Hebrew profanity detection
 // ---------------------------------------------------------------------------
@@ -29,20 +26,22 @@ const hebrewSubstringRegex = new RegExp(HEBREW_PROFANITY_WORDS.join("|"));
  * Check if text contains Hebrew profanity.
  *
  * Strategy:
- * 1. Normalize — keep only Hebrew letters (\u05D0-\u05EA), spaces, and
- *    basic Latin letters; strip everything else (punctuation, digits, etc.).
+ * 1. Normalize — convert whitespace to spaces, keep only Hebrew letters
+ *    (\u05D0-\u05EA), spaces, and basic Latin letters; strip everything else.
  * 2. Check multi-word phrases as substrings of the normalized text.
  * 3. Tokenize by spaces and, for each token:
  *    a. Check bare word against the word set.
- *    b. Strip each Hebrew prefix (longest-first) and check the remainder.
- *    c. Test the substring regex against the token to catch concatenated words.
+ *    b. Iteratively strip Hebrew prefixes (longest-first, up to 4 layers)
+ *       and check the remainder after each layer.
  *
  * @param text - The text to check
  * @returns true if Hebrew profanity is found, false otherwise
  */
 export function containsHebrewProfanity(text: string): boolean {
-  // Step 1 – Normalize: keep Hebrew letters, spaces, and Latin letters only
+  // Step 1 – Normalize: convert all whitespace to spaces, then keep only
+  // Hebrew letters, spaces, and Latin letters
   const normalized = text
+    .replace(/[\s]+/g, " ")
     .replace(/[^\u05D0-\u05EAa-zA-Z ]/g, "")
     .replace(/ {2,}/g, " ")
     .trim();
@@ -63,16 +62,20 @@ export function containsHebrewProfanity(text: string): boolean {
     // 3a – Bare word match
     if (hebrewWordSet.has(token)) return true;
 
-    // 3b – Strip Hebrew prefixes (longest-first) and check remainder
-    for (const prefix of HEBREW_PREFIXES) {
-      if (token.startsWith(prefix) && token.length > prefix.length) {
-        const remainder = token.slice(prefix.length);
-        if (hebrewWordSet.has(remainder)) return true;
+    // 3b – Iteratively strip Hebrew prefixes (longest-first, up to 4 layers)
+    let remainder = token;
+    for (let depth = 0; depth < 4; depth++) {
+      let stripped = false;
+      for (const prefix of HEBREW_PREFIXES) {
+        if (remainder.startsWith(prefix) && remainder.length > prefix.length) {
+          remainder = remainder.slice(prefix.length);
+          if (hebrewWordSet.has(remainder)) return true;
+          stripped = true;
+          break; // restart prefix search on the new, shorter remainder
+        }
       }
+      if (!stripped) break; // no prefix matched — stop
     }
-
-    // 3c – Substring regex to catch deliberately concatenated words
-    if (hebrewSubstringRegex.test(token)) return true;
   }
 
   return false;
