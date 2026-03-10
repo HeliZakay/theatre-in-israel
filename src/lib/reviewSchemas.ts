@@ -4,7 +4,6 @@ import {
   REVIEW_TEXT_MIN,
   REVIEW_NAME_MAX,
   REVIEW_TITLE_MAX,
-  REVIEW_TITLE_MIN,
 } from "@/constants/reviewValidation";
 import { containsHebrewProfanity } from "@/utils/profanityFilter";
 
@@ -30,15 +29,17 @@ const ratingField = z.preprocess(
 
 /**
  * Title field shared between create and update schemas.
+ * Optional — when left empty the server fills in the show name.
  */
 const titleField = z
   .string()
   .trim()
-  .min(REVIEW_TITLE_MIN, "הכניס.י כותרת")
   .max(REVIEW_TITLE_MAX, `הכותרת יכולה להכיל עד ${REVIEW_TITLE_MAX} תווים`)
-  .refine((val) => !containsHebrewProfanity(val), {
+  .refine((val) => !val || !containsHebrewProfanity(val), {
     message: "הכותרת מכילה שפה לא הולמת. אנא נסח.י מחדש.",
-  });
+  })
+  .optional()
+  .or(z.literal(""));
 
 /**
  * Text field shared between create and update schemas.

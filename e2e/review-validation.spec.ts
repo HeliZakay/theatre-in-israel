@@ -89,7 +89,7 @@ test.describe("Review Validation", () => {
     ).toBeVisible();
   });
 
-  test("shows validation error when title is empty", async ({
+  test("allows submission with empty title (defaults to show name)", async ({
     authedPage,
     firstShow,
   }) => {
@@ -104,7 +104,7 @@ test.describe("Review Validation", () => {
       .getByRole("option", { name: new RegExp(firstShow.title) })
       .click();
 
-    // Select rating and fill text — skip title
+    // Select rating and fill text — leave title empty
     await page.getByRole("combobox", { name: "דירוג" }).click();
     await page.getByRole("option", { name: /4/ }).click();
 
@@ -115,9 +115,10 @@ test.describe("Review Validation", () => {
     // Leave title empty
     await page.getByRole("button", { name: "שלח.י ביקורת" }).click();
 
-    await expect(
-      page.locator('[role="alert"]').or(page.getByText(/שדה חובה/)),
-    ).toBeVisible();
+    // Should succeed — title auto-filled with show name
+    await expect(page.getByText(/הביקורת נשלחה בהצלחה/)).toBeVisible({
+      timeout: 10000,
+    });
   });
 
   test("prevents duplicate review for same show", async ({

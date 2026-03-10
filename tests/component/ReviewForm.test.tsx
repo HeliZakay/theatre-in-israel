@@ -104,7 +104,7 @@ describe("ReviewForm", () => {
 
   it("renders title, rating, and text fields", () => {
     renderReviewForm();
-    expect(screen.getByText("כותרת הביקורת")).toBeInTheDocument();
+    expect(screen.getByText(/כותרת הביקורת/)).toBeInTheDocument();
     expect(screen.getByLabelText("דירוג")).toBeInTheDocument();
     expect(screen.getByText("תגובה")).toBeInTheDocument();
   });
@@ -131,19 +131,27 @@ describe("ReviewForm", () => {
     });
   });
 
-  it("shows title validation error for too-short title", async () => {
+  it("allows submission with empty title (title is optional)", async () => {
     const user = userEvent.setup();
-    renderReviewForm({ initialShowId: 1 });
+    (createReview as jest.Mock).mockResolvedValueOnce({
+      success: true,
+      data: { showId: 1, reviewCount: 1 },
+    });
 
-    // Fill just a one-char title (minimum is 2)
-    const titleInput = screen.getByRole("textbox", { name: /כותרת/i });
-    await user.type(titleInput, "a");
+    renderReviewForm({ initialShowId: 1, initialShowSlug: "המלט" });
+
+    // Leave title empty, fill rating and text
+    const rating = screen.getByTestId("rating-select");
+    await user.selectOptions(rating, "5");
+
+    const textarea = screen.getByRole("textbox", { name: /תגובה/i });
+    await user.type(textarea, "הצגה מדהימה! ממליץ/ה בחום");
 
     const submitBtn = screen.getByRole("button", { name: "שלח.י ביקורת" });
     await user.click(submitBtn);
 
     await waitFor(() => {
-      expect(screen.getByText("הכניס.י כותרת")).toBeInTheDocument();
+      expect(createReview).toHaveBeenCalledWith(expect.any(FormData));
     });
   });
 

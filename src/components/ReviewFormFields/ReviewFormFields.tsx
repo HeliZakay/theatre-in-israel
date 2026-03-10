@@ -56,10 +56,11 @@ export default function ReviewFormFields<TFieldValues extends FieldValues>({
   return (
     <>
       <label className={styles.field}>
-        <span className={styles.label}>כותרת הביקורת</span>
+        <span className={styles.label}>כותרת הביקורת (לא חובה)</span>
         <input
           className={styles.input}
           maxLength={REVIEW_TITLE_MAX}
+          placeholder="תנו כותרת קצרה לביקורת"
           disabled={disabled}
           {...register("title" as Path<TFieldValues>)}
         />

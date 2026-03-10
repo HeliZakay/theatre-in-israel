@@ -63,8 +63,18 @@ export async function createReview(
       return actionError(formatZodErrors(result.error));
     }
 
-    const { showId, name, title, rating, text } = result.data;
+    const { showId, name, rating, text } = result.data;
     const authorName = session.user.name?.trim() || name?.trim() || "משתמש/ת";
+
+    // When title is empty, fall back to the show name
+    let title = result.data.title?.trim() || "";
+    if (!title) {
+      const showForTitle = await prisma.show.findUnique({
+        where: { id: showId },
+        select: { title: true },
+      });
+      title = showForTitle?.title ?? `הצגה #${showId}`;
+    }
 
     const profanityMessages: Record<string, string> = {
       title: "הכותרת מכילה שפה לא הולמת. אנא נסח.י מחדש.",
@@ -148,8 +158,18 @@ export async function createAnonymousReview(
       return actionError(formatZodErrors(result.error));
     }
 
-    const { showId, name, title, rating, text } = result.data;
+    const { showId, name, rating, text } = result.data;
     const authorName = name?.trim() || "אנונימי";
+
+    // When title is empty, fall back to the show name
+    let title = result.data.title?.trim() || "";
+    if (!title) {
+      const showForTitle = await prisma.show.findUnique({
+        where: { id: showId },
+        select: { title: true },
+      });
+      title = showForTitle?.title ?? `הצגה #${showId}`;
+    }
 
     const profanityMessages: Record<string, string> = {
       title: "הכותרת מכילה שפה לא הולמת. אנא נסח.י מחדש.",
@@ -228,12 +248,22 @@ export async function updateReview(
       return actionError(formatZodErrors(result.error));
     }
 
+    // When title is empty, fall back to the show name
+    let title = result.data.title?.trim() || "";
+    if (!title) {
+      const reviewForShow = await prisma.review.findUnique({
+        where: { id: reviewId },
+        select: { show: { select: { title: true } } },
+      });
+      title = reviewForShow?.show?.title ?? "ביקורת";
+    }
+
     const profanityMessages: Record<string, string> = {
       title: "הכותרת מכילה שפה לא הולמת. אנא נסח.י מחדש.",
       text: "התגובה מכילה שפה לא הולמת. אנא נסח.י מחדש.",
     };
     const badField = checkFieldsForProfanity({
-      title: result.data.title,
+      title,
       text: result.data.text,
     });
     if (badField) {
@@ -241,7 +271,7 @@ export async function updateReview(
     }
 
     const updated = await updateReviewByOwner(reviewId, session.user.id, {
-      title: result.data.title,
+      title,
       text: result.data.text,
       rating: result.data.rating,
     });

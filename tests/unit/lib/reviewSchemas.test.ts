@@ -26,14 +26,23 @@ describe("createReviewSchema", () => {
     expect(result.success).toBe(false);
   });
 
-  it("rejects title shorter than 2 chars", () => {
+  it("accepts empty title (optional)", () => {
     const result = createReviewSchema.safeParse({
       showId: 1,
-      title: "A",
+      title: "",
       rating: 5,
       text: "A valid review text here",
     });
-    expect(result.success).toBe(false);
+    expect(result.success).toBe(true);
+  });
+
+  it("accepts missing title (optional)", () => {
+    const result = createReviewSchema.safeParse({
+      showId: 1,
+      rating: 5,
+      text: "A valid review text here",
+    });
+    expect(result.success).toBe(true);
   });
 
   it("rejects rating outside 1-5", () => {
@@ -93,7 +102,16 @@ describe("updateReviewSchema", () => {
     expect(result.success).toBe(true);
   });
 
-  it("rejects when fields are missing", () => {
+  it("accepts empty title (optional)", () => {
+    const result = updateReviewSchema.safeParse({
+      title: "",
+      rating: 4,
+      text: "Valid review text here",
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects when rating and text are missing", () => {
     const result = updateReviewSchema.safeParse({});
     expect(result.success).toBe(false);
   });
@@ -103,23 +121,23 @@ describe("formatZodErrors", () => {
   it("formats single error message", () => {
     const result = createReviewSchema.safeParse({
       showId: 1,
-      title: "A",
+      title: "Great",
       rating: 5,
-      text: "A valid review text here",
+      text: "A",
     });
     expect(result.success).toBe(false);
     if (!result.success) {
       const formatted = formatZodErrors(result.error);
-      expect(formatted).toContain("הכניס.י כותרת");
+      expect(formatted).toContain("תווים");
     }
   });
 
   it("joins multiple error messages with '; '", () => {
     const result = createReviewSchema.safeParse({
       showId: 1,
-      title: "A",
+      title: "Good",
       rating: 0,
-      text: "Short",
+      text: "A",
     });
     expect(result.success).toBe(false);
     if (!result.success) {
