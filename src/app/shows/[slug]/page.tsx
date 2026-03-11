@@ -23,6 +23,7 @@ import ScrollToReviewButton from "@/components/ScrollToReviewButton/ScrollToRevi
 import ShareDropdown from "@/components/ShareDropdown/ShareDropdown";
 import WebReviewSummary from "@/components/WebReviewSummary/WebReviewSummary";
 import ShowsSection from "@/components/ShowsSection/ShowsSection";
+import PerformancesSidebar from "@/components/PerformancesSidebar/PerformancesSidebar";
 import {
   getRelatedByTheatre,
   getRelatedByGenres,
@@ -253,162 +254,178 @@ export default async function ShowPage({
           { label: show.title },
         ]}
       />
-      <header className={styles.header}>
-        <div className={styles.heroGrid}>
-          <div className={styles.poster}>
-            <FallbackImage
-              src={getShowImagePath(show.title)}
-              alt={getShowImageAlt(show.title)}
-              fill
-              sizes="(max-width: 640px) 100vw, 320px"
-              className={styles.posterImage}
-              priority
-              fetchPriority="high"
-            />
-          </div>
-          <div className={styles.heroContent}>
-            <h1 className={styles.title}>{show.title}</h1>
-            <div className={styles.ratingRow}>
-              {avgRating !== null ? (
-                <span className={styles.metaRating}>
-                  דירוג ממוצע
-                  <span className={styles.metaRatingValue}>
-                    {avgRating.toFixed(1)}
-                    <span className={styles.metaRatingStar}>★</span>
+      <div className={styles.heroRow}>
+        <header className={styles.header}>
+          <div className={styles.heroGrid}>
+            <div className={styles.poster}>
+              <FallbackImage
+                src={getShowImagePath(show.title)}
+                alt={getShowImageAlt(show.title)}
+                fill
+                sizes="(max-width: 640px) 100vw, 320px"
+                className={styles.posterImage}
+                priority
+                fetchPriority="high"
+              />
+            </div>
+            <div className={styles.heroContent}>
+              <h1 className={styles.title}>{show.title}</h1>
+              <div className={styles.ratingRow}>
+                {avgRating !== null ? (
+                  <span className={styles.metaRating}>
+                    דירוג ממוצע
+                    <span className={styles.metaRatingValue}>
+                      {avgRating.toFixed(1)}
+                      <span className={styles.metaRatingStar}>★</span>
+                    </span>
                   </span>
-                </span>
-              ) : (
-                <span className={styles.metaRatingEmpty}>אין דירוגים</span>
-              )}
-            </div>
-            <div className={styles.meta}>
-              <span>{show.theatre}</span>
-              <span>{show.durationMinutes} דקות</span>
-              <span>{reviewCount} ביקורות</span>
-            </div>
-            <div className={styles.genreRow}>
-              {(show.genre ?? []).map((item) => (
-                <span key={item} className={styles.genreChip}>
-                  {item}
-                </span>
-              ))}
-            </div>
-            <p className={styles.description}>{show.summary}</p>
-            <div className={styles.heroActions} id="hero-actions">
-              {!userReview && (
-                <ScrollToReviewButton
-                  className={styles.primaryBtn}
-                  reviewCount={reviewCount}
-                  avgRating={avgRating}
-                  href={showGateway ? `/shows/${show.slug}/review` : undefined}
+                ) : (
+                  <span className={styles.metaRatingEmpty}>אין דירוגים</span>
+                )}
+              </div>
+              <div className={styles.meta}>
+                <span>{show.theatre}</span>
+                <span>{show.durationMinutes} דקות</span>
+                <span>{reviewCount} ביקורות</span>
+              </div>
+              <div className={styles.genreRow}>
+                {(show.genre ?? []).map((item) => (
+                  <span key={item} className={styles.genreChip}>
+                    {item}
+                  </span>
+                ))}
+              </div>
+              <p className={styles.description}>{show.summary}</p>
+              <div className={styles.heroActions} id="hero-actions">
+                {!userReview && (
+                  <ScrollToReviewButton
+                    className={styles.primaryBtn}
+                    reviewCount={reviewCount}
+                    avgRating={avgRating}
+                    href={
+                      showGateway ? `/shows/${show.slug}/review` : undefined
+                    }
+                  />
+                )}
+                <WatchlistButton
+                  showId={show.id}
+                  showSlug={show.slug}
+                  initialInWatchlist={initialInWatchlist}
                 />
-              )}
-              <WatchlistButton
+                <ShareDropdown
+                  url={showPath(show.slug)}
+                  title={show.title}
+                  theatre={show.theatre}
+                  className={styles.ghostBtn}
+                />
+              </div>
+              <LotteryBadge text="🎟️ כתיבת ביקורת = כרטיס להגרלה" />
+            </div>
+          </div>
+        </header>
+      </div>
+
+      <div
+        className={
+          show.events.length > 0 ? styles.contentGrid : styles.contentGridFull
+        }
+      >
+        <div className={styles.contentSections}>
+          {show.description && (
+            <section className={styles.aboutSection}>
+              <h2 className={styles.sectionTitle}>על ההצגה</h2>
+              <p className={styles.aboutText}>{show.description}</p>
+            </section>
+          )}
+
+          {!userReview &&
+            (showGateway ? (
+              <section id="write-review" className={styles.reviewCta}>
+                <Link
+                  href={`/shows/${show.slug}/review`}
+                  className={styles.reviewCtaLink}
+                >
+                  ✍️ כתוב.י ביקורת
+                </Link>
+              </section>
+            ) : (
+              <InlineReviewForm
                 showId={show.id}
                 showSlug={show.slug}
-                initialInWatchlist={initialInWatchlist}
+                showTitle={show.title}
+                isAuthenticated={!!session}
+                variant={show.reviews.length === 0 ? "empty" : "after-reviews"}
               />
-              <ShareDropdown
-                url={showPath(show.slug)}
-                title={show.title}
-                theatre={show.theatre}
-                className={styles.ghostBtn}
-              />
-            </div>
-            <LotteryBadge text="🎟️ כתיבת ביקורת = כרטיס להגרלה" />
-          </div>
-        </div>
-      </header>
+            ))}
 
-      {show.description && (
-        <section className={styles.aboutSection}>
-          <h2 className={styles.sectionTitle}>על ההצגה</h2>
-          <p className={styles.aboutText}>{show.description}</p>
-        </section>
-      )}
+          {show.cast && (
+            <section className={styles.aboutSection}>
+              <h2 className={styles.sectionTitle}>משתתפים</h2>
+              <p className={styles.aboutText}>{show.cast}</p>
+            </section>
+          )}
 
-      {!userReview &&
-        (showGateway ? (
-          <section id="write-review" className={styles.reviewCta}>
-            <Link
-              href={`/shows/${show.slug}/review`}
-              className={styles.reviewCtaLink}
-            >
-              ✍️ כתוב.י ביקורת
-            </Link>
-          </section>
-        ) : (
-          <InlineReviewForm
-            showId={show.id}
-            showSlug={show.slug}
-            showTitle={show.title}
-            isAuthenticated={!!session}
-            variant={show.reviews.length === 0 ? "empty" : "after-reviews"}
-          />
-        ))}
+          <WebReviewSummary summary={show.webReviewSummary} />
 
-      {show.cast && (
-        <section className={styles.aboutSection}>
-          <h2 className={styles.sectionTitle}>משתתפים</h2>
-          <p className={styles.aboutText}>{show.cast}</p>
-        </section>
-      )}
+          {(userReview || otherReviews.length > 0) && (
+            <section className={styles.section}>
+              <h2 className={styles.sectionTitle}>ביקורות הקהל</h2>
 
-      <WebReviewSummary summary={show.webReviewSummary} />
-
-      {(userReview || otherReviews.length > 0) && (
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>ביקורות הקהל</h2>
-
-          {userReview && (
-            <div className={styles.ownReviewBlock}>
-              {resolvedSearchParams.review === "success" && (
-                <ReviewSuccessBanner
-                  showSlug={show.slug}
-                  showTitle={show.title}
-                  reviewCount={
-                    resolvedSearchParams.count
-                      ? Number(resolvedSearchParams.count)
-                      : null
-                  }
-                  review={{
-                    rating: userReview.rating,
-                    title: userReview.title,
-                    text: userReview.text,
-                  }}
-                />
+              {userReview && (
+                <div className={styles.ownReviewBlock}>
+                  {resolvedSearchParams.review === "success" && (
+                    <ReviewSuccessBanner
+                      showSlug={show.slug}
+                      showTitle={show.title}
+                      reviewCount={
+                        resolvedSearchParams.count
+                          ? Number(resolvedSearchParams.count)
+                          : null
+                      }
+                      review={{
+                        rating: userReview.rating,
+                        title: userReview.title,
+                        text: userReview.text,
+                      }}
+                    />
+                  )}
+                  <ReviewCard review={userReview} isOwn />
+                </div>
               )}
-              <ReviewCard review={userReview} isOwn />
-            </div>
+
+              {otherReviews.length > 0 && (
+                <div className={styles.reviewList}>
+                  {otherReviews.map((review) => (
+                    <ReviewCard key={review.id} review={review} />
+                  ))}
+                </div>
+              )}
+            </section>
           )}
 
-          {otherReviews.length > 0 && (
-            <div className={styles.reviewList}>
-              {otherReviews.map((review) => (
-                <ReviewCard key={review.id} review={review} />
-              ))}
-            </div>
+          {sameTheatreShows.length > 0 && (
+            <ShowsSection
+              title={`עוד הצגות ב${show.theatre}`}
+              shows={sameTheatreShows}
+              linkHref={`${ROUTES.SHOWS}?theatre=${encodeURIComponent(show.theatre)}`}
+              linkText="לכל ההצגות"
+            />
           )}
-        </section>
-      )}
 
-      {sameTheatreShows.length > 0 && (
-        <ShowsSection
-          title={`עוד הצגות ב${show.theatre}`}
-          shows={sameTheatreShows}
-          linkHref={`${ROUTES.SHOWS}?theatre=${encodeURIComponent(show.theatre)}`}
-          linkText="לכל ההצגות"
-        />
-      )}
+          {similarShows.length > 0 && (
+            <ShowsSection
+              title="הצגות דומות"
+              shows={similarShows}
+              linkHref={ROUTES.SHOWS}
+              linkText="לכל ההצגות"
+            />
+          )}
+        </div>
 
-      {similarShows.length > 0 && (
-        <ShowsSection
-          title="הצגות דומות"
-          shows={similarShows}
-          linkHref={ROUTES.SHOWS}
-          linkText="לכל ההצגות"
-        />
-      )}
+        {show.events.length > 0 && (
+          <PerformancesSidebar events={show.events} theatre={show.theatre} />
+        )}
+      </div>
 
       {!userReview && (
         <StickyReviewCTA

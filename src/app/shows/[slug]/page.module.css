@@ -20,11 +20,33 @@
   cursor: pointer;
 }
 
+.heroRow {
+  display: block;
+}
+
 .heroGrid {
   display: grid;
   grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
   gap: clamp(20px, 4vw, 48px);
   align-items: center;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 32px;
+  align-items: start;
+}
+
+.contentGridFull {
+  display: block;
+}
+
+.contentSections {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-width: 0;
 }
 
 .poster {
@@ -195,6 +217,12 @@
 .emptyState {
   color: rgba(26, 26, 26, 0.65);
   font-size: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 640px) {

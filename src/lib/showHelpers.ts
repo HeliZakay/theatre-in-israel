@@ -3,10 +3,17 @@ import prisma from "./prisma";
 import { enrichShow } from "@/utils/showStats";
 import type { Show, EnrichedShow, ShowListItem } from "@/types";
 
+/** Events include — defined separately to avoid readonly array conflict with Prisma types. */
+const eventsInclude = {
+  orderBy: { date: "asc" as const },
+  include: { venue: true },
+};
+
 /** Standard Prisma include clause for fetching full show data. */
 export const showInclude = {
   genres: { include: { genre: true } },
   reviews: { orderBy: { date: "desc" as const } },
+  events: eventsInclude,
 } as const;
 
 /** Prisma include for list views — genres only, no reviews. */
@@ -29,7 +36,8 @@ export function normalizeShow(
   show: PrismaShowWithRelations | null,
 ): Show | null {
   if (!show) return null;
-  const { genres, reviews, ...rest } = show;
+  const { genres, reviews, events, ...rest } = show;
+  const today = new Date(new Date().toDateString());
   return {
     ...rest,
     genre: genres?.map((sg) => sg.genre.name) ?? [],
@@ -38,6 +46,21 @@ export function normalizeShow(
         ...r,
         date: r.date instanceof Date ? r.date.toISOString() : String(r.date),
       })) ?? [],
+    events: (events ?? [])
+      .filter((e) => {
+        const d = e.date instanceof Date ? e.date : new Date(e.date);
+        return d >= today;
+      })
+      .map((e) => ({
+        id: e.id,
+        date: e.date instanceof Date ? e.date.toISOString() : String(e.date),
+        hour: e.hour,
+        venue: {
+          name: e.venue.name,
+          city: e.venue.city,
+          address: e.venue.address,
+        },
+      })),
   } as Show;
 }
 

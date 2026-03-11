@@ -1,0 +1,78 @@
+[     190ms] [WARNING] Image with src "/logo-img.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2305
+[     191ms] [ERROR] Loading the script 'https://va.vercel-scripts.com/v1/script.debug.js' violates the following Content Security Policy directive: "script-src 'self' 'unsafe-inline' 'unsafe-eval'". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked. @ http://localhost:3000/_next/static/chunks/node_modules_1ccc8f5c._.js:16948
+[     192ms] [ERROR] Loading the script 'https://va.vercel-scripts.com/v1/speed-insights/script.debug.js' violates the following Content Security Policy directive: "script-src 'self' 'unsafe-inline' 'unsafe-eval'". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked. @ http://localhost:3000/_next/static/chunks/node_modules_1ccc8f5c._.js:17177
+[    1183ms] [ERROR] Failed to load resource: the server responded with a status of 400 (Bad Request) @ http://localhost:3000/_next/image?url=%2FMix-Match.webp&w=828&q=75:0
+[    4189ms] [WARNING] The resource http://localhost:3000/_next/static/chunks/src_app_error_module_0f2ab991.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/shows:0
+[   39307ms] [WARNING] %c%s%c [auth][warn] background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   DEBUG_ENABLED @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2305
+[   42619ms] [WARNING] The resource http://localhost:3000/_next/image?url=%2F%D7%9E%D7%99%D7%A9%D7%94%D7%95-%D7%A9%D7%A8-%D7%90%D7%AA-%D7%96%D7%94-%D7%A7%D7%95%D7%93%D7%9D.webp&w=640&q=75 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/shows/%D7%9E%D7%99%D7%A9%D7%94%D7%95-%D7%A9%D7%A8-%D7%90%D7%AA-%D7%96%D7%94-%D7%A7%D7%95%D7%93%D7%9D:0
+[   42620ms] [WARNING] The resource http://localhost:3000/_next/static/chunks/src_app_error_module_0f2ab991.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/shows/%D7%9E%D7%99%D7%A9%D7%94%D7%95-%D7%A9%D7%A8-%D7%90%D7%AA-%D7%96%D7%94-%D7%A7%D7%95%D7%93%D7%9D:0
+[   59798ms] [WARNING] The resource http://localhost:3000/_next/static/chunks/src_app_error_module_0f2ab991.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/shows/%D7%9E%D7%99%D7%A9%D7%94%D7%95-%D7%A9%D7%A8-%D7%90%D7%AA-%D7%96%D7%94-%D7%A7%D7%95%D7%93%D7%9D:0
+[  220629ms] [WARNING] Image with src "/logo-img.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2305
+[  220639ms] [ERROR] Loading the script 'https://va.vercel-scripts.com/v1/script.debug.js' violates the following Content Security Policy directive: "script-src 'self' 'unsafe-inline' 'unsafe-eval'". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked. @ http://localhost:3000/_next/static/chunks/node_modules_1ccc8f5c._.js:16948
+[  220640ms] [ERROR] Loading the script 'https://va.vercel-scripts.com/v1/speed-insights/script.debug.js' violates the following Content Security Policy directive: "script-src 'self' 'unsafe-inline' 'unsafe-eval'". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked. @ http://localhost:3000/_next/static/chunks/node_modules_1ccc8f5c._.js:17177
+[  223707ms] [WARNING] The resource http://localhost:3000/_next/static/chunks/src_app_not-found_module_c656a41e.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/shows/%D7%9E%D7%99%D7%A9%D7%94%D7%95-%D7%A9%D7%A8-%D7%90%D7%AA-%D7%96%D7%94-%D7%A7%D7%95%D7%93%D7%9D:0
+[  223707ms] [WARNING] The resource http://localhost:3000/_next/static/chunks/src_app_error_module_0f2ab991.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/shows/%D7%9E%D7%99%D7%A9%D7%94%D7%95-%D7%A9%D7%A8-%D7%90%D7%AA-%D7%96%D7%94-%D7%A7%D7%95%D7%93%D7%9D:0
+[  261818ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=KyouMNt0PC_XM2sZetN85' failed:  @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:10900
+[  262828ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=KyouMNt0PC_XM2sZetN85' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:10900
+[  265453ms] [WARNING] %c%s%c [auth][warn] background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   DEBUG_ENABLED @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2305
+[  265484ms] [WARNING] Image with src "/logo-img.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2305
+[  265494ms] [ERROR] Loading the script 'https://va.vercel-scripts.com/v1/script.debug.js' violates the following Content Security Policy directive: "script-src 'self' 'unsafe-inline' 'unsafe-eval'". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked. @ http://localhost:3000/_next/static/chunks/node_modules_1ccc8f5c._.js:16948
+[  265495ms] [ERROR] Loading the script 'https://va.vercel-scripts.com/v1/speed-insights/script.debug.js' violates the following Content Security Policy directive: "script-src 'self' 'unsafe-inline' 'unsafe-eval'". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked. @ http://localhost:3000/_next/static/chunks/node_modules_1ccc8f5c._.js:17177
+[  266096ms] Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+      <LoadingBoundary name="%D7%9E%D7%..." loading={[...]}>
+        <Suspense name="%D7%9E%D7%..." fallback={<Fragment>}>
+          <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+            <RedirectBoundary>
+              <RedirectErrorBoundary router={{...}}>
+                <InnerLayoutRouter url="/shows/%D7..." tree={[...]} params={{slug:"%D7%..."}} ...>
+                  <SegmentViewNode type="page" pagePath="shows/[slu...">
+                    <SegmentTrieNode>
+                    <ShowPage>
+                      <main className="page-modul..." id="main-content">
+                        <link>
+                        <script>
+                        <script>
+                        <nav>
+                        <div>
+                        <PerformancesSidebar events={[...]} theatre="תיאטרון הק...">
+                          <section className="Performanc...">
+                            <h2>
+                            <div
++                             className="PerformancesSidebar-module__OqTLpW__dateGroup"
+-                             className="PerformancesSidebar-module__OqTLpW__dateList"
+                            >
++                             <h3 className="PerformancesSidebar-module__OqTLpW__dateHeading">
+-                             <div className="PerformancesSidebar-module__OqTLpW__dateGroup">
+                              ...
+                            ...
+                            ...
+                        ...
+                  ...
+                ...
+
+    at throwOnHydrationMismatch (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:3348:56)
+    at beginWork (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:6775:918)
+    at runWithFiberInDEV (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:965:74)
+    at performUnitOfWork (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:9562:97)
+    at workLoopSync (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:9456:40)
+    at renderRootSync (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:9440:13)
+    at performWorkOnRoot (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:9068:186)
+    at performSyncWorkOnRoot (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:10238:9)
+    at flushSyncWorkAcrossRoots_impl (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:10154:316)
+    at processRootScheduleInMicrotask (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:10175:106)
+    at http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:10249:158
+[  269144ms] [WARNING] The resource http://localhost:3000/_next/static/chunks/src_app_not-found_module_c656a41e.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/shows/%D7%9E%D7%99%D7%A9%D7%94%D7%95-%D7%A9%D7%A8-%D7%90%D7%AA-%D7%96%D7%94-%D7%A7%D7%95%D7%93%D7%9D:0
+[  269144ms] [WARNING] The resource http://localhost:3000/_next/static/chunks/src_app_error_module_0f2ab991.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/shows/%D7%9E%D7%99%D7%A9%D7%94%D7%95-%D7%A9%D7%A8-%D7%90%D7%AA-%D7%96%D7%94-%D7%A7%D7%95%D7%93%D7%9D:0

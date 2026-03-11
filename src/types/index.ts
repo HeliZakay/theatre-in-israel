@@ -23,6 +23,13 @@ export interface ReviewInput {
   ip?: string;
 }
 
+export interface ShowEvent {
+  id: number;
+  date: string;
+  hour: string;
+  venue: { name: string; city: string; address: string | null };
+}
+
 export interface Show {
   id: number;
   slug: string;
@@ -35,6 +42,7 @@ export interface Show {
   webReviewSummary: string | null;
   genre: string[];
   reviews: Review[];
+  events: ShowEvent[];
 }
 
 export interface EnrichedShow extends Show {

@@ -1,0 +1,74 @@
+.card {
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  box-shadow: var(--card-shadow, 0 1px 3px rgba(0, 0, 0, 0.06));
+  position: sticky;
+  top: 24px;
+}
+
+.title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 16px;
+}
+
+.dateList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.dateGroup {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.08);
+}
+
+.dateGroup:first-child {
+  padding-top: 0;
+}
+
+.dateGroup:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.dateHeading {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-curtain-red);
+  margin: 0 0 6px;
+}
+
+.timeEntry {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+  padding: 2px 0;
+}
+
+.hour {
+  font-weight: 600;
+}
+
+.venue {
+  color: rgba(26, 26, 26, 0.6);
+  font-size: 0.85rem;
+}
+
+.showMoreBtn {
+  background: none;
+  border: none;
+  color: var(--color-curtain-red);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 12px 0 0;
+  font-size: 0.9rem;
+  width: 100%;
+  text-align: center;
+}

@@ -11,3 +11,4 @@
 [ 2947866ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.cameri.co.il/wp-content/plugins/sitepress-multilingual-cms/templates/language-switchers/legacy-list-horizontal/style.min.css?ver=1:0
 [ 2948359ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.gstatic.com/recaptcha/releases/QvLuXwupqtKMva7GIh5eGl3U/styles__ltr.css:0
 [ 6549005ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.gstatic.com/recaptcha/releases/QvLuXwupqtKMva7GIh5eGl3U/styles__ltr.css:0
+[10149699ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.gstatic.com/recaptcha/releases/QvLuXwupqtKMva7GIh5eGl3U/styles__ltr.css:0
