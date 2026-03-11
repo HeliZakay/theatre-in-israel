@@ -219,6 +219,10 @@
   font-size: 1rem;
 }
 
+.fullWidthSection {
+  padding: 0;
+}
+
 @media (max-width: 1024px) {
   .contentGrid {
     grid-template-columns: 1fr;

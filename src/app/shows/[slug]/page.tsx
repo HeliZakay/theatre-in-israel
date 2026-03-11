@@ -402,30 +402,32 @@ export default async function ShowPage({
               )}
             </section>
           )}
-
-          {sameTheatreShows.length > 0 && (
-            <ShowsSection
-              title={`עוד הצגות ב${show.theatre}`}
-              shows={sameTheatreShows}
-              linkHref={`${ROUTES.SHOWS}?theatre=${encodeURIComponent(show.theatre)}`}
-              linkText="לכל ההצגות"
-            />
-          )}
-
-          {similarShows.length > 0 && (
-            <ShowsSection
-              title="הצגות דומות"
-              shows={similarShows}
-              linkHref={ROUTES.SHOWS}
-              linkText="לכל ההצגות"
-            />
-          )}
         </div>
 
         {show.events.length > 0 && (
           <PerformancesSidebar events={show.events} theatre={show.theatre} />
         )}
       </div>
+
+      {sameTheatreShows.length > 0 && (
+        <ShowsSection
+          title={`עוד הצגות ב${show.theatre}`}
+          shows={sameTheatreShows}
+          linkHref={`${ROUTES.SHOWS}?theatre=${encodeURIComponent(show.theatre)}`}
+          linkText="לכל ההצגות"
+          className={styles.fullWidthSection}
+        />
+      )}
+
+      {similarShows.length > 0 && (
+        <ShowsSection
+          title="הצגות דומות"
+          shows={similarShows}
+          linkHref={ROUTES.SHOWS}
+          linkText="לכל ההצגות"
+          className={styles.fullWidthSection}
+        />
+      )}
 
       {!userReview && (
         <StickyReviewCTA

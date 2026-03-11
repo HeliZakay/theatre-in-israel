@@ -14,6 +14,7 @@ interface ShowsSectionProps {
   shows: ShowListItem[];
   linkHref?: string;
   linkText?: string;
+  className?: string;
 }
 
 export default function ShowsSection({
@@ -22,9 +23,10 @@ export default function ShowsSection({
   shows,
   linkHref,
   linkText,
+  className,
 }: ShowsSectionProps) {
   return (
-    <section className={styles.section}>
+    <section className={[styles.section, className].filter(Boolean).join(" ")}>
       <SectionHeader
         kicker={kicker}
         title={title}
