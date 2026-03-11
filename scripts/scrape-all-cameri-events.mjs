@@ -9,11 +9,13 @@
  * Dry-run by default — prints scraped dates for review.
  *
  * Usage:
- *   node scripts/scrape-all-cameri-events.mjs                # dry-run
- *   node scripts/scrape-all-cameri-events.mjs --apply        # write to DB
- *   node scripts/scrape-all-cameri-events.mjs --debug        # dump DOM per show
+ *   node scripts/scrape-all-cameri-events.mjs                          # dry-run
+ *   node scripts/scrape-all-cameri-events.mjs --apply                   # write to DB
+ *   node scripts/scrape-all-cameri-events.mjs --json prisma/data/events.json  # write JSON file
+ *   node scripts/scrape-all-cameri-events.mjs --debug                   # dump DOM per show
  */
 
+import fs from "fs";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -44,6 +46,9 @@ const flags = new Set(args.filter((a) => a.startsWith("--")));
 const debug = flags.has("--debug");
 const apply = flags.has("--apply");
 
+const jsonFlag = args.indexOf("--json");
+const jsonPath = jsonFlag !== -1 ? args[jsonFlag + 1] : null;
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
 dotenv.config({ path: path.join(rootDir, ".env.local") });
@@ -58,7 +63,7 @@ async function main() {
   console.log(bold(cyan("  Cameri Events Scraper — All Shows")));
   console.log(
     dim(
-      `  Mode: ${apply ? "APPLY (write to DB)" : "DRY-RUN (review only)"}${debug ? " + DEBUG" : ""}`,
+      `  Mode: ${jsonPath ? "JSON OUTPUT" : apply ? "APPLY (write to DB)" : "DRY-RUN (review only)"}${debug ? " + DEBUG" : ""}`,
     ),
   );
   separator();
@@ -162,6 +167,7 @@ async function main() {
 
   // ── 5. Iterate over matched shows ──
   const totals = { shows: 0, events: 0, created: 0, skipped: 0, failed: 0 };
+  const collectedEvents = [];
 
   for (let i = 0; i < matched.length; i++) {
     const show = matched[i];
@@ -198,8 +204,20 @@ async function main() {
           }
         }
 
+        // ── Collect for JSON output ──
+        if (jsonPath) {
+          for (const ev of result.events) {
+            collectedEvents.push({
+              showId: show.id,
+              date: ev.date,
+              hour: ev.hour || "00:00",
+              note: ev.note || null,
+            });
+          }
+        }
+
         // ── Apply to DB ──
-        if (apply && venue) {
+        if (apply && !jsonPath && venue) {
           let created = 0;
           let skipped = 0;
           for (const ev of result.events) {
@@ -252,7 +270,22 @@ async function main() {
     }
   }
 
-  // ── 6. Summary ──
+  // ── 6. Write JSON file if requested ──
+  if (jsonPath) {
+    const output = {
+      scrapedAt: new Date().toISOString(),
+      venue: { name: "תיאטרון הקאמרי", city: "תל אביב" },
+      events: collectedEvents,
+    };
+    const outPath = path.resolve(rootDir, jsonPath);
+    fs.mkdirSync(path.dirname(outPath), { recursive: true });
+    fs.writeFileSync(outPath, JSON.stringify(output, null, 2), "utf-8");
+    console.log(
+      green(`\n  Wrote ${collectedEvents.length} events to ${outPath}`),
+    );
+  }
+
+  // ── 7. Summary ──
   await browser.close();
   await db.prisma.$disconnect();
   await db.pool.end();
@@ -263,9 +296,12 @@ async function main() {
   separator();
   console.log(`  Shows processed:  ${totals.shows}`);
   console.log(`  Total events:     ${totals.events}`);
-  if (apply) {
+  if (apply && !jsonPath) {
     console.log(green(`  Events created:   ${totals.created}`));
     console.log(dim(`  Events skipped:   ${totals.skipped}`));
+  }
+  if (jsonPath) {
+    console.log(green(`  Events written:   ${collectedEvents.length}`));
   }
   if (totals.failed > 0) {
     console.log(red(`  Shows failed:     ${totals.failed}`));
