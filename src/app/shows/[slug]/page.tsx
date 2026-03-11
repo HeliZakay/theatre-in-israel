@@ -365,7 +365,9 @@ export default async function ShowPage({
             </section>
           )}
 
-          <WebReviewSummary summary={show.webReviewSummary} />
+          {show.reviews.length === 0 && (
+            <WebReviewSummary summary={show.webReviewSummary} />
+          )}
 
           {(userReview || otherReviews.length > 0) && (
             <section className={styles.section}>
