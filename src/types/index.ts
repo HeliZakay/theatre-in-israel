@@ -91,3 +91,23 @@ export interface WatchlistItem {
     theatre: string;
   };
 }
+
+export interface Venue {
+  id: number;
+  name: string;
+  city: string;
+  address: string | null;
+}
+
+export interface Event {
+  id: number;
+  showId: number;
+  venueId: number;
+  date: string;
+  hour: string;
+}
+
+export interface EnrichedEvent extends Event {
+  show: ShowListItem;
+  venue: Venue;
+}

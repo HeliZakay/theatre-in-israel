@@ -27,6 +27,7 @@ model Show {
   genres          ShowGenre[]
   reviews         Review[]
   watchlist       Watchlist[]
+  events          Event[]
 
   @@index([theatre])
   @@index([avgRating])
@@ -147,4 +148,29 @@ model RateLimitAttempt {
   createdAt DateTime @default(now())
 
   @@index([key, action, createdAt])
+}
+
+model Venue {
+  id      Int     @id @default(autoincrement())
+  name    String
+  city    String
+  address String?
+  events  Event[]
+
+  @@unique([name, city])
+}
+
+model Event {
+  id      Int      @id @default(autoincrement())
+  show    Show     @relation(fields: [showId], references: [id], onDelete: Cascade)
+  showId  Int
+  venue   Venue    @relation(fields: [venueId], references: [id], onDelete: Cascade)
+  venueId Int
+  date    DateTime @db.Date
+  hour    String
+
+  @@unique([showId, venueId, date, hour])
+  @@index([showId])
+  @@index([venueId])
+  @@index([date])
 }

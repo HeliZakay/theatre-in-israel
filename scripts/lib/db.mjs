@@ -22,6 +22,7 @@ const EXCLUDED_FILE = path.join(__dirname, "..", "data", "excluded-shows.json");
 export function normalise(title) {
   return title
     .replace(/[\u05F3\u2019\u02BC]/g, "'")
+    .replace(/[?!#%&|\\/:*"<>]/g, "")
     .trim()
     .replace(/\s+/g, " ");
 }

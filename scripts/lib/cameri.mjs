@@ -38,7 +38,12 @@ const REPERTOIRE_PATH_ENCODED =
   "/%D7%94%D7%A6%D7%92%D7%95%D7%AA_%D7%94%D7%A7%D7%90%D7%9E%D7%A8%D7%99/";
 
 /** Category prefixes that appear before the actual title in card text. */
-const CATEGORY_PREFIXES = ["מחזמר", "הצגות ילדים", "הצגה אורחת"];
+const CATEGORY_PREFIXES = [
+  "הצגות הקאמרי",
+  "מחזמר",
+  "הצגות ילדים",
+  "הצגה אורחת",
+];
 
 /**
  * Cameri-specific image extraction — runs inside page.evaluate().
@@ -220,25 +225,48 @@ export async function fetchSchedule(browser) {
         // Build absolute URL.
         const url = href.startsWith("http") ? href : `${base}${href}`;
 
-        // Extract title from the first line of the card's text.
-        const rawText = a.textContent.trim();
+        // Extract text — strip <video> fallback text that
+        // contaminates textContent on cards with animated posters.
+        const cloned = a.cloneNode(true);
+        cloned.querySelectorAll("video").forEach((v) => v.remove());
+        const rawText = cloned.textContent.trim();
         if (!rawText) continue;
 
-        // Skip video fallback text patterns.
-        if (rawText.includes("browser") && rawText.includes("support"))
+        // Skip links whose ONLY text is video fallback boilerplate.
+        if (
+          rawText.includes("browser") &&
+          rawText.includes("support") &&
+          !a.querySelector("h2, h3, h4")
+        )
           continue;
 
-        // Take first line — the rest is genre/writer/director metadata.
-        let title = rawText.split("\n")[0].trim();
+        // --- Title extraction (multi-line aware) ---
+        const lines = rawText
+          .split("\n")
+          .map((l) => l.trim())
+          .filter(Boolean);
 
-        // Strip category prefixes that precede the show name.
+        // Strategy 1: semantic heading inside the card link
+        const headingEl = a.querySelector("h2, h3, h4, [class*='title']");
+        let title = headingEl ? headingEl.textContent.trim() : "";
+
+        // Strategy 2: first non-category line
+        if (!title) {
+          const catSet = new Set(catPrefixes);
+          for (const line of lines) {
+            if (catSet.has(line)) continue;
+            title = line;
+            break;
+          }
+        }
+
+        // Fallback: strip category prefix if it leaked onto the same line
         for (const prefix of catPrefixes) {
           if (title.startsWith(prefix)) {
             title = title.slice(prefix.length).trim();
             break;
           }
         }
-
         title = title.replace(/^חדש\s+/, "");
         if (!title) continue;
 
@@ -479,4 +507,274 @@ export async function scrapeCast(browser, url) {
   } finally {
     await page.close();
   }
+}
+
+// ── Events / dates scraper ─────────────────────────────────────
+
+/**
+ * Scrape performance dates/times from a Cameri show detail page.
+ *
+ * The dates section is dynamically loaded, so we need to scroll down
+ * and wait for it to render. In debug mode, dumps the raw HTML of the
+ * dates area for selector discovery.
+ *
+ * @param {import("puppeteer").Browser} browser
+ * @param {string} url — show detail page URL
+ * @param {{ debug?: boolean }} [options]
+ * @returns {Promise<{ events: Array<{ date: string, hour: string, venue: string | null, note: string | null }>, debugHtml?: string }>}
+ */
+export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
+  const page = await browser.newPage();
+  await setupRequestInterception(page);
+
+  await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
+  await page.waitForSelector("h1", { timeout: 15_000 });
+
+  // Scroll to bottom to trigger lazy-loaded dates section.
+  await page.evaluate(async () => {
+    await new Promise((resolve) => {
+      let total = 0;
+      const step = 400;
+      const timer = setInterval(() => {
+        window.scrollBy(0, step);
+        total += step;
+        if (total >= document.body.scrollHeight) {
+          clearInterval(timer);
+          resolve();
+        }
+      }, 100);
+    });
+  });
+
+  // Extra wait for the dates widget to render after scroll.
+  await new Promise((r) => setTimeout(r, 3_000));
+
+  // Scroll once more (some widgets only load after the first pass).
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  await new Promise((r) => setTimeout(r, 2_000));
+
+  const result = await page.evaluate((debugMode) => {
+    const output = { events: [], debugHtml: null };
+
+    // ── Locate the dates section ──
+    // Strategy: find the heading "תאריכים ורכישת כרטיסים" or similar,
+    // then grab its parent/sibling container.
+    let datesContainer = null;
+
+    // Try known section id/class patterns first.
+    datesContainer =
+      document.querySelector("#dates") ||
+      document.querySelector("[id*='date']") ||
+      document.querySelector("[class*='dates-section']") ||
+      document.querySelector("[class*='performances']") ||
+      document.querySelector("[class*='schedule']") ||
+      document.querySelector("[class*='events']");
+
+    // Fallback: find heading with dates-related text and grab parent section.
+    if (!datesContainer) {
+      const allHeadings = document.querySelectorAll(
+        "h2, h3, h4, h5, .section-title, [class*='title']",
+      );
+      for (const h of allHeadings) {
+        const text = h.textContent.trim();
+        if (
+          text.includes("תאריכים") ||
+          text.includes("לוח הופעות") ||
+          text.includes("רכישת כרטיסים") ||
+          text.includes("הופעות קרובות")
+        ) {
+          // Walk up to find a reasonable container.
+          datesContainer =
+            h.closest("section") ||
+            h.closest("article") ||
+            h.closest("div[class]") ||
+            h.parentElement;
+          break;
+        }
+      }
+    }
+
+    // Broader fallback: search all text nodes for the dates heading.
+    if (!datesContainer) {
+      const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+      );
+      while (walker.nextNode()) {
+        if (walker.currentNode.textContent.includes("תאריכים ורכישת כרטיסים")) {
+          datesContainer =
+            walker.currentNode.parentElement?.closest("section") ||
+            walker.currentNode.parentElement?.closest("div[class]") ||
+            walker.currentNode.parentElement?.parentElement;
+          break;
+        }
+      }
+    }
+
+    // Last resort: grab everything after the dates heading in body text.
+    if (debugMode) {
+      if (datesContainer) {
+        output.debugHtml = datesContainer.innerHTML;
+      } else {
+        // Dump the last ~5000 chars of body innerHTML for discovery.
+        const bodyHtml = document.body.innerHTML;
+        output.debugHtml = bodyHtml.slice(-8000);
+      }
+
+      // Also dump all elements with date-like text patterns.
+      const allElements = document.querySelectorAll("*");
+      const datePatterns = [];
+      for (const el of allElements) {
+        if (el.children.length > 10) continue; // skip large containers
+        const text = el.textContent?.trim() || "";
+        // Look for date-like patterns: DD.MM, DD/MM, or Hebrew month names.
+        if (
+          /\d{1,2}[./]\d{1,2}/.test(text) &&
+          text.length < 200 &&
+          !el.closest("script") &&
+          !el.closest("style")
+        ) {
+          datePatterns.push({
+            tag: el.tagName.toLowerCase(),
+            classes: el.className || "",
+            id: el.id || "",
+            text: text.slice(0, 150),
+          });
+        }
+      }
+      output.debugDateElements = datePatterns;
+    }
+
+    // ── Extract date/time entries ──
+    // Try multiple strategies for extracting structured date data.
+
+    const events = [];
+    const currentYear = new Date().getFullYear();
+
+    // Strategy 1 (precise): Cameri's known DOM structure.
+    // <ul class="events-of-this-show"> > <li> > <a> > <p>
+    //   <span>DD.MM</span> <span>day</span> <span>HH:MM</span>
+    //   [<span class="line-under"><span class="sbttls">English subtitles</span></span>]
+    // There may be duplicate lists (desktop vs mobile) — we grab them
+    // all and deduplicate below, preferring entries with times.
+    const eventItems = document.querySelectorAll("ul.events-of-this-show > li");
+    for (const li of eventItems) {
+      const spans = li.querySelectorAll("p > span");
+      if (spans.length < 2) continue;
+
+      // Find the date span (DD.MM) and time span (HH:MM) by content pattern,
+      // not by position — the two lists on the page differ in structure.
+      let dateText = "";
+      let timeText = "";
+      for (const span of spans) {
+        const t = span.textContent?.trim() || "";
+        if (!dateText && /^\d{1,2}\.\d{1,2}$/.test(t)) dateText = t;
+        if (!timeText && /^\d{1,2}:\d{2}$/.test(t)) timeText = t;
+      }
+
+      const dateMatch = dateText.match(/^(\d{1,2})\.(\d{1,2})$/);
+      if (!dateMatch) continue;
+
+      const day = dateMatch[1].padStart(2, "0");
+      const month = dateMatch[2].padStart(2, "0");
+
+      // Infer year: if month is before current month, it's next year.
+      const now = new Date();
+      const monthNum = parseInt(month, 10);
+      const year =
+        monthNum < now.getMonth() + 1 ? currentYear + 1 : currentYear;
+
+      const subtitleEl = li.querySelector("span.sbttls");
+      events.push({
+        date: `${year}-${month}-${day}`,
+        hour: timeText || "",
+        note: subtitleEl ? subtitleEl.textContent.trim() : null,
+        rawText: li.textContent?.trim().slice(0, 200) || "",
+      });
+    }
+
+    // Strategy 2 (fallback): generic selector search in dates container.
+    if (events.length === 0 && datesContainer) {
+      const candidates = datesContainer.querySelectorAll(
+        "li, tr, .date-card, .performance, [class*='show-date'], a[href*='ticket'], a[href*='כרטיס']",
+      );
+      for (const el of candidates) {
+        const text = el.textContent?.trim() || "";
+        const dateMatch = text.match(
+          /(\d{1,2})[./](\d{1,2})(?:[./](\d{2,4}))?/,
+        );
+        const timeMatch = text.match(/(\d{1,2}:\d{2})/);
+        if (dateMatch) {
+          const day = dateMatch[1].padStart(2, "0");
+          const month = dateMatch[2].padStart(2, "0");
+          let year = dateMatch[3] || currentYear.toString();
+          if (year.length === 2) year = "20" + year;
+          events.push({
+            date: `${year}-${month}-${day}`,
+            hour: timeMatch ? timeMatch[1] : "",
+            note:
+              text.includes("כתוביות") || text.includes("subtitles")
+                ? "English subtitles"
+                : null,
+            rawText: text.slice(0, 200),
+          });
+        }
+      }
+    }
+
+    // Strategy 2: If no structured elements found, parse the full body text
+    // for date+time pairs near each other.
+    if (events.length === 0) {
+      const bodyText = document.body.innerText;
+      // Find all occurrences of date-like patterns.
+      const dateRegex =
+        /(\d{1,2})[./](\d{1,2})[./](\d{2,4})\s*[\s|,\-–—]*\s*(\d{1,2}:\d{2})?/g;
+      let match;
+      while ((match = dateRegex.exec(bodyText)) !== null) {
+        const day = match[1].padStart(2, "0");
+        const month = match[2].padStart(2, "0");
+        let year = match[3];
+        if (year.length === 2) year = "20" + year;
+        const surrounding = bodyText.slice(
+          Math.max(0, match.index - 50),
+          match.index + match[0].length + 50,
+        );
+        events.push({
+          date: `${year}-${month}-${day}`,
+          hour: match[4] || "",
+          note:
+            surrounding.includes("כתוביות") || surrounding.includes("subtitles")
+              ? "English subtitles"
+              : null,
+          rawText: surrounding.trim(),
+        });
+      }
+    }
+
+    // Deduplicate by date+hour — the page has duplicate desktop/mobile
+    // lists, but two shows on the same day at different times are distinct.
+    const bestByDateHour = new Map();
+    for (const e of events) {
+      const key = `${e.date}|${e.hour}`;
+      const existing = bestByDateHour.get(key);
+      if (!existing || (!existing.hour && e.hour)) {
+        bestByDateHour.set(key, e);
+      }
+    }
+    output.events = [...bestByDateHour.values()];
+
+    // ── Extract venue from page text ──
+    const bodyText = document.body.innerText;
+    let venue = null;
+    const venueMatch = bodyText.match(/מוצגת ב([^\n,."]+)/);
+    if (venueMatch) {
+      venue = venueMatch[1].trim();
+    }
+    output.venue = venue;
+
+    return output;
+  }, debug);
+
+  await page.close();
+  return result;
 }

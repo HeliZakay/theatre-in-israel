@@ -18,7 +18,7 @@ export function generateSlug(title) {
     .trim()
     .replace(/\s+/g, "-")
     .replace(/'/g, "\u05F3")
-    .replace(/[?#%|\\/:*"<>]/g, "-")
+    .replace(/[?#%&|\\/:*"<>]/g, "-")
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "");
 }
