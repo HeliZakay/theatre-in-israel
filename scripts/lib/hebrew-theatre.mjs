@@ -14,6 +14,139 @@ export const HEBREW_THEATRE = "התיאטרון העברי";
 export const HEBREW_THEATRE_BASE = "https://www.teatron.org.il";
 export const SHOWS_URL = "https://www.teatron.org.il/shows/";
 
+// ── Venue → City resolution ────────────────────────────────────
+
+/**
+ * Maps known venue strings (as they appear on the Hebrew Theatre website)
+ * to their city. Keys should be trimmed, normalised strings.
+ */
+export const VENUE_CITY_MAP = {
+  // Tel Aviv area
+  "היכל התרבות תל אביב": "תל אביב",
+  "היכל התרבות": "תל אביב",
+  "תיאטרון הבימה": "תל אביב",
+  "בית ליסין": "תל אביב",
+  "תיאטרון הקאמרי": "תל אביב",
+  צוותא: "תל אביב",
+  תמונע: "תל אביב",
+  "התיאטרון העברי": "תל אביב",
+  // Haifa
+  "תיאטרון הצפון": "חיפה",
+  "תיאטרון חיפה": "חיפה",
+  "אודיטוריום חיפה": "חיפה",
+  // Jerusalem
+  "תיאטרון ירושלים": "ירושלים",
+  "תיאטרון החאן": "ירושלים",
+  "גררד בכר": "ירושלים",
+  "היכל התרבות ירושלים": "ירושלים",
+  // Beer Sheva
+  "תיאטרון באר שבע": "באר שבע",
+  "היכל התרבות באר שבע": "באר שבע",
+  "המרכז לאמנויות הבמה באר שבע": "באר שבע",
+  // Other cities
+  "היכל התרבות הרצליה": "הרצליה",
+  "היכל התרבות רעננה": "רעננה",
+  "היכל התרבות כפר סבא": "כפר סבא",
+  "היכל התרבות אשדוד": "אשדוד",
+  "היכל התרבות ראשון לציון": "ראשון לציון",
+  "היכל התרבות נתניה": "נתניה",
+  "היכל התרבות פתח תקווה": "פתח תקווה",
+  "היכל התרבות רמת גן": "רמת גן",
+  "מרכז תרבות גבעתיים": "גבעתיים",
+  "היכל התרבות מודיעין": "מודיעין",
+  "היכל התרבות קריית מוצקין": "קריית מוצקין",
+  "היכל התרבות לוד": "לוד",
+  "תיאטרון גשר": "יפו",
+  // Venues with non-obvious city names
+  "היכל התרבות אור עקיבא": "אור עקיבא",
+  "היכל התרבות אשקלון": "אשקלון",
+  "היכל התרבות איירפורט סיטי": "קריית שדה התעופה",
+  "היכל התיאטרון מוצקין": "קריית מוצקין",
+  'מזכרת בתיה - היכל התרבות ע"ש אריה כספי': "מזכרת בתיה",
+  "היכל התרבות בית העם רחובות": "רחובות",
+  "בית החייל תל אביב": "תל אביב",
+  "בית האופרה - תל אביב": "תל אביב",
+  "מוזיאון ארץ ישראל - תל אביב": "תל אביב",
+  "תיאטרון חולון": "חולון",
+};
+
+/**
+ * Known Israeli cities for trailing-city heuristic, sorted longest-first
+ * so "ראשון לציון" matches before "ציון" (if that were a city).
+ */
+export const KNOWN_CITIES = [
+  "ראשון לציון",
+  "פתח תקווה",
+  "קריית מוצקין",
+  "קריית ביאליק",
+  "קריית שמונה",
+  "כפר סבא",
+  "רמת גן",
+  "באר שבע",
+  "רמת השרון",
+  "גבעתיים",
+  "תל אביב",
+  "ירושלים",
+  "הרצליה",
+  "רעננה",
+  "אשדוד",
+  "חולון",
+  "נתניה",
+  "חיפה",
+  "אשקלון",
+  "מודיעין",
+  "עפולה",
+  "לוד",
+  "יפו",
+  "עכו",
+  "אילת",
+  "אור עקיבא",
+  "קריית שדה התעופה",
+  "מזכרת בתיה",
+  "רחובות",
+].sort((a, b) => b.length - a.length);
+
+/**
+ * Resolve the city for a raw venue name scraped from the Hebrew Theatre website.
+ *
+ * Resolution tiers (in order):
+ *   1. Exact match in VENUE_CITY_MAP
+ *   2. Partial/contains match — venue key is a substring of rawVenueName or vice versa
+ *   3. Trailing city heuristic — rawVenueName ends with a known city name
+ *   4. Fallback — "לא ידוע" with a console warning
+ *
+ * @param {string} rawVenueName — venue string exactly as scraped from the page
+ * @returns {string} — city name
+ */
+export function resolveVenueCity(rawVenueName) {
+  const trimmed = rawVenueName.replace(/\s+/g, " ").trim();
+
+  // Tier 1: exact match
+  if (VENUE_CITY_MAP[trimmed]) {
+    return VENUE_CITY_MAP[trimmed];
+  }
+
+  // Tier 2: partial/contains match (either direction)
+  for (const [key, city] of Object.entries(VENUE_CITY_MAP)) {
+    if (trimmed.includes(key) || key.includes(trimmed)) {
+      return city;
+    }
+  }
+
+  // Tier 3: trailing city heuristic
+  for (const city of KNOWN_CITIES) {
+    if (trimmed.endsWith(city)) {
+      return city;
+    }
+  }
+
+  // Tier 4: fallback
+  console.warn(
+    `  ⚠  Unknown venue city for: "${trimmed}" — defaulting to "לא ידוע"`,
+  );
+  return "לא ידוע";
+}
+
 // ── Shows page scraper ─────────────────────────────────────────
 
 /**
@@ -229,4 +362,270 @@ export async function scrapeShowDetails(browser, url) {
 
   await page.close();
   return data;
+}
+
+// ── Events scraper ─────────────────────────────────────────────
+
+/**
+ * Scrape performance dates/times from a Hebrew Theatre show detail page.
+ *
+ * Website format per row:
+ *   DD/MM/YY   day-abbrev   HH:MM   venue-name   [רכישה](ticket-link)
+ *
+ * Heading marker: "תאריכי הצגות"
+ * Ticket hrefs: *.smarticket.co.il or *tickets.asp
+ *
+ * @param {import("puppeteer").Browser} browser
+ * @param {string} url — show detail page URL
+ * @param {{ debug?: boolean }} [options]
+ * @returns {Promise<{
+ *   events: Array<{ date: string, hour: string, venueName: string, venueCity: string, ticketUrl: string|null, rawText: string }>,
+ *   debugHtml?: string,
+ *   debugDateElements?: Array
+ * }>}
+ */
+export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
+  const page = await browser.newPage();
+  await setupRequestInterception(page);
+
+  await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
+  await page.waitForSelector("h1", { timeout: 15_000 });
+
+  // Scroll to trigger lazy-loaded dates section
+  await page.evaluate(async () => {
+    await new Promise((resolve) => {
+      let total = 0;
+      const step = 400;
+      const timer = setInterval(() => {
+        window.scrollBy(0, step);
+        total += step;
+        if (total >= document.body.scrollHeight) {
+          clearInterval(timer);
+          resolve();
+        }
+      }, 100);
+    });
+  });
+  await new Promise((r) => setTimeout(r, 3_000));
+
+  // Second scroll pass
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  await new Promise((r) => setTimeout(r, 2_000));
+
+  const result = await page.evaluate((debugMode) => {
+    const output = { events: [], debugHtml: null, debugDateElements: null };
+    const events = [];
+
+    // ── Helpers ──
+    function parseYear(yy) {
+      const n = parseInt(yy, 10);
+      return n < 70 ? 2000 + n : 1900 + n;
+    }
+
+    const TICKET_RE = /smarticket\.co\.il|tickets\.asp/i;
+    const DATE_RE = /(\d{1,2})\/(\d{1,2})\/(\d{2})/;
+    const TIME_RE = /(\d{1,2}:\d{2})/;
+
+    // ── Strategy 1: ticket links (precise) ──
+    const ticketLinks = [...document.querySelectorAll("a")].filter((a) =>
+      TICKET_RE.test(a.getAttribute("href") || ""),
+    );
+
+    if (ticketLinks.length > 0) {
+      const seenHrefs = new Map();
+
+      for (const a of ticketLinks) {
+        const href = a.getAttribute("href") || "";
+        if (seenHrefs.has(href)) continue;
+
+        let row = a.closest("tr");
+        if (!row) {
+          let cur = a.parentElement;
+          while (cur && cur !== document.body) {
+            const t = cur.textContent || "";
+            if (DATE_RE.test(t) && TIME_RE.test(t)) {
+              row = cur;
+              break;
+            }
+            cur = cur.parentElement;
+          }
+        }
+        if (!row) row = a.closest("div");
+        if (!row) continue;
+
+        seenHrefs.set(href, row);
+      }
+
+      for (const [href, row] of seenHrefs) {
+        const text = row.textContent?.replace(/\s+/g, " ").trim() || "";
+
+        const dateMatch = text.match(DATE_RE);
+        const timeMatch = text.match(TIME_RE);
+        if (!dateMatch) continue;
+
+        const day = dateMatch[1].padStart(2, "0");
+        const month = dateMatch[2].padStart(2, "0");
+        const year = parseYear(dateMatch[3]);
+
+        let venueName = "";
+        if (timeMatch) {
+          const afterTime = text.slice(
+            text.indexOf(timeMatch[0]) + timeMatch[0].length,
+          );
+          venueName = afterTime.replace(/רכישה.*$/, "").trim();
+        }
+
+        events.push({
+          date: `${year}-${month}-${day}`,
+          hour: timeMatch ? timeMatch[1] : "",
+          venueName,
+          ticketUrl: href || null,
+          rawText: text.slice(0, 250),
+        });
+      }
+    }
+
+    // ── Strategy 2: container fallback ──
+    if (events.length === 0) {
+      let datesContainer = null;
+
+      const headings = document.querySelectorAll(
+        "h2, h3, h4, h5, .section-title, [class*='title']",
+      );
+      for (const h of headings) {
+        const text = h.textContent.trim();
+        if (text.includes("תאריכי הצגות") || text.includes("תאריכים")) {
+          datesContainer =
+            h.closest("section") ||
+            h.closest("article") ||
+            h.closest("div[class]") ||
+            h.parentElement;
+          break;
+        }
+      }
+
+      if (datesContainer) {
+        const candidates = datesContainer.querySelectorAll(
+          "li, tr, .date-card, .performance, [class*='date'], a",
+        );
+        for (const el of candidates) {
+          const text = el.textContent?.replace(/\s+/g, " ").trim() || "";
+          const dateMatch = text.match(DATE_RE);
+          const timeMatch = text.match(TIME_RE);
+          if (!dateMatch) continue;
+
+          const day = dateMatch[1].padStart(2, "0");
+          const month = dateMatch[2].padStart(2, "0");
+          const year = parseYear(dateMatch[3]);
+
+          let venueName = "";
+          if (timeMatch) {
+            const afterTime = text.slice(
+              text.indexOf(timeMatch[0]) + timeMatch[0].length,
+            );
+            venueName = afterTime.replace(/רכישה.*$/, "").trim();
+          }
+
+          const link = el.querySelector
+            ? el.querySelector("a")
+            : el.tagName === "A"
+              ? el
+              : null;
+          const ticketUrl = link ? link.getAttribute("href") || null : null;
+
+          events.push({
+            date: `${year}-${month}-${day}`,
+            hour: timeMatch ? timeMatch[1] : "",
+            venueName,
+            ticketUrl:
+              ticketUrl && TICKET_RE.test(ticketUrl) ? ticketUrl : null,
+            rawText: text.slice(0, 250),
+          });
+        }
+      }
+    }
+
+    // ── Strategy 3: full body text regex (last resort) ──
+    if (events.length === 0) {
+      const bodyText = document.body.innerText;
+      const fullRowRe =
+        /(\d{1,2})\/(\d{1,2})\/(\d{2})\s+[א-ת][׳']\s+(\d{1,2}:\d{2})\s+(.+?)(?:\s*רכישה|$)/gm;
+      let m;
+      while ((m = fullRowRe.exec(bodyText)) !== null) {
+        const day = m[1].padStart(2, "0");
+        const month = m[2].padStart(2, "0");
+        const year = parseYear(m[3]);
+        const venueName = m[5].trim();
+
+        events.push({
+          date: `${year}-${month}-${day}`,
+          hour: m[4],
+          venueName,
+          ticketUrl: null,
+          rawText: bodyText
+            .slice(Math.max(0, m.index - 10), m.index + m[0].length + 10)
+            .trim(),
+        });
+      }
+    }
+
+    // ── Deduplicate ──
+    const bestByKey = new Map();
+    for (const e of events) {
+      const key = e.ticketUrl || `${e.date}|${e.hour}|${e.venueName}`;
+      const existing = bestByKey.get(key);
+      if (!existing || (!existing.hour && e.hour)) {
+        bestByKey.set(key, e);
+      }
+    }
+    output.events = [...bestByKey.values()];
+
+    // ── Debug output ──
+    if (debugMode) {
+      let datesContainer = null;
+      const headings = document.querySelectorAll("h2, h3, h4, h5");
+      for (const h of headings) {
+        if (h.textContent.includes("תאריכי הצגות")) {
+          datesContainer =
+            h.closest("section") || h.closest("div[class]") || h.parentElement;
+          break;
+        }
+      }
+      output.debugHtml = datesContainer
+        ? datesContainer.innerHTML
+        : document.body.innerHTML.slice(-8000);
+
+      const allEls = document.querySelectorAll("*");
+      const datePatterns = [];
+      for (const el of allEls) {
+        if (el.children.length > 10) continue;
+        const text = el.textContent?.trim() || "";
+        if (
+          /\d{1,2}\/\d{1,2}\/\d{2}/.test(text) &&
+          text.length < 300 &&
+          !el.closest("script") &&
+          !el.closest("style")
+        ) {
+          datePatterns.push({
+            tag: el.tagName.toLowerCase(),
+            classes: el.className || "",
+            id: el.id || "",
+            text: text.slice(0, 200),
+          });
+        }
+      }
+      output.debugDateElements = datePatterns;
+    }
+
+    return output;
+  }, debug);
+
+  await page.close();
+
+  // Resolve venue cities in Node context (has access to VENUE_CITY_MAP)
+  for (const ev of result.events) {
+    ev.venueCity = resolveVenueCity(ev.venueName);
+  }
+
+  return result;
 }

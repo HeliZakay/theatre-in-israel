@@ -66,10 +66,7 @@ export default function PerformancesSidebar({
             {group.events.map((event) => (
               <div key={event.id} className={styles.timeEntry}>
                 <span className={styles.hour}>{event.hour}</span>
-                <span className={styles.venue}>
-                  {event.venue.name}
-                  {event.venue.name !== theatre && `, ${event.venue.city}`}
-                </span>
+                <span className={styles.venue}>{event.venue.name}</span>
               </div>
             ))}
           </div>

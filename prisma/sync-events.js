@@ -140,6 +140,117 @@ async function syncFile(prisma, filePath) {
 }
 
 // ---------------------------------------------------------------------------
+// 2b. Reusable sync function — touring format (per-event venues)
+// ---------------------------------------------------------------------------
+/**
+ * Sync a touring-format JSON file.
+ *
+ * Unlike syncFile() (single venue), this handles per-event venue resolution.
+ * JSON shape:
+ *   { scrapedAt, touring: true, events: [{ showId, date, hour, venueName, venueCity }] }
+ */
+async function syncTouringFile(prisma, filePath) {
+  let data;
+  try {
+    data = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch (err) {
+    // Return null to signal the file couldn't be read
+    return null;
+  }
+
+  if (
+    !data.scrapedAt ||
+    !data.touring ||
+    !Array.isArray(data.events) ||
+    data.events.length === 0
+  ) {
+    console.log(`No touring events to sync in ${path.basename(filePath)}`);
+    return 0;
+  }
+
+  // ── 1. Upsert all unique venues ──
+  const venueCache = new Map(); // "name|city" → venue row
+  for (const ev of data.events) {
+    const key = `${ev.venueName}|${ev.venueCity}`;
+    if (!venueCache.has(key)) {
+      const venue = await prisma.venue.upsert({
+        where: { name_city: { name: ev.venueName, city: ev.venueCity } },
+        create: { name: ev.venueName, city: ev.venueCity },
+        update: {},
+      });
+      venueCache.set(key, venue);
+    }
+  }
+
+  // ── 2. Build set of expected composite keys ──
+  const expectedKeys = new Set(
+    data.events.map((e) => {
+      const venue = venueCache.get(`${e.venueName}|${e.venueCity}`);
+      return `${e.showId}|${venue.id}|${new Date(e.date).toISOString()}|${e.hour}`;
+    }),
+  );
+
+  // ── 3. Delete stale events ──
+  // For touring shows, delete by showId without venue filter.
+  // Safe because show IDs are globally unique to this theatre.
+  const showIds = [...new Set(data.events.map((e) => e.showId))];
+  const existingEvents = await prisma.event.findMany({
+    where: { showId: { in: showIds } },
+    select: { id: true, showId: true, venueId: true, date: true, hour: true },
+  });
+
+  const staleIds = existingEvents
+    .filter(
+      (e) =>
+        !expectedKeys.has(
+          `${e.showId}|${e.venueId}|${e.date.toISOString()}|${e.hour}`,
+        ),
+    )
+    .map((e) => e.id);
+
+  if (staleIds.length > 0) {
+    await prisma.event.deleteMany({ where: { id: { in: staleIds } } });
+    console.log(`  Removed ${staleIds.length} stale touring events`);
+  }
+
+  // ── 4. Upsert events ──
+  let synced = 0;
+  for (const ev of data.events) {
+    const venue = venueCache.get(`${ev.venueName}|${ev.venueCity}`);
+    try {
+      await prisma.event.upsert({
+        where: {
+          showId_venueId_date_hour: {
+            showId: ev.showId,
+            venueId: venue.id,
+            date: new Date(ev.date),
+            hour: ev.hour,
+          },
+        },
+        create: {
+          showId: ev.showId,
+          venueId: venue.id,
+          date: new Date(ev.date),
+          hour: ev.hour,
+        },
+        update: {},
+      });
+      synced++;
+    } catch (err) {
+      console.error(
+        `Failed to upsert touring event (showId=${ev.showId}, venue=${ev.venueName}, date=${ev.date}, hour=${ev.hour}):`,
+        err.message,
+      );
+    }
+  }
+
+  console.log(
+    `Synced ${synced} touring events from ${path.basename(filePath)} (${venueCache.size} venues)`,
+  );
+  return synced;
+}
+
+// ---------------------------------------------------------------------------
 // 3. Sync all event files
 // ---------------------------------------------------------------------------
 async function main() {
@@ -165,6 +276,25 @@ async function main() {
       }
     } else {
       console.log("No events-lessin.json found — skipping Lessin sync.");
+    }
+
+    // Hebrew Theatre events (optional — touring format)
+    const hebrewTheatrePath = path.join(
+      __dirname,
+      "data",
+      "events-hebrew-theatre.json",
+    );
+    if (fs.existsSync(hebrewTheatrePath)) {
+      const htResult = await syncTouringFile(prisma, hebrewTheatrePath);
+      if (htResult === null) {
+        console.error(
+          "Failed to read events-hebrew-theatre.json (file exists but could not be parsed)",
+        );
+      }
+    } else {
+      console.log(
+        "No events-hebrew-theatre.json found — skipping Hebrew Theatre sync.",
+      );
     }
   } finally {
     await prisma.$disconnect();

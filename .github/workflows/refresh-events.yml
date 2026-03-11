@@ -37,14 +37,19 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
+      - name: Scrape Hebrew Theatre events
+        run: node scripts/scrape-all-hebrew-theatre-events.mjs --json prisma/data/events-hebrew-theatre.json
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
       - name: Commit updated events
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add prisma/data/events.json prisma/data/events-lessin.json
+          git add prisma/data/events.json prisma/data/events-lessin.json prisma/data/events-hebrew-theatre.json
           if git diff --staged --quiet; then
             echo "No changes to events"
           else
-            git commit -m "chore: refresh Cameri + Lessin events [$(date -u +%Y-%m-%d)]"
+            git commit -m "chore: refresh Cameri + Lessin + Hebrew Theatre events [$(date -u +%Y-%m-%d)]"
             git push
           fi
