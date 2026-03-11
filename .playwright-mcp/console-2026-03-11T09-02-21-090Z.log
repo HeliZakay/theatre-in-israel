@@ -1,0 +1,12 @@
+[ 2947860ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.cameri.co.il/wp-content/themes/weaverz/css/normalize.min.css?ver=1:0
+[ 2947861ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.cameri.co.il/wp-content/themes/weaverz/css/helpers.min.css?ver=1:0
+[ 2947861ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.cameri.co.il/wp-content/themes/weaverz/style.css?ver=1:0
+[ 2947862ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.cameri.co.il/wp-content/themes/cameri/css/generic/theme-style.css?ver=1.02:0
+[ 2947862ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.cameri.co.il/wp-content/themes/cameri/css/vendor/splide.min.css?ver=1.02:0
+[ 2947863ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.cameri.co.il/wp-content/themes/cameri/css/vendor/splide-core.min.css?ver=1.02:0
+[ 2947864ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.cameri.co.il/wp-content/themes/cameri/css/pages/single-show.css?ver=1.02:0
+[ 2947864ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.cameri.co.il/wp-includes/css/dist/block-library/style-rtl.min.css?ver=6.9.1:0
+[ 2947864ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.cameri.co.il/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.5:0
+[ 2947865ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.cameri.co.il/wp-content/plugins/contact-form-7/includes/css/styles-rtl.css?ver=6.1.5:0
+[ 2947866ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.cameri.co.il/wp-content/plugins/sitepress-multilingual-cms/templates/language-switchers/legacy-list-horizontal/style.min.css?ver=1:0
+[ 2948359ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.gstatic.com/recaptcha/releases/QvLuXwupqtKMva7GIh5eGl3U/styles__ltr.css:0
