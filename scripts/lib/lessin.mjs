@@ -312,3 +312,361 @@ export async function scrapeShowDetails(browser, url) {
   await page.close();
   return data;
 }
+
+// ── Events / dates scraper ─────────────────────────────────────
+
+/**
+ * Scrape performance dates/times from a Beit Lessin show detail page.
+ *
+ * The dates table appears below the description/cast/reviews sections,
+ * with rows linking to `lessin.pres.global/eWeb/event/{id}`.
+ * We scroll to trigger lazy content, then extract using multiple strategies.
+ *
+ * @param {import("puppeteer").Browser} browser
+ * @param {string} url — show detail page URL
+ * @param {{ debug?: boolean }} [options]
+ * @returns {Promise<{ events: Array<{ date: string, hour: string, note: string|null, rawText: string }>, venue: string|null, debugHtml?: string, debugDateElements?: Array }>}
+ */
+export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
+  const page = await browser.newPage();
+  await setupRequestInterception(page);
+
+  await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
+  await page.waitForSelector("h1", { timeout: 15_000 });
+
+  // Scroll to bottom to trigger lazy-loaded dates section.
+  await page.evaluate(async () => {
+    await new Promise((resolve) => {
+      let total = 0;
+      const step = 400;
+      const timer = setInterval(() => {
+        window.scrollBy(0, step);
+        total += step;
+        if (total >= document.body.scrollHeight) {
+          clearInterval(timer);
+          resolve();
+        }
+      }, 100);
+    });
+  });
+
+  // Extra wait for the dates widget to render after scroll.
+  await new Promise((r) => setTimeout(r, 3_000));
+
+  // Scroll once more (some widgets only load after the first pass).
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  await new Promise((r) => setTimeout(r, 2_000));
+
+  const result = await page.evaluate((debugMode) => {
+    const output = { events: [], venue: null, debugHtml: null };
+    const currentYear = new Date().getFullYear();
+    const events = [];
+
+    // ── Strategy 1 (precise): pres.global ticket links ──
+    // Each row in the events table has an <a> linking to pres.global/eWeb/event/{id}.
+    // We group by href, find the parent <tr>, and extract date/time/hall from the row text.
+    const presLinks = document.querySelectorAll(
+      'a[href*="pres.global/eWeb/event"]',
+    );
+    if (presLinks.length > 0) {
+      // Walk up from an element looking for a container whose text
+      // includes both a date (DD.MM) and a time (HH:MM) pattern.
+      function findRowWithDateTime(el) {
+        let cur = el.parentElement;
+        while (cur && cur !== document.body) {
+          const t = cur.textContent || "";
+          if (/\d{1,2}\.\d{1,2}/.test(t) && /\d{1,2}:\d{2}/.test(t)) return cur;
+          cur = cur.parentElement;
+        }
+        return null;
+      }
+
+      const seenHrefs = new Map(); // href → row element
+      for (const a of presLinks) {
+        const href = a.getAttribute("href") || "";
+        if (seenHrefs.has(href)) continue;
+        const row =
+          a.closest("tr") ||
+          a.closest(".mulrow") ||
+          findRowWithDateTime(a) ||
+          a.closest("div");
+        if (!row) continue;
+        seenHrefs.set(href, row);
+      }
+
+      for (const [href, row] of seenHrefs) {
+        const text = row.textContent?.trim() || "";
+
+        // Extract date: DD.MM pattern
+        const dateMatch = text.match(/(\d{1,2})\.(\d{1,2})/);
+        // Extract time: HH:MM pattern
+        const timeMatch = text.match(/(\d{1,2}:\d{2})/);
+
+        if (!dateMatch) continue;
+
+        const day = dateMatch[1].padStart(2, "0");
+        const month = dateMatch[2].padStart(2, "0");
+
+        // Infer year: if month < current month, assume next year.
+        const now = new Date();
+        const monthNum = parseInt(month, 10);
+        const year =
+          monthNum < now.getMonth() + 1 ? currentYear + 1 : currentYear;
+
+        // Hall: look for "אולם X" in cell text
+        let hall = null;
+        const cells = row.querySelectorAll("td, th, div");
+        for (const cell of cells) {
+          const cellText = cell.textContent?.trim() || "";
+          const hallMatch = cellText.match(/אולם\s*\S+/);
+          if (hallMatch) {
+            hall = hallMatch[0];
+            break;
+          }
+        }
+        // Also try row text if not found in cells
+        if (!hall) {
+          const hallMatch = text.match(/אולם\s*\S+/);
+          if (hallMatch) hall = hallMatch[0];
+        }
+
+        // Subtitle note: look for "כתוביות" in row text
+        let subtitleNote = null;
+        const subtitleMatch = text.match(/כתוביות\s*[^\n,)]+/);
+        if (subtitleMatch) {
+          subtitleNote = subtitleMatch[0].trim();
+        }
+
+        // Compose note field
+        const noteParts = [];
+        if (hall) noteParts.push(hall);
+        if (subtitleNote) noteParts.push(subtitleNote);
+        const note = noteParts.length > 0 ? noteParts.join(" | ") : null;
+
+        events.push({
+          date: `${year}-${month}-${day}`,
+          hour: timeMatch ? timeMatch[1] : "",
+          note,
+          href: href || null,
+          rawText: text.slice(0, 200),
+        });
+      }
+    }
+
+    // ── Strategy 2 (container fallback) ──
+    // Search for a table/container by heading text or <th> containing "תאריך"
+    if (events.length === 0) {
+      let datesContainer = null;
+
+      // Try finding by heading text
+      const allHeadings = document.querySelectorAll(
+        "h2, h3, h4, h5, .section-title, [class*='title']",
+      );
+      for (const h of allHeadings) {
+        const text = h.textContent.trim();
+        if (
+          text.includes("תאריכים") ||
+          text.includes("לוח הופעות") ||
+          text.includes("רכישת כרטיסים") ||
+          text.includes("הופעות קרובות")
+        ) {
+          datesContainer =
+            h.closest("section") ||
+            h.closest("article") ||
+            h.closest("div[class]") ||
+            h.parentElement;
+          break;
+        }
+      }
+
+      // Try finding by <th> containing "תאריך"
+      if (!datesContainer) {
+        const ths = document.querySelectorAll("th");
+        for (const th of ths) {
+          if (th.textContent.includes("תאריך")) {
+            datesContainer =
+              th.closest("table") || th.closest("section") || th.parentElement;
+            break;
+          }
+        }
+      }
+
+      if (datesContainer) {
+        const candidates = datesContainer.querySelectorAll(
+          "li, tr, .date-card, .performance, [class*='show-date'], a[href*='ticket'], a[href*='כרטיס']",
+        );
+        for (const el of candidates) {
+          const text = el.textContent?.trim() || "";
+          const dateMatch = text.match(
+            /(\d{1,2})[./](\d{1,2})(?:[./](\d{2,4}))?/,
+          );
+          const timeMatch = text.match(/(\d{1,2}:\d{2})/);
+          if (!dateMatch) continue;
+
+          const day = dateMatch[1].padStart(2, "0");
+          const month = dateMatch[2].padStart(2, "0");
+          let year = dateMatch[3] || "";
+          if (year && year.length === 2) year = "20" + year;
+          if (!year) {
+            const monthNum = parseInt(month, 10);
+            const now = new Date();
+            year =
+              monthNum < now.getMonth() + 1
+                ? String(currentYear + 1)
+                : String(currentYear);
+          }
+
+          // Hall
+          let hall = null;
+          const hallMatch = text.match(/אולם\s*\S+/);
+          if (hallMatch) hall = hallMatch[0];
+
+          // Subtitle
+          let subtitleNote = null;
+          if (text.includes("כתוביות")) {
+            const sm = text.match(/כתוביות\s*[^\n,)]+/);
+            if (sm) subtitleNote = sm[0].trim();
+          }
+
+          const noteParts = [];
+          if (hall) noteParts.push(hall);
+          if (subtitleNote) noteParts.push(subtitleNote);
+          const note = noteParts.length > 0 ? noteParts.join(" | ") : null;
+
+          events.push({
+            date: `${year}-${month}-${day}`,
+            hour: timeMatch ? timeMatch[1] : "",
+            note,
+            rawText: text.slice(0, 200),
+          });
+        }
+      }
+    }
+
+    // ── Strategy 3 (body text regex — last resort) ──
+    if (events.length === 0) {
+      const bodyText = document.body.innerText;
+      const dateRegex =
+        /(\d{1,2})[./](\d{1,2})(?:[./](\d{2,4}))?\s*[\s|,\-–—]*\s*(\d{1,2}:\d{2})?/g;
+      let match;
+      while ((match = dateRegex.exec(bodyText)) !== null) {
+        const day = match[1].padStart(2, "0");
+        const month = match[2].padStart(2, "0");
+        let year = match[3] || "";
+        if (year && year.length === 2) year = "20" + year;
+        if (!year) {
+          const monthNum = parseInt(month, 10);
+          const now = new Date();
+          year =
+            monthNum < now.getMonth() + 1
+              ? String(currentYear + 1)
+              : String(currentYear);
+        }
+
+        const surrounding = bodyText.slice(
+          Math.max(0, match.index - 50),
+          match.index + match[0].length + 50,
+        );
+
+        let subtitleNote = null;
+        if (
+          surrounding.includes("כתוביות") ||
+          surrounding.includes("subtitles")
+        ) {
+          const sm = surrounding.match(/כתוביות\s*[^\n,)]+/);
+          subtitleNote = sm ? sm[0].trim() : "כתוביות";
+        }
+
+        events.push({
+          date: `${year}-${month}-${day}`,
+          hour: match[4] || "",
+          note: subtitleNote,
+          rawText: surrounding.trim(),
+        });
+      }
+    }
+
+    // ── Deduplicate: prefer href as key (Strategy 1), fall back to date|hour ──
+    const bestByKey = new Map();
+    for (const e of events) {
+      const key = e.href || `${e.date}|${e.hour}`;
+      const existing = bestByKey.get(key);
+      if (!existing || (!existing.hour && e.hour)) {
+        bestByKey.set(key, e);
+      }
+    }
+    output.events = [...bestByKey.values()];
+
+    // ── Extract venue from page text ──
+    const bodyText = document.body.innerText;
+    let venue = null;
+    const venueMatch = bodyText.match(/מוצגת ב([^\n,."]+)/);
+    if (venueMatch) {
+      venue = venueMatch[1].trim();
+    }
+    output.venue = venue;
+
+    // ── Debug output ──
+    if (debugMode) {
+      // Try to find the dates container for debug HTML
+      let datesContainer = null;
+      const presLinks = document.querySelectorAll(
+        'a[href*="pres.global/eWeb/event"]',
+      );
+      if (presLinks.length > 0) {
+        const firstRow =
+          presLinks[0].closest("table") ||
+          presLinks[0].closest("section") ||
+          presLinks[0].closest("div[class]");
+        if (firstRow) datesContainer = firstRow;
+      }
+      if (!datesContainer) {
+        const allHeadings = document.querySelectorAll("h2, h3, h4, h5");
+        for (const h of allHeadings) {
+          const text = h.textContent.trim();
+          if (text.includes("תאריכים") || text.includes("לוח הופעות")) {
+            datesContainer =
+              h.closest("section") ||
+              h.closest("div[class]") ||
+              h.parentElement;
+            break;
+          }
+        }
+      }
+
+      if (datesContainer) {
+        output.debugHtml = datesContainer.innerHTML;
+      } else {
+        const bodyHtml = document.body.innerHTML;
+        output.debugHtml = bodyHtml.slice(-8000);
+      }
+
+      // Dump all elements with date-like text patterns
+      const allElements = document.querySelectorAll("*");
+      const datePatterns = [];
+      for (const el of allElements) {
+        if (el.children.length > 10) continue;
+        const text = el.textContent?.trim() || "";
+        if (
+          /\d{1,2}[./]\d{1,2}/.test(text) &&
+          text.length < 200 &&
+          !el.closest("script") &&
+          !el.closest("style")
+        ) {
+          datePatterns.push({
+            tag: el.tagName.toLowerCase(),
+            classes: el.className || "",
+            id: el.id || "",
+            text: text.slice(0, 150),
+          });
+        }
+      }
+      output.debugDateElements = datePatterns;
+    }
+
+    return output;
+  }, debug);
+
+  await page.close();
+  return result;
+}

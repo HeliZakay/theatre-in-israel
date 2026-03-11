@@ -11,28 +11,7 @@ dotenv.config({ path: path.join(__dirname, "..", ".env") });
 const { PrismaClient } = require("@prisma/client");
 
 // ---------------------------------------------------------------------------
-// 1. Read events.json
-// ---------------------------------------------------------------------------
-const dataPath = path.join(__dirname, "data", "events.json");
-let data;
-try {
-  data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
-} catch (err) {
-  console.error("Failed to read events.json:", err.message);
-  process.exit(1);
-}
-
-if (
-  !data.scrapedAt ||
-  !Array.isArray(data.events) ||
-  data.events.length === 0
-) {
-  console.log("No events to sync");
-  process.exit(0);
-}
-
-// ---------------------------------------------------------------------------
-// 2. Create Prisma client with Neon / pg adapter detection (mirrors prisma.ts)
+// 1. Create Prisma client with Neon / pg adapter detection (mirrors prisma.ts)
 // ---------------------------------------------------------------------------
 function isNeonUrl(url) {
   if (!url) return false;
@@ -66,53 +45,127 @@ function createPrismaClient() {
 }
 
 // ---------------------------------------------------------------------------
-// 3. Sync
+// 2. Reusable sync function — reads one JSON file and upserts its events
 // ---------------------------------------------------------------------------
-async function main() {
-  const prisma = createPrismaClient();
-
+async function syncFile(prisma, filePath) {
+  let data;
   try {
-    // Upsert venue
-    const venue = await prisma.venue.upsert({
-      where: {
-        name_city: { name: data.venue.name, city: data.venue.city },
-      },
-      create: { name: data.venue.name, city: data.venue.city },
-      update: {},
-    });
+    data = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch (err) {
+    // Return null to signal the file couldn't be read
+    return null;
+  }
 
-    let synced = 0;
+  if (
+    !data.scrapedAt ||
+    !Array.isArray(data.events) ||
+    data.events.length === 0
+  ) {
+    console.log(`No events to sync in ${path.basename(filePath)}`);
+    return 0;
+  }
 
-    // Upsert events
-    for (const event of data.events) {
-      try {
-        await prisma.event.upsert({
-          where: {
-            showId_venueId_date_hour: {
-              showId: event.showId,
-              venueId: venue.id,
-              date: new Date(event.date),
-              hour: event.hour,
-            },
-          },
-          create: {
+  // Upsert venue
+  const venue = await prisma.venue.upsert({
+    where: {
+      name_city: { name: data.venue.name, city: data.venue.city },
+    },
+    create: { name: data.venue.name, city: data.venue.city },
+    update: {},
+  });
+
+  // Build a set of expected composite keys from the JSON file
+  const expectedKeys = new Set(
+    data.events.map(
+      (e) => `${e.showId}|${new Date(e.date).toISOString()}|${e.hour}`,
+    ),
+  );
+
+  // Delete stale events for this venue's shows that are no longer in the JSON.
+  // This handles cases like corrected hours replacing old wrong values.
+  const showIds = [...new Set(data.events.map((e) => e.showId))];
+  const existingEvents = await prisma.event.findMany({
+    where: { venueId: venue.id, showId: { in: showIds } },
+    select: { id: true, showId: true, date: true, hour: true },
+  });
+
+  const staleIds = existingEvents
+    .filter(
+      (e) => !expectedKeys.has(`${e.showId}|${e.date.toISOString()}|${e.hour}`),
+    )
+    .map((e) => e.id);
+
+  if (staleIds.length > 0) {
+    await prisma.event.deleteMany({ where: { id: { in: staleIds } } });
+    console.log(
+      `  Removed ${staleIds.length} stale events for ${data.venue.name}`,
+    );
+  }
+
+  let synced = 0;
+
+  // Upsert events
+  for (const event of data.events) {
+    try {
+      await prisma.event.upsert({
+        where: {
+          showId_venueId_date_hour: {
             showId: event.showId,
             venueId: venue.id,
             date: new Date(event.date),
             hour: event.hour,
           },
-          update: {},
-        });
-        synced++;
-      } catch (err) {
-        console.error(
-          `Failed to upsert event (showId=${event.showId}, date=${event.date}, hour=${event.hour}):`,
-          err.message,
-        );
-      }
+        },
+        create: {
+          showId: event.showId,
+          venueId: venue.id,
+          date: new Date(event.date),
+          hour: event.hour,
+        },
+        update: {},
+      });
+      synced++;
+    } catch (err) {
+      console.error(
+        `Failed to upsert event (showId=${event.showId}, date=${event.date}, hour=${event.hour}):`,
+        err.message,
+      );
+    }
+  }
+
+  console.log(
+    `Synced ${synced} events for venue ${data.venue.name} from ${path.basename(filePath)}`,
+  );
+  return synced;
+}
+
+// ---------------------------------------------------------------------------
+// 3. Sync all event files
+// ---------------------------------------------------------------------------
+async function main() {
+  const prisma = createPrismaClient();
+
+  try {
+    // Cameri events (required — fail if missing)
+    const cameriPath = path.join(__dirname, "data", "events.json");
+    const cameriResult = await syncFile(prisma, cameriPath);
+    if (cameriResult === null) {
+      console.error("Failed to read events.json");
+      process.exit(1);
     }
 
-    console.log(`Synced ${synced} events for venue ${data.venue.name}`);
+    // Lessin events (optional — skip gracefully if not present)
+    const lessinPath = path.join(__dirname, "data", "events-lessin.json");
+    if (fs.existsSync(lessinPath)) {
+      const lessinResult = await syncFile(prisma, lessinPath);
+      if (lessinResult === null) {
+        console.error(
+          "Failed to read events-lessin.json (file exists but could not be parsed)",
+        );
+      }
+    } else {
+      console.log("No events-lessin.json found — skipping Lessin sync.");
+    }
   } finally {
     await prisma.$disconnect();
   }
