@@ -215,6 +215,7 @@ async function main() {
           for (const ev of result.events) {
             collectedEvents.push({
               showId: show.id,
+              showSlug: show.slug,
               date: ev.date,
               hour: ev.hour || "00:00",
               note: ev.note || null,

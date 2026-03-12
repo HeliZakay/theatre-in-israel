@@ -45,6 +45,37 @@ function createPrismaClient() {
 }
 
 // ---------------------------------------------------------------------------
+// Helper: resolve showSlug → showId for all events in a batch.
+// If an event has showSlug, we look up the Show by slug to get the real ID.
+// This makes the JSON portable across database instances (local vs production)
+// where auto-increment IDs may differ.
+// Falls back to the numeric showId in the JSON if no slug is present.
+// ---------------------------------------------------------------------------
+async function resolveShowIds(prisma, events) {
+  const slugs = [...new Set(events.map((e) => e.showSlug).filter(Boolean))];
+  if (slugs.length === 0) return; // no slugs to resolve — use showId as-is
+
+  const shows = await prisma.show.findMany({
+    where: { slug: { in: slugs } },
+    select: { id: true, slug: true },
+  });
+  const slugToId = new Map(shows.map((s) => [s.slug, s.id]));
+
+  for (const event of events) {
+    if (event.showSlug) {
+      const resolved = slugToId.get(event.showSlug);
+      if (resolved) {
+        event.showId = resolved;
+      } else {
+        console.warn(
+          `  Warning: could not resolve slug "${event.showSlug}" — falling back to showId=${event.showId}`,
+        );
+      }
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
 // 2. Reusable sync function — reads one JSON file and upserts its events
 // ---------------------------------------------------------------------------
 async function syncFile(prisma, filePath) {
@@ -64,6 +95,9 @@ async function syncFile(prisma, filePath) {
     console.log(`No events to sync in ${path.basename(filePath)}`);
     return 0;
   }
+
+  // Resolve showSlug → showId (makes JSON portable across DB instances)
+  await resolveShowIds(prisma, data.events);
 
   // Upsert venue
   const venue = await prisma.venue.upsert({
@@ -168,6 +202,9 @@ async function syncTouringFile(prisma, filePath) {
     return 0;
   }
 
+  // Resolve showSlug → showId (makes JSON portable across DB instances)
+  await resolveShowIds(prisma, data.events);
+
   // ── 1. Upsert all unique venues ──
   const venueCache = new Map(); // "name|city" → venue row
   for (const ev of data.events) {
@@ -257,6 +294,17 @@ async function main() {
   const prisma = createPrismaClient();
 
   try {
+    // One-time purge: delete ALL events before re-syncing.
+    // This cleans up orphaned events that were linked to wrong showIds
+    // due to auto-increment ID mismatches between local and production DBs.
+    // Safe because: Event table contains only scraped data (no user content),
+    // and all events will be re-created from the JSON files below.
+    // TODO: Remove this block after the next successful deploy.
+    const purged = await prisma.event.deleteMany({});
+    console.log(
+      `Purged all ${purged.count} existing events (one-time cleanup of ID mismatches)`,
+    );
+
     // Cameri events (required — fail if missing)
     const cameriPath = path.join(__dirname, "data", "events.json");
     const cameriResult = await syncFile(prisma, cameriPath);
