@@ -111,6 +111,115 @@ export async function fetchShows(browser) {
   return shows.sort((a, b) => a.title.localeCompare(b.title, "he"));
 }
 
+// ── Events scraper ─────────────────────────────────────────────
+
+/**
+ * Scrape performance dates/times from a Gesher Theatre show detail page.
+ *
+ * Website format per list item (inside .leftShowsContainer):
+ *   יום {dayname} | DD/MM/YYYY | HH:MM   [לרכישה](ticket-link)
+ *
+ * Overflow items (li[data-overflow]) are hidden by JS but present in the
+ * DOM, so no button-click needed — we grab everything in one pass.
+ *
+ * Gesher is a fixed venue (תיאטרון גשר, תל אביב-יפו).
+ *
+ * @param {import("puppeteer").Browser} browser
+ * @param {string} url — show detail page URL
+ * @param {{ debug?: boolean }} [options]
+ * @returns {Promise<{
+ *   events: Array<{ date: string, hour: string, venueName: string, venueCity: string, ticketUrl: string|null, rawText: string }>,
+ *   debugHtml?: string
+ * }>}
+ */
+export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
+  const page = await browser.newPage();
+  await setupRequestInterception(page);
+
+  await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
+  await page.waitForSelector("h1", { timeout: 15_000 });
+
+  const result = await page.evaluate((debugMode) => {
+    const output = { events: [], debugHtml: null };
+    const events = [];
+
+    // Date: DD/MM/YYYY — full year is encoded so no inference needed
+    const DATE_RE = /(\d{2})\/(\d{2})\/(\d{4})/;
+    const TIME_RE = /(\d{1,2}:\d{2})/;
+
+    const container = document.querySelector(".leftShowsContainer");
+
+    if (!container) {
+      if (debugMode) {
+        output.debugHtml = document.body.innerHTML.slice(0, 10_000);
+      }
+      output.events = events;
+      return output;
+    }
+
+    const items = container.querySelectorAll("li");
+    for (const li of items) {
+      const text = li.textContent?.replace(/\s+/g, " ").trim() || "";
+      const dateMatch = text.match(DATE_RE);
+      const timeMatch = text.match(TIME_RE);
+      if (!dateMatch) continue;
+
+      const link = li.querySelector("a");
+      let ticketUrl = link ? link.getAttribute("href") || null : null;
+      // Resolve relative ticket URL to absolute
+      if (ticketUrl && !ticketUrl.startsWith("http")) {
+        try {
+          ticketUrl = new URL(ticketUrl, window.location.href).href;
+        } catch {
+          ticketUrl = null;
+        }
+      }
+
+      events.push({
+        day: parseInt(dateMatch[1], 10),
+        month: parseInt(dateMatch[2], 10),
+        year: parseInt(dateMatch[3], 10),
+        hour: timeMatch ? timeMatch[1] : "",
+        ticketUrl,
+        rawText: text.slice(0, 250),
+      });
+    }
+
+    if (debugMode) {
+      output.debugHtml = container.outerHTML;
+    }
+
+    output.events = events;
+    return output;
+  }, debug);
+
+  await page.close();
+
+  // Build final event objects (Node context) — deduplicate by ticketUrl or date+hour
+  const processed = [];
+  const seen = new Set();
+
+  for (const e of result.events) {
+    const dateStr = `${e.year}-${String(e.month).padStart(2, "0")}-${String(e.day).padStart(2, "0")}`;
+    const key = e.ticketUrl || `${dateStr}|${e.hour}`;
+
+    if (!seen.has(key)) {
+      seen.add(key);
+      processed.push({
+        date: dateStr,
+        hour: e.hour,
+        venueName: GESHER_THEATRE,
+        venueCity: "תל אביב-יפו",
+        ticketUrl: e.ticketUrl,
+        rawText: e.rawText,
+      });
+    }
+  }
+
+  result.events = processed;
+  return result;
+}
+
 // ── Detail page scraper ────────────────────────────────────────
 
 /**

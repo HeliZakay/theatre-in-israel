@@ -309,6 +309,19 @@ async function main() {
     } else {
       console.log("No events-khan.json found — skipping Khan Theatre sync.");
     }
+
+    // Gesher Theatre events (optional — touring format, fixed venue)
+    const gesherPath = path.join(__dirname, "data", "events-gesher.json");
+    if (fs.existsSync(gesherPath)) {
+      const gesherResult = await syncTouringFile(prisma, gesherPath);
+      if (gesherResult === null) {
+        console.error(
+          "Failed to read events-gesher.json (file exists but could not be parsed)",
+        );
+      }
+    } else {
+      console.log("No events-gesher.json found — skipping Gesher Theatre sync.");
+    }
   } finally {
     await prisma.$disconnect();
   }
