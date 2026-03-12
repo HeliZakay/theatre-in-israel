@@ -317,3 +317,120 @@ export async function scrapeShowDetails(browser, url) {
   await page.close();
   return data;
 }
+
+// ── Events scraper ─────────────────────────────────────────────
+
+/**
+ * Scrape performance dates/times from a Habima Theatre show detail page.
+ *
+ * Website format — performances are in `div.presentations ul li` items.
+ * There are two `<ul>` elements inside `.presentations`:
+ *   - First `<ul>` (no class): next 3 upcoming dates (visible)
+ *   - Second `<ul class="collapse" id="presentationsDates">`: additional dates (collapsed)
+ * Both are queried together via `div.presentations ul li`.
+ *
+ * Each `<li>` contains a `<time class="time" datetime="YYYY-MM-DD HH:MM:SS">` —
+ * the full ISO datetime is read directly from the `datetime` attribute.
+ * Ticket URL is in the `href` of the `<a>` link inside the `<li>`.
+ *
+ * Habima is a fixed venue (תיאטרון הבימה, תל אביב).
+ *
+ * @param {import("puppeteer").Browser} browser
+ * @param {string} url — show detail page URL
+ * @param {{ debug?: boolean }} [options]
+ * @returns {Promise<{
+ *   events: Array<{ date: string, hour: string, venueName: string, venueCity: string, ticketUrl: string|null, rawText: string }>,
+ *   title: string,
+ *   debugHtml?: string
+ * }>}
+ */
+export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
+  const page = await browser.newPage();
+  await setupRequestInterception(page);
+
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60_000 });
+  await page.waitForSelector("h1", { timeout: 15_000 });
+  // Wait for the presentations section (gracefully absent if show has no upcoming dates)
+  await page
+    .waitForSelector("div.presentations", { timeout: 8_000 })
+    .catch(() => {});
+
+  const result = await page.evaluate((debugMode) => {
+    const output = { events: [], title: "", debugHtml: null };
+
+    // ── Page title ──
+    const h1 = document.querySelector("h1");
+    let title = h1 ? h1.textContent.replace(/\s+/g, " ").trim() : "";
+    // Strip "הצגה אורחת" prefix (sometimes concatenated without space)
+    title = title.replace(/^הצגה אורחת/, "").trim();
+    output.title = title;
+
+    const container = document.querySelector("div.presentations");
+    if (!container) {
+      if (debugMode) output.debugHtml = document.body.innerHTML.slice(0, 10_000);
+      return output;
+    }
+
+    // Query both visible and collapsed UL lists
+    const items = container.querySelectorAll("ul li");
+    const events = [];
+
+    for (const li of items) {
+      const timeEl = li.querySelector("time.time");
+      if (!timeEl) continue;
+
+      // datetime="2026-03-30 20:00:00"
+      const datetimeAttr = timeEl.getAttribute("datetime") || "";
+      // Parse: "YYYY-MM-DD HH:MM" (with optional :SS)
+      const dtMatch = datetimeAttr.match(/^(\d{4}-\d{2}-\d{2})\s+(\d{2}:\d{2})/);
+      if (!dtMatch) continue;
+
+      const dateStr = dtMatch[1]; // "2026-03-30"
+      const timeStr = dtMatch[2]; // "20:00"
+
+      const ticketLink = li.querySelector("a[href]");
+      const ticketUrl = ticketLink ? ticketLink.getAttribute("href") : null;
+
+      const rawText = li.textContent?.replace(/\s+/g, " ").trim() || "";
+
+      events.push({
+        date: dateStr,
+        hour: timeStr,
+        ticketUrl,
+        rawText: rawText.slice(0, 250),
+      });
+    }
+
+    if (debugMode) {
+      output.debugHtml = container.outerHTML;
+    }
+
+    output.events = events;
+    return output;
+  }, debug);
+
+  await page.close();
+
+  // Deduplicate by ticketUrl or date+hour
+  const processed = [];
+  const seen = new Set();
+
+  for (const e of result.events) {
+    const key = e.ticketUrl || `${e.date}|${e.hour}`;
+
+    if (!seen.has(key)) {
+      seen.add(key);
+      processed.push({
+        date: e.date,
+        hour: e.hour,
+        venueName: HABIMA_THEATRE,
+        venueCity: "תל אביב",
+        ticketUrl: e.ticketUrl,
+        rawText: e.rawText,
+      });
+    }
+  }
+
+  result.events = processed;
+  return result;
+}

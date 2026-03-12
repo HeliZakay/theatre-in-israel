@@ -374,6 +374,19 @@ async function main() {
     } else {
       console.log("No events-tzavta-theatre.json found — skipping Tzavta Theatre sync.");
     }
+
+    // Habima Theatre events (optional — touring format, fixed venue)
+    const habimaPath = path.join(__dirname, "data", "events-habima-theatre.json");
+    if (fs.existsSync(habimaPath)) {
+      const habimaResult = await syncTouringFile(prisma, habimaPath);
+      if (habimaResult === null) {
+        console.error(
+          "Failed to read events-habima-theatre.json (file exists but could not be parsed)",
+        );
+      }
+    } else {
+      console.log("No events-habima-theatre.json found — skipping Habima Theatre sync.");
+    }
   } finally {
     await prisma.$disconnect();
   }
