@@ -364,6 +364,123 @@ export async function scrapeShowDetails(browser, url) {
   return data;
 }
 
+// ── Events scraper ─────────────────────────────────────────────
+
+/**
+ * Scrape performance dates/times from a Tzavta Theatre show detail page.
+ *
+ * Website format — each upcoming performance is a `li.show_date_group` inside
+ * `ul.show_date_list`. Each li contains three `.show_date_block` divs:
+ *   [0]: day name + date (DD.MM.YYYY) in `.show_date_num`
+ *   [1]: label "שעה" + time (HH:MM) in `.show_date_num`
+ *   [2]: label "אולם" + hall name in `.show_date_num` (or "נדחה" = postponed)
+ *
+ * Ticket URLs are not external — the site uses an internal ticketing system
+ * (`href="javascript:void(0);"`) so ticketUrl is always null.
+ *
+ * Tzavta Theatre is a fixed venue (תיאטרון צוותא, תל אביב).
+ *
+ * @param {import("puppeteer").Browser} browser
+ * @param {string} url — show detail page URL
+ * @param {{ debug?: boolean }} [options]
+ * @returns {Promise<{
+ *   events: Array<{ date: string, hour: string, venueName: string, venueCity: string, ticketUrl: null, rawText: string }>,
+ *   title: string,
+ *   debugHtml?: string
+ * }>}
+ */
+export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
+  const page = await browser.newPage();
+  await setupRequestInterception(page);
+
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60_000 });
+  await page.waitForSelector("h1", { timeout: 15_000 });
+  // Wait for the dates list (gracefully absent if show has no upcoming dates)
+  await page
+    .waitForSelector("ul.show_date_list", { timeout: 8_000 })
+    .catch(() => {});
+
+  const result = await page.evaluate((debugMode) => {
+    const output = { events: [], title: "", debugHtml: null };
+
+    // ── Page title ──
+    const h1 = document.querySelector("h1.show_title");
+    output.title = h1 ? h1.textContent.replace(/\s+/g, " ").trim() : "";
+
+    // DD.MM.YYYY
+    const DATE_RE = /(\d{2})\.(\d{2})\.(\d{4})/;
+    // HH:MM
+    const TIME_RE = /(\d{1,2}:\d{2})/;
+
+    const list = document.querySelector("ul.show_date_list");
+    if (!list) {
+      if (debugMode) output.debugHtml = document.body.innerHTML.slice(0, 10_000);
+      return output;
+    }
+
+    const items = list.querySelectorAll("li.show_date_group");
+    const events = [];
+
+    for (const li of items) {
+      // Each li has three .show_date_block divs; .show_date_num holds the value
+      const nums = li.querySelectorAll(".show_date_num");
+      // nums[0] = date, nums[1] = time, nums[2] = hall
+      const dateText = nums[0] ? nums[0].textContent.trim() : "";
+      const timeText = nums[1] ? nums[1].textContent.trim() : "";
+      const hallText = nums[2] ? nums[2].textContent.trim() : "";
+
+      // Skip postponed / cancelled slots
+      if (hallText === "נדחה") continue;
+
+      const rawText = li.textContent?.replace(/\s+/g, " ").trim() || "";
+      const dateMatch = dateText.match(DATE_RE) || rawText.match(DATE_RE);
+      const timeMatch = timeText.match(TIME_RE) || rawText.match(TIME_RE);
+      if (!dateMatch) continue;
+
+      events.push({
+        day: parseInt(dateMatch[1], 10),
+        month: parseInt(dateMatch[2], 10),
+        year: parseInt(dateMatch[3], 10),
+        hour: timeMatch ? timeMatch[1] : "",
+        rawText: rawText.slice(0, 250),
+      });
+    }
+
+    if (debugMode) {
+      output.debugHtml = list.outerHTML;
+    }
+
+    output.events = events;
+    return output;
+  }, debug);
+
+  await page.close();
+
+  // Build final event objects — deduplicate by date+hour
+  const processed = [];
+  const seen = new Set();
+
+  for (const e of result.events) {
+    const dateStr = `${e.year}-${String(e.month).padStart(2, "0")}-${String(e.day).padStart(2, "0")}`;
+    const key = `${dateStr}|${e.hour}`;
+
+    if (!seen.has(key)) {
+      seen.add(key);
+      processed.push({
+        date: dateStr,
+        hour: e.hour,
+        venueName: TZAVTA_THEATRE,
+        venueCity: "תל אביב",
+        ticketUrl: null,
+        rawText: e.rawText,
+      });
+    }
+  }
+
+  result.events = processed;
+  return result;
+}
+
 /**
  * Scrape only cast data from a Tzavta show detail page.
  * Extracts from the show_content_insert div using cast/end markers.

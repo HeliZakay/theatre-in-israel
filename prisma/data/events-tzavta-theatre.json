@@ -1,0 +1,370 @@
+{
+  "scrapedAt": "2026-03-12T16:42:37.063Z",
+  "touring": true,
+  "events": [
+    {
+      "showId": 213,
+      "date": "2026-04-12",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 191,
+      "date": "2026-03-22",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 191,
+      "date": "2026-04-10",
+      "hour": "12:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 211,
+      "date": "2026-04-27",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 178,
+      "date": "2026-04-08",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 193,
+      "date": "2026-03-16",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 197,
+      "date": "2026-03-18",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 205,
+      "date": "2026-04-10",
+      "hour": "22:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 205,
+      "date": "2026-04-24",
+      "hour": "22:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 208,
+      "date": "2026-04-25",
+      "hour": "11:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 183,
+      "date": "2026-04-26",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 183,
+      "date": "2026-05-27",
+      "hour": "21:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 180,
+      "date": "2026-05-20",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 180,
+      "date": "2026-06-23",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 187,
+      "date": "2026-04-19",
+      "hour": "20:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 187,
+      "date": "2026-05-07",
+      "hour": "20:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 206,
+      "date": "2026-04-19",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 185,
+      "date": "2026-03-20",
+      "hour": "12:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 185,
+      "date": "2026-04-05",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 196,
+      "date": "2026-04-04",
+      "hour": "12:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 100,
+      "date": "2026-04-18",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 210,
+      "date": "2026-04-06",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 204,
+      "date": "2026-04-11",
+      "hour": "11:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 174,
+      "date": "2026-04-17",
+      "hour": "12:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 189,
+      "date": "2026-04-18",
+      "hour": "11:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 101,
+      "date": "2026-05-06",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 188,
+      "date": "2026-04-21",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 194,
+      "date": "2026-03-27",
+      "hour": "12:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 203,
+      "date": "2026-03-23",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 207,
+      "date": "2026-03-30",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 207,
+      "date": "2026-04-22",
+      "hour": "19:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 207,
+      "date": "2026-04-22",
+      "hour": "21:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 184,
+      "date": "2026-05-03",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 175,
+      "date": "2026-04-27",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 201,
+      "date": "2026-03-21",
+      "hour": "21:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 202,
+      "date": "2026-03-24",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 202,
+      "date": "2026-04-15",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 102,
+      "date": "2026-04-16",
+      "hour": "20:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 212,
+      "date": "2026-04-29",
+      "hour": "21:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 212,
+      "date": "2026-05-13",
+      "hour": "21:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 212,
+      "date": "2026-06-03",
+      "hour": "21:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 198,
+      "date": "2026-04-24",
+      "hour": "12:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 198,
+      "date": "2026-05-29",
+      "hour": "12:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 177,
+      "date": "2026-03-29",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 182,
+      "date": "2026-04-29",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 209,
+      "date": "2026-03-25",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 192,
+      "date": "2026-04-26",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 176,
+      "date": "2026-05-28",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 176,
+      "date": "2026-06-09",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 176,
+      "date": "2026-06-29",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 200,
+      "date": "2026-04-24",
+      "hour": "21:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 260,
+      "date": "2026-04-14",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    }
+  ]
+}
