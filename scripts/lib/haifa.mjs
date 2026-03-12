@@ -15,6 +15,16 @@ export const HAIFA_THEATRE = "תיאטרון חיפה";
 export const HAIFA_BASE = "https://www.ht1.co.il";
 export const SCHEDULE_URL = "https://www.ht1.co.il/Show";
 
+// Guest venues where Haifa Theatre shows sometimes perform.
+// Maps venue name (as it appears on the website) → city.
+const GUEST_VENUE_CITY = new Map([
+  ["בית החייל ת\"א", "תל אביב-יפו"],
+  ["בית החייל ת״א", "תל אביב-יפו"],
+  ["היכל התרבות ראשון לציון", "ראשון לציון"],
+  ["היכל אומנוית הבמה - הרצליה", "הרצליה"],
+  ["בית ציוני אמריקה תל אביב-אולם מאירהוף", "תל אביב-יפו"],
+]);
+
 // ── Schedule page scraper ──────────────────────────────────────
 
 /**
@@ -265,14 +275,15 @@ export async function scrapeShowDetails(browser, url) {
  *           <div class="time_circle"></div>
  *           <div>20:30</div>                        ← HH:MM
  *         </div>
- *         <div>תיאטרון חיפה - במה ראשית</div>
+ *         <div>תיאטרון חיפה - במה ראשית</div>   ← venue (varies per event!)
  *       </div>
  *       <a onclick="window.open('https://ht1.smarticket.co.il/event/...', '_blank')" href="#" class="show_list_link">כרטיסים</a>
  *     </li>
  *   </ul>
  *   <a id="moreDatesNew" ...>עוד 9 מועדים</a>  ← loads more via AJAX when clicked
  *
- * Haifa Theatre is a fixed venue (תיאטרון חיפה, חיפה).
+ * Some shows perform at guest venues (e.g. "בית החייל ת״א"), so
+ * we extract the venue name per event from the DOM.
  *
  * @param {import("puppeteer").Browser} browser
  * @param {string} url — show detail page URL
@@ -333,6 +344,18 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
       const timeGrText = timeGr ? timeGr.textContent : "";
       const timeMatch = timeGrText.match(TIME_RE);
 
+      // Venue is the sibling div of .show_time_gr inside .show_info_gr
+      const infoGr = li.querySelector(".show_info_gr");
+      let venue = "";
+      if (infoGr) {
+        for (const child of infoGr.children) {
+          if (!child.classList.contains("show_time_gr")) {
+            venue = child.textContent.trim();
+            break;
+          }
+        }
+      }
+
       // Ticket URL from onclick attribute
       const ticketLink = li.querySelector("a.show_list_link");
       let ticketUrl = null;
@@ -349,6 +372,7 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
         month: parseInt(dateMatch[2], 10),
         yearShort: parseInt(dateMatch[3], 10),
         hour: timeMatch ? timeMatch[1] : "",
+        venue,
         ticketUrl,
         rawText: rawText.slice(0, 250),
       });
@@ -402,11 +426,21 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
 
     if (!seen.has(key)) {
       seen.add(key);
+      // Use extracted venue, stripping stage suffixes like "- במה ראשית"
+      let venueName = e.venue || HAIFA_THEATRE;
+      // Haifa Theatre pages often append stage name (e.g. "תיאטרון חיפה - במה ראשית")
+      // Normalise back to the base theatre name when it's the home venue
+      if (venueName.startsWith(HAIFA_THEATRE)) {
+        venueName = HAIFA_THEATRE;
+      }
+      const venueCity = venueName === HAIFA_THEATRE
+        ? "חיפה"
+        : (GUEST_VENUE_CITY.get(venueName) || "");
       processed.push({
         date: dateStr,
         hour: e.hour,
-        venueName: HAIFA_THEATRE,
-        venueCity: "חיפה",
+        venueName,
+        venueCity,
         ticketUrl: e.ticketUrl,
         rawText: e.rawText,
       });
