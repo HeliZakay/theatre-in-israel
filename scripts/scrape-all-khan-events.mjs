@@ -6,7 +6,8 @@
  * Fetches the show listing, matches shows to DB records,
  * then scrapes events from each show's detail page.
  *
- * Khan Theatre is a fixed venue — all events are at תיאטרון החאן, ירושלים.
+ * Khan Theatre shows may perform at guest venues (e.g. בית ציוני אמריקה),
+ * so venue is extracted per-event from the page (touring format).
  *
  * Dry-run by default — prints scraped dates for review.
  *

@@ -28,6 +28,12 @@ export const KHAN_THEATRE = "תיאטרון החאן";
 export const KHAN_BASE = "https://www.khan.co.il";
 export const SHOWS_URL = "https://www.khan.co.il/shows";
 
+// Guest venues where Khan shows sometimes perform.
+// Maps venue name → city (the Khan website doesn't show the city).
+const GUEST_VENUE_CITY = new Map([
+  ["בית ציוני אמריקה", "תל אביב-יפו"],
+]);
+
 // ── Title prefixes to strip ────────────────────────────────────
 
 const TITLE_PREFIXES = [
@@ -286,11 +292,12 @@ function inferYear(day, month) {
 /**
  * Scrape performance dates/times from a Khan Theatre show detail page.
  *
- * Website format per list item:
- *   DD.MM | day-abbrev שעה: HH:MM תיאטרון החאן   [רכישת כרטיסים](ticket-link)
+ * Each event is a <li> inside the show-dates swiper with:
+ *   <time datetime="DD.MM.YYYY HH:MM"> — date and time
+ *   <span class="hall">               — venue name (may differ from Khan)
+ *   <a href="khan.pres.global/...">   — ticket link
  *
- * Heading marker: "מועדי הצגות"
- * Ticket hrefs: khan.pres.global/order/...
+ * Falls back to regex-based extraction if structured elements aren't found.
  *
  * @param {import("puppeteer").Browser} browser
  * @param {string} url — show detail page URL
@@ -304,7 +311,7 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
   const page = await browser.newPage();
   await setupRequestInterception(page);
 
-  await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60_000 });
   await page.waitForSelector("h1", { timeout: 15_000 });
 
   // Scroll to trigger any lazy-loaded dates section
@@ -329,86 +336,91 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
     const events = [];
 
     const TICKET_RE = /khan\.pres\.global/i;
-    // Matches DD.MM format
     const DATE_RE = /(\d{1,2})\.(\d{1,2})/;
     const TIME_RE = /(\d{1,2}:\d{2})/;
 
-    // ── Strategy 1: find ticket links, then walk up to the row ──
-    const ticketLinks = [...document.querySelectorAll("a")].filter((a) =>
-      TICKET_RE.test(a.getAttribute("href") || ""),
+    // ── Strategy 1: structured <li> items with <time> and <span.hall> ──
+    const dateItems = document.querySelectorAll(
+      ".show-dates-wrapper li, #show-dates-swiper li",
     );
 
-    if (ticketLinks.length > 0) {
-      const seenHrefs = new Map();
+    for (const li of dateItems) {
+      const timeEl = li.querySelector("time[datetime]");
+      const hallEl = li.querySelector("span.hall, .hall");
+      const linkEl = li.querySelector("a");
 
-      for (const a of ticketLinks) {
-        const href = a.getAttribute("href") || "";
-        if (seenHrefs.has(href)) continue;
+      if (!timeEl) continue;
 
-        // Walk up to find a container with date + time info
-        let row = a.closest("li");
-        if (!row) {
-          let cur = a.parentElement;
-          while (cur && cur !== document.body) {
-            const t = cur.textContent || "";
-            if (DATE_RE.test(t) && TIME_RE.test(t)) {
-              row = cur;
-              break;
-            }
-            cur = cur.parentElement;
-          }
-        }
-        if (!row) continue;
-        seenHrefs.set(href, row);
-      }
+      const dt = timeEl.getAttribute("datetime") || "";
+      // datetime format: "DD.MM.YYYY HH:MM"
+      const dtDateMatch = dt.match(/(\d{1,2})\.(\d{1,2})\.(\d{4})/);
+      const dtTimeMatch = dt.match(/(\d{1,2}:\d{2})/);
 
-      for (const [href, row] of seenHrefs) {
-        const text = row.textContent?.replace(/\s+/g, " ").trim() || "";
-        const dateMatch = text.match(DATE_RE);
-        const timeMatch = text.match(TIME_RE);
-        if (!dateMatch) continue;
+      if (!dtDateMatch) continue;
 
-        events.push({
-          day: parseInt(dateMatch[1], 10),
-          month: parseInt(dateMatch[2], 10),
-          hour: timeMatch ? timeMatch[1] : "",
-          ticketUrl: href || null,
-          rawText: text.slice(0, 250),
-        });
-      }
+      const hall = hallEl ? hallEl.textContent.trim() : "";
+      const href =
+        linkEl && TICKET_RE.test(linkEl.getAttribute("href") || "")
+          ? linkEl.getAttribute("href")
+          : null;
+
+      events.push({
+        day: parseInt(dtDateMatch[1], 10),
+        month: parseInt(dtDateMatch[2], 10),
+        year: parseInt(dtDateMatch[3], 10),
+        hour: dtTimeMatch ? dtTimeMatch[1] : "",
+        hall,
+        ticketUrl: href,
+        rawText: (li.textContent || "").replace(/\s+/g, " ").trim().slice(0, 250),
+      });
     }
 
-    // ── Strategy 2: find "מועדי הצגות" heading container ──
+    // ── Strategy 2: ticket links with row walk-up (legacy fallback) ──
     if (events.length === 0) {
-      const headings = document.querySelectorAll("h2, h3, h4, h5, .section-title");
-      let datesContainer = null;
-      for (const h of headings) {
-        if (h.textContent.trim().includes("מועדי הצגות")) {
-          datesContainer =
-            h.closest("section") ||
-            h.closest("article") ||
-            h.closest("div[class]") ||
-            h.parentElement;
-          break;
-        }
-      }
+      const ticketLinks = [...document.querySelectorAll("a")].filter((a) =>
+        TICKET_RE.test(a.getAttribute("href") || ""),
+      );
 
-      if (datesContainer) {
-        const items = datesContainer.querySelectorAll("li, .performance, [class*='date']");
-        for (const el of items) {
-          const text = el.textContent?.replace(/\s+/g, " ").trim() || "";
+      if (ticketLinks.length > 0) {
+        const seenHrefs = new Map();
+
+        for (const a of ticketLinks) {
+          const href = a.getAttribute("href") || "";
+          if (seenHrefs.has(href)) continue;
+
+          let row = a.closest("li");
+          if (!row) {
+            let cur = a.parentElement;
+            while (cur && cur !== document.body) {
+              const t = cur.textContent || "";
+              if (DATE_RE.test(t) && TIME_RE.test(t)) {
+                row = cur;
+                break;
+              }
+              cur = cur.parentElement;
+            }
+          }
+          if (!row) continue;
+          seenHrefs.set(href, row);
+        }
+
+        for (const [href, row] of seenHrefs) {
+          const text = row.textContent?.replace(/\s+/g, " ").trim() || "";
           const dateMatch = text.match(DATE_RE);
           const timeMatch = text.match(TIME_RE);
           if (!dateMatch) continue;
 
-          const link = el.querySelector("a");
-          const ticketUrl = link ? link.getAttribute("href") || null : null;
+          // Try to extract venue from span.hall in the row
+          const hallEl = row.querySelector("span.hall, .hall");
+          const hall = hallEl ? hallEl.textContent.trim() : "";
 
           events.push({
             day: parseInt(dateMatch[1], 10),
             month: parseInt(dateMatch[2], 10),
+            year: null,
             hour: timeMatch ? timeMatch[1] : "",
-            ticketUrl: ticketUrl && TICKET_RE.test(ticketUrl) ? ticketUrl : null,
+            hall,
+            ticketUrl: href || null,
             rawText: text.slice(0, 250),
           });
         }
@@ -418,14 +430,15 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
     // ── Strategy 3: full body text regex fallback ──
     if (events.length === 0) {
       const bodyText = document.body.innerText;
-      // Matches: DD.MM | day שעה: HH:MM
       const fullRowRe = /(\d{1,2})\.(\d{1,2})\s*\|[^שׁ]*שעה:\s*(\d{1,2}:\d{2})/g;
       let m;
       while ((m = fullRowRe.exec(bodyText)) !== null) {
         events.push({
           day: parseInt(m[1], 10),
           month: parseInt(m[2], 10),
+          year: null,
           hour: m[3],
+          hall: "",
           ticketUrl: null,
           rawText: bodyText
             .slice(Math.max(0, m.index - 5), m.index + m[0].length + 30)
@@ -463,17 +476,18 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
   const seen = new Map();
 
   for (const e of result.events) {
-    const year = inferYear(e.day, e.month);
+    const year = e.year || inferYear(e.day, e.month);
     const dateStr = `${year}-${String(e.month).padStart(2, "0")}-${String(e.day).padStart(2, "0")}`;
     const key = e.ticketUrl || `${dateStr}|${e.hour}`;
 
     if (!seen.has(key)) {
       seen.set(key, true);
+      const venueName = e.hall || KHAN_THEATRE;
       processed.push({
         date: dateStr,
         hour: e.hour,
-        venueName: KHAN_THEATRE,
-        venueCity: "ירושלים",
+        venueName,
+        venueCity: GUEST_VENUE_CITY.get(venueName) || "ירושלים",
         ticketUrl: e.ticketUrl,
         rawText: e.rawText,
       });
