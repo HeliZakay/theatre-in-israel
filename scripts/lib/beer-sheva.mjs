@@ -116,6 +116,118 @@ export async function fetchShows(browser) {
   return shows.sort((a, b) => a.title.localeCompare(b.title, "he"));
 }
 
+// ── Events scraper ─────────────────────────────────────────────
+
+/**
+ * Scrape performance dates/times from a Beer Sheva Theatre show detail page.
+ *
+ * Website format — each upcoming event is an `.event-list-item` inside
+ * `.available-events-list`. The anchor text encodes all metadata:
+ *
+ *   {show title}  (סדרה ...) אולם {N} {DD-MM-YYYY} {HH:MM}
+ *
+ * Date format is DD-MM-YYYY (full 4-digit year, hyphen-separated).
+ * Time is HH:MM at the end of the anchor text (trailing space).
+ * Ticket URL is the `href` attribute of the anchor.
+ *
+ * If `.available-events-list` is absent the show has no upcoming events.
+ *
+ * Beer Sheva Theatre is a fixed venue (תיאטרון באר שבע, באר שבע).
+ *
+ * @param {import("puppeteer").Browser} browser
+ * @param {string} url — show detail page URL
+ * @param {{ debug?: boolean }} [options]
+ * @returns {Promise<{
+ *   events: Array<{ date: string, hour: string, venueName: string, venueCity: string, ticketUrl: string|null, rawText: string }>,
+ *   title: string,
+ *   debugHtml?: string
+ * }>}
+ */
+export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
+  const page = await browser.newPage();
+  await setupRequestInterception(page);
+
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60_000 });
+  await page.waitForSelector("h1", { timeout: 15_000 });
+  // Wait for the events list (gracefully absent if show has no upcoming dates)
+  await page
+    .waitForSelector(".available-events-list", { timeout: 8_000 })
+    .catch(() => {});
+
+  const result = await page.evaluate((debugMode) => {
+    const output = { events: [], title: "", debugHtml: null };
+
+    // ── Page title ──
+    const h1 = document.querySelector("h1");
+    output.title = h1 ? h1.textContent.replace(/\s+/g, " ").trim() : "";
+
+    // DD-MM-YYYY (full year, hyphen-separated)
+    const DATE_RE = /(\d{2})-(\d{2})-(\d{4})/;
+    // HH:MM at end of text (with optional trailing whitespace)
+    const TIME_RE = /(\d{1,2}:\d{2})\s*$/;
+
+    const list = document.querySelector(".available-events-list");
+    if (!list) {
+      if (debugMode) output.debugHtml = document.body.innerHTML.slice(0, 10_000);
+      return output;
+    }
+
+    const anchors = list.querySelectorAll(".event-list-item a");
+    const events = [];
+
+    for (const a of anchors) {
+      const text = a.textContent?.replace(/\s+/g, " ").trim() || "";
+      const dateMatch = text.match(DATE_RE);
+      const timeMatch = text.match(TIME_RE);
+      if (!dateMatch) continue;
+
+      const ticketUrl = a.getAttribute("href") || null;
+
+      events.push({
+        day: parseInt(dateMatch[1], 10),
+        month: parseInt(dateMatch[2], 10),
+        year: parseInt(dateMatch[3], 10),
+        hour: timeMatch ? timeMatch[1] : "",
+        ticketUrl,
+        rawText: text.slice(0, 250),
+      });
+    }
+
+    if (debugMode) {
+      output.debugHtml = list.outerHTML;
+    }
+
+    output.events = events;
+    return output;
+  }, debug);
+
+  await page.close();
+
+  // Build final event objects — deduplicate by ticketUrl or date+hour
+  const processed = [];
+  const seen = new Set();
+
+  for (const e of result.events) {
+    const dateStr = `${e.year}-${String(e.month).padStart(2, "0")}-${String(e.day).padStart(2, "0")}`;
+    const key = e.ticketUrl || `${dateStr}|${e.hour}`;
+
+    if (!seen.has(key)) {
+      seen.add(key);
+      processed.push({
+        date: dateStr,
+        hour: e.hour,
+        venueName: BEER_SHEVA_THEATRE,
+        venueCity: "באר שבע",
+        ticketUrl: e.ticketUrl,
+        rawText: e.rawText,
+      });
+    }
+  }
+
+  result.events = processed;
+  return result;
+}
+
 // ── Detail page scraper ────────────────────────────────────────
 
 /**

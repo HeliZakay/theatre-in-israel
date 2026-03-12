@@ -348,6 +348,19 @@ async function main() {
     } else {
       console.log("No events-tmuna-theatre.json found — skipping Tmuna Theatre sync.");
     }
+
+    // Beer Sheva Theatre events (optional — touring format, fixed venue)
+    const beerShevaPath = path.join(__dirname, "data", "events-beer-sheva-theatre.json");
+    if (fs.existsSync(beerShevaPath)) {
+      const beerShevaResult = await syncTouringFile(prisma, beerShevaPath);
+      if (beerShevaResult === null) {
+        console.error(
+          "Failed to read events-beer-sheva-theatre.json (file exists but could not be parsed)",
+        );
+      }
+    } else {
+      console.log("No events-beer-sheva-theatre.json found — skipping Beer Sheva Theatre sync.");
+    }
   } finally {
     await prisma.$disconnect();
   }

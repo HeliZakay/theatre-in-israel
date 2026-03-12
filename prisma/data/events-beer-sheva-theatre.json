@@ -1,0 +1,300 @@
+{
+  "scrapedAt": "2026-03-12T16:28:08.032Z",
+  "touring": true,
+  "events": [
+    {
+      "showId": 172,
+      "date": "2026-05-05",
+      "hour": "17:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-05-05",
+      "hour": "19:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-05-06",
+      "hour": "19:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-05-06",
+      "hour": "21:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-05-07",
+      "hour": "17:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-05-07",
+      "hour": "19:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-05-09",
+      "hour": "21:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-05-10",
+      "hour": "19:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-05-10",
+      "hour": "21:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-05-12",
+      "hour": "17:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-05-12",
+      "hour": "19:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-05-13",
+      "hour": "19:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-05-13",
+      "hour": "21:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-05-14",
+      "hour": "19:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-05-14",
+      "hour": "21:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-06-17",
+      "hour": "17:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-06-17",
+      "hour": "19:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-06-20",
+      "hour": "21:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-06-21",
+      "hour": "19:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-06-21",
+      "hour": "21:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-06-23",
+      "hour": "19:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-06-23",
+      "hour": "21:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-06-27",
+      "hour": "21:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-06-28",
+      "hour": "17:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-06-28",
+      "hour": "19:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-06-29",
+      "hour": "19:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-06-29",
+      "hour": "21:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-06-30",
+      "hour": "17:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-06-30",
+      "hour": "19:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-07-01",
+      "hour": "17:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-07-01",
+      "hour": "19:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-07-02",
+      "hour": "19:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 172,
+      "date": "2026-07-02",
+      "hour": "21:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 84,
+      "date": "2026-03-15",
+      "hour": "20:30",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 84,
+      "date": "2026-03-16",
+      "hour": "17:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 84,
+      "date": "2026-03-16",
+      "hour": "20:30",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 84,
+      "date": "2026-03-17",
+      "hour": "20:30",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 84,
+      "date": "2026-03-18",
+      "hour": "17:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 84,
+      "date": "2026-03-18",
+      "hour": "20:30",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 84,
+      "date": "2026-03-19",
+      "hour": "20:30",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 84,
+      "date": "2026-03-21",
+      "hour": "20:30",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 83,
+      "date": "2026-03-23",
+      "hour": "20:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    }
+  ]
+}
