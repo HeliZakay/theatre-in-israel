@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-03-12T03:58:40.131Z",
+  "scrapedAt": "2026-03-12T21:45:38.852Z",
   "venue": {
     "name": "תיאטרון הקאמרי",
     "city": "תל אביב"
@@ -7,1278 +7,1491 @@
   "events": [
     {
       "showId": 32,
+      "showSlug": "איש-הגשם",
       "date": "2026-05-06",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 5,
+      "showSlug": "גרושים",
       "date": "2026-03-27",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 5,
+      "showSlug": "גרושים",
       "date": "2026-03-28",
       "hour": "17:00",
       "note": "English subtitles"
     },
     {
       "showId": 5,
+      "showSlug": "גרושים",
       "date": "2026-05-05",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 5,
+      "showSlug": "גרושים",
       "date": "2026-05-06",
       "hour": "20:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 26,
+      "showSlug": "האבא",
       "date": "2026-03-24",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 26,
+      "showSlug": "האבא",
       "date": "2026-03-25",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 26,
+      "showSlug": "האבא",
       "date": "2026-03-26",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 26,
+      "showSlug": "האבא",
       "date": "2026-04-23",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 26,
+      "showSlug": "האבא",
       "date": "2026-04-24",
       "hour": "12:00",
       "note": null
     },
     {
       "showId": 26,
+      "showSlug": "האבא",
       "date": "2026-04-25",
       "hour": "17:00",
       "note": null
     },
     {
       "showId": 26,
+      "showSlug": "האבא",
       "date": "2026-05-29",
       "hour": "12:00",
       "note": null
     },
     {
       "showId": 26,
+      "showSlug": "האבא",
       "date": "2026-05-29",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 26,
+      "showSlug": "האבא",
       "date": "2026-05-30",
       "hour": "17:30",
       "note": null
     },
     {
       "showId": 26,
+      "showSlug": "האבא",
       "date": "2026-05-30",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 26,
+      "showSlug": "האבא",
       "date": "2026-05-31",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 6,
+      "showSlug": "הבן-של-מושיקו-הגדול",
       "date": "2026-03-16",
       "hour": "19:00",
       "note": null
     },
     {
       "showId": 6,
+      "showSlug": "הבן-של-מושיקו-הגדול",
       "date": "2026-03-17",
       "hour": "10:00",
       "note": null
     },
     {
       "showId": 6,
+      "showSlug": "הבן-של-מושיקו-הגדול",
       "date": "2026-03-17",
       "hour": "19:00",
       "note": "English subtitles"
     },
     {
       "showId": 8,
+      "showSlug": "החבדניקים",
       "date": "2026-04-09",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 8,
+      "showSlug": "החבדניקים",
       "date": "2026-04-10",
       "hour": "12:00",
       "note": "English subtitles"
     },
     {
       "showId": 8,
+      "showSlug": "החבדניקים",
       "date": "2026-04-10",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 8,
+      "showSlug": "החבדניקים",
       "date": "2026-04-11",
       "hour": "17:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 8,
+      "showSlug": "החבדניקים",
       "date": "2026-05-06",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 8,
+      "showSlug": "החבדניקים",
       "date": "2026-05-07",
       "hour": "19:00",
       "note": "English subtitles"
     },
     {
       "showId": 8,
+      "showSlug": "החבדניקים",
       "date": "2026-05-08",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 8,
+      "showSlug": "החבדניקים",
       "date": "2026-05-10",
       "hour": "19:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 9,
+      "showSlug": "החולה-ההודי",
       "date": "2026-04-03",
       "hour": "12:30",
       "note": null
     },
     {
       "showId": 9,
+      "showSlug": "החולה-ההודי",
       "date": "2026-04-03",
       "hour": "20:30",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 9,
+      "showSlug": "החולה-ההודי",
       "date": "2026-04-04",
       "hour": "16:45",
       "note": "English subtitles"
     },
     {
       "showId": 9,
+      "showSlug": "החולה-ההודי",
       "date": "2026-04-04",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 16,
+      "showSlug": "היי-אוון-הנסן",
       "date": "2026-05-03",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 16,
+      "showSlug": "היי-אוון-הנסן",
       "date": "2026-05-04",
       "hour": "19:00",
       "note": "English subtitles"
     },
     {
       "showId": 27,
+      "showSlug": "הלוויה-חורפית",
       "date": "2026-03-28",
       "hour": "17:30",
       "note": null
     },
     {
       "showId": 27,
+      "showSlug": "הלוויה-חורפית",
       "date": "2026-03-28",
       "hour": "21:00",
       "note": null
     },
     {
       "showId": 27,
+      "showSlug": "הלוויה-חורפית",
       "date": "2026-03-29",
       "hour": "19:00",
       "note": null
     },
     {
       "showId": 27,
+      "showSlug": "הלוויה-חורפית",
       "date": "2026-03-30",
       "hour": "19:00",
       "note": null
     },
     {
       "showId": 27,
+      "showSlug": "הלוויה-חורפית",
       "date": "2026-04-02",
       "hour": "17:30",
       "note": null
     },
     {
       "showId": 27,
+      "showSlug": "הלוויה-חורפית",
       "date": "2026-04-03",
       "hour": "11:30",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 27,
+      "showSlug": "הלוויה-חורפית",
       "date": "2026-04-03",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 27,
+      "showSlug": "הלוויה-חורפית",
       "date": "2026-04-04",
       "hour": "16:45",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 27,
+      "showSlug": "הלוויה-חורפית",
       "date": "2026-05-20",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 27,
+      "showSlug": "הלוויה-חורפית",
       "date": "2026-05-23",
       "hour": "17:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 27,
+      "showSlug": "הלוויה-חורפית",
       "date": "2026-05-23",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 27,
+      "showSlug": "הלוויה-חורפית",
       "date": "2026-05-24",
       "hour": "19:00",
       "note": null
     },
     {
       "showId": 28,
+      "showSlug": "הלווייתן",
       "date": "2026-03-29",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 28,
+      "showSlug": "הלווייתן",
       "date": "2026-03-30",
       "hour": "19:30",
       "note": "English subtitles"
     },
     {
       "showId": 28,
+      "showSlug": "הלווייתן",
       "date": "2026-04-02",
       "hour": "18:00",
       "note": null
     },
     {
       "showId": 28,
+      "showSlug": "הלווייתן",
       "date": "2026-05-19",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 28,
+      "showSlug": "הלווייתן",
       "date": "2026-05-20",
       "hour": "19:30",
       "note": "English subtitles"
     },
     {
       "showId": 11,
+      "showSlug": "הנפש-הטובה-מסצ׳ואן",
       "date": "2026-04-12",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 11,
+      "showSlug": "הנפש-הטובה-מסצ׳ואן",
       "date": "2026-04-14",
       "hour": "19:30",
       "note": "English subtitles"
     },
     {
       "showId": 11,
+      "showSlug": "הנפש-הטובה-מסצ׳ואן",
       "date": "2026-04-15",
       "hour": "19:30",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 11,
+      "showSlug": "הנפש-הטובה-מסצ׳ואן",
       "date": "2026-05-23",
       "hour": "17:30",
       "note": "English subtitles"
     },
     {
       "showId": 11,
+      "showSlug": "הנפש-הטובה-מסצ׳ואן",
       "date": "2026-05-23",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 13,
+      "showSlug": "הציפור-הכחולה",
       "date": "2026-04-03",
       "hour": "12:00",
       "note": null
     },
     {
       "showId": 13,
+      "showSlug": "הציפור-הכחולה",
       "date": "2026-04-04",
       "hour": "17:30",
       "note": null
     },
     {
       "showId": 13,
+      "showSlug": "הציפור-הכחולה",
       "date": "2026-04-05",
       "hour": "11:00",
       "note": null
     },
     {
       "showId": 13,
+      "showSlug": "הציפור-הכחולה",
       "date": "2026-04-05",
       "hour": "16:00",
       "note": null
     },
     {
       "showId": 13,
+      "showSlug": "הציפור-הכחולה",
       "date": "2026-04-06",
       "hour": "11:00",
       "note": null
     },
     {
       "showId": 21,
+      "showSlug": "הריטריט",
       "date": "2026-03-15",
       "hour": "19:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 21,
+      "showSlug": "הריטריט",
       "date": "2026-04-16",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 21,
+      "showSlug": "הריטריט",
       "date": "2026-04-17",
       "hour": "12:30",
       "note": "English subtitles"
     },
     {
       "showId": 21,
+      "showSlug": "הריטריט",
       "date": "2026-04-17",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 21,
+      "showSlug": "הריטריט",
       "date": "2026-04-18",
       "hour": "16:45",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 21,
+      "showSlug": "הריטריט",
       "date": "2026-04-18",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 21,
+      "showSlug": "הריטריט",
       "date": "2026-04-19",
       "hour": "19:30",
       "note": "English subtitles"
     },
     {
       "showId": 21,
+      "showSlug": "הריטריט",
       "date": "2026-05-27",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 21,
+      "showSlug": "הריטריט",
       "date": "2026-05-28",
       "hour": "19:00",
       "note": "English subtitles"
     },
     {
       "showId": 21,
+      "showSlug": "הריטריט",
       "date": "2026-05-29",
       "hour": "12:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 21,
+      "showSlug": "הריטריט",
       "date": "2026-05-29",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 21,
+      "showSlug": "הריטריט",
       "date": "2026-05-30",
       "hour": "17:00",
       "note": "English subtitles"
     },
     {
       "showId": 21,
+      "showSlug": "הריטריט",
       "date": "2026-05-30",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 21,
+      "showSlug": "הריטריט",
       "date": "2026-05-31",
       "hour": "19:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 31,
+      "showSlug": "השותפה",
       "date": "2026-05-01",
       "hour": "12:30",
       "note": null
     },
     {
       "showId": 31,
+      "showSlug": "השותפה",
       "date": "2026-05-01",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 31,
+      "showSlug": "השותפה",
       "date": "2026-05-02",
       "hour": "17:30",
       "note": null
     },
     {
       "showId": 31,
+      "showSlug": "השותפה",
       "date": "2026-05-02",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 31,
+      "showSlug": "השותפה",
       "date": "2026-05-03",
       "hour": "19:00",
       "note": null
     },
     {
       "showId": 31,
+      "showSlug": "השותפה",
       "date": "2026-05-04",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 31,
+      "showSlug": "השותפה",
       "date": "2026-05-05",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 19,
+      "showSlug": "זינגר",
       "date": "2026-04-12",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 19,
+      "showSlug": "זינגר",
       "date": "2026-04-14",
       "hour": "19:00",
       "note": "English subtitles"
     },
     {
       "showId": 19,
+      "showSlug": "זינגר",
       "date": "2026-04-15",
       "hour": "19:00",
       "note": null
     },
     {
       "showId": 19,
+      "showSlug": "זינגר",
       "date": "2026-04-16",
       "hour": "19:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 19,
+      "showSlug": "זינגר",
       "date": "2026-04-17",
       "hour": "11:30",
       "note": "English subtitles"
     },
     {
       "showId": 19,
+      "showSlug": "זינגר",
       "date": "2026-04-17",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 19,
+      "showSlug": "זינגר",
       "date": "2026-04-18",
       "hour": "16:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 19,
+      "showSlug": "זינגר",
       "date": "2026-04-19",
       "hour": "19:00",
       "note": "English subtitles"
     },
     {
       "showId": 19,
+      "showSlug": "זינגר",
       "date": "2026-05-28",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 19,
+      "showSlug": "זינגר",
       "date": "2026-05-29",
       "hour": "11:30",
       "note": "English subtitles"
     },
     {
       "showId": 19,
+      "showSlug": "זינגר",
       "date": "2026-05-29",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 19,
+      "showSlug": "זינגר",
       "date": "2026-05-30",
       "hour": "16:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 15,
+      "showSlug": "חשמלית-ושמה-תשוקה",
       "date": "2026-04-23",
       "hour": "19:00",
       "note": null
     },
     {
       "showId": 15,
+      "showSlug": "חשמלית-ושמה-תשוקה",
       "date": "2026-04-24",
       "hour": "12:30",
       "note": "English subtitles"
     },
     {
       "showId": 15,
+      "showSlug": "חשמלית-ושמה-תשוקה",
       "date": "2026-04-24",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 15,
+      "showSlug": "חשמלית-ושמה-תשוקה",
       "date": "2026-04-25",
       "hour": "17:30",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 15,
+      "showSlug": "חשמלית-ושמה-תשוקה",
       "date": "2026-04-25",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 15,
+      "showSlug": "חשמלית-ושמה-תשוקה",
       "date": "2026-05-07",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 15,
+      "showSlug": "חשמלית-ושמה-תשוקה",
       "date": "2026-05-08",
       "hour": "12:00",
       "note": "English subtitles"
     },
     {
       "showId": 15,
+      "showSlug": "חשמלית-ושמה-תשוקה",
       "date": "2026-05-08",
       "hour": "20:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 15,
+      "showSlug": "חשמלית-ושמה-תשוקה",
       "date": "2026-05-09",
       "hour": "17:30",
       "note": "English subtitles"
     },
     {
       "showId": 15,
+      "showSlug": "חשמלית-ושמה-תשוקה",
       "date": "2026-05-09",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 33,
+      "showSlug": "טרטיף",
       "date": "2026-05-31",
       "hour": "20:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 33,
+      "showSlug": "טרטיף",
       "date": "2026-06-01",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 22,
+      "showSlug": "כל-הדברים-הטובים",
       "date": "2026-03-16",
       "hour": "19:00",
       "note": null
     },
     {
       "showId": 22,
+      "showSlug": "כל-הדברים-הטובים",
       "date": "2026-04-27",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 22,
+      "showSlug": "כל-הדברים-הטובים",
       "date": "2026-05-23",
       "hour": "18:00",
       "note": null
     },
     {
       "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-03-23",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-03-24",
       "hour": "18:00",
       "note": null
     },
     {
       "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-03-24",
       "hour": "21:00",
       "note": null
     },
     {
       "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-03-25",
       "hour": "19:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-03-26",
       "hour": "19:00",
       "note": "English subtitles"
     },
     {
       "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-03-26",
       "hour": "21:00",
       "note": null
     },
     {
       "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-03-27",
       "hour": "12:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-03-27",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-03-28",
       "hour": "17:00",
       "note": "English subtitles"
     },
     {
       "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-03-28",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-04-09",
       "hour": "18:00",
       "note": null
     },
     {
       "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-04-09",
       "hour": "21:00",
       "note": "English subtitles"
     },
     {
       "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-05-10",
       "hour": "19:00",
       "note": null
     },
     {
       "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-05-10",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-05-11",
       "hour": "19:00",
       "note": "English subtitles"
     },
     {
       "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-05-12",
       "hour": "19:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-05-13",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-05-14",
       "hour": "19:00",
       "note": "English subtitles"
     },
     {
       "showId": 23,
+      "showSlug": "לילה-טוב-אמא",
       "date": "2026-03-17",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 23,
+      "showSlug": "לילה-טוב-אמא",
       "date": "2026-03-18",
       "hour": "19:00",
       "note": "English subtitles"
     },
     {
       "showId": 23,
+      "showSlug": "לילה-טוב-אמא",
       "date": "2026-04-08",
       "hour": "18:30",
       "note": null
     },
     {
       "showId": 23,
+      "showSlug": "לילה-טוב-אמא",
       "date": "2026-05-11",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 23,
+      "showSlug": "לילה-טוב-אמא",
       "date": "2026-05-13",
       "hour": "20:00",
       "note": "English subtitles"
     },
     {
       "showId": 3,
+      "showSlug": "לנקות-את-הראש",
       "date": "2026-04-05",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 3,
+      "showSlug": "לנקות-את-הראש",
       "date": "2026-04-06",
       "hour": "19:30",
       "note": "English subtitles"
     },
     {
       "showId": 3,
+      "showSlug": "לנקות-את-הראש",
       "date": "2026-04-07",
       "hour": "11:30",
       "note": null
     },
     {
       "showId": 3,
+      "showSlug": "לנקות-את-הראש",
       "date": "2026-04-08",
       "hour": "17:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 3,
+      "showSlug": "לנקות-את-הראש",
       "date": "2026-04-08",
       "hour": "20:00",
       "note": "English subtitles"
     },
     {
       "showId": 3,
+      "showSlug": "לנקות-את-הראש",
       "date": "2026-05-15",
       "hour": "12:00",
       "note": null
     },
     {
       "showId": 3,
+      "showSlug": "לנקות-את-הראש",
       "date": "2026-05-15",
       "hour": "20:30",
       "note": "English subtitles"
     },
     {
       "showId": 3,
+      "showSlug": "לנקות-את-הראש",
       "date": "2026-05-16",
       "hour": "17:30",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 3,
+      "showSlug": "לנקות-את-הראש",
       "date": "2026-05-16",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 3,
+      "showSlug": "לנקות-את-הראש",
       "date": "2026-05-17",
       "hour": "19:00",
       "note": "English subtitles"
     },
     {
       "showId": 3,
+      "showSlug": "לנקות-את-הראש",
       "date": "2026-05-18",
       "hour": "20:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 30,
+      "showSlug": "מדיאה",
       "date": "2026-04-10",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 30,
+      "showSlug": "מדיאה",
       "date": "2026-04-11",
       "hour": "17:30",
       "note": "English subtitles"
     },
     {
       "showId": 30,
+      "showSlug": "מדיאה",
       "date": "2026-04-11",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 29,
+      "showSlug": "מה-קרה-לעולם",
       "date": "2026-04-05",
       "hour": "20:30",
       "note": "English subtitles"
     },
     {
       "showId": 29,
+      "showSlug": "מה-קרה-לעולם",
       "date": "2026-05-24",
       "hour": "20:30",
       "note": "English subtitles"
     },
     {
       "showId": 1,
+      "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-03-19",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 1,
+      "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-03-20",
       "hour": "12:30",
       "note": null
     },
     {
       "showId": 1,
+      "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-03-21",
       "hour": "17:00",
       "note": null
     },
     {
       "showId": 1,
+      "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-03-22",
       "hour": "10:00",
       "note": null
     },
     {
       "showId": 1,
+      "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-03-22",
       "hour": "12:30",
       "note": null
     },
     {
       "showId": 1,
+      "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-03-29",
       "hour": "10:00",
       "note": null
     },
     {
       "showId": 1,
+      "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-03-29",
       "hour": "12:30",
       "note": null
     },
     {
       "showId": 1,
+      "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-04-16",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 1,
+      "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-04-17",
       "hour": "11:30",
       "note": null
     },
     {
       "showId": 1,
+      "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-04-18",
       "hour": "17:00",
       "note": null
     },
     {
       "showId": 1,
+      "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-04-18",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 1,
+      "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-05-08",
       "hour": "11:30",
       "note": null
     },
     {
       "showId": 1,
+      "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-05-08",
       "hour": "13:30",
       "note": null
     },
     {
       "showId": 1,
+      "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-05-09",
       "hour": "17:00",
       "note": null
     },
     {
       "showId": 1,
+      "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-05-09",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 24,
+      "showSlug": "נעמי-ונורמה",
       "date": "2026-03-18",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 24,
+      "showSlug": "נעמי-ונורמה",
       "date": "2026-03-19",
       "hour": "19:30",
       "note": "English subtitles"
     },
     {
       "showId": 24,
+      "showSlug": "נעמי-ונורמה",
       "date": "2026-05-25",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 24,
+      "showSlug": "נעמי-ונורמה",
       "date": "2026-05-26",
       "hour": "20:00",
       "note": "English subtitles"
     },
     {
       "showId": 7,
+      "showSlug": "סוס-אחד-נכנס-לבר",
       "date": "2026-04-28",
       "hour": "20:00",
       "note": "English subtitles"
     },
     {
       "showId": 7,
+      "showSlug": "סוס-אחד-נכנס-לבר",
       "date": "2026-05-25",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 7,
+      "showSlug": "סוס-אחד-נכנס-לבר",
       "date": "2026-05-27",
       "hour": "19:30",
       "note": "English subtitles"
     },
     {
       "showId": 14,
+      "showSlug": "עוץ-לי-גוץ-לי",
       "date": "2026-04-06",
       "hour": "10:30",
       "note": null
     },
     {
       "showId": 14,
+      "showSlug": "עוץ-לי-גוץ-לי",
       "date": "2026-04-06",
       "hour": "13:30",
       "note": null
     },
     {
       "showId": 14,
+      "showSlug": "עוץ-לי-גוץ-לי",
       "date": "2026-04-06",
       "hour": "16:30",
       "note": null
     },
     {
       "showId": 10,
+      "showSlug": "צ׳ילבות",
       "date": "2026-04-07",
       "hour": "12:00",
       "note": null
     },
     {
       "showId": 10,
+      "showSlug": "צ׳ילבות",
       "date": "2026-04-08",
       "hour": "17:00",
       "note": "English subtitles"
     },
     {
       "showId": 10,
+      "showSlug": "צ׳ילבות",
       "date": "2026-04-08",
       "hour": "20:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 10,
+      "showSlug": "צ׳ילבות",
       "date": "2026-05-25",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 10,
+      "showSlug": "צ׳ילבות",
       "date": "2026-05-26",
       "hour": "19:00",
       "note": "English subtitles"
     },
     {
       "showId": 10,
+      "showSlug": "צ׳ילבות",
       "date": "2026-05-27",
       "hour": "19:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-03-16",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-03-17",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-03-18",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-03-19",
       "hour": "17:00",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-03-19",
       "hour": "21:00",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-03-20",
       "hour": "12:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-03-20",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-03-21",
       "hour": "17:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-03-21",
       "hour": "21:00",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-03-22",
       "hour": "19:00",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-04-23",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-04-24",
       "hour": "11:30",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-04-24",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-04-25",
       "hour": "17:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-04-25",
       "hour": "21:00",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-04-26",
       "hour": "19:00",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-04-27",
       "hour": "19:00",
       "note": "English subtitles"
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-04-28",
       "hour": "19:00",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-04-29",
       "hour": "19:00",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-05-12",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-05-13",
       "hour": "19:00",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-05-14",
       "hour": "19:00",
       "note": "English subtitles"
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-05-15",
       "hour": "11:30",
       "note": "כתוביות בעברית"
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-05-15",
       "hour": "20:00",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-05-16",
       "hour": "17:00",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-05-16",
       "hour": "21:00",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-05-17",
       "hour": "19:30",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-05-18",
       "hour": "19:00",
       "note": null
     },
     {
       "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-05-19",
       "hour": "19:00",
       "note": null
     },
     {
       "showId": 132,
+      "showSlug": "רינגו",
       "date": "2026-04-10",
       "hour": "20:30",
       "note": null
     },
     {
       "showId": 132,
+      "showSlug": "רינגו",
       "date": "2026-04-11",
       "hour": "21:00",
       "note": null
     },
     {
       "showId": 132,
+      "showSlug": "רינגו",
       "date": "2026-05-14",
       "hour": "21:00",
       "note": null
     },
     {
       "showId": 132,
+      "showSlug": "רינגו",
       "date": "2026-05-16",
       "hour": "18:00",
       "note": "English subtitles"
     },
     {
       "showId": 132,
+      "showSlug": "רינגו",
       "date": "2026-05-16",
       "hour": "21:00",
       "note": null
     },
     {
       "showId": 132,
+      "showSlug": "רינגו",
       "date": "2026-05-18",
       "hour": "20:30",
       "note": "כתוביות בעברית"
