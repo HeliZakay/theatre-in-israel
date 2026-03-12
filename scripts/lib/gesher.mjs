@@ -136,8 +136,10 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
   const page = await browser.newPage();
   await setupRequestInterception(page);
 
-  await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60_000 });
   await page.waitForSelector("h1", { timeout: 15_000 });
+  // Wait for the dates container (or give up gracefully if absent)
+  await page.waitForSelector(".leftShowsContainer", { timeout: 10_000 }).catch(() => {});
 
   const result = await page.evaluate((debugMode) => {
     const output = { events: [], debugHtml: null };
