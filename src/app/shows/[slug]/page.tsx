@@ -406,9 +406,11 @@ export default async function ShowPage({
           )}
         </div>
 
+        {/* TODO: re-enable once production event data is correct
         {show.events.length > 0 && (
           <PerformancesSidebar events={show.events} theatre={show.theatre} />
         )}
+        */}
       </div>
 
       {sameTheatreShows.length > 0 && (
