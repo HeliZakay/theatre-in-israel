@@ -262,6 +262,228 @@ export async function scrapeShowDetails(browser, url) {
   return data;
 }
 
+// ── Events scraper ─────────────────────────────────────────────
+
+/**
+ * Infer the full year for a DD.MM date string.
+ * If the month is in the past relative to today, assume next year.
+ *
+ * @param {number} day
+ * @param {number} month
+ * @returns {number} — full year (e.g. 2026)
+ */
+function inferYear(day, month) {
+  const today = new Date();
+  const thisYear = today.getFullYear();
+  const candidate = new Date(thisYear, month - 1, day);
+  // If date has already passed (more than 1 day ago), assume next year
+  const oneDayMs = 86_400_000;
+  return candidate.getTime() < today.getTime() - oneDayMs
+    ? thisYear + 1
+    : thisYear;
+}
+
+/**
+ * Scrape performance dates/times from a Khan Theatre show detail page.
+ *
+ * Website format per list item:
+ *   DD.MM | day-abbrev שעה: HH:MM תיאטרון החאן   [רכישת כרטיסים](ticket-link)
+ *
+ * Heading marker: "מועדי הצגות"
+ * Ticket hrefs: khan.pres.global/order/...
+ *
+ * @param {import("puppeteer").Browser} browser
+ * @param {string} url — show detail page URL
+ * @param {{ debug?: boolean }} [options]
+ * @returns {Promise<{
+ *   events: Array<{ date: string, hour: string, venueName: string, venueCity: string, ticketUrl: string|null, rawText: string }>,
+ *   debugHtml?: string
+ * }>}
+ */
+export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
+  const page = await browser.newPage();
+  await setupRequestInterception(page);
+
+  await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
+  await page.waitForSelector("h1", { timeout: 15_000 });
+
+  // Scroll to trigger any lazy-loaded dates section
+  await page.evaluate(async () => {
+    await new Promise((resolve) => {
+      let total = 0;
+      const step = 400;
+      const timer = setInterval(() => {
+        window.scrollBy(0, step);
+        total += step;
+        if (total >= document.body.scrollHeight) {
+          clearInterval(timer);
+          resolve();
+        }
+      }, 100);
+    });
+  });
+  await new Promise((r) => setTimeout(r, 2_000));
+
+  const result = await page.evaluate((debugMode) => {
+    const output = { events: [], debugHtml: null };
+    const events = [];
+
+    const TICKET_RE = /khan\.pres\.global/i;
+    // Matches DD.MM format
+    const DATE_RE = /(\d{1,2})\.(\d{1,2})/;
+    const TIME_RE = /(\d{1,2}:\d{2})/;
+
+    // ── Strategy 1: find ticket links, then walk up to the row ──
+    const ticketLinks = [...document.querySelectorAll("a")].filter((a) =>
+      TICKET_RE.test(a.getAttribute("href") || ""),
+    );
+
+    if (ticketLinks.length > 0) {
+      const seenHrefs = new Map();
+
+      for (const a of ticketLinks) {
+        const href = a.getAttribute("href") || "";
+        if (seenHrefs.has(href)) continue;
+
+        // Walk up to find a container with date + time info
+        let row = a.closest("li");
+        if (!row) {
+          let cur = a.parentElement;
+          while (cur && cur !== document.body) {
+            const t = cur.textContent || "";
+            if (DATE_RE.test(t) && TIME_RE.test(t)) {
+              row = cur;
+              break;
+            }
+            cur = cur.parentElement;
+          }
+        }
+        if (!row) continue;
+        seenHrefs.set(href, row);
+      }
+
+      for (const [href, row] of seenHrefs) {
+        const text = row.textContent?.replace(/\s+/g, " ").trim() || "";
+        const dateMatch = text.match(DATE_RE);
+        const timeMatch = text.match(TIME_RE);
+        if (!dateMatch) continue;
+
+        events.push({
+          day: parseInt(dateMatch[1], 10),
+          month: parseInt(dateMatch[2], 10),
+          hour: timeMatch ? timeMatch[1] : "",
+          ticketUrl: href || null,
+          rawText: text.slice(0, 250),
+        });
+      }
+    }
+
+    // ── Strategy 2: find "מועדי הצגות" heading container ──
+    if (events.length === 0) {
+      const headings = document.querySelectorAll("h2, h3, h4, h5, .section-title");
+      let datesContainer = null;
+      for (const h of headings) {
+        if (h.textContent.trim().includes("מועדי הצגות")) {
+          datesContainer =
+            h.closest("section") ||
+            h.closest("article") ||
+            h.closest("div[class]") ||
+            h.parentElement;
+          break;
+        }
+      }
+
+      if (datesContainer) {
+        const items = datesContainer.querySelectorAll("li, .performance, [class*='date']");
+        for (const el of items) {
+          const text = el.textContent?.replace(/\s+/g, " ").trim() || "";
+          const dateMatch = text.match(DATE_RE);
+          const timeMatch = text.match(TIME_RE);
+          if (!dateMatch) continue;
+
+          const link = el.querySelector("a");
+          const ticketUrl = link ? link.getAttribute("href") || null : null;
+
+          events.push({
+            day: parseInt(dateMatch[1], 10),
+            month: parseInt(dateMatch[2], 10),
+            hour: timeMatch ? timeMatch[1] : "",
+            ticketUrl: ticketUrl && TICKET_RE.test(ticketUrl) ? ticketUrl : null,
+            rawText: text.slice(0, 250),
+          });
+        }
+      }
+    }
+
+    // ── Strategy 3: full body text regex fallback ──
+    if (events.length === 0) {
+      const bodyText = document.body.innerText;
+      // Matches: DD.MM | day שעה: HH:MM
+      const fullRowRe = /(\d{1,2})\.(\d{1,2})\s*\|[^שׁ]*שעה:\s*(\d{1,2}:\d{2})/g;
+      let m;
+      while ((m = fullRowRe.exec(bodyText)) !== null) {
+        events.push({
+          day: parseInt(m[1], 10),
+          month: parseInt(m[2], 10),
+          hour: m[3],
+          ticketUrl: null,
+          rawText: bodyText
+            .slice(Math.max(0, m.index - 5), m.index + m[0].length + 30)
+            .trim(),
+        });
+      }
+    }
+
+    // ── Debug output ──
+    if (debugMode) {
+      const headings = document.querySelectorAll("h2, h3, h4, h5");
+      for (const h of headings) {
+        if (h.textContent.includes("מועדי הצגות")) {
+          const container =
+            h.closest("section") || h.closest("div[class]") || h.parentElement;
+          output.debugHtml = container
+            ? container.innerHTML
+            : document.body.innerHTML.slice(-6000);
+          break;
+        }
+      }
+      if (!output.debugHtml) {
+        output.debugHtml = document.body.innerHTML.slice(-6000);
+      }
+    }
+
+    output.events = events;
+    return output;
+  }, debug);
+
+  await page.close();
+
+  // ── Infer years and build final event objects (Node context) ──
+  const processed = [];
+  const seen = new Map();
+
+  for (const e of result.events) {
+    const year = inferYear(e.day, e.month);
+    const dateStr = `${year}-${String(e.month).padStart(2, "0")}-${String(e.day).padStart(2, "0")}`;
+    const key = e.ticketUrl || `${dateStr}|${e.hour}`;
+
+    if (!seen.has(key)) {
+      seen.set(key, true);
+      processed.push({
+        date: dateStr,
+        hour: e.hour,
+        venueName: KHAN_THEATRE,
+        venueCity: "ירושלים",
+        ticketUrl: e.ticketUrl,
+        rawText: e.rawText,
+      });
+    }
+  }
+
+  result.events = processed;
+  return result;
+}
+
 /**
  * Scrape only cast data from a Khan show detail page.
  * Tries ensemble-actors links first, then falls back to inline text.
