@@ -248,3 +248,171 @@ export async function scrapeShowDetails(browser, url) {
   await page.close();
   return data;
 }
+
+// ── Events scraper ─────────────────────────────────────────────
+
+/**
+ * Scrape performance dates/times from a Haifa Theatre show detail page.
+ *
+ * Page structure (confirmed via DOM inspection):
+ *   <ul id="showsList">
+ *     <li class="show_item">
+ *       <div class="show_info_gr">
+ *         <div class="show_time_gr">
+ *           <div class="show_date">19.03.26</div>  ← DD.MM.YY (two-digit year)
+ *           <div class="time_circle"></div>
+ *           <div>ה</div>                            ← Hebrew day letter
+ *           <div class="time_circle"></div>
+ *           <div>20:30</div>                        ← HH:MM
+ *         </div>
+ *         <div>תיאטרון חיפה - במה ראשית</div>
+ *       </div>
+ *       <a onclick="window.open('https://ht1.smarticket.co.il/event/...', '_blank')" href="#" class="show_list_link">כרטיסים</a>
+ *     </li>
+ *   </ul>
+ *   <a id="moreDatesNew" ...>עוד 9 מועדים</a>  ← loads more via AJAX when clicked
+ *
+ * Haifa Theatre is a fixed venue (תיאטרון חיפה, חיפה).
+ *
+ * @param {import("puppeteer").Browser} browser
+ * @param {string} url — show detail page URL
+ * @param {{ debug?: boolean }} [options]
+ * @returns {Promise<{
+ *   events: Array<{ date: string, hour: string, venueName: string, venueCity: string, ticketUrl: string|null, rawText: string }>,
+ *   debugHtml?: string
+ * }>}
+ */
+export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
+  const page = await browser.newPage();
+  await setupRequestInterception(page);
+
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60_000 });
+  await page.waitForSelector("h1", { timeout: 15_000 });
+  // Wait for the shows list to appear
+  await page.waitForSelector("#showsList", { timeout: 10_000 }).catch(() => {});
+
+  // Click "עוד מועדים" (#moreDatesNew) to load all performances
+  // The button disappears once all dates are loaded.
+  for (let attempt = 0; attempt < 20; attempt++) {
+    const clicked = await page.evaluate(() => {
+      const btn = document.querySelector("#moreDatesNew");
+      if (btn && btn.offsetParent !== null) {
+        btn.click();
+        return true;
+      }
+      return false;
+    });
+    if (!clicked) break;
+    // Wait for the new rows to render
+    await new Promise((r) => setTimeout(r, 1_200));
+  }
+
+  const result = await page.evaluate((debugMode) => {
+    const output = { events: [], debugHtml: null };
+    const events = [];
+
+    const DATE_RE = /(\d{2})\.(\d{2})\.(\d{2})/;
+    const TIME_RE = /(\d{1,2}:\d{2})/;
+    // Ticket URL lives in onclick: window.open('URL', '_blank')
+    const ONCLICK_RE = /window\.open\('([^']+)'/;
+
+    const items = document.querySelectorAll("#showsList li.show_item");
+
+    for (const li of items) {
+      const dateEl = li.querySelector(".show_date");
+      if (!dateEl) continue;
+
+      const dateText = dateEl.textContent.trim();
+      const dateMatch = dateText.match(DATE_RE);
+      if (!dateMatch) continue;
+
+      // Time is the last non-empty text node in .show_time_gr that isn't
+      // the date or a day letter (Hebrew single char). Simplest: regex the
+      // whole time group text.
+      const timeGr = li.querySelector(".show_time_gr");
+      const timeGrText = timeGr ? timeGr.textContent : "";
+      const timeMatch = timeGrText.match(TIME_RE);
+
+      // Ticket URL from onclick attribute
+      const ticketLink = li.querySelector("a.show_list_link");
+      let ticketUrl = null;
+      if (ticketLink) {
+        const onclick = ticketLink.getAttribute("onclick") || "";
+        const onclickMatch = onclick.match(ONCLICK_RE);
+        if (onclickMatch) ticketUrl = onclickMatch[1];
+      }
+
+      const rawText = li.textContent?.replace(/\s+/g, " ").trim() || "";
+
+      events.push({
+        day: parseInt(dateMatch[1], 10),
+        month: parseInt(dateMatch[2], 10),
+        yearShort: parseInt(dateMatch[3], 10),
+        hour: timeMatch ? timeMatch[1] : "",
+        ticketUrl,
+        rawText: rawText.slice(0, 250),
+      });
+    }
+
+    // Fallback: body-text regex if #showsList wasn't found
+    if (events.length === 0) {
+      const seen = new Set();
+      const bodyText = document.body.innerText;
+      const rowRe = /(\d{2})\.(\d{2})\.(\d{2})\D{0,30}?(\d{1,2}:\d{2})/g;
+      let m;
+      while ((m = rowRe.exec(bodyText)) !== null) {
+        const key = `${m[1]}.${m[2]}.${m[3]}|${m[4]}`;
+        if (!seen.has(key)) {
+          seen.add(key);
+          events.push({
+            day: parseInt(m[1], 10),
+            month: parseInt(m[2], 10),
+            yearShort: parseInt(m[3], 10),
+            hour: m[4],
+            ticketUrl: null,
+            rawText: bodyText
+              .slice(Math.max(0, m.index - 5), m.index + m[0].length + 50)
+              .trim(),
+          });
+        }
+      }
+    }
+
+    if (debugMode) {
+      const list = document.querySelector("#showsList");
+      output.debugHtml = list
+        ? list.outerHTML
+        : document.body.innerHTML.slice(0, 12_000);
+    }
+
+    output.events = events;
+    return output;
+  }, debug);
+
+  await page.close();
+
+  // Build final event objects (Node context) — derive full year from 2-digit short
+  const processed = [];
+  const seen = new Set();
+
+  for (const e of result.events) {
+    const year = 2000 + e.yearShort;
+    const dateStr = `${year}-${String(e.month).padStart(2, "0")}-${String(e.day).padStart(2, "0")}`;
+    const key = e.ticketUrl || `${dateStr}|${e.hour}`;
+
+    if (!seen.has(key)) {
+      seen.add(key);
+      processed.push({
+        date: dateStr,
+        hour: e.hour,
+        venueName: HAIFA_THEATRE,
+        venueCity: "חיפה",
+        ticketUrl: e.ticketUrl,
+        rawText: e.rawText,
+      });
+    }
+  }
+
+  result.events = processed;
+  return result;
+}

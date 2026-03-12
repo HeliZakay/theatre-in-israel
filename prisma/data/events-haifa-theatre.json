@@ -1,0 +1,216 @@
+{
+  "scrapedAt": "2026-03-12T13:09:48.212Z",
+  "touring": true,
+  "events": [
+    {
+      "showId": 158,
+      "date": "2026-03-27",
+      "hour": "12:00",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 161,
+      "date": "2026-05-07",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 81,
+      "date": "2026-03-28",
+      "hour": "21:00",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 81,
+      "date": "2026-04-28",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 81,
+      "date": "2026-04-29",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 82,
+      "date": "2026-03-19",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 82,
+      "date": "2026-03-22",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 82,
+      "date": "2026-03-23",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 82,
+      "date": "2026-03-24",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 82,
+      "date": "2026-03-25",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 82,
+      "date": "2026-03-27",
+      "hour": "12:00",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 82,
+      "date": "2026-03-28",
+      "hour": "21:00",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 82,
+      "date": "2026-03-29",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 82,
+      "date": "2026-03-30",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 82,
+      "date": "2026-05-13",
+      "hour": "17:00",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 82,
+      "date": "2026-06-01",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 82,
+      "date": "2026-06-02",
+      "hour": "17:00",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 78,
+      "date": "2026-04-25",
+      "hour": "21:00",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 159,
+      "date": "2026-04-30",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 80,
+      "date": "2026-04-09",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 80,
+      "date": "2026-04-11",
+      "hour": "21:00",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 80,
+      "date": "2026-05-12",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 80,
+      "date": "2026-07-21",
+      "hour": "11:00",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 77,
+      "date": "2026-04-09",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 77,
+      "date": "2026-04-10",
+      "hour": "21:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 77,
+      "date": "2026-05-09",
+      "hour": "21:00",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 77,
+      "date": "2026-05-10",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 77,
+      "date": "2026-06-30",
+      "hour": "11:00",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 79,
+      "date": "2026-03-15",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 79,
+      "date": "2026-03-16",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה"
+    }
+  ]
+}

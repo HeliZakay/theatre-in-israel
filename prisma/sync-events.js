@@ -322,6 +322,19 @@ async function main() {
     } else {
       console.log("No events-gesher.json found — skipping Gesher Theatre sync.");
     }
+
+    // Haifa Theatre events (optional — touring format, fixed venue)
+    const haifaPath = path.join(__dirname, "data", "events-haifa-theatre.json");
+    if (fs.existsSync(haifaPath)) {
+      const haifaResult = await syncTouringFile(prisma, haifaPath);
+      if (haifaResult === null) {
+        console.error(
+          "Failed to read events-haifa-theatre.json (file exists but could not be parsed)",
+        );
+      }
+    } else {
+      console.log("No events-haifa-theatre.json found — skipping Haifa Theatre sync.");
+    }
   } finally {
     await prisma.$disconnect();
   }
