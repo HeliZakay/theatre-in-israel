@@ -20,6 +20,28 @@ export const BEER_SHEVA_THEATRE = "תיאטרון באר שבע";
 export const BEER_SHEVA_BASE = "https://b7t.co.il";
 export const SHOWS_URL = "https://b7t.co.il/show_categories/2025-2026/";
 
+// ── Venue lookup for touring events ────────────────────────────
+// When a Beer Sheva show performs at another venue, the venue name
+// appears in the anchor text (e.g. "אולם בית ציוני אמריקה תל אביב -יפו").
+// Add entries here as new touring venues are discovered.
+
+const TOURING_VENUES = [
+  {
+    matchStr: "בית ציוני אמריקה",
+    venueName: "בית ציוני אמריקה",
+    venueCity: "תל אביב-יפו",
+  },
+];
+
+function resolveVenueFromText(rawText) {
+  for (const entry of TOURING_VENUES) {
+    if (rawText.includes(entry.matchStr)) {
+      return { venueName: entry.venueName, venueCity: entry.venueCity };
+    }
+  }
+  return { venueName: BEER_SHEVA_THEATRE, venueCity: "באר שבע" };
+}
+
 // ── Shows listing page scraper ─────────────────────────────────
 
 /**
@@ -213,11 +235,12 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
 
     if (!seen.has(key)) {
       seen.add(key);
+      const venue = resolveVenueFromText(e.rawText);
       processed.push({
         date: dateStr,
         hour: e.hour,
-        venueName: BEER_SHEVA_THEATRE,
-        venueCity: "באר שבע",
+        venueName: venue.venueName,
+        venueCity: venue.venueCity,
         ticketUrl: e.ticketUrl,
         rawText: e.rawText,
       });
