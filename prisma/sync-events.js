@@ -335,6 +335,19 @@ async function main() {
     } else {
       console.log("No events-haifa-theatre.json found — skipping Haifa Theatre sync.");
     }
+
+    // Tmuna Theatre events (optional — touring format, fixed venue)
+    const tmunaPath = path.join(__dirname, "data", "events-tmuna-theatre.json");
+    if (fs.existsSync(tmunaPath)) {
+      const tmunaResult = await syncTouringFile(prisma, tmunaPath);
+      if (tmunaResult === null) {
+        console.error(
+          "Failed to read events-tmuna-theatre.json (file exists but could not be parsed)",
+        );
+      }
+    } else {
+      console.log("No events-tmuna-theatre.json found — skipping Tmuna Theatre sync.");
+    }
   } finally {
     await prisma.$disconnect();
   }
