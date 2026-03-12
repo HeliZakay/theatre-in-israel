@@ -294,17 +294,6 @@ async function main() {
   const prisma = createPrismaClient();
 
   try {
-    // One-time purge: delete ALL events before re-syncing.
-    // This cleans up orphaned events that were linked to wrong showIds
-    // due to auto-increment ID mismatches between local and production DBs.
-    // Safe because: Event table contains only scraped data (no user content),
-    // and all events will be re-created from the JSON files below.
-    // TODO: Remove this block after the next successful deploy.
-    const purged = await prisma.event.deleteMany({});
-    console.log(
-      `Purged all ${purged.count} existing events (one-time cleanup of ID mismatches)`,
-    );
-
     // Cameri events (required — fail if missing)
     const cameriPath = path.join(__dirname, "data", "events.json");
     const cameriResult = await syncFile(prisma, cameriPath);
