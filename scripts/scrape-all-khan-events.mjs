@@ -270,7 +270,7 @@ async function main() {
   if (jsonPath) {
     const output = {
       scrapedAt: new Date().toISOString(),
-      touring: false,
+      touring: true,
       events: collectedEvents,
     };
     const outPath = path.resolve(rootDir, jsonPath);

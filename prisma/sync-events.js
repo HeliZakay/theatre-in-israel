@@ -296,6 +296,19 @@ async function main() {
         "No events-hebrew-theatre.json found — skipping Hebrew Theatre sync.",
       );
     }
+
+    // Khan Theatre events (optional — touring format, fixed venue)
+    const khanPath = path.join(__dirname, "data", "events-khan.json");
+    if (fs.existsSync(khanPath)) {
+      const khanResult = await syncTouringFile(prisma, khanPath);
+      if (khanResult === null) {
+        console.error(
+          "Failed to read events-khan.json (file exists but could not be parsed)",
+        );
+      }
+    } else {
+      console.log("No events-khan.json found — skipping Khan Theatre sync.");
+    }
   } finally {
     await prisma.$disconnect();
   }

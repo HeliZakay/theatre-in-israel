@@ -1,0 +1,272 @@
+{
+  "scrapedAt": "2026-03-12T12:16:03.496Z",
+  "touring": true,
+  "events": [
+    {
+      "showId": 91,
+      "date": "2026-04-12",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 91,
+      "date": "2026-04-13",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 90,
+      "date": "2026-03-21",
+      "hour": "20:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 90,
+      "date": "2026-03-22",
+      "hour": "20:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 90,
+      "date": "2026-03-23",
+      "hour": "20:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 90,
+      "date": "2026-03-24",
+      "hour": "17:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 90,
+      "date": "2026-03-24",
+      "hour": "20:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 90,
+      "date": "2026-03-28",
+      "hour": "20:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 90,
+      "date": "2026-03-29",
+      "hour": "11:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 90,
+      "date": "2026-04-05",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 90,
+      "date": "2026-04-06",
+      "hour": "17:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 90,
+      "date": "2026-04-06",
+      "hour": "20:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 90,
+      "date": "2026-04-29",
+      "hour": "20:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 90,
+      "date": "2026-04-30",
+      "hour": "20:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 90,
+      "date": "2026-05-02",
+      "hour": "21:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 90,
+      "date": "2026-05-18",
+      "hour": "18:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 90,
+      "date": "2026-05-18",
+      "hour": "21:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 90,
+      "date": "2026-05-19",
+      "hour": "18:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 90,
+      "date": "2026-05-31",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 86,
+      "date": "2026-05-03",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 95,
+      "date": "2026-05-28",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 95,
+      "date": "2026-05-30",
+      "hour": "21:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 94,
+      "date": "2026-05-10",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 94,
+      "date": "2026-05-12",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 93,
+      "date": "2026-05-05",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 93,
+      "date": "2026-05-06",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 88,
+      "date": "2026-05-20",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 88,
+      "date": "2026-05-24",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 87,
+      "date": "2026-05-25",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 85,
+      "date": "2026-04-09",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 85,
+      "date": "2026-04-11",
+      "hour": "21:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 85,
+      "date": "2026-04-26",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 85,
+      "date": "2026-04-27",
+      "hour": "18:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 162,
+      "date": "2026-03-25",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 162,
+      "date": "2026-05-07",
+      "hour": "20:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 162,
+      "date": "2026-05-09",
+      "hour": "20:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 92,
+      "date": "2026-04-14",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 92,
+      "date": "2026-04-15",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    }
+  ]
+}
