@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-03-12T21:58:01.226Z",
+  "scrapedAt": "2026-03-13T03:55:14.768Z",
   "touring": true,
   "events": [
     {
@@ -126,6 +126,22 @@
       "showId": 107,
       "showSlug": "בית-בעזה",
       "date": "2026-03-31",
+      "hour": "19:00",
+      "venueName": "תיאטרון תמונע",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 103,
+      "showSlug": "בת-של-אבא",
+      "date": "2026-04-12",
+      "hour": "19:00",
+      "venueName": "תיאטרון תמונע",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 103,
+      "showSlug": "בת-של-אבא",
+      "date": "2026-04-15",
       "hour": "19:00",
       "venueName": "תיאטרון תמונע",
       "venueCity": "תל אביב"
