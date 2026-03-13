@@ -32,6 +32,7 @@ const SCRAPERS = [
   { label: "Habima",          script: "scrape-all-habima-theatre-events.mjs",       json: "prisma/data/events-habima-theatre.json" },
   // Venue scrapers
   { label: "Nes Ziona",       script: "scrape-all-nes-ziona-events.mjs",            json: "prisma/data/events-nes-ziona.json" },
+  { label: "Ashdod",          script: "scrape-all-ashdod-events.mjs",              json: "prisma/data/events-ashdod.json" },
 ];
 
 // ── CLI args ────────────────────────────────────────────────────
