@@ -19,6 +19,7 @@ export const THEATRE_IDS = [
   "hebrew-theatre",
   "tmuna",
   "tzavta",
+  "tomix",
 ];
 
 /**
@@ -223,6 +224,26 @@ const LOADERS = {
       scrapeDetails: scrapeShowDetails,
       scrapeCast,
       titlePreference: "listing-first",
+      launchBrowser,
+    };
+  },
+
+  async tomix() {
+    const { TOMIX_THEATRE, fetchShows, scrapeShowDetails } =
+      await import("./tomix.mjs");
+    const { launchBrowser } = await import("./browser.mjs");
+
+    return {
+      theatreId: "tomix",
+      theatreName: TOMIX_THEATRE,
+      theatreConst: TOMIX_THEATRE,
+      theatreLabel: "toMix Theatre (תיאטרון toMix)",
+      websiteUrl: "to-mix.co.il",
+      fetchListing: fetchShows,
+      scrapeDetails: scrapeShowDetails,
+      scrapeCast: async (browser, url) =>
+        (await scrapeShowDetails(browser, url)).cast || null,
+      titlePreference: "detail-first",
       launchBrowser,
     };
   },
