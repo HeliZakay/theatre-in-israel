@@ -7,145 +7,16 @@
 
 import { fixDoubleProtocol, extractImageFromPage } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
+import { resolveVenueCity } from "./venues.mjs";
+
+// Re-export for any external consumers
+export { resolveVenueCity };
 
 // ── Constants ──────────────────────────────────────────────────
 
 export const HEBREW_THEATRE = "התיאטרון העברי";
 export const HEBREW_THEATRE_BASE = "https://www.teatron.org.il";
 export const SHOWS_URL = "https://www.teatron.org.il/shows/";
-
-// ── Venue → City resolution ────────────────────────────────────
-
-/**
- * Maps known venue strings (as they appear on the Hebrew Theatre website)
- * to their city. Keys should be trimmed, normalised strings.
- */
-export const VENUE_CITY_MAP = {
-  // Tel Aviv area
-  "היכל התרבות תל אביב": "תל אביב",
-  "היכל התרבות": "תל אביב",
-  "תיאטרון הבימה": "תל אביב",
-  "בית ליסין": "תל אביב",
-  "תיאטרון הקאמרי": "תל אביב",
-  צוותא: "תל אביב",
-  תמונע: "תל אביב",
-  "התיאטרון העברי": "תל אביב",
-  // Haifa
-  "תיאטרון הצפון": "חיפה",
-  "תיאטרון חיפה": "חיפה",
-  "אודיטוריום חיפה": "חיפה",
-  // Jerusalem
-  "תיאטרון ירושלים": "ירושלים",
-  "תיאטרון החאן": "ירושלים",
-  "גררד בכר": "ירושלים",
-  "היכל התרבות ירושלים": "ירושלים",
-  // Beer Sheva
-  "תיאטרון באר שבע": "באר שבע",
-  "היכל התרבות באר שבע": "באר שבע",
-  "המרכז לאמנויות הבמה באר שבע": "באר שבע",
-  // Other cities
-  "היכל התרבות הרצליה": "הרצליה",
-  "היכל התרבות רעננה": "רעננה",
-  "היכל התרבות כפר סבא": "כפר סבא",
-  "היכל התרבות אשדוד": "אשדוד",
-  "היכל התרבות ראשון לציון": "ראשון לציון",
-  "היכל התרבות נתניה": "נתניה",
-  "היכל התרבות פתח תקווה": "פתח תקווה",
-  "היכל התרבות רמת גן": "רמת גן",
-  "מרכז תרבות גבעתיים": "גבעתיים",
-  "היכל התרבות מודיעין": "מודיעין",
-  "היכל התרבות קריית מוצקין": "קריית מוצקין",
-  "היכל התרבות לוד": "לוד",
-  "תיאטרון גשר": "יפו",
-  // Venues with non-obvious city names
-  "היכל התרבות אור עקיבא": "אור עקיבא",
-  "היכל התרבות אשקלון": "אשקלון",
-  "היכל התרבות איירפורט סיטי": "קריית שדה התעופה",
-  "היכל התיאטרון מוצקין": "קריית מוצקין",
-  'מזכרת בתיה - היכל התרבות ע"ש אריה כספי': "מזכרת בתיה",
-  "היכל התרבות בית העם רחובות": "רחובות",
-  "בית החייל תל אביב": "תל אביב",
-  "בית האופרה - תל אביב": "תל אביב",
-  "מוזיאון ארץ ישראל - תל אביב": "תל אביב",
-  "תיאטרון חולון": "חולון",
-};
-
-/**
- * Known Israeli cities for trailing-city heuristic, sorted longest-first
- * so "ראשון לציון" matches before "ציון" (if that were a city).
- */
-export const KNOWN_CITIES = [
-  "ראשון לציון",
-  "פתח תקווה",
-  "קריית מוצקין",
-  "קריית ביאליק",
-  "קריית שמונה",
-  "כפר סבא",
-  "רמת גן",
-  "באר שבע",
-  "רמת השרון",
-  "גבעתיים",
-  "תל אביב",
-  "ירושלים",
-  "הרצליה",
-  "רעננה",
-  "אשדוד",
-  "חולון",
-  "נתניה",
-  "חיפה",
-  "אשקלון",
-  "מודיעין",
-  "עפולה",
-  "לוד",
-  "יפו",
-  "עכו",
-  "אילת",
-  "אור עקיבא",
-  "קריית שדה התעופה",
-  "מזכרת בתיה",
-  "רחובות",
-].sort((a, b) => b.length - a.length);
-
-/**
- * Resolve the city for a raw venue name scraped from the Hebrew Theatre website.
- *
- * Resolution tiers (in order):
- *   1. Exact match in VENUE_CITY_MAP
- *   2. Partial/contains match — venue key is a substring of rawVenueName or vice versa
- *   3. Trailing city heuristic — rawVenueName ends with a known city name
- *   4. Fallback — "לא ידוע" with a console warning
- *
- * @param {string} rawVenueName — venue string exactly as scraped from the page
- * @returns {string} — city name
- */
-export function resolveVenueCity(rawVenueName) {
-  const trimmed = rawVenueName.replace(/\s+/g, " ").trim();
-
-  // Tier 1: exact match
-  if (VENUE_CITY_MAP[trimmed]) {
-    return VENUE_CITY_MAP[trimmed];
-  }
-
-  // Tier 2: partial/contains match (either direction)
-  for (const [key, city] of Object.entries(VENUE_CITY_MAP)) {
-    if (trimmed.includes(key) || key.includes(trimmed)) {
-      return city;
-    }
-  }
-
-  // Tier 3: trailing city heuristic
-  for (const city of KNOWN_CITIES) {
-    if (trimmed.endsWith(city)) {
-      return city;
-    }
-  }
-
-  // Tier 4: fallback
-  console.warn(
-    `  ⚠  Unknown venue city for: "${trimmed}" — defaulting to "לא ידוע"`,
-  );
-  return "לא ידוע";
-}
 
 // ── Shows page scraper ─────────────────────────────────────────
 
@@ -622,7 +493,7 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
 
   await page.close();
 
-  // Resolve venue cities in Node context (has access to VENUE_CITY_MAP)
+  // Resolve venue cities in Node context (has access to resolveVenueCity)
   for (const ev of result.events) {
     ev.venueCity = resolveVenueCity(ev.venueName);
   }

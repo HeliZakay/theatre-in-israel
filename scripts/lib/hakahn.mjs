@@ -21,18 +21,13 @@
 import { fixDoubleProtocol, extractImageFromPage } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
 import { parseLessinDuration } from "./duration.js";
+import { resolveVenueCity } from "./venues.mjs";
 
 // ── Constants ──────────────────────────────────────────────────
 
 export const KHAN_THEATRE = "תיאטרון החאן";
 export const KHAN_BASE = "https://www.khan.co.il";
 export const SHOWS_URL = "https://www.khan.co.il/shows";
-
-// Guest venues where Khan shows sometimes perform.
-// Maps venue name → city (the Khan website doesn't show the city).
-const GUEST_VENUE_CITY = new Map([
-  ["בית ציוני אמריקה", "תל אביב-יפו"],
-]);
 
 // ── Title prefixes to strip ────────────────────────────────────
 
@@ -487,7 +482,7 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
         date: dateStr,
         hour: e.hour,
         venueName,
-        venueCity: GUEST_VENUE_CITY.get(venueName) || "ירושלים",
+        venueCity: resolveVenueCity(venueName),
         ticketUrl: e.ticketUrl,
         rawText: e.rawText,
       });

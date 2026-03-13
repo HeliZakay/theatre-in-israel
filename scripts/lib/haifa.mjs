@@ -8,22 +8,13 @@
 
 import { fixDoubleProtocol, extractImageFromPage } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
+import { resolveVenueCity } from "./venues.mjs";
 
 // ── Constants ──────────────────────────────────────────────────
 
 export const HAIFA_THEATRE = "תיאטרון חיפה";
 export const HAIFA_BASE = "https://www.ht1.co.il";
 export const SCHEDULE_URL = "https://www.ht1.co.il/Show";
-
-// Guest venues where Haifa Theatre shows sometimes perform.
-// Maps venue name (as it appears on the website) → city.
-const GUEST_VENUE_CITY = new Map([
-  ["בית החייל ת\"א", "תל אביב-יפו"],
-  ["בית החייל ת״א", "תל אביב-יפו"],
-  ["היכל התרבות ראשון לציון", "ראשון לציון"],
-  ["היכל אומנוית הבמה - הרצליה", "הרצליה"],
-  ["בית ציוני אמריקה תל אביב-אולם מאירהוף", "תל אביב-יפו"],
-]);
 
 // ── Schedule page scraper ──────────────────────────────────────
 
@@ -433,9 +424,7 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
       if (venueName.startsWith(HAIFA_THEATRE)) {
         venueName = HAIFA_THEATRE;
       }
-      const venueCity = venueName === HAIFA_THEATRE
-        ? "חיפה"
-        : (GUEST_VENUE_CITY.get(venueName) || "");
+      const venueCity = resolveVenueCity(venueName);
       processed.push({
         date: dateStr,
         hour: e.hour,
