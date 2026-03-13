@@ -429,8 +429,8 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
       const timeText = nums[1] ? nums[1].textContent.trim() : "";
       const hallText = nums[2] ? nums[2].textContent.trim() : "";
 
-      // Skip postponed / cancelled slots
-      if (hallText === "נדחה") continue;
+      // Skip postponed / cancelled slots ("נדחה", "נדחה ל 15/4", etc.)
+      if (hallText.startsWith("נדחה")) continue;
 
       const rawText = li.textContent?.replace(/\s+/g, " ").trim() || "";
       const dateMatch = dateText.match(DATE_RE) || rawText.match(DATE_RE);
