@@ -40,7 +40,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to events"
           else
-            git commit -m "chore: refresh Cameri + Lessin + Hebrew Theatre + Khan + Gesher + Haifa Theatre + Tmuna Theatre + Beer Sheva Theatre + Tzavta Theatre + Habima Theatre + Ashdod Venue + Rishon LeZion Venue events [$(date -u +%Y-%m-%d)]"
+            git commit -m "chore: refresh Cameri + Lessin + Hebrew Theatre + Khan + Gesher + Haifa Theatre + Tmuna Theatre + Beer Sheva Theatre + Tzavta Theatre + Habima Theatre + Ashdod Venue + Rishon LeZion Venue + Or Akiva Venue events [$(date -u +%Y-%m-%d)]"
             git push
           fi
 
