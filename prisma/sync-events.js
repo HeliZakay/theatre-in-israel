@@ -111,21 +111,38 @@ async function syncFile(prisma, filePath) {
   // Build a set of expected composite keys from the JSON file
   const expectedKeys = new Set(
     data.events.map(
-      (e) => `${e.showId}|${new Date(e.date).toISOString()}|${e.hour}`,
+      (e) => `${e.showId}|${venue.id}|${new Date(e.date).toISOString()}|${e.hour}`,
     ),
   );
 
-  // Delete stale events for this venue's shows that are no longer in the JSON.
-  // This handles cases like corrected hours replacing old wrong values.
-  const showIds = [...new Set(data.events.map((e) => e.showId))];
+  // Delete stale events for this theatre's shows that are no longer in the JSON.
+  // Scoped by theatre (not venue) so that: (1) shows removed entirely from the
+  // scrape get cleaned up, and (2) other theatres' events at this venue are not
+  // accidentally deleted.
+  const jsonShowIds = [...new Set(data.events.map((e) => e.showId))];
+  const resolvedShows = await prisma.show.findMany({
+    where: { id: { in: jsonShowIds } },
+    select: { id: true, theatre: true },
+  });
+  const theatreNames = [...new Set(resolvedShows.map((s) => s.theatre))];
+  const allTheatreShows = theatreNames.length > 0
+    ? await prisma.show.findMany({
+        where: { theatre: { in: theatreNames } },
+        select: { id: true },
+      })
+    : [];
+  const allShowIds = [...new Set([
+    ...jsonShowIds,
+    ...allTheatreShows.map((s) => s.id),
+  ])];
   const existingEvents = await prisma.event.findMany({
-    where: { venueId: venue.id, showId: { in: showIds } },
-    select: { id: true, showId: true, date: true, hour: true },
+    where: { showId: { in: allShowIds } },
+    select: { id: true, showId: true, venueId: true, date: true, hour: true },
   });
 
   const staleIds = existingEvents
     .filter(
-      (e) => !expectedKeys.has(`${e.showId}|${e.date.toISOString()}|${e.hour}`),
+      (e) => !expectedKeys.has(`${e.showId}|${e.venueId}|${e.date.toISOString()}|${e.hour}`),
     )
     .map((e) => e.id);
 
@@ -228,11 +245,27 @@ async function syncTouringFile(prisma, filePath) {
   );
 
   // ── 3. Delete stale events ──
-  // For touring shows, delete by showId without venue filter.
-  // Safe because show IDs are globally unique to this theatre.
-  const showIds = [...new Set(data.events.map((e) => e.showId))];
+  // Find the theatre name from the resolved shows, then collect ALL showIds
+  // for that theatre. This ensures shows that disappear entirely from a
+  // scrape also get their events cleaned up.
+  const jsonShowIds = [...new Set(data.events.map((e) => e.showId))];
+  const resolvedShows = await prisma.show.findMany({
+    where: { id: { in: jsonShowIds } },
+    select: { id: true, theatre: true },
+  });
+  const theatreNames = [...new Set(resolvedShows.map((s) => s.theatre))];
+  const allTheatreShows = theatreNames.length > 0
+    ? await prisma.show.findMany({
+        where: { theatre: { in: theatreNames } },
+        select: { id: true },
+      })
+    : [];
+  const allShowIds = [...new Set([
+    ...jsonShowIds,
+    ...allTheatreShows.map((s) => s.id),
+  ])];
   const existingEvents = await prisma.event.findMany({
-    where: { showId: { in: showIds } },
+    where: { showId: { in: allShowIds } },
     select: { id: true, showId: true, venueId: true, date: true, hour: true },
   });
 
