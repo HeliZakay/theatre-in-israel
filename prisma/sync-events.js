@@ -176,6 +176,36 @@ const VENUE_ALIASES = new Map([
 
   // Beit HaAm Rehovot — hebrew-theatre prepends היכל התרבות
   ["היכל התרבות בית העם רחובות|רחובות", { name: "בית העם רחובות", city: "רחובות" }],
+  // Beit HaAm Rehovot — typo הכיל instead of היכל
+  ["הכיל התרבות - בית העם רחובות|רחובות", { name: "בית העם רחובות", city: "רחובות" }],
+
+  // Moza Heichal HaTarbut Hof HaCarmel — strip "מוזה" prefix
+  ["מוזה היכל התרבות חוף הכרמל|חוף הכרמל", { name: "היכל התרבות חוף הכרמל", city: "חוף הכרמל" }],
+  ["מוזה היכל התרבות חוף הכרמל|תל אביב", { name: "היכל התרבות חוף הכרמל", city: "חוף הכרמל" }],
+
+  // Theatron Holon — strip "בית יד לבנים" suffix
+  ["תיאטרון חולון - בית יד לבנים|חולון", { name: "תיאטרון חולון", city: "חולון" }],
+
+  // Mishkan Ashdod — typo אומנויות → אמנויות
+  ["המשכן לאומנויות הבמה אשדוד|אשדוד", { name: "המשכן לאמנויות הבמה אשדוד", city: "אשדוד" }],
+
+  // Heichal HaTarbut Hevel Modi'in — canonical name is אייפורט סיטי
+  ["היכל התרבות חבל מודיעין|אייפורט סיטי", { name: "היכל התרבות אייפורט סיטי", city: "אייפורט סיטי" }],
+  ["היכל התרבות חבל מודיעין|איירפורט סיטי", { name: "היכל התרבות אייפורט סיטי", city: "אייפורט סיטי" }],
+  ["היכל התרבות חבל מודיעין|קריית שדה התעופה", { name: "היכל התרבות אייפורט סיטי", city: "אייפורט סיטי" }],
+
+  // Heichal HaTheatron — bare name without city → Kiryat Motzkin
+  ["היכל התיאטרון|קריית מוצקין", { name: "היכל התיאטרון קריית מוצקין", city: "קריית מוצקין" }],
+  ["היכל התיאטרון|קרית מוצקין", { name: "היכל התיאטרון קריית מוצקין", city: "קריית מוצקין" }],
+
+  // Mishkan Tel Aviv — bare name → add city suffix
+  ["המשכן לאמנויות הבמה|תל אביב", { name: "המשכן לאמנויות הבמה תל אביב", city: "תל אביב" }],
+
+  // Theatron HaYahalom — add city suffix
+  ["תיאטרון היהלום|רמת גן", { name: "תיאטרון היהלום רמת גן", city: "רמת גן" }],
+
+  // Herzliya — typo אומנויות → אמנויות (different from existing אומנוית typo)
+  ["היכל אומנויות הבמה הרצליה|הרצליה", { name: "היכל אמנויות הבמה הרצליה", city: "הרצליה" }],
 ]);
 
 function normalizeVenue(name, city) {
