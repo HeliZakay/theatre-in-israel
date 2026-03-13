@@ -34,6 +34,7 @@ const SCRAPERS = [
   { label: "Nes Ziona",       script: "scrape-all-nes-ziona-events.mjs",            json: "prisma/data/events-nes-ziona.json" },
   { label: "Ashdod",          script: "scrape-all-ashdod-events.mjs",              json: "prisma/data/events-ashdod.json" },
   { label: "Beer Sheva Venue", script: "scrape-all-beer-sheva-venue-events.mjs",  json: "prisma/data/events-beer-sheva-venue.json" },
+  { label: "Rishon LeZion",   script: "scrape-all-rishon-lezion-events.mjs",    json: "prisma/data/events-rishon-lezion.json" },
 ];
 
 // ── CLI args ────────────────────────────────────────────────────
