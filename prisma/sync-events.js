@@ -1,3 +1,6 @@
+const WIPE_PROTECTION_THRESHOLD = 0.3;
+const WIPE_PROTECTION_MIN_EXISTING = 5;
+
 const dotenv = require("dotenv");
 const fs = require("fs");
 const path = require("path");
@@ -239,15 +242,30 @@ async function syncEvents(prisma, filePath) {
     select: { id: true, showId: true, venueId: true, date: true, hour: true },
   });
 
-  const staleIds = existingEvents
-    .filter(
-      (e) => !expectedKeys.has(`${e.showId}|${e.venueId}|${e.date.toISOString()}|${e.hour}`),
-    )
-    .map((e) => e.id);
+  // Wipe protection: if the scraped event count is suspiciously low compared
+  // to what already exists in the DB, skip deletion to avoid data loss from
+  // a broken or partial scrape.
+  const scrapedCount = data.events.length;
+  const existingCount = existingEvents.length;
+  const skipDeletion =
+    existingCount >= WIPE_PROTECTION_MIN_EXISTING &&
+    scrapedCount < existingCount * WIPE_PROTECTION_THRESHOLD;
 
-  if (staleIds.length > 0) {
-    await prisma.event.deleteMany({ where: { id: { in: staleIds } } });
-    console.log(`  Removed ${staleIds.length} stale events`);
+  if (skipDeletion) {
+    console.warn(
+      `  WIPE PROTECTION: ${path.basename(filePath)} has ${scrapedCount} events but DB has ${existingCount}. Skipping deletion of stale events.`,
+    );
+  } else {
+    const staleIds = existingEvents
+      .filter(
+        (e) => !expectedKeys.has(`${e.showId}|${e.venueId}|${e.date.toISOString()}|${e.hour}`),
+      )
+      .map((e) => e.id);
+
+    if (staleIds.length > 0) {
+      await prisma.event.deleteMany({ where: { id: { in: staleIds } } });
+      console.log(`  Removed ${staleIds.length} stale events`);
+    }
   }
 
   // Build rows and batch insert
@@ -276,139 +294,38 @@ async function syncEvents(prisma, filePath) {
 // ---------------------------------------------------------------------------
 // 3. Sync all event files
 // ---------------------------------------------------------------------------
+const EVENT_FILES = [
+  { file: "events.json", label: "Cameri", required: true },
+  { file: "events-lessin.json", label: "Lessin" },
+  { file: "events-hebrew-theatre.json", label: "Hebrew Theatre" },
+  { file: "events-khan.json", label: "Khan Theatre" },
+  { file: "events-gesher.json", label: "Gesher Theatre" },
+  { file: "events-haifa-theatre.json", label: "Haifa Theatre" },
+  { file: "events-tmuna-theatre.json", label: "Tmuna Theatre" },
+  { file: "events-beer-sheva-theatre.json", label: "Beer Sheva Theatre" },
+  { file: "events-tzavta-theatre.json", label: "Tzavta Theatre" },
+  { file: "events-habima-theatre.json", label: "Habima Theatre" },
+];
+
 async function main() {
   const prisma = createPrismaClient();
 
   try {
-    // Cameri events (required — fail if missing)
-    const cameriPath = path.join(__dirname, "data", "events.json");
-    const cameriResult = await syncEvents(prisma, cameriPath);
-    if (cameriResult === null) {
-      console.error("Failed to read events.json");
-      process.exit(1);
-    }
-
-    // Lessin events (optional — skip gracefully if not present)
-    const lessinPath = path.join(__dirname, "data", "events-lessin.json");
-    if (fs.existsSync(lessinPath)) {
-      const lessinResult = await syncEvents(prisma, lessinPath);
-      if (lessinResult === null) {
-        console.error(
-          "Failed to read events-lessin.json (file exists but could not be parsed)",
-        );
+    for (const { file, label, required } of EVENT_FILES) {
+      const filePath = path.join(__dirname, "data", file);
+      if (!fs.existsSync(filePath)) {
+        console.log(`No ${file} found — skipping ${label} sync.`);
+        continue;
       }
-    } else {
-      console.log("No events-lessin.json found — skipping Lessin sync.");
-    }
-
-    // Hebrew Theatre events (optional — touring format)
-    const hebrewTheatrePath = path.join(
-      __dirname,
-      "data",
-      "events-hebrew-theatre.json",
-    );
-    if (fs.existsSync(hebrewTheatrePath)) {
-      const htResult = await syncEvents(prisma, hebrewTheatrePath);
-      if (htResult === null) {
-        console.error(
-          "Failed to read events-hebrew-theatre.json (file exists but could not be parsed)",
-        );
+      const result = await syncEvents(prisma, filePath);
+      if (result === null) {
+        const msg = `Failed to read ${file} (file exists but could not be parsed)`;
+        if (required) {
+          console.error(msg);
+          process.exit(1);
+        }
+        console.error(msg);
       }
-    } else {
-      console.log(
-        "No events-hebrew-theatre.json found — skipping Hebrew Theatre sync.",
-      );
-    }
-
-    // Khan Theatre events (optional — touring format, fixed venue)
-    const khanPath = path.join(__dirname, "data", "events-khan.json");
-    if (fs.existsSync(khanPath)) {
-      const khanResult = await syncEvents(prisma, khanPath);
-      if (khanResult === null) {
-        console.error(
-          "Failed to read events-khan.json (file exists but could not be parsed)",
-        );
-      }
-    } else {
-      console.log("No events-khan.json found — skipping Khan Theatre sync.");
-    }
-
-    // Gesher Theatre events (optional — touring format, fixed venue)
-    const gesherPath = path.join(__dirname, "data", "events-gesher.json");
-    if (fs.existsSync(gesherPath)) {
-      const gesherResult = await syncEvents(prisma, gesherPath);
-      if (gesherResult === null) {
-        console.error(
-          "Failed to read events-gesher.json (file exists but could not be parsed)",
-        );
-      }
-    } else {
-      console.log("No events-gesher.json found — skipping Gesher Theatre sync.");
-    }
-
-    // Haifa Theatre events (optional — touring format, fixed venue)
-    const haifaPath = path.join(__dirname, "data", "events-haifa-theatre.json");
-    if (fs.existsSync(haifaPath)) {
-      const haifaResult = await syncEvents(prisma, haifaPath);
-      if (haifaResult === null) {
-        console.error(
-          "Failed to read events-haifa-theatre.json (file exists but could not be parsed)",
-        );
-      }
-    } else {
-      console.log("No events-haifa-theatre.json found — skipping Haifa Theatre sync.");
-    }
-
-    // Tmuna Theatre events (optional — touring format, fixed venue)
-    const tmunaPath = path.join(__dirname, "data", "events-tmuna-theatre.json");
-    if (fs.existsSync(tmunaPath)) {
-      const tmunaResult = await syncEvents(prisma, tmunaPath);
-      if (tmunaResult === null) {
-        console.error(
-          "Failed to read events-tmuna-theatre.json (file exists but could not be parsed)",
-        );
-      }
-    } else {
-      console.log("No events-tmuna-theatre.json found — skipping Tmuna Theatre sync.");
-    }
-
-    // Beer Sheva Theatre events (optional — touring format, fixed venue)
-    const beerShevaPath = path.join(__dirname, "data", "events-beer-sheva-theatre.json");
-    if (fs.existsSync(beerShevaPath)) {
-      const beerShevaResult = await syncEvents(prisma, beerShevaPath);
-      if (beerShevaResult === null) {
-        console.error(
-          "Failed to read events-beer-sheva-theatre.json (file exists but could not be parsed)",
-        );
-      }
-    } else {
-      console.log("No events-beer-sheva-theatre.json found — skipping Beer Sheva Theatre sync.");
-    }
-
-    // Tzavta Theatre events (optional — touring format, fixed venue)
-    const tzavtaPath = path.join(__dirname, "data", "events-tzavta-theatre.json");
-    if (fs.existsSync(tzavtaPath)) {
-      const tzavtaResult = await syncEvents(prisma, tzavtaPath);
-      if (tzavtaResult === null) {
-        console.error(
-          "Failed to read events-tzavta-theatre.json (file exists but could not be parsed)",
-        );
-      }
-    } else {
-      console.log("No events-tzavta-theatre.json found — skipping Tzavta Theatre sync.");
-    }
-
-    // Habima Theatre events (optional — touring format, fixed venue)
-    const habimaPath = path.join(__dirname, "data", "events-habima-theatre.json");
-    if (fs.existsSync(habimaPath)) {
-      const habimaResult = await syncEvents(prisma, habimaPath);
-      if (habimaResult === null) {
-        console.error(
-          "Failed to read events-habima-theatre.json (file exists but could not be parsed)",
-        );
-      }
-    } else {
-      console.log("No events-habima-theatre.json found — skipping Habima Theatre sync.");
     }
   } finally {
     await prisma.$disconnect();
