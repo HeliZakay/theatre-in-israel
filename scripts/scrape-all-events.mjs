@@ -40,6 +40,7 @@ const SCRAPERS = [
   { label: "Theatron HaZafon", script: "scrape-all-theatron-hazafon-events.mjs", json: "prisma/data/events-theatron-hazafon.json" },
   { label: "Kfar Saba",       script: "scrape-all-kfar-saba-events.mjs",       json: "prisma/data/events-kfar-saba.json" },
   { label: "Airport City",   script: "scrape-all-airport-city-events.mjs",   json: "prisma/data/events-airport-city.json" },
+  { label: "Ashkelon",      script: "scrape-all-ashkelon-events.mjs",      json: "prisma/data/events-ashkelon.json" },
 ];
 
 // ── CLI args ────────────────────────────────────────────────────
