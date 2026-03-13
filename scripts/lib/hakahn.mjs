@@ -22,6 +22,7 @@ import { fixDoubleProtocol, extractImageFromPage } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
 import { parseLessinDuration } from "./duration.js";
 import { resolveVenueCity } from "./venues.mjs";
+import { inferYear } from "./date.mjs";
 
 // ── Constants ──────────────────────────────────────────────────
 
@@ -264,25 +265,6 @@ export async function scrapeShowDetails(browser, url) {
 }
 
 // ── Events scraper ─────────────────────────────────────────────
-
-/**
- * Infer the full year for a DD.MM date string.
- * If the month is in the past relative to today, assume next year.
- *
- * @param {number} day
- * @param {number} month
- * @returns {number} — full year (e.g. 2026)
- */
-function inferYear(day, month) {
-  const today = new Date();
-  const thisYear = today.getFullYear();
-  const candidate = new Date(thisYear, month - 1, day);
-  // If date has already passed (more than 1 day ago), assume next year
-  const oneDayMs = 86_400_000;
-  return candidate.getTime() < today.getTime() - oneDayMs
-    ? thisYear + 1
-    : thisYear;
-}
 
 /**
  * Scrape performance dates/times from a Khan Theatre show detail page.

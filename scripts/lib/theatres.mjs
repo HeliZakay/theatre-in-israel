@@ -31,7 +31,7 @@ const LOADERS = {
     const {
       CAMERI_THEATRE,
       launchBrowser,
-      fetchSchedule,
+      fetchShows,
       scrapeShowDetails,
       scrapeCast,
     } = await import("./cameri.mjs");
@@ -42,7 +42,7 @@ const LOADERS = {
       theatreConst: CAMERI_THEATRE,
       theatreLabel: "Cameri Theatre (תיאטרון הקאמרי)",
       websiteUrl: "cameri.co.il",
-      fetchListing: fetchSchedule,
+      fetchListing: fetchShows,
       scrapeDetails: scrapeShowDetails,
       scrapeCast,
       titlePreference: "detail-first",
@@ -51,7 +51,7 @@ const LOADERS = {
   },
 
   async habima() {
-    const { HABIMA_THEATRE, fetchRepertoire, scrapeShowDetails } =
+    const { HABIMA_THEATRE, fetchShows, scrapeShowDetails } =
       await import("./habima.mjs");
     const { launchBrowser } = await import("./browser.mjs");
 
@@ -61,7 +61,7 @@ const LOADERS = {
       theatreConst: HABIMA_THEATRE,
       theatreLabel: "Habima Theatre (תיאטרון הבימה)",
       websiteUrl: "habima.co.il",
-      fetchListing: fetchRepertoire,
+      fetchListing: fetchShows,
       scrapeDetails: scrapeShowDetails,
       scrapeCast: async (browser, url) =>
         (await scrapeShowDetails(browser, url)).cast || null,

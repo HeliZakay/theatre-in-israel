@@ -9,6 +9,7 @@
 import { fixDoubleProtocol, extractImageFromPage } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
 import { resolveVenueCity } from "./venues.mjs";
+import { parseShortYear } from "./date.mjs";
 
 // ── Constants ──────────────────────────────────────────────────
 
@@ -397,7 +398,7 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
       const list = document.querySelector("#showsList");
       output.debugHtml = list
         ? list.outerHTML
-        : document.body.innerHTML.slice(0, 12_000);
+        : document.body.innerHTML.slice(0, 10_000);
     }
 
     output.events = events;
@@ -411,7 +412,7 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
   const seen = new Set();
 
   for (const e of result.events) {
-    const year = 2000 + e.yearShort;
+    const year = parseShortYear(e.yearShort);
     const dateStr = `${year}-${String(e.month).padStart(2, "0")}-${String(e.day).padStart(2, "0")}`;
     const key = e.ticketUrl || `${dateStr}|${e.hour}`;
 

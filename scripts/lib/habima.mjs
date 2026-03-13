@@ -124,7 +124,7 @@ export async function fetchRepertoire(browser) {
  *
  * @param {import("puppeteer").Browser} browser
  * @param {string} url
- * @returns {Promise<{ title: string, durationMinutes: number | null, description: string, imageUrl: string | null, cast: string }>}
+ * @returns {Promise<{ title: string, durationMinutes: number | null, description: string, imageUrl: string | null, cast: string | null }>}
  */
 export async function scrapeShowDetails(browser, url) {
   const page = await browser.newPage();
@@ -302,6 +302,8 @@ export async function scrapeShowDetails(browser, url) {
     return { title, durationMinutes, description, cast };
   });
 
+  data.cast = data.cast || null;
+
   // ── Image URL (using shared extraction logic) ──
   // extractImageFromPage must be passed as the pageFunction (not as a
   // serialised argument) because Puppeteer cannot serialise functions.
@@ -434,3 +436,6 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
   result.events = processed;
   return result;
 }
+
+// Alias for consistent naming across all theatre modules.
+export { fetchRepertoire as fetchShows };

@@ -171,7 +171,7 @@ const crewKeywords = [
  *
  * @param {import('puppeteer').Browser} browser
  * @param {string} url  Full URL of the show page
- * @returns {Promise<{title: string, durationMinutes: number|null, description: string, imageUrl: string|null, cast: string}>}
+ * @returns {Promise<{title: string, durationMinutes: number|null, description: string, imageUrl: string|null, cast: string|null}>}
  */
 export async function scrapeShowDetails(browser, url) {
   const page = await browser.newPage();
@@ -301,6 +301,7 @@ export async function scrapeShowDetails(browser, url) {
   // Parse duration in Node context
   data.durationMinutes = parseLessinDuration(data.durationText);
   delete data.durationText;
+  data.cast = data.cast || null;
 
   const imageUrl = await page.evaluate(extractImageFromPage);
   if (imageUrl) {
@@ -448,7 +449,7 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
           hour: timeMatch ? timeMatch[1] : "",
           note,
           href: href || null,
-          rawText: text.slice(0, 200),
+          rawText: text.slice(0, 250),
         });
       }
     }
@@ -537,7 +538,7 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
             date: `${year}-${month}-${day}`,
             hour: timeMatch ? timeMatch[1] : "",
             note,
-            rawText: text.slice(0, 200),
+            rawText: text.slice(0, 250),
           });
         }
       }

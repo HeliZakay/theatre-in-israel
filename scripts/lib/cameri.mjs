@@ -689,7 +689,7 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
         date: `${year}-${month}-${day}`,
         hour: timeText || "",
         note: subtitleEl ? subtitleEl.textContent.trim() : null,
-        rawText: li.textContent?.trim().slice(0, 200) || "",
+        rawText: li.textContent?.trim().slice(0, 250) || "",
       });
     }
 
@@ -716,7 +716,7 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
               text.includes("כתוביות") || text.includes("subtitles")
                 ? "English subtitles"
                 : null,
-            rawText: text.slice(0, 200),
+            rawText: text.slice(0, 250),
           });
         }
       }
@@ -778,3 +778,6 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
   await page.close();
   return result;
 }
+
+// Alias for consistent naming across all theatre modules.
+export { fetchSchedule as fetchShows };
