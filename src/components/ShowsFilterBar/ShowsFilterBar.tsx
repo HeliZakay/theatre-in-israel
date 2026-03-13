@@ -118,6 +118,21 @@ export default function ShowsFilterBar({
           }}
           options={theatreOptions}
         />
+        <label className={styles.filterLabel} htmlFor="sort">
+          מיון
+        </label>
+        <AppSelect
+          id="sort"
+          name="sort"
+          className={styles.select}
+          ariaLabel="מיון"
+          value={optimisticFilters.sort}
+          onValueChange={(value) => applyFilterUpdate({ sort: value })}
+          options={[
+            { value: "rating", label: "דירוג גבוה" },
+            { value: "reviews", label: "הכי הרבה ביקורות" },
+          ]}
+        />
       </div>
       <div className={styles.chipRow}>
         <span className={styles.filterLabel}>ז&apos;אנר</span>
