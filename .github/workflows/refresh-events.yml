@@ -27,53 +27,8 @@ jobs:
       - name: Generate Prisma client
         run: npx prisma generate
 
-      - name: Scrape Cameri events
-        run: node scripts/scrape-all-cameri-events.mjs --json prisma/data/events.json
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-
-      - name: Scrape Lessin events
-        run: node scripts/scrape-all-lessin-events.mjs --json prisma/data/events-lessin.json
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-
-      - name: Scrape Hebrew Theatre events
-        run: node scripts/scrape-all-hebrew-theatre-events.mjs --json prisma/data/events-hebrew-theatre.json
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-
-      - name: Scrape Khan Theatre events
-        run: node scripts/scrape-all-khan-events.mjs --json prisma/data/events-khan.json
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-
-      - name: Scrape Gesher Theatre events
-        run: node scripts/scrape-all-gesher-events.mjs --json prisma/data/events-gesher.json
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-
-      - name: Scrape Haifa Theatre events
-        run: node scripts/scrape-all-haifa-theatre-events.mjs --json prisma/data/events-haifa-theatre.json
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-
-      - name: Scrape Tmuna Theatre events
-        run: node scripts/scrape-all-tmuna-theatre-events.mjs --json prisma/data/events-tmuna-theatre.json
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-
-      - name: Scrape Beer Sheva Theatre events
-        run: node scripts/scrape-all-beer-sheva-theatre-events.mjs --json prisma/data/events-beer-sheva-theatre.json
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-
-      - name: Scrape Tzavta Theatre events
-        run: node scripts/scrape-all-tzavta-theatre-events.mjs --json prisma/data/events-tzavta-theatre.json
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-
-      - name: Scrape Habima Theatre events
-        run: node scripts/scrape-all-habima-theatre-events.mjs --json prisma/data/events-habima-theatre.json
+      - name: Scrape all theatre events
+        run: node scripts/scrape-all-events.mjs
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
@@ -81,7 +36,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add prisma/data/events.json prisma/data/events-lessin.json prisma/data/events-hebrew-theatre.json prisma/data/events-khan.json prisma/data/events-gesher.json prisma/data/events-haifa-theatre.json prisma/data/events-tmuna-theatre.json prisma/data/events-beer-sheva-theatre.json prisma/data/events-tzavta-theatre.json prisma/data/events-habima-theatre.json
+          git add prisma/data/events*.json
           if git diff --staged --quiet; then
             echo "No changes to events"
           else
