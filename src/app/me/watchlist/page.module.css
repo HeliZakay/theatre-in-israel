@@ -27,11 +27,17 @@
 }
 
 .gridItem {
-  display: grid;
-  gap: 8px;
+  position: relative;
+}
+
+.gridItem article {
+  padding-bottom: 60px;
 }
 
 .removeBtn {
+  position: absolute;
+  bottom: 12px;
+  inset-inline-end: 12px;
   border-radius: 10px;
   border: 1px solid rgba(26, 26, 26, 0.2);
   padding: 10px 16px;
@@ -42,6 +48,7 @@
   cursor: pointer;
   font-family: inherit;
   width: fit-content;
+  z-index: 1;
 }
 
 .removeBtn:disabled {
