@@ -88,3 +88,10 @@ jobs:
             git commit -m "chore: refresh Cameri + Lessin + Hebrew Theatre + Khan + Gesher + Haifa Theatre + Tmuna Theatre + Beer Sheva Theatre + Tzavta Theatre + Habima Theatre events [$(date -u +%Y-%m-%d)]"
             git push
           fi
+
+      - name: Send events report email
+        if: always()
+        continue-on-error: true
+        run: node scripts/send-events-report.mjs
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
