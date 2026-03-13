@@ -100,14 +100,34 @@ async function main() {
   // ── 3. Match listing titles to DB shows ──
   const matched = [];
   const unmatched = [];
+  const skippedOwnTheatre = [];
+
+  // Beer Sheva Theatre's own shows are already handled by the dedicated
+  // theatre scraper (with correct per-event venues for touring dates).
+  // The venue scraper only needs shows from OTHER theatre companies.
+  const SKIP_THEATRE = "תיאטרון באר שבע";
 
   for (const item of listings) {
     const result = matchVenueTitle(item.title, allDbShows);
     if (result) {
-      matched.push({ ...result, title: item.title, detailUrl: item.detailUrl });
+      if (result.theatre === SKIP_THEATRE) {
+        skippedOwnTheatre.push(item.title);
+      } else {
+        matched.push({ ...result, title: item.title, detailUrl: item.detailUrl });
+      }
     } else {
       unmatched.push(item.title);
     }
+  }
+
+  if (skippedOwnTheatre.length > 0) {
+    console.log(
+      dim(`  Skipped ${skippedOwnTheatre.length} own-theatre listing(s) (covered by theatre scraper):`),
+    );
+    for (const t of skippedOwnTheatre) {
+      console.log(dim(`    - ${bidi(t)}`));
+    }
+    console.log("");
   }
 
   if (unmatched.length > 0) {
@@ -288,6 +308,9 @@ async function main() {
   }
   if (totals.failed > 0) {
     console.log(red(`  Shows failed:     ${totals.failed}`));
+  }
+  if (skippedOwnTheatre.length > 0) {
+    console.log(dim(`  Own-theatre skip: ${skippedOwnTheatre.length}`));
   }
   if (unmatched.length > 0) {
     console.log(yellow(`  Listings skipped: ${unmatched.length}`));
