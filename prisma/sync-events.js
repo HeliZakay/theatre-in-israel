@@ -368,6 +368,7 @@ const EVENT_FILES = [
   { file: "events-beer-sheva-theatre.json", label: "Beer Sheva Theatre" },
   { file: "events-tzavta-theatre.json", label: "Tzavta Theatre" },
   { file: "events-habima-theatre.json", label: "Habima Theatre" },
+  { file: "events-tomix.json", label: "toMix Theatre" },
   { file: "events-nes-ziona.json", label: "Nes Ziona Venue" },
   { file: "events-ashdod.json", label: "Ashdod Venue" },
   { file: "events-beer-sheva-venue.json", label: "Beer Sheva Venue" },

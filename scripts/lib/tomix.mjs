@@ -8,12 +8,56 @@
 
 import { fixDoubleProtocol, extractImageFromPage } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
+import { resolveVenueCity } from "./venues.mjs";
+import { parseShortYear } from "./date.mjs";
 
 // ── Constants ──────────────────────────────────────────────────
 
 export const TOMIX_THEATRE = "תיאטרון toMix";
 const LISTING_URL =
   "https://www.to-mix.co.il/product-category/tomixtheater/?page=1";
+
+// ── Title prefixes to strip ────────────────────────────────────
+
+const TITLE_PREFIXES = [/^המחזמר\s+/];
+
+/**
+ * Clean a toMix listing title:
+ * - Strip known prefixes (e.g. "המחזמר")
+ * - Strip subtitles after " - " or " | "
+ * - Strip trailing "| לכרטיסים" etc.
+ * - If the first line is a producer credit (ends with ":"),
+ *   take the next line and strip surrounding quotes.
+ *
+ * @param {string} raw — raw first-line text from hover overlay
+ * @param {string} fullText — full hover overlay text
+ * @returns {string}
+ */
+function cleanListingTitle(raw, fullText) {
+  let title = raw;
+
+  // If the first line ends with ":" (producer credit), use the next line
+  if (title.endsWith(":") || !title) {
+    const lines = fullText.split("\n").map((l) => l.trim()).filter(Boolean);
+    const nextLine = title.endsWith(":")
+      ? lines.find((l) => l !== title)
+      : lines[0];
+    if (nextLine) {
+      title = nextLine.replace(/^["״"]+|["״"]+$/g, ""); // strip quotes
+    }
+  }
+
+  // Strip known prefixes
+  for (const re of TITLE_PREFIXES) {
+    title = title.replace(re, "");
+  }
+
+  // Strip subtitle after " - " or " | " (keep the main title)
+  title = title.replace(/\s+[-–—]\s+.+$/, "");
+  title = title.replace(/\s*\|.+$/, "");
+
+  return title.trim();
+}
 
 // ── Shows page scraper ─────────────────────────────────────────
 
@@ -22,7 +66,7 @@ const LISTING_URL =
  * Returns an array of `{ title, url }` sorted alphabetically in Hebrew.
  *
  * Cards are `div.boxitem[data-url]` with the show URL in `data-url`.
- * Title is the first line of `.boxitem_content_hover` text.
+ * Title is extracted from `.boxitem_content_hover` text and cleaned.
  *
  * @param {import("puppeteer").Browser} browser
  * @returns {Promise<Array<{ title: string, url: string }>>}
@@ -44,21 +88,27 @@ export async function fetchShows(browser) {
       if (!url || !url.includes("/product/") || seenUrls.has(url)) continue;
       seenUrls.add(url);
 
-      // Title is the first paragraph of the hover overlay
       const hoverEl = card.querySelector(".boxitem_content_hover");
-      const hoverText = hoverEl?.innerText?.trim() || "";
-      const title = hoverText.split("\n")[0]?.trim() || "";
+      const fullText = hoverEl?.innerText?.trim() || "";
+      const firstLine = fullText.split("\n")[0]?.trim() || "";
 
-      if (!title) continue;
-
-      results.push({ title, url });
+      results.push({ rawTitle: firstLine, fullText, url });
     }
 
     return results;
   });
 
   await page.close();
-  return shows.sort((a, b) => a.title.localeCompare(b.title, "he"));
+
+  // Clean titles outside browser context
+  const cleaned = shows
+    .map((s) => ({
+      title: cleanListingTitle(s.rawTitle, s.fullText),
+      url: s.url,
+    }))
+    .filter((s) => s.title);
+
+  return cleaned.sort((a, b) => a.title.localeCompare(b.title, "he"));
 }
 
 // ── Detail page scraper ────────────────────────────────────────
@@ -289,4 +339,147 @@ export async function scrapeShowDetails(browser, url) {
 
   await page.close();
   return data;
+}
+
+// ── Events scraper ─────────────────────────────────────────────
+
+/**
+ * Scrape performance dates/times from a toMix show page.
+ *
+ * Events are loaded via an eventer.co.il iframe embedded on each show page.
+ * The iframe URL is `https://www.eventer.co.il/user/tomix?tag=<tag>`.
+ * The eventer page renders a table with `tr.ticketItem` rows containing:
+ *   - td[0]: venue name (may include ", city" suffix)
+ *   - td[1]: "יום DD/MM/YY"
+ *   - td[2]: "HH:MM"
+ *   - <a>:   ticket link
+ *
+ * @param {import("puppeteer").Browser} browser
+ * @param {string} url — toMix show page URL
+ * @param {{ debug?: boolean }} [options]
+ * @returns {Promise<{
+ *   events: Array<{ date: string, hour: string, venueName: string, venueCity: string, ticketUrl: string|null }>,
+ *   debugHtml?: string
+ * }>}
+ */
+export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
+  const page = await browser.newPage();
+  await setupRequestInterception(page);
+
+  // Load the show page with ?eventbuzz=true to trigger the eventer iframe
+  const showUrl = url.includes("eventbuzz")
+    ? url
+    : `${url}${url.includes("?") ? "&" : "?"}eventbuzz=true`;
+
+  await page.goto(showUrl, { waitUntil: "networkidle2", timeout: 60_000 });
+
+  // Find the eventer iframe src
+  const eventerUrl = await page.evaluate(() => {
+    const iframe = document.querySelector("iframe.resizableFrame");
+    return iframe?.src || "";
+  });
+
+  await page.close();
+
+  const result = { events: [], debugHtml: null };
+
+  if (!eventerUrl || !eventerUrl.includes("eventer.co.il")) {
+    return result;
+  }
+
+  // Navigate directly to the eventer page to scrape events
+  const eventerPage = await browser.newPage();
+  await setupRequestInterception(eventerPage);
+
+  await eventerPage.goto(eventerUrl, {
+    waitUntil: "networkidle2",
+    timeout: 60_000,
+  });
+
+  const scraped = await eventerPage.evaluate((debugMode) => {
+    const output = { events: [], debugHtml: null };
+
+    const rows = document.querySelectorAll("tr.ticketItem");
+    for (const tr of rows) {
+      const tds = tr.querySelectorAll("td");
+      if (tds.length < 3) continue;
+
+      const rawVenue = (tds[0]?.textContent || "").trim();
+      const rawDate = (tds[1]?.textContent || "").trim();
+      const rawTime = (tds[2]?.textContent || "").trim();
+      const link = tr.querySelector("a[href]");
+      const ticketUrl = link?.getAttribute("href") || null;
+
+      // Parse date: "יום DD/MM/YY"
+      const dateMatch = rawDate.match(/(\d{1,2})\/(\d{1,2})\/(\d{2,4})/);
+      if (!dateMatch) continue;
+
+      const day = dateMatch[1];
+      const month = dateMatch[2];
+      const rawYear = dateMatch[3];
+
+      // Parse time: "HH:MM"
+      const timeMatch = rawTime.match(/(\d{1,2}:\d{2})/);
+      const hour = timeMatch ? timeMatch[1] : "";
+
+      output.events.push({
+        day: parseInt(day, 10),
+        month: parseInt(month, 10),
+        rawYear,
+        hour,
+        rawVenue,
+        ticketUrl,
+      });
+    }
+
+    if (debugMode) {
+      output.debugHtml = document.body.innerHTML.slice(0, 5000);
+    }
+
+    return output;
+  }, debug);
+
+  await eventerPage.close();
+
+  // Process events in Node context (year parsing, venue resolution)
+  const seen = new Map();
+
+  for (const e of scraped.events) {
+    const year =
+      e.rawYear.length >= 4
+        ? parseInt(e.rawYear, 10)
+        : parseShortYear(e.rawYear);
+
+    const dateStr = `${year}-${String(e.month).padStart(2, "0")}-${String(e.day).padStart(2, "0")}`;
+
+    // Venue: eventer often uses "VenueName, City" format
+    let venueName = e.rawVenue;
+    let venueCity = "";
+
+    const commaIdx = e.rawVenue.lastIndexOf(",");
+    if (commaIdx !== -1) {
+      venueName = e.rawVenue.slice(0, commaIdx).trim();
+      venueCity = e.rawVenue.slice(commaIdx + 1).trim();
+    }
+
+    // Fall back to resolveVenueCity if no city from comma split
+    if (!venueCity) {
+      venueCity = resolveVenueCity(venueName);
+    }
+
+    const key = `${dateStr}|${e.hour}|${venueName}`;
+    if (!seen.has(key)) {
+      seen.set(key, true);
+      result.events.push({
+        date: dateStr,
+        hour: e.hour,
+        venueName,
+        venueCity,
+        ticketUrl: e.ticketUrl,
+      });
+    }
+  }
+
+  result.debugHtml = scraped.debugHtml;
+  return result;
 }

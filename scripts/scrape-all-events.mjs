@@ -30,6 +30,7 @@ const SCRAPERS = [
   { label: "Beer Sheva",      script: "scrape-all-beer-sheva-theatre-events.mjs",  json: "prisma/data/events-beer-sheva-theatre.json" },
   { label: "Tzavta",          script: "scrape-all-tzavta-theatre-events.mjs",      json: "prisma/data/events-tzavta-theatre.json" },
   { label: "Habima",          script: "scrape-all-habima-theatre-events.mjs",       json: "prisma/data/events-habima-theatre.json" },
+  { label: "toMix",           script: "scrape-all-tomix-events.mjs",               json: "prisma/data/events-tomix.json" },
   // Venue scrapers
   { label: "Nes Ziona",       script: "scrape-all-nes-ziona-events.mjs",            json: "prisma/data/events-nes-ziona.json" },
   { label: "Ashdod",          script: "scrape-all-ashdod-events.mjs",              json: "prisma/data/events-ashdod.json" },
