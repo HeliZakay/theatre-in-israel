@@ -76,6 +76,74 @@ async function resolveShowIds(prisma, events) {
 }
 
 // ---------------------------------------------------------------------------
+// Batched INSERT ... ON CONFLICT DO NOTHING for events
+// ---------------------------------------------------------------------------
+async function batchInsertEvents(prisma, rows, batchSize = 200) {
+  let inserted = 0;
+  let failed = 0;
+
+  for (let i = 0; i < rows.length; i += batchSize) {
+    const batch = rows.slice(i, i + batchSize);
+    try {
+      const values = batch
+        .map((_, idx) => {
+          const off = idx * 4;
+          return `($${off + 1}, $${off + 2}, $${off + 3}::date, $${off + 4})`;
+        })
+        .join(", ");
+
+      const params = batch.flatMap((r) => [
+        r.showId,
+        r.venueId,
+        r.date,
+        r.hour,
+      ]);
+
+      const sql = `INSERT INTO "Event" ("showId", "venueId", "date", "hour")
+        VALUES ${values}
+        ON CONFLICT ("showId", "venueId", "date", "hour") DO NOTHING`;
+
+      const result = await prisma.$executeRawUnsafe(sql, ...params);
+      inserted += result;
+    } catch (err) {
+      console.error(
+        `Batch insert failed (rows ${i}–${i + batch.length - 1}), falling back to individual inserts:`,
+        err.message,
+      );
+      for (const row of batch) {
+        try {
+          await prisma.event.upsert({
+            where: {
+              showId_venueId_date_hour: {
+                showId: row.showId,
+                venueId: row.venueId,
+                date: row.date,
+                hour: row.hour,
+              },
+            },
+            create: {
+              showId: row.showId,
+              venueId: row.venueId,
+              date: row.date,
+              hour: row.hour,
+            },
+            update: {},
+          });
+          inserted++;
+        } catch (innerErr) {
+          console.error(
+            `  Failed: showId=${row.showId}, date=${row.date}, hour=${row.hour}: ${innerErr.message}`,
+          );
+          failed++;
+        }
+      }
+    }
+  }
+
+  return { inserted, failed };
+}
+
+// ---------------------------------------------------------------------------
 // 2. Reusable sync function — reads one JSON file and upserts its events
 // ---------------------------------------------------------------------------
 async function syncFile(prisma, filePath) {
@@ -153,39 +221,18 @@ async function syncFile(prisma, filePath) {
     );
   }
 
-  let synced = 0;
+  const rows = data.events.map((event) => ({
+    showId: event.showId,
+    venueId: venue.id,
+    date: new Date(event.date).toISOString().slice(0, 10),
+    hour: event.hour,
+  }));
 
-  // Upsert events
-  for (const event of data.events) {
-    try {
-      await prisma.event.upsert({
-        where: {
-          showId_venueId_date_hour: {
-            showId: event.showId,
-            venueId: venue.id,
-            date: new Date(event.date),
-            hour: event.hour,
-          },
-        },
-        create: {
-          showId: event.showId,
-          venueId: venue.id,
-          date: new Date(event.date),
-          hour: event.hour,
-        },
-        update: {},
-      });
-      synced++;
-    } catch (err) {
-      console.error(
-        `Failed to upsert event (showId=${event.showId}, date=${event.date}, hour=${event.hour}):`,
-        err.message,
-      );
-    }
-  }
+  const { inserted, failed } = await batchInsertEvents(prisma, rows);
+  const synced = rows.length - failed;
 
   console.log(
-    `Synced ${synced} events for venue ${data.venue.name} from ${path.basename(filePath)}`,
+    `Synced ${synced} events for venue ${data.venue.name} from ${path.basename(filePath)} (${inserted} new, ${synced - inserted} existing)`,
   );
   return synced;
 }
@@ -283,39 +330,22 @@ async function syncTouringFile(prisma, filePath) {
     console.log(`  Removed ${staleIds.length} stale touring events`);
   }
 
-  // ── 4. Upsert events ──
-  let synced = 0;
-  for (const ev of data.events) {
+  // ── 4. Batch insert events ──
+  const rows = data.events.map((ev) => {
     const venue = venueCache.get(`${ev.venueName}|${ev.venueCity}`);
-    try {
-      await prisma.event.upsert({
-        where: {
-          showId_venueId_date_hour: {
-            showId: ev.showId,
-            venueId: venue.id,
-            date: new Date(ev.date),
-            hour: ev.hour,
-          },
-        },
-        create: {
-          showId: ev.showId,
-          venueId: venue.id,
-          date: new Date(ev.date),
-          hour: ev.hour,
-        },
-        update: {},
-      });
-      synced++;
-    } catch (err) {
-      console.error(
-        `Failed to upsert touring event (showId=${ev.showId}, venue=${ev.venueName}, date=${ev.date}, hour=${ev.hour}):`,
-        err.message,
-      );
-    }
-  }
+    return {
+      showId: ev.showId,
+      venueId: venue.id,
+      date: new Date(ev.date).toISOString().slice(0, 10),
+      hour: ev.hour,
+    };
+  });
+
+  const { inserted, failed } = await batchInsertEvents(prisma, rows);
+  const synced = rows.length - failed;
 
   console.log(
-    `Synced ${synced} touring events from ${path.basename(filePath)} (${venueCache.size} venues)`,
+    `Synced ${synced} touring events from ${path.basename(filePath)} (${venueCache.size} venues, ${inserted} new, ${synced - inserted} existing)`,
   );
   return synced;
 }
