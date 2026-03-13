@@ -30,6 +30,8 @@ const SCRAPERS = [
   { label: "Beer Sheva",      script: "scrape-all-beer-sheva-theatre-events.mjs",  json: "prisma/data/events-beer-sheva-theatre.json" },
   { label: "Tzavta",          script: "scrape-all-tzavta-theatre-events.mjs",      json: "prisma/data/events-tzavta-theatre.json" },
   { label: "Habima",          script: "scrape-all-habima-theatre-events.mjs",       json: "prisma/data/events-habima-theatre.json" },
+  // Venue scrapers
+  { label: "Nes Ziona",       script: "scrape-all-nes-ziona-events.mjs",            json: "prisma/data/events-nes-ziona.json" },
 ];
 
 // ── CLI args ────────────────────────────────────────────────────

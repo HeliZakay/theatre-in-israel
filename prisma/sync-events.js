@@ -217,30 +217,48 @@ async function syncEvents(prisma, filePath) {
     }),
   );
 
-  // Delete stale events for this theatre's shows that are no longer in the JSON.
-  // Scoped by theatre (not venue) so that: (1) shows removed entirely from the
-  // scrape get cleaned up, and (2) other theatres' events at this venue are not
-  // accidentally deleted.
+  // Delete stale events that are no longer in the JSON.
+  // Two strategies depending on the source:
+  //   - Theatre scrapers (default): scoped by theatre — expands to all shows from
+  //     the same theatres so that shows removed from the scrape get cleaned up.
+  //   - Venue scrapers (venueSource: true): scoped by venue — only deletes events
+  //     at this specific venue for the shows in the JSON, preventing accidental
+  //     deletion of events created by theatre-company scrapers at other venues.
   const jsonShowIds = [...new Set(data.events.map((e) => e.showId))];
-  const resolvedShows = await prisma.show.findMany({
-    where: { id: { in: jsonShowIds } },
-    select: { id: true, theatre: true },
-  });
-  const theatreNames = [...new Set(resolvedShows.map((s) => s.theatre))];
-  const allTheatreShows = theatreNames.length > 0
-    ? await prisma.show.findMany({
-        where: { theatre: { in: theatreNames } },
-        select: { id: true },
-      })
-    : [];
-  const allShowIds = [...new Set([
-    ...jsonShowIds,
-    ...allTheatreShows.map((s) => s.id),
-  ])];
-  const existingEvents = await prisma.event.findMany({
-    where: { showId: { in: allShowIds } },
-    select: { id: true, showId: true, venueId: true, date: true, hour: true },
-  });
+  let existingEvents;
+
+  if (data.venueSource) {
+    // Venue-scoped: only look at events at this venue for the shows in the JSON
+    const venueIds = [...venueCache.values()].map((v) => v.id);
+    existingEvents = await prisma.event.findMany({
+      where: {
+        showId: { in: jsonShowIds },
+        venueId: { in: venueIds },
+      },
+      select: { id: true, showId: true, venueId: true, date: true, hour: true },
+    });
+  } else {
+    // Theatre-scoped: expand to all shows from the same theatres
+    const resolvedShows = await prisma.show.findMany({
+      where: { id: { in: jsonShowIds } },
+      select: { id: true, theatre: true },
+    });
+    const theatreNames = [...new Set(resolvedShows.map((s) => s.theatre))];
+    const allTheatreShows = theatreNames.length > 0
+      ? await prisma.show.findMany({
+          where: { theatre: { in: theatreNames } },
+          select: { id: true },
+        })
+      : [];
+    const allShowIds = [...new Set([
+      ...jsonShowIds,
+      ...allTheatreShows.map((s) => s.id),
+    ])];
+    existingEvents = await prisma.event.findMany({
+      where: { showId: { in: allShowIds } },
+      select: { id: true, showId: true, venueId: true, date: true, hour: true },
+    });
+  }
 
   // Wipe protection: if the scraped event count is suspiciously low compared
   // to what already exists in the DB, skip deletion to avoid data loss from
@@ -305,6 +323,7 @@ const EVENT_FILES = [
   { file: "events-beer-sheva-theatre.json", label: "Beer Sheva Theatre" },
   { file: "events-tzavta-theatre.json", label: "Tzavta Theatre" },
   { file: "events-habima-theatre.json", label: "Habima Theatre" },
+  { file: "events-nes-ziona.json", label: "Nes Ziona Venue" },
 ];
 
 async function main() {
