@@ -206,6 +206,16 @@ const VENUE_ALIASES = new Map([
 
   // Herzliya — typo אומנויות → אמנויות (different from existing אומנוית typo)
   ["היכל אומנויות הבמה הרצליה|הרצליה", { name: "היכל אמנויות הבמה הרצליה", city: "הרצליה" }],
+
+  // Beit HaChayal — dash variant → canonical without dash
+  ["בית החייל - תל אביב|תל אביב", { name: "בית החייל תל אביב", city: "תל אביב" }],
+
+  // Heichal HaTarbut — bare name → היכל התרבות בת ים
+  ["היכל התרבות|בת ים", { name: "היכל התרבות בת ים", city: "בת ים" }],
+
+  // Tzavta — short name → תיאטרון צוותא
+  ["צוותא|תל אביב", { name: "תיאטרון צוותא", city: "תל אביב" }],
+  ["צוותא|תל אביב-יפו", { name: "תיאטרון צוותא", city: "תל אביב" }],
 ]);
 
 function normalizeVenue(name, city) {
