@@ -38,6 +38,7 @@ const SCRAPERS = [
   { label: "Petah Tikva",    script: "scrape-all-petah-tikva-events.mjs",     json: "prisma/data/events-petah-tikva.json" },
   { label: "Or Akiva",       script: "scrape-all-or-akiva-events.mjs",       json: "prisma/data/events-or-akiva.json" },
   { label: "Theatron HaZafon", script: "scrape-all-theatron-hazafon-events.mjs", json: "prisma/data/events-theatron-hazafon.json" },
+  { label: "Kfar Saba",       script: "scrape-all-kfar-saba-events.mjs",       json: "prisma/data/events-kfar-saba.json" },
 ];
 
 // ── CLI args ────────────────────────────────────────────────────

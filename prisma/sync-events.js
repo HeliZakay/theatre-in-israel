@@ -330,6 +330,7 @@ const EVENT_FILES = [
   { file: "events-petah-tikva.json", label: "Petah Tikva Venue" },
   { file: "events-or-akiva.json", label: "Or Akiva Venue" },
   { file: "events-theatron-hazafon.json", label: "Theatron HaZafon Venue" },
+  { file: "events-kfar-saba.json", label: "Kfar Saba Venue" },
 ];
 
 async function main() {
