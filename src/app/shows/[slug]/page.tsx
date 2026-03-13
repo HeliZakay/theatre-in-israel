@@ -413,7 +413,7 @@ export default async function ShowPage({
 
       {sameTheatreShows.length > 0 && (
         <ShowsSection
-          title={`עוד הצגות ב${show.theatre}`}
+          title={`עוד הצגות של ${show.theatre}`}
           shows={sameTheatreShows}
           linkHref={`${ROUTES.SHOWS}?theatre=${encodeURIComponent(show.theatre)}`}
           linkText="לכל ההצגות"
