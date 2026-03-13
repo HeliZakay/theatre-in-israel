@@ -37,7 +37,7 @@
 .removeBtn {
   position: absolute;
   bottom: 12px;
-  inset-inline-end: 12px;
+  inset-inline-start: 12px;
   border-radius: 10px;
   border: 1px solid rgba(26, 26, 26, 0.2);
   padding: 10px 16px;

@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { addToWatchlist, removeFromWatchlist } from "@/lib/watchlist";
 import { requireActionAuth } from "@/utils/actionAuth";
 import { checkWatchlistRateLimit } from "@/utils/watchlistRateLimit";
@@ -63,6 +64,7 @@ export async function removeFromWatchlistAction(
       return actionError("ההצגה לא נמצאה ברשימת הצפייה");
     }
 
+    revalidatePath("/me/watchlist");
     return actionSuccess(undefined);
   } catch (err: unknown) {
     return actionError(INTERNAL_ERROR_MESSAGE, err);
