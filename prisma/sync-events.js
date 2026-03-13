@@ -157,11 +157,13 @@ async function batchInsertEvents(prisma, rows, batchSize = 200) {
 const VENUE_ALIASES = new Map([
   // Beit HaChayal Tel Aviv — abbreviated ת"א → full תל אביב
   ['בית החייל ת"א|תל אביב', { name: "בית החייל תל אביב", city: "תל אביב" }],
+  ['בית החייל ת"א|תל אביב-יפו', { name: "בית החייל תל אביב", city: "תל אביב" }],
 
   // Beit Tzioni America — city variant תל אביב-יפו → תל אביב
   ["בית ציוני אמריקה|תל אביב-יפו", { name: "בית ציוני אמריקה", city: "תל אביב" }],
   // Beit Tzioni America — name includes hall specification
   ["בית ציוני אמריקה תל אביב-אולם מאירהוף|תל אביב", { name: "בית ציוני אמריקה", city: "תל אביב" }],
+  ["בית ציוני אמריקה תל אביב-אולם מאירהוף|תל אביב-יפו", { name: "בית ציוני אמריקה", city: "תל אביב" }],
 
   // Heichal Herzliya — typo אומנוית → אמנויות
   ["היכל אומנוית הבמה - הרצליה|הרצליה", { name: "היכל אמנויות הבמה הרצליה", city: "הרצליה" }],
