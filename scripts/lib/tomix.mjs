@@ -379,67 +379,120 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
     return iframe?.src || "";
   });
 
-  await page.close();
-
   const result = { events: [], debugHtml: null };
 
-  if (!eventerUrl || !eventerUrl.includes("eventer.co.il")) {
-    return result;
+  let scraped;
+
+  if (eventerUrl && eventerUrl.includes("eventer.co.il")) {
+    // ── Strategy 1: eventer iframe ──
+    await page.close();
+
+    const eventerPage = await browser.newPage();
+    await setupRequestInterception(eventerPage);
+
+    await eventerPage.goto(eventerUrl, {
+      waitUntil: "networkidle2",
+      timeout: 60_000,
+    });
+
+    scraped = await eventerPage.evaluate((debugMode) => {
+      const output = { events: [], debugHtml: null };
+
+      const rows = document.querySelectorAll("tr.ticketItem");
+      for (const tr of rows) {
+        const tds = tr.querySelectorAll("td");
+        if (tds.length < 3) continue;
+
+        const rawVenue = (tds[0]?.textContent || "").trim();
+        const rawDate = (tds[1]?.textContent || "").trim();
+        const rawTime = (tds[2]?.textContent || "").trim();
+        const link = tr.querySelector("a[href]");
+        const ticketUrl = link?.getAttribute("href") || null;
+
+        // Parse date: "יום DD/MM/YY"
+        const dateMatch = rawDate.match(/(\d{1,2})\/(\d{1,2})\/(\d{2,4})/);
+        if (!dateMatch) continue;
+
+        const day = dateMatch[1];
+        const month = dateMatch[2];
+        const rawYear = dateMatch[3];
+
+        // Parse time: "HH:MM"
+        const timeMatch = rawTime.match(/(\d{1,2}:\d{2})/);
+        const hour = timeMatch ? timeMatch[1] : "";
+
+        output.events.push({
+          day: parseInt(day, 10),
+          month: parseInt(month, 10),
+          rawYear,
+          hour,
+          rawVenue,
+          ticketUrl,
+        });
+      }
+
+      if (debugMode) {
+        output.debugHtml = document.body.innerHTML.slice(0, 5000);
+      }
+
+      return output;
+    }, debug);
+
+    await eventerPage.close();
+  } else {
+    // ── Strategy 2: native #eventTable on the show page ──
+    // Some shows embed a sortable HTML table instead of an eventer iframe.
+    // Columns: venue | DD.MM.YY | day-name | HH:MM | buy-button
+    // Ticket URL is in button onclick="openPopup('url')"
+    scraped = await page.evaluate((debugMode) => {
+      const output = { events: [], debugHtml: null };
+
+      const rows = document.querySelectorAll("#eventTable tbody tr");
+      for (const tr of rows) {
+        const tds = tr.querySelectorAll("td");
+        if (tds.length < 4) continue;
+
+        const rawVenue = (tds[0]?.textContent || "").trim();
+        const rawDate = (tds[1]?.textContent || "").trim();
+        const rawTime = (tds[3]?.textContent || "").trim();
+
+        const btn = tr.querySelector("button[onclick]");
+        const onclickMatch = btn
+          ?.getAttribute("onclick")
+          ?.match(/openPopup\('([^']+)'\)/);
+        const ticketUrl = onclickMatch ? onclickMatch[1] : null;
+
+        // Parse date: "DD.MM.YY"
+        const dateMatch = rawDate.match(/(\d{1,2})\.(\d{1,2})\.(\d{2,4})/);
+        if (!dateMatch) continue;
+
+        const day = dateMatch[1];
+        const month = dateMatch[2];
+        const rawYear = dateMatch[3];
+
+        // Parse time: "HH:MM"
+        const timeMatch = rawTime.match(/(\d{1,2}:\d{2})/);
+        const hour = timeMatch ? timeMatch[1] : "";
+
+        output.events.push({
+          day: parseInt(day, 10),
+          month: parseInt(month, 10),
+          rawYear,
+          hour,
+          rawVenue,
+          ticketUrl,
+        });
+      }
+
+      if (debugMode) {
+        output.debugHtml = document.body.innerHTML.slice(0, 5000);
+      }
+
+      return output;
+    }, debug);
+
+    await page.close();
   }
-
-  // Navigate directly to the eventer page to scrape events
-  const eventerPage = await browser.newPage();
-  await setupRequestInterception(eventerPage);
-
-  await eventerPage.goto(eventerUrl, {
-    waitUntil: "networkidle2",
-    timeout: 60_000,
-  });
-
-  const scraped = await eventerPage.evaluate((debugMode) => {
-    const output = { events: [], debugHtml: null };
-
-    const rows = document.querySelectorAll("tr.ticketItem");
-    for (const tr of rows) {
-      const tds = tr.querySelectorAll("td");
-      if (tds.length < 3) continue;
-
-      const rawVenue = (tds[0]?.textContent || "").trim();
-      const rawDate = (tds[1]?.textContent || "").trim();
-      const rawTime = (tds[2]?.textContent || "").trim();
-      const link = tr.querySelector("a[href]");
-      const ticketUrl = link?.getAttribute("href") || null;
-
-      // Parse date: "יום DD/MM/YY"
-      const dateMatch = rawDate.match(/(\d{1,2})\/(\d{1,2})\/(\d{2,4})/);
-      if (!dateMatch) continue;
-
-      const day = dateMatch[1];
-      const month = dateMatch[2];
-      const rawYear = dateMatch[3];
-
-      // Parse time: "HH:MM"
-      const timeMatch = rawTime.match(/(\d{1,2}:\d{2})/);
-      const hour = timeMatch ? timeMatch[1] : "";
-
-      output.events.push({
-        day: parseInt(day, 10),
-        month: parseInt(month, 10),
-        rawYear,
-        hour,
-        rawVenue,
-        ticketUrl,
-      });
-    }
-
-    if (debugMode) {
-      output.debugHtml = document.body.innerHTML.slice(0, 5000);
-    }
-
-    return output;
-  }, debug);
-
-  await eventerPage.close();
 
   // Process events in Node context (year parsing, venue resolution)
   const seen = new Map();

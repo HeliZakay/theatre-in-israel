@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-03-13T22:53:13.474Z",
+  "scrapedAt": "2026-03-13T23:55:18.055Z",
   "touring": true,
   "events": [
     {
@@ -200,7 +200,7 @@
       "date": "2026-07-29",
       "hour": "20:30",
       "venueName": "אולם מופעים גבעת ברנר",
-      "venueCity": "לא ידוע"
+      "venueCity": "גבעת ברנר"
     },
     {
       "showId": 267,
@@ -272,7 +272,7 @@
       "date": "2026-04-17",
       "hour": "21:00",
       "venueName": "היכל התרבות דרום השרון",
-      "venueCity": "תל אביב"
+      "venueCity": "נווה ירק"
     },
     {
       "showId": 264,
@@ -296,7 +296,7 @@
       "date": "2026-04-25",
       "hour": "21:00",
       "venueName": "אולם מופעים גבעת ברנר",
-      "venueCity": "לא ידוע"
+      "venueCity": "גבעת ברנר"
     },
     {
       "showId": 264,
@@ -344,7 +344,7 @@
       "date": "2026-05-30",
       "hour": "21:00",
       "venueName": "מוזה היכל התרבות חוף הכרמל",
-      "venueCity": "תל אביב"
+      "venueCity": "חוף הכרמל"
     },
     {
       "showId": 264,
@@ -360,7 +360,7 @@
       "date": "2026-03-26",
       "hour": "20:30",
       "venueName": "היכל התרבות חוף הכרמל",
-      "venueCity": "תל אביב"
+      "venueCity": "חוף הכרמל"
     },
     {
       "showId": 270,
@@ -416,7 +416,7 @@
       "date": "2026-04-29",
       "hour": "20:30",
       "venueName": "היכל התרבות מעלה אדומים",
-      "venueCity": "תל אביב"
+      "venueCity": "מעלה אדומים"
     },
     {
       "showId": 270,
@@ -424,7 +424,7 @@
       "date": "2026-04-30",
       "hour": "20:30",
       "venueName": "אולם המופעים יפעת",
-      "venueCity": "לא ידוע"
+      "venueCity": "מועצה אזורית עמק יזרעאל"
     },
     {
       "showId": 270,
@@ -504,7 +504,7 @@
       "date": "2026-06-20",
       "hour": "21:00",
       "venueName": "היכל התרבות כרמיאל",
-      "venueCity": "תל אביב"
+      "venueCity": "כרמיאל"
     },
     {
       "showId": 270,
@@ -520,7 +520,7 @@
       "date": "2026-08-05",
       "hour": "20:30",
       "venueName": "היכל התרבות עכו",
-      "venueCity": "תל אביב"
+      "venueCity": "עכו"
     },
     {
       "showId": 272,
@@ -552,7 +552,7 @@
       "date": "2026-04-11",
       "hour": "21:00",
       "venueName": "סינמה סיטי גלילות",
-      "venueCity": "לא ידוע"
+      "venueCity": "גלילות"
     },
     {
       "showId": 272,
@@ -560,7 +560,7 @@
       "date": "2026-04-16",
       "hour": "20:30",
       "venueName": "היכל התרבות דרום השרון",
-      "venueCity": "תל אביב"
+      "venueCity": "נווה ירק"
     },
     {
       "showId": 272,
@@ -592,7 +592,7 @@
       "date": "2026-04-30",
       "hour": "20:30",
       "venueName": "היכל התרבות בת ים",
-      "venueCity": "תל אביב"
+      "venueCity": "בת ים"
     },
     {
       "showId": 272,
@@ -616,7 +616,7 @@
       "date": "2026-05-09",
       "hour": "21:30",
       "venueName": "אולם מופעים גבעת ברנר",
-      "venueCity": "לא ידוע"
+      "venueCity": "גבעת ברנר"
     },
     {
       "showId": 272,
@@ -624,7 +624,7 @@
       "date": "2026-05-14",
       "hour": "20:30",
       "venueName": "היכל התרבות ראש העין",
-      "venueCity": "תל אביב"
+      "venueCity": "ראש העין"
     },
     {
       "showId": 272,
@@ -648,7 +648,7 @@
       "date": "2026-03-14",
       "hour": "21:00",
       "venueName": "תיאטרון יד למגינים יגור",
-      "venueCity": "לא ידוע"
+      "venueCity": "יגור"
     },
     {
       "showId": 268,
@@ -656,7 +656,7 @@
       "date": "2026-03-20",
       "hour": "21:00",
       "venueName": "אולם מופעים גבעת ברנר",
-      "venueCity": "לא ידוע"
+      "venueCity": "גבעת ברנר"
     },
     {
       "showId": 268,
@@ -688,7 +688,7 @@
       "date": "2026-04-04",
       "hour": "21:00",
       "venueName": "סינמה סיטי גלילות",
-      "venueCity": "לא ידוע"
+      "venueCity": "גלילות"
     },
     {
       "showId": 268,
@@ -696,7 +696,7 @@
       "date": "2026-04-15",
       "hour": "20:30",
       "venueName": "היכל התרבות דרום השרון",
-      "venueCity": "תל אביב"
+      "venueCity": "נווה ירק"
     },
     {
       "showId": 268,
@@ -720,7 +720,7 @@
       "date": "2026-04-25",
       "hour": "21:30",
       "venueName": "אולם המופעים יפעת",
-      "venueCity": "לא ידוע"
+      "venueCity": "מועצה אזורית עמק יזרעאל"
     },
     {
       "showId": 268,
@@ -736,7 +736,7 @@
       "date": "2026-05-02",
       "hour": "21:30",
       "venueName": "היכל התרבות יבנה",
-      "venueCity": "תל אביב"
+      "venueCity": "יבנה"
     },
     {
       "showId": 268,
@@ -744,7 +744,7 @@
       "date": "2026-05-07",
       "hour": "20:30",
       "venueName": "היכל התרבות אריאל",
-      "venueCity": "תל אביב"
+      "venueCity": "אריאל"
     },
     {
       "showId": 268,
@@ -760,7 +760,7 @@
       "date": "2026-05-16",
       "hour": "21:30",
       "venueName": "מתנ\"ס תל מונד",
-      "venueCity": "לא ידוע"
+      "venueCity": "תל מונד"
     },
     {
       "showId": 268,
@@ -768,7 +768,7 @@
       "date": "2026-05-28",
       "hour": "20:30",
       "venueName": "היכל התרבות עפולה",
-      "venueCity": "תל אביב"
+      "venueCity": "עפולה"
     },
     {
       "showId": 268,
@@ -777,6 +777,118 @@
       "hour": "21:00",
       "venueName": "בית ציוני אמריקה",
       "venueCity": "תל אביב"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מצחיקונת-–-Funny-Girl",
+      "date": "2026-03-21",
+      "hour": "17:00",
+      "venueName": "תיאטרון toMix",
+      "venueCity": "אקספו ת\"א"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מצחיקונת-–-Funny-Girl",
+      "date": "2026-03-21",
+      "hour": "21:00",
+      "venueName": "תיאטרון toMix",
+      "venueCity": "אקספו ת\"א"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מצחיקונת-–-Funny-Girl",
+      "date": "2026-03-22",
+      "hour": "20:00",
+      "venueName": "תיאטרון toMix",
+      "venueCity": "אקספו ת\"א"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מצחיקונת-–-Funny-Girl",
+      "date": "2026-03-24",
+      "hour": "20:00",
+      "venueName": "תיאטרון toMix",
+      "venueCity": "אקספו ת\"א"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מצחיקונת-–-Funny-Girl",
+      "date": "2026-03-25",
+      "hour": "20:00",
+      "venueName": "תיאטרון toMix",
+      "venueCity": "אקספו ת\"א"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מצחיקונת-–-Funny-Girl",
+      "date": "2026-03-26",
+      "hour": "20:00",
+      "venueName": "תיאטרון toMix",
+      "venueCity": "אקספו ת\"א"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מצחיקונת-–-Funny-Girl",
+      "date": "2026-03-27",
+      "hour": "12:00",
+      "venueName": "תיאטרון toMix",
+      "venueCity": "אקספו ת\"א"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מצחיקונת-–-Funny-Girl",
+      "date": "2026-03-28",
+      "hour": "21:00",
+      "venueName": "תיאטרון toMix",
+      "venueCity": "אקספו ת\"א"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מצחיקונת-–-Funny-Girl",
+      "date": "2026-03-29",
+      "hour": "20:00",
+      "venueName": "תיאטרון toMix",
+      "venueCity": "אקספו ת\"א"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מצחיקונת-–-Funny-Girl",
+      "date": "2026-03-30",
+      "hour": "20:00",
+      "venueName": "תיאטרון toMix",
+      "venueCity": "אקספו ת\"א"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מצחיקונת-–-Funny-Girl",
+      "date": "2026-05-28",
+      "hour": "20:00",
+      "venueName": "אודיטוריום חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מצחיקונת-–-Funny-Girl",
+      "date": "2026-05-29",
+      "hour": "21:00",
+      "venueName": "אודיטוריום חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מצחיקונת-–-Funny-Girl",
+      "date": "2026-05-30",
+      "hour": "21:00",
+      "venueName": "אודיטוריום חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מצחיקונת-–-Funny-Girl",
+      "date": "2026-06-06",
+      "hour": "21:00",
+      "venueName": "היכל התרבות נס ציונה",
+      "venueCity": "נס ציונה"
     }
   ]
 }
