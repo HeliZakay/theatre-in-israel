@@ -147,6 +147,42 @@ async function batchInsertEvents(prisma, rows, batchSize = 200) {
 }
 
 // ---------------------------------------------------------------------------
+// Venue alias normalization — maps variant venue names/cities to a single
+// canonical form so that different scrapers don't create duplicate venues
+// for the same physical location.
+//
+// Key format: "venueName|venueCity"
+// Value format: { name, city } — the canonical form
+// ---------------------------------------------------------------------------
+const VENUE_ALIASES = new Map([
+  // Beit HaChayal Tel Aviv — abbreviated ת"א → full תל אביב
+  ['בית החייל ת"א|תל אביב', { name: "בית החייל תל אביב", city: "תל אביב" }],
+
+  // Beit Tzioni America — city variant תל אביב-יפו → תל אביב
+  ["בית ציוני אמריקה|תל אביב-יפו", { name: "בית ציוני אמריקה", city: "תל אביב" }],
+  // Beit Tzioni America — name includes hall specification
+  ["בית ציוני אמריקה תל אביב-אולם מאירהוף|תל אביב", { name: "בית ציוני אמריקה", city: "תל אביב" }],
+
+  // Heichal Herzliya — typo אומנוית → אמנויות
+  ["היכל אומנוית הבמה - הרצליה|הרצליה", { name: "היכל אמנויות הבמה הרצליה", city: "הרצליה" }],
+
+  // Heichal HaTheatron Kiryat Motzkin — missing קריית in name
+  ["היכל התיאטרון מוצקין|קריית מוצקין", { name: "היכל התיאטרון קריית מוצקין", city: "קריית מוצקין" }],
+
+  // Heichal Airport City — spelling variant איירפורט and different city name
+  ["היכל התרבות איירפורט סיטי|קריית שדה התעופה", { name: "היכל התרבות אייפורט סיטי", city: "אייפורט סיטי" }],
+
+  // Beit HaAm Rehovot — hebrew-theatre prepends היכל התרבות
+  ["היכל התרבות בית העם רחובות|רחובות", { name: "בית העם רחובות", city: "רחובות" }],
+]);
+
+function normalizeVenue(name, city) {
+  const key = `${name}|${city}`;
+  const alias = VENUE_ALIASES.get(key);
+  return alias || { name, city };
+}
+
+// ---------------------------------------------------------------------------
 // 2. Reusable sync function — handles both fixed-venue and touring formats
 // ---------------------------------------------------------------------------
 /**
@@ -193,6 +229,13 @@ async function syncEvents(prisma, filePath) {
   if (missingVenue) {
     console.log(`No events to sync in ${path.basename(filePath)} (missing venue info)`);
     return 0;
+  }
+
+  // Normalize venue names to canonical form (before upserting)
+  for (const ev of data.events) {
+    const normalized = normalizeVenue(ev.venueName, ev.venueCity);
+    ev.venueName = normalized.name;
+    ev.venueCity = normalized.city;
   }
 
   // Upsert all unique venues
