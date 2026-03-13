@@ -42,7 +42,7 @@ const THEATRE_HINTS = new Map([
 
 // Separators to try, in order (em-dash/en-dash first to avoid breaking
 // hyphenated show titles like "מיס-בלתי-אפשרי – הקאמרי").
-const SEPARATORS = ["–", "—", " - ", ":"];
+const SEPARATORS = ["–", "—", " - ", "- ", " -", "|", ":"];
 
 // ── DB fetching ──────────────────────────────────────────────────
 
@@ -91,12 +91,12 @@ function findMatches(candidate, shows) {
   const norm = normaliseForMatch(candidate);
   if (!norm) return [];
 
-  // Exact match
+  // Exact match (works for any length, including short titles like "אמא")
   const exact = shows.filter((s) => normaliseForMatch(s.title) === norm);
   if (exact.length > 0) return exact;
 
   // Substring: DB title contained in candidate, or candidate contained in DB title.
-  // Require minimum 5 chars to avoid short titles like "אמא" matching unrelated text.
+  // Require minimum 5 chars to avoid short titles matching unrelated text.
   // Also require the matched title to be at least 40% of the longer string to avoid
   // tiny titles matching inside long unrelated titles.
   const MIN_SUBSTRING_LEN = 5;

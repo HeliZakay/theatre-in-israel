@@ -25,28 +25,36 @@ export async function fetchListing(browser) {
   const page = await browser.newPage();
   await setupRequestInterception(page, { allowStylesheets: true });
 
-  await page.goto(LISTING_URL, { waitUntil: "domcontentloaded", timeout: 60_000 });
+  await page.goto(LISTING_URL, { waitUntil: "networkidle2", timeout: 60_000 });
   await page.waitForSelector(".ue_post_grid_item", { timeout: 15_000 });
 
-  // Click "load more" until it disappears
+  // Click "load more" until no new items appear.
+  // Use page.evaluate to click — puppeteer's ElementHandle.click() can
+  // miss when the button's computed visibility depends on stylesheets
+  // that request-interception may have blocked.
   for (let i = 0; i < MAX_LOAD_MORE_CLICKS; i++) {
-    const btn = await page.$(".uc-filter-load-more__link");
-    if (!btn) break;
+    const prevCount = await page.$$eval(".ue_post_grid_item", (els) => els.length);
 
-    const isVisible = await btn.evaluate((el) => {
-      const style = window.getComputedStyle(el);
-      return style.display !== "none" && style.visibility !== "hidden";
+    const clicked = await page.evaluate(() => {
+      const btn = document.querySelector(".uc-filter-load-more__link");
+      if (!btn) return false;
+      const style = window.getComputedStyle(btn);
+      if (style.display === "none") return false;
+      btn.click();
+      return true;
     });
-    if (!isVisible) break;
+    if (!clicked) break;
 
-    await btn.click();
     // Wait for new items to load
     await page.waitForFunction(
-      (prevCount) =>
-        document.querySelectorAll(".ue_post_grid_item").length > prevCount,
+      (prev) =>
+        document.querySelectorAll(".ue_post_grid_item").length > prev,
       { timeout: 10_000 },
-      await page.$$eval(".ue_post_grid_item", (els) => els.length),
+      prevCount,
     ).catch(() => {});
+
+    const newCount = await page.$$eval(".ue_post_grid_item", (els) => els.length);
+    if (newCount === prevCount) break; // no new items — done
 
     // Small pause to let AJAX settle
     await new Promise((r) => setTimeout(r, 500));

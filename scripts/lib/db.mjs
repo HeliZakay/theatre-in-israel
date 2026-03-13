@@ -39,6 +39,8 @@ export function normaliseForMatch(s) {
     .replace(/[\u05F3\u2019\u02BC']/g, "'")
     .replace(/[\u05B0-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7]/g, "") // strip niqqud
     .replace(/[-–—]/g, "-") // normalise dashes
+    .replace(/\u05D5{2,}/g, "\u05D5") // collapse repeated vav (וו→ו) for plene/defective variants
+    .replace(/\u05D9{2,}/g, "\u05D9") // collapse repeated yod (יי→י)
     .replace(/\s+/g, " ")
     .trim();
 }
