@@ -237,7 +237,7 @@ const LOADERS = {
       theatreId: "tomix",
       theatreName: TOMIX_THEATRE,
       theatreConst: TOMIX_THEATRE,
-      theatreLabel: "toMix Theatre (תיאטרון toMix אקספו ת״א)",
+      theatreLabel: "toMix Theatre (תיאטרון toMix)",
       websiteUrl: "to-mix.co.il",
       fetchListing: fetchShows,
       scrapeDetails: scrapeShowDetails,
