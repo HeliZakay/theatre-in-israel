@@ -1320,8 +1320,24 @@ export async function collectMissingShows(config, options = {}) {
   }
 
   // ── Filter to missing shows ───────────────────────────────────
+  // Exact match first, then check for dash-separated subtitle differences.
+  // Listing cleaners may strip subtitles (e.g. "מצחיקונת – Funny Girl" → "מצחיקונת")
+  // while detail-first theatres store the full detail title in the DB.
+  const dashSepRe = /^\s+[-–—]\s+/;
+  const titleInDb = (scraped) => {
+    const norm = normalise(scraped);
+    if (existingSet.has(norm)) return true;
+    for (const dbTitle of existingSet) {
+      const shorter = norm.length <= dbTitle.length ? norm : dbTitle;
+      const longer = norm.length <= dbTitle.length ? dbTitle : norm;
+      if (longer.startsWith(shorter) && dashSepRe.test(longer.slice(shorter.length))) {
+        return true;
+      }
+    }
+    return false;
+  };
   const missingShows = hasDb
-    ? allShows.filter((s) => !existingSet.has(normalise(s.title)))
+    ? allShows.filter((s) => !titleInDb(s.title))
     : allShows;
 
   // ── Filter out previously excluded shows ──────────────────────
