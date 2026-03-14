@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-03-13T03:56:08.910Z",
+  "scrapedAt": "2026-03-14T03:55:44.735Z",
   "touring": true,
   "events": [
     {
@@ -207,6 +207,22 @@
       "showSlug": "לדפוק",
       "date": "2026-03-27",
       "hour": "12:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 194,
+      "showSlug": "מה-שקרה-לנו",
+      "date": "2026-04-08",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 194,
+      "showSlug": "מה-שקרה-לנו",
+      "date": "2026-05-05",
+      "hour": "20:30",
       "venueName": "תיאטרון צוותא",
       "venueCity": "תל אביב"
     },

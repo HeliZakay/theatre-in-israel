@@ -1,225 +1,9 @@
 {
-  "scrapedAt": "2026-03-13T23:55:18.055Z",
+  "scrapedAt": "2026-03-14T03:56:41.734Z",
   "touring": true,
   "events": [
     {
-      "showId": 271,
-      "showSlug": "שעה-של-שקט",
-      "date": "2026-03-14",
-      "hour": "21:00",
-      "venueName": "היכל אומנויות הבמה הרצליה",
-      "venueCity": "הרצליה"
-    },
-    {
-      "showId": 271,
-      "showSlug": "שעה-של-שקט",
-      "date": "2026-04-11",
-      "hour": "21:00",
-      "venueName": "היכל התיאטרון",
-      "venueCity": "קרית מוצקין"
-    },
-    {
-      "showId": 271,
-      "showSlug": "שעה-של-שקט",
-      "date": "2026-04-25",
-      "hour": "21:00",
-      "venueName": "מוזיאון ארץ ישראל - תל אביב",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 265,
-      "showSlug": "אנני",
-      "date": "2026-04-02",
-      "hour": "16:45",
-      "venueName": "תיאטרון toMix אקספו ת״א",
-      "venueCity": "אקספו ת\"א"
-    },
-    {
-      "showId": 265,
-      "showSlug": "אנני",
-      "date": "2026-04-02",
-      "hour": "19:45",
-      "venueName": "תיאטרון toMix אקספו ת״א",
-      "venueCity": "אקספו ת\"א"
-    },
-    {
-      "showId": 265,
-      "showSlug": "אנני",
-      "date": "2026-04-03",
-      "hour": "10:00",
-      "venueName": "תיאטרון toMix אקספו ת״א",
-      "venueCity": "אקספו ת\"א"
-    },
-    {
-      "showId": 265,
-      "showSlug": "אנני",
-      "date": "2026-04-05",
-      "hour": "10:00",
-      "venueName": "תיאטרון toMix אקספו ת״א",
-      "venueCity": "אקספו ת\"א"
-    },
-    {
-      "showId": 265,
-      "showSlug": "אנני",
-      "date": "2026-04-06",
-      "hour": "12:45",
-      "venueName": "תיאטרון toMix אקספו ת״א",
-      "venueCity": "אקספו ת\"א"
-    },
-    {
-      "showId": 267,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-04-08",
-      "hour": "17:30",
-      "venueName": "המשכן לאמנויות הבמה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 267,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-04-08",
-      "hour": "21:00",
-      "venueName": "המשכן לאמנויות הבמה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 267,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-04-11",
-      "hour": "21:30",
-      "venueName": "היכל התרבות פתח תקווה",
-      "venueCity": "פתח תקווה"
-    },
-    {
-      "showId": 267,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-04-19",
-      "hour": "20:30",
-      "venueName": "בית העם רחובות",
-      "venueCity": "רחובות"
-    },
-    {
-      "showId": 267,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-04-23",
-      "hour": "20:30",
-      "venueName": "היכל התרבות חבל מודיעין",
-      "venueCity": "איירפורט סיטי"
-    },
-    {
-      "showId": 267,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-04-25",
-      "hour": "21:00",
-      "venueName": "היכל התרבות חבל מודיעין",
-      "venueCity": "איירפורט סיטי"
-    },
-    {
-      "showId": 267,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-04-29",
-      "hour": "20:30",
-      "venueName": "אודיטוריום חיפה",
-      "venueCity": "חיפה"
-    },
-    {
-      "showId": 267,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-04-30",
-      "hour": "20:30",
-      "venueName": "אודיטוריום חיפה",
-      "venueCity": "חיפה"
-    },
-    {
-      "showId": 267,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-05-02",
-      "hour": "20:30",
-      "venueName": "היכל התרבות נס ציונה",
-      "venueCity": "נס ציונה"
-    },
-    {
-      "showId": 267,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-05-06",
-      "hour": "20:30",
-      "venueName": "תיאטרון ירושלים",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 267,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-05-07",
-      "hour": "20:30",
-      "venueName": "היכל התרבות ראשון לציון",
-      "venueCity": "ראשון לציון"
-    },
-    {
-      "showId": 267,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-05-08",
-      "hour": "21:00",
-      "venueName": "היכל התרבות ראשון לציון",
-      "venueCity": "ראשון לציון"
-    },
-    {
-      "showId": 267,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-05-30",
-      "hour": "21:30",
-      "venueName": "המשכן לאומנויות הבמה אשדוד",
-      "venueCity": "אשדוד"
-    },
-    {
-      "showId": 267,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-06-11",
-      "hour": "20:30",
-      "venueName": "היכל התרבות כפר סבא",
-      "venueCity": "כפר סבא"
-    },
-    {
-      "showId": 267,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-06-12",
-      "hour": "21:00",
-      "venueName": "היכל התרבות כפר סבא",
-      "venueCity": "כפר סבא"
-    },
-    {
-      "showId": 267,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-06-27",
-      "hour": "21:30",
-      "venueName": "תיאטרון חולון - בית יד לבנים",
-      "venueCity": "חולון"
-    },
-    {
-      "showId": 267,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-07-29",
-      "hour": "20:30",
-      "venueName": "אולם מופעים גבעת ברנר",
-      "venueCity": "גבעת ברנר"
-    },
-    {
-      "showId": 267,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-08-21",
-      "hour": "21:00",
-      "venueName": "היכל אומנויות הבמה הרצליה",
-      "venueCity": "הרצליה"
-    },
-    {
-      "showId": 267,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-08-22",
-      "hour": "21:00",
-      "venueName": "היכל אומנויות הבמה הרצליה",
-      "venueCity": "הרצליה"
-    },
-    {
-      "showId": 264,
+      "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-03-17",
       "hour": "20:30",
@@ -227,7 +11,7 @@
       "venueCity": "ראשון לציון"
     },
     {
-      "showId": 264,
+      "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-03-27",
       "hour": "21:00",
@@ -235,7 +19,7 @@
       "venueCity": "רמת גן"
     },
     {
-      "showId": 264,
+      "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-03-30",
       "hour": "20:30",
@@ -243,15 +27,15 @@
       "venueCity": "רחובות"
     },
     {
-      "showId": 264,
+      "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-03-31",
       "hour": "20:30",
-      "venueName": "בית ציוני אמריקה ת״א",
+      "venueName": "בית ציוני אמריקה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 264,
+      "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-04-09",
       "hour": "20:30",
@@ -259,7 +43,7 @@
       "venueCity": "פתח תקווה"
     },
     {
-      "showId": 264,
+      "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-04-10",
       "hour": "21:00",
@@ -267,7 +51,7 @@
       "venueCity": "גבעתיים"
     },
     {
-      "showId": 264,
+      "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-04-17",
       "hour": "21:00",
@@ -275,7 +59,7 @@
       "venueCity": "נווה ירק"
     },
     {
-      "showId": 264,
+      "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-04-18",
       "hour": "21:00",
@@ -283,7 +67,7 @@
       "venueCity": "נס ציונה"
     },
     {
-      "showId": 264,
+      "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-04-23",
       "hour": "20:30",
@@ -291,7 +75,7 @@
       "venueCity": "ירושלים"
     },
     {
-      "showId": 264,
+      "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-04-25",
       "hour": "21:00",
@@ -299,7 +83,7 @@
       "venueCity": "גבעת ברנר"
     },
     {
-      "showId": 264,
+      "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-04-29",
       "hour": "20:30",
@@ -307,7 +91,7 @@
       "venueCity": "מודיעין"
     },
     {
-      "showId": 264,
+      "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-04-30",
       "hour": "20:30",
@@ -315,7 +99,7 @@
       "venueCity": "נתניה"
     },
     {
-      "showId": 264,
+      "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-05-01",
       "hour": "21:00",
@@ -323,7 +107,7 @@
       "venueCity": "ראשון לציון"
     },
     {
-      "showId": 264,
+      "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-05-16",
       "hour": "21:00",
@@ -331,15 +115,15 @@
       "venueCity": "כפר סבא"
     },
     {
-      "showId": 264,
+      "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-05-23",
       "hour": "21:00",
-      "venueName": "בית ציוני אמריקה ת״א",
+      "venueName": "בית ציוני אמריקה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 264,
+      "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-05-30",
       "hour": "21:00",
@@ -347,7 +131,7 @@
       "venueCity": "חוף הכרמל"
     },
     {
-      "showId": 264,
+      "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-07-02",
       "hour": "20:30",
@@ -355,7 +139,47 @@
       "venueCity": "חיפה"
     },
     {
-      "showId": 270,
+      "showId": 264,
+      "showSlug": "אנני",
+      "date": "2026-04-02",
+      "hour": "16:45",
+      "venueName": "תיאטרון toMix",
+      "venueCity": "אקספו ת\"א"
+    },
+    {
+      "showId": 264,
+      "showSlug": "אנני",
+      "date": "2026-04-02",
+      "hour": "19:45",
+      "venueName": "תיאטרון toMix",
+      "venueCity": "אקספו ת\"א"
+    },
+    {
+      "showId": 264,
+      "showSlug": "אנני",
+      "date": "2026-04-03",
+      "hour": "10:00",
+      "venueName": "תיאטרון toMix",
+      "venueCity": "אקספו ת\"א"
+    },
+    {
+      "showId": 264,
+      "showSlug": "אנני",
+      "date": "2026-04-05",
+      "hour": "10:00",
+      "venueName": "תיאטרון toMix",
+      "venueCity": "אקספו ת\"א"
+    },
+    {
+      "showId": 264,
+      "showSlug": "אנני",
+      "date": "2026-04-06",
+      "hour": "12:45",
+      "venueName": "תיאטרון toMix",
+      "venueCity": "אקספו ת\"א"
+    },
+    {
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-03-26",
       "hour": "20:30",
@@ -363,7 +187,7 @@
       "venueCity": "חוף הכרמל"
     },
     {
-      "showId": 270,
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-03-27",
       "hour": "21:00",
@@ -371,7 +195,7 @@
       "venueCity": "חולון"
     },
     {
-      "showId": 270,
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-03-28",
       "hour": "21:00",
@@ -379,7 +203,7 @@
       "venueCity": "איירפורט סיטי"
     },
     {
-      "showId": 270,
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-04-09",
       "hour": "20:30",
@@ -387,7 +211,7 @@
       "venueCity": "אור עקיבא"
     },
     {
-      "showId": 270,
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-04-16",
       "hour": "20:30",
@@ -395,7 +219,7 @@
       "venueCity": "פתח תקווה"
     },
     {
-      "showId": 270,
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-04-17",
       "hour": "21:00",
@@ -403,7 +227,7 @@
       "venueCity": "כפר סבא"
     },
     {
-      "showId": 270,
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-04-18",
       "hour": "21:00",
@@ -411,7 +235,7 @@
       "venueCity": "מודיעין"
     },
     {
-      "showId": 270,
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-04-29",
       "hour": "20:30",
@@ -419,15 +243,15 @@
       "venueCity": "מעלה אדומים"
     },
     {
-      "showId": 270,
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-04-30",
       "hour": "20:30",
-      "venueName": "אולם המופעים יפעת עמק יזרעאל",
+      "venueName": "אולם המופעים יפעת",
       "venueCity": "מועצה אזורית עמק יזרעאל"
     },
     {
-      "showId": 270,
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-05-02",
       "hour": "21:00",
@@ -435,7 +259,7 @@
       "venueCity": "ראשון לציון"
     },
     {
-      "showId": 270,
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-05-07",
       "hour": "20:30",
@@ -443,7 +267,7 @@
       "venueCity": "נס ציונה"
     },
     {
-      "showId": 270,
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-05-08",
       "hour": "21:00",
@@ -451,15 +275,15 @@
       "venueCity": "הרצליה"
     },
     {
-      "showId": 270,
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-05-09",
       "hour": "21:00",
-      "venueName": "מוזיאון ארץ ישראל - תל אביב",
+      "venueName": "אודיטוריום ע\"ש קלצ'קין",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 270,
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-05-14",
       "hour": "20:30",
@@ -467,15 +291,15 @@
       "venueCity": "בת ים"
     },
     {
-      "showId": 270,
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-05-16",
       "hour": "21:00",
-      "venueName": "בית יד לבנים רעננה",
+      "venueName": "בית יד לבנים",
       "venueCity": "רעננה"
     },
     {
-      "showId": 270,
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-05-23",
       "hour": "21:00",
@@ -483,7 +307,7 @@
       "venueCity": "נתניה"
     },
     {
-      "showId": 270,
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-05-29",
       "hour": "21:30",
@@ -491,7 +315,7 @@
       "venueCity": "כפר סבא"
     },
     {
-      "showId": 270,
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-06-17",
       "hour": "20:30",
@@ -499,7 +323,7 @@
       "venueCity": "רמת גן"
     },
     {
-      "showId": 270,
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-06-20",
       "hour": "21:00",
@@ -507,7 +331,7 @@
       "venueCity": "כרמיאל"
     },
     {
-      "showId": 270,
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-06-24",
       "hour": "20:30",
@@ -515,7 +339,7 @@
       "venueCity": "באר שבע"
     },
     {
-      "showId": 270,
+      "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-08-05",
       "hour": "20:30",
@@ -523,343 +347,239 @@
       "venueCity": "עכו"
     },
     {
-      "showId": 272,
-      "showSlug": "שקרים-קטנים",
-      "date": "2026-03-21",
-      "hour": "21:00",
-      "venueName": "מוזיאון ארץ ישראל - תל אביב",
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-04-08",
+      "hour": "17:30",
+      "venueName": "המשכן לאמנויות הבמה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 272,
-      "showSlug": "שקרים-קטנים",
-      "date": "2026-03-28",
-      "hour": "21:30",
-      "venueName": "תיאטרון היהלום",
-      "venueCity": "רמת גן"
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-04-08",
+      "hour": "21:00",
+      "venueName": "המשכן לאמנויות הבמה",
+      "venueCity": "תל אביב"
     },
     {
-      "showId": 272,
-      "showSlug": "שקרים-קטנים",
-      "date": "2026-04-09",
-      "hour": "20:30",
-      "venueName": "בית יד לבנים רעננה",
-      "venueCity": "רעננה"
-    },
-    {
-      "showId": 272,
-      "showSlug": "שקרים-קטנים",
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
       "date": "2026-04-11",
-      "hour": "21:00",
-      "venueName": "סינמה סיטי גלילות",
-      "venueCity": "גלילות"
-    },
-    {
-      "showId": 272,
-      "showSlug": "שקרים-קטנים",
-      "date": "2026-04-16",
-      "hour": "20:30",
-      "venueName": "היכל התרבות דרום השרון",
-      "venueCity": "נווה ירק"
-    },
-    {
-      "showId": 272,
-      "showSlug": "שקרים-קטנים",
-      "date": "2026-04-18",
-      "hour": "21:30",
-      "venueName": "היכל התרבות כפר סבא",
-      "venueCity": "כפר סבא"
-    },
-    {
-      "showId": 272,
-      "showSlug": "שקרים-קטנים",
-      "date": "2026-04-23",
-      "hour": "20:30",
-      "venueName": "מוזיאון ארץ ישראל - תל אביב",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 272,
-      "showSlug": "שקרים-קטנים",
-      "date": "2026-04-25",
-      "hour": "21:30",
-      "venueName": "היכל התרבות נתניה",
-      "venueCity": "נתניה"
-    },
-    {
-      "showId": 272,
-      "showSlug": "שקרים-קטנים",
-      "date": "2026-04-30",
-      "hour": "20:30",
-      "venueName": "היכל התרבות בת ים",
-      "venueCity": "בת ים"
-    },
-    {
-      "showId": 272,
-      "showSlug": "שקרים-קטנים",
-      "date": "2026-05-02",
-      "hour": "21:30",
-      "venueName": "משכן אמנויות הבמה באר שבע",
-      "venueCity": "באר שבע"
-    },
-    {
-      "showId": 272,
-      "showSlug": "שקרים-קטנים",
-      "date": "2026-05-05",
-      "hour": "20:30",
-      "venueName": "תיאטרון ירושלים",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 272,
-      "showSlug": "שקרים-קטנים",
-      "date": "2026-05-09",
-      "hour": "21:30",
-      "venueName": "אולם מופעים גבעת ברנר",
-      "venueCity": "גבעת ברנר"
-    },
-    {
-      "showId": 272,
-      "showSlug": "שקרים-קטנים",
-      "date": "2026-05-14",
-      "hour": "20:30",
-      "venueName": "היכל התרבות ראש העין",
-      "venueCity": "ראש העין"
-    },
-    {
-      "showId": 272,
-      "showSlug": "שקרים-קטנים",
-      "date": "2026-05-23",
       "hour": "21:30",
       "venueName": "היכל התרבות פתח תקווה",
       "venueCity": "פתח תקווה"
     },
     {
-      "showId": 272,
-      "showSlug": "שקרים-קטנים",
-      "date": "2026-05-30",
-      "hour": "18:00",
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-04-19",
+      "hour": "20:30",
+      "venueName": "בית העם רחובות",
+      "venueCity": "רחובות"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-04-23",
+      "hour": "20:30",
+      "venueName": "היכל התרבות חבל מודיעין",
+      "venueCity": "איירפורט סיטי"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-04-25",
+      "hour": "21:00",
+      "venueName": "היכל התרבות חבל מודיעין",
+      "venueCity": "איירפורט סיטי"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-04-29",
+      "hour": "20:30",
+      "venueName": "אודיטוריום חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-04-30",
+      "hour": "20:30",
+      "venueName": "אודיטוריום חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-05-02",
+      "hour": "20:30",
+      "venueName": "היכל התרבות נס ציונה",
+      "venueCity": "נס ציונה"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-05-06",
+      "hour": "20:30",
+      "venueName": "תיאטרון ירושלים",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-05-07",
+      "hour": "20:30",
       "venueName": "היכל התרבות ראשון לציון",
       "venueCity": "ראשון לציון"
     },
     {
-      "showId": 268,
-      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
-      "date": "2026-03-14",
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-05-08",
       "hour": "21:00",
-      "venueName": "תיאטרון יד למגינים יגור",
-      "venueCity": "יגור"
+      "venueName": "היכל התרבות ראשון לציון",
+      "venueCity": "ראשון לציון"
     },
     {
-      "showId": 268,
-      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
-      "date": "2026-03-20",
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-05-30",
+      "hour": "21:30",
+      "venueName": "המשכן לאומנויות הבמה אשדוד",
+      "venueCity": "אשדוד"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-06-11",
+      "hour": "20:30",
+      "venueName": "היכל התרבות כפר סבא",
+      "venueCity": "כפר סבא"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-06-12",
       "hour": "21:00",
+      "venueName": "היכל התרבות כפר סבא",
+      "venueCity": "כפר סבא"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-06-27",
+      "hour": "21:30",
+      "venueName": "תיאטרון חולון - בית יד לבנים",
+      "venueCity": "חולון"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-07-29",
+      "hour": "20:30",
       "venueName": "אולם מופעים גבעת ברנר",
       "venueCity": "גבעת ברנר"
     },
     {
-      "showId": 268,
-      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
-      "date": "2026-03-21",
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-08-21",
       "hour": "21:00",
-      "venueName": "בית החייל - תל אביב",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 268,
-      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
-      "date": "2026-03-26",
-      "hour": "20:30",
-      "venueName": "בית יד לבנים רמת השרון",
-      "venueCity": "רמת השרון"
-    },
-    {
-      "showId": 268,
-      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
-      "date": "2026-04-03",
-      "hour": "21:00",
-      "venueName": "תיאטרון היהלום",
-      "venueCity": "רמת גן"
-    },
-    {
-      "showId": 268,
-      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
-      "date": "2026-04-04",
-      "hour": "21:00",
-      "venueName": "סינמה סיטי גלילות",
-      "venueCity": "גלילות"
-    },
-    {
-      "showId": 268,
-      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
-      "date": "2026-04-15",
-      "hour": "20:30",
-      "venueName": "היכל התרבות דרום השרון",
-      "venueCity": "נווה ירק"
-    },
-    {
-      "showId": 268,
-      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
-      "date": "2026-04-16",
-      "hour": "20:30",
-      "venueName": "מלון אלמא",
-      "venueCity": "זכרון יעקב"
-    },
-    {
-      "showId": 268,
-      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
-      "date": "2026-04-24",
-      "hour": "21:00",
-      "venueName": "צוותא",
-      "venueCity": "תל אביב-יפו"
-    },
-    {
-      "showId": 268,
-      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
-      "date": "2026-04-25",
-      "hour": "21:30",
-      "venueName": "אולם המופעים יפעת עמק יזרעאל",
-      "venueCity": "מועצה אזורית עמק יזרעאל"
-    },
-    {
-      "showId": 268,
-      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
-      "date": "2026-05-01",
-      "hour": "20:30",
       "venueName": "היכל אומנויות הבמה הרצליה",
       "venueCity": "הרצליה"
     },
     {
-      "showId": 268,
-      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
-      "date": "2026-05-02",
-      "hour": "21:30",
-      "venueName": "היכל התרבות יבנה",
-      "venueCity": "יבנה"
-    },
-    {
-      "showId": 268,
-      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
-      "date": "2026-05-07",
-      "hour": "20:30",
-      "venueName": "היכל התרבות אריאל",
-      "venueCity": "אריאל"
-    },
-    {
-      "showId": 268,
-      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
-      "date": "2026-05-09",
-      "hour": "21:00",
-      "venueName": "תיאטרון גבעתיים",
-      "venueCity": "גבעתיים"
-    },
-    {
-      "showId": 268,
-      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
-      "date": "2026-05-16",
-      "hour": "21:30",
-      "venueName": "מתנ\"ס תל מונד",
-      "venueCity": "תל מונד"
-    },
-    {
-      "showId": 268,
-      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
-      "date": "2026-05-28",
-      "hour": "20:30",
-      "venueName": "היכל התרבות עפולה",
-      "venueCity": "עפולה"
-    },
-    {
-      "showId": 268,
-      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
-      "date": "2026-07-23",
-      "hour": "21:00",
-      "venueName": "בית ציוני אמריקה ת״א",
-      "venueCity": "תל אביב"
-    },
-    {
       "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-08-22",
+      "hour": "21:00",
+      "venueName": "היכל אומנויות הבמה הרצליה",
+      "venueCity": "הרצליה"
+    },
+    {
+      "showId": 265,
       "showSlug": "מצחיקונת-–-Funny-Girl",
       "date": "2026-03-21",
       "hour": "17:00",
-      "venueName": "תיאטרון toMix אקספו ת״א",
+      "venueName": "תיאטרון toMix",
       "venueCity": "אקספו ת\"א"
     },
     {
-      "showId": 266,
+      "showId": 265,
       "showSlug": "מצחיקונת-–-Funny-Girl",
       "date": "2026-03-21",
       "hour": "21:00",
-      "venueName": "תיאטרון toMix אקספו ת״א",
+      "venueName": "תיאטרון toMix",
       "venueCity": "אקספו ת\"א"
     },
     {
-      "showId": 266,
+      "showId": 265,
       "showSlug": "מצחיקונת-–-Funny-Girl",
       "date": "2026-03-22",
       "hour": "20:00",
-      "venueName": "תיאטרון toMix אקספו ת״א",
+      "venueName": "תיאטרון toMix",
       "venueCity": "אקספו ת\"א"
     },
     {
-      "showId": 266,
+      "showId": 265,
       "showSlug": "מצחיקונת-–-Funny-Girl",
       "date": "2026-03-24",
       "hour": "20:00",
-      "venueName": "תיאטרון toMix אקספו ת״א",
+      "venueName": "תיאטרון toMix",
       "venueCity": "אקספו ת\"א"
     },
     {
-      "showId": 266,
+      "showId": 265,
       "showSlug": "מצחיקונת-–-Funny-Girl",
       "date": "2026-03-25",
       "hour": "20:00",
-      "venueName": "תיאטרון toMix אקספו ת״א",
+      "venueName": "תיאטרון toMix",
       "venueCity": "אקספו ת\"א"
     },
     {
-      "showId": 266,
+      "showId": 265,
       "showSlug": "מצחיקונת-–-Funny-Girl",
       "date": "2026-03-26",
       "hour": "20:00",
-      "venueName": "תיאטרון toMix אקספו ת״א",
+      "venueName": "תיאטרון toMix",
       "venueCity": "אקספו ת\"א"
     },
     {
-      "showId": 266,
+      "showId": 265,
       "showSlug": "מצחיקונת-–-Funny-Girl",
       "date": "2026-03-27",
       "hour": "12:00",
-      "venueName": "תיאטרון toMix אקספו ת״א",
+      "venueName": "תיאטרון toMix",
       "venueCity": "אקספו ת\"א"
     },
     {
-      "showId": 266,
+      "showId": 265,
       "showSlug": "מצחיקונת-–-Funny-Girl",
       "date": "2026-03-28",
       "hour": "21:00",
-      "venueName": "תיאטרון toMix אקספו ת״א",
+      "venueName": "תיאטרון toMix",
       "venueCity": "אקספו ת\"א"
     },
     {
-      "showId": 266,
+      "showId": 265,
       "showSlug": "מצחיקונת-–-Funny-Girl",
       "date": "2026-03-29",
       "hour": "20:00",
-      "venueName": "תיאטרון toMix אקספו ת״א",
+      "venueName": "תיאטרון toMix",
       "venueCity": "אקספו ת\"א"
     },
     {
-      "showId": 266,
+      "showId": 265,
       "showSlug": "מצחיקונת-–-Funny-Girl",
       "date": "2026-03-30",
       "hour": "20:00",
-      "venueName": "תיאטרון toMix אקספו ת״א",
+      "venueName": "תיאטרון toMix",
       "venueCity": "אקספו ת\"א"
     },
     {
-      "showId": 266,
+      "showId": 265,
       "showSlug": "מצחיקונת-–-Funny-Girl",
       "date": "2026-05-28",
       "hour": "20:00",
@@ -867,7 +587,7 @@
       "venueCity": "חיפה"
     },
     {
-      "showId": 266,
+      "showId": 265,
       "showSlug": "מצחיקונת-–-Funny-Girl",
       "date": "2026-05-29",
       "hour": "21:00",
@@ -875,7 +595,7 @@
       "venueCity": "חיפה"
     },
     {
-      "showId": 266,
+      "showId": 265,
       "showSlug": "מצחיקונת-–-Funny-Girl",
       "date": "2026-05-30",
       "hour": "21:00",
@@ -883,12 +603,292 @@
       "venueCity": "חיפה"
     },
     {
-      "showId": 266,
+      "showId": 265,
       "showSlug": "מצחיקונת-–-Funny-Girl",
       "date": "2026-06-06",
       "hour": "21:00",
       "venueName": "היכל התרבות נס ציונה",
       "venueCity": "נס ציונה"
+    },
+    {
+      "showId": 267,
+      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
+      "date": "2026-03-14",
+      "hour": "21:00",
+      "venueName": "תיאטרון יד למגינים יגור",
+      "venueCity": "יגור"
+    },
+    {
+      "showId": 267,
+      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
+      "date": "2026-03-20",
+      "hour": "21:00",
+      "venueName": "אולם מופעים גבעת ברנר",
+      "venueCity": "גבעת ברנר"
+    },
+    {
+      "showId": 267,
+      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
+      "date": "2026-03-21",
+      "hour": "21:00",
+      "venueName": "בית החייל - תל אביב",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 267,
+      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
+      "date": "2026-03-26",
+      "hour": "20:30",
+      "venueName": "בית יד לבנים רמת השרון",
+      "venueCity": "רמת השרון"
+    },
+    {
+      "showId": 267,
+      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
+      "date": "2026-04-03",
+      "hour": "21:00",
+      "venueName": "תיאטרון היהלום",
+      "venueCity": "רמת גן"
+    },
+    {
+      "showId": 267,
+      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
+      "date": "2026-04-04",
+      "hour": "21:00",
+      "venueName": "סינמה סיטי גלילות",
+      "venueCity": "גלילות"
+    },
+    {
+      "showId": 267,
+      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
+      "date": "2026-04-15",
+      "hour": "20:30",
+      "venueName": "היכל התרבות דרום השרון",
+      "venueCity": "נווה ירק"
+    },
+    {
+      "showId": 267,
+      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
+      "date": "2026-04-16",
+      "hour": "20:30",
+      "venueName": "מלון אלמא",
+      "venueCity": "זכרון יעקב"
+    },
+    {
+      "showId": 267,
+      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
+      "date": "2026-04-24",
+      "hour": "21:00",
+      "venueName": "צוותא",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
+      "showId": 267,
+      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
+      "date": "2026-04-25",
+      "hour": "21:30",
+      "venueName": "אולם המופעים יפעת",
+      "venueCity": "מועצה אזורית עמק יזרעאל"
+    },
+    {
+      "showId": 267,
+      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
+      "date": "2026-05-01",
+      "hour": "20:30",
+      "venueName": "היכל אומנויות הבמה הרצליה",
+      "venueCity": "הרצליה"
+    },
+    {
+      "showId": 267,
+      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
+      "date": "2026-05-02",
+      "hour": "21:30",
+      "venueName": "היכל התרבות יבנה",
+      "venueCity": "יבנה"
+    },
+    {
+      "showId": 267,
+      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
+      "date": "2026-05-07",
+      "hour": "20:30",
+      "venueName": "היכל התרבות אריאל",
+      "venueCity": "אריאל"
+    },
+    {
+      "showId": 267,
+      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
+      "date": "2026-05-09",
+      "hour": "21:00",
+      "venueName": "תיאטרון גבעתיים",
+      "venueCity": "גבעתיים"
+    },
+    {
+      "showId": 267,
+      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
+      "date": "2026-05-16",
+      "hour": "21:30",
+      "venueName": "מתנ\"ס תל מונד",
+      "venueCity": "תל מונד"
+    },
+    {
+      "showId": 267,
+      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
+      "date": "2026-05-28",
+      "hour": "20:30",
+      "venueName": "היכל התרבות עפולה",
+      "venueCity": "עפולה"
+    },
+    {
+      "showId": 267,
+      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
+      "date": "2026-07-23",
+      "hour": "21:00",
+      "venueName": "בית ציוני אמריקה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 270,
+      "showSlug": "שעה-של-שקט",
+      "date": "2026-03-14",
+      "hour": "21:00",
+      "venueName": "היכל אומנויות הבמה הרצליה",
+      "venueCity": "הרצליה"
+    },
+    {
+      "showId": 270,
+      "showSlug": "שעה-של-שקט",
+      "date": "2026-04-11",
+      "hour": "21:00",
+      "venueName": "היכל התיאטרון",
+      "venueCity": "קרית מוצקין"
+    },
+    {
+      "showId": 270,
+      "showSlug": "שעה-של-שקט",
+      "date": "2026-04-25",
+      "hour": "21:00",
+      "venueName": "אודיטוריום ע\"ש קלצ'קין",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-03-21",
+      "hour": "21:00",
+      "venueName": "אודיטוריום ע\"ש קלצ'קין",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-03-28",
+      "hour": "21:30",
+      "venueName": "תיאטרון היהלום",
+      "venueCity": "רמת גן"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-04-09",
+      "hour": "20:30",
+      "venueName": "בית יד לבנים",
+      "venueCity": "רעננה"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-04-11",
+      "hour": "21:00",
+      "venueName": "סינמה סיטי גלילות",
+      "venueCity": "גלילות"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-04-16",
+      "hour": "20:30",
+      "venueName": "היכל התרבות דרום השרון",
+      "venueCity": "נווה ירק"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-04-18",
+      "hour": "21:30",
+      "venueName": "היכל התרבות כפר סבא",
+      "venueCity": "כפר סבא"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-04-23",
+      "hour": "20:30",
+      "venueName": "אודיטוריום ע\"ש קלצ'קין",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-04-25",
+      "hour": "21:30",
+      "venueName": "היכל התרבות נתניה",
+      "venueCity": "נתניה"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-04-30",
+      "hour": "20:30",
+      "venueName": "היכל התרבות בת ים",
+      "venueCity": "בת ים"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-05-02",
+      "hour": "21:30",
+      "venueName": "משכן אמנויות הבמה באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-05-05",
+      "hour": "20:30",
+      "venueName": "תיאטרון ירושלים",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-05-09",
+      "hour": "21:30",
+      "venueName": "אולם מופעים גבעת ברנר",
+      "venueCity": "גבעת ברנר"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-05-14",
+      "hour": "20:30",
+      "venueName": "היכל התרבות ראש העין",
+      "venueCity": "ראש העין"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-05-23",
+      "hour": "21:30",
+      "venueName": "היכל התרבות פתח תקווה",
+      "venueCity": "פתח תקווה"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-05-30",
+      "hour": "18:00",
+      "venueName": "היכל התרבות ראשון לציון",
+      "venueCity": "ראשון לציון"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-03-13T14:38:52.243Z",
+  "scrapedAt": "2026-03-14T03:57:39.014Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות אשקלון",
@@ -73,13 +73,13 @@
       "hour": "20:30"
     },
     {
-      "showId": 147,
+      "showId": 146,
       "showSlug": "אמא",
       "date": "2026-06-18",
       "hour": "20:30"
     },
     {
-      "showId": 147,
+      "showId": 146,
       "showSlug": "אמא",
       "date": "2026-06-20",
       "hour": "21:30"
