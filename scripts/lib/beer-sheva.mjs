@@ -28,7 +28,7 @@ export const SHOWS_URL = "https://b7t.co.il/show_categories/2025-2026/";
 const TOURING_VENUES = [
   {
     matchStr: "בית ציוני אמריקה",
-    venueName: "בית ציוני אמריקה",
+    venueName: "בית ציוני אמריקה ת״א",
     venueCity: "תל אביב-יפו",
   },
 ];
