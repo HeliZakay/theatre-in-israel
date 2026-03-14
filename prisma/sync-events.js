@@ -190,6 +190,9 @@ const VENUE_ALIASES = new Map([
   // Beit Yad LaBanim Raanana — add city suffix
   ["בית יד לבנים|רעננה", { name: "בית יד לבנים רעננה", city: "רעננה" }],
 
+  // Auditorium Kalchkin → Eretz Israel Museum Tel Aviv (same venue)
+  ["אודיטוריום ע\"ש קלצ'קין|תל אביב", { name: "מוזיאון ארץ ישראל - תל אביב", city: "תל אביב" }],
+
   // Mishkan Ashdod — typo אומנויות → אמנויות
   ["המשכן לאומנויות הבמה אשדוד|אשדוד", { name: "המשכן לאמנויות הבמה אשדוד", city: "אשדוד" }],
 
