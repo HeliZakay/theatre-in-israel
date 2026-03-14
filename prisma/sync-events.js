@@ -213,6 +213,9 @@ const VENUE_ALIASES = new Map([
   // Heichal HaTarbut — bare name → היכל התרבות בת ים
   ["היכל התרבות|בת ים", { name: "היכל התרבות בת ים", city: "בת ים" }],
 
+  // toMix — old short name → full name with אקספו ת״א
+  ["תיאטרון toMix|תל אביב", { name: "תיאטרון toMix אקספו ת״א", city: "תל אביב" }],
+
   // Tzavta — short name → תיאטרון צוותא
   ["צוותא|תל אביב", { name: "תיאטרון צוותא", city: "תל אביב" }],
   ["צוותא|תל אביב-יפו", { name: "תיאטרון צוותא", city: "תל אביב" }],

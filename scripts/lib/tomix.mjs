@@ -13,7 +13,7 @@ import { parseShortYear } from "./date.mjs";
 
 // ── Constants ──────────────────────────────────────────────────
 
-export const TOMIX_THEATRE = "תיאטרון toMix";
+export const TOMIX_THEATRE = "תיאטרון toMix אקספו ת״א";
 const LISTING_URL =
   "https://www.to-mix.co.il/product-category/tomixtheater/?page=1";
 
