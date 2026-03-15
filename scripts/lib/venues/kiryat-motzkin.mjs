@@ -121,6 +121,25 @@ export async function scrapeEventDetail(browser, detailUrl, { debug = false } = 
   const result = await page.evaluate((debugMode) => {
     const output = { events: [], debugHtml: null };
 
+    // Convert Unix timestamp to Israel-time date/time parts.
+    // getHours()/getDate() use the local timezone which is UTC on GitHub Actions,
+    // so we must explicitly format in Asia/Jerusalem to get correct Israeli times.
+    function tsToIsrael(ts) {
+      const d = new Date(ts * 1000);
+      const parts = new Intl.DateTimeFormat("en-IL", {
+        timeZone: "Asia/Jerusalem",
+        year: "numeric", month: "2-digit", day: "2-digit",
+        hour: "2-digit", minute: "2-digit", hour12: false,
+      }).formatToParts(d);
+      const get = (type) => parts.find((p) => p.type === type)?.value || "";
+      return {
+        year: parseInt(get("year"), 10),
+        month: parseInt(get("month"), 10),
+        day: parseInt(get("day"), 10),
+        hour: `${get("hour")}:${get("minute")}`,
+      };
+    }
+
     // Primary: find Unix timestamps in page scripts
     // Pattern: "date":[1773599400,1773685800,...] in eventPage.init()
     const scripts = document.querySelectorAll("script");
@@ -132,15 +151,7 @@ export async function scrapeEventDetail(browser, detailUrl, { debug = false } = 
         const timestamps = dateArrayMatch[1].split(",").map((s) => parseInt(s.trim(), 10));
         for (const ts of timestamps) {
           if (isNaN(ts) || ts < 1_000_000_000) continue;
-          const d = new Date(ts * 1000);
-          const hours = String(d.getHours()).padStart(2, "0");
-          const minutes = String(d.getMinutes()).padStart(2, "0");
-          output.events.push({
-            year: d.getFullYear(),
-            month: d.getMonth() + 1,
-            day: d.getDate(),
-            hour: `${hours}:${minutes}`,
-          });
+          output.events.push(tsToIsrael(ts));
         }
         break;
       }
@@ -155,15 +166,7 @@ export async function scrapeEventDetail(browser, detailUrl, { debug = false } = 
         if (fromDateMatch) {
           const ts = parseInt(fromDateMatch[1], 10);
           if (!isNaN(ts) && ts > 1_000_000_000) {
-            const d = new Date(ts * 1000);
-            const hours = String(d.getHours()).padStart(2, "0");
-            const minutes = String(d.getMinutes()).padStart(2, "0");
-            output.events.push({
-              year: d.getFullYear(),
-              month: d.getMonth() + 1,
-              day: d.getDate(),
-              hour: `${hours}:${minutes}`,
-            });
+            output.events.push(tsToIsrael(ts));
           }
         }
       }
