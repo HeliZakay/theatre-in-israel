@@ -225,7 +225,11 @@ const VENUE_ALIASES = new Map([
   // toMix — old short name → full name with אקספו ת״א
   ["תיאטרון toMix|תל אביב", { name: "תיאטרון toMix אקספו ת״א", city: "תל אביב" }],
 
-  // toMix — scraper outputs אקספו ת"א as city, which is actually a venue in תל אביב
+  // toMix — scraper comma-splits "תיאטרון toMix, אקספו ת"א" → venueName short + city אקספו
+  ['תיאטרון toMix|אקספו ת"א', { name: "תיאטרון toMix אקספו ת״א", city: "תל אביב" }],
+  ["תיאטרון toMix|אקספו ת״א", { name: "תיאטרון toMix אקספו ת״א", city: "תל אביב" }],
+
+  // toMix — scraper outputs full venue name + אקספו as city
   ['תיאטרון toMix אקספו ת"א|אקספו ת"א', { name: "תיאטרון toMix אקספו ת״א", city: "תל אביב" }],
   ["תיאטרון toMix אקספו ת״א|אקספו ת״א", { name: "תיאטרון toMix אקספו ת״א", city: "תל אביב" }],
 
@@ -254,7 +258,7 @@ const VENUE_ALIASES = new Map([
 ]);
 
 const CITY_REGION_MAP = {
-  'תל אביב': 'center', 'תל אביב-יפו': 'center', 'רמת גן': 'center', 'גבעתיים': 'center', 'חולון': 'center', 'בת ים': 'center', 'פתח תקווה': 'center', 'ראש העין': 'center', 'גני תקווה': 'center', 'איירפורט סיטי': 'center',
+  'תל אביב': 'center', 'תל אביב-יפו': 'center', 'רמת גן': 'center', 'גבעתיים': 'center', 'חולון': 'center', 'בת ים': 'center', 'פתח תקווה': 'center', 'ראש העין': 'center', 'גני תקווה': 'center', 'איירפורט סיטי': 'center', 'אקספו ת"א': 'center', 'אקספו ת״א': 'center', 'אקספו תל אביב': 'center',
   'נתניה': 'sharon', 'כפר סבא': 'sharon', 'רעננה': 'sharon', 'הרצליה': 'sharon', 'רמת השרון': 'sharon', 'נווה ירק': 'sharon', 'תל מונד': 'sharon', 'גלילות': 'sharon', 'אריאל': 'sharon',
   'ראשון לציון': 'shfela', 'רחובות': 'shfela', 'נס ציונה': 'shfela', 'יבנה': 'shfela', 'מזכרת בתיה': 'shfela', 'גבעת ברנר': 'shfela', 'קריית שדה התעופה': 'shfela',
   'ירושלים': 'jerusalem', 'מעלה אדומים': 'jerusalem', 'מודיעין': 'jerusalem',
