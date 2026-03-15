@@ -11,7 +11,7 @@
 import { setupRequestInterception } from "../browser.mjs";
 
 export const VENUE_NAME = "תיאטרון הצפון";
-export const VENUE_CITY = "חיפה";
+export const VENUE_CITY = "קריית חיים";
 export const LISTING_URL = "https://www.theatron-hazafon.co.il/events.asp";
 
 /**
