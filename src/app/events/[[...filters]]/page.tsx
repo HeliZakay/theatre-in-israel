@@ -103,6 +103,17 @@ const CITY_DISPLAY: Record<string, string> = {
   "beer-sheva": "באר שבע",
 };
 
+/** How each date preset appears in the page title (with correct ב/no-ב). */
+const DATE_TITLE_FORM: Record<string, string> = {
+  '7days': 'ב7 ימים הקרובים',
+  today: 'היום',
+  tomorrow: 'מחר',
+  weekend: 'בסוף השבוע',
+  week: 'השבוע',
+  nextweek: 'בשבוע הבא',
+  all: '',
+};
+
 export function buildPageTitle(
   datePreset: string,
   region?: string,
@@ -113,15 +124,17 @@ export function buildPageTitle(
   }
 
   const isDefaultDate = datePreset === DEFAULT_DATE_PRESET;
+  const datePart = DATE_TITLE_FORM[datePreset] ?? '';
+  const regionPart = region ? `ב${REGION_SLUGS[region]}` : '';
 
-  if (!isDefaultDate && !region) {
-    return `הופעות תיאטרון ב${DATE_SLUGS[datePreset]}`;
+  if (!isDefaultDate && datePart && regionPart) {
+    return `הופעות תיאטרון ${datePart} ${regionPart}`;
   }
-  if (isDefaultDate && region) {
-    return `הופעות תיאטרון ב${REGION_SLUGS[region]}`;
+  if (!isDefaultDate && datePart) {
+    return `הופעות תיאטרון ${datePart}`;
   }
-  if (!isDefaultDate && region) {
-    return `הופעות תיאטרון ב${DATE_SLUGS[datePreset]} ב${REGION_SLUGS[region]}`;
+  if (regionPart) {
+    return `הופעות תיאטרון ${regionPart}`;
   }
 
   return "לוח הופעות תיאטרון";
@@ -179,7 +192,8 @@ function buildDescription(
     return `הופעות תיאטרון ב${REGION_SLUGS[region]} — לוח מועדים, אזורי הצגה וקישורי רכישה.`;
   }
   if (datePreset !== DEFAULT_DATE_PRESET) {
-    return `הצגות תיאטרון ב${DATE_SLUGS[datePreset]} — כל המופעים הקרובים לפי תאריך ואזור.`;
+    const datePart = DATE_TITLE_FORM[datePreset] ?? DATE_SLUGS[datePreset];
+    return `הצגות תיאטרון ${datePart} — כל המופעים הקרובים לפי תאריך ואזור.`;
   }
   return "מצאו הצגות תיאטרון קרובות לפי תאריך ואזור — לוח מועדים מעודכן יומית.";
 }
@@ -360,7 +374,6 @@ export default async function EventsPage({ params }: EventsPageProps) {
         hour: event.hour,
         showTitle: event.showTitle,
         showSlug: event.showSlug,
-        showTheatre: event.showTheatre,
         showAvgRating: event.showAvgRating,
         showReviewCount: event.showReviewCount,
         venueName: event.venueName,
@@ -412,13 +425,13 @@ export default async function EventsPage({ params }: EventsPageProps) {
         regionCounts={regionCounts}
       />
 
-      {hasNonDefaultFilter && (
-        <div className={styles.clearRow}>
+      <div className={styles.clearRow}>
+        {hasNonDefaultFilter && (
           <Link href={ROUTES.EVENTS} className={styles.clearLink}>
             נקו סינון
           </Link>
-        </div>
-      )}
+        )}
+      </div>
 
       <div aria-live="polite" className={styles.srOnly}>
         {events.length > 0

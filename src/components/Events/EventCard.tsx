@@ -9,7 +9,6 @@ export interface EventCardProps {
   hour: string;
   showTitle: string;
   showSlug: string;
-  showTheatre: string;
   showAvgRating: number | null;
   showReviewCount: number;
   venueName: string;
@@ -20,15 +19,12 @@ export default function EventCard({
   hour,
   showTitle,
   showSlug,
-  showTheatre,
   showAvgRating,
   showReviewCount,
   venueName,
   venueCity,
 }: EventCardProps) {
-  const venueText = venueName.includes(showTheatre)
-    ? `${venueName}, ${venueCity}`
-    : `${showTheatre} · ${venueName}, ${venueCity}`;
+  const venueText = `${venueName}, ${venueCity}`;
 
   return (
     <article className={styles.eventItem}>

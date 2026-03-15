@@ -23,6 +23,7 @@
 
 .clearRow {
   margin-bottom: 20px;
+  min-height: 1.25em;
 }
 
 .clearLink {
