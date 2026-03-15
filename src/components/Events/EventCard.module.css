@@ -1,6 +1,6 @@
 .eventItem {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 16px;
   padding: 10px 0;
   border-bottom: 1px solid var(--color-slate-006);
@@ -14,6 +14,23 @@
   font-weight: 600;
   color: var(--color-text-primary);
   text-align: end;
+}
+
+.thumbnail {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background:
+    linear-gradient(160deg, var(--color-slate-015), rgba(15, 23, 42, 0.35)),
+    radial-gradient(circle at 20% 30%, #f3c78a, transparent 60%),
+    radial-gradient(circle at 80% 20%, #e7996a, transparent 55%), #1b1f2a;
+}
+
+.thumbnailImage {
+  object-fit: cover;
 }
 
 .eventDetails {
@@ -64,6 +81,12 @@
   .eventItem {
     flex-wrap: wrap;
     gap: 4px 12px;
+    border-inline-start: 3px solid var(--color-slate-015);
+    padding-inline-start: 12px;
+  }
+
+  .thumbnail {
+    display: none;
   }
 
   .eventTime {

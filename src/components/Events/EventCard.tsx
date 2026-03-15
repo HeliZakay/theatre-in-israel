@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { showPath } from "@/constants/routes";
+import FallbackImage from "@/components/FallbackImage/FallbackImage";
+import { getShowImagePath } from "@/utils/getShowImagePath";
+import { getShowImageAlt } from "@/lib/seo";
 import styles from "./EventCard.module.css";
 
 export interface EventCardProps {
@@ -30,6 +33,15 @@ export default function EventCard({
   return (
     <article className={styles.eventItem}>
       <time className={styles.eventTime}>{hour}</time>
+      <div className={styles.thumbnail}>
+        <FallbackImage
+          src={getShowImagePath(showTitle)}
+          alt={getShowImageAlt(showTitle)}
+          fill
+          sizes="64px"
+          className={styles.thumbnailImage}
+        />
+      </div>
       <div className={styles.eventDetails}>
         <Link href={showPath(showSlug)} className={styles.eventTitle}>
           {showTitle}
