@@ -1,9 +1,9 @@
 {
-  "scrapedAt": "2026-03-15T04:07:08.815Z",
+  "scrapedAt": "2026-03-15T15:22:39.687Z",
   "touring": true,
   "events": [
     {
-      "showId": 212,
+      "showId": 213,
       "showSlug": "Mix-Match",
       "date": "2026-04-12",
       "hour": "20:30",
@@ -11,207 +11,7 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 173,
-      "showSlug": "אהבה-וחושך",
-      "date": "2026-04-17",
-      "hour": "12:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 174,
-      "showSlug": "אורות-קטנות",
-      "date": "2026-04-27",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 175,
-      "showSlug": "אחינועם-ואני",
-      "date": "2026-05-28",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 175,
-      "showSlug": "אחינועם-ואני",
-      "date": "2026-06-09",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 175,
-      "showSlug": "אחינועם-ואני",
-      "date": "2026-06-29",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 176,
-      "showSlug": "אירלנד",
-      "date": "2026-03-29",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 177,
-      "showSlug": "אמא-שלי-קראה-לי-רוטוויילר",
-      "date": "2026-04-08",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 101,
-      "showSlug": "אנטי-אייג׳ינג",
-      "date": "2026-05-06",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 179,
-      "showSlug": "אסתר",
-      "date": "2026-05-20",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 179,
-      "showSlug": "אסתר",
-      "date": "2026-06-23",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 181,
-      "showSlug": "ארטיסט",
-      "date": "2026-04-29",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 182,
-      "showSlug": "בוז׳ולה",
-      "date": "2026-04-26",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 182,
-      "showSlug": "בוז׳ולה",
-      "date": "2026-05-27",
-      "hour": "21:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 183,
-      "showSlug": "גידול-ושמו-בועז-קומדיה-רומנטית-בקטע-דפוק",
-      "date": "2026-05-03",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 184,
-      "showSlug": "דמות-אב",
-      "date": "2026-03-20",
-      "hour": "12:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 184,
-      "showSlug": "דמות-אב",
-      "date": "2026-04-05",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 186,
-      "showSlug": "הסוף",
-      "date": "2026-04-19",
-      "hour": "20:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 186,
-      "showSlug": "הסוף",
-      "date": "2026-05-07",
-      "hour": "20:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 187,
-      "showSlug": "העורף",
-      "date": "2026-04-21",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 188,
-      "showSlug": "הפנס-הסגול",
-      "date": "2026-04-18",
-      "hour": "11:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 190,
-      "showSlug": "זה-בסדר.",
-      "date": "2026-03-22",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 190,
-      "showSlug": "זה-בסדר.",
-      "date": "2026-04-10",
-      "hour": "12:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 191,
-      "showSlug": "טובעים-השניים",
-      "date": "2026-04-26",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 192,
-      "showSlug": "ככה-יצאתי",
-      "date": "2026-03-16",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 193,
-      "showSlug": "לדפוק",
-      "date": "2026-03-27",
-      "hour": "12:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 194,
+      "showId": 195,
       "showSlug": "מה-שקרה-לנו",
       "date": "2026-04-08",
       "hour": "20:30",
@@ -219,7 +19,7 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 194,
+      "showId": 195,
       "showSlug": "מה-שקרה-לנו",
       "date": "2026-05-05",
       "hour": "20:30",
@@ -227,95 +27,39 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 259,
-      "showSlug": "מיינדפאק",
-      "date": "2026-04-14",
+      "showId": 191,
+      "showSlug": "זה-בסדר.",
+      "date": "2026-03-22",
       "hour": "20:30",
       "venueName": "תיאטרון צוותא",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 195,
-      "showSlug": "מכתב-הקסם",
-      "date": "2026-04-04",
+      "showId": 191,
+      "showSlug": "זה-בסדר.",
+      "date": "2026-04-10",
       "hour": "12:00",
       "venueName": "תיאטרון צוותא",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 196,
-      "showSlug": "מפי-שמירה-אימבר",
-      "date": "2026-03-18",
+      "showId": 211,
+      "showSlug": "שיר-של-אמונה-וכפירה",
+      "date": "2026-04-27",
       "hour": "20:30",
       "venueName": "תיאטרון צוותא",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 197,
-      "showSlug": "מצבים-בפוטנציה",
-      "date": "2026-04-24",
-      "hour": "12:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 197,
-      "showSlug": "מצבים-בפוטנציה",
-      "date": "2026-05-29",
-      "hour": "12:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 102,
-      "showSlug": "משחקי-נישואים",
-      "date": "2026-04-16",
-      "hour": "20:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 199,
-      "showSlug": "נישואים-גרעיניים",
-      "date": "2026-04-24",
-      "hour": "21:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 200,
-      "showSlug": "סונטת-קרויצר",
-      "date": "2026-03-21",
-      "hour": "21:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 201,
-      "showSlug": "עוברת-בירושה",
-      "date": "2026-04-15",
+      "showId": 178,
+      "showSlug": "אמא-שלי-קראה-לי-רוטוויילר",
+      "date": "2026-04-08",
       "hour": "20:30",
       "venueName": "תיאטרון צוותא",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 202,
-      "showSlug": "עצבים",
-      "date": "2026-03-23",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 203,
-      "showSlug": "ערוץ-שטות-עשרה",
-      "date": "2026-04-11",
-      "hour": "11:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 204,
+      "showId": 205,
       "showSlug": "פאק-בסיסטם",
       "date": "2026-04-10",
       "hour": "22:00",
@@ -323,7 +67,7 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 204,
+      "showId": 205,
       "showSlug": "פאק-בסיסטם",
       "date": "2026-04-24",
       "hour": "22:00",
@@ -331,7 +75,63 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 205,
+      "showId": 208,
+      "showSlug": "קצר-לילדים",
+      "date": "2026-04-25",
+      "hour": "11:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 183,
+      "showSlug": "בוז׳ולה",
+      "date": "2026-04-26",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 183,
+      "showSlug": "בוז׳ולה",
+      "date": "2026-05-27",
+      "hour": "21:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 180,
+      "showSlug": "אסתר",
+      "date": "2026-05-20",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 180,
+      "showSlug": "אסתר",
+      "date": "2026-06-23",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 187,
+      "showSlug": "הסוף",
+      "date": "2026-04-19",
+      "hour": "20:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 187,
+      "showSlug": "הסוף",
+      "date": "2026-05-07",
+      "hour": "20:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 206,
       "showSlug": "פימה-ג׳קסון-ולהקתו",
       "date": "2026-04-19",
       "hour": "20:30",
@@ -339,34 +139,18 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 206,
-      "showSlug": "פצעים",
-      "date": "2026-03-30",
+      "showId": 185,
+      "showSlug": "דמות-אב",
+      "date": "2026-04-05",
       "hour": "20:30",
       "venueName": "תיאטרון צוותא",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 206,
-      "showSlug": "פצעים",
-      "date": "2026-04-22",
-      "hour": "19:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 206,
-      "showSlug": "פצעים",
-      "date": "2026-04-22",
-      "hour": "21:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 207,
-      "showSlug": "קצר-לילדים",
-      "date": "2026-04-25",
-      "hour": "11:00",
+      "showId": 196,
+      "showSlug": "מכתב-הקסם",
+      "date": "2026-04-04",
+      "hour": "12:00",
       "venueName": "תיאטרון צוותא",
       "venueCity": "תל אביב"
     },
@@ -379,15 +163,7 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 208,
-      "showSlug": "שותפים-לנצח",
-      "date": "2026-03-25",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 209,
+      "showId": 210,
       "showSlug": "שחקן-מחפש-במה",
       "date": "2026-04-06",
       "hour": "20:30",
@@ -395,15 +171,127 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 210,
-      "showSlug": "שיר-של-אמונה-וכפירה",
+      "showId": 204,
+      "showSlug": "ערוץ-שטות-עשרה",
+      "date": "2026-04-11",
+      "hour": "11:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 174,
+      "showSlug": "אהבה-וחושך",
+      "date": "2026-04-17",
+      "hour": "12:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 189,
+      "showSlug": "הפנס-הסגול",
+      "date": "2026-04-18",
+      "hour": "11:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 101,
+      "showSlug": "אנטי-אייג׳ינג",
+      "date": "2026-05-06",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 188,
+      "showSlug": "העורף",
+      "date": "2026-04-21",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 194,
+      "showSlug": "לדפוק",
+      "date": "2026-03-27",
+      "hour": "12:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 203,
+      "showSlug": "עצבים",
+      "date": "2026-03-23",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 207,
+      "showSlug": "פצעים",
+      "date": "2026-03-30",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 207,
+      "showSlug": "פצעים",
+      "date": "2026-04-22",
+      "hour": "19:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 207,
+      "showSlug": "פצעים",
+      "date": "2026-04-22",
+      "hour": "21:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 184,
+      "showSlug": "גידול-ושמו-בועז-קומדיה-רומנטית-בקטע-דפוק",
+      "date": "2026-05-03",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 175,
+      "showSlug": "אורות-קטנות",
       "date": "2026-04-27",
       "hour": "20:30",
       "venueName": "תיאטרון צוותא",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 211,
+      "showId": 201,
+      "showSlug": "סונטת-קרויצר",
+      "date": "2026-05-02",
+      "hour": "21:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 202,
+      "showSlug": "עוברת-בירושה",
+      "date": "2026-04-15",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 102,
+      "showSlug": "משחקי-נישואים",
+      "date": "2026-04-16",
+      "hour": "20:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 212,
       "showSlug": "תיכון-מגשימים",
       "date": "2026-04-29",
       "hour": "21:00",
@@ -411,7 +299,7 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 211,
+      "showId": 212,
       "showSlug": "תיכון-מגשימים",
       "date": "2026-05-13",
       "hour": "21:00",
@@ -419,10 +307,98 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 211,
+      "showId": 212,
       "showSlug": "תיכון-מגשימים",
       "date": "2026-06-03",
       "hour": "21:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 198,
+      "showSlug": "מצבים-בפוטנציה",
+      "date": "2026-04-24",
+      "hour": "12:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 198,
+      "showSlug": "מצבים-בפוטנציה",
+      "date": "2026-05-29",
+      "hour": "12:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 177,
+      "showSlug": "אירלנד",
+      "date": "2026-03-29",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 182,
+      "showSlug": "ארטיסט",
+      "date": "2026-04-29",
+      "hour": "20:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 209,
+      "showSlug": "שותפים-לנצח",
+      "date": "2026-03-25",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 192,
+      "showSlug": "טובעים-השניים",
+      "date": "2026-04-26",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 176,
+      "showSlug": "אחינועם-ואני",
+      "date": "2026-05-28",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 176,
+      "showSlug": "אחינועם-ואני",
+      "date": "2026-06-09",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 176,
+      "showSlug": "אחינועם-ואני",
+      "date": "2026-06-29",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 200,
+      "showSlug": "נישואים-גרעיניים",
+      "date": "2026-04-24",
+      "hour": "21:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 260,
+      "showSlug": "מיינדפאק",
+      "date": "2026-04-14",
+      "hour": "20:30",
       "venueName": "תיאטרון צוותא",
       "venueCity": "תל אביב"
     }
