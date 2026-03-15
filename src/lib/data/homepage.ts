@@ -2,6 +2,7 @@ import { unstable_cache } from "next/cache";
 import prisma from "../prisma";
 import { showListInclude } from "../showHelpers";
 import type { ShowListItem, Suggestions } from "@/types";
+import type { EventListItem } from "./eventsList";
 import { GENRE_SECTIONS } from "@/constants/genreGroups";
 import { FEATURED_SHOW_SLUG } from "@/constants/featuredShow";
 
@@ -319,4 +320,158 @@ export const getExploreBannerShows = unstable_cache(
   fetchExploreBannerShows,
   ["explore-banner-shows"],
   { revalidate: 300, tags: ["homepage"] },
+);
+
+// ---------------------------------------------------------------------------
+// Upcoming events (homepage teaser)
+// ---------------------------------------------------------------------------
+
+export type UpcomingEventItem = EventListItem & { dateLabel: string };
+
+const UPCOMING_FETCH_LIMIT = 30;
+const UPCOMING_TARGET = 6;
+const UPCOMING_MIN = 3;
+
+const TZ = "Asia/Jerusalem";
+
+const hebrewShortDay = new Intl.DateTimeFormat("he-IL", {
+  weekday: "short",
+  timeZone: TZ,
+});
+
+function buildDateLabel(
+  dateKey: string,
+  todayKey: string,
+  tomorrowKey: string,
+): string {
+  if (dateKey === todayKey) return "היום";
+  if (dateKey === tomorrowKey) return "מחר";
+  const d = new Date(dateKey + "T00:00:00Z");
+  const dayName = hebrewShortDay.format(d);
+  const [, m, dd] = dateKey.split("-");
+  return `${dayName} ${Number(dd)}.${Number(m)}`;
+}
+
+async function fetchUpcomingEventsVaried(): Promise<UpcomingEventItem[]> {
+  // Today in Jerusalem
+  const now = new Date();
+  const todayParts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: TZ,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(now);
+  const todayKey = todayParts; // YYYY-MM-DD
+  const todayDate = new Date(todayKey + "T00:00:00Z");
+
+  const tomorrow = new Date(now);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const tomorrowKey = new Intl.DateTimeFormat("en-CA", {
+    timeZone: TZ,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(tomorrow);
+
+  // Current hour in Jerusalem for filtering past events today
+  const currentHour = new Intl.DateTimeFormat("en-US", {
+    timeZone: TZ,
+    hour: "2-digit",
+    hour12: false,
+  }).format(now);
+  const currentHourNum = Number(currentHour);
+
+  const events = await prisma.event.findMany({
+    where: { date: { gte: todayDate } },
+    include: {
+      show: {
+        select: {
+          title: true,
+          slug: true,
+          theatre: true,
+          avgRating: true,
+          reviewCount: true,
+        },
+      },
+      venue: { select: { name: true, city: true, regions: true } },
+    },
+    orderBy: [{ date: "asc" }, { hour: "asc" }],
+    take: UPCOMING_FETCH_LIMIT,
+  });
+
+  // Map to EventListItem + filter past events for today
+  const candidates: (EventListItem & { regions: string[] })[] = [];
+  for (const e of events) {
+    const dateKey = e.date.toISOString().slice(0, 10);
+    const hourNum = Number(e.hour.split(":")[0]);
+    if (dateKey === todayKey && hourNum <= currentHourNum) continue;
+
+    candidates.push({
+      id: e.id,
+      date: e.date.toISOString(),
+      hour: e.hour,
+      showTitle: e.show.title,
+      showSlug: e.show.slug,
+      showTheatre: e.show.theatre,
+      showAvgRating: e.show.avgRating,
+      showReviewCount: e.show.reviewCount,
+      venueName: e.venue.name,
+      venueCity: e.venue.city,
+      regions: e.venue.regions,
+    });
+  }
+
+  // Greedy diversity pick
+  const picked: (EventListItem & { regions: string[] })[] = [];
+  const seenSlugs = new Set<string>();
+  const lastTwoRegions: string[] = [];
+
+  for (const c of candidates) {
+    if (picked.length >= UPCOMING_TARGET) break;
+    if (seenSlugs.has(c.showSlug)) continue;
+    const region = c.regions[0] ?? "";
+    if (
+      lastTwoRegions.length >= 2 &&
+      lastTwoRegions[0] === region &&
+      lastTwoRegions[1] === region
+    ) {
+      continue;
+    }
+    seenSlugs.add(c.showSlug);
+    picked.push(c);
+    lastTwoRegions.unshift(region);
+    if (lastTwoRegions.length > 2) lastTwoRegions.pop();
+  }
+
+  // Second pass: relax region constraint if we didn't get enough
+  if (picked.length < UPCOMING_TARGET) {
+    for (const c of candidates) {
+      if (picked.length >= UPCOMING_TARGET) break;
+      if (seenSlugs.has(c.showSlug)) continue;
+      seenSlugs.add(c.showSlug);
+      picked.push(c);
+    }
+  }
+
+  if (picked.length < UPCOMING_MIN) return [];
+
+  return picked.map((e) => ({
+    id: e.id,
+    date: e.date,
+    hour: e.hour,
+    showTitle: e.showTitle,
+    showSlug: e.showSlug,
+    showTheatre: e.showTheatre,
+    showAvgRating: e.showAvgRating,
+    showReviewCount: e.showReviewCount,
+    venueName: e.venueName,
+    venueCity: e.venueCity,
+    dateLabel: buildDateLabel(e.date.slice(0, 10), todayKey, tomorrowKey),
+  }));
+}
+
+export const getUpcomingEventsVaried = unstable_cache(
+  fetchUpcomingEventsVaried,
+  ["homepage-upcoming"],
+  { revalidate: 120, tags: ["homepage"] },
 );

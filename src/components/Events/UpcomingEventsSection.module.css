@@ -1,0 +1,17 @@
+.section {
+  padding: 0 clamp(20px, 6vw, 96px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 0 16px;
+  }
+}

@@ -374,6 +374,7 @@ export default async function EventsPage({ params }: EventsPageProps) {
         hour: event.hour,
         showTitle: event.showTitle,
         showSlug: event.showSlug,
+        showTheatre: event.showTheatre,
         showAvgRating: event.showAvgRating,
         showReviewCount: event.showReviewCount,
         venueName: event.venueName,

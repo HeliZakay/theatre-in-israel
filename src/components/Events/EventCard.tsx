@@ -9,26 +9,38 @@ export interface EventCardProps {
   hour: string;
   showTitle: string;
   showSlug: string;
+  showTheatre: string;
   showAvgRating: number | null;
   showReviewCount: number;
   venueName: string;
   venueCity: string;
+  dateLabel?: string;
 }
 
 export default function EventCard({
   hour,
   showTitle,
   showSlug,
+  showTheatre,
   showAvgRating,
   showReviewCount,
   venueName,
   venueCity,
+  dateLabel,
 }: EventCardProps) {
-  const venueText = `${venueName}, ${venueCity}`;
+  const showTheatreInVenue = venueName.includes(showTheatre);
+  const venueText = showTheatreInVenue
+    ? `${venueName}, ${venueCity}`
+    : `${showTheatre} · ${venueName}, ${venueCity}`;
 
   return (
     <article className={styles.eventItem}>
-      <time className={styles.eventTime}>{hour}</time>
+      <time className={styles.eventTime}>
+        {dateLabel && (
+          <span className={styles.dateLabel}>{dateLabel} · </span>
+        )}
+        {hour}
+      </time>
       <div className={styles.thumbnail}>
         <FallbackImage
           src={getShowImagePath(showTitle)}
@@ -48,6 +60,11 @@ export default function EventCard({
         {showAvgRating !== null ? (
           <span className={styles.ratingBadge}>
             {showAvgRating.toFixed(1)} ★
+            {showReviewCount > 0 && (
+              <span className={styles.reviewCount}>
+                {" "}· {showReviewCount} ביקורות
+              </span>
+            )}
           </span>
         ) : showReviewCount === 0 ? (
           <Link

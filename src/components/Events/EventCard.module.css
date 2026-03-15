@@ -9,11 +9,17 @@
 
 .eventTime {
   flex-shrink: 0;
-  width: 48px;
+  min-width: 48px;
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--color-text-primary);
   text-align: end;
+  white-space: nowrap;
+}
+
+.dateLabel {
+  font-weight: 400;
+  color: var(--color-muted-fg);
 }
 
 .thumbnail {
@@ -68,6 +74,11 @@
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--color-curtain-red);
+}
+
+.reviewCount {
+  font-weight: 400;
+  color: var(--color-muted-fg);
 }
 
 .reviewCta {
