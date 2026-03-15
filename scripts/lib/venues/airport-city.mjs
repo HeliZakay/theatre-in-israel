@@ -9,8 +9,8 @@
 
 import { setupRequestInterception } from "../browser.mjs";
 
-export const VENUE_NAME = "היכל התרבות אייפורט סיטי";
-export const VENUE_CITY = "אייפורט סיטי";
+export const VENUE_NAME = "היכל התרבות איירפורט סיטי";
+export const VENUE_CITY = "איירפורט סיטי";
 export const LISTING_URL =
   "https://heichal-hm.co.il/index.php?dir=site&page=play&op=category&cs=3011";
 

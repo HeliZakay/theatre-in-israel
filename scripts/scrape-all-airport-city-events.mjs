@@ -2,7 +2,7 @@
 /**
  * scrape-all-airport-city-events.mjs
  *
- * Scrape performance dates/times from היכל התרבות אייפורט סיטי venue website.
+ * Scrape performance dates/times from היכל התרבות איירפורט סיטי venue website.
  * Matches venue listings to existing DB shows, then scrapes event dates
  * from each matched show's detail page.
  *
@@ -61,7 +61,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function main() {
   separator();
-  console.log(bold(cyan("  Airport City Venue Scraper — היכל התרבות אייפורט סיטי")));
+  console.log(bold(cyan("  Airport City Venue Scraper — היכל התרבות איירפורט סיטי")));
   console.log(
     dim(
       `  Mode: ${jsonPath ? "JSON OUTPUT" : apply ? "APPLY (write to DB)" : "DRY-RUN (review only)"}${debug ? " + DEBUG" : ""}`,

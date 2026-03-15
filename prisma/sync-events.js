@@ -172,8 +172,10 @@ const VENUE_ALIASES = new Map([
   // Heichal HaTheatron Kiryat Motzkin — missing קריית in name
   ["היכל התיאטרון מוצקין|קריית מוצקין", { name: "היכל התיאטרון קריית מוצקין", city: "קריית מוצקין" }],
 
-  // Heichal Airport City — spelling variant איירפורט and different city name
-  ["היכל התרבות איירפורט סיטי|קריית שדה התעופה", { name: "היכל התרבות אייפורט סיטי", city: "אייפורט סיטי" }],
+  // Heichal Airport City — spelling variant and different city name
+  ["היכל התרבות איירפורט סיטי|קריית שדה התעופה", { name: "היכל התרבות איירפורט סיטי", city: "איירפורט סיטי" }],
+  // Heichal Airport City — old typo אייפורט → איירפורט
+  ["היכל התרבות אייפורט סיטי|אייפורט סיטי", { name: "היכל התרבות איירפורט סיטי", city: "איירפורט סיטי" }],
 
   // Beit HaAm Rehovot — hebrew-theatre prepends היכל התרבות
   ["היכל התרבות בית העם רחובות|רחובות", { name: "בית העם רחובות", city: "רחובות" }],
@@ -196,10 +198,10 @@ const VENUE_ALIASES = new Map([
   // Mishkan Ashdod — typo אומנויות → אמנויות
   ["המשכן לאומנויות הבמה אשדוד|אשדוד", { name: "המשכן לאמנויות הבמה אשדוד", city: "אשדוד" }],
 
-  // Heichal HaTarbut Hevel Modi'in — canonical name is אייפורט סיטי
-  ["היכל התרבות חבל מודיעין|אייפורט סיטי", { name: "היכל התרבות אייפורט סיטי", city: "אייפורט סיטי" }],
-  ["היכל התרבות חבל מודיעין|איירפורט סיטי", { name: "היכל התרבות אייפורט סיטי", city: "אייפורט סיטי" }],
-  ["היכל התרבות חבל מודיעין|קריית שדה התעופה", { name: "היכל התרבות אייפורט סיטי", city: "אייפורט סיטי" }],
+  // Heichal HaTarbut Hevel Modi'in — canonical name is איירפורט סיטי
+  ["היכל התרבות חבל מודיעין|אייפורט סיטי", { name: "היכל התרבות איירפורט סיטי", city: "איירפורט סיטי" }],
+  ["היכל התרבות חבל מודיעין|איירפורט סיטי", { name: "היכל התרבות איירפורט סיטי", city: "איירפורט סיטי" }],
+  ["היכל התרבות חבל מודיעין|קריית שדה התעופה", { name: "היכל התרבות איירפורט סיטי", city: "איירפורט סיטי" }],
 
   // Heichal HaTheatron — bare name without city → Kiryat Motzkin
   ["היכל התיאטרון|קריית מוצקין", { name: "היכל התיאטרון קריית מוצקין", city: "קריית מוצקין" }],
@@ -222,6 +224,10 @@ const VENUE_ALIASES = new Map([
 
   // toMix — old short name → full name with אקספו ת״א
   ["תיאטרון toMix|תל אביב", { name: "תיאטרון toMix אקספו ת״א", city: "תל אביב" }],
+
+  // toMix — scraper outputs אקספו ת"א as city, which is actually a venue in תל אביב
+  ['תיאטרון toMix אקספו ת"א|אקספו ת"א', { name: "תיאטרון toMix אקספו ת״א", city: "תל אביב" }],
+  ["תיאטרון toMix אקספו ת״א|אקספו ת״א", { name: "תיאטרון toMix אקספו ת״א", city: "תל אביב" }],
 
   // Tzavta — short name → תיאטרון צוותא
   ["צוותא|תל אביב", { name: "תיאטרון צוותא", city: "תל אביב" }],
@@ -248,10 +254,10 @@ const VENUE_ALIASES = new Map([
 ]);
 
 const CITY_REGION_MAP = {
-  'תל אביב': 'center', 'תל אביב-יפו': 'center', 'רמת גן': 'center', 'גבעתיים': 'center', 'חולון': 'center', 'בת ים': 'center', 'פתח תקווה': 'center', 'ראש העין': 'center', 'גני תקווה': 'center',
+  'תל אביב': 'center', 'תל אביב-יפו': 'center', 'רמת גן': 'center', 'גבעתיים': 'center', 'חולון': 'center', 'בת ים': 'center', 'פתח תקווה': 'center', 'ראש העין': 'center', 'גני תקווה': 'center', 'איירפורט סיטי': 'center',
   'נתניה': 'sharon', 'כפר סבא': 'sharon', 'רעננה': 'sharon', 'הרצליה': 'sharon', 'רמת השרון': 'sharon', 'נווה ירק': 'sharon', 'תל מונד': 'sharon', 'גלילות': 'sharon', 'אריאל': 'sharon',
-  'ראשון לציון': 'shfela', 'רחובות': 'shfela', 'נס ציונה': 'shfela', 'מודיעין': 'shfela', 'יבנה': 'shfela', 'מזכרת בתיה': 'shfela', 'גבעת ברנר': 'shfela', 'אייפורט סיטי': 'shfela', 'איירפורט סיטי': 'shfela', 'קריית שדה התעופה': 'shfela', 'אקספו תל אביב': 'shfela', 'אקספו ת"א': 'shfela',
-  'ירושלים': 'jerusalem', 'מעלה אדומים': 'jerusalem',
+  'ראשון לציון': 'shfela', 'רחובות': 'shfela', 'נס ציונה': 'shfela', 'יבנה': 'shfela', 'מזכרת בתיה': 'shfela', 'גבעת ברנר': 'shfela', 'קריית שדה התעופה': 'shfela',
+  'ירושלים': 'jerusalem', 'מעלה אדומים': 'jerusalem', 'מודיעין': 'jerusalem',
   'חיפה': 'north', 'עכו': 'north', 'כרמיאל': 'north', 'עפולה': 'north', 'קריית מוצקין': 'north', 'קרית מוצקין': 'north', 'זכרון יעקב': 'north', 'יגור': 'north', 'חוף הכרמל': 'north', 'אור עקיבא': 'north', 'מועצה אזורית עמק יזרעאל': 'north',
   'באר שבע': 'south', 'אשדוד': 'south', 'אשקלון': 'south',
 };
