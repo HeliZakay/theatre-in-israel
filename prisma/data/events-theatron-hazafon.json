@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-03-14T03:57:34.067Z",
+  "scrapedAt": "2026-03-15T04:08:35.798Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון הצפון",
     "city": "חיפה"
   },
   "events": [
-    {
-      "showId": 114,
-      "showSlug": "עפרה",
-      "date": "2026-03-14",
-      "hour": "21:00"
-    },
     {
       "showId": 114,
       "showSlug": "עפרה",

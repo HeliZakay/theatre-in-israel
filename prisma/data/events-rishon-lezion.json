@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-03-14T03:57:24.830Z",
+  "scrapedAt": "2026-03-15T04:08:49.394Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות ראשון לציון",
     "city": "ראשון לציון"
   },
   "events": [
-    {
-      "showId": 57,
-      "showSlug": "מלאכים-בלבן",
-      "date": "2026-03-14",
-      "hour": "20:30"
-    },
     {
       "showId": 263,
       "showSlug": "אהבה-מודרנית",
