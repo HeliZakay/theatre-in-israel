@@ -99,9 +99,6 @@
   .thumbnail {
     width: 48px;
     height: 48px;
-    order: 99;
-    align-self: start;
-    margin-inline-start: auto;
     border-radius: 6px;
   }
 
@@ -109,13 +106,9 @@
     width: auto;
   }
 
-  .eventDetails {
-    flex: 0 1 auto;
-    max-width: calc(100% - 72px);
-  }
-
   .eventRating {
     width: 100%;
     text-align: start;
+    padding-inline-start: calc(48px + 12px);
   }
 }
