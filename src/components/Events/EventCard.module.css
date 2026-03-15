@@ -90,8 +90,7 @@
 
 @media (max-width: 640px) {
   .eventItem {
-    flex-wrap: wrap;
-    gap: 4px 12px;
+    gap: 12px;
     border-inline-start: 3px solid var(--color-slate-015);
     padding-inline-start: 12px;
   }
@@ -106,9 +105,4 @@
     width: auto;
   }
 
-  .eventRating {
-    width: 100%;
-    text-align: start;
-    padding-inline-start: calc(48px + 12px);
-  }
 }

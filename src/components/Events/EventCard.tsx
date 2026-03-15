@@ -52,26 +52,26 @@ export default function EventCard({
           {showTitle}
         </Link>
         <span className={styles.eventVenue}>{venueText}</span>
-      </div>
-      <div className={styles.eventRating}>
-        {showAvgRating !== null ? (
-          <span className={styles.ratingBadge}>
-            {showAvgRating.toFixed(1)} ★
-            {showReviewCount > 0 && (
-              <span className={styles.reviewCount}>
-                {" "}· {showReviewCount} ביקורות
-              </span>
-            )}
-          </span>
-        ) : showReviewCount === 0 ? (
-          <Link
-            href={`/shows/${showSlug}/review`}
-            className={styles.reviewCta}
-            aria-label={`כתבו ביקורת על ${showTitle}`}
-          >
-            ראיתם? כתבו ביקורת &larr;
-          </Link>
-        ) : null}
+        <div className={styles.eventRating}>
+          {showAvgRating !== null ? (
+            <span className={styles.ratingBadge}>
+              {showAvgRating.toFixed(1)} ★
+              {showReviewCount > 0 && (
+                <span className={styles.reviewCount}>
+                  {" "}· {showReviewCount} ביקורות
+                </span>
+              )}
+            </span>
+          ) : showReviewCount === 0 ? (
+            <Link
+              href={`/shows/${showSlug}/review`}
+              className={styles.reviewCta}
+              aria-label={`כתבו ביקורת על ${showTitle}`}
+            >
+              ראיתם? כתבו ביקורת &larr;
+            </Link>
+          ) : null}
+        </div>
       </div>
     </article>
   );
