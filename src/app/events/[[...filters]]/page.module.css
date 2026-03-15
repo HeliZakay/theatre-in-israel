@@ -1,0 +1,54 @@
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  color: var(--color-muted-fg);
+  font-size: 0.95rem;
+}
+
+/* ---- Clear filter ---- */
+
+.clearRow {
+  margin-bottom: 20px;
+}
+
+.clearLink {
+  font-size: 0.85rem;
+  color: var(--color-curtain-red);
+  text-decoration: underline;
+}
+
+/* ---- Visually hidden ---- */
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- Mobile ---- */
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 1.35rem;
+  }
+}

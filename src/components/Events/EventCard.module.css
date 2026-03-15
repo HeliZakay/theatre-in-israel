@@ -1,0 +1,78 @@
+.eventItem {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-slate-006);
+  scroll-margin-top: calc(var(--header-offset, 60px) + 48px);
+}
+
+.eventTime {
+  flex-shrink: 0;
+  width: 48px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  text-align: end;
+}
+
+.eventDetails {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.eventTitle {
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: var(--color-text-primary);
+}
+
+.eventTitle:hover {
+  color: var(--color-curtain-red);
+}
+
+.eventVenue {
+  font-size: 0.82rem;
+  color: var(--color-muted-fg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.eventRating {
+  flex-shrink: 0;
+}
+
+.ratingBadge {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-curtain-red);
+}
+
+.reviewCta {
+  font-size: 0.8rem;
+  color: var(--color-muted-fg);
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .eventItem {
+    flex-wrap: wrap;
+    gap: 4px 12px;
+  }
+
+  .eventTime {
+    width: auto;
+  }
+
+  .eventRating {
+    width: 100%;
+    text-align: start;
+    padding-inline-start: 60px;
+  }
+}

@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
-import ROUTES, { showPath } from "@/constants/routes";
+import ROUTES, { showPath, eventsPath } from "@/constants/routes";
+import { REGION_SLUGS, CITY_SLUGS } from "@/lib/eventsConstants";
 import prisma from "@/lib/prisma";
 import { toAbsoluteUrl } from "@/lib/seo";
 
@@ -38,6 +39,51 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  // Events routes — indexed combos
+  const indexedDateSlugs = ["weekend", "week", "nextweek"];
+  const regionSlugs = Object.keys(REGION_SLUGS);
+  const citySlugs = Object.keys(CITY_SLUGS);
+
+  const eventsRoutes: MetadataRoute.Sitemap = [
+    // /events (default)
+    {
+      url: toAbsoluteUrl(ROUTES.EVENTS),
+      lastModified: now,
+      changeFrequency: "daily",
+      priority: 0.85,
+    },
+    // Each region
+    ...regionSlugs.map((slug) => ({
+      url: toAbsoluteUrl(eventsPath([slug])),
+      lastModified: now,
+      changeFrequency: "daily" as const,
+      priority: 0.7,
+    })),
+    // Indexed date presets
+    ...indexedDateSlugs.map((slug) => ({
+      url: toAbsoluteUrl(eventsPath([slug])),
+      lastModified: now,
+      changeFrequency: "daily" as const,
+      priority: 0.7,
+    })),
+    // Cities
+    ...citySlugs.map((slug) => ({
+      url: toAbsoluteUrl(eventsPath([slug])),
+      lastModified: now,
+      changeFrequency: "daily" as const,
+      priority: 0.7,
+    })),
+    // Indexed date+region combos
+    ...indexedDateSlugs.flatMap((date) =>
+      regionSlugs.map((region) => ({
+        url: toAbsoluteUrl(eventsPath([date, region])),
+        lastModified: now,
+        changeFrequency: "daily" as const,
+        priority: 0.7,
+      })),
+    ),
+  ];
+
   const showRoutes: MetadataRoute.Sitemap = shows.map((show) => {
     const latestReview = show.reviews[0];
     return {
@@ -48,5 +94,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
-  return [...staticRoutes, ...showRoutes];
+  return [...staticRoutes, ...eventsRoutes, ...showRoutes];
 }

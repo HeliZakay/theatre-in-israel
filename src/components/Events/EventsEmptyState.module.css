@@ -1,0 +1,6 @@
+.emptyState {
+  text-align: center;
+  padding: 48px 16px;
+  color: var(--color-muted-fg);
+  font-size: 1rem;
+}

@@ -1,0 +1,19 @@
+.eventList {
+  margin-top: 8px;
+}
+
+.dateGroup {
+  margin-bottom: 24px;
+}
+
+.dateHeader {
+  position: sticky;
+  top: var(--header-offset, 60px);
+  background: var(--background);
+  z-index: 10;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-slate-008);
+  margin-bottom: 8px;
+}

@@ -1,0 +1,50 @@
+.faq {
+  border-top: 1px solid var(--color-slate-006);
+  margin-top: 48px;
+  padding-top: 32px;
+}
+
+.heading {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.item {
+  margin-bottom: 8px;
+}
+
+.summary {
+  cursor: pointer;
+  padding: 10px 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  list-style: none;
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.summary::before {
+  content: "\25B8";
+  display: inline-block;
+  margin-inline-end: 8px;
+  transition: transform 0.15s ease;
+}
+
+.item[open] .summary::before {
+  transform: rotate(90deg);
+}
+
+.item[open] .summary {
+  background: var(--color-slate-006);
+}
+
+.answer {
+  padding: 8px 12px 12px 32px;
+  color: var(--color-muted-fg);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}

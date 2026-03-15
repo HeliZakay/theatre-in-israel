@@ -59,6 +59,7 @@ export function normalizeShow(
           name: e.venue.name,
           city: e.venue.city,
           address: e.venue.address,
+          region: e.venue.region,
         },
       })),
   } as Show;
