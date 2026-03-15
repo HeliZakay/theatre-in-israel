@@ -35,7 +35,7 @@ async function fetchEvents({
 
   const venueWhere: Record<string, unknown> = {};
   if (region && region in REGION_SLUGS) {
-    venueWhere.region = region;
+    venueWhere.regions = { hasSome: [region] };
   } else if (city && city in CITY_SLUGS) {
     venueWhere.city = { in: CITY_SLUGS[city] };
   }
@@ -58,7 +58,7 @@ async function fetchEvents({
         },
       },
       venue: {
-        select: { name: true, city: true, region: true },
+        select: { name: true, city: true, regions: true },
       },
     },
     orderBy: [{ date: "asc" }, { hour: "asc" }],
@@ -99,10 +99,10 @@ async function fetchRegionCounts(
   const venueIds = counts.map((c) => c.venueId);
   const venues = await prisma.venue.findMany({
     where: { id: { in: venueIds } },
-    select: { id: true, region: true },
+    select: { id: true, regions: true },
   });
 
-  const venueRegionMap = new Map(venues.map((v) => [v.id, v.region]));
+  const venueRegionsMap = new Map(venues.map((v) => [v.id, v.regions]));
 
   // Build slug → count from the REGION_SLUGS keys
   const regionCounts: Record<string, number> = {};
@@ -111,9 +111,11 @@ async function fetchRegionCounts(
   }
 
   for (const row of counts) {
-    const region = venueRegionMap.get(row.venueId);
-    if (region && region in regionCounts) {
-      regionCounts[region] += row._count;
+    const regions = venueRegionsMap.get(row.venueId) || [];
+    for (const r of regions) {
+      if (r in regionCounts) {
+        regionCounts[r] += row._count;
+      }
     }
   }
 

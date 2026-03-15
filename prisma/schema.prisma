@@ -155,7 +155,7 @@ model Venue {
   name    String
   city    String
   address String?
-  region  String?
+  regions String[]
   events  Event[]
 
   @@unique([name, city])

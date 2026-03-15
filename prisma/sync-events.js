@@ -258,13 +258,14 @@ const VENUE_ALIASES = new Map([
   ["תיאטרון יד למגינים יגור|לא ידוע", { name: "תיאטרון יד למגינים יגור", city: "יגור" }],
 ]);
 
-const CITY_REGION_MAP = {
-  'תל אביב': 'center', 'תל אביב-יפו': 'center', 'רמת גן': 'center', 'גבעתיים': 'center', 'חולון': 'center', 'בת ים': 'center', 'פתח תקווה': 'center', 'ראש העין': 'center', 'גני תקווה': 'center', 'איירפורט סיטי': 'center', 'אקספו ת"א': 'center', 'אקספו ת״א': 'center', 'אקספו תל אביב': 'center',
-  'נתניה': 'sharon', 'כפר סבא': 'sharon', 'רעננה': 'sharon', 'הרצליה': 'sharon', 'רמת השרון': 'sharon', 'נווה ירק': 'sharon', 'תל מונד': 'sharon', 'גלילות': 'sharon', 'אריאל': 'sharon',
-  'ראשון לציון': 'shfela', 'רחובות': 'shfela', 'נס ציונה': 'shfela', 'יבנה': 'shfela', 'מזכרת בתיה': 'shfela', 'גבעת ברנר': 'shfela', 'קריית שדה התעופה': 'shfela',
-  'ירושלים': 'jerusalem', 'מעלה אדומים': 'jerusalem', 'מודיעין': 'jerusalem',
-  'חיפה': 'north', 'עכו': 'north', 'כרמיאל': 'north', 'עפולה': 'north', 'קריית מוצקין': 'north', 'קרית מוצקין': 'north', 'זכרון יעקב': 'north', 'יגור': 'north', 'חוף הכרמל': 'north', 'אור עקיבא': 'north', 'מועצה אזורית עמק יזרעאל': 'north',
-  'באר שבע': 'south', 'אשדוד': 'south', 'אשקלון': 'south',
+const CITY_REGIONS_MAP = {
+  'תל אביב': ['center'], 'תל אביב-יפו': ['center'], 'רמת גן': ['center'], 'גבעתיים': ['center'], 'חולון': ['center'], 'בת ים': ['center'], 'פתח תקווה': ['center'], 'ראש העין': ['center'], 'גני תקווה': ['center'], 'אקספו ת"א': ['center'], 'אקספו ת״א': ['center'], 'אקספו תל אביב': ['center'],
+  'נתניה': ['sharon'], 'כפר סבא': ['sharon'], 'רעננה': ['sharon'], 'נווה ירק': ['sharon'], 'תל מונד': ['sharon'],
+  'הרצליה': ['sharon', 'center'], 'גלילות': ['sharon', 'center'], 'אריאל': ['sharon', 'center'],
+  'ראשון לציון': ['shfela', 'center'], 'רחובות': ['shfela'], 'נס ציונה': ['shfela'], 'יבנה': ['shfela'], 'מזכרת בתיה': ['shfela'], 'גבעת ברנר': ['shfela'], 'קריית שדה התעופה': ['shfela'], 'איירפורט סיטי': ['shfela', 'center'],
+  'ירושלים': ['jerusalem'], 'מעלה אדומים': ['jerusalem'], 'מודיעין': ['shfela', 'jerusalem'],
+  'חיפה': ['north'], 'עכו': ['north'], 'כרמיאל': ['north'], 'עפולה': ['north'], 'קריית מוצקין': ['north'], 'קרית מוצקין': ['north'], 'זכרון יעקב': ['north'], 'יגור': ['north'], 'חוף הכרמל': ['north'], 'אור עקיבא': ['north'], 'מועצה אזורית עמק יזרעאל': ['north'],
+  'באר שבע': ['south'], 'אשדוד': ['south', 'shfela'], 'אשקלון': ['south'],
 };
 
 function normalizeVenue(name, city) {
@@ -334,11 +335,11 @@ async function syncEvents(prisma, filePath) {
   for (const ev of data.events) {
     const key = `${ev.venueName}|${ev.venueCity}`;
     if (!venueCache.has(key)) {
-      const region = CITY_REGION_MAP[ev.venueCity] || null;
+      const regions = CITY_REGIONS_MAP[ev.venueCity] || [];
       const venue = await prisma.venue.upsert({
         where: { name_city: { name: ev.venueName, city: ev.venueCity } },
-        create: { name: ev.venueName, city: ev.venueCity, region },
-        update: { region },
+        create: { name: ev.venueName, city: ev.venueCity, regions },
+        update: { regions },
       });
       venueCache.set(key, venue);
     }

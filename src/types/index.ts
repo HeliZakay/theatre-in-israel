@@ -27,7 +27,7 @@ export interface ShowEvent {
   id: number;
   date: string;
   hour: string;
-  venue: { name: string; city: string; address: string | null; region: string | null };
+  venue: { name: string; city: string; address: string | null; regions: string[] };
 }
 
 export interface Show {
@@ -105,7 +105,7 @@ export interface Venue {
   name: string;
   city: string;
   address: string | null;
-  region: string | null;
+  regions: string[];
 }
 
 export interface Event {
