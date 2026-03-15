@@ -28,10 +28,7 @@ export default function EventCard({
   venueCity,
   dateLabel,
 }: EventCardProps) {
-  const showTheatreInVenue = venueName.includes(showTheatre);
-  const venueText = showTheatreInVenue
-    ? `${venueName}, ${venueCity}`
-    : `${showTheatre} · ${venueName}, ${venueCity}`;
+  const venueText = `${venueName}, ${venueCity}`;
 
   return (
     <article className={styles.eventItem}>

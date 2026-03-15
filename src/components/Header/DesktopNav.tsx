@@ -41,7 +41,7 @@ export default function DesktopNav({ pathname, onNavigate }: DesktopNavProps) {
                 className={styles.navText}
                 onClick={onNavigate}
               >
-                כל ההצגות
+                קטלוג הצגות
               </Link>
             </NavigationMenu.Link>
           </NavigationMenu.Item>
