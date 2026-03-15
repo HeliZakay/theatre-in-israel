@@ -54,10 +54,18 @@
 
 .navList {
   display: flex;
-  gap: 16px;
+  gap: 0;
   list-style: none;
   flex-wrap: wrap;
   row-gap: 8px;
+}
+
+.navList li + li {
+  border-inline-start: 1px solid rgba(26, 26, 26, 0.12);
+}
+
+.navList li {
+  padding: 0 16px;
 }
 
 .navList a {
@@ -398,6 +406,11 @@
 
   .navList li {
     width: 100%;
+    padding: 0;
+  }
+
+  .navList li + li {
+    border-inline-start: 0;
   }
 
   .navText {
