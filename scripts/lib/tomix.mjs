@@ -515,6 +515,11 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
       venueCity = e.rawVenue.slice(commaIdx + 1).trim();
     }
 
+    // Normalize home venue name
+    if (venueName === "תיאטרון toMix") {
+      venueName = "תיאטרון toMix אקספו ת״א";
+    }
+
     // Fall back to resolveVenueCity if no city from comma split
     if (!venueCity) {
       venueCity = resolveVenueCity(venueName);
