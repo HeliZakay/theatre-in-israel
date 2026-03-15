@@ -229,9 +229,10 @@ const VENUE_ALIASES = new Map([
   ['תיאטרון toMix|אקספו ת"א', { name: "תיאטרון toMix אקספו ת״א", city: "תל אביב" }],
   ["תיאטרון toMix|אקספו ת״א", { name: "תיאטרון toMix אקספו ת״א", city: "תל אביב" }],
 
-  // toMix — scraper outputs full venue name + אקספו as city
+  // toMix — scraper outputs full venue name (gershayim ״) + אקספו as city (regular " or ״)
   ['תיאטרון toMix אקספו ת"א|אקספו ת"א', { name: "תיאטרון toMix אקספו ת״א", city: "תל אביב" }],
   ["תיאטרון toMix אקספו ת״א|אקספו ת״א", { name: "תיאטרון toMix אקספו ת״א", city: "תל אביב" }],
+  ['תיאטרון toMix אקספו ת״א|אקספו ת"א', { name: "תיאטרון toMix אקספו ת״א", city: "תל אביב" }],
 
   // Tzavta — short name → תיאטרון צוותא
   ["צוותא|תל אביב", { name: "תיאטרון צוותא", city: "תל אביב" }],
