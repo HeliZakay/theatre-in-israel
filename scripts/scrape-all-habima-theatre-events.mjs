@@ -22,7 +22,7 @@ import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 import { launchBrowser } from "./lib/browser.mjs";
-import { fetchRepertoire, scrapeShowEvents, HABIMA_THEATRE } from "./lib/habima.mjs";
+import { fetchRepertoire, scrapeShowEvents, fetchPresentationDates, HABIMA_THEATRE } from "./lib/habima.mjs";
 import { createPrismaClient, normaliseForMatch } from "./lib/db.mjs";
 import {
   bold,
@@ -148,6 +148,19 @@ async function main() {
   }
 
   console.log(cyan(`  Matched ${matched.length} shows. Scraping events…\n`));
+
+  // ── 3b. Fetch valid dates from presentations calendar ──
+  console.log(dim("  Fetching presentations calendar (source of truth)…"));
+  let validDates;
+  try {
+    validDates = await fetchPresentationDates(browser);
+    console.log(dim(`  Calendar has ${validDates.size} active dates.\n`));
+  } catch (err) {
+    console.log(yellow(`  Could not fetch presentations calendar: ${err.message}`));
+    console.log(yellow("  Proceeding without calendar filter.\n"));
+    validDates = null;
+  }
+
   separator();
 
   // ── 4. Iterate over matched shows ──
@@ -160,7 +173,7 @@ async function main() {
     const label = `[${i + 1}/${matched.length}]`;
 
     try {
-      const result = await scrapeShowEvents(browser, show.url, { debug });
+      const result = await scrapeShowEvents(browser, show.url, { debug, validDates });
 
       if (result.events.length === 0) {
         console.log(yellow(`  ${label} ${bidi(show.title)}: no events found`));

@@ -14,6 +14,74 @@ export const HABIMA_THEATRE = "תיאטרון הבימה";
 export const HABIMA_BASE = "https://www.habima.co.il";
 export const REPERTOIRE_URL =
   "https://www.habima.co.il/%D7%A8%D7%A4%D7%A8%D7%98%D7%95%D7%90%D7%A8/";
+const PRESENTATIONS_URL = "https://www.habima.co.il/presentations/";
+
+const HEB_MONTHS = {
+  'ינואר': '01', 'פברואר': '02', 'מרץ': '03', 'אפריל': '04',
+  'מאי': '05', 'יוני': '06', 'יולי': '07', 'אוגוסט': '08',
+  'ספטמבר': '09', 'אוקטובר': '10', 'נובמבר': '11', 'דצמבר': '12',
+};
+
+// ── Presentations calendar scraper ──────────────────────────────
+
+/**
+ * Scrape the Habima presentations calendar to get the set of valid
+ * (date, show title) pairs. The calendar is the source of truth —
+ * show detail pages may list stale dates that Habima no longer honours.
+ *
+ * Returns a Set of "YYYY-MM-DD" strings that have at least one event.
+ *
+ * @param {import("puppeteer").Browser} browser
+ * @returns {Promise<Set<string>>}
+ */
+export async function fetchPresentationDates(browser) {
+  const page = await browser.newPage();
+  await setupRequestInterception(page);
+  await page.goto(PRESENTATIONS_URL, { waitUntil: "networkidle2", timeout: 60_000 });
+  await page.waitForSelector("table.calendar", { timeout: 10_000 });
+
+  // Get month buttons (e.g. "מרץ 2026", "אפריל 2026")
+  const monthLabels = await page.evaluate(() =>
+    Array.from(document.querySelectorAll(".board-controls__months button"))
+      .map(b => b.textContent.trim())
+  );
+
+  const validDates = new Set();
+
+  for (let i = 0; i < monthLabels.length; i++) {
+    // Parse "מרץ 2026" → "2026-03"
+    const parts = monthLabels[i].split(/\s+/);
+    const hebMonth = parts[0];
+    const year = parts[1];
+    const mm = HEB_MONTHS[hebMonth];
+    if (!mm || !year) continue;
+    const prefix = `${year}-${mm}`;
+
+    // Click the month tab
+    await page.evaluate(idx => {
+      document.querySelectorAll(".board-controls__months button")[idx].click();
+    }, i);
+    await new Promise(r => setTimeout(r, 800));
+
+    // Collect days that have events
+    const days = await page.evaluate(() => {
+      const result = [];
+      for (const td of document.querySelectorAll("td.calendar-day")) {
+        const dateSpan = td.querySelector(".date");
+        if (!dateSpan || dateSpan.classList.contains("empty")) continue;
+        result.push(dateSpan.textContent.trim().padStart(2, "0"));
+      }
+      return result;
+    });
+
+    for (const dd of days) {
+      validDates.add(`${prefix}-${dd}`);
+    }
+  }
+
+  await page.close();
+  return validDates;
+}
 
 // ── Repertoire page scraper ────────────────────────────────────
 
@@ -339,14 +407,14 @@ export async function scrapeShowDetails(browser, url) {
  *
  * @param {import("puppeteer").Browser} browser
  * @param {string} url — show detail page URL
- * @param {{ debug?: boolean }} [options]
+ * @param {{ debug?: boolean, validDates?: Set<string> }} [options]
  * @returns {Promise<{
  *   events: Array<{ date: string, hour: string, venueName: string, venueCity: string, ticketUrl: string|null, rawText: string }>,
  *   title: string,
  *   debugHtml?: string
  * }>}
  */
-export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
+export async function scrapeShowEvents(browser, url, { debug = false, validDates = null } = {}) {
   const page = await browser.newPage();
   await setupRequestInterception(page);
 
@@ -413,11 +481,14 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
 
   await page.close();
 
-  // Deduplicate by ticketUrl or date+hour
+  // Filter out past events and deduplicate by ticketUrl or date+hour
+  const today = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Jerusalem" }); // "YYYY-MM-DD"
   const processed = [];
   const seen = new Set();
 
   for (const e of result.events) {
+    if (e.date < today) continue;
+    if (validDates && !validDates.has(e.date)) continue;
     const key = e.ticketUrl || `${e.date}|${e.hour}`;
 
     if (!seen.has(key)) {

@@ -1,311 +1,7 @@
 {
-  "scrapedAt": "2026-03-15T04:06:49.674Z",
+  "scrapedAt": "2026-03-15T15:36:04.018Z",
   "touring": true,
   "events": [
-    {
-      "showId": 134,
-      "showSlug": "אוי-אלוהים",
-      "date": "2026-04-16",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 134,
-      "showSlug": "אוי-אלוהים",
-      "date": "2026-04-17",
-      "hour": "11:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 134,
-      "showSlug": "אוי-אלוהים",
-      "date": "2026-04-18",
-      "hour": "18:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 134,
-      "showSlug": "אוי-אלוהים",
-      "date": "2026-04-19",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 134,
-      "showSlug": "אוי-אלוהים",
-      "date": "2026-04-22",
-      "hour": "21:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 134,
-      "showSlug": "אוי-אלוהים",
-      "date": "2026-05-27",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 134,
-      "showSlug": "אוי-אלוהים",
-      "date": "2026-05-28",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 134,
-      "showSlug": "אוי-אלוהים",
-      "date": "2026-05-29",
-      "hour": "11:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 134,
-      "showSlug": "אוי-אלוהים",
-      "date": "2026-05-29",
-      "hour": "13:30",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 134,
-      "showSlug": "אוי-אלוהים",
-      "date": "2026-05-30",
-      "hour": "21:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 54,
-      "showSlug": "הלילה-השנים-עשר",
-      "date": "2026-03-21",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 54,
-      "showSlug": "הלילה-השנים-עשר",
-      "date": "2026-03-22",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 54,
-      "showSlug": "הלילה-השנים-עשר",
-      "date": "2026-03-23",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 54,
-      "showSlug": "הלילה-השנים-עשר",
-      "date": "2026-03-24",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 54,
-      "showSlug": "הלילה-השנים-עשר",
-      "date": "2026-03-25",
-      "hour": "18:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 54,
-      "showSlug": "הלילה-השנים-עשר",
-      "date": "2026-05-02",
-      "hour": "21:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 54,
-      "showSlug": "הלילה-השנים-עשר",
-      "date": "2026-05-03",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 54,
-      "showSlug": "הלילה-השנים-עשר",
-      "date": "2026-05-04",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 36,
-      "showSlug": "הנערה-מהדואר",
-      "date": "2026-04-06",
-      "hour": "20:30",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 36,
-      "showSlug": "הנערה-מהדואר",
-      "date": "2026-04-08",
-      "hour": "21:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 36,
-      "showSlug": "הנערה-מהדואר",
-      "date": "2026-04-09",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 36,
-      "showSlug": "הנערה-מהדואר",
-      "date": "2026-04-10",
-      "hour": "11:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 36,
-      "showSlug": "הנערה-מהדואר",
-      "date": "2026-04-11",
-      "hour": "20:30",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 36,
-      "showSlug": "הנערה-מהדואר",
-      "date": "2026-05-04",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 36,
-      "showSlug": "הנערה-מהדואר",
-      "date": "2026-05-06",
-      "hour": "17:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 36,
-      "showSlug": "הנערה-מהדואר",
-      "date": "2026-05-06",
-      "hour": "20:30",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 42,
-      "showSlug": "הערת-שוליים",
-      "date": "2026-04-02",
-      "hour": "21:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 42,
-      "showSlug": "הערת-שוליים",
-      "date": "2026-04-03",
-      "hour": "11:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 139,
-      "showSlug": "להתראות-ותודה-על-הקרמשניט",
-      "date": "2026-05-15",
-      "hour": "11:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 139,
-      "showSlug": "להתראות-ותודה-על-הקרמשניט",
-      "date": "2026-05-16",
-      "hour": "21:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 139,
-      "showSlug": "להתראות-ותודה-על-הקרמשניט",
-      "date": "2026-05-17",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 139,
-      "showSlug": "להתראות-ותודה-על-הקרמשניט",
-      "date": "2026-05-18",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 139,
-      "showSlug": "להתראות-ותודה-על-הקרמשניט",
-      "date": "2026-05-20",
-      "hour": "18:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 139,
-      "showSlug": "להתראות-ותודה-על-הקרמשניט",
-      "date": "2026-05-20",
-      "hour": "21:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 139,
-      "showSlug": "להתראות-ותודה-על-הקרמשניט",
-      "date": "2026-05-23",
-      "hour": "21:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 140,
-      "showSlug": "מחווה-לדיוות-הגדולות",
-      "date": "2026-03-20",
-      "hour": "11:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 140,
-      "showSlug": "מחווה-לדיוות-הגדולות",
-      "date": "2026-03-20",
-      "hour": "13:30",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 140,
-      "showSlug": "מחווה-לדיוות-הגדולות",
-      "date": "2026-03-21",
-      "hour": "18:30",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
     {
       "showId": 52,
       "showSlug": "מי-את-חושבת-שאת",
@@ -331,89 +27,169 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 57,
-      "showSlug": "מלאכים-בלבן",
-      "date": "2026-03-26",
+      "showId": 135,
+      "showSlug": "אוי-אלוהים",
+      "date": "2026-04-16",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 57,
-      "showSlug": "מלאכים-בלבן",
-      "date": "2026-03-27",
+      "showId": 135,
+      "showSlug": "אוי-אלוהים",
+      "date": "2026-04-17",
       "hour": "11:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 57,
-      "showSlug": "מלאכים-בלבן",
-      "date": "2026-03-28",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 57,
-      "showSlug": "מלאכים-בלבן",
-      "date": "2026-04-27",
+      "showId": 135,
+      "showSlug": "אוי-אלוהים",
+      "date": "2026-04-18",
       "hour": "18:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 57,
-      "showSlug": "מלאכים-בלבן",
-      "date": "2026-04-28",
+      "showId": 135,
+      "showSlug": "אוי-אלוהים",
+      "date": "2026-04-19",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 57,
-      "showSlug": "מלאכים-בלבן",
-      "date": "2026-04-29",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 57,
-      "showSlug": "מלאכים-בלבן",
-      "date": "2026-04-30",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 57,
-      "showSlug": "מלאכים-בלבן",
-      "date": "2026-05-01",
-      "hour": "11:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 57,
-      "showSlug": "מלאכים-בלבן",
-      "date": "2026-05-02",
+      "showId": 135,
+      "showSlug": "אוי-אלוהים",
+      "date": "2026-04-22",
       "hour": "21:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 57,
-      "showSlug": "מלאכים-בלבן",
-      "date": "2026-05-03",
+      "showId": 135,
+      "showSlug": "אוי-אלוהים",
+      "date": "2026-05-27",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 57,
-      "showSlug": "מלאכים-בלבן",
-      "date": "2026-05-31",
+      "showId": 135,
+      "showSlug": "אוי-אלוהים",
+      "date": "2026-05-28",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 135,
+      "showSlug": "אוי-אלוהים",
+      "date": "2026-05-29",
+      "hour": "11:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 135,
+      "showSlug": "אוי-אלוהים",
+      "date": "2026-05-29",
+      "hour": "13:30",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 135,
+      "showSlug": "אוי-אלוהים",
+      "date": "2026-05-30",
+      "hour": "21:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 59,
+      "showSlug": "רומי-+-ג׳ולייט",
+      "date": "2026-04-09",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 59,
+      "showSlug": "רומי-+-ג׳ולייט",
+      "date": "2026-04-10",
+      "hour": "11:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 59,
+      "showSlug": "רומי-+-ג׳ולייט",
+      "date": "2026-05-24",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 59,
+      "showSlug": "רומי-+-ג׳ולייט",
+      "date": "2026-05-25",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 41,
+      "showSlug": "משהו-טוב",
+      "date": "2026-04-03",
+      "hour": "11:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 41,
+      "showSlug": "משהו-טוב",
+      "date": "2026-04-04",
+      "hour": "20:30",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 41,
+      "showSlug": "משהו-טוב",
+      "date": "2026-04-05",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 41,
+      "showSlug": "משהו-טוב",
+      "date": "2026-05-14",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 41,
+      "showSlug": "משהו-טוב",
+      "date": "2026-05-17",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 41,
+      "showSlug": "משהו-טוב",
+      "date": "2026-05-18",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 41,
+      "showSlug": "משהו-טוב",
+      "date": "2026-05-19",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
@@ -547,98 +323,202 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 47,
-      "showSlug": "מרציפנים",
-      "date": "2026-04-12",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 47,
-      "showSlug": "מרציפנים",
-      "date": "2026-04-14",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 47,
-      "showSlug": "מרציפנים",
-      "date": "2026-05-28",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 47,
-      "showSlug": "מרציפנים",
-      "date": "2026-05-29",
-      "hour": "11:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 47,
-      "showSlug": "מרציפנים",
-      "date": "2026-05-30",
+      "showId": 42,
+      "showSlug": "הערת-שוליים",
+      "date": "2026-04-02",
       "hour": "21:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 41,
-      "showSlug": "משהו-טוב",
+      "showId": 42,
+      "showSlug": "הערת-שוליים",
       "date": "2026-04-03",
       "hour": "11:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 41,
-      "showSlug": "משהו-טוב",
-      "date": "2026-04-04",
+      "showId": 55,
+      "showSlug": "קזבלן",
+      "date": "2026-04-26",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 55,
+      "showSlug": "קזבלן",
+      "date": "2026-04-27",
+      "hour": "11:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 55,
+      "showSlug": "קזבלן",
+      "date": "2026-04-27",
       "hour": "20:30",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 41,
-      "showSlug": "משהו-טוב",
-      "date": "2026-04-05",
+      "showId": 55,
+      "showSlug": "קזבלן",
+      "date": "2026-04-28",
+      "hour": "11:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 55,
+      "showSlug": "קזבלן",
+      "date": "2026-05-25",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 41,
-      "showSlug": "משהו-טוב",
-      "date": "2026-05-14",
+      "showId": 55,
+      "showSlug": "קזבלן",
+      "date": "2026-05-26",
+      "hour": "19:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 55,
+      "showSlug": "קזבלן",
+      "date": "2026-05-27",
+      "hour": "11:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 55,
+      "showSlug": "קזבלן",
+      "date": "2026-05-28",
+      "hour": "11:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 54,
+      "showSlug": "הלילה-השנים-עשר",
+      "date": "2026-03-22",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 41,
-      "showSlug": "משהו-טוב",
-      "date": "2026-05-17",
+      "showId": 54,
+      "showSlug": "הלילה-השנים-עשר",
+      "date": "2026-03-23",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 41,
-      "showSlug": "משהו-טוב",
-      "date": "2026-05-18",
+      "showId": 54,
+      "showSlug": "הלילה-השנים-עשר",
+      "date": "2026-03-24",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 41,
-      "showSlug": "משהו-טוב",
-      "date": "2026-05-19",
+      "showId": 54,
+      "showSlug": "הלילה-השנים-עשר",
+      "date": "2026-03-25",
+      "hour": "18:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 54,
+      "showSlug": "הלילה-השנים-עשר",
+      "date": "2026-05-02",
+      "hour": "21:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 54,
+      "showSlug": "הלילה-השנים-עשר",
+      "date": "2026-05-03",
       "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 54,
+      "showSlug": "הלילה-השנים-עשר",
+      "date": "2026-05-04",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 36,
+      "showSlug": "הנערה-מהדואר",
+      "date": "2026-04-06",
+      "hour": "20:30",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 36,
+      "showSlug": "הנערה-מהדואר",
+      "date": "2026-04-08",
+      "hour": "21:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 36,
+      "showSlug": "הנערה-מהדואר",
+      "date": "2026-04-09",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 36,
+      "showSlug": "הנערה-מהדואר",
+      "date": "2026-04-10",
+      "hour": "11:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 36,
+      "showSlug": "הנערה-מהדואר",
+      "date": "2026-04-11",
+      "hour": "20:30",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 36,
+      "showSlug": "הנערה-מהדואר",
+      "date": "2026-05-04",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 36,
+      "showSlug": "הנערה-מהדואר",
+      "date": "2026-05-06",
+      "hour": "17:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 36,
+      "showSlug": "הנערה-מהדואר",
+      "date": "2026-05-06",
+      "hour": "20:30",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
@@ -699,18 +579,90 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 142,
-      "showSlug": "פינוקיו",
-      "date": "2026-04-05",
-      "hour": "15:00",
+      "showId": 57,
+      "showSlug": "מלאכים-בלבן",
+      "date": "2026-03-26",
+      "hour": "20:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 142,
-      "showSlug": "פינוקיו",
-      "date": "2026-04-05",
-      "hour": "17:00",
+      "showId": 57,
+      "showSlug": "מלאכים-בלבן",
+      "date": "2026-03-27",
+      "hour": "11:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 57,
+      "showSlug": "מלאכים-בלבן",
+      "date": "2026-03-28",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 57,
+      "showSlug": "מלאכים-בלבן",
+      "date": "2026-04-27",
+      "hour": "18:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 57,
+      "showSlug": "מלאכים-בלבן",
+      "date": "2026-04-28",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 57,
+      "showSlug": "מלאכים-בלבן",
+      "date": "2026-04-29",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 57,
+      "showSlug": "מלאכים-בלבן",
+      "date": "2026-04-30",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 57,
+      "showSlug": "מלאכים-בלבן",
+      "date": "2026-05-01",
+      "hour": "11:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 57,
+      "showSlug": "מלאכים-בלבן",
+      "date": "2026-05-02",
+      "hour": "21:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 57,
+      "showSlug": "מלאכים-בלבן",
+      "date": "2026-05-03",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 57,
+      "showSlug": "מלאכים-בלבן",
+      "date": "2026-05-31",
+      "hour": "20:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
@@ -775,6 +727,22 @@
       "showSlug": "פעולות-פשוטות",
       "date": "2026-05-09",
       "hour": "21:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 143,
+      "showSlug": "פינוקיו",
+      "date": "2026-04-05",
+      "hour": "15:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 143,
+      "showSlug": "פינוקיו",
+      "date": "2026-04-05",
+      "hour": "17:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
@@ -1003,130 +971,98 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 55,
-      "showSlug": "קזבלן",
-      "date": "2026-03-17",
-      "hour": "13:00",
+      "showId": 140,
+      "showSlug": "להתראות-ותודה-על-הקרמשניט",
+      "date": "2026-05-15",
+      "hour": "11:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 55,
-      "showSlug": "קזבלן",
-      "date": "2026-03-18",
+      "showId": 140,
+      "showSlug": "להתראות-ותודה-על-הקרמשניט",
+      "date": "2026-05-16",
+      "hour": "21:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 140,
+      "showSlug": "להתראות-ותודה-על-הקרמשניט",
+      "date": "2026-05-17",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 55,
-      "showSlug": "קזבלן",
-      "date": "2026-03-19",
-      "hour": "11:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 55,
-      "showSlug": "קזבלן",
-      "date": "2026-03-19",
-      "hour": "19:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 55,
-      "showSlug": "קזבלן",
-      "date": "2026-04-26",
+      "showId": 140,
+      "showSlug": "להתראות-ותודה-על-הקרמשניט",
+      "date": "2026-05-18",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 55,
-      "showSlug": "קזבלן",
-      "date": "2026-04-27",
-      "hour": "11:00",
+      "showId": 140,
+      "showSlug": "להתראות-ותודה-על-הקרמשניט",
+      "date": "2026-05-20",
+      "hour": "18:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 55,
-      "showSlug": "קזבלן",
-      "date": "2026-04-27",
-      "hour": "20:30",
+      "showId": 140,
+      "showSlug": "להתראות-ותודה-על-הקרמשניט",
+      "date": "2026-05-20",
+      "hour": "21:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 55,
-      "showSlug": "קזבלן",
-      "date": "2026-04-28",
-      "hour": "11:00",
+      "showId": 140,
+      "showSlug": "להתראות-ותודה-על-הקרמשניט",
+      "date": "2026-05-23",
+      "hour": "21:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 55,
-      "showSlug": "קזבלן",
-      "date": "2026-05-25",
+      "showId": 47,
+      "showSlug": "מרציפנים",
+      "date": "2026-04-12",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 55,
-      "showSlug": "קזבלן",
-      "date": "2026-05-26",
-      "hour": "19:00",
+      "showId": 47,
+      "showSlug": "מרציפנים",
+      "date": "2026-04-14",
+      "hour": "20:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 55,
-      "showSlug": "קזבלן",
-      "date": "2026-05-27",
-      "hour": "11:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 55,
-      "showSlug": "קזבלן",
+      "showId": 47,
+      "showSlug": "מרציפנים",
       "date": "2026-05-28",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 47,
+      "showSlug": "מרציפנים",
+      "date": "2026-05-29",
       "hour": "11:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 59,
-      "showSlug": "רומי-+-ג׳ולייט",
-      "date": "2026-04-09",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 59,
-      "showSlug": "רומי-+-ג׳ולייט",
-      "date": "2026-04-10",
-      "hour": "11:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 59,
-      "showSlug": "רומי-+-ג׳ולייט",
-      "date": "2026-05-24",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 59,
-      "showSlug": "רומי-+-ג׳ולייט",
-      "date": "2026-05-25",
-      "hour": "20:00",
+      "showId": 47,
+      "showSlug": "מרציפנים",
+      "date": "2026-05-30",
+      "hour": "21:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     }
