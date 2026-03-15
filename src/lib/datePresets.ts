@@ -81,20 +81,20 @@ export function resolveDatePreset(
     }
 
     case 'week': {
-      // Current week: Mon–Sat
-      const daysToMon = dow === 0 ? -6 : 1 - dow; // Sunday → go back 6 days
-      const mon = addDays(year, month, day, daysToMon);
-      const sat = addDays(mon.year, mon.month, mon.day, 5);
-      return { from: utcDate(mon.year, mon.month, mon.day), to: utcDate(sat.year, sat.month, sat.day) };
+      // Current week: Sun–Sat (Israeli week)
+      const daysToSun = -dow;
+      const sun = addDays(year, month, day, daysToSun);
+      const sat = addDays(sun.year, sun.month, sun.day, 6);
+      return { from: utcDate(sun.year, sun.month, sun.day), to: utcDate(sat.year, sat.month, sat.day) };
     }
 
     case 'nextweek': {
-      // Next week: Mon–Sat
-      const daysToMon = dow === 0 ? -6 : 1 - dow;
-      const thisMon = addDays(year, month, day, daysToMon);
-      const nextMon = addDays(thisMon.year, thisMon.month, thisMon.day, 7);
-      const nextSat = addDays(nextMon.year, nextMon.month, nextMon.day, 5);
-      return { from: utcDate(nextMon.year, nextMon.month, nextMon.day), to: utcDate(nextSat.year, nextSat.month, nextSat.day) };
+      // Next week: Sun–Sat (Israeli week)
+      const daysToSun = -dow;
+      const thisSun = addDays(year, month, day, daysToSun);
+      const nextSun = addDays(thisSun.year, thisSun.month, thisSun.day, 7);
+      const nextSat = addDays(nextSun.year, nextSun.month, nextSun.day, 6);
+      return { from: utcDate(nextSun.year, nextSun.month, nextSun.day), to: utcDate(nextSat.year, nextSat.month, nextSat.day) };
     }
 
     case 'all':
