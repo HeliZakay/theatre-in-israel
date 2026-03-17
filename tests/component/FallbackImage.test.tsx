@@ -126,6 +126,6 @@ describe("FallbackImage", () => {
     );
     const img = screen.getByRole("img", { name: "Default fallback" });
     fireEvent.error(img);
-    expect(img).toHaveAttribute("src", "/show-img-default.png");
+    expect(img).toHaveAttribute("src", "/show-img-default.webp");
   });
 });

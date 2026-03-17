@@ -224,8 +224,14 @@ export async function generateMetadata({
       description,
       url: toAbsoluteUrl(canonical),
       siteName: SITE_NAME,
+      images: [{ url: "/logo-img.png", alt: SITE_NAME }],
     },
-    twitter: { card: "summary" },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | ${SITE_NAME}`,
+      description,
+      images: ["/logo-img.png"],
+    },
     alternates: { canonical },
   };
 }

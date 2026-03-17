@@ -10,7 +10,7 @@ interface FallbackImageProps extends ImageProps {
 export default function FallbackImage({
   src,
   alt,
-  fallbackSrc = "/show-img-default.png",
+  fallbackSrc = "/show-img-default.webp",
   onError,
   ...props
 }: FallbackImageProps) {

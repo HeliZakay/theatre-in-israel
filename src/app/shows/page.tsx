@@ -108,9 +108,25 @@ export default async function ShowsPage({ searchParams }: ShowsPageProps) {
         }
       : null;
 
+  const { page = 1, totalPages = 1 } = filters;
+  const prevHref =
+    page > 1
+      ? toAbsoluteUrl(
+          `${ROUTES.SHOWS}${buildShowsQueryString({ ...filters, page: page - 1 === 1 ? undefined : page - 1 })}`,
+        )
+      : null;
+  const nextHref =
+    page < totalPages
+      ? toAbsoluteUrl(
+          `${ROUTES.SHOWS}${buildShowsQueryString({ ...filters, page: page + 1 })}`,
+        )
+      : null;
+
   return (
     <main className={styles.page} id="main-content">
       <link rel="canonical" href={toAbsoluteUrl(seo.canonicalPath)} />
+      {prevHref && <link rel="prev" href={prevHref} />}
+      {nextHref && <link rel="next" href={nextHref} />}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: toJsonLd(breadcrumbJsonLd) }}
