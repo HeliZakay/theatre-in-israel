@@ -91,6 +91,16 @@
   color: rgba(26, 26, 26, 0.7);
 }
 
+.theatreLink {
+  color: var(--color-curtain-red);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.theatreLink:hover {
+  text-decoration: underline;
+}
+
 .metaRating {
   display: inline-flex;
   align-items: center;

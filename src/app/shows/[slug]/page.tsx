@@ -10,7 +10,8 @@ import prisma from "@/lib/prisma";
 import { isShowInWatchlist } from "@/lib/watchlist";
 import Link from "next/link";
 import { ENABLE_REVIEW_AUTH_GATEWAY } from "@/constants/featureFlags";
-import ROUTES, { showPath, showReviewPath } from "@/constants/routes";
+import ROUTES, { showPath, showReviewPath, theatrePath } from "@/constants/routes";
+import { THEATRE_BY_NAME } from "@/constants/theatres";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import ReviewCard from "@/components/ReviewCard/ReviewCard";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
@@ -290,7 +291,13 @@ export default async function ShowPage({
                 )}
               </div>
               <div className={styles.meta}>
-                <span>{show.theatre}</span>
+                {THEATRE_BY_NAME.has(show.theatre) ? (
+                  <Link href={theatrePath(THEATRE_BY_NAME.get(show.theatre)!.slug)} className={styles.theatreLink}>
+                    {show.theatre}
+                  </Link>
+                ) : (
+                  <span>{show.theatre}</span>
+                )}
                 <span>{show.durationMinutes} דקות</span>
                 <span>{reviewCount} ביקורות</span>
               </div>
@@ -421,7 +428,7 @@ export default async function ShowPage({
         <ShowsSection
           title={`עוד הצגות של ${show.theatre}`}
           shows={sameTheatreShows}
-          linkHref={`${ROUTES.SHOWS}?theatre=${encodeURIComponent(show.theatre)}`}
+          linkHref={THEATRE_BY_NAME.has(show.theatre) ? theatrePath(THEATRE_BY_NAME.get(show.theatre)!.slug) : `${ROUTES.SHOWS}?theatre=${encodeURIComponent(show.theatre)}`}
           linkText="לכל ההצגות"
           className={styles.fullWidthSection}
         />
