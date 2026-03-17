@@ -121,14 +121,14 @@ Phase 1 (Quick wins):
 - [x] #13 — Improve show page titles/meta descriptions ✅ 2026-03-18
 - [x] #14 — Improve home page meta for "הצגות מומלצות" ✅ 2026-03-18
 - [x] #1 — Improve FAQ questions ✅ 2026-03-18
-- [ ] #3 — Events page OG image
-- [ ] #8 — Optimize fallback image
-- [ ] #9 — Pagination hints
-- [ ] #11 — Preconnect hints
+- [x] #3 — Events page OG image ✅ 2026-03-18
+- [x] #8 — Optimize fallback image (PNG 1.6MB → WebP 96KB) ✅ 2026-03-18
+- [x] #9 — Pagination hints (rel prev/next on /shows) ✅ 2026-03-18
+- [x] #11 — Preconnect hints ✅ 2026-03-18 (N/A — no external domains to preconnect)
 
 Phase 2 (New pages):
 - [x] #4 — Theatre pages ✅ 2026-03-18 (includes #2 TheaterGroup structured data)
-- [ ] #5 — Genre pages
+- [x] #5 — Genre pages ✅ 2026-03-18
 - [ ] #10 — City pages
 
 Phase 3 (Content & advanced):
