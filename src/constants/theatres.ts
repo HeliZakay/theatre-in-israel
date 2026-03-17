@@ -12,16 +12,16 @@ export interface TheatreInfo {
 }
 
 export const THEATRES: TheatreInfo[] = [
-  { slug: "cameri", name: "הקאמרי" },
-  { slug: "habima", name: "הבימה" },
-  { slug: "gesher", name: "גשר" },
-  { slug: "beit-lessin", name: "בית ליסין" },
+  { slug: "cameri", name: "תיאטרון הקאמרי" },
+  { slug: "habima", name: "תיאטרון הבימה" },
+  { slug: "gesher", name: "תיאטרון גשר" },
+  { slug: "beit-lessin", name: "תיאטרון בית ליסין" },
   { slug: "haifa", name: "תיאטרון חיפה" },
   { slug: "beer-sheva", name: "תיאטרון באר שבע" },
   { slug: "khan", name: "תיאטרון החאן" },
   { slug: "hebrew-theatre", name: "התיאטרון העברי" },
-  { slug: "tmuna", name: "תמונע" },
-  { slug: "tzavta", name: "צוותא" },
+  { slug: "tmuna", name: "תיאטרון תמונע" },
+  { slug: "tzavta", name: "תיאטרון צוותא" },
 ];
 
 /** Map from URL slug → theatre info */

@@ -43,7 +43,7 @@ export async function generateMetadata({
       : "";
 
   const title = `${theatre.name} - הצגות וביקורות`;
-  const description = `${stats.showCount} הצגות בתיאטרון ${theatre.name}.${ratingText} קראו ביקורות צופים, צפו בדירוגים ומצאו את ההצגה הבאה שלכם.`;
+  const description = `${stats.showCount} הצגות ב${theatre.name}.${ratingText} קראו ביקורות צופים, צפו בדירוגים ומצאו את ההצגה הבאה שלכם.`;
 
   return {
     title,
@@ -98,7 +98,7 @@ export default async function TheatreDetailPage({ params }: TheatrePageProps) {
       ? {
           "@context": "https://schema.org",
           "@type": "ItemList",
-          name: `הצגות תיאטרון ${theatre.name}`,
+          name: `הצגות ${theatre.name}`,
           itemListElement: shows.map((show, i) => ({
             "@type": "ListItem",
             position: i + 1,
