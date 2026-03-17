@@ -118,21 +118,21 @@ Already in place:
 ## Implementation Order (Recommended)
 
 Phase 1 (Quick wins):
-- [ ] #13 — Improve show page titles/meta descriptions
-- [ ] #14 — Improve home page meta for "הצגות מומלצות"
-- [ ] #1 — Improve FAQ questions
+- [x] #13 — Improve show page titles/meta descriptions ✅ 2026-03-18
+- [x] #14 — Improve home page meta for "הצגות מומלצות" ✅ 2026-03-18
+- [x] #1 — Improve FAQ questions ✅ 2026-03-18
 - [ ] #3 — Events page OG image
 - [ ] #8 — Optimize fallback image
 - [ ] #9 — Pagination hints
 - [ ] #11 — Preconnect hints
 
 Phase 2 (New pages):
-- [ ] #4 — Theatre pages
+- [x] #4 — Theatre pages ✅ 2026-03-18 (includes #2 TheaterGroup structured data)
 - [ ] #5 — Genre pages
 - [ ] #10 — City pages
 
 Phase 3 (Content & advanced):
 - [ ] #6 — Blog/content section
 - [ ] #7 — Dedicated review pages
-- [ ] #2 — TheaterGroup structured data
-- [ ] #12 — Organization SameAs links
+- [x] #2 — TheaterGroup structured data ✅ 2026-03-18 (done as part of #4)
+- [ ] #12 — Organization SameAs links (deferred — Facebook group just created)
