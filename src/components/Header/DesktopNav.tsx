@@ -60,6 +60,20 @@ export default function DesktopNav({ pathname, onNavigate }: DesktopNavProps) {
             </NavigationMenu.Link>
           </NavigationMenu.Item>
           <NavigationMenu.Item>
+            <NavigationMenu.Link
+              asChild
+              active={pathname.startsWith(ROUTES.GENRES)}
+            >
+              <Link
+                href={ROUTES.GENRES}
+                className={styles.navText}
+                onClick={onNavigate}
+              >
+                ז׳אנרים
+              </Link>
+            </NavigationMenu.Link>
+          </NavigationMenu.Item>
+          <NavigationMenu.Item>
             <NavigationMenu.Link asChild active={pathname === ROUTES.CONTACT}>
               <Link
                 href={ROUTES.CONTACT}

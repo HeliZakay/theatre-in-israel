@@ -31,6 +31,12 @@ export default function Footer() {
                 <Link href={ROUTES.SHOWS}>כל ההצגות</Link>
               </li>
               <li>
+                <Link href={ROUTES.THEATRES}>תיאטראות</Link>
+              </li>
+              <li>
+                <Link href={ROUTES.GENRES}>ז׳אנרים</Link>
+              </li>
+              <li>
                 <Link href="/reviews/new">כתב.י ביקורת</Link>
               </li>
             </ul>
