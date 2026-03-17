@@ -17,6 +17,7 @@ interface EventsEmptyStateProps {
   datePreset: string;
   region?: string;
   city?: string;
+  theatre?: string;
   nearestRegion: { slug: string; label: string; count: number } | null;
 }
 
@@ -24,10 +25,19 @@ export default function EventsEmptyState({
   datePreset,
   region,
   city,
+  theatre,
   nearestRegion,
 }: EventsEmptyStateProps) {
   const isDefaultDate = datePreset === DEFAULT_DATE_PRESET;
   const hasNonDefaultFilter = !isDefaultDate || !!region || !!city;
+
+  if (theatre) {
+    return (
+      <div className={styles.emptyState}>
+        <p>אין הופעות קרובות של {theatre} כרגע.</p>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.emptyState}>

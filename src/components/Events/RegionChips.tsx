@@ -7,6 +7,7 @@ interface RegionChipsProps {
   city?: string;
   datePreset: string;
   regionCounts: Record<string, number>;
+  theatre?: string;
 }
 
 export default function RegionChips({
@@ -14,6 +15,7 @@ export default function RegionChips({
   city,
   datePreset,
   regionCounts,
+  theatre,
 }: RegionChipsProps) {
   const isDefaultDate = datePreset === DEFAULT_DATE_PRESET;
 
@@ -26,7 +28,7 @@ export default function RegionChips({
       <a
         role="radio"
         aria-checked={!region && !city}
-        href={buildFilterUrl(isDefaultDate ? undefined : datePreset, undefined)}
+        href={buildFilterUrl(isDefaultDate ? undefined : datePreset, undefined, theatre)}
         className={`${styles.chip} ${!region && !city ? styles.chipActive : ""}`}
       >
         הכל
@@ -37,6 +39,7 @@ export default function RegionChips({
         const href = buildFilterUrl(
           isDefaultDate ? undefined : datePreset,
           slug,
+          theatre,
         );
         const disabled = count === 0;
         return (

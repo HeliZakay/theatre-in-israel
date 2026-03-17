@@ -24,12 +24,14 @@ interface EventsQuery {
   datePreset?: string;
   region?: string;
   city?: string;
+  theatre?: string;
 }
 
 async function fetchEvents({
   datePreset = DEFAULT_DATE_PRESET,
   region,
   city,
+  theatre,
 }: EventsQuery): Promise<EventListItem[]> {
   const { from, to } = resolveDatePreset(datePreset);
 
@@ -40,11 +42,19 @@ async function fetchEvents({
     venueWhere.city = { in: CITY_SLUGS[city] };
   }
 
+  const showWhere: Record<string, unknown> = {};
+  if (theatre) {
+    showWhere.theatre = theatre;
+  }
+
   const events = await prisma.event.findMany({
     where: {
       date: { gte: from, lte: to },
       ...(Object.keys(venueWhere).length > 0
         ? { venue: venueWhere }
+        : {}),
+      ...(Object.keys(showWhere).length > 0
+        ? { show: showWhere }
         : {}),
     },
     include: {

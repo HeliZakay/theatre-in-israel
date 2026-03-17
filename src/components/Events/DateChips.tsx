@@ -5,9 +5,10 @@ import styles from "./DateChips.module.css";
 interface DateChipsProps {
   datePreset: string;
   locationSlug?: string;
+  theatre?: string;
 }
 
-export default function DateChips({ datePreset, locationSlug }: DateChipsProps) {
+export default function DateChips({ datePreset, locationSlug, theatre }: DateChipsProps) {
   return (
     <nav
       role="radiogroup"
@@ -22,6 +23,7 @@ export default function DateChips({ datePreset, locationSlug }: DateChipsProps) 
         const href = buildFilterUrl(
           slug === DEFAULT_DATE_PRESET ? undefined : slug,
           locationSlug,
+          theatre,
         );
         return (
           <a

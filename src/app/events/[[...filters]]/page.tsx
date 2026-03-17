@@ -178,6 +178,7 @@ export function generateStaticParams() {
 
 interface EventsPageProps {
   params: Promise<{ filters?: string[] }>;
+  searchParams: Promise<{ theatre?: string }>;
 }
 
 function buildDescription(
@@ -200,18 +201,24 @@ function buildDescription(
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: EventsPageProps): Promise<Metadata> {
   const { filters } = await params;
+  const { theatre } = await searchParams;
   const { datePreset, region, city } = parseFilters(filters);
-  const title = buildPageTitle(datePreset, region, city);
-  const description = buildDescription(datePreset, region, city);
+  const title = theatre
+    ? `לוח הופעות ${theatre}`
+    : buildPageTitle(datePreset, region, city);
+  const description = theatre
+    ? `כל ההופעות הקרובות של ${theatre} — מועדים, מיקומים וקישורי רכישה.`
+    : buildDescription(datePreset, region, city);
   const canonical = eventsPath(filters ?? []);
   const indexed = shouldIndex(datePreset, region, city);
 
   return {
     title: `${title} | ${SITE_NAME}`,
     description,
-    robots: { index: indexed, follow: true },
+    robots: { index: indexed && !theatre, follow: true },
     openGraph: {
       title: `${title} | ${SITE_NAME}`,
       description,
@@ -284,20 +291,23 @@ function getTodayTomorrowKeys(): { todayKey: string; tomorrowKey: string } {
 // Page component
 // ---------------------------------------------------------------------------
 
-export default async function EventsPage({ params }: EventsPageProps) {
+export default async function EventsPage({ params, searchParams }: EventsPageProps) {
   const { filters } = await params;
+  const { theatre } = await searchParams;
   const { datePreset, region, city } = parseFilters(filters);
   const locationSlug = region ?? city;
 
   const [events, regionCounts] = await Promise.all([
-    getEvents({ datePreset, region, city }),
+    getEvents({ datePreset, region, city, theatre }),
     getRegionCounts(datePreset),
   ]);
 
-  const title = buildPageTitle(datePreset, region, city);
+  const title = theatre
+    ? `לוח הופעות ${theatre}`
+    : buildPageTitle(datePreset, region, city);
   const canonical = eventsPath(filters ?? []);
   const isDefaultDate = datePreset === DEFAULT_DATE_PRESET;
-  const hasNonDefaultFilter = !isDefaultDate || !!region || !!city;
+  const hasNonDefaultFilter = !isDefaultDate || !!region || !!city || !!theatre;
 
   // Breadcrumb
   const breadcrumbItems: { name: string; path: string }[] = [
@@ -313,6 +323,12 @@ export default async function EventsPage({ params }: EventsPageProps) {
     breadcrumbItems.push({
       name: CITY_DISPLAY[city] ?? city,
       path: eventsPath([city]),
+    });
+  }
+  if (theatre) {
+    breadcrumbItems.push({
+      name: theatre,
+      path: `${ROUTES.EVENTS}?theatre=${encodeURIComponent(theatre)}`,
     });
   }
   if (!isDefaultDate) {
@@ -385,7 +401,7 @@ export default async function EventsPage({ params }: EventsPageProps) {
 
   // Find nearest region with events for empty state
   let nearestRegion: { slug: string; label: string; count: number } | null = null;
-  if (events.length === 0 && hasNonDefaultFilter) {
+  if (events.length === 0 && hasNonDefaultFilter && !theatre) {
     let maxCount = 0;
     for (const [slug, count] of Object.entries(regionCounts)) {
       if (count > maxCount) {
@@ -418,12 +434,13 @@ export default async function EventsPage({ params }: EventsPageProps) {
         </p>
       </header>
 
-      <DateChips datePreset={datePreset} locationSlug={locationSlug} />
+      <DateChips datePreset={datePreset} locationSlug={locationSlug} theatre={theatre} />
       <RegionChips
         region={region}
         city={city}
         datePreset={datePreset}
         regionCounts={regionCounts}
+        theatre={theatre}
       />
 
       <div className={styles.clearRow}>
@@ -446,6 +463,7 @@ export default async function EventsPage({ params }: EventsPageProps) {
             datePreset={datePreset}
             region={region}
             city={city}
+            theatre={theatre}
             nearestRegion={nearestRegion}
           />
         ) : (

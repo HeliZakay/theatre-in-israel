@@ -22,6 +22,7 @@ export const THEATRES: TheatreInfo[] = [
   { slug: "hebrew-theatre", name: "התיאטרון העברי" },
   { slug: "tmuna", name: "תיאטרון תמונע" },
   { slug: "tzavta", name: "תיאטרון צוותא" },
+  { slug: "tomix", name: "תיאטרון toMix" },
 ];
 
 /** Map from URL slug → theatre info */
