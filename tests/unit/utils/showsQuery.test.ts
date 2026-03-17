@@ -2,8 +2,7 @@ import {
   buildShowsQueryString,
   parseShowsSearchParams,
 } from "@/utils/showsQuery";
-
-const DEFAULT_SORT = "rating";
+import { DEFAULT_SORT } from "@/constants/sorts";
 
 describe("buildShowsQueryString", () => {
   it("returns empty string when no params", () => {

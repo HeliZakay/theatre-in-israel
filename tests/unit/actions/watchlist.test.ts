@@ -6,6 +6,9 @@ jest.mock("@/lib/auth", () => ({ authOptions: {} }));
 jest.mock("@/utils/actionAuth");
 jest.mock("@/lib/watchlist");
 jest.mock("@/utils/watchlistRateLimit");
+jest.mock("next/cache", () => ({
+  revalidatePath: jest.fn(),
+}));
 
 import {
   addToWatchlistAction,
