@@ -1,0 +1,150 @@
+.page {
+  padding: clamp(32px, 6vw, 72px) clamp(20px, 6vw, 96px);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.description {
+  color: rgba(26, 26, 26, 0.7);
+  font-size: 1.1rem;
+  max-width: 700px;
+  line-height: 1.6;
+}
+
+.statsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 1rem;
+  color: rgba(26, 26, 26, 0.6);
+}
+
+.sectionTitle {
+  font-size: 1.4rem;
+  color: var(--color-text-primary);
+}
+
+.theatreList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.theatreLink {
+  display: inline-flex;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(26, 26, 26, 0.1);
+  background: var(--color-surface, #fff);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.theatreLink:hover {
+  border-color: var(--color-curtain-red);
+  box-shadow: 0 2px 8px rgba(156, 27, 32, 0.08);
+}
+
+.venueGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.venueCard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(26, 26, 26, 0.08);
+  background: var(--color-surface, #fff);
+}
+
+.venueName {
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.venueEvents {
+  font-size: 0.9rem;
+  color: rgba(26, 26, 26, 0.55);
+}
+
+.showGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(240px, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 20px;
+}
+
+.linksRow {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.ctaLink {
+  color: var(--color-curtain-red);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.ctaLink:hover {
+  text-decoration: underline;
+}
+
+.backLink {
+  color: var(--color-curtain-red);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 1100px) {
+  .showGrid {
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .showGrid {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 28px 16px;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .showGrid {
+    grid-template-columns: 1fr;
+  }
+}

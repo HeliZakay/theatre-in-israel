@@ -5,6 +5,7 @@ export const ROUTES = {
   SHOWS: "/shows",
   THEATRES: "/theatres",
   GENRES: "/genres",
+  CITIES: "/cities",
   REVIEWS_NEW: "/reviews/new",
   AUTH_SIGNIN: "/auth/signin",
   AUTH_SIGNUP: "/auth/signup",
@@ -42,6 +43,11 @@ export function theatrePath(slug: string): string {
 /** Build the canonical path for a single genre page. */
 export function genrePath(slug: string): string {
   return `${ROUTES.GENRES}/${slug}`;
+}
+
+/** Build the canonical path for a single city page. */
+export function cityPath(slug: string): string {
+  return `${ROUTES.CITIES}/${slug}`;
 }
 
 export default ROUTES;

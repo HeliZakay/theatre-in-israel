@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
-import ROUTES, { showPath, eventsPath, theatrePath, genrePath } from "@/constants/routes";
+import ROUTES, { showPath, eventsPath, theatrePath, genrePath, cityPath } from "@/constants/routes";
 import { REGION_SLUGS, CITY_SLUGS } from "@/lib/eventsConstants";
 import { THEATRES } from "@/constants/theatres";
 import { GENRES } from "@/constants/genres";
+import { CITIES } from "@/constants/cities";
 import prisma from "@/lib/prisma";
 import { toAbsoluteUrl } from "@/lib/seo";
 
@@ -126,5 +127,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ];
 
-  return [...staticRoutes, ...theatreRoutes, ...genreRoutes, ...eventsRoutes, ...showRoutes];
+  const cityRoutes: MetadataRoute.Sitemap = [
+    {
+      url: toAbsoluteUrl(ROUTES.CITIES),
+      lastModified: now,
+      changeFrequency: "daily",
+      priority: 0.85,
+    },
+    ...CITIES.map((c) => ({
+      url: toAbsoluteUrl(cityPath(c.slug)),
+      lastModified: now,
+      changeFrequency: "daily" as const,
+      priority: 0.75,
+    })),
+  ];
+
+  return [...staticRoutes, ...theatreRoutes, ...genreRoutes, ...cityRoutes, ...eventsRoutes, ...showRoutes];
 }
