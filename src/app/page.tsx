@@ -13,9 +13,9 @@ import { SITE_NAME } from "@/lib/seo";
 
 import type { Metadata } from "next";
 
-const homeTitle = "הצגות מומלצות, ביקורות ודירוגים";
+const homeTitle = "הצגות מומלצות - ביקורות ודירוגי קהל";
 const homeDescription =
-  "מצאו הצגות תיאטרון בישראל לפי ביקורות קהל, דירוגים וז׳אנרים מובילים.";
+  "גלו אילו הצגות שווה לראות השבוע. ביקורות צופים, דירוגים והמלצות על הצגות תיאטרון בכל הארץ — קאמרי, הבימה, גשר, חיפה ועוד.";
 
 export const metadata: Metadata = {
   title: homeTitle,

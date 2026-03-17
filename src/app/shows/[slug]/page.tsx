@@ -85,14 +85,20 @@ function buildShowDescription(
 ): string {
   const ratingText =
     avgRating !== null
-      ? `דירוג ${avgRating.toFixed(1)} מתוך 5 על בסיס ${reviewCount} ביקורות.`
-      : `עדיין אין דירוג ממוצע.`;
+      ? `★ ${avgRating.toFixed(1)}/5 על בסיס ${reviewCount} ביקורות צופים.`
+      : ``;
 
   const text = description ?? summary;
   const shortText =
-    text.length > 140 ? `${text.slice(0, 137).trimEnd()}...` : text;
+    text.length > 120 ? `${text.slice(0, 117).trimEnd()}...` : text;
 
-  return `${title} בתיאטרון ${theatre}. ${ratingText} ${shortText}`;
+  const parts = [
+    `קראו ביקורות על ${title} ב${theatre}.`,
+    ratingText,
+    shortText,
+  ].filter(Boolean);
+
+  return parts.join(" ");
 }
 
 export async function generateMetadata({
@@ -128,7 +134,7 @@ export async function generateMetadata({
     );
 
     return {
-      title: `${show.title} - ביקורות`,
+      title: `${show.title} - ביקורות וחוויות צופים`,
       description,
       openGraph: {
         title: `${show.title} | ${SITE_NAME}`,
