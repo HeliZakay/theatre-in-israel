@@ -295,9 +295,7 @@ function buildDateTab(
   tomorrowKey: string,
 ): DateTab {
   const d = new Date(dateKey + "T00:00:00Z");
-  let label = "";
-  if (dateKey === todayKey) label = "היום";
-  else if (dateKey === tomorrowKey) label = "מחר";
+  const label = "";
 
   return {
     dateKey,
