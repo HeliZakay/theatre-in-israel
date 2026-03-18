@@ -6,29 +6,29 @@
 }
 
 .header {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .title {
   font-size: 1.75rem;
   font-weight: 700;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .subtitle {
   color: var(--color-muted-fg);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 /* ---- Clear filter ---- */
 
 .clearRow {
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   min-height: 1.25em;
 }
 
 .clearLink {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--color-curtain-red);
   text-decoration: underline;
 }

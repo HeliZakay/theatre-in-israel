@@ -34,7 +34,7 @@ export default function EventCard({
     <article className={styles.eventItem}>
       <time className={styles.eventTime}>
         {dateLabel && (
-          <span className={styles.dateLabel}>{dateLabel} · </span>
+          <span className={styles.dateLabel}>{dateLabel}</span>
         )}
         {hour}
       </time>
@@ -43,7 +43,7 @@ export default function EventCard({
           src={getShowImagePath(showTitle)}
           alt={getShowImageAlt(showTitle)}
           fill
-          sizes="64px"
+          sizes="96px"
           className={styles.thumbnailImage}
         />
       </div>
@@ -73,6 +73,7 @@ export default function EventCard({
           ) : null}
         </div>
       </div>
+      <span className={styles.arrow} aria-hidden="true">‹</span>
     </article>
   );
 }
