@@ -7,4 +7,4 @@
  * To change the featured show, update the slug below and deploy.
  * You can find a show's slug in its URL: /shows/<slug>
  */
-export const FEATURED_SHOW_SLUG: string | null = "קברט";
+export const FEATURED_SHOW_SLUG: string | null = "החטא-ועונשו";
