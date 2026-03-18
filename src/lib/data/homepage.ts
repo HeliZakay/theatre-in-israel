@@ -347,9 +347,7 @@ function buildDateLabel(
   if (dateKey === todayKey) return "היום";
   if (dateKey === tomorrowKey) return "מחר";
   const d = new Date(dateKey + "T00:00:00Z");
-  const dayName = hebrewShortDay.format(d);
-  const [, m, dd] = dateKey.split("-");
-  return `${dayName} ${Number(dd)}.${Number(m)}`;
+  return hebrewShortDay.format(d);
 }
 
 async function fetchUpcomingEventsVaried(): Promise<UpcomingEventItem[]> {

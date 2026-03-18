@@ -9,7 +9,7 @@
 
 .eventTime {
   flex-shrink: 0;
-  min-width: 48px;
+  width: 120px;
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--color-text-primary);
