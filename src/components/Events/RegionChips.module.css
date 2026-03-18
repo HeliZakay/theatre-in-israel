@@ -2,46 +2,48 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .chip {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 5px 12px;
-  border: 1px solid var(--color-slate-012);
+  padding: 3px 10px;
+  border: 1px solid var(--color-slate-008);
   border-radius: var(--radius-pill);
-  font-size: 0.82rem;
-  color: var(--color-text-primary);
+  font-size: 0.75rem;
+  color: var(--color-muted-fg);
   background: var(--background);
   cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
   text-decoration: none;
 }
 
 .chip:hover {
+  color: var(--color-text-primary);
   background: var(--color-curtain-red-004);
   border-color: var(--color-curtain-red-025);
 }
 
 .chipActive {
-  background: var(--color-curtain-red);
+  background: var(--color-text-primary);
   color: #fff;
-  border-color: var(--color-curtain-red);
+  border-color: var(--color-text-primary);
 }
 
 .chipActive:hover {
-  background: var(--color-curtain-red-hover);
-  border-color: var(--color-curtain-red-hover);
+  background: var(--color-text-primary);
+  border-color: var(--color-text-primary);
+  color: #fff;
 }
 
 .chipDisabled {
-  opacity: 0.45;
+  opacity: 0.35;
   pointer-events: none;
 }
 
 .chipBadge {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   opacity: 0.7;
 }

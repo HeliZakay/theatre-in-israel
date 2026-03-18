@@ -18,10 +18,11 @@ import {
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import DateChips from "@/components/Events/DateChips";
 import RegionChips from "@/components/Events/RegionChips";
-import EventsList from "@/components/Events/EventsList";
+import EventsClientView from "@/components/Events/EventsClientView";
 import EventsEmptyState from "@/components/Events/EventsEmptyState";
 import EventsFAQ from "@/components/Events/EventsFAQ";
 import type { DateGroup } from "@/components/Events/EventsList";
+import type { DateTab } from "@/components/Events/DateStrip";
 import styles from "./page.module.css";
 
 import type { Metadata } from "next";
@@ -272,6 +273,42 @@ const hebrewDayFormatter = new Intl.DateTimeFormat("he-IL", {
   timeZone: "Asia/Jerusalem",
 });
 
+const hebrewWeekdayFormatter = new Intl.DateTimeFormat("he-IL", {
+  weekday: "short",
+  timeZone: "Asia/Jerusalem",
+});
+
+const hebrewDayNumFormatter = new Intl.DateTimeFormat("he-IL", {
+  day: "numeric",
+  timeZone: "Asia/Jerusalem",
+});
+
+const hebrewMonthFormatter = new Intl.DateTimeFormat("he-IL", {
+  month: "short",
+  timeZone: "Asia/Jerusalem",
+});
+
+function buildDateTab(
+  dateKey: string,
+  count: number,
+  todayKey: string,
+  tomorrowKey: string,
+): DateTab {
+  const d = new Date(dateKey + "T00:00:00Z");
+  let label = "";
+  if (dateKey === todayKey) label = "היום";
+  else if (dateKey === tomorrowKey) label = "מחר";
+
+  return {
+    dateKey,
+    dayName: hebrewWeekdayFormatter.format(d),
+    dayNum: hebrewDayNumFormatter.format(d),
+    monthName: hebrewMonthFormatter.format(d),
+    label,
+    count,
+  };
+}
+
 function formatDateHeader(dateKey: string, todayKey: string, tomorrowKey: string, count: number): string {
   const d = new Date(dateKey + "T00:00:00Z");
   const formatted = hebrewDayFormatter.format(d);
@@ -395,7 +432,7 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
         }
       : null;
 
-  // Group events by date and format for EventsList
+  // Group events by date and format for EventsList + DateStrip
   const dateGroups = groupByDate(events);
   const { todayKey, tomorrowKey } = getTodayTomorrowKeys();
 
@@ -414,6 +451,11 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
         venueCity: event.venueCity,
       })),
     }),
+  );
+
+  const dateTabs: DateTab[] = Array.from(dateGroups.entries()).map(
+    ([dateKey, dayEvents]) =>
+      buildDateTab(dateKey, dayEvents.length, todayKey, tomorrowKey),
   );
 
   // Find nearest region with events for empty state
@@ -468,12 +510,6 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
         )}
       </div>
 
-      <div aria-live="polite" className={styles.srOnly}>
-        {events.length > 0
-          ? `נמצאו ${events.length} הופעות`
-          : "לא נמצאו הופעות"}
-      </div>
-
       <div id="events-list">
         {events.length === 0 ? (
           <EventsEmptyState
@@ -484,7 +520,10 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
             nearestRegion={nearestRegion}
           />
         ) : (
-          <EventsList groups={dateGroupsFormatted} />
+          <EventsClientView
+            groups={dateGroupsFormatted}
+            dateTabs={dateTabs}
+          />
         )}
       </div>
 

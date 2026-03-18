@@ -1,0 +1,6 @@
+.summary {
+  font-size: 0.8rem;
+  color: var(--color-muted-fg);
+  margin-bottom: 8px;
+  padding-inline-start: 4px;
+}
