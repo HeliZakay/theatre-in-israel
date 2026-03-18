@@ -5,13 +5,127 @@
   gap: 20px;
 }
 
-.list {
+.slide {
+  flex: 0 0 calc(100% / 4 - 16px * 3 / 4);
+  min-width: 0;
+  margin-inline-start: 16px;
+}
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.cardLink:focus-visible .card {
+  box-shadow:
+    0 0 0 3px rgba(156, 27, 32, 0.35),
+    0 10px 22px var(--color-slate-008);
+}
+
+.card {
+  box-shadow: 0 10px 22px var(--color-slate-008);
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background:
+    linear-gradient(160deg, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.35)),
+    radial-gradient(circle at 20% 30%, #f3c78a, transparent 60%),
+    radial-gradient(circle at 80% 20%, #e7996a, transparent 55%), #1b1f2a;
+}
+
+.thumbImage {
+  object-fit: cover;
+}
+
+.dateBadge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  border-radius: 8px;
+  padding: 6px 10px;
+  line-height: 1.3;
+}
+
+.dateLabel {
+  font-size: 0.75rem;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.dateHour {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cardTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.venue {
+  color: rgba(26, 26, 26, 0.65);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: var(--color-curtain-red);
+}
+
+.star {
+  font-size: 1rem;
+}
+
+.noRating {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--color-text-faint);
+}
+
+.reviewCount {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgba(26, 26, 26, 0.6);
+}
+
+@media (max-width: 1024px) {
+  .slide {
+    flex: 0 0 calc(100% / 3 - 16px * 2 / 3);
+  }
 }
 
 @media (max-width: 640px) {
   .section {
     padding: 0 16px;
+  }
+
+  .slide {
+    flex: 0 0 80%;
   }
 }
