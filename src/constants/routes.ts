@@ -28,6 +28,11 @@ export function showReviewPath(slug: string): string {
   return `${ROUTES.SHOWS}/${slug}/review`;
 }
 
+/** Build the path for the "all reviews" page of a show. */
+export function showReviewsPath(slug: string): string {
+  return `${ROUTES.SHOWS}/${slug}/reviews`;
+}
+
 /** Build the canonical path for an events page with optional filter segments. */
 export function eventsPath(filters: string[] = []): string {
   return filters.length > 0

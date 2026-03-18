@@ -255,6 +255,17 @@
   }
 }
 
+.allReviewsLink {
+  color: var(--color-curtain-red);
+  font-weight: 600;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.allReviewsLink:hover {
+  text-decoration: underline;
+}
+
 /* ── Gateway review CTA (shown when auth gateway is active + user not signed in) ── */
 .reviewCta {
   display: flex;

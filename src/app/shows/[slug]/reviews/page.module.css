@@ -1,0 +1,112 @@
+.page {
+  padding: clamp(32px, 6vw, 72px) clamp(20px, 6vw, 96px);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 820px;
+  margin-inline: auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.headerGrid {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 20px;
+  align-items: center;
+}
+
+.poster {
+  position: relative;
+  width: 120px;
+  aspect-ratio: 3 / 4;
+  border-radius: 12px;
+  overflow: hidden;
+  background:
+    linear-gradient(160deg, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.4)),
+    radial-gradient(circle at 20% 20%, #f3c78a, transparent 55%),
+    radial-gradient(circle at 80% 30%, #e7996a, transparent 50%), #1b1f2a;
+}
+
+.posterImage {
+  object-fit: cover;
+}
+
+.headerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 1rem;
+  color: rgba(26, 26, 26, 0.7);
+}
+
+.theatreLink {
+  color: var(--color-curtain-red);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.theatreLink:hover {
+  text-decoration: underline;
+}
+
+.rating {
+  font-weight: 600;
+  color: var(--color-curtain-red);
+}
+
+.star {
+  font-size: 0.9rem;
+}
+
+.reviewList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.linksRow {
+  display: flex;
+  gap: 16px;
+}
+
+.backLink {
+  color: var(--color-curtain-red);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 28px 16px;
+  }
+
+  .headerGrid {
+    grid-template-columns: 80px 1fr;
+    gap: 12px;
+  }
+
+  .poster {
+    width: 80px;
+  }
+}

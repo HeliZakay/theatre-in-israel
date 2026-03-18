@@ -129,10 +129,10 @@ Phase 1 (Quick wins):
 Phase 2 (New pages):
 - [x] #4 — Theatre pages ✅ 2026-03-18 (includes #2 TheaterGroup structured data)
 - [x] #5 — Genre pages ✅ 2026-03-18
-- [ ] #10 — City pages
+- [x] #10 — City pages ✅ 2026-03-18
 
 Phase 3 (Content & advanced):
 - [ ] #6 — Blog/content section
-- [ ] #7 — Dedicated review pages
+- [x] #7 — Dedicated review pages (/shows/[slug]/reviews, min 5 reviews) ✅ 2026-03-18
 - [x] #2 — TheaterGroup structured data ✅ 2026-03-18 (done as part of #4)
 - [ ] #12 — Organization SameAs links (deferred — Facebook group just created)

@@ -10,7 +10,7 @@ import prisma from "@/lib/prisma";
 import { isShowInWatchlist } from "@/lib/watchlist";
 import Link from "next/link";
 import { ENABLE_REVIEW_AUTH_GATEWAY } from "@/constants/featureFlags";
-import ROUTES, { showPath, showReviewPath, theatrePath } from "@/constants/routes";
+import ROUTES, { showPath, showReviewPath, showReviewsPath, theatrePath } from "@/constants/routes";
 import { THEATRE_BY_NAME } from "@/constants/theatres";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import ReviewCard from "@/components/ReviewCard/ReviewCard";
@@ -414,6 +414,15 @@ export default async function ShowPage({
                     <ReviewCard key={review.id} review={review} />
                   ))}
                 </div>
+              )}
+
+              {show.reviews.length >= 5 && (
+                <Link
+                  href={showReviewsPath(show.slug)}
+                  className={styles.allReviewsLink}
+                >
+                  כל {show.reviews.length} הביקורות על {show.title}
+                </Link>
               )}
             </section>
           )}

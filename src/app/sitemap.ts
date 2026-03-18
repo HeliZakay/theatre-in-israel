@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import ROUTES, { showPath, eventsPath, theatrePath, genrePath, cityPath } from "@/constants/routes";
+import ROUTES, { showPath, showReviewsPath, eventsPath, theatrePath, genrePath, cityPath } from "@/constants/routes";
 import { REGION_SLUGS, CITY_SLUGS } from "@/lib/eventsConstants";
 import { THEATRES } from "@/constants/theatres";
 import { GENRES } from "@/constants/genres";
@@ -12,6 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const shows = await prisma.show.findMany({
     select: {
       slug: true,
+      reviewCount: true,
       reviews: {
         select: { date: true },
         orderBy: { date: "desc" },
@@ -142,5 +143,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ];
 
-  return [...staticRoutes, ...theatreRoutes, ...genreRoutes, ...cityRoutes, ...eventsRoutes, ...showRoutes];
+  const reviewRoutes: MetadataRoute.Sitemap = shows
+    .filter((s) => s.reviewCount >= 5)
+    .map((show) => {
+      const latestReview = show.reviews[0];
+      return {
+        url: toAbsoluteUrl(showReviewsPath(show.slug)).replace(/&/g, "&amp;"),
+        lastModified: latestReview ? latestReview.date : now,
+        changeFrequency: "weekly" as const,
+        priority: 0.7,
+      };
+    });
+
+  return [...staticRoutes, ...theatreRoutes, ...genreRoutes, ...cityRoutes, ...eventsRoutes, ...showRoutes, ...reviewRoutes];
 }
