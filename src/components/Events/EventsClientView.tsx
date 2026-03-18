@@ -31,7 +31,7 @@ export default function EventsClientView({ groups, dateTabs }: EventsClientViewP
           ? `${selectedGroup.events.length} הופעות`
           : "לא נמצאו הופעות"}
       </div>
-      {selectedGroup && <DayView group={selectedGroup} />}
+      {selectedGroup && <DayView key={selectedDate} group={selectedGroup} />}
     </>
   );
 }
