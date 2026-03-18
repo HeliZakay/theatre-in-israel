@@ -1,9 +1,10 @@
 import type { ReactNode } from "react";
 import ShowsSection from "@/components/ShowsSection/ShowsSection";
 import { getSectionsData } from "@/lib/data/homepage";
-import ROUTES from "@/constants/routes";
+import ROUTES, { showPath } from "@/constants/routes";
 import { buildShowsQueryString } from "@/utils/showsQuery";
 import { GENRE_SECTIONS } from "@/constants/genreGroups";
+import { toAbsoluteUrl, toJsonLd } from "@/lib/seo";
 
 interface Props {
   banner?: ReactNode;
@@ -13,8 +14,29 @@ export default async function ShowsSectionsContent({ banner }: Props) {
   const { topRated, dramas, comedies, musicals, israeli } =
     await getSectionsData();
 
+  const itemListJsonLd =
+    topRated.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "הצגות מומלצות — דירוגים גבוהים",
+          itemListElement: topRated.map((show, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            name: show.title,
+            url: toAbsoluteUrl(showPath(show.slug)),
+          })),
+        }
+      : null;
+
   return (
     <>
+      {itemListJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: toJsonLd(itemListJsonLd) }}
+        />
+      )}
       <ShowsSection
         kicker="המובילים"
         title="דירוגים גבוהים"
