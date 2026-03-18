@@ -17,6 +17,17 @@
   letter-spacing: -0.02em;
 }
 
+.cityLink {
+  color: rgba(26, 26, 26, 0.6);
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.cityLink:hover {
+  text-decoration: underline;
+  color: var(--color-curtain-red);
+}
+
 .statsRow {
   display: flex;
   flex-wrap: wrap;

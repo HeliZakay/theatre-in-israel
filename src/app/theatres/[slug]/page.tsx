@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getTheatreData } from "@/lib/data/theatreDetail";
 import { THEATRES, THEATRE_BY_SLUG } from "@/constants/theatres";
-import ROUTES, { theatrePath, showPath } from "@/constants/routes";
+import { CITIES } from "@/constants/cities";
+import ROUTES, { theatrePath, showPath, cityPath } from "@/constants/routes";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import ShowCard from "@/components/ShowCard/ShowCard";
 import {
@@ -108,6 +109,10 @@ export default async function TheatreDetailPage({ params }: TheatrePageProps) {
         }
       : null;
 
+  const homeCity = CITIES.find((c) =>
+    c.residentTheatres.includes(theatre.name),
+  );
+
   return (
     <main className={styles.page} id="main-content">
       <script
@@ -133,6 +138,11 @@ export default async function TheatreDetailPage({ params }: TheatrePageProps) {
       />
       <header className={styles.header}>
         <h1 className={styles.title}>{theatre.name}</h1>
+        {homeCity && (
+          <Link href={cityPath(homeCity.slug)} className={styles.cityLink}>
+            {homeCity.name}
+          </Link>
+        )}
         <div className={styles.statsRow}>
           <span>{stats.showCount} הצגות</span>
           {stats.avgRating !== null && (

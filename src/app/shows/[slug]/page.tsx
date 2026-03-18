@@ -10,8 +10,9 @@ import prisma from "@/lib/prisma";
 import { isShowInWatchlist } from "@/lib/watchlist";
 import Link from "next/link";
 import { ENABLE_REVIEW_AUTH_GATEWAY } from "@/constants/featureFlags";
-import ROUTES, { showPath, showReviewPath, theatrePath } from "@/constants/routes";
+import ROUTES, { showPath, showReviewPath, theatrePath, genrePath } from "@/constants/routes";
 import { THEATRE_BY_NAME } from "@/constants/theatres";
+import { GENRE_BY_NAME } from "@/constants/genres";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import ReviewCard from "@/components/ReviewCard/ReviewCard";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
@@ -302,11 +303,22 @@ export default async function ShowPage({
                 <span>{reviewCount} ביקורות</span>
               </div>
               <div className={styles.genreRow}>
-                {(show.genre ?? []).map((item) => (
-                  <span key={item} className={styles.genreChip}>
-                    {item}
-                  </span>
-                ))}
+                {(show.genre ?? []).map((item) => {
+                  const genreInfo = GENRE_BY_NAME.get(item);
+                  return genreInfo ? (
+                    <Link
+                      key={item}
+                      href={genrePath(genreInfo.slug)}
+                      className={styles.genreChip}
+                    >
+                      {item}
+                    </Link>
+                  ) : (
+                    <span key={item} className={styles.genreChip}>
+                      {item}
+                    </span>
+                  );
+                })}
               </div>
               <p className={styles.description}>{show.summary}</p>
               <div className={styles.heroActions} id="hero-actions">

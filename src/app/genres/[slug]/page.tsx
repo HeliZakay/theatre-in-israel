@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getGenreData } from "@/lib/data/genreDetail";
 import { GENRES, GENRE_BY_SLUG } from "@/constants/genres";
-import ROUTES, { genrePath, showPath } from "@/constants/routes";
+import { THEATRE_BY_NAME } from "@/constants/theatres";
+import ROUTES, { genrePath, showPath, theatrePath } from "@/constants/routes";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import ShowCard from "@/components/ShowCard/ShowCard";
 import {
@@ -135,6 +136,32 @@ export default async function GenreDetailPage({ params }: GenrePageProps) {
       ) : (
         <p className={styles.empty}>אין כרגע הצגות בז׳אנר זה.</p>
       )}
+
+      {(() => {
+        const theatreNames = [...new Set(shows.map((s) => s.theatre))];
+        const knownTheatres = theatreNames
+          .map((name) => THEATRE_BY_NAME.get(name))
+          .filter(Boolean);
+        if (knownTheatres.length === 0) return null;
+        return (
+          <section>
+            <h2 className={styles.sectionTitle}>
+              תיאטראות עם הצגות {genre.name}
+            </h2>
+            <div className={styles.linksRow}>
+              {knownTheatres.map((t) => (
+                <Link
+                  key={t!.slug}
+                  href={theatrePath(t!.slug)}
+                  className={styles.backLink}
+                >
+                  {t!.name}
+                </Link>
+              ))}
+            </div>
+          </section>
+        );
+      })()}
 
       <div className={styles.linksRow}>
         <Link href={ROUTES.GENRES} className={styles.backLink}>
