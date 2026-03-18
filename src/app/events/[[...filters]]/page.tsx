@@ -105,13 +105,13 @@ const CITY_DISPLAY: Record<string, string> = {
 
 /** How each date preset appears in the page title (with correct ב/no-ב). */
 const DATE_TITLE_FORM: Record<string, string> = {
-  '7days': 'ב7 ימים הקרובים',
-  today: 'היום',
-  tomorrow: 'מחר',
-  weekend: 'בסוף השבוע',
-  week: 'השבוע',
-  nextweek: 'בשבוע הבא',
-  all: '',
+  "7days": "ב7 ימים הקרובים",
+  today: "היום",
+  tomorrow: "מחר",
+  weekend: "בסוף השבוע",
+  week: "השבוע",
+  nextweek: "בשבוע הבא",
+  all: "",
 };
 
 export function buildPageTitle(
@@ -181,22 +181,33 @@ interface EventsPageProps {
   searchParams: Promise<{ theatre?: string }>;
 }
 
+const DATE_DESCRIPTION: Record<string, string> = {
+  weekend:
+    "מה הולך בתיאטרון בסוף השבוע? כל ההצגות והמופעים הקרובים — דירוגים, ביקורות צופים ולוח מועדים מעודכן.",
+  week: "מה הולך בתיאטרון השבוע? כל ההצגות והמופעים הקרובים — דירוגים, ביקורות צופים ולוח מועדים מעודכן.",
+  nextweek:
+    "תכננו את השבוע הבא — כל הצגות התיאטרון, דירוגי צופים ולוח מועדים מעודכן.",
+};
+
 function buildDescription(
   datePreset: string,
   region?: string,
   city?: string,
 ): string {
   if (city) {
-    return `לוח הצגות תיאטרון ב${CITY_DISPLAY[city] ?? city} — מועדים קרובים, מחירים וקישורי רכישה.`;
+    return `לוח הצגות תיאטרון ב${CITY_DISPLAY[city] ?? city} — מועדים קרובים, דירוגים וביקורות צופים.`;
   }
   if (region) {
-    return `הופעות תיאטרון ב${REGION_SLUGS[region]} — לוח מועדים, אזורי הצגה וקישורי רכישה.`;
+    return `הופעות תיאטרון ב${REGION_SLUGS[region]} — לוח מועדים, דירוגים וביקורות צופים.`;
+  }
+  if (DATE_DESCRIPTION[datePreset]) {
+    return DATE_DESCRIPTION[datePreset];
   }
   if (datePreset !== DEFAULT_DATE_PRESET) {
     const datePart = DATE_TITLE_FORM[datePreset] ?? DATE_SLUGS[datePreset];
-    return `הצגות תיאטרון ${datePart} — כל המופעים הקרובים לפי תאריך ואזור.`;
+    return `הצגות תיאטרון ${datePart} — כל המופעים הקרובים, דירוגים וביקורות צופים.`;
   }
-  return "מצאו הצגות תיאטרון קרובות לפי תאריך ואזור — לוח מועדים מעודכן יומית.";
+  return "מצאו הצגות תיאטרון קרובות לפי תאריך ואזור — לוח מועדים מעודכן יומית עם דירוגי צופים.";
 }
 
 export async function generateMetadata({
