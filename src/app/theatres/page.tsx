@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getAllTheatreStats } from "@/lib/data/theatreDetail";
 import { THEATRES, THEATRE_BY_NAME } from "@/constants/theatres";
 import ROUTES, { theatrePath } from "@/constants/routes";
@@ -69,6 +70,7 @@ export default async function TheatresPage() {
     .map((s) => ({
       slug: "",
       name: s.name,
+      image: "",
       stats: s,
     }));
 
@@ -101,33 +103,47 @@ export default async function TheatresPage() {
               href={theatrePath(t.slug)}
               className={styles.card}
             >
-              <h2 className={styles.cardTitle}>{t.name}</h2>
-              {stats ? (
-                <div className={styles.cardStats}>
-                  <span>{stats.showCount} הצגות</span>
-                  {stats.avgRating !== null && (
-                    <span>★ {stats.avgRating.toFixed(1)}</span>
-                  )}
-                  <span>{stats.totalReviews} ביקורות</span>
-                </div>
-              ) : (
-                <span className={styles.cardStats}>אין הצגות כרגע</span>
-              )}
+              <Image
+                src={t.image}
+                alt={t.name}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className={styles.cardImage}
+              />
+              <div className={styles.cardOverlay}>
+                <h2 className={styles.cardTitle}>{t.name}</h2>
+                {stats ? (
+                  <div className={styles.cardStats}>
+                    <span>{stats.showCount} הצגות</span>
+                    {stats.avgRating !== null && (
+                      <span>★ {stats.avgRating.toFixed(1)}</span>
+                    )}
+                    <span>{stats.totalReviews} ביקורות</span>
+                  </div>
+                ) : (
+                  <span className={styles.cardStats}>אין הצגות כרגע</span>
+                )}
+              </div>
             </Link>
           );
         })}
         {extra.map((t) => (
-          <div key={t.name} className={styles.card}>
-            <h2 className={styles.cardTitle}>{t.name}</h2>
-            {t.stats && (
-              <div className={styles.cardStats}>
-                <span>{t.stats.showCount} הצגות</span>
-                {t.stats.avgRating !== null && (
-                  <span>★ {t.stats.avgRating.toFixed(1)}</span>
-                )}
-                <span>{t.stats.totalReviews} ביקורות</span>
-              </div>
-            )}
+          <div
+            key={t.name}
+            className={`${styles.card} ${styles.cardFallback}`}
+          >
+            <div className={styles.cardOverlay}>
+              <h2 className={styles.cardTitle}>{t.name}</h2>
+              {t.stats && (
+                <div className={styles.cardStats}>
+                  <span>{t.stats.showCount} הצגות</span>
+                  {t.stats.avgRating !== null && (
+                    <span>★ {t.stats.avgRating.toFixed(1)}</span>
+                  )}
+                  <span>{t.stats.totalReviews} ביקורות</span>
+                </div>
+              )}
+            </div>
           </div>
         ))}
       </div>
