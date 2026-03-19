@@ -16,7 +16,7 @@ import type { Metadata } from "next";
 
 const pageTitle = "שחקנים — שחקני תיאטרון מובילים בישראל";
 const pageDescription =
-  "גלו את שחקני התיאטרון המובילים בישראל — ביקורות, דירוגים וכל ההצגות של כל שחקן.";
+  "גלו את שחקני התיאטרון המובילים בישראל — כל ההצגות של כל שחקן.";
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -100,9 +100,6 @@ export default async function ActorsPage() {
                 {stats && stats.showCount > 0 ? (
                   <div className={styles.cardStats}>
                     <span>{stats.showCount} הצגות</span>
-                    {stats.avgRating !== null && (
-                      <span>★ {stats.avgRating.toFixed(1)}</span>
-                    )}
                   </div>
                 ) : (
                   <span className={styles.cardStats}>אין הצגות כרגע</span>
