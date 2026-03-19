@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getAllGenreStats } from "@/lib/data/genreDetail";
 import { GENRES, GENRE_BY_NAME } from "@/constants/genres";
 import ROUTES, { genrePath } from "@/constants/routes";
@@ -87,19 +88,27 @@ export default async function GenresPage() {
               href={genrePath(g.slug)}
               className={styles.card}
             >
-              <h2 className={styles.cardTitle}>{g.name}</h2>
-              <p className={styles.cardDescription}>{g.description}</p>
-              {stats ? (
-                <div className={styles.cardStats}>
-                  <span>{stats.showCount} הצגות</span>
-                  {stats.avgRating !== null && (
-                    <span>★ {stats.avgRating.toFixed(1)}</span>
-                  )}
-                  <span>{stats.totalReviews} ביקורות</span>
-                </div>
-              ) : (
-                <span className={styles.cardStats}>אין הצגות כרגע</span>
-              )}
+              <Image
+                src={g.image}
+                alt={g.name}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className={styles.cardImage}
+              />
+              <div className={styles.cardOverlay}>
+                <h2 className={styles.cardTitle}>{g.name}</h2>
+                {stats ? (
+                  <div className={styles.cardStats}>
+                    <span>{stats.showCount} הצגות</span>
+                    {stats.avgRating !== null && (
+                      <span>★ {stats.avgRating.toFixed(1)}</span>
+                    )}
+                    <span>{stats.totalReviews} ביקורות</span>
+                  </div>
+                ) : (
+                  <span className={styles.cardStats}>אין הצגות כרגע</span>
+                )}
+              </div>
             </Link>
           );
         })}
