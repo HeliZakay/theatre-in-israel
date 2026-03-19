@@ -13,6 +13,7 @@ export const ROUTES = {
   MY_PROFILE: "/me",
   MY_REVIEWS: "/me/reviews",
   MY_WATCHLIST: "/me/watchlist",
+  ACTORS: "/actors",
   CONTACT: "/contact",
 } as const;
 
@@ -53,6 +54,11 @@ export function genrePath(slug: string): string {
 /** Build the canonical path for a single city page. */
 export function cityPath(slug: string): string {
   return `${ROUTES.CITIES}/${slug}`;
+}
+
+/** Build the canonical path for a single actor page. */
+export function actorPath(slug: string): string {
+  return `${ROUTES.ACTORS}/${slug}`;
 }
 
 export default ROUTES;

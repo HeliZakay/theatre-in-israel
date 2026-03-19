@@ -37,6 +37,9 @@ export default function Footer() {
                 <Link href={ROUTES.GENRES}>ז׳אנרים</Link>
               </li>
               <li>
+                <Link href={ROUTES.ACTORS}>שחקנים</Link>
+              </li>
+              <li>
                 <Link href="/reviews/new">כתב.י ביקורת</Link>
               </li>
             </ul>

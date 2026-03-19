@@ -30,6 +30,13 @@ export interface ShowEvent {
   venue: { name: string; city: string; address: string | null; regions: string[] };
 }
 
+export interface ShowActor {
+  id: number;
+  name: string;
+  slug: string;
+  image: string | null;
+}
+
 export interface Show {
   id: number;
   slug: string;
@@ -41,6 +48,7 @@ export interface Show {
   cast: string | null;
   webReviewSummary: string | null;
   genre: string[];
+  actors: ShowActor[];
   reviews: Review[];
   events: ShowEvent[];
 }

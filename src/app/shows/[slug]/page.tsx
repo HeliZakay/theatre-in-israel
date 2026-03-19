@@ -10,11 +10,12 @@ import prisma from "@/lib/prisma";
 import { isShowInWatchlist } from "@/lib/watchlist";
 import Link from "next/link";
 import { ENABLE_REVIEW_AUTH_GATEWAY } from "@/constants/featureFlags";
-import ROUTES, { showPath, showReviewPath, theatrePath, genrePath } from "@/constants/routes";
+import ROUTES, { showPath, showReviewPath, theatrePath, genrePath, actorPath } from "@/constants/routes";
 import { THEATRE_BY_NAME } from "@/constants/theatres";
 import { GENRE_BY_NAME } from "@/constants/genres";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import ReviewCard from "@/components/ReviewCard/ReviewCard";
+import Image from "next/image";
 import FallbackImage from "@/components/FallbackImage/FallbackImage";
 import WatchlistButton from "@/components/WatchlistButton/WatchlistButton";
 import LotteryBadge from "@/components/LotteryBadge/LotteryBadge";
@@ -383,10 +384,32 @@ export default async function ShowPage({
               />
             ))}
 
-          {show.cast && (
+          {(show.cast || show.actors.length > 0) && (
             <section className={styles.aboutSection}>
               <h2 className={styles.sectionTitle}>משתתפים</h2>
-              <p className={styles.aboutText}>{show.cast}</p>
+              {show.actors.length > 0 && (
+                <div className={styles.actorStrip}>
+                  {show.actors.map((actor) => (
+                    <Link
+                      key={actor.id}
+                      href={actorPath(actor.slug)}
+                      className={styles.actorThumb}
+                    >
+                      {actor.image && (
+                        <Image
+                          src={actor.image}
+                          alt={actor.name}
+                          width={100}
+                          height={125}
+                          className={styles.actorImage}
+                        />
+                      )}
+                      <span className={styles.actorName}>{actor.name}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+              {show.cast && <p className={styles.aboutText}>{show.cast}</p>}
             </section>
           )}
 

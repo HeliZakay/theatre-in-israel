@@ -1,0 +1,283 @@
+-- CreateTable
+CREATE TABLE "Actor" (
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+    "slug" TEXT NOT NULL,
+    "image" TEXT,
+
+    CONSTRAINT "Actor_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "ShowActor" (
+    "showId" INTEGER NOT NULL,
+    "actorId" INTEGER NOT NULL,
+
+    CONSTRAINT "ShowActor_pkey" PRIMARY KEY ("showId","actorId")
+);
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Actor_name_key" ON "Actor"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Actor_slug_key" ON "Actor"("slug");
+
+-- AddForeignKey
+ALTER TABLE "ShowActor" ADD CONSTRAINT "ShowActor_showId_fkey" FOREIGN KEY ("showId") REFERENCES "Show"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ShowActor" ADD CONSTRAINT "ShowActor_actorId_fkey" FOREIGN KEY ("actorId") REFERENCES "Actor"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Seed actors
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('גילה אלמגור', 'גילה-אלמגור', '/actors/גילה-אלמגור.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('גילת אנקורי', 'גילת-אנקורי', '/actors/גילת-אנקורי.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('דניאל גל', 'דניאל-גל', '/actors/דניאל-גל.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('טל מוסרי', 'טל-מוסרי', '/actors/טל-מוסרי.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('טלי אורן', 'טלי-אורן', '/actors/טלי-אורן.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('לי בירן', 'לי-בירן', '/actors/לי-בירן.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('לימור גולדשטיין', 'לימור-גולדשטיין', '/actors/לימור-גולדשטיין.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('מגי אזרזר', 'מגי-אזרזר', '/actors/מגי-אזרזר.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('מולי שולמן', 'מולי-שולמן', '/actors/מולי-שולמן.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('נעם קלינשטיין', 'נעם-קלינשטיין', '/actors/נעם-קלינשטיין.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('נעמי הררי', 'נעמי-הררי', '/actors/נעמי-הררי.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('עירית ענבי', 'עירית-ענבי', '/actors/עירית-ענבי.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('רביב כנר', 'רביב-כנר', '/actors/רביב-כנר.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('רוני דלומי', 'רוני-דלומי', '/actors/רוני-דלומי.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('תום אבני', 'תום-אבני', '/actors/תום-אבני.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('אביגיל הררי', 'אביגיל-הררי', '/actors/אביגיל-הררי.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('אבי קושניר', 'אבי-קושניר', '/actors/אבי-קושניר.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('אודיה קורן', 'אודיה-קורן', '/actors/אודיה-קורן.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('אולה שור סלקטר', 'אולה-שור-סלקטר', '/actors/אולה-שור-סלקטר.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('אוראל צברי', 'אוראל-צברי', '/actors/אוראל-צברי.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('אלון סנדלר', 'אלון-סנדלר', '/actors/אלון-סנדלר.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('אלי גורנשטיין', 'אלי-גורנשטיין', '/actors/אלי-גורנשטיין.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('אלכס קרול', 'אלכס-קרול', '/actors/אלכס-קרול.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('אלעד אטרקצ׳י', 'אלעד-אטרקצ׳י', '/actors/אלעד-אטרקצ׳י.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('גלית גיאת', 'גלית-גיאת', '/actors/גלית-גיאת.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('דביר בנדק', 'דביר-בנדק', '/actors/דביר-בנדק.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('דור הררי', 'דור-הררי', '/actors/דור-הררי.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('דניאל סטיופין', 'דניאל-סטיופין', '/actors/דניאל-סטיופין.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('דרור קרן', 'דרור-קרן', '/actors/דרור-קרן.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('חן גרטי', 'חן-גרטי', '/actors/חן-גרטי.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('חנה לסלאו', 'חנה-לסלאו', '/actors/חנה-לסלאו.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('חני נחמיאס', 'חני-נחמיאס', '/actors/חני-נחמיאס.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('טל גרושקה', 'טל-גרושקה', '/actors/טל-גרושקה.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('יונה אליאן קשת', 'יונה-אליאן-קשת', '/actors/יונה-אליאן-קשת.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('יורם טולדנו', 'יורם-טולדנו', '/actors/יורם-טולדנו.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('יניב סויסה', 'יניב-סויסה', '/actors/יניב-סויסה.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('יעל לבנטל', 'יעל-לבנטל', '/actors/יעל-לבנטל.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('יפתח קליין', 'יפתח-קליין', '/actors/יפתח-קליין.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('כינרת לימוני', 'כינרת-לימוני', '/actors/כינרת-לימוני.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('ליאור אשכנזי', 'ליאור-אשכנזי', '/actors/ליאור-אשכנזי.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('לינוי כהן', 'לינוי-כהן', '/actors/לינוי-כהן.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('לֿאורה ריבלין', 'לֿאורה-ריבלין', '/actors/לֿאורה-ריבלין.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('מיקה צור', 'מיקה-צור', '/actors/מיקה-צור.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('משי קליינשטיין', 'משי-קליינשטיין', '/actors/משי-קליינשטיין.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('נדב אסולין', 'נדב-אסולין', '/actors/נדב-אסולין.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('נדב נייטס', 'נדב-נייטס', '/actors/נדב-נייטס.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('נורמן עיסא', 'נורמן-עיסא', '/actors/נורמן-עיסא.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('נטע גרטי', 'נטע-גרטי', '/actors/נטע-גרטי.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('נתן דטנר', 'נתן-דטנר', '/actors/נתן-דטנר.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('סנדרה שדה', 'סנדרה-שדה', '/actors/סנדרה-שדה.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('עידו רוזנברג', 'עידו-רוזנברג', '/actors/עידו-רוזנברג.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('עידן אלתרמן', 'עידן-אלתרמן', '/actors/עידן-אלתרמן.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('עמוס תמם', 'עמוס-תמם', '/actors/עמוס-תמם.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('עופרי ביטרמן', 'עופרי-ביטרמן', '/actors/עופרי-ביטרמן.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('צחי הלוי', 'צחי-הלוי', '/actors/צחי-הלוי.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('ציפי שביט', 'ציפי-שביט', '/actors/ציפי-שביט.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('קרן מור', 'קרן-מור', '/actors/קרן-מור.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('רבקה מיכאלי', 'רבקה-מיכאלי', '/actors/רבקה-מיכאלי.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('רמי ברוך', 'רמי-ברוך', '/actors/רמי-ברוך.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('רן דנקר', 'רן-דנקר', '/actors/רן-דנקר.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('רפאל עבאס', 'רפאל-עבאס', '/actors/רפאל-עבאס.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('ריקי בליך', 'ריקי-בליך', '/actors/ריקי-בליך.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('תום חודורוב', 'תום-חודורוב', '/actors/תום-חודורוב.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('תם גל', 'תם-גל', '/actors/תם-גל.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('ליא קניג', 'ליא-קניג', '/actors/ליא-קניג.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('מיקי קם', 'מיקי-קם', '/actors/מיקי-קם.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+INSERT INTO "Actor" ("name", "slug", "image") VALUES ('צביקה הדר', 'צביקה-הדר', '/actors/צביקה-הדר.webp') ON CONFLICT ("name") DO UPDATE SET "slug" = EXCLUDED."slug", "image" = EXCLUDED."image";
+
+-- Seed actor-show associations
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 1, "id" FROM "Actor" WHERE "name" = 'אודיה קורן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 1, "id" FROM "Actor" WHERE "name" = 'אלון סנדלר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 1, "id" FROM "Actor" WHERE "name" = 'חן גרטי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 1, "id" FROM "Actor" WHERE "name" = 'יניב סויסה' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 1, "id" FROM "Actor" WHERE "name" = 'עופרי ביטרמן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 1, "id" FROM "Actor" WHERE "name" = 'תום חודורוב' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 2, "id" FROM "Actor" WHERE "name" = 'כינרת לימוני' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 2, "id" FROM "Actor" WHERE "name" = 'נדב נייטס' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 2, "id" FROM "Actor" WHERE "name" = 'רן דנקר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 3, "id" FROM "Actor" WHERE "name" = 'עופרי ביטרמן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 4, "id" FROM "Actor" WHERE "name" = 'אביגיל הררי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 4, "id" FROM "Actor" WHERE "name" = 'כינרת לימוני' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 4, "id" FROM "Actor" WHERE "name" = 'נדב אסולין' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 5, "id" FROM "Actor" WHERE "name" = 'אולה שור סלקטר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 5, "id" FROM "Actor" WHERE "name" = 'כינרת לימוני' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 6, "id" FROM "Actor" WHERE "name" = 'עמוס תמם' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 7, "id" FROM "Actor" WHERE "name" = 'דרור קרן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 8, "id" FROM "Actor" WHERE "name" = 'טלי אורן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 8, "id" FROM "Actor" WHERE "name" = 'אוראל צברי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 8, "id" FROM "Actor" WHERE "name" = 'דניאל סטיופין' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 8, "id" FROM "Actor" WHERE "name" = 'יניב סויסה' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 8, "id" FROM "Actor" WHERE "name" = 'נדב אסולין' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 8, "id" FROM "Actor" WHERE "name" = 'עופרי ביטרמן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 8, "id" FROM "Actor" WHERE "name" = 'רפאל עבאס' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 9, "id" FROM "Actor" WHERE "name" = 'תום אבני' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 10, "id" FROM "Actor" WHERE "name" = 'גילה אלמגור' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 11, "id" FROM "Actor" WHERE "name" = 'תום אבני' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 11, "id" FROM "Actor" WHERE "name" = 'אביגיל הררי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 11, "id" FROM "Actor" WHERE "name" = 'רפאל עבאס' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 12, "id" FROM "Actor" WHERE "name" = 'אלון סנדלר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 12, "id" FROM "Actor" WHERE "name" = 'נדב נייטס' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 12, "id" FROM "Actor" WHERE "name" = 'עופרי ביטרמן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 12, "id" FROM "Actor" WHERE "name" = 'תום חודורוב' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 13, "id" FROM "Actor" WHERE "name" = 'חן גרטי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 13, "id" FROM "Actor" WHERE "name" = 'נדב נייטס' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 13, "id" FROM "Actor" WHERE "name" = 'תום חודורוב' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 14, "id" FROM "Actor" WHERE "name" = 'אלון סנדלר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 14, "id" FROM "Actor" WHERE "name" = 'אלי גורנשטיין' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 14, "id" FROM "Actor" WHERE "name" = 'נדב נייטס' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 14, "id" FROM "Actor" WHERE "name" = 'עופרי ביטרמן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 14, "id" FROM "Actor" WHERE "name" = 'רמי ברוך' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 15, "id" FROM "Actor" WHERE "name" = 'קרן מור' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 16, "id" FROM "Actor" WHERE "name" = 'טלי אורן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 16, "id" FROM "Actor" WHERE "name" = 'אולה שור סלקטר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 16, "id" FROM "Actor" WHERE "name" = 'אלון סנדלר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 16, "id" FROM "Actor" WHERE "name" = 'יניב סויסה' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 16, "id" FROM "Actor" WHERE "name" = 'רפאל עבאס' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 18, "id" FROM "Actor" WHERE "name" = 'אלון סנדלר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 18, "id" FROM "Actor" WHERE "name" = 'עמוס תמם' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 18, "id" FROM "Actor" WHERE "name" = 'קרן מור' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 19, "id" FROM "Actor" WHERE "name" = 'נדב נייטס' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 19, "id" FROM "Actor" WHERE "name" = 'עמוס תמם' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 19, "id" FROM "Actor" WHERE "name" = 'רמי ברוך' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 20, "id" FROM "Actor" WHERE "name" = 'תום חודורוב' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 20, "id" FROM "Actor" WHERE "name" = 'תם גל' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 21, "id" FROM "Actor" WHERE "name" = 'יניב סויסה' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 21, "id" FROM "Actor" WHERE "name" = 'כינרת לימוני' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 21, "id" FROM "Actor" WHERE "name" = 'נטע גרטי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 22, "id" FROM "Actor" WHERE "name" = 'דביר בנדק' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 23, "id" FROM "Actor" WHERE "name" = 'אודיה קורן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 23, "id" FROM "Actor" WHERE "name" = 'נטע גרטי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 24, "id" FROM "Actor" WHERE "name" = 'נדב אסולין' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 24, "id" FROM "Actor" WHERE "name" = 'רבקה מיכאלי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 25, "id" FROM "Actor" WHERE "name" = 'אלון סנדלר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 25, "id" FROM "Actor" WHERE "name" = 'סנדרה שדה' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 25, "id" FROM "Actor" WHERE "name" = 'רמי ברוך' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 25, "id" FROM "Actor" WHERE "name" = 'רפאל עבאס' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 26, "id" FROM "Actor" WHERE "name" = 'דביר בנדק' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 27, "id" FROM "Actor" WHERE "name" = 'אולה שור סלקטר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 27, "id" FROM "Actor" WHERE "name" = 'אלון סנדלר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 27, "id" FROM "Actor" WHERE "name" = 'דרור קרן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 27, "id" FROM "Actor" WHERE "name" = 'נדב אסולין' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 27, "id" FROM "Actor" WHERE "name" = 'רבקה מיכאלי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 27, "id" FROM "Actor" WHERE "name" = 'תום חודורוב' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 28, "id" FROM "Actor" WHERE "name" = 'דביר בנדק' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 28, "id" FROM "Actor" WHERE "name" = 'עופרי ביטרמן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 29, "id" FROM "Actor" WHERE "name" = 'אודיה קורן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 29, "id" FROM "Actor" WHERE "name" = 'רמי ברוך' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 30, "id" FROM "Actor" WHERE "name" = 'כינרת לימוני' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 30, "id" FROM "Actor" WHERE "name" = 'עמוס תמם' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 31, "id" FROM "Actor" WHERE "name" = 'אודיה קורן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 31, "id" FROM "Actor" WHERE "name" = 'מיקי קם' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 32, "id" FROM "Actor" WHERE "name" = 'דביר בנדק' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 33, "id" FROM "Actor" WHERE "name" = 'אולה שור סלקטר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 33, "id" FROM "Actor" WHERE "name" = 'דרור קרן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 33, "id" FROM "Actor" WHERE "name" = 'חן גרטי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 33, "id" FROM "Actor" WHERE "name" = 'נדב נייטס' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 33, "id" FROM "Actor" WHERE "name" = 'עופרי ביטרמן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 34, "id" FROM "Actor" WHERE "name" = 'יעל לבנטל' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 35, "id" FROM "Actor" WHERE "name" = 'לי בירן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 35, "id" FROM "Actor" WHERE "name" = 'עידו רוזנברג' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 36, "id" FROM "Actor" WHERE "name" = 'אלכס קרול' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 38, "id" FROM "Actor" WHERE "name" = 'יעל לבנטל' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 40, "id" FROM "Actor" WHERE "name" = 'מיקי קם' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 41, "id" FROM "Actor" WHERE "name" = 'נעמי הררי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 41, "id" FROM "Actor" WHERE "name" = 'ליא קניג' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 42, "id" FROM "Actor" WHERE "name" = 'גילת אנקורי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 42, "id" FROM "Actor" WHERE "name" = 'נעמי הררי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 42, "id" FROM "Actor" WHERE "name" = 'יפתח קליין' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 42, "id" FROM "Actor" WHERE "name" = 'צחי הלוי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 42, "id" FROM "Actor" WHERE "name" = 'ריקי בליך' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 47, "id" FROM "Actor" WHERE "name" = 'גילת אנקורי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 47, "id" FROM "Actor" WHERE "name" = 'ריקי בליך' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 47, "id" FROM "Actor" WHERE "name" = 'ליא קניג' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 50, "id" FROM "Actor" WHERE "name" = 'ריקי בליך' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 52, "id" FROM "Actor" WHERE "name" = 'יעל לבנטל' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 52, "id" FROM "Actor" WHERE "name" = 'ריקי בליך' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 54, "id" FROM "Actor" WHERE "name" = 'נעמי הררי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 54, "id" FROM "Actor" WHERE "name" = 'ליא קניג' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 55, "id" FROM "Actor" WHERE "name" = 'טל מוסרי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 56, "id" FROM "Actor" WHERE "name" = 'אלכס קרול' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 56, "id" FROM "Actor" WHERE "name" = 'נורמן עיסא' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 59, "id" FROM "Actor" WHERE "name" = 'נעמי הררי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 60, "id" FROM "Actor" WHERE "name" = 'מגי אזרזר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 60, "id" FROM "Actor" WHERE "name" = 'רביב כנר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 60, "id" FROM "Actor" WHERE "name" = 'דור הררי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 60, "id" FROM "Actor" WHERE "name" = 'לינוי כהן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 62, "id" FROM "Actor" WHERE "name" = 'מולי שולמן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 62, "id" FROM "Actor" WHERE "name" = 'קרן מור' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 63, "id" FROM "Actor" WHERE "name" = 'לימור גולדשטיין' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 63, "id" FROM "Actor" WHERE "name" = 'אבי קושניר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 64, "id" FROM "Actor" WHERE "name" = 'טל גרושקה' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 64, "id" FROM "Actor" WHERE "name" = 'ליאור אשכנזי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 66, "id" FROM "Actor" WHERE "name" = 'מולי שולמן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 67, "id" FROM "Actor" WHERE "name" = 'מגי אזרזר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 67, "id" FROM "Actor" WHERE "name" = 'קרן מור' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 68, "id" FROM "Actor" WHERE "name" = 'אבי קושניר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 69, "id" FROM "Actor" WHERE "name" = 'מגי אזרזר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 71, "id" FROM "Actor" WHERE "name" = 'לימור גולדשטיין' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 71, "id" FROM "Actor" WHERE "name" = 'מולי שולמן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 71, "id" FROM "Actor" WHERE "name" = 'קרן מור' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 72, "id" FROM "Actor" WHERE "name" = 'קרן מור' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 73, "id" FROM "Actor" WHERE "name" = 'דניאל גל' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 73, "id" FROM "Actor" WHERE "name" = 'יורם טולדנו' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 77, "id" FROM "Actor" WHERE "name" = 'יפתח קליין' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 78, "id" FROM "Actor" WHERE "name" = 'עירית ענבי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 78, "id" FROM "Actor" WHERE "name" = 'עידן אלתרמן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 78, "id" FROM "Actor" WHERE "name" = 'ציפי שביט' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 81, "id" FROM "Actor" WHERE "name" = 'עידן אלתרמן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 82, "id" FROM "Actor" WHERE "name" = 'גילה אלמגור' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 82, "id" FROM "Actor" WHERE "name" = 'רוני דלומי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 99, "id" FROM "Actor" WHERE "name" = 'יעל לבנטל' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 99, "id" FROM "Actor" WHERE "name" = 'עידן אלתרמן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 112, "id" FROM "Actor" WHERE "name" = 'אלי גורנשטיין' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 112, "id" FROM "Actor" WHERE "name" = 'מיקה צור' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 112, "id" FROM "Actor" WHERE "name" = 'נתן דטנר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 121, "id" FROM "Actor" WHERE "name" = 'אלי גורנשטיין' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 121, "id" FROM "Actor" WHERE "name" = 'נתן דטנר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 124, "id" FROM "Actor" WHERE "name" = 'נתן דטנר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 124, "id" FROM "Actor" WHERE "name" = 'סנדרה שדה' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 127, "id" FROM "Actor" WHERE "name" = 'נתן דטנר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 132, "id" FROM "Actor" WHERE "name" = 'עופרי ביטרמן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 132, "id" FROM "Actor" WHERE "name" = 'רבקה מיכאלי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 133, "id" FROM "Actor" WHERE "name" = 'חן גרטי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 133, "id" FROM "Actor" WHERE "name" = 'תום חודורוב' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 133, "id" FROM "Actor" WHERE "name" = 'תם גל' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 135, "id" FROM "Actor" WHERE "name" = 'יעל לבנטל' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 135, "id" FROM "Actor" WHERE "name" = 'נורמן עיסא' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 135, "id" FROM "Actor" WHERE "name" = 'ריקי בליך' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 136, "id" FROM "Actor" WHERE "name" = 'טל מוסרי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 136, "id" FROM "Actor" WHERE "name" = 'רוני דלומי' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 136, "id" FROM "Actor" WHERE "name" = 'גלית גיאת' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 136, "id" FROM "Actor" WHERE "name" = 'חני נחמיאס' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 138, "id" FROM "Actor" WHERE "name" = 'אלכס קרול' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 138, "id" FROM "Actor" WHERE "name" = 'חנה לסלאו' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 139, "id" FROM "Actor" WHERE "name" = 'יעל לבנטל' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 139, "id" FROM "Actor" WHERE "name" = 'צביקה הדר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 140, "id" FROM "Actor" WHERE "name" = 'יונה אליאן קשת' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 140, "id" FROM "Actor" WHERE "name" = 'ריקי בליך' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 146, "id" FROM "Actor" WHERE "name" = 'צביקה הדר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 147, "id" FROM "Actor" WHERE "name" = 'דניאל גל' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 154, "id" FROM "Actor" WHERE "name" = 'סנדרה שדה' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 158, "id" FROM "Actor" WHERE "name" = 'נתן דטנר' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 158, "id" FROM "Actor" WHERE "name" = 'מיקי קם' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 187, "id" FROM "Actor" WHERE "name" = 'עידן אלתרמן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 187, "id" FROM "Actor" WHERE "name" = 'רפאל עבאס' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 263, "id" FROM "Actor" WHERE "name" = 'נדב אסולין' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 263, "id" FROM "Actor" WHERE "name" = 'רמי ברוך' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 264, "id" FROM "Actor" WHERE "name" = 'טלי אורן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 264, "id" FROM "Actor" WHERE "name" = 'מולי שולמן' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 265, "id" FROM "Actor" WHERE "name" = 'תם גל' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 266, "id" FROM "Actor" WHERE "name" = 'תם גל' ON CONFLICT DO NOTHING;
+INSERT INTO "ShowActor" ("showId", "actorId") SELECT 267, "id" FROM "Actor" WHERE "name" = 'גילת אנקורי' ON CONFLICT DO NOTHING;

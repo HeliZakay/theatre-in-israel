@@ -255,6 +255,44 @@
   }
 }
 
+/* ── Actor thumbnail strip ── */
+.actorStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.actorThumb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: var(--color-text-primary);
+  transition: opacity 0.2s ease;
+}
+
+.actorThumb:hover {
+  opacity: 0.75;
+}
+
+.actorImage {
+  width: 100px;
+  height: 125px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.actorName {
+  font-size: 0.8rem;
+  text-align: center;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /* ── Gateway review CTA (shown when auth gateway is active + user not signed in) ── */
 .reviewCta {
   display: flex;

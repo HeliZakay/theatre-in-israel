@@ -35,6 +35,7 @@ const makeShow = (overrides: Partial<Show> = {}): Show => ({
   cast: "שחקן 1, שחקן 2",
   webReviewSummary: null,
   genre: ["דרמה"],
+  actors: [],
   reviews: [
     {
       id: 1,

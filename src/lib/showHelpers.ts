@@ -14,6 +14,7 @@ export const showInclude = {
   genres: { include: { genre: true } },
   reviews: { orderBy: { date: "desc" as const } },
   events: eventsInclude,
+  actors: { include: { actor: true } },
 } as const;
 
 /** Prisma include for list views — genres only, no reviews. */
@@ -36,11 +37,17 @@ export function normalizeShow(
   show: PrismaShowWithRelations | null,
 ): Show | null {
   if (!show) return null;
-  const { genres, reviews, events, ...rest } = show;
+  const { genres, reviews, events, actors, ...rest } = show;
   const today = new Date(new Date().toDateString());
   return {
     ...rest,
     genre: genres?.map((sg) => sg.genre.name) ?? [],
+    actors: (actors ?? []).map((sa) => ({
+      id: sa.actor.id,
+      name: sa.actor.name,
+      slug: sa.actor.slug,
+      image: sa.actor.image,
+    })),
     reviews:
       reviews?.map((r) => ({
         ...r,

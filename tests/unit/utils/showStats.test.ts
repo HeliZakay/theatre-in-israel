@@ -31,6 +31,7 @@ function makeShow(overrides: Partial<Show> = {}): Show {
     durationMinutes: 90,
     summary: "A test show",
     genre: ["drama"],
+    actors: [],
     reviews: [],
     description: null,
     cast: null,
