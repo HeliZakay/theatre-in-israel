@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE "Actor" (
+CREATE TABLE IF NOT EXISTS "Actor" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE "Actor" (
 );
 
 -- CreateTable
-CREATE TABLE "ShowActor" (
+CREATE TABLE IF NOT EXISTS "ShowActor" (
     "showId" INTEGER NOT NULL,
     "actorId" INTEGER NOT NULL,
 
@@ -17,15 +17,17 @@ CREATE TABLE "ShowActor" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Actor_name_key" ON "Actor"("name");
+CREATE UNIQUE INDEX IF NOT EXISTS "Actor_name_key" ON "Actor"("name");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Actor_slug_key" ON "Actor"("slug");
+CREATE UNIQUE INDEX IF NOT EXISTS "Actor_slug_key" ON "Actor"("slug");
 
 -- AddForeignKey
+ALTER TABLE "ShowActor" DROP CONSTRAINT IF EXISTS "ShowActor_showId_fkey";
 ALTER TABLE "ShowActor" ADD CONSTRAINT "ShowActor_showId_fkey" FOREIGN KEY ("showId") REFERENCES "Show"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "ShowActor" DROP CONSTRAINT IF EXISTS "ShowActor_actorId_fkey";
 ALTER TABLE "ShowActor" ADD CONSTRAINT "ShowActor_actorId_fkey" FOREIGN KEY ("actorId") REFERENCES "Actor"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Seed actors
