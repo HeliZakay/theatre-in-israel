@@ -54,3 +54,4 @@ blob-report/
 # scraper HTML reports
 missing-cameri-shows.html
 missing-habima-shows.html
+.env*.local
