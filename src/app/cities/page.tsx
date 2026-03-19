@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getAllCityStats } from "@/lib/data/cityDetail";
 import { CITIES } from "@/constants/cities";
 import ROUTES, { cityPath } from "@/constants/routes";
@@ -89,16 +90,25 @@ export default async function CitiesPage() {
               href={cityPath(c.slug)}
               className={styles.card}
             >
-              <h2 className={styles.cardTitle}>{c.name}</h2>
-              {stats ? (
-                <div className={styles.cardStats}>
-                  <span>{stats.upcomingEventCount} הופעות קרובות</span>
-                  <span>{stats.showCount} הצגות</span>
-                  <span>{stats.venueCount} אולמות</span>
-                </div>
-              ) : (
-                <span className={styles.cardStats}>אין הופעות קרובות</span>
-              )}
+              <Image
+                src={c.image}
+                alt={c.name}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className={styles.cardImage}
+              />
+              <div className={styles.cardOverlay}>
+                <h2 className={styles.cardTitle}>{c.name}</h2>
+                {stats ? (
+                  <div className={styles.cardStats}>
+                    <span>{stats.upcomingEventCount} הופעות קרובות</span>
+                    <span>{stats.showCount} הצגות</span>
+                    <span>{stats.venueCount} אולמות</span>
+                  </div>
+                ) : (
+                  <span className={styles.cardStats}>אין הופעות קרובות</span>
+                )}
+              </div>
             </Link>
           );
         })}
