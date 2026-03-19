@@ -59,7 +59,7 @@ const ACTORS = [
   { slug: "ליאור-אשכנזי", name: "ליאור אשכנזי", image: "/actors/ליאור-אשכנזי.webp" },
   { slug: "לימור-גולדשטיין", name: "לימור גולדשטיין", image: "/actors/לימור-גולדשטיין.webp" },
   { slug: "לינוי-כהן", name: "לינוי כהן", image: "/actors/לינוי-כהן.webp" },
-  { slug: "לֿאורה-ריבלין", name: "לֿאורה ריבלין", image: "/actors/לֿאורה-ריבלין.webp" },
+  { slug: "לאורה-ריבלין", name: "לאורה ריבלין", image: "/actors/לאורה-ריבלין.webp" },
   { slug: "מגי-אזרזר", name: "מגי אזרזר", image: "/actors/מגי-אזרזר.webp" },
   { slug: "מיקי-קם", name: "מיקי קם", image: "/actors/מיקי-קם.webp" },
   { slug: "מולי-שולמן", name: "מולי שולמן", image: "/actors/מולי-שולמן.webp" },
