@@ -38,7 +38,9 @@ export async function fetchPresentationDates(browser) {
   const page = await browser.newPage();
   await setupRequestInterception(page);
   await page.goto(PRESENTATIONS_URL, { waitUntil: "networkidle2", timeout: 60_000 });
-  await page.waitForSelector("table.calendar", { timeout: 10_000 });
+
+  // Wait for the month buttons to appear (always present even when a month is empty)
+  await page.waitForSelector(".board-controls__months button", { timeout: 10_000 });
 
   // Get month buttons (e.g. "מרץ 2026", "אפריל 2026")
   const monthLabels = await page.evaluate(() =>
@@ -62,6 +64,13 @@ export async function fetchPresentationDates(browser) {
       document.querySelectorAll(".board-controls__months button")[idx].click();
     }, i);
     await new Promise(r => setTimeout(r, 800));
+
+    // The calendar table may not exist if the month has no events
+    // (page shows "לא נמצאו הצגות לחודש זה" instead)
+    const hasCalendar = await page.evaluate(() =>
+      !!document.querySelector("table.calendar")
+    );
+    if (!hasCalendar) continue;
 
     // Collect days that have events
     const days = await page.evaluate(() => {
