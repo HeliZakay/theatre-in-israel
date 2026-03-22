@@ -55,3 +55,4 @@ blob-report/
 missing-cameri-shows.html
 missing-habima-shows.html
 .env*.local
+.claude/
