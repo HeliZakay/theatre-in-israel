@@ -21,6 +21,18 @@ const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
 const apply = process.argv.includes("--apply");
 
+/**
+ * Normalize a string for actor-name matching.
+ * Handles: Hebrew geresh ׳ (U+05F3) vs ASCII ' (U+0027),
+ * hyphens vs spaces, and יי vs י spelling variants.
+ */
+function normalizeForMatch(s) {
+  return s
+    .replace(/\u05F3/g, "'")   // Hebrew geresh → ASCII apostrophe
+    .replace(/-/g, " ")         // hyphen → space
+    .replace(/יי/g, "י");       // collapse double-yod
+}
+
 const ACTORS = [
   { slug: "אביגיל-הררי", name: "אביגיל הררי", image: "/actors/אביגיל-הררי.webp" },
   { slug: "אבי-קושניר", name: "אבי קושניר", image: "/actors/אבי-קושניר.webp" },
@@ -150,7 +162,13 @@ async function main() {
 
   for (const show of shows) {
     const cast = show.cast ?? "";
-    const matched = ACTORS.filter((a) => cast.includes(a.name));
+    const castNames = cast
+      .split(/[,|/]/)
+      .map((s) => s.replace(/ - .+$/, "").trim()) // strip married-name suffixes
+      .map(normalizeForMatch);
+    const matched = ACTORS.filter((a) =>
+      castNames.some((cn) => cn === normalizeForMatch(a.name))
+    );
     if (matched.length === 0) continue;
 
     console.log(`  "${show.title}" (id=${show.id}):`);
