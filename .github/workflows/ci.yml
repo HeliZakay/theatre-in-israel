@@ -64,8 +64,8 @@ jobs:
           npx prisma db seed
 
       - name: Create test user
-        run: |
-          node <<'SCRIPT'
+        run: >-
+          node -e '
           const { PrismaClient } = require("@prisma/client");
           const bcrypt = require("bcryptjs");
           const prisma = new PrismaClient();
@@ -78,7 +78,7 @@ jobs:
             });
           }
           main().catch(console.error).finally(() => prisma.$disconnect());
-          SCRIPT
+          '
 
       - name: Run E2E tests
         run: npx playwright test
