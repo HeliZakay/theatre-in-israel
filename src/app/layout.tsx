@@ -5,6 +5,7 @@ import { Noto_Sans_Hebrew } from "next/font/google";
 import RadixDirectionProvider from "@/components/RadixDirectionProvider/RadixDirectionProvider";
 import AuthSessionProvider from "@/components/AuthSessionProvider/AuthSessionProvider";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
+import SecurityBanner from "@/components/SecurityBanner/SecurityBanner";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import ROUTES from "@/constants/routes";
@@ -122,6 +123,7 @@ export default function RootLayout({
               דלג לתוכן הראשי
             </a>
             <Header />
+            <SecurityBanner />
             <div className="appContent">{children}</div>
             <Footer />
           </RadixDirectionProvider>

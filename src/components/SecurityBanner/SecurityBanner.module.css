@@ -1,0 +1,13 @@
+.banner {
+  background-color: #fef3cd;
+  border-bottom: 1px solid #f0d78a;
+  padding: 10px clamp(20px, 6vw, 96px);
+  text-align: center;
+}
+
+.text {
+  font-size: 0.88rem;
+  color: #664d03;
+  line-height: 1.6;
+  margin: 0;
+}

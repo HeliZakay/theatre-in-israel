@@ -20,6 +20,7 @@ export { default as RadixDirectionProvider } from "./RadixDirectionProvider/Radi
 export { default as ReviewCard } from "./ReviewCard/ReviewCard";
 export { default as ReviewFormFields } from "./ReviewFormFields/ReviewFormFields";
 export { default as SearchBar } from "./SearchBar/SearchBar";
+export { default as SecurityBanner } from "./SecurityBanner/SecurityBanner";
 export { default as ShowCard } from "./ShowCard/ShowCard";
 export { default as StickyReviewCTA } from "./StickyReviewCTA/StickyReviewCTA";
 export { default as ShowCombobox } from "./ShowCombobox/ShowCombobox";
