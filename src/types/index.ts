@@ -128,3 +128,17 @@ export interface EnrichedEvent extends Event {
   show: ShowListItem;
   venue: Venue;
 }
+
+/** Lightweight review type for the "latest reviews" homepage section */
+export interface LatestReviewItem {
+  id: number;
+  author: string;
+  title: string | null;
+  text: string;
+  rating: number;
+  createdAt: Date;
+  showId: number;
+  showSlug: string;
+  showTitle: string;
+  showTheatre: string;
+}

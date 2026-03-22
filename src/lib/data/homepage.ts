@@ -1,7 +1,7 @@
 import { unstable_cache } from "next/cache";
 import prisma from "../prisma";
 import { showListInclude } from "../showHelpers";
-import type { ShowListItem, Suggestions } from "@/types";
+import type { ShowListItem, Suggestions, LatestReviewItem } from "@/types";
 import type { EventListItem } from "./eventsList";
 import { GENRE_SECTIONS } from "@/constants/genreGroups";
 import { FEATURED_SHOW_SLUG } from "@/constants/featuredShow";
@@ -471,5 +471,64 @@ async function fetchUpcomingEventsVaried(): Promise<UpcomingEventItem[]> {
 export const getUpcomingEventsVaried = unstable_cache(
   fetchUpcomingEventsVaried,
   ["homepage-upcoming"],
+  { revalidate: 120, tags: ["homepage"] },
+);
+
+// ---------------------------------------------------------------------------
+// Latest reviews (homepage section)
+// ---------------------------------------------------------------------------
+
+const LATEST_REVIEWS_DISPLAY = 6;
+
+async function fetchLatestReviews(): Promise<LatestReviewItem[]> {
+  const reviews = await prisma.review.findMany({
+    orderBy: { createdAt: "desc" },
+    take: LATEST_REVIEWS_DISPLAY * 3,
+    select: {
+      id: true,
+      author: true,
+      title: true,
+      text: true,
+      rating: true,
+      createdAt: true,
+      show: {
+        select: {
+          id: true,
+          slug: true,
+          title: true,
+          theatre: true,
+        },
+      },
+    },
+  });
+
+  const seenShows = new Set<number>();
+  const result: LatestReviewItem[] = [];
+
+  for (const r of reviews) {
+    if (result.length >= LATEST_REVIEWS_DISPLAY) break;
+    if (seenShows.has(r.show.id)) continue;
+
+    seenShows.add(r.show.id);
+    result.push({
+      id: r.id,
+      author: r.author,
+      title: r.title,
+      text: r.text,
+      rating: r.rating,
+      createdAt: r.createdAt,
+      showId: r.show.id,
+      showSlug: r.show.slug,
+      showTitle: r.show.title,
+      showTheatre: r.show.theatre,
+    });
+  }
+
+  return result;
+}
+
+export const getLatestReviews = unstable_cache(
+  fetchLatestReviews,
+  ["homepage-latest-reviews"],
   { revalidate: 120, tags: ["homepage"] },
 );

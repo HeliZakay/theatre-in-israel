@@ -8,7 +8,12 @@ import ExploreBanner from "@/components/ExploreBanner/ExploreBanner";
 import { isLotteryActive } from "@/constants/lottery";
 import styles from "./page.module.css";
 import ROUTES from "@/constants/routes";
-import { getHeroData, getExploreBannerShows } from "@/lib/data/homepage";
+import {
+  getHeroData,
+  getExploreBannerShows,
+  getLatestReviews,
+} from "@/lib/data/homepage";
+import LatestReviewsSection from "@/components/LatestReviewsSection/LatestReviewsSection";
 import { SITE_NAME } from "@/lib/seo";
 
 import type { Metadata } from "next";
@@ -39,8 +44,8 @@ export const metadata: Metadata = {
 export const revalidate = 120;
 
 export default async function Home() {
-  const [{ suggestions, featuredShow, featuredReview }, exploreShows] =
-    await Promise.all([getHeroData(), getExploreBannerShows()]);
+  const [{ suggestions, featuredShow, featuredReview }, exploreShows, latestReviews] =
+    await Promise.all([getHeroData(), getExploreBannerShows(), getLatestReviews()]);
 
   return (
     <main className={styles.page} id="main-content">
@@ -53,6 +58,8 @@ export default async function Home() {
       <Suspense fallback={null}>
         <UpcomingEventsSection />
       </Suspense>
+
+      <LatestReviewsSection reviews={latestReviews} />
 
       <Suspense fallback={<ShowsSectionsSkeleton />}>
         <ShowsSectionsContent

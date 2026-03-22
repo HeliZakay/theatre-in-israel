@@ -1,0 +1,113 @@
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.link:focus-visible .card {
+  box-shadow:
+    0 0 0 3px rgba(156, 27, 32, 0.35),
+    0 10px 22px var(--color-slate-008);
+}
+
+.card {
+  box-shadow: 0 10px 22px var(--color-slate-008);
+  padding: 18px 20px 16px;
+  gap: 12px;
+  height: 100%;
+}
+
+.showInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.poster {
+  position: relative;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md, 8px);
+  overflow: hidden;
+  background:
+    linear-gradient(160deg, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.35)),
+    radial-gradient(circle at 20% 30%, #f3c78a, transparent 60%),
+    radial-gradient(circle at 80% 20%, #e7996a, transparent 55%), #1b1f2a;
+}
+
+.posterImage {
+  object-fit: cover;
+}
+
+.showMeta {
+  flex: 1;
+  min-width: 0;
+}
+
+.showTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.theatre {
+  font-size: 0.85rem;
+  color: rgba(26, 26, 26, 0.65);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rating {
+  flex-shrink: 0;
+  font-weight: 700;
+  color: var(--color-curtain-red);
+  font-size: 0.95rem;
+}
+
+.reviewTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: rgba(26, 26, 26, 0.8);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--color-text-faint, rgba(26, 26, 26, 0.5));
+  margin-top: auto;
+}
+
+.author {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 50%;
+}
+
+.dot {
+  flex-shrink: 0;
+}
+
+.date {
+  flex-shrink: 0;
+}
