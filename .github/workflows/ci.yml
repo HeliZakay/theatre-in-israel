@@ -31,6 +31,14 @@ jobs:
   e2e:
     name: E2E Tests
     runs-on: ubuntu-latest
+    env:
+      CI: "true"
+      DATABASE_URL: "postgresql://test:test@localhost:5433/theatre_test"
+      NEXTAUTH_URL: "http://localhost:3000"
+      NEXTAUTH_SECRET: "e2e-test-secret-do-not-use-in-production"
+      AUTH_SECRET: "e2e-test-secret-do-not-use-in-production"
+      RESEND_API_KEY: "re_test_fake_key"
+      BASE_URL: "http://localhost:3000"
     steps:
       - uses: actions/checkout@v4
 
@@ -47,19 +55,33 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install chromium --with-deps
 
-      - name: Setup E2E environment
-        run: npm run e2e:setup
+      - name: Start test database
+        run: docker compose -f docker-compose.test.yml up -d --wait
+
+      - name: Run migrations and seed
+        run: |
+          npx prisma migrate deploy
+          npx prisma db seed
+
+      - name: Create test user
+        run: |
+          node <<'SCRIPT'
+          const { PrismaClient } = require("@prisma/client");
+          const bcrypt = require("bcryptjs");
+          const prisma = new PrismaClient();
+          async function main() {
+            const hash = await bcrypt.hash("TestPassword123!", 10);
+            await prisma.user.upsert({
+              where: { email: "test@e2e.com" },
+              update: {},
+              create: { name: "Test User", email: "test@e2e.com", password: hash },
+            });
+          }
+          main().catch(console.error).finally(() => prisma.$disconnect());
+          SCRIPT
 
       - name: Run E2E tests
         run: npx playwright test
-        env:
-          CI: "true"
-          DATABASE_URL: "postgresql://test:test@localhost:5433/theatre_test"
-          NEXTAUTH_URL: "http://localhost:3000"
-          NEXTAUTH_SECRET: "e2e-test-secret-do-not-use-in-production"
-          AUTH_SECRET: "e2e-test-secret-do-not-use-in-production"
-          RESEND_API_KEY: "re_test_fake_key"
-          BASE_URL: "http://localhost:3000"
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4
@@ -69,6 +91,6 @@ jobs:
           path: playwright-report/
           retention-days: 14
 
-      - name: Teardown E2E environment
+      - name: Teardown test database
         if: always()
-        run: npm run e2e:teardown
+        run: docker compose -f docker-compose.test.yml down -v
