@@ -41,6 +41,7 @@ export function normaliseForMatch(s) {
     .replace(/[-–—]/g, "-") // normalise dashes
     .replace(/\u05D5{2,}/g, "\u05D5") // collapse repeated vav (וו→ו) for plene/defective variants
     .replace(/\u05D9{2,}/g, "\u05D9") // collapse repeated yod (יי→י)
+    .replace(/[?!.,;:]+$/g, "") // strip trailing punctuation (e.g. "מי בעד?" → "מי בעד")
     .replace(/\s+/g, " ")
     .trim();
 }
