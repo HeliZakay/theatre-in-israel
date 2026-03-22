@@ -134,7 +134,7 @@ const ACTORS = [
 async function main() {
   console.log(`Mode: ${apply ? "APPLY" : "DRY-RUN"}\n`);
 
-  // 1. Upsert actors
+  // 1. Upsert actors (apply) or fetch existing IDs (dry-run)
   const actorRecords = new Map();
   for (const a of ACTORS) {
     if (apply) {
@@ -146,6 +146,8 @@ async function main() {
       actorRecords.set(a.name, record.id);
       console.log(`  Actor upserted: ${a.name} (id=${record.id})`);
     } else {
+      const existing = await prisma.actor.findUnique({ where: { name: a.name } });
+      if (existing) actorRecords.set(a.name, existing.id);
       console.log(`  Would upsert actor: ${a.name} (slug=${a.slug})`);
     }
   }
@@ -159,6 +161,8 @@ async function main() {
   console.log(`\nScanning ${shows.length} shows for actor matches...\n`);
 
   let totalLinks = 0;
+  // Collect all valid (showId, actorId) pairs to detect stale links
+  const validPairs = new Set();
 
   for (const show of shows) {
     const cast = show.cast ?? "";
@@ -176,8 +180,10 @@ async function main() {
       console.log(`    -> ${a.name}`);
       totalLinks++;
 
+      const actorId = actorRecords.get(a.name);
+      if (actorId) validPairs.add(`${show.id}:${actorId}`);
+
       if (apply) {
-        const actorId = actorRecords.get(a.name);
         await prisma.showActor.upsert({
           where: { showId_actorId: { showId: show.id, actorId } },
           create: { showId: show.id, actorId },
@@ -185,6 +191,28 @@ async function main() {
         });
       }
     }
+  }
+
+  // 3. Remove stale ShowActor links that no longer match cast strings
+  const existingLinks = await prisma.showActor.findMany({
+    select: { showId: true, actorId: true },
+  });
+  const staleLinks = existingLinks.filter(
+    (l) => !validPairs.has(`${l.showId}:${l.actorId}`)
+  );
+
+  if (staleLinks.length > 0) {
+    console.log(`\nStale links to remove: ${staleLinks.length}`);
+    for (const l of staleLinks) {
+      console.log(`  Remove: showId=${l.showId}, actorId=${l.actorId}`);
+      if (apply) {
+        await prisma.showActor.delete({
+          where: { showId_actorId: { showId: l.showId, actorId: l.actorId } },
+        });
+      }
+    }
+  } else {
+    console.log("\nNo stale links found.");
   }
 
   console.log(`\nTotal actor-show links: ${totalLinks}`);
