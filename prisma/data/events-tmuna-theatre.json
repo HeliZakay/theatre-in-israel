@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-03-22T03:57:09.686Z",
+  "scrapedAt": "2026-03-22T14:05:48.402Z",
   "touring": true,
   "events": [
     {
@@ -158,14 +158,6 @@
       "showId": 221,
       "showSlug": "המורה",
       "date": "2026-04-27",
-      "hour": "20:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 222,
-      "showSlug": "הפצוע-הישראלי",
-      "date": "2026-03-25",
       "hour": "20:00",
       "venueName": "תיאטרון תמונע",
       "venueCity": "תל אביב"

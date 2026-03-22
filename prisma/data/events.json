@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-03-22T04:01:10.896Z",
+  "scrapedAt": "2026-03-22T14:10:02.898Z",
   "venue": {
     "name": "תיאטרון הקאמרי",
     "city": "תל אביב"
@@ -115,20 +115,6 @@
       "showSlug": "האבא",
       "date": "2026-05-31",
       "hour": "19:30",
-      "note": null
-    },
-    {
-      "showId": 6,
-      "showSlug": "הבן-של-מושיקו-הגדול",
-      "date": "2026-06-10",
-      "hour": "18:00",
-      "note": null
-    },
-    {
-      "showId": 6,
-      "showSlug": "הבן-של-מושיקו-הגדול",
-      "date": "2026-06-10",
-      "hour": "21:00",
       "note": null
     },
     {
@@ -764,13 +750,6 @@
     {
       "showId": 25,
       "showSlug": "לא-הייתם-צריכים",
-      "date": "2026-03-23",
-      "hour": "19:30",
-      "note": null
-    },
-    {
-      "showId": 25,
-      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-03-24",
       "hour": "18:00",
       "note": null
@@ -1014,6 +993,48 @@
       "note": "English subtitles"
     },
     {
+      "showId": 4,
+      "showSlug": "מי-בעד",
+      "date": "2026-04-30",
+      "hour": "20:30",
+      "note": null
+    },
+    {
+      "showId": 4,
+      "showSlug": "מי-בעד",
+      "date": "2026-05-01",
+      "hour": "12:00",
+      "note": null
+    },
+    {
+      "showId": 4,
+      "showSlug": "מי-בעד",
+      "date": "2026-05-01",
+      "hour": "20:00",
+      "note": "כתוביות בעברית"
+    },
+    {
+      "showId": 4,
+      "showSlug": "מי-בעד",
+      "date": "2026-05-02",
+      "hour": "17:00",
+      "note": "English subtitles"
+    },
+    {
+      "showId": 4,
+      "showSlug": "מי-בעד",
+      "date": "2026-05-02",
+      "hour": "20:00",
+      "note": null
+    },
+    {
+      "showId": 4,
+      "showSlug": "מי-בעד",
+      "date": "2026-05-05",
+      "hour": "19:00",
+      "note": "English subtitles"
+    },
+    {
       "showId": 20,
       "showSlug": "מיקי-מציל",
       "date": "2026-06-09",
@@ -1194,13 +1215,6 @@
       "date": "2026-05-27",
       "hour": "19:00",
       "note": "כתוביות בעברית"
-    },
-    {
-      "showId": 2,
-      "showSlug": "קברט",
-      "date": "2026-03-22",
-      "hour": "19:00",
-      "note": null
     },
     {
       "showId": 2,
