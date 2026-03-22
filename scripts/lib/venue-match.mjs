@@ -85,15 +85,18 @@ function resolveTheatreHint(text) {
  * Tries exact normalised match first, then substring containment.
  * @param {string} candidate — raw candidate title
  * @param {{ id: number, slug: string, title: string, theatre: string }[]} shows
+ * @param {{ exactOnly?: boolean }} [opts]
  * @returns {{ id: number, slug: string, title: string, theatre: string }[]}
  */
-function findMatches(candidate, shows) {
+function findMatches(candidate, shows, { exactOnly = false } = {}) {
   const norm = normaliseForMatch(candidate);
   if (!norm) return [];
 
   // Exact match (works for any length, including short titles like "אמא")
   const exact = shows.filter((s) => normaliseForMatch(s.title) === norm);
   if (exact.length > 0) return exact;
+
+  if (exactOnly) return [];
 
   // Substring: DB title contained in candidate, or candidate contained in DB title.
   // Require minimum 5 chars to avoid short titles matching unrelated text.
@@ -172,13 +175,14 @@ export function matchVenueTitle(rawTitle, allDbShows) {
     return null;
   }
 
-  // Phase 3: Separator split without hint — try each part individually
+  // Phase 3: Separator split without hint — try each part individually.
+  // Use exactOnly to avoid false positives (e.g. "לאונרד כהן" matching DB show "לאונרד").
   for (const sep of SEPARATORS) {
     if (!title.includes(sep)) continue;
 
     const parts = title.split(sep).map((p) => p.trim()).filter(Boolean);
     for (const part of parts) {
-      const matches = findMatches(part, allDbShows);
+      const matches = findMatches(part, allDbShows, { exactOnly: true });
       if (matches.length === 1) {
         return { showId: matches[0].id, showSlug: matches[0].slug, theatre: matches[0].theatre };
       }
