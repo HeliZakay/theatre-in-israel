@@ -1,15 +1,7 @@
 {
-  "scrapedAt": "2026-03-21T03:51:44.077Z",
+  "scrapedAt": "2026-03-22T03:57:12.759Z",
   "touring": true,
   "events": [
-    {
-      "showId": 116,
-      "showSlug": "אהבה-בהפתעה",
-      "date": "2026-03-21",
-      "hour": "21:00",
-      "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
-    },
     {
       "showId": 116,
       "showSlug": "אהבה-בהפתעה",
@@ -337,14 +329,6 @@
       "hour": "20:30",
       "venueName": "היכל התרבות פתח תקווה",
       "venueCity": "פתח תקווה"
-    },
-    {
-      "showId": 114,
-      "showSlug": "עפרה",
-      "date": "2026-03-21",
-      "hour": "21:00",
-      "venueName": "היכל התרבות כפר סבא",
-      "venueCity": "כפר סבא"
     },
     {
       "showId": 114,

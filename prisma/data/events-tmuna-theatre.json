@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-03-21T03:51:52.352Z",
+  "scrapedAt": "2026-03-22T03:57:09.686Z",
   "touring": true,
   "events": [
     {
@@ -87,70 +87,6 @@
       "showSlug": "בדיחה",
       "date": "2026-04-04",
       "hour": "19:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 217,
-      "showSlug": "בילבי",
-      "date": "2026-05-30",
-      "hour": "10:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 217,
-      "showSlug": "בילבי",
-      "date": "2026-05-30",
-      "hour": "11:30",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 217,
-      "showSlug": "בילבי",
-      "date": "2026-06-27",
-      "hour": "10:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 217,
-      "showSlug": "בילבי",
-      "date": "2026-06-27",
-      "hour": "11:30",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 217,
-      "showSlug": "בילבי",
-      "date": "2026-07-18",
-      "hour": "10:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 217,
-      "showSlug": "בילבי",
-      "date": "2026-07-18",
-      "hour": "11:30",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 217,
-      "showSlug": "בילבי",
-      "date": "2026-08-20",
-      "hour": "10:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 217,
-      "showSlug": "בילבי",
-      "date": "2026-08-20",
-      "hour": "11:30",
       "venueName": "תיאטרון תמונע",
       "venueCity": "תל אביב"
     },
