@@ -41,6 +41,7 @@ jobs:
             echo "No changes to events"
           else
             git commit -m "chore: refresh Cameri + Lessin + Hebrew Theatre + Khan + Gesher + Haifa Theatre + Tmuna Theatre + Beer Sheva Theatre + Tzavta Theatre + Habima Theatre + toMix Theatre + Ashdod Venue + Rishon LeZion Venue + Or Akiva Venue + Theatron HaZafon Venue + Kfar Saba Venue + Airport City Venue + Ashkelon Venue + Holon Venue + Kiryat Motzkin Venue + Rehovot Venue + Herzliya Venue + Ganei Tikva Venue events [$(date -u +%Y-%m-%d)]"
+            git pull --rebase
             git push
           fi
 
