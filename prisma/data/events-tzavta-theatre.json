@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-03-22T15:02:37.957Z",
+  "scrapedAt": "2026-03-23T04:03:27.928Z",
   "touring": true,
   "events": [
     {
@@ -159,14 +159,6 @@
       "showSlug": "הפנס-הסגול",
       "date": "2026-04-18",
       "hour": "11:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 190,
-      "showSlug": "זה-בסדר.",
-      "date": "2026-03-22",
-      "hour": "20:30",
       "venueName": "תיאטרון צוותא",
       "venueCity": "תל אביב"
     },
