@@ -20,9 +20,6 @@
   font-weight: 700;
 }
 
-.topControls {
-  display: none;
-}
 
 .menuToggle {
   display: none;
@@ -124,13 +121,6 @@
   display: none;
 }
 
-.topBarAccount {
-  display: none;
-}
-
-.topBarLogin {
-  display: none;
-}
 
 .mobileAccountLinks {
   display: none;
@@ -285,13 +275,6 @@
     gap: 10px;
   }
 
-  .topControls {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-inline-start: auto;
-  }
-
   .menuToggle {
     display: inline-flex;
     width: auto;
@@ -303,59 +286,6 @@
     font-size: 0.85rem;
     font-weight: 700;
     line-height: 1;
-  }
-
-  .topBarAccount {
-    display: flex;
-  }
-
-  .topBarAccount .userIndicator {
-    padding: 4px 8px 4px 4px;
-    border-radius: 999px;
-    border: 1px solid rgba(26, 26, 26, 0.2);
-    background: #ffffff;
-    gap: 0.4rem;
-  }
-
-  .topBarAccount .userIndicator:hover,
-  .topBarAccount .userIndicator[data-state="open"] {
-    background: rgba(26, 26, 26, 0.05);
-  }
-
-  .topBarAccount .userAvatar {
-    width: 26px;
-    height: 26px;
-  }
-
-  .topBarAccount .userName {
-    font-size: 0.82rem;
-    font-weight: 600;
-    max-width: 70px;
-  }
-
-  .topBarAccount .chevronIcon {
-    width: 14px;
-    height: 14px;
-  }
-
-  .topBarLogin {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 10px;
-    height: 40px;
-    border-radius: 10px;
-    border: 1px solid rgba(26, 26, 26, 0.2);
-    background: #ffffff;
-    color: var(--color-text-primary);
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-decoration: none;
-    white-space: nowrap;
-  }
-
-  .topBarLogin:hover {
-    background: rgba(26, 26, 26, 0.05);
   }
 
   .mobileBackdrop {
@@ -375,7 +305,7 @@
   .mobileDialogContent {
     position: fixed;
     top: 0;
-    right: 0;
+    left: 0;
     bottom: 0;
     width: 72%;
     max-width: 300px;
@@ -384,13 +314,13 @@
     flex-direction: column;
     padding: 0;
     background: #fdfbf9;
-    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12);
     overflow-y: auto;
     animation: drawerSlideIn 250ms ease-out;
   }
 
   @keyframes drawerSlideIn {
-    from { transform: translateX(100%); }
+    from { transform: translateX(-100%); }
     to { transform: translateX(0); }
   }
 
@@ -586,10 +516,6 @@
   }
 
   .menuToggleLabel {
-    display: none;
-  }
-
-  .topBarAccount .userName {
     display: none;
   }
 }

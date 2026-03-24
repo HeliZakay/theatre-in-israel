@@ -4,12 +4,10 @@ import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import styles from "./Header.module.css";
 import ROUTES from "@/constants/routes";
 import Logo from "@/components/Logo/Logo";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useRef, useState } from "react";
 import { useHeaderOffset } from "@/hooks/useHeaderOffset";
-import AccountDropdown from "./AccountDropdown";
 import DesktopNav from "./DesktopNav";
 import MobileMenu from "./MobileMenu";
 
@@ -56,54 +54,34 @@ export default function Header() {
       <Logo />
 
       <Dialog.Root open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-        <div className={styles.topControls}>
-          {!isLoading && isAuthenticated && (
-            <span className={styles.topBarAccount}>
-              <AccountDropdown
-                fullName={fullName}
-                firstName={firstName}
-                onNavigate={closeMenus}
-                mobile
-              />
-            </span>
-          )}
-          {!isLoading && !isAuthenticated && (
-            <Link
-              className={styles.topBarLogin}
-              href={`${ROUTES.AUTH_SIGNIN}?callbackUrl=${encodeURIComponent(pathname && pathname.startsWith("/") && !pathname.startsWith("//") ? pathname : ROUTES.HOME)}`}
+        <Dialog.Trigger asChild>
+          <button
+            type="button"
+            className={styles.menuToggle}
+            aria-label={
+              isMobileMenuOpen ? "סגירת תפריט ניווט" : "פתיחת תפריט ניווט"
+            }
+          >
+            <svg
+              viewBox="0 0 24 24"
+              className={styles.menuToggleIcon}
+              aria-hidden="true"
             >
-              התחברות
-            </Link>
-          )}
-          <Dialog.Trigger asChild>
-            <button
-              type="button"
-              className={styles.menuToggle}
-              aria-label={
-                isMobileMenuOpen ? "סגירת תפריט ניווט" : "פתיחת תפריט ניווט"
-              }
-            >
-              <svg
-                viewBox="0 0 24 24"
-                className={styles.menuToggleIcon}
-                aria-hidden="true"
-              >
-                {isMobileMenuOpen ? (
-                  <path
-                    fill="currentColor"
-                    d="M18.3 5.7 12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z"
-                  />
-                ) : (
-                  <path
-                    fill="currentColor"
-                    d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"
-                  />
-                )}
-              </svg>
-              <span className={styles.menuToggleLabel}>תפריט</span>
-            </button>
-          </Dialog.Trigger>
-        </div>
+              {isMobileMenuOpen ? (
+                <path
+                  fill="currentColor"
+                  d="M18.3 5.7 12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z"
+                />
+              ) : (
+                <path
+                  fill="currentColor"
+                  d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"
+                />
+              )}
+            </svg>
+            <span className={styles.menuToggleLabel}>תפריט</span>
+          </button>
+        </Dialog.Trigger>
 
         <Dialog.Portal>
           <Dialog.Overlay className={styles.mobileBackdrop} />
