@@ -11,7 +11,14 @@ const shared = {
         tsconfig: "tsconfig.json",
       },
     ],
+    "^.+\\.mjs$": [
+      "babel-jest",
+      {
+        presets: [["@babel/preset-env", { targets: { node: "current" } }]],
+      },
+    ],
   },
+  transformIgnorePatterns: [],
 };
 
 const config = {

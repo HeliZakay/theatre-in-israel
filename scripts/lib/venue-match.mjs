@@ -5,7 +5,7 @@
  * Used by venue scrapers to identify which DB show a venue listing refers to.
  */
 
-import { normaliseForMatch, createPrismaClient } from "./db.mjs";
+import { normaliseForMatch } from "./normalize.mjs";
 
 // ── Theatre hint map ─────────────────────────────────────────────
 // Maps informal/short theatre names (as they appear on venue sites)
@@ -51,6 +51,7 @@ const SEPARATORS = ["–", "—", " - ", "- ", " -", "|", ":"];
  * Returns an array of { id, slug, title, theatre }, or null if DB is unavailable.
  */
 export async function fetchAllDbShows() {
+  const { createPrismaClient } = await import("./db.mjs");
   const db = await createPrismaClient();
   if (!db) return null;
 
