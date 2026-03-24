@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-03-24T03:55:43.714Z",
+  "scrapedAt": "2026-03-24T09:19:36.330Z",
   "touring": true,
   "events": [
     {
@@ -38,14 +38,6 @@
       "showId": 108,
       "showSlug": "אבא-יצא-מהקבוצה",
       "date": "2026-04-09",
-      "hour": "20:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 214,
-      "showSlug": "אבהות",
-      "date": "2026-03-26",
       "hour": "20:00",
       "venueName": "תיאטרון תמונע",
       "venueCity": "תל אביב"
