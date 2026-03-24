@@ -80,7 +80,7 @@ test.describe("Authentication", () => {
     await page.getByPlaceholder("אימייל").fill("mismatch@test.com");
     await page.getByPlaceholder("סיסמה").first().fill("Password123!");
     await page.getByPlaceholder("אימות סיסמה").fill("DifferentPass123!");
-    await page.getByRole("button", { name: "הרשמה" }).click();
+    await page.getByRole("button", { name: "הרשמה", exact: true }).click();
 
     await expect(page.getByText("הסיסמאות אינן תואמות")).toBeVisible();
   });
@@ -96,6 +96,44 @@ test.describe("Authentication", () => {
     ).toBeVisible();
     await expect(
       page.getByRole("button", { name: "הרשמה עם אימייל וסיסמה" }),
+    ).toBeVisible();
+  });
+
+  test("auth error page renders with default message", async ({ page }) => {
+    await page.goto("/auth/error");
+
+    await expect(
+      page.getByRole("heading", { name: "שגיאת התחברות" }),
+    ).toBeVisible();
+    await expect(
+      page.getByText("אירעה שגיאה בלתי צפויה בתהליך ההתחברות. נס.י שוב."),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: "חזרה לדף ההתחברות" }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: "חזרה לדף הבית" }),
+    ).toBeVisible();
+  });
+
+  test("auth error page shows OAuthAccountNotLinked message", async ({
+    page,
+  }) => {
+    await page.goto("/auth/error?error=OAuthAccountNotLinked");
+
+    await expect(
+      page.getByText(
+        "כתובת האימייל הזו כבר משויכת לחשבון קיים עם שיטת התחברות אחרת.",
+        { exact: false },
+      ),
+    ).toBeVisible();
+  });
+
+  test("auth error page shows AccessDenied message", async ({ page }) => {
+    await page.goto("/auth/error?error=AccessDenied");
+
+    await expect(
+      page.getByText("הגישה נדחתה. אין לך הרשאה להתחבר."),
     ).toBeVisible();
   });
 });

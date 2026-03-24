@@ -1,9 +1,20 @@
-import { test, expect } from "./fixtures";
-import { cleanupTestData, createTestReview } from "./helpers/db";
+import { test as baseTest, expect } from "./fixtures";
+import { cleanupTestData, createTestReview, getShowByOffset } from "./helpers/db";
+
+// Use a different show (offset 2) to avoid conflicts with parallel review test files
+const test = baseTest.extend<{ firstShow: { id: number; title: string; slug: string } }>({
+  firstShow: async ({}, use) => {
+    await use(await getShowByOffset(2));
+  },
+});
 
 test.describe("Review Validation", () => {
-  test.afterEach(async ({ testUserId }) => {
-    await cleanupTestData(testUserId);
+  test.describe.configure({ mode: "serial" });
+  test.beforeEach(async ({ testUserId, firstShow }) => {
+    await cleanupTestData(testUserId, firstShow.id);
+  });
+  test.afterEach(async ({ testUserId, firstShow }) => {
+    await cleanupTestData(testUserId, firstShow.id);
   });
 
   test("shows validation error when submitting without selecting a show", async ({
@@ -24,9 +35,7 @@ test.describe("Review Validation", () => {
 
     await page.getByRole("button", { name: "שלח.י ביקורת" }).click();
 
-    await expect(
-      page.locator('[role="alert"]').or(page.getByText(/שדה חובה|יש לבחור/)),
-    ).toBeVisible();
+    await expect(page.getByText("יש לבחור הצגה")).toBeVisible();
   });
 
   test("shows validation error when submitting without rating", async ({
@@ -41,7 +50,7 @@ test.describe("Review Validation", () => {
     await combobox.click();
     await combobox.fill(firstShow.title.slice(0, 5));
     await page
-      .getByRole("option", { name: new RegExp(firstShow.title) })
+      .getByRole("option", { name: firstShow.title, exact: true })
       .click();
 
     // Fill title and text — skip rating
@@ -53,9 +62,7 @@ test.describe("Review Validation", () => {
 
     await page.getByRole("button", { name: "שלח.י ביקורת" }).click();
 
-    await expect(
-      page.locator('[role="alert"]').or(page.getByText(/שדה חובה|יש לבחור/)),
-    ).toBeVisible();
+    await expect(page.getByText("בחר.י דירוג")).toBeVisible();
   });
 
   test("shows validation error for too-short review text", async ({
@@ -70,7 +77,7 @@ test.describe("Review Validation", () => {
     await combobox.click();
     await combobox.fill(firstShow.title.slice(0, 5));
     await page
-      .getByRole("option", { name: new RegExp(firstShow.title) })
+      .getByRole("option", { name: firstShow.title, exact: true })
       .click();
 
     // Fill title and rating
@@ -79,14 +86,12 @@ test.describe("Review Validation", () => {
     await page.getByRole("combobox", { name: "דירוג" }).click();
     await page.getByRole("option", { name: /4/ }).click();
 
-    // Fill text with too-short content
-    await page.locator('textarea[name="text"]').fill("קצר");
+    // Fill text with too-short content (min 2 chars)
+    await page.locator('textarea[name="text"]').fill("א");
 
     await page.getByRole("button", { name: "שלח.י ביקורת" }).click();
 
-    await expect(
-      page.locator('[role="alert"]').or(page.getByText(/קצר מדי|תווים/)),
-    ).toBeVisible();
+    await expect(page.getByText("תגובה צריכה להכיל לפחות 2 תווים")).toBeVisible();
   });
 
   test("allows submission with empty title (defaults to show name)", async ({
@@ -101,7 +106,7 @@ test.describe("Review Validation", () => {
     await combobox.click();
     await combobox.fill(firstShow.title.slice(0, 5));
     await page
-      .getByRole("option", { name: new RegExp(firstShow.title) })
+      .getByRole("option", { name: firstShow.title, exact: true })
       .click();
 
     // Select rating and fill text — leave title empty
@@ -116,9 +121,8 @@ test.describe("Review Validation", () => {
     await page.getByRole("button", { name: "שלח.י ביקורת" }).click();
 
     // Should succeed — title auto-filled with show name
-    await expect(page.getByText(/הביקורת נשלחה בהצלחה/)).toBeVisible({
-      timeout: 10000,
-    });
+    await page.waitForURL(/\/shows\/.*review=success/, { timeout: 10_000 });
+    await expect(page.getByText(/הביקורת שלך פורסמה/)).toBeVisible();
   });
 
   test("prevents duplicate review for same show", async ({
@@ -142,7 +146,7 @@ test.describe("Review Validation", () => {
     await combobox.click();
     await combobox.fill(firstShow.title.slice(0, 5));
     await page
-      .getByRole("option", { name: new RegExp(firstShow.title) })
+      .getByRole("option", { name: firstShow.title, exact: true })
       .click();
 
     // Fill all fields
@@ -158,20 +162,27 @@ test.describe("Review Validation", () => {
     await page.getByRole("button", { name: "שלח.י ביקורת" }).click();
 
     // Should show duplicate error
-    await expect(
-      page
-        .locator('[role="alert"]')
-        .or(page.getByText(/כבר כתבת ביקורת|כבר קיימת|unique/i)),
-    ).toBeVisible();
+    await expect(page.getByText("כבר כתבת ביקורת להצגה זו")).toBeVisible({ timeout: 10_000 });
   });
 });
 
-test.describe("Profanity Validation", () => {
-  test.afterEach(async ({ testUserId }) => {
-    await cleanupTestData(testUserId);
+// Use a DIFFERENT show (offset 4) for profanity tests to avoid conflict with Review Validation
+const profanityTest = baseTest.extend<{ firstShow: { id: number; title: string; slug: string } }>({
+  firstShow: async ({}, use) => {
+    await use(await getShowByOffset(4));
+  },
+});
+
+profanityTest.describe("Profanity Validation", () => {
+  profanityTest.describe.configure({ mode: "serial" });
+  profanityTest.beforeEach(async ({ testUserId, firstShow }) => {
+    await cleanupTestData(testUserId, firstShow.id);
+  });
+  profanityTest.afterEach(async ({ testUserId, firstShow }) => {
+    await cleanupTestData(testUserId, firstShow.id);
   });
 
-  test("rejects review with Hebrew profanity in title (client-side)", async ({
+  profanityTest("rejects review with Hebrew profanity in title (client-side)", async ({
     authedPage,
     firstShow,
   }) => {
@@ -183,7 +194,7 @@ test.describe("Profanity Validation", () => {
     await combobox.click();
     await combobox.fill(firstShow.title.slice(0, 5));
     await page
-      .getByRole("option", { name: new RegExp(firstShow.title) })
+      .getByRole("option", { name: firstShow.title, exact: true })
       .click();
 
     // Fill profanity in the title
@@ -201,7 +212,7 @@ test.describe("Profanity Validation", () => {
     await expect(page.getByText(/שפה לא הולמת/)).toBeVisible();
   });
 
-  test("rejects review with Hebrew profanity in text (client-side)", async ({
+  profanityTest("rejects review with Hebrew profanity in text (client-side)", async ({
     authedPage,
     firstShow,
   }) => {
@@ -213,7 +224,7 @@ test.describe("Profanity Validation", () => {
     await combobox.click();
     await combobox.fill(firstShow.title.slice(0, 5));
     await page
-      .getByRole("option", { name: new RegExp(firstShow.title) })
+      .getByRole("option", { name: firstShow.title, exact: true })
       .click();
 
     await page.locator('input[name="title"]').fill("כותרת נקייה");
@@ -231,7 +242,7 @@ test.describe("Profanity Validation", () => {
     await expect(page.getByText(/שפה לא הולמת/)).toBeVisible();
   });
 
-  test("rejects review with multi-word Hebrew profanity phrase", async ({
+  profanityTest("rejects review with multi-word Hebrew profanity phrase", async ({
     authedPage,
     firstShow,
   }) => {
@@ -243,7 +254,7 @@ test.describe("Profanity Validation", () => {
     await combobox.click();
     await combobox.fill(firstShow.title.slice(0, 5));
     await page
-      .getByRole("option", { name: new RegExp(firstShow.title) })
+      .getByRole("option", { name: firstShow.title, exact: true })
       .click();
 
     await page.locator('input[name="title"]').fill("כותרת נקייה");
@@ -260,7 +271,7 @@ test.describe("Profanity Validation", () => {
     await expect(page.getByText(/שפה לא הולמת/)).toBeVisible();
   });
 
-  test("allows clean Hebrew review to pass", async ({
+  profanityTest("allows clean Hebrew review to pass", async ({
     authedPage,
     firstShow,
   }) => {
@@ -272,7 +283,7 @@ test.describe("Profanity Validation", () => {
     await combobox.click();
     await combobox.fill(firstShow.title.slice(0, 5));
     await page
-      .getByRole("option", { name: new RegExp(firstShow.title) })
+      .getByRole("option", { name: firstShow.title, exact: true })
       .click();
 
     await page.locator('input[name="title"]').fill("הצגה מעולה");
@@ -289,8 +300,7 @@ test.describe("Profanity Validation", () => {
     await page.getByRole("button", { name: "שלח.י ביקורת" }).click();
 
     // Should see success (no profanity error)
-    await expect(page.getByText(/הביקורת נשלחה בהצלחה/)).toBeVisible({
-      timeout: 10000,
-    });
+    await page.waitForURL(/\/shows\/.*review=success/, { timeout: 10_000 });
+    await expect(page.getByText(/הביקורת שלך פורסמה/)).toBeVisible();
   });
 });

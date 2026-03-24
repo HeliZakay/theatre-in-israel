@@ -9,7 +9,7 @@ test.describe("Shows Filtering", () => {
     const firstGenre = genreChips.filter({ hasNotText: "הכל" }).first();
     await firstGenre.click();
 
-    await page.waitForURL(/genres=/);
+    await page.waitForURL(/genre=/);
     await expect(page.getByText("מסונן לפי:")).toBeVisible();
   });
 
@@ -32,7 +32,7 @@ test.describe("Shows Filtering", () => {
     await page.goto("/shows");
 
     // Type a search query
-    const searchInput = page.getByPlaceholder(/חיפוש|חפש/);
+    const searchInput = page.getByRole("searchbox", { name: "חיפוש" });
     await searchInput.fill("תיאטרון");
     await page.waitForURL(/query=/);
 
@@ -41,13 +41,13 @@ test.describe("Shows Filtering", () => {
     const firstGenre = genreChips.filter({ hasNotText: "הכל" }).first();
     await firstGenre.click();
 
-    await page.waitForURL(/query=.*genres=|genres=.*query=/);
+    await page.waitForURL(/query=.*genre=|genre=.*query=/);
   });
 
   test("no matching results shows empty state", async ({ page }) => {
     await page.goto("/shows");
 
-    const searchInput = page.getByPlaceholder(/חיפוש|חפש/);
+    const searchInput = page.getByRole("searchbox", { name: "חיפוש" });
     await searchInput.fill("xyznonexistent123");
     await page.waitForURL(/query=/);
 
@@ -77,20 +77,16 @@ test.describe("Shows Filtering", () => {
   test("clear genre filter shows all results", async ({ page }) => {
     await page.goto("/shows");
 
-    // Click a genre chip inside the toggle group
+    // Click a genre chip (not the "הכל" button)
     const genreChips = page.getByRole("group").getByRole("button");
-    const firstGenre = genreChips.first();
+    const firstGenre = genreChips.filter({ hasNotText: "הכל" }).first();
     await firstGenre.click();
-    await page.waitForURL(/genres=/);
+    await page.waitForURL(/genre=/);
 
-    // Click the standalone "הכל" genre button (outside the ToggleGroup)
-    await page
-      .locator('button[aria-current="true"]', { hasText: "הכל" })
-      .or(page.locator("button", { hasText: "הכל" }).first())
-      .click();
+    // Click the standalone "הכל" button (outside the ToggleGroup) to clear filters
+    await page.locator("main").getByRole("button", { name: "הכל", exact: true }).click();
 
-    // genres= should no longer be in the URL
-    await page.waitForURL((url) => !url.search.includes("genres="));
-    await expect(page).not.toHaveURL(/genres=/);
+    // genre= should no longer be in the URL
+    await expect(page).not.toHaveURL(/genre=/, { timeout: 10_000 });
   });
 });

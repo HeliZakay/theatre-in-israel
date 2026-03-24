@@ -2,6 +2,9 @@ import { test, expect } from "./fixtures";
 import { cleanupTestData } from "./helpers/db";
 
 test.describe("Watchlist", () => {
+  // These tests share the same user and mutate watchlist — must run sequentially
+  test.describe.configure({ mode: "serial" });
+
   test.afterEach(async ({ testUserId }) => {
     await cleanupTestData(testUserId);
   });
@@ -11,7 +14,11 @@ test.describe("Watchlist", () => {
     firstShow,
   }) => {
     const page = authedPage;
-    await page.goto(`/shows/${firstShow.slug}`);
+    // Wait for client-side session to hydrate before clicking session-dependent buttons
+    await Promise.all([
+      page.waitForResponse((r) => r.url().includes("/api/auth/session")),
+      page.goto(`/shows/${firstShow.slug}`),
+    ]);
 
     // Click add to watchlist
     const watchlistBtn = page.getByRole("button", {
@@ -32,8 +39,11 @@ test.describe("Watchlist", () => {
   }) => {
     const page = authedPage;
 
-    // Add to watchlist from show page
-    await page.goto(`/shows/${firstShow.slug}`);
+    // Add to watchlist from show page — wait for client session
+    await Promise.all([
+      page.waitForResponse((r) => r.url().includes("/api/auth/session")),
+      page.goto(`/shows/${firstShow.slug}`),
+    ]);
     await page.getByRole("button", { name: "הוסיפ.י לרשימת צפייה" }).click();
     await expect(
       page.getByRole("button", { name: "ברשימת הצפייה ✓" }),
@@ -46,14 +56,17 @@ test.describe("Watchlist", () => {
     ).toBeVisible();
 
     // Show should be listed
-    await expect(page.getByText(firstShow.title)).toBeVisible();
+    await expect(page.getByText(firstShow.title).first()).toBeVisible();
   });
 
   test("remove show from watchlist page", async ({ authedPage, firstShow }) => {
     const page = authedPage;
 
-    // First add to watchlist
-    await page.goto(`/shows/${firstShow.slug}`);
+    // First add to watchlist — wait for client session
+    await Promise.all([
+      page.waitForResponse((r) => r.url().includes("/api/auth/session")),
+      page.goto(`/shows/${firstShow.slug}`),
+    ]);
     await page.getByRole("button", { name: "הוסיפ.י לרשימת צפייה" }).click();
     await expect(
       page.getByRole("button", { name: "ברשימת הצפייה ✓" }),
@@ -61,7 +74,7 @@ test.describe("Watchlist", () => {
 
     // Go to watchlist page
     await page.goto("/me/watchlist");
-    await expect(page.getByText(firstShow.title)).toBeVisible();
+    await expect(page.getByText(firstShow.title).first()).toBeVisible();
 
     // Click remove
     await page.getByRole("button", { name: "הסיר.י מהרשימה" }).click();
@@ -70,8 +83,8 @@ test.describe("Watchlist", () => {
     await expect(page.getByText("הסיר.י מרשימת הצפייה")).toBeVisible();
     await expect(page.getByText("להסיר את ההצגה מרשימת הצפייה?")).toBeVisible();
 
-    // Confirm
-    await page.getByRole("button", { name: "הסרה" }).nth(1).click();
+    // Confirm in the dialog
+    await page.getByRole("alertdialog").getByRole("button", { name: "הסרה" }).click();
 
     // Show should be gone, empty state should appear
     await expect(
@@ -97,11 +110,12 @@ test.describe("Watchlist", () => {
 
   test("empty watchlist shows call to action", async ({ authedPage }) => {
     const page = authedPage;
-    await page.goto("/me/watchlist");
+    // Force a fresh load (previous test's revalidatePath may have stale cache)
+    await page.goto("/me/watchlist", { waitUntil: "networkidle" });
 
     await expect(
       page.getByText("עדיין לא הוספת הצגות לרשימת הצפייה."),
-    ).toBeVisible();
+    ).toBeVisible({ timeout: 10_000 });
     await expect(page.getByRole("link", { name: "לכל ההצגות" })).toBeVisible();
   });
 });

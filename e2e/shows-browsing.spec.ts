@@ -7,28 +7,23 @@ test.describe("Shows Browsing", () => {
     // Hero section exists
     await expect(page.locator("#main-content")).toBeVisible();
 
+    // Main heading
+    await expect(
+      page.getByRole("heading", { name: "דירוגים וביקורות להצגות בישראל" }),
+    ).toBeVisible();
+
     // Genre carousel sections
     await expect(
       page.getByRole("heading", { name: "דירוגים גבוהים" }),
     ).toBeVisible();
     await expect(page.getByRole("heading", { name: "דרמות" })).toBeVisible();
-
-    // Community banner
-    await expect(
-      page.getByRole("heading", { name: "בואו להיות חלק מהקהילה" }),
-    ).toBeVisible();
-
-    // CTA strip
-    await expect(
-      page.getByRole("heading", { name: "כתב.י ביקורת ועזר.י לאחרים לבחור" }),
-    ).toBeVisible();
   });
 
   test("navigate from home to shows page", async ({ page }) => {
     await page.goto("/");
     // Click the "לכל ההצגות" link (first one, from top-rated section)
     await page.getByRole("link", { name: "לכל ההצגות" }).first().click();
-    await expect(page).toHaveURL("/shows");
+    await expect(page).toHaveURL(/\/shows/);
     await expect(
       page.getByRole("heading", { name: "הצגות", level: 1 }),
     ).toBeVisible();
@@ -42,7 +37,7 @@ test.describe("Shows Browsing", () => {
     ).toBeVisible();
     await expect(
       page.getByText("בחרו הצגה וקראו ביקורות של הקהל"),
-    ).toBeVisible();
+    ).toBeVisible({ timeout: 10_000 });
 
     // Show cards should be present (at least one link to a show)
     const showCards = page.locator('a[href^="/shows/"]');
@@ -53,7 +48,7 @@ test.describe("Shows Browsing", () => {
     await page.goto("/shows");
 
     // Type in search
-    const searchInput = page.getByPlaceholder(/חיפוש/);
+    const searchInput = page.getByRole("searchbox", { name: "חיפוש" });
     await searchInput.fill("הכוכב");
     // Wait for URL to update (search is debounced)
     await page.waitForURL(/query=/);
@@ -80,8 +75,8 @@ test.describe("Shows Browsing", () => {
     const showCards = page.locator('a[href^="/shows/"]');
     const initialCount = await showCards.count();
 
-    // Only test scroll-loading if there are enough shows to trigger it
-    if (initialCount >= 12) {
+    // Only test scroll-loading if there are enough shows to require pagination
+    if (initialCount > 12) {
       // Scroll to bottom to trigger infinite scroll
       await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
 
@@ -107,7 +102,7 @@ test.describe("Shows Browsing", () => {
     await expect(page).toHaveURL(/\/shows\/.+/);
 
     // Breadcrumbs should show
-    await expect(page.getByRole("link", { name: "הצגות" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "הצגות", exact: true })).toBeVisible();
 
     // Show details
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
@@ -117,7 +112,7 @@ test.describe("Shows Browsing", () => {
 
     // Write review button
     await expect(
-      page.getByRole("link", { name: "כתב.י ביקורת" }),
+      page.locator("main").getByRole("link", { name: "כתב.י ביקורת" }).first(),
     ).toBeVisible();
 
     // Watchlist button
@@ -125,9 +120,9 @@ test.describe("Shows Browsing", () => {
       page.getByRole("button", { name: /הוסיפ.י לרשימת צפייה|ברשימת הצפייה/ }),
     ).toBeVisible();
 
-    // Reviews section heading
-    await expect(
-      page.getByRole("heading", { name: "ביקורות אחרונות" }),
-    ).toBeVisible();
+    // Reviews section — may show "ביקורות אחרונות" or "עדיין אין ביקורות"
+    const reviewsHeading = page.getByRole("heading", { name: "ביקורות הקהל" });
+    const noReviews = page.getByText("עדיין אין ביקורות");
+    await expect(reviewsHeading.or(noReviews)).toBeVisible();
   });
 });

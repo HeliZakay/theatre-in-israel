@@ -150,11 +150,29 @@ async function seedShows(shows, genreMap, slugs) {
   }
 }
 
+async function updateReviewStats() {
+  const shows = await prisma.show.findMany({
+    select: { id: true, reviews: { select: { rating: true } } },
+  });
+  for (const show of shows) {
+    const count = show.reviews.length;
+    const avg =
+      count > 0
+        ? show.reviews.reduce((s, r) => s + r.rating, 0) / count
+        : null;
+    await prisma.show.update({
+      where: { id: show.id },
+      data: { reviewCount: count, avgRating: avg },
+    });
+  }
+}
+
 async function main() {
   const shows = loadShows();
   const genreMap = await seedGenres(shows);
   const slugs = buildSlugs(shows);
   await seedShows(shows, genreMap, slugs);
+  await updateReviewStats();
 }
 
 main()

@@ -1,6 +1,11 @@
 import { test as base, type BrowserContext, type Page } from "@playwright/test";
 import { injectSession } from "./helpers/auth";
-import { getTestUserId, cleanupTestData, getFirstShow } from "./helpers/db";
+import {
+  getTestUserId,
+  cleanupTestData,
+  getFirstShow,
+  getShowByOffset,
+} from "./helpers/db";
 import { TEST_USER } from "./helpers/test-user";
 
 type TestFixtures = {

@@ -1,9 +1,21 @@
-import { test, expect } from "./fixtures";
-import { cleanupTestData } from "./helpers/db";
+import { test as baseTest, expect } from "./fixtures";
+import { cleanupTestData, getShowByOffset } from "./helpers/db";
+
+// Use a different show (offset 1) to avoid conflicts with parallel review test files
+const test = baseTest.extend<{ firstShow: { id: number; title: string; slug: string } }>({
+  firstShow: async ({}, use) => {
+    await use(await getShowByOffset(1));
+  },
+});
 
 test.describe("Create Review", () => {
-  test.afterEach(async ({ testUserId }) => {
-    await cleanupTestData(testUserId);
+  test.describe.configure({ mode: "serial" });
+  // Clean before AND after — scope to this file's show to avoid cross-file interference
+  test.beforeEach(async ({ testUserId, firstShow }) => {
+    await cleanupTestData(testUserId, firstShow.id);
+  });
+  test.afterEach(async ({ testUserId, firstShow }) => {
+    await cleanupTestData(testUserId, firstShow.id);
   });
 
   test("write review from /reviews/new page", async ({
@@ -23,7 +35,7 @@ test.describe("Create Review", () => {
     await combobox.fill(firstShow.title.slice(0, 5));
     // Wait for options and click
     await page
-      .getByRole("option", { name: new RegExp(firstShow.title) })
+      .getByRole("option", { name: firstShow.title, exact: true })
       .click();
 
     // Fill review fields
@@ -43,11 +55,9 @@ test.describe("Create Review", () => {
     // Submit
     await page.getByRole("button", { name: "שלח.י ביקורת" }).click();
 
-    // Wait for success
-    await expect(page.getByText("הביקורת נשלחה בהצלחה")).toBeVisible();
-
-    // Should redirect to show page
-    await page.waitForURL(/\/shows\//, { timeout: 10_000 });
+    // Should redirect to show page with success banner
+    await page.waitForURL(/\/shows\/.*review=success/, { timeout: 10_000 });
+    await expect(page.getByText("הביקורת שלך פורסמה")).toBeVisible();
   });
 
   test("write review from show detail page", async ({
@@ -55,11 +65,8 @@ test.describe("Create Review", () => {
     firstShow,
   }) => {
     const page = authedPage;
-    await page.goto(`/shows/${firstShow.slug}`);
-
-    // Click write review button
-    await page.getByRole("link", { name: "כתב.י ביקורת" }).click();
-    await expect(page).toHaveURL(new RegExp(`/shows/${firstShow.slug}/review`));
+    // Navigate directly to the review page (StickyReviewCTA uses #write-review anchor)
+    await page.goto(`/shows/${firstShow.slug}/review`);
 
     // Show should be pre-selected (no combobox visible)
     await expect(page.getByPlaceholder("חפש.י הצגה…")).not.toBeVisible();
@@ -78,9 +85,9 @@ test.describe("Create Review", () => {
 
     await page.getByRole("button", { name: "שלח.י ביקורת" }).click();
 
-    // Wait for success and redirect
-    await expect(page.getByText("הביקורת נשלחה בהצלחה")).toBeVisible();
-    await page.waitForURL(`/shows/${firstShow.slug}`, { timeout: 10_000 });
+    // Should redirect to show page with success banner
+    await page.waitForURL(/\/shows\/.*review=success/, { timeout: 10_000 });
+    await expect(page.getByText("הביקורת שלך פורסמה")).toBeVisible();
   });
 
   test("review form is accessible without authentication", async ({ page }) => {

@@ -1,7 +1,22 @@
-import { test, expect } from "./fixtures";
-import { cleanupAnonymousTestData } from "./helpers/db";
+import { test as baseTest, expect } from "./fixtures";
+import { cleanupAnonymousTestData, getShowByOffset } from "./helpers/db";
+
+// Use a different show (offset 3) to avoid conflicts with parallel review test files
+const test = baseTest.extend<{ firstShow: { id: number; title: string; slug: string } }>({
+  firstShow: async ({}, use) => {
+    await use(await getShowByOffset(3));
+  },
+});
 
 test.describe("Anonymous Reviews", () => {
+  test.describe.configure({ mode: "serial" });
+  test.beforeEach(async () => {
+    // Clean up before each test to handle cross-file parallel interference
+    await cleanupAnonymousTestData("127.0.0.1");
+    await cleanupAnonymousTestData("::1");
+    await cleanupAnonymousTestData("::ffff:127.0.0.1");
+  });
+
   test.afterEach(async () => {
     // Clean up any anonymous reviews created during tests
     // E2E tests run against localhost so IP will be 127.0.0.1 or ::1
@@ -14,11 +29,8 @@ test.describe("Anonymous Reviews", () => {
     page,
     firstShow,
   }) => {
-    await page.goto(`/shows/${firstShow.slug}`);
-
-    // Click write review button
-    await page.getByRole("link", { name: "כתב.י ביקורת" }).click();
-    await expect(page).toHaveURL(new RegExp(`/shows/${firstShow.slug}/review`));
+    // Navigate directly to the review page (StickyReviewCTA uses #write-review anchor)
+    await page.goto(`/shows/${firstShow.slug}/review`);
 
     // Anonymous users go straight to the review form (gateway is disabled)
     await expect(page.locator('input[name="name"]')).toBeVisible();
@@ -38,11 +50,9 @@ test.describe("Anonymous Reviews", () => {
 
     await page.getByRole("button", { name: "שלח.י ביקורת" }).click();
 
-    // Wait for success
-    await expect(page.getByText("הביקורת נשלחה בהצלחה")).toBeVisible();
-
-    // Should redirect to show page
-    await page.waitForURL(`/shows/${firstShow.slug}`, { timeout: 10_000 });
+    // Should redirect to show page with success banner
+    await page.waitForURL(/\/shows\/.*review=success/, { timeout: 10_000 });
+    await expect(page.getByText("הביקורת שלך פורסמה")).toBeVisible();
   });
 
   test("anonymous user can submit review with default name", async ({
@@ -65,8 +75,9 @@ test.describe("Anonymous Reviews", () => {
 
     await page.getByRole("button", { name: "שלח.י ביקורת" }).click();
 
-    await expect(page.getByText("הביקורת נשלחה בהצלחה")).toBeVisible();
-    await page.waitForURL(`/shows/${firstShow.slug}`, { timeout: 10_000 });
+    // Should redirect to show page with success banner
+    await page.waitForURL(/\/shows\/.*review=success/, { timeout: 10_000 });
+    await expect(page.getByText("הביקורת שלך פורסמה")).toBeVisible();
   });
 
   test("shows sign-in hint for anonymous users", async ({

@@ -14,15 +14,15 @@ test.describe("Contact Form", () => {
     // Form fields
     await expect(page.getByText("שם")).toBeVisible();
     await expect(page.getByText("אימייל")).toBeVisible();
-    await expect(page.getByText("הודעה")).toBeVisible();
-    await expect(page.getByRole("button", { name: "שליחה" })).toBeVisible();
+    await expect(page.getByText("הודעה", { exact: true })).toBeVisible();
+    await expect(page.getByRole("button", { name: "שלח.י הודעה" })).toBeVisible();
   });
 
   test("shows validation errors for empty submission", async ({ page }) => {
     await page.goto("/contact");
 
     // Click submit without filling anything
-    await page.getByRole("button", { name: "שליחה" }).click();
+    await page.getByRole("button", { name: "שלח.י הודעה" }).click();
 
     // Validation error alerts should appear
     const alerts = page.locator('[role="alert"]');
@@ -35,12 +35,12 @@ test.describe("Contact Form", () => {
     await page.getByPlaceholder("השם שלך").fill("בודק בדיקות");
     await page.getByPlaceholder("example@email.com").fill("not-an-email");
     await page
-      .getByPlaceholder("מה תרצו לשתף?")
+      .getByPlaceholder("מה תרצ.י לשתף?")
       .fill(
         "הודעת בדיקה עם מספיק תווים כדי לעבור את הוולידציה של אורך מינימלי.",
       );
 
-    await page.getByRole("button", { name: "שליחה" }).click();
+    await page.getByRole("button", { name: "שלח.י הודעה" }).click();
 
     // Should show email validation error
     const alerts = page.locator('[role="alert"]');
@@ -55,17 +55,17 @@ test.describe("Contact Form", () => {
       .getByPlaceholder("example@email.com")
       .fill("e2e-contact@test.com");
     await page
-      .getByPlaceholder("מה תרצו לשתף?")
+      .getByPlaceholder("מה תרצ.י לשתף?")
       .fill(
         "זוהי הודעת בדיקה אוטומטית. אנא התעלמו מהודעה זו. תודה רבה על האתר המצוין!",
       );
 
-    await page.getByRole("button", { name: "שליחה" }).click();
+    await page.getByRole("button", { name: "שלח.י הודעה" }).click();
 
     // Either success banner or server error (Resend fake key)
     // Wait for one of: success message or error
     const success = page.getByText("ההודעה נשלחה בהצלחה!");
-    const serverError = page.locator('[role="alert"]');
+    const serverError = page.locator('main [role="alert"]');
 
     // Try to wait for success — if Resend fails, it will show server error
     // This is expected in test env with fake API key

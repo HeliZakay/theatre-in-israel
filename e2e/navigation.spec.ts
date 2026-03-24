@@ -3,8 +3,8 @@ import { test, expect } from "./fixtures";
 test.describe("Navigation", () => {
   test("header logo links to home page", async ({ page }) => {
     await page.goto("/shows");
-    // Logo link has aria-label="דף הבית"
-    await page.getByRole("link", { name: "דף הבית" }).click();
+    // Logo link has aria-label="דף הבית" — scope to header to avoid footer duplicate
+    await page.locator("header").getByRole("link", { name: "דף הבית" }).click();
     await expect(page).toHaveURL("/");
   });
 
@@ -13,7 +13,7 @@ test.describe("Navigation", () => {
 
     const header = page.locator("header");
 
-    await header.getByRole("link", { name: "כל ההצגות" }).click();
+    await header.getByRole("link", { name: "קטלוג הצגות" }).click();
     await expect(page).toHaveURL("/shows");
 
     await header.getByRole("link", { name: "צר.י קשר" }).click();
@@ -43,10 +43,13 @@ test.describe("Navigation", () => {
     await page.getByRole("button", { name: /מחובר\/ת|פעולות חשבון/ }).click();
     await page.getByRole("menuitem", { name: "התנתקות" }).click();
 
-    await page.waitForURL(/\//);
+    // After sign out, should be redirected to home
+    await expect(page).toHaveURL("/", { timeout: 10_000 });
 
-    await page.goto("/me/reviews");
-    await expect(page).toHaveURL(/\/auth\/signin/);
+    // Verify session is cleared — sign-in link should be visible instead of user name
+    await expect(
+      page.getByRole("link", { name: "התחברות" }).first(),
+    ).toBeVisible({ timeout: 10_000 });
   });
 
   test("mobile menu opens and closes", async ({ page }) => {

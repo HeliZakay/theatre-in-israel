@@ -2,6 +2,9 @@ import { test, expect } from "./fixtures";
 import { cleanupTestData, createTestReview, getFirstShow } from "./helpers/db";
 
 test.describe("My Reviews", () => {
+  // These tests share the same user and mutate reviews — must run sequentially
+  test.describe.configure({ mode: "serial" });
+
   test.afterEach(async ({ testUserId }) => {
     await cleanupTestData(testUserId);
   });
@@ -15,7 +18,7 @@ test.describe("My Reviews", () => {
     ).toBeVisible();
     await expect(page.getByText("עדיין לא כתבת ביקורות.")).toBeVisible();
     await expect(
-      page.getByRole("link", { name: "כתב.י ביקורת" }),
+      page.locator("main").getByRole("link", { name: "כתב.י ביקורת" }),
     ).toBeVisible();
   });
 
@@ -40,7 +43,7 @@ test.describe("My Reviews", () => {
     ).toBeVisible();
 
     // Review card should be visible
-    await expect(page.getByText("ביקורת בדיקה")).toBeVisible();
+    await expect(page.getByText("ביקורת בדיקה").first()).toBeVisible();
     await expect(page.getByText("טקסט ביקורת לבדיקה אוטומטית")).toBeVisible();
     await expect(page.getByText("★4")).toBeVisible();
 
@@ -65,7 +68,7 @@ test.describe("My Reviews", () => {
     await page.goto("/me/reviews");
 
     // Verify review is present
-    await expect(page.getByText("ביקורת למחיקה")).toBeVisible();
+    await expect(page.getByText("ביקורת למחיקה").first()).toBeVisible();
 
     // Click delete
     await page.getByRole("button", { name: "מחיקה" }).click();
@@ -76,8 +79,8 @@ test.describe("My Reviews", () => {
       page.getByText("למחוק את הביקורת? לא ניתן לשחזר פעולה זו."),
     ).toBeVisible();
 
-    // Confirm deletion
-    await page.getByRole("button", { name: "מחיקה" }).nth(1).click();
+    // Confirm deletion in the dialog
+    await page.getByRole("alertdialog").getByRole("button", { name: "מחיקה" }).click();
 
     // Review should disappear, empty state should show
     await expect(page.getByText("ביקורת למחיקה")).not.toBeVisible({
@@ -113,7 +116,7 @@ test.describe("My Reviews", () => {
     );
 
     // Submit (look for a save/submit button)
-    await page.getByRole("button", { name: /שמירה|עדכון|שליחה/ }).click();
+    await page.getByRole("button", { name: /שמר.י שינויים|שמירה|עדכון/ }).click();
 
     // Should redirect back to my reviews or show page
     await page.waitForURL(/\/me\/reviews|\/shows\//, { timeout: 10_000 });

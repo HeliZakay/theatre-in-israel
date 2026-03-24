@@ -65,7 +65,8 @@ test.describe("Accessibility", () => {
     const firstShowLink = page.locator("a[href^='/shows/']").first();
     await firstShowLink.click();
 
-    const images = page.locator("img");
+    // Check content images (inside main), skip decorative logo/icons
+    const images = page.locator("main img");
     const count = await images.count();
     expect(count).toBeGreaterThan(0);
 

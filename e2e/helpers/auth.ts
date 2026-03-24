@@ -42,7 +42,7 @@ export async function signUpViaUI(
   await page.getByPlaceholder("אימייל").fill(email);
   await page.getByPlaceholder("סיסמה").first().fill(password);
   await page.getByPlaceholder("אימות סיסמה").fill(password);
-  await page.getByRole("button", { name: "הרשמה" }).click();
+  await page.getByRole("button", { name: "הרשמה", exact: true }).click();
   // Wait for redirect away from signup
   await page.waitForURL((url) => !url.pathname.includes("/auth/signup"), {
     timeout: 15_000,
