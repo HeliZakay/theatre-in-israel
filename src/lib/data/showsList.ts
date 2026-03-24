@@ -16,7 +16,7 @@ export interface ShowsListData {
 /**
  * Build a Prisma `where` clause from parsed search params.
  */
-function buildWhereClause({
+export function buildWhereClause({
   theatre,
   query,
   genres,
@@ -65,7 +65,7 @@ function buildWhereClause({
  * Map Prisma sort key to an orderBy clause.
  * Rating sort now uses the denormalized avgRating column — no raw SQL needed.
  */
-function buildOrderBy(sort: string): Prisma.ShowOrderByWithRelationInput[] {
+export function buildOrderBy(sort: string): Prisma.ShowOrderByWithRelationInput[] {
   switch (sort) {
     case "rating":
       return [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }];
@@ -85,7 +85,7 @@ function buildOrderBy(sort: string): Prisma.ShowOrderByWithRelationInput[] {
 /**
  * Fetch a page of shows. Stats come from denormalized columns — no aggregation query needed.
  */
-async function fetchShowsPage(
+export async function fetchShowsPage(
   where: Prisma.ShowWhereInput,
   orderBy: Prisma.ShowOrderByWithRelationInput[],
   skip: number,

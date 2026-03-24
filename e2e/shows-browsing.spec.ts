@@ -73,14 +73,26 @@ test.describe("Shows Browsing", () => {
     }
   });
 
-  test("pagination navigates between pages", async ({ page }) => {
+  test("infinite scroll loads more shows on scroll", async ({ page }) => {
     await page.goto("/shows");
 
-    // Check if pagination exists (only if there are multiple pages)
-    const nextPageLink = page.getByRole("link", { name: /הבא|2/ });
-    if (await nextPageLink.isVisible({ timeout: 3000 }).catch(() => false)) {
-      await nextPageLink.click();
-      await expect(page).toHaveURL(/page=2/);
+    // Count initial show cards
+    const showCards = page.locator('a[href^="/shows/"]');
+    const initialCount = await showCards.count();
+
+    // Only test scroll-loading if there are enough shows to trigger it
+    if (initialCount >= 12) {
+      // Scroll to bottom to trigger infinite scroll
+      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+
+      // Wait for more cards to load
+      await expect(async () => {
+        const newCount = await showCards.count();
+        expect(newCount).toBeGreaterThan(initialCount);
+      }).toPass({ timeout: 10000 });
+
+      // URL should NOT have a page parameter
+      expect(page.url()).not.toContain("page=");
     }
   });
 

@@ -1,10 +1,13 @@
+"use client";
+
 import ShowCard from "@/components/ShowCard/ShowCard";
 import ShowsFilterBar from "@/components/ShowsFilterBar/ShowsFilterBar";
-import Pagination from "@/components/Pagination/Pagination";
+import ShowCardSkeleton from "@/components/ShowCardSkeleton/ShowCardSkeleton";
 import Link from "next/link";
 import styles from "./page.module.css";
 import type { ShowFilters, ShowListItem } from "@/types";
 import ROUTES from "@/constants/routes";
+import { useInfiniteShows } from "@/hooks/useInfiniteShows";
 
 interface ShowsContentProps {
   shows: ShowListItem[];
@@ -12,15 +15,32 @@ interface ShowsContentProps {
   genres: string[];
   availableGenres: string[];
   filters: ShowFilters;
+  hasMore: boolean;
 }
 
 export default function ShowsContent({
-  shows,
+  shows: initialShows,
   theatres,
   genres,
   availableGenres,
   filters,
+  hasMore: initialHasMore,
 }: ShowsContentProps) {
+  const {
+    shows,
+    isLoading,
+    hasMore,
+    error,
+    retry,
+    sentinelRef,
+    announcement,
+  } = useInfiniteShows({ initialShows, initialHasMore, filters });
+
+  const totalCount = filters.total ?? shows.length;
+  const showingCount = shows.length;
+  const isFiltered =
+    filters.theatre || filters.query || filters.genres.length > 0;
+
   return (
     <>
       <header className={styles.header}>
@@ -33,7 +53,7 @@ export default function ShowsContent({
           filters={filters}
         />
         <div id="results" className={styles.filterRow}>
-          {filters.theatre || filters.query || filters.genres.length ? (
+          {isFiltered ? (
             <>
               <span className={styles.filterLabel}>מסונן לפי:</span>
               {filters.theatre ? (
@@ -50,7 +70,9 @@ export default function ShowsContent({
                 </span>
               ) : null}
               <span className={styles.filterCount}>
-                {filters.total ?? shows.length} תוצאות
+                {showingCount < totalCount
+                  ? `${showingCount} מתוך ${totalCount} תוצאות`
+                  : `${totalCount} תוצאות`}
               </span>
               <Link
                 className={styles.clearLink}
@@ -62,11 +84,14 @@ export default function ShowsContent({
             </>
           ) : (
             <span className={styles.filterCount}>
-              {filters.total ?? shows.length} הצגות
+              {showingCount < totalCount
+                ? `${showingCount} מתוך ${totalCount} הצגות`
+                : `${totalCount} הצגות`}
             </span>
           )}
         </div>
       </header>
+
       <section className={styles.grid}>
         {shows.length ? (
           shows.map((show, index) => (
@@ -75,8 +100,33 @@ export default function ShowsContent({
         ) : (
           <p className={styles.emptyState}>לא נמצאו הצגות לפי החיפוש.</p>
         )}
+        {isLoading
+          ? Array.from({ length: 4 }, (_, i) => (
+              <ShowCardSkeleton key={`skeleton-${i}`} />
+            ))
+          : null}
       </section>
-      <Pagination filters={filters} />
+
+      {error ? (
+        <div className={styles.errorRow}>
+          <span>{error}</span>
+          <button type="button" className={styles.retryButton} onClick={retry}>
+            נסו שוב
+          </button>
+        </div>
+      ) : null}
+
+      {!hasMore && shows.length > 0 && !isLoading ? (
+        <p className={styles.endOfList}>הגעתם לסוף הרשימה</p>
+      ) : null}
+
+      {hasMore ? (
+        <div ref={sentinelRef} className={styles.sentinel} aria-hidden="true" />
+      ) : null}
+
+      <div role="status" aria-live="polite" className={styles.srOnly}>
+        {announcement}
+      </div>
     </>
   );
 }

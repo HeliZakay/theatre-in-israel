@@ -30,7 +30,6 @@ function buildShowsSeo(
     theatre: filters.theatre || undefined,
     genres: filters.genres,
     sort: filters.sort,
-    page: filters.page,
   });
   const canonicalPath = `${ROUTES.SHOWS}${canonicalQuery}`;
 
@@ -40,10 +39,9 @@ function buildShowsSeo(
   if (filters.genres.length > 1) titleBits.push("מספר ז׳אנרים");
   if (filters.query) titleBits.push(`חיפוש: ${filters.query}`);
 
-  const pageLabel = filters.page > 1 ? ` - עמוד ${filters.page}` : "";
   const title = titleBits.length
-    ? `הצגות לפי סינון${pageLabel}`
-    : `כל ההצגות והביקורות${pageLabel}`;
+    ? "הצגות לפי סינון"
+    : "כל ההצגות והביקורות";
 
   const description = titleBits.length
     ? `מצאו הצגות תיאטרון בישראל לפי ${titleBits.join(", ")} וקראו ביקורות קהל.`
@@ -51,7 +49,6 @@ function buildShowsSeo(
 
   const shouldNoindex =
     Boolean(filters.query.trim()) ||
-    filters.page > 1 ||
     filters.sort !== DEFAULT_SORT;
 
   return { canonicalPath, description, shouldNoindex, title };
@@ -88,6 +85,8 @@ export default async function ShowsPage({ searchParams }: ShowsPageProps) {
     await getShowsForList(resolvedSearchParams);
   const seo = buildShowsSeo(resolvedSearchParams);
 
+  const hasMore = (filters.total ?? 0) > (filters.perPage ?? 12);
+
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: "עמוד הבית", path: ROUTES.HOME },
     { name: "הצגות", path: seo.canonicalPath },
@@ -108,25 +107,9 @@ export default async function ShowsPage({ searchParams }: ShowsPageProps) {
         }
       : null;
 
-  const { page = 1, totalPages = 1 } = filters;
-  const prevHref =
-    page > 1
-      ? toAbsoluteUrl(
-          `${ROUTES.SHOWS}${buildShowsQueryString({ ...filters, page: page - 1 === 1 ? undefined : page - 1 })}`,
-        )
-      : null;
-  const nextHref =
-    page < totalPages
-      ? toAbsoluteUrl(
-          `${ROUTES.SHOWS}${buildShowsQueryString({ ...filters, page: page + 1 })}`,
-        )
-      : null;
-
   return (
     <main className={styles.page} id="main-content">
       <link rel="canonical" href={toAbsoluteUrl(seo.canonicalPath)} />
-      {prevHref && <link rel="prev" href={prevHref} />}
-      {nextHref && <link rel="next" href={nextHref} />}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: toJsonLd(breadcrumbJsonLd) }}
@@ -146,6 +129,7 @@ export default async function ShowsPage({ searchParams }: ShowsPageProps) {
         genres={genres}
         availableGenres={availableGenres}
         filters={filters}
+        hasMore={hasMore}
       />
     </main>
   );

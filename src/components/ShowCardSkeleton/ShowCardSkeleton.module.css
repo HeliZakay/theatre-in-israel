@@ -1,0 +1,83 @@
+.skeleton {
+  background: #ffffff;
+  border: 1px solid var(--color-slate-008);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 160px;
+  height: 100%;
+}
+
+.image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  background: var(--color-slate-008);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.bar {
+  border-radius: 6px;
+  background: var(--color-slate-008);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.titleBar {
+  composes: bar;
+  height: 1.25rem;
+  width: 70%;
+}
+
+.theatreBar {
+  composes: bar;
+  height: 0.95rem;
+  width: 45%;
+}
+
+.metaBar {
+  composes: bar;
+  height: 0.9rem;
+  width: 55%;
+}
+
+.summaryBar {
+  composes: bar;
+  height: 0.95rem;
+  width: 90%;
+}
+
+.summaryBar2 {
+  composes: bar;
+  height: 0.95rem;
+  width: 60%;
+}
+
+.genreRow {
+  display: flex;
+  gap: 8px;
+}
+
+.genreChip {
+  composes: bar;
+  height: 1.5rem;
+  width: 60px;
+  border-radius: 999px;
+}
+
+.ratingBar {
+  composes: bar;
+  height: 1.1rem;
+  width: 40px;
+  margin-top: auto;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
