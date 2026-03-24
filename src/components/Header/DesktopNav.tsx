@@ -1,3 +1,4 @@
+import { useState } from "react";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import Link from "next/link";
 import styles from "./Header.module.css";
@@ -27,6 +28,7 @@ function ChevronDownIcon({ className }: { className?: string }) {
 }
 
 export default function DesktopNav({ pathname, onNavigate }: DesktopNavProps) {
+  const [menuValue, setMenuValue] = useState("");
   const isBrowseActive = [
     ROUTES.THEATRES,
     ROUTES.GENRES,
@@ -34,9 +36,14 @@ export default function DesktopNav({ pathname, onNavigate }: DesktopNavProps) {
     ROUTES.ACTORS,
   ].some((r) => pathname.startsWith(r));
 
+  const handleBrowseItemClick = () => {
+    setMenuValue("");
+    onNavigate();
+  };
+
   return (
     <div className={styles.navSection}>
-      <NavigationMenu.Root className={styles.navRoot}>
+      <NavigationMenu.Root className={styles.navRoot} value={menuValue} onValueChange={setMenuValue}>
         <NavigationMenu.List className={styles.navList}>
           <NavigationMenu.Item>
             <NavigationMenu.Link asChild active={pathname === "/"}>
@@ -87,28 +94,28 @@ export default function DesktopNav({ pathname, onNavigate }: DesktopNavProps) {
               <Link
                 href={ROUTES.THEATRES}
                 className={styles.browseMenuItem}
-                onClick={onNavigate}
+                onClick={handleBrowseItemClick}
               >
                 תיאטראות
               </Link>
               <Link
                 href={ROUTES.GENRES}
                 className={styles.browseMenuItem}
-                onClick={onNavigate}
+                onClick={handleBrowseItemClick}
               >
                 ז׳אנרים
               </Link>
               <Link
                 href={ROUTES.CITIES}
                 className={styles.browseMenuItem}
-                onClick={onNavigate}
+                onClick={handleBrowseItemClick}
               >
                 ערים
               </Link>
               <Link
                 href={ROUTES.ACTORS}
                 className={styles.browseMenuItem}
-                onClick={onNavigate}
+                onClick={handleBrowseItemClick}
               >
                 שחקנים
               </Link>
