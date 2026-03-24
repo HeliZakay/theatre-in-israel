@@ -1,11 +1,14 @@
 @import "./tokens.css";
 
+html {
+  scrollbar-gutter: stable;
+}
+
 html,
 body {
   max-width: 100vw;
   overflow-x: clip;
   min-height: 100%;
-  scrollbar-gutter: stable;
 }
 
 body {
@@ -91,20 +94,20 @@ textarea:focus-visible {
   }
 }
 
-/* Neutralise Radix / react-remove-scroll-bar scroll-lock side-effects.
-   The library injects a <style> tag at runtime with `!important`, so we need
-   higher specificity (doubled attribute selector) to guarantee our overrides
-   win regardless of source order. */
+/* Neutralise Radix / react-remove-scroll-bar layout-shift side-effects.
+   The library injects a <style> tag with `!important` that adds compensating
+   margin/padding for the "removed" scrollbar. With scrollbar-gutter: stable on
+   html the gutter never disappears, so the compensation causes a double-shift.
+   We override only the gap/position properties; scroll-locking (overflow:hidden)
+   is intentionally kept — it's fine UX for a select dropdown. */
 html body[data-scroll-locked][data-scroll-locked] {
-  overflow: auto !important;
-  overscroll-behavior: auto !important;
   position: static !important;
   padding-right: 0 !important;
   padding-left: 0 !important;
   padding-top: var(--header-offset) !important;
   margin-right: 0 !important;
   margin-left: 0 !important;
-  scrollbar-gutter: stable !important;
+  scrollbar-gutter: auto !important;
 }
 
 @keyframes spin {
