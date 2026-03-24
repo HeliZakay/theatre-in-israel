@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import MobileMenu from "@/components/Header/MobileMenu";
+import * as Dialog from "@radix-ui/react-dialog";
 
 jest.mock("@/components/Header/AccountDropdown", () => {
   const Mock = (props: { firstName: string }) => (
@@ -27,6 +28,10 @@ jest.mock("@/components/Button/Button", () => {
   return { __esModule: true, default: Mock };
 });
 
+jest.mock("next-auth/react", () => ({
+  signOut: jest.fn(),
+}));
+
 const baseProps = {
   pathname: "/",
   isAuthenticated: false,
@@ -36,13 +41,22 @@ const baseProps = {
   isWriteReviewPage: false,
   isMyReviewsPage: false,
   isMyWatchlistPage: false,
+  isContactPage: false,
   onClose: jest.fn(),
 };
 
 function renderMenu(
   overrides: Partial<React.ComponentProps<typeof MobileMenu>> = {},
 ) {
-  return render(<MobileMenu {...baseProps} {...overrides} />);
+  return render(
+    <Dialog.Root open>
+      <Dialog.Portal>
+        <Dialog.Content>
+          <MobileMenu {...baseProps} {...overrides} />
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>,
+  );
 }
 
 describe("MobileMenu", () => {
@@ -74,13 +88,13 @@ describe("MobileMenu", () => {
     );
   });
 
-  it("shows account dropdown when authenticated", () => {
+  it("shows user info when authenticated", () => {
     renderMenu({
       isAuthenticated: true,
       fullName: "ישראל ישראלי",
       firstName: "ישראל",
     });
-    expect(screen.getByTestId("account-dropdown")).toHaveTextContent("ישראל");
+    expect(screen.getByText("ישראל ישראלי")).toBeInTheDocument();
   });
 
   it("shows loading button when isLoading", () => {
@@ -88,17 +102,31 @@ describe("MobileMenu", () => {
     expect(screen.getByText("טוען...")).toBeDisabled();
   });
 
-  it("marks write review link as current page when active", () => {
-    renderMenu({ isWriteReviewPage: true });
-    const links = screen.getAllByText("כתב.י ביקורת");
-    const mobileLink = links.find((el) =>
-      el.getAttribute("aria-current") === "page",
-    );
-    expect(mobileLink).toBeDefined();
-  });
-
-  it("always shows write review button", () => {
+  it("always shows write review link in drawer", () => {
     renderMenu();
     expect(screen.getAllByText("כתב.י ביקורת").length).toBeGreaterThan(0);
+  });
+
+  it("renders all nav groups", () => {
+    renderMenu();
+    expect(screen.getByText("לוח הופעות")).toBeInTheDocument();
+    expect(screen.getByText("קטלוג הצגות")).toBeInTheDocument();
+    expect(screen.getByText("תיאטראות")).toBeInTheDocument();
+    expect(screen.getByText("ז׳אנרים")).toBeInTheDocument();
+    expect(screen.getByText("ערים")).toBeInTheDocument();
+    expect(screen.getByText("שחקנים")).toBeInTheDocument();
+    expect(screen.getByText("צר.י קשר")).toBeInTheDocument();
+  });
+
+  it("shows account links when authenticated", () => {
+    renderMenu({
+      isAuthenticated: true,
+      fullName: "Test User",
+      firstName: "Test",
+    });
+    expect(screen.getByText("האזור האישי")).toBeInTheDocument();
+    expect(screen.getByText("הביקורות שלי")).toBeInTheDocument();
+    expect(screen.getByText("רשימת הצפייה שלי")).toBeInTheDocument();
+    expect(screen.getByText("התנתקות")).toBeInTheDocument();
   });
 });

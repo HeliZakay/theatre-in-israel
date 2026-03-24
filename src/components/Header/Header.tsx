@@ -47,6 +47,7 @@ export default function Header() {
     isWriteReviewPage,
     isMyReviewsPage,
     isMyWatchlistPage,
+    isContactPage,
     onClose: closeMenus,
   };
 
@@ -113,7 +114,6 @@ export default function Header() {
             <VisuallyHidden.Root>
               <Dialog.Title>תפריט ניווט</Dialog.Title>
             </VisuallyHidden.Root>
-            <DesktopNav pathname={pathname} onNavigate={closeMenus} />
             <MobileMenu {...mobileMenuProps} />
           </Dialog.Content>
         </Dialog.Portal>

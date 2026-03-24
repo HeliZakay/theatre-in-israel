@@ -360,14 +360,12 @@
 
   .mobileBackdrop {
     position: fixed;
-    top: var(--header-offset);
-    right: 0;
-    left: 0;
-    bottom: 0;
+    inset: 0;
     border: 0;
-    background: rgba(10, 12, 18, 0.34);
+    background: rgba(10, 12, 18, 0.4);
     z-index: 1001;
     padding: 0;
+    animation: backdropFadeIn 250ms ease-out;
   }
 
   .menu {
@@ -376,85 +374,200 @@
 
   .mobileDialogContent {
     position: fixed;
-    top: var(--header-offset);
+    top: 0;
     right: 0;
-    left: 0;
+    bottom: 0;
+    width: 72%;
+    max-width: 300px;
     z-index: 1002;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    gap: 14px;
-    padding: 14px 16px 18px;
-    background: #ffffff;
-    border-top: 1px solid rgba(26, 26, 26, 0.1);
-    box-shadow: 0 24px 44px rgba(15, 23, 42, 0.16);
-    max-height: calc(100dvh - var(--header-offset));
+    padding: 0;
+    background: #fdfbf9;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12);
     overflow-y: auto;
+    animation: drawerSlideIn 250ms ease-out;
   }
 
-  .navSection {
+  @keyframes drawerSlideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+
+  @keyframes backdropFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .drawerHeader {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px 12px;
+    border-bottom: 2px solid var(--color-curtain-red);
   }
 
-  .navList {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-  }
-
-  .navList li {
-    width: 100%;
+  .drawerClose {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    color: var(--color-text-primary);
+    cursor: pointer;
     padding: 0;
   }
 
-  .navList li + li {
-    border-inline-start: 0;
+  .drawerClose:hover {
+    background: rgba(0, 0, 0, 0.06);
   }
 
-  .navText {
+  .drawerCloseIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .drawerTitle {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .drawerBody {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 20px 24px;
+    gap: 20px;
+    overflow-y: auto;
+  }
+
+  .drawerGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .drawerItem {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    gap: 12px;
+    padding: 11px 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.15s ease;
+    border: none;
+    background: transparent;
     width: 100%;
-    padding: 12px 14px;
-    border-radius: 12px;
-    background: rgba(15, 23, 42, 0.04);
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 0;
+    cursor: pointer;
+    font-family: inherit;
+    line-height: inherit;
+    text-align: right;
   }
 
-  .navList a[aria-current="page"],
-  .navList a[data-active] {
-    background: rgba(156, 27, 32, 0.12);
+  .drawerItem:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  .drawerItemActive {
+    color: var(--color-curtain-red);
+    font-weight: 600;
+  }
+
+  .drawerItemIcon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    opacity: 0.55;
+  }
+
+  .drawerItemActive .drawerItemIcon {
+    opacity: 1;
     color: var(--color-curtain-red);
   }
 
-  .actionsSection {
-    padding-top: 0;
+  .drawerDivider {
+    height: 1px;
+    background: rgba(26, 26, 26, 0.08);
+    margin: 4px 0;
+    border: none;
   }
 
-  .actions {
+  .drawerAuthSection {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid rgba(26, 26, 26, 0.08);
+  }
+
+  .drawerLoginBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    flex-direction: column;
-    align-items: stretch;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--color-curtain-red);
+    background: transparent;
+    color: var(--color-curtain-red);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    font-family: inherit;
+  }
+
+  .drawerLoginBtn:hover {
+    background: rgba(156, 27, 32, 0.08);
+  }
+
+  .drawerUserRow {
+    display: flex;
+    align-items: center;
     gap: 10px;
+    padding: 8px 0 12px;
   }
 
-  .primaryAction {
-    width: 100%;
-    text-align: center;
+  .drawerUserAvatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-curtain-red);
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .drawerUserAvatarIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .drawerUserName {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  /* Hide desktop-only elements in mobile drawer */
+  .navSection {
+    display: none;
+  }
+
+  .actionsSection {
+    display: none;
   }
 
   .desktopOnlyAction {
     display: none;
-  }
-
-  .authBtn {
-    width: 100%;
-    text-align: center;
   }
 
   .desktopAccount {
@@ -462,72 +575,7 @@
   }
 
   .mobileAccount {
-    display: flex;
-  }
-
-  .mobileAccount .userIndicator {
-    width: 100%;
-    padding: 8px 14px 8px 8px;
-    border-radius: 12px;
-    background: rgba(15, 23, 42, 0.04);
-    border: 1px solid rgba(26, 26, 26, 0.12);
-    gap: 0.6rem;
-  }
-
-  .mobileAccount .userIndicator:hover,
-  .mobileAccount .userIndicator[data-state="open"] {
-    background: rgba(15, 23, 42, 0.08);
-  }
-
-  .mobileAccount .userAvatar {
-    width: 32px;
-    height: 32px;
-  }
-
-  .mobileAccount .userName {
-    font-size: 1rem;
-    font-weight: 700;
-    max-width: none;
-    flex: 1;
-  }
-
-  .mobileAccount .chevronIcon {
-    width: 18px;
-    height: 18px;
-    margin-inline-start: auto;
-  }
-
-  .mobileAccountLinks {
     display: none;
-  }
-
-  .mobileMenuItem,
-  .mobileMenuButton {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: flex-start;
-    border-radius: 12px;
-    padding: 12px 14px;
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 0;
-    background: rgba(15, 23, 42, 0.04);
-    color: var(--color-text-primary);
-    text-decoration: none;
-    border: 0;
-  }
-
-  .mobileMenuItemActive {
-    background: rgba(156, 27, 32, 0.12);
-    color: var(--color-curtain-red);
-  }
-
-  .mobileAccountButton {
-    font-family: inherit;
-    line-height: inherit;
-    text-align: right;
-    cursor: pointer;
   }
 }
 
