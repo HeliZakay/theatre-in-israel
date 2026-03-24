@@ -1,0 +1,118 @@
+jest.mock("@/lib/prisma", () => ({
+  __esModule: true,
+  default: {},
+}));
+
+import { buildWhereClause, buildOrderBy } from "@/lib/data/showsList";
+
+describe("buildWhereClause", () => {
+  it("returns empty object for empty filters", () => {
+    const result = buildWhereClause({ theatre: "", query: "", genres: [] });
+    expect(result).toEqual({});
+  });
+
+  it("filters by theatre only", () => {
+    const result = buildWhereClause({ theatre: "תיאטרון הקאמרי", query: "", genres: [] });
+    expect(result).toEqual({
+      AND: [{ theatre: "תיאטרון הקאמרי" }],
+    });
+  });
+
+  it("filters by query across title, theatre, and genre", () => {
+    const result = buildWhereClause({ theatre: "", query: "המלט", genres: [] });
+    expect(result).toEqual({
+      AND: [
+        {
+          OR: [
+            { title: { contains: "המלט", mode: "insensitive" } },
+            { theatre: { contains: "המלט", mode: "insensitive" } },
+            {
+              genres: {
+                some: {
+                  genre: { name: { contains: "המלט", mode: "insensitive" } },
+                },
+              },
+            },
+          ],
+        },
+      ],
+    });
+  });
+
+  it("filters by genres", () => {
+    const result = buildWhereClause({ theatre: "", query: "", genres: ["דרמה", "קומדיה"] });
+    expect(result).toEqual({
+      AND: [
+        {
+          genres: {
+            some: {
+              genre: { name: { in: ["דרמה", "קומדיה"] } },
+            },
+          },
+        },
+      ],
+    });
+  });
+
+  it("combines theatre, query, and genres into AND", () => {
+    const result = buildWhereClause({
+      theatre: "תיאטרון הקאמרי",
+      query: "המלט",
+      genres: ["דרמה"],
+    });
+
+    expect(result).toHaveProperty("AND");
+    const conditions = (result as { AND: unknown[] }).AND;
+    expect(conditions).toHaveLength(3);
+    expect(conditions[0]).toEqual({ theatre: "תיאטרון הקאמרי" });
+    expect(conditions[1]).toHaveProperty("OR");
+    expect(conditions[2]).toHaveProperty("genres");
+  });
+
+  it("handles single genre", () => {
+    const result = buildWhereClause({ theatre: "", query: "", genres: ["דרמה"] });
+    expect(result).toEqual({
+      AND: [
+        {
+          genres: {
+            some: {
+              genre: { name: { in: ["דרמה"] } },
+            },
+          },
+        },
+      ],
+    });
+  });
+});
+
+describe("buildOrderBy", () => {
+  it("returns avgRating desc for 'rating'", () => {
+    const result = buildOrderBy("rating");
+    expect(result).toEqual([
+      { avgRating: { sort: "desc", nulls: "last" } },
+      { id: "asc" },
+    ]);
+  });
+
+  it("returns avgRating asc for 'rating-asc'", () => {
+    const result = buildOrderBy("rating-asc");
+    expect(result).toEqual([
+      { avgRating: { sort: "asc", nulls: "last" } },
+      { id: "asc" },
+    ]);
+  });
+
+  it("returns reviewCount desc then avgRating desc for 'reviews'", () => {
+    const result = buildOrderBy("reviews");
+    expect(result).toEqual([
+      { reviewCount: "desc" },
+      { avgRating: { sort: "desc", nulls: "last" } },
+      { id: "asc" },
+    ]);
+  });
+
+  it("returns id asc for default/unknown sort", () => {
+    expect(buildOrderBy("")).toEqual([{ id: "asc" }]);
+    expect(buildOrderBy("unknown")).toEqual([{ id: "asc" }]);
+  });
+});
