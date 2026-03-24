@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath, revalidateTag } from "next/cache";
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import {
   addReview,
   updateReviewByOwner,
@@ -182,12 +182,19 @@ export async function createAnonymousReview(
     }
 
     // IP-based dedup: one anonymous review per IP per show
-    const existingAnonymousReview = await prisma.review.findFirst({
-      where: { ip, showId, userId: null },
-      select: { id: true },
-    });
-    if (existingAnonymousReview) {
-      return actionError("כבר כתבת ביקורת להצגה זו.");
+    const bypassToken = process.env.ADMIN_BYPASS_TOKEN;
+    const cookieStore = await cookies();
+    const hasAdminBypass =
+      bypassToken && cookieStore.get("admin_bypass")?.value === bypassToken;
+
+    if (!hasAdminBypass) {
+      const existingAnonymousReview = await prisma.review.findFirst({
+        where: { ip, showId, userId: null },
+        select: { id: true },
+      });
+      if (existingAnonymousReview) {
+        return actionError("כבר כתבת ביקורת להצגה זו.");
+      }
     }
 
     const today = new Date().toISOString().slice(0, 10);

@@ -22,6 +22,9 @@ jest.mock("next/headers", () => ({
   headers: jest.fn().mockResolvedValue({
     get: jest.fn().mockReturnValue("1.2.3.4"),
   }),
+  cookies: jest.fn().mockResolvedValue({
+    get: jest.fn().mockReturnValue(undefined),
+  }),
 }));
 
 import { createAnonymousReview } from "@/app/reviews/actions";
@@ -200,6 +203,26 @@ describe("createAnonymousReview", () => {
     expect(prisma.review.findFirst).toHaveBeenCalledWith({
       where: { ip: "1.2.3.4", showId: 1, userId: null },
       select: { id: true },
+    });
+  });
+
+  it("skips IP dedup when admin bypass cookie matches token", async () => {
+    const { cookies } = require("next/headers");
+    const originalToken = process.env.ADMIN_BYPASS_TOKEN;
+    process.env.ADMIN_BYPASS_TOKEN = "test-secret";
+    (cookies as jest.Mock).mockResolvedValue({
+      get: jest.fn().mockReturnValue({ value: "test-secret" }),
+    });
+    (prisma.review.findFirst as jest.Mock).mockResolvedValue({ id: 99 });
+
+    const result = await createAnonymousReview(createFormData(validFormData));
+
+    expect(result.success).toBe(true);
+    expect(prisma.review.findFirst).not.toHaveBeenCalled();
+
+    process.env.ADMIN_BYPASS_TOKEN = originalToken;
+    (cookies as jest.Mock).mockResolvedValue({
+      get: jest.fn().mockReturnValue(undefined),
     });
   });
 });
