@@ -163,7 +163,7 @@ export default function MobileMenu({
           <Button
             href={ROUTES.REVIEWS_NEW}
             aria-label="כתב.י ביקורת"
-            className={`${styles.primaryAction} ${styles.desktopOnlyAction}`}
+            className={`${styles.reviewAction} ${styles.desktopOnlyAction}`}
             onClick={onClose}
           >
             כתב.י ביקורת

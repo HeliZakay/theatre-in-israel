@@ -2,16 +2,41 @@ import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import Link from "next/link";
 import styles from "./Header.module.css";
 import ROUTES from "@/constants/routes";
+import { cx } from "@/utils/cx";
 
 interface DesktopNavProps {
   pathname: string;
   onNavigate: () => void;
 }
 
+function ChevronDownIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  );
+}
+
 export default function DesktopNav({ pathname, onNavigate }: DesktopNavProps) {
+  const isBrowseActive = [
+    ROUTES.THEATRES,
+    ROUTES.GENRES,
+    ROUTES.CITIES,
+    ROUTES.ACTORS,
+  ].some((r) => pathname.startsWith(r));
+
   return (
     <div className={styles.navSection}>
-      <NavigationMenu.Root>
+      <NavigationMenu.Root className={styles.navRoot}>
         <NavigationMenu.List className={styles.navList}>
           <NavigationMenu.Item>
             <NavigationMenu.Link asChild active={pathname === "/"}>
@@ -27,7 +52,7 @@ export default function DesktopNav({ pathname, onNavigate }: DesktopNavProps) {
             >
               <Link
                 href={ROUTES.EVENTS}
-                className={styles.navText}
+                className={cx(styles.navText, styles.navTextPrimary)}
                 onClick={onNavigate}
               >
                 לוח הופעות
@@ -38,69 +63,58 @@ export default function DesktopNav({ pathname, onNavigate }: DesktopNavProps) {
             <NavigationMenu.Link asChild active={pathname === ROUTES.SHOWS}>
               <Link
                 href={ROUTES.SHOWS}
-                className={styles.navText}
+                className={cx(styles.navText, styles.navTextPrimary)}
                 onClick={onNavigate}
               >
                 קטלוג הצגות
               </Link>
             </NavigationMenu.Link>
           </NavigationMenu.Item>
+
+          {/* Browse dropdown — groups taxonomy pages */}
           <NavigationMenu.Item>
-            <NavigationMenu.Link
-              asChild
-              active={pathname.startsWith(ROUTES.THEATRES)}
+            <NavigationMenu.Trigger
+              className={cx(
+                styles.navText,
+                styles.browseMenuTrigger,
+                isBrowseActive && styles.navTextActive,
+              )}
             >
+              עיון
+              <ChevronDownIcon className={styles.browseChevron} />
+            </NavigationMenu.Trigger>
+            <NavigationMenu.Content className={styles.browseMenuContent}>
               <Link
                 href={ROUTES.THEATRES}
-                className={styles.navText}
+                className={styles.browseMenuItem}
                 onClick={onNavigate}
               >
                 תיאטראות
               </Link>
-            </NavigationMenu.Link>
-          </NavigationMenu.Item>
-          <NavigationMenu.Item>
-            <NavigationMenu.Link
-              asChild
-              active={pathname.startsWith(ROUTES.GENRES)}
-            >
               <Link
                 href={ROUTES.GENRES}
-                className={styles.navText}
+                className={styles.browseMenuItem}
                 onClick={onNavigate}
               >
                 ז׳אנרים
               </Link>
-            </NavigationMenu.Link>
-          </NavigationMenu.Item>
-          <NavigationMenu.Item>
-            <NavigationMenu.Link
-              asChild
-              active={pathname.startsWith(ROUTES.CITIES)}
-            >
               <Link
                 href={ROUTES.CITIES}
-                className={styles.navText}
+                className={styles.browseMenuItem}
                 onClick={onNavigate}
               >
                 ערים
               </Link>
-            </NavigationMenu.Link>
-          </NavigationMenu.Item>
-          <NavigationMenu.Item>
-            <NavigationMenu.Link
-              asChild
-              active={pathname.startsWith(ROUTES.ACTORS)}
-            >
               <Link
                 href={ROUTES.ACTORS}
-                className={styles.navText}
+                className={styles.browseMenuItem}
                 onClick={onNavigate}
               >
                 שחקנים
               </Link>
-            </NavigationMenu.Link>
+            </NavigationMenu.Content>
           </NavigationMenu.Item>
+
           <NavigationMenu.Item>
             <NavigationMenu.Link asChild active={pathname === ROUTES.CONTACT}>
               <Link
@@ -113,6 +127,10 @@ export default function DesktopNav({ pathname, onNavigate }: DesktopNavProps) {
             </NavigationMenu.Link>
           </NavigationMenu.Item>
         </NavigationMenu.List>
+
+        <div className={styles.browseViewportWrapper}>
+          <NavigationMenu.Viewport className={styles.browseViewport} />
+        </div>
       </NavigationMenu.Root>
     </div>
   );
