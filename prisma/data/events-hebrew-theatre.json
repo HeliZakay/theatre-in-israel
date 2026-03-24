@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-03-23T09:21:55.806Z",
+  "scrapedAt": "2026-03-24T03:55:55.831Z",
   "touring": true,
   "events": [
     {
@@ -73,14 +73,6 @@
       "hour": "20:30",
       "venueName": "בית החייל תל אביב",
       "venueCity": "תל אביב"
-    },
-    {
-      "showId": 112,
-      "showSlug": "גבירתי-הנאווה",
-      "date": "2026-02-16",
-      "hour": "17:00",
-      "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
     },
     {
       "showId": 112,
