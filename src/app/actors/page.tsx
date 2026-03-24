@@ -1,7 +1,5 @@
-import Link from "next/link";
-import Image from "next/image";
 import { getAllActorStats } from "@/lib/data/actorDetail";
-import { ACTORS, ACTOR_BY_NAME } from "@/constants/actors";
+import { ACTORS } from "@/constants/actors";
 import ROUTES, { actorPath } from "@/constants/routes";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import {
@@ -10,6 +8,7 @@ import {
   toAbsoluteUrl,
   toJsonLd,
 } from "@/lib/seo";
+import ActorsContent from "./ActorsContent";
 import styles from "./page.module.css";
 
 import type { Metadata } from "next";
@@ -57,8 +56,6 @@ export default async function ActorsPage() {
     })),
   };
 
-  const statsMap = new Map(allStats.map((s) => [s.name, s]));
-
   return (
     <main className={styles.page} id="main-content">
       <script
@@ -79,36 +76,7 @@ export default async function ActorsPage() {
         <h1 className={styles.title}>{pageTitle}</h1>
         <p className={styles.subtitle}>{pageDescription}</p>
       </header>
-      <div className={styles.grid}>
-        {ACTORS.map((a) => {
-          const stats = statsMap.get(a.name);
-          return (
-            <Link
-              key={a.slug}
-              href={actorPath(a.slug)}
-              className={styles.card}
-            >
-              <Image
-                src={a.image}
-                alt={a.name}
-                fill
-                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 200px"
-                className={styles.cardImage}
-              />
-              <div className={styles.cardOverlay}>
-                <h2 className={styles.cardTitle}>{a.name}</h2>
-                {stats && stats.showCount > 0 ? (
-                  <div className={styles.cardStats}>
-                    <span>{stats.showCount} הצגות</span>
-                  </div>
-                ) : (
-                  <span className={styles.cardStats}>אין הצגות כרגע</span>
-                )}
-              </div>
-            </Link>
-          );
-        })}
-      </div>
+      <ActorsContent actors={ACTORS} stats={allStats} />
     </main>
   );
 }

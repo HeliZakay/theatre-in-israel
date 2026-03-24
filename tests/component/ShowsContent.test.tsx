@@ -6,7 +6,7 @@ import type { ShowFilters, ShowListItem } from "@/types";
 // --- IntersectionObserver mock ---
 type ObserverCallback = (entries: Partial<IntersectionObserverEntry>[]) => void;
 let observerCallback: ObserverCallback | null = null;
-let observerInstance: { disconnect: jest.Mock } | null = null;
+let observerInstance: IntersectionObserver | null = null;
 
 beforeEach(() => {
   observerCallback = null;
