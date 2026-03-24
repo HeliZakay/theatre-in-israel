@@ -19,9 +19,9 @@
 }
 
 .shell:focus-within {
-  border-color: rgba(156, 27, 32, 0.45);
+  border-color: rgba(156, 27, 32, 0.35);
   background: #ffffff;
-  box-shadow: 0 0 0 4px var(--color-curtain-red-014);
+  box-shadow: none;
 }
 
 .icon {
@@ -40,14 +40,27 @@
   border: none;
   outline: none;
   background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
   font-size: 1rem;
   color: #1f2937;
   text-align: right;
   min-width: 0;
 }
 
+.input:focus-visible {
+  outline: none;
+}
+
 .input::placeholder {
   color: #9aa3b2;
+}
+
+.input::-webkit-search-cancel-button,
+.input::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
 }
 
 .clear {

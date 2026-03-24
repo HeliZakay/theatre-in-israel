@@ -45,7 +45,7 @@ export default function ActorSearch({
         </span>
 
         <input
-          type="search"
+          type="text"
           dir="rtl"
           placeholder="חיפוש שחקן/ית..."
           className={styles.input}
