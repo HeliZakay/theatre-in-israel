@@ -50,6 +50,7 @@
 
 .navList {
   display: flex;
+  align-items: center;
   gap: 0;
   list-style: none;
   flex-wrap: nowrap;
@@ -60,6 +61,7 @@
 }
 
 .navList li {
+  position: relative;
   padding: 0 16px;
 }
 
@@ -136,9 +138,6 @@
   border: none;
   cursor: pointer;
   font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  letter-spacing: inherit;
   line-height: inherit;
   color: inherit;
   transition: color 0.2s ease, background 0.2s ease;
@@ -164,34 +163,23 @@
   transform: scaleX(1);
 }
 
-.browseViewportWrapper {
+.browseMenuContent {
   position: absolute;
-  top: 100%;
-  left: 0;
+  top: calc(100% + 6px);
   right: 0;
   display: flex;
-  justify-content: center;
-  perspective: 2000px;
-}
-
-.browseViewport {
+  flex-direction: column;
+  padding: 6px 0;
   background: #fff;
   border: 1px solid rgba(26, 26, 26, 0.12);
   border-radius: 10px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  overflow: hidden;
   min-width: 180px;
-}
-
-.browseMenuContent {
-  display: flex;
-  flex-direction: column;
-  padding: 6px 0;
 }
 
 .browseMenuItem {
   display: block;
-  padding: 10px 16px;
+  padding: 10px 24px;
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--color-text-primary);
@@ -283,7 +271,7 @@
   transition: background 0.2s ease, border-color 0.2s ease;
 }
 
-.reviewAction:hover {
+.reviewAction.reviewAction:hover {
   background: var(--color-curtain-red-008);
   border-color: var(--color-curtain-red);
 }

@@ -127,10 +127,6 @@ export default function DesktopNav({ pathname, onNavigate }: DesktopNavProps) {
             </NavigationMenu.Link>
           </NavigationMenu.Item>
         </NavigationMenu.List>
-
-        <div className={styles.browseViewportWrapper}>
-          <NavigationMenu.Viewport className={styles.browseViewport} />
-        </div>
       </NavigationMenu.Root>
     </div>
   );
