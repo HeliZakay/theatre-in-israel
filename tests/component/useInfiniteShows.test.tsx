@@ -334,6 +334,45 @@ describe("useInfiniteShows", () => {
       expect(result.current.error).toBeNull();
     });
 
+    it("prevents concurrent loadMore calls (stale closure race)", async () => {
+      let resolveFirst!: (v: unknown) => void;
+      const firstFetch = new Promise((resolve) => {
+        resolveFirst = resolve;
+      });
+      mockFetch.mockReturnValueOnce(firstFetch);
+
+      const { result } = renderHook(() => useInfiniteShows(defaultOptions()));
+
+      act(() => {
+        result.current.sentinelRef(document.createElement("div"));
+      });
+
+      // Fire observer twice rapidly — simulates the stale closure race
+      await act(async () => {
+        mockObserverCallback(
+          [{ isIntersecting: true }] as IntersectionObserverEntry[],
+          {} as IntersectionObserver,
+        );
+        mockObserverCallback(
+          [{ isIntersecting: true }] as IntersectionObserverEntry[],
+          {} as IntersectionObserver,
+        );
+      });
+
+      // Only one fetch should have been made
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+
+      // Resolve and verify normal completion
+      await act(async () => {
+        resolveFirst(fetchResponse([makeShow(3)], true));
+      });
+
+      await waitFor(() => {
+        expect(result.current.shows).toHaveLength(3);
+        expect(result.current.isLoading).toBe(false);
+      });
+    });
+
     it("does nothing when hasMore is false", async () => {
       const opts = { ...defaultOptions(), initialHasMore: false };
       const { result } = renderHook(() => useInfiniteShows(opts));

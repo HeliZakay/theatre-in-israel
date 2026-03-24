@@ -102,6 +102,8 @@ export function useInfiniteShows({
   const abortRef = useRef<AbortController | null>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const sentinelNodeRef = useRef<HTMLDivElement | null>(null);
+  const isLoadingRef = useRef(false);
+  const pageRef = useRef(restoredState?.page ?? 2);
 
   // Restore scroll position from session
   useEffect(() => {
@@ -138,6 +140,8 @@ export function useInfiniteShows({
     setAnnouncement("");
 
     seenIdsRef.current = new Set(initialShows.map((s) => s.id));
+    pageRef.current = 2;
+    isLoadingRef.current = false;
     clearSession();
   }, [filterKey, initialShows, initialHasMore]);
 
@@ -156,18 +160,20 @@ export function useInfiniteShows({
     setHasMore(initialHasMore);
     setError(null);
     seenIdsRef.current = new Set(initialShows.map((s) => s.id));
+    pageRef.current = 2;
     clearSession();
   }, [initialShows, initialHasMore, filterKey]);
 
   const loadMore = useCallback(async () => {
-    if (isLoading || !hasMore || error) return;
+    if (isLoadingRef.current || !hasMore || error) return;
+    isLoadingRef.current = true;
+    setIsLoading(true);
+    setError(null);
 
-    abortRef.current?.abort();
     const controller = new AbortController();
     abortRef.current = controller;
 
-    setIsLoading(true);
-    setError(null);
+    const currentPage = pageRef.current;
 
     try {
       const qs = buildShowsQueryString({
@@ -175,7 +181,7 @@ export function useInfiniteShows({
         query: filters.query || undefined,
         genres: filters.genres,
         sort: filters.sort,
-        page,
+        page: currentPage,
       });
 
       const res = await fetch(`/api/shows${qs}`, {
@@ -202,7 +208,7 @@ export function useInfiniteShows({
         requestAnimationFrame(() => {
           saveToSession({
             shows: updated,
-            page: page + 1,
+            page: currentPage + 1,
             hasMore: data.hasMore,
             filterKey: currentFilterKey,
             scrollY: window.scrollY,
@@ -210,7 +216,8 @@ export function useInfiniteShows({
         });
         return updated;
       });
-      setPage((p) => p + 1);
+      pageRef.current = currentPage + 1;
+      setPage(currentPage + 1);
       setHasMore(data.hasMore);
 
       if (newShows.length > 0) {
@@ -223,9 +230,10 @@ export function useInfiniteShows({
         err instanceof Error ? err.message : "שגיאה בטעינת הצגות נוספות",
       );
     } finally {
+      isLoadingRef.current = false;
       setIsLoading(false);
     }
-  }, [isLoading, hasMore, error, filters, page]);
+  }, [hasMore, error, filters]);
 
   // Retry clears error and retriggers loadMore
   const retry = useCallback(() => {
