@@ -1,6 +1,6 @@
 .page {
   min-height: calc(100vh - var(--header-offset));
-  padding: clamp(32px, 6vw, 72px) clamp(16px, 6vw, 96px);
+  padding: clamp(16px, 3vw, 24px) clamp(16px, 6vw, 96px);
   display: grid;
   place-items: center;
 }

@@ -1,5 +1,5 @@
 .page {
-  padding: clamp(32px, 6vw, 72px) clamp(20px, 6vw, 96px);
+  padding: clamp(16px, 3vw, 24px) clamp(20px, 6vw, 96px);
   display: flex;
   flex-direction: column;
   gap: 28px;
@@ -98,7 +98,7 @@
 
 @media (max-width: 640px) {
   .page {
-    padding: 28px 16px;
+    padding: 16px 16px;
   }
 
   .headerGrid {
