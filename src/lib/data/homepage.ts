@@ -50,7 +50,7 @@ async function getSuggestions(): Promise<Suggestions> {
 /**
  * Map a Prisma show (with genres relation via showListInclude) to ShowListItem.
  */
-function mapToShowListItem(
+export function mapToShowListItem(
   show: Awaited<
     ReturnType<typeof prisma.show.findMany<{ include: typeof showListInclude }>>
   >[number],
@@ -159,7 +159,7 @@ export function deduplicateSections(
   return result;
 }
 
-function settled<T>(result: PromiseSettledResult<T>, fallback: T): T {
+export function settled<T>(result: PromiseSettledResult<T>, fallback: T): T {
   return result.status === "fulfilled" ? result.value : fallback;
 }
 
@@ -339,7 +339,7 @@ const hebrewShortDay = new Intl.DateTimeFormat("he-IL", {
   timeZone: TZ,
 });
 
-function buildDateLabel(
+export function buildDateLabel(
   dateKey: string,
   todayKey: string,
   tomorrowKey: string,

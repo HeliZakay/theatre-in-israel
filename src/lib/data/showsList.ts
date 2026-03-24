@@ -137,7 +137,7 @@ const getCachedGenres = unstable_cache(
 /**
  * Core data fetcher — always hits the database.
  */
-async function fetchShowsForList(
+export async function fetchShowsForList(
   searchParams?: Record<string, string | string[] | undefined>,
 ): Promise<ShowsListData> {
   const filters = parseShowsSearchParams(searchParams);
