@@ -1,6 +1,10 @@
 import { unstable_cache } from "next/cache";
 import prisma from "../prisma";
-import { showListInclude } from "../showHelpers";
+import {
+  showListInclude,
+  KIDS_GENRE_NAME,
+  excludeKidsWhere,
+} from "../showHelpers";
 import type { ShowListItem } from "@/types";
 
 const RELATED_LIMIT = 10;
@@ -54,14 +58,17 @@ async function fetchSimilarShowsByGenres(
 ): Promise<ShowListItem[]> {
   if (genreNames.length === 0) return [];
 
+  const isKids = genreNames.includes(KIDS_GENRE_NAME);
+
   const shows = await prisma.show.findMany({
     where: {
-      id: { not: excludeId },
-      genres: {
-        some: {
-          genre: { name: { in: genreNames } },
-        },
-      },
+      AND: [
+        { id: { not: excludeId } },
+        { genres: { some: { genre: { name: { in: genreNames } } } } },
+        isKids
+          ? { genres: { some: { genre: { name: KIDS_GENRE_NAME } } } }
+          : excludeKidsWhere,
+      ],
     },
     include: showListInclude,
     orderBy: [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],

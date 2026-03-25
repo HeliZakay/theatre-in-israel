@@ -56,17 +56,42 @@ describe("getRelatedByTheatre", () => {
 });
 
 describe("getRelatedByGenres", () => {
-  it("returns shows sharing genres", async () => {
+  it("excludes kids shows for non-kids genres", async () => {
     mockFindMany.mockResolvedValue([makeRawShow(2)] as never);
 
     const result = await getRelatedByGenres(["דרמה"], 1);
     expect(result).toHaveLength(1);
     expect(mockFindMany).toHaveBeenCalledWith(
       expect.objectContaining({
-        where: expect.objectContaining({
-          id: { not: 1 },
-          genres: { some: { genre: { name: { in: ["דרמה"] } } } },
-        }),
+        where: {
+          AND: [
+            { id: { not: 1 } },
+            { genres: { some: { genre: { name: { in: ["דרמה"] } } } } },
+            { genres: { none: { genre: { name: "ילדים" } } } },
+          ],
+        },
+      }),
+    );
+  });
+
+  it("only returns kids shows for kids genres", async () => {
+    mockFindMany.mockResolvedValue([makeRawShow(2)] as never);
+
+    const result = await getRelatedByGenres(["ילדים", "קומדיה"], 1);
+    expect(result).toHaveLength(1);
+    expect(mockFindMany).toHaveBeenCalledWith(
+      expect.objectContaining({
+        where: {
+          AND: [
+            { id: { not: 1 } },
+            {
+              genres: {
+                some: { genre: { name: { in: ["ילדים", "קומדיה"] } } },
+              },
+            },
+            { genres: { some: { genre: { name: "ילדים" } } } },
+          ],
+        },
       }),
     );
   });
