@@ -53,8 +53,6 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         linkText={GENRE_SECTIONS.dramas.linkText}
       />
 
-      {banner}
-
       <ShowsSection
         kicker={GENRE_SECTIONS.comedies.kicker}
         title={GENRE_SECTIONS.comedies.title}
@@ -78,6 +76,8 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.israeli.genres] })}#results`}
         linkText={GENRE_SECTIONS.israeli.linkText}
       />
+
+      {banner}
     </>
   );
 }
