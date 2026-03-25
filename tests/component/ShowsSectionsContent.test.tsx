@@ -49,17 +49,18 @@ const emptySections = {
   comedies: [],
   musicals: [],
   israeli: [],
+  kids: [],
 };
 
 describe("ShowsSectionsContent", () => {
   beforeEach(() => jest.clearAllMocks());
 
-  it("renders all 5 genre sections", async () => {
+  it("renders all 6 genre sections", async () => {
     jest.mocked(getSectionsData).mockResolvedValue(emptySections);
     const Component = await ShowsSectionsContent({});
     render(Component);
     const sections = screen.getAllByTestId("shows-section");
-    expect(sections).toHaveLength(5);
+    expect(sections).toHaveLength(6);
   });
 
   it("renders JSON-LD script when topRated is non-empty", async () => {

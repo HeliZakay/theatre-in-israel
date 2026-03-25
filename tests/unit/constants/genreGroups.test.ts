@@ -3,9 +3,9 @@ import { GENRE_SECTIONS } from "@/constants/genreGroups";
 describe("GENRE_SECTIONS", () => {
   const keys = Object.keys(GENRE_SECTIONS);
 
-  it("has exactly 4 keys: dramas, comedies, musicals, israeli", () => {
+  it("has exactly 5 keys: dramas, comedies, musicals, israeli, kids", () => {
     expect(keys.sort()).toEqual(
-      ["comedies", "dramas", "israeli", "musicals"].sort()
+      ["comedies", "dramas", "israeli", "kids", "musicals"].sort()
     );
   });
 

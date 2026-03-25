@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default async function ShowsSectionsContent({ banner }: Props) {
-  const { topRated, dramas, comedies, musicals, israeli } =
+  const { topRated, dramas, comedies, musicals, israeli, kids } =
     await getSectionsData();
 
   const itemListJsonLd =
@@ -75,6 +75,14 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         shows={israeli}
         linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.israeli.genres] })}#results`}
         linkText={GENRE_SECTIONS.israeli.linkText}
+      />
+
+      <ShowsSection
+        kicker={GENRE_SECTIONS.kids.kicker}
+        title={GENRE_SECTIONS.kids.title}
+        shows={kids}
+        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.kids.genres] })}#results`}
+        linkText={GENRE_SECTIONS.kids.linkText}
       />
 
       {banner}

@@ -30,4 +30,10 @@ export const GENRE_SECTIONS = {
     title: "ישראלי",
     linkText: "לכל הישראליים",
   },
+  kids: {
+    genres: ["ילדים"],
+    kicker: "ז'אנר",
+    title: "לילדים",
+    linkText: "לכל הצגות הילדים",
+  },
 } as const satisfies Record<string, GenreSection>;

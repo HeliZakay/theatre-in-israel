@@ -5,7 +5,7 @@ import type { ShowListItem, Suggestions, LatestReviewItem } from "@/types";
 import type { EventListItem } from "./eventsList";
 import { GENRE_SECTIONS } from "@/constants/genreGroups";
 import { FEATURED_SHOW_SLUG } from "@/constants/featuredShow";
-import { excludeKidsWhere } from "../showHelpers";
+import { excludeKidsWhere, KIDS_GENRE_NAME } from "../showHelpers";
 
 const DISPLAY_LIMIT = 10;
 const FETCH_LIMIT = 40;
@@ -27,6 +27,7 @@ export interface SectionsData {
   comedies: ShowListItem[];
   musicals: ShowListItem[];
   israeli: ShowListItem[];
+  kids: ShowListItem[];
   featuredShowId: number | null;
 }
 
@@ -101,6 +102,24 @@ async function getShowsByGenres(
         },
       },
       ...excludeKidsWhere,
+    },
+    include: showListInclude,
+    orderBy: [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],
+    take: limit,
+  });
+
+  return shows.map(mapToShowListItem);
+}
+
+/**
+ * Fetch kids shows — deliberately omits excludeKidsWhere since we *want* kids.
+ */
+async function getKidsShows(limit = 5): Promise<ShowListItem[]> {
+  const shows = await prisma.show.findMany({
+    where: {
+      genres: {
+        some: { genre: { name: KIDS_GENRE_NAME } },
+      },
     },
     include: showListInclude,
     orderBy: [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],
@@ -229,12 +248,14 @@ async function fetchSectionsData(): Promise<SectionsData> {
     comediesResult,
     musicalsResult,
     israeliResult,
+    kidsResult,
   ] = await Promise.allSettled([
     getTopRated(),
     getShowsByGenres([...GENRE_SECTIONS.dramas.genres], FETCH_LIMIT),
     getShowsByGenres([...GENRE_SECTIONS.comedies.genres], FETCH_LIMIT),
     getShowsByGenres([...GENRE_SECTIONS.musicals.genres], FETCH_LIMIT),
     getShowsByGenres([...GENRE_SECTIONS.israeli.genres], FETCH_LIMIT),
+    getKidsShows(FETCH_LIMIT),
   ]);
 
   const topRated = settled(topRatedResult, [] as ShowListItem[]);
@@ -242,6 +263,7 @@ async function fetchSectionsData(): Promise<SectionsData> {
   const comedies = settled(comediesResult, [] as ShowListItem[]);
   const musicals = settled(musicalsResult, [] as ShowListItem[]);
   const israeli = settled(israeliResult, [] as ShowListItem[]);
+  const kids = settled(kidsResult, [] as ShowListItem[]);
 
   const manualFeatured = await getManualFeaturedShow();
   const featuredShow = manualFeatured ?? topRated[0] ?? null;
@@ -254,6 +276,7 @@ async function fetchSectionsData(): Promise<SectionsData> {
       { key: "comedies", shows: comedies },
       { key: "musicals", shows: musicals },
       { key: "israeli", shows: israeli },
+      { key: "kids", shows: kids },
     ],
     DISPLAY_LIMIT,
     featuredShowId ? [featuredShowId] : [],
@@ -265,6 +288,7 @@ async function fetchSectionsData(): Promise<SectionsData> {
     comedies: deduped.comedies,
     musicals: deduped.musicals,
     israeli: deduped.israeli,
+    kids: deduped.kids,
     featuredShowId,
   };
 }
