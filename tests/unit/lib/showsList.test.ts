@@ -4,6 +4,7 @@ jest.mock("@/lib/prisma", () => ({
 }));
 
 import { buildWhereClause, buildOrderBy } from "@/lib/data/showsList";
+import { excludeKidsWhere } from "@/lib/showHelpers";
 
 describe("buildWhereClause", () => {
   it("returns empty object for empty filters", () => {
@@ -50,6 +51,7 @@ describe("buildWhereClause", () => {
             },
           },
         },
+        excludeKidsWhere,
       ],
     });
   });
@@ -63,10 +65,11 @@ describe("buildWhereClause", () => {
 
     expect(result).toHaveProperty("AND");
     const conditions = (result as { AND: unknown[] }).AND;
-    expect(conditions).toHaveLength(3);
+    expect(conditions).toHaveLength(4);
     expect(conditions[0]).toEqual({ theatre: "תיאטרון הקאמרי" });
     expect(conditions[1]).toHaveProperty("OR");
     expect(conditions[2]).toHaveProperty("genres");
+    expect(conditions[3]).toEqual(excludeKidsWhere);
   });
 
   it("handles single genre", () => {
@@ -77,6 +80,22 @@ describe("buildWhereClause", () => {
           genres: {
             some: {
               genre: { name: { in: ["דרמה"] } },
+            },
+          },
+        },
+        excludeKidsWhere,
+      ],
+    });
+  });
+
+  it("does not exclude kids when kids genre is selected", () => {
+    const result = buildWhereClause({ theatre: "", query: "", genres: ["ילדים"] });
+    expect(result).toEqual({
+      AND: [
+        {
+          genres: {
+            some: {
+              genre: { name: { in: ["ילדים"] } },
             },
           },
         },

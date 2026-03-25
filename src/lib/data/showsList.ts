@@ -2,7 +2,7 @@ import { Prisma } from "@prisma/client";
 import { unstable_cache } from "next/cache";
 import prisma from "../prisma";
 import { parseShowsSearchParams } from "../../utils/showsQuery";
-import { showListInclude } from "../showHelpers";
+import { showListInclude, excludeKidsWhere, KIDS_GENRE_NAME } from "../showHelpers";
 import type { ShowListItem, ShowFilters } from "@/types";
 
 export interface ShowsListData {
@@ -56,6 +56,10 @@ export function buildWhereClause({
         },
       },
     });
+    // When filtering by non-kids genres, exclude kids shows
+    if (!genres.includes(KIDS_GENRE_NAME)) {
+      conditions.push(excludeKidsWhere);
+    }
   }
 
   return conditions.length > 0 ? { AND: conditions } : {};

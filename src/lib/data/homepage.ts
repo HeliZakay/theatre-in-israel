@@ -5,6 +5,7 @@ import type { ShowListItem, Suggestions, LatestReviewItem } from "@/types";
 import type { EventListItem } from "./eventsList";
 import { GENRE_SECTIONS } from "@/constants/genreGroups";
 import { FEATURED_SHOW_SLUG } from "@/constants/featuredShow";
+import { excludeKidsWhere } from "../showHelpers";
 
 const DISPLAY_LIMIT = 10;
 const FETCH_LIMIT = 40;
@@ -70,7 +71,7 @@ export function mapToShowListItem(
  */
 async function getTopRated(): Promise<ShowListItem[]> {
   const shows = await prisma.show.findMany({
-    where: { avgRating: { not: null } },
+    where: { avgRating: { not: null }, ...excludeKidsWhere },
     include: showListInclude,
     orderBy: [
       { avgRating: { sort: "desc", nulls: "last" } },
@@ -99,6 +100,7 @@ async function getShowsByGenres(
           genre: { name: { in: genreNames } },
         },
       },
+      ...excludeKidsWhere,
     },
     include: showListInclude,
     orderBy: [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],
@@ -288,6 +290,7 @@ export interface ExploreBannerShow {
  */
 async function fetchExploreBannerShows(): Promise<ExploreBannerShow[]> {
   const rows = await prisma.show.findMany({
+    where: excludeKidsWhere,
     select: {
       id: true,
       slug: true,
@@ -380,7 +383,7 @@ async function fetchUpcomingEventsVaried(): Promise<UpcomingEventItem[]> {
   const currentHourNum = Number(currentHour);
 
   const events = await prisma.event.findMany({
-    where: { date: { gte: todayDate } },
+    where: { date: { gte: todayDate }, show: excludeKidsWhere },
     include: {
       show: {
         select: {
@@ -482,6 +485,7 @@ const LATEST_REVIEWS_DISPLAY = 6;
 
 async function fetchLatestReviews(): Promise<LatestReviewItem[]> {
   const reviews = await prisma.review.findMany({
+    where: { show: excludeKidsWhere },
     orderBy: { createdAt: "desc" },
     take: LATEST_REVIEWS_DISPLAY * 3,
     select: {

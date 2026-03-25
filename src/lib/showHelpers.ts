@@ -3,6 +3,14 @@ import prisma from "./prisma";
 import { enrichShow } from "@/utils/showStats";
 import type { Show, EnrichedShow, ShowListItem } from "@/types";
 
+/** Hebrew name of the kids genre in the database. */
+export const KIDS_GENRE_NAME = "ילדים";
+
+/** Prisma where clause to exclude shows tagged with the kids genre. */
+export const excludeKidsWhere: Prisma.ShowWhereInput = {
+  genres: { none: { genre: { name: KIDS_GENRE_NAME } } },
+};
+
 /** Events include — defined separately to avoid readonly array conflict with Prisma types. */
 const eventsInclude = {
   orderBy: { date: "asc" as const },

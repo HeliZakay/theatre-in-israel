@@ -1,6 +1,6 @@
 import { unstable_cache } from "next/cache";
 import prisma from "../prisma";
-import { showListInclude } from "../showHelpers";
+import { showListInclude, excludeKidsWhere, KIDS_GENRE_NAME } from "../showHelpers";
 import type { ShowListItem } from "@/types";
 
 export interface GenreStats {
@@ -16,7 +16,10 @@ export interface GenrePageData {
 
 async function fetchGenreData(genreName: string): Promise<GenrePageData> {
   const rawShows = await prisma.show.findMany({
-    where: { genres: { some: { genre: { name: genreName } } } },
+    where: {
+      genres: { some: { genre: { name: genreName } } },
+      ...(genreName !== KIDS_GENRE_NAME ? excludeKidsWhere : {}),
+    },
     include: showListInclude,
     orderBy: [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],
   });
