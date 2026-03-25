@@ -54,37 +54,32 @@ export default function ExploreBannerGrid({
 
   return (
     <>
-      <div className={styles.shuffleRow}>
-        <button
-          type="button"
-          className={styles.shuffleButton}
-          onClick={handleShuffle}
-          aria-label="ערבבו שוב"
+      <button
+        type="button"
+        className={styles.shuffleButton}
+        onClick={handleShuffle}
+        aria-label="ערבבו שוב"
+      >
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+          className={styles.shuffleIcon}
         >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-            className={styles.shuffleIcon}
-          >
-            <path d="M16 3h5v5" />
-            <path d="M4 20 21 3" />
-            <path d="M21 16v5h-5" />
-            <path d="M15 15l6 6" />
-            <path d="M4 4l5 5" />
-          </svg>
-          ערבבו שוב
-        </button>
-        <Link href={ROUTES.SHOWS} className={styles.browseLink}>
-          לכל ההצגות ←
-        </Link>
-      </div>
+          <path d="M16 3h5v5" />
+          <path d="M4 20 21 3" />
+          <path d="M21 16v5h-5" />
+          <path d="M15 15l6 6" />
+          <path d="M4 4l5 5" />
+        </svg>
+        ערבבו שוב
+      </button>
       <div className={cx(styles.grid, fading && styles.gridFading)}>
         {visible.map((show) => (
           <Link
@@ -117,6 +112,9 @@ export default function ExploreBannerGrid({
           </Link>
         ))}
       </div>
+      <Link href={ROUTES.SHOWS} className={styles.browseLink}>
+        לכל ההצגות ←
+      </Link>
     </>
   );
 }
