@@ -21,7 +21,7 @@ export const GENRE_SECTIONS = {
   musicals: {
     genres: ["מחזמר"],
     kicker: "ז'אנר",
-    title: "מחזמרים",
+    title: "מחזות זמר",
     linkText: "לכל מחזות הזמר",
   },
   israeli: {
