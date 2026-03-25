@@ -9,12 +9,9 @@ describe("ExploreBannerHeadline", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders body text about discovering shows", () => {
-    render(<ExploreBannerHeadline />);
-    expect(
-      screen.getByText(
-        /מגוון הצגות מכל התיאטרונים בארץ — בחרו את ההצגה הבאה שלכם/,
-      ),
-    ).toBeInTheDocument();
+  it("does not render body text (headline only)", () => {
+    const { container } = render(<ExploreBannerHeadline />);
+    expect(container.querySelector("h2")).toBeInTheDocument();
+    expect(container.childElementCount).toBe(1);
   });
 });
