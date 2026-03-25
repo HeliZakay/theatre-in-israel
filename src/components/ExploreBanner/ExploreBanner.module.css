@@ -77,16 +77,16 @@
   padding: 8px 18px;
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--color-text-primary);
-  background: transparent;
-  border: 1px solid var(--color-slate-015);
+  color: #fff;
+  background: var(--color-curtain-red);
+  border: 1px solid var(--color-curtain-red);
   border-radius: var(--radius-pill);
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
 .shuffleButton:hover {
-  background-color: var(--color-slate-006);
+  background-color: var(--color-curtain-red-hover);
 }
 
 .shuffleButton:focus-visible {
