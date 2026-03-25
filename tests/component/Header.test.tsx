@@ -35,7 +35,33 @@ jest.mock("@/components/Header/DesktopNav", () => {
 });
 
 jest.mock("@/components/Header/MobileMenu", () => {
-  const Mock = () => <div data-testid="mobile-menu" />;
+  const AccountDropdown =
+    require("@/components/Header/AccountDropdown").default;
+  const ROUTES = require("@/constants/routes").default;
+  const Mock = (props: {
+    pathname: string;
+    isAuthenticated: boolean;
+    isLoading: boolean;
+    firstName: string;
+  }) => (
+    <div data-testid="mobile-menu">
+      {props.isLoading ? null : props.isAuthenticated ? (
+        <AccountDropdown firstName={props.firstName} />
+      ) : (
+        <a
+          href={`${ROUTES.AUTH_SIGNIN}?callbackUrl=${encodeURIComponent(
+            props.pathname &&
+              props.pathname.startsWith("/") &&
+              !props.pathname.startsWith("//")
+              ? props.pathname
+              : ROUTES.HOME,
+          )}`}
+        >
+          התחברות
+        </a>
+      )}
+    </div>
+  );
   Mock.displayName = "MockMobileMenu";
   return { __esModule: true, default: Mock };
 });

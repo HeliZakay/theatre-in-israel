@@ -26,7 +26,13 @@ jest.mock("@radix-ui/react-navigation-menu", () => {
       {children}
     </span>
   );
-  return { Root, List, Item, Link };
+  const Trigger = ({ children }: { children: React.ReactNode }) => (
+    <button>{children}</button>
+  );
+  const Content = ({ children }: { children: React.ReactNode }) => (
+    <div>{children}</div>
+  );
+  return { Root, List, Item, Link, Trigger, Content };
 });
 
 describe("DesktopNav", () => {
