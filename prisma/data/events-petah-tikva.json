@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-03-24T09:21:53.917Z",
+  "scrapedAt": "2026-03-25T03:59:18.787Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות פתח תקווה",
     "city": "פתח תקווה"
   },
   "events": [
-    {
-      "showId": 126,
-      "showSlug": "הפרח-בגני",
-      "date": "2026-04-04",
-      "hour": "21:00"
-    },
     {
       "showId": 98,
       "showSlug": "החטא-ועונשו",
