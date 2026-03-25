@@ -7,19 +7,19 @@ export interface GenreSection {
 
 export const GENRE_SECTIONS = {
   dramas: {
-    genres: ["דרמה", "דרמה קומית"],
+    genres: ["דרמה"],
     kicker: "ז'אנר",
     title: "דרמות",
     linkText: "לכל הדרמות",
   },
   comedies: {
-    genres: ["קומדיה", "קומדיה שחורה", "סאטירה"],
+    genres: ["קומדיה"],
     kicker: "ז'אנר",
     title: "קומדיות",
     linkText: "לכל הקומדיות",
   },
   musicals: {
-    genres: ["מוזיקלי", "מחזמר"],
+    genres: ["מוזיקלי"],
     kicker: "ז'אנר",
     title: "מוזיקלי",
     linkText: "לכל המוזיקליים",
@@ -27,7 +27,7 @@ export const GENRE_SECTIONS = {
   israeli: {
     genres: ["ישראלי"],
     kicker: "ז'אנר",
-    title: "הכי ישראלי",
+    title: "ישראלי",
     linkText: "לכל הישראליים",
   },
 } as const satisfies Record<string, GenreSection>;
