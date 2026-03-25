@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-03-25T03:59:18.787Z",
+  "scrapedAt": "2026-03-25T09:21:53.668Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות פתח תקווה",
     "city": "פתח תקווה"
   },
   "events": [
-    {
-      "showId": 98,
-      "showSlug": "החטא-ועונשו",
-      "date": "2026-04-12",
-      "hour": "20:30"
-    },
     {
       "showId": 256,
       "showSlug": "מותרת-לכל-אדם",
