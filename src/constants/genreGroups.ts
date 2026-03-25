@@ -19,10 +19,10 @@ export const GENRE_SECTIONS = {
     linkText: "לכל הקומדיות",
   },
   musicals: {
-    genres: ["מוזיקלי"],
+    genres: ["מחזמר"],
     kicker: "ז'אנר",
-    title: "מוזיקלי",
-    linkText: "לכל המוזיקליים",
+    title: "מחזמרים",
+    linkText: "לכל מחזות הזמר",
   },
   israeli: {
     genres: ["ישראלי"],
