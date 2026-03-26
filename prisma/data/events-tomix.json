@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-03-25T09:21:06.930Z",
+  "scrapedAt": "2026-03-26T04:06:53.739Z",
   "touring": true,
   "events": [
     {
@@ -373,22 +373,6 @@
     {
       "showId": 266,
       "showSlug": "מיקה-שלי",
-      "date": "2026-04-29",
-      "hour": "20:30",
-      "venueName": "אודיטוריום חיפה",
-      "venueCity": "חיפה"
-    },
-    {
-      "showId": 266,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-04-30",
-      "hour": "20:30",
-      "venueName": "אודיטוריום חיפה",
-      "venueCity": "חיפה"
-    },
-    {
-      "showId": 266,
-      "showSlug": "מיקה-שלי",
       "date": "2026-05-02",
       "hour": "20:30",
       "venueName": "היכל התרבות נס ציונה",
@@ -449,6 +433,22 @@
       "hour": "21:00",
       "venueName": "היכל התרבות כפר סבא",
       "venueCity": "כפר סבא"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-06-24",
+      "hour": "20:00",
+      "venueName": "אודיטוריום חיפה",
+      "venueCity": "חיפה"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-06-25",
+      "hour": "20:00",
+      "venueName": "אודיטוריום חיפה",
+      "venueCity": "חיפה"
     },
     {
       "showId": 266,

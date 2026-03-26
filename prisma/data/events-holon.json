@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-03-25T09:23:22.723Z",
+  "scrapedAt": "2026-03-26T04:08:52.787Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון חולון",
     "city": "חולון"
   },
   "events": [
-    {
-      "showId": 94,
-      "showSlug": "משרתם-של-שני-אדונים",
-      "date": "2026-03-25",
-      "hour": "20:30"
-    },
     {
       "showId": 94,
       "showSlug": "משרתם-של-שני-אדונים",

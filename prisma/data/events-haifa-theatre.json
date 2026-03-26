@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-03-25T09:18:33.645Z",
+  "scrapedAt": "2026-03-26T04:04:20.094Z",
   "touring": true,
   "events": [
     {
@@ -17,38 +17,6 @@
       "hour": "20:30",
       "venueName": "בית החייל ת\"א",
       "venueCity": "תל אביב"
-    },
-    {
-      "showId": 82,
-      "showSlug": "היומן",
-      "date": "2026-03-27",
-      "hour": "12:00",
-      "venueName": "היכל התרבות ראשון לציון",
-      "venueCity": "ראשון לציון"
-    },
-    {
-      "showId": 82,
-      "showSlug": "היומן",
-      "date": "2026-03-28",
-      "hour": "21:00",
-      "venueName": "היכל התרבות ראשון לציון",
-      "venueCity": "ראשון לציון"
-    },
-    {
-      "showId": 82,
-      "showSlug": "היומן",
-      "date": "2026-03-29",
-      "hour": "20:30",
-      "venueName": "היכל התרבות ראשון לציון",
-      "venueCity": "ראשון לציון"
-    },
-    {
-      "showId": 82,
-      "showSlug": "היומן",
-      "date": "2026-03-30",
-      "hour": "20:30",
-      "venueName": "היכל התרבות ראשון לציון",
-      "venueCity": "ראשון לציון"
     },
     {
       "showId": 82,
