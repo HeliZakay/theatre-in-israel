@@ -14,40 +14,17 @@
 import { spawn } from "child_process";
 import { fileURLToPath } from "url";
 import path from "path";
+import { THEATRES } from "./lib/theatres-config.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
 
-// ── Scraper definitions ─────────────────────────────────────────
-const SCRAPERS = [
-  { label: "Cameri",          script: "scrape-all-cameri-events.mjs",              json: "prisma/data/events.json" },
-  { label: "Lessin",          script: "scrape-all-lessin-events.mjs",              json: "prisma/data/events-lessin.json" },
-  { label: "Hebrew Theatre",  script: "scrape-all-hebrew-theatre-events.mjs",      json: "prisma/data/events-hebrew-theatre.json" },
-  { label: "Khan",            script: "scrape-all-khan-events.mjs",                json: "prisma/data/events-khan.json" },
-  { label: "Gesher",          script: "scrape-all-gesher-events.mjs",              json: "prisma/data/events-gesher.json" },
-  { label: "Haifa Theatre",   script: "scrape-all-haifa-theatre-events.mjs",       json: "prisma/data/events-haifa-theatre.json" },
-  { label: "Tmuna",           script: "scrape-all-tmuna-theatre-events.mjs",       json: "prisma/data/events-tmuna-theatre.json" },
-  { label: "Beer Sheva",      script: "scrape-all-beer-sheva-theatre-events.mjs",  json: "prisma/data/events-beer-sheva-theatre.json" },
-  { label: "Tzavta",          script: "scrape-all-tzavta-theatre-events.mjs",      json: "prisma/data/events-tzavta-theatre.json" },
-  { label: "Habima",          script: "scrape-all-habima-theatre-events.mjs",       json: "prisma/data/events-habima-theatre.json" },
-  { label: "toMix",           script: "scrape-all-tomix-events.mjs",               json: "prisma/data/events-tomix.json" },
-  // Venue scrapers
-  { label: "Nes Ziona",       script: "scrape-all-nes-ziona-events.mjs",            json: "prisma/data/events-nes-ziona.json" },
-  { label: "Ashdod",          script: "scrape-all-ashdod-events.mjs",              json: "prisma/data/events-ashdod.json" },
-  { label: "Beer Sheva Venue", script: "scrape-all-beer-sheva-venue-events.mjs",  json: "prisma/data/events-beer-sheva-venue.json" },
-  { label: "Rishon LeZion",   script: "scrape-all-rishon-lezion-events.mjs",    json: "prisma/data/events-rishon-lezion.json" },
-  { label: "Petah Tikva",    script: "scrape-all-petah-tikva-events.mjs",     json: "prisma/data/events-petah-tikva.json" },
-  { label: "Or Akiva",       script: "scrape-all-or-akiva-events.mjs",       json: "prisma/data/events-or-akiva.json" },
-  { label: "Theatron HaZafon", script: "scrape-all-theatron-hazafon-events.mjs", json: "prisma/data/events-theatron-hazafon.json" },
-  { label: "Kfar Saba",       script: "scrape-all-kfar-saba-events.mjs",       json: "prisma/data/events-kfar-saba.json" },
-  { label: "Airport City",   script: "scrape-all-airport-city-events.mjs",   json: "prisma/data/events-airport-city.json" },
-  { label: "Ashkelon",      script: "scrape-all-ashkelon-events.mjs",      json: "prisma/data/events-ashkelon.json" },
-  { label: "Holon",         script: "scrape-all-holon-events.mjs",         json: "prisma/data/events-holon.json" },
-  { label: "Kiryat Motzkin", script: "scrape-all-kiryat-motzkin-events.mjs", json: "prisma/data/events-kiryat-motzkin.json" },
-  { label: "Rehovot",        script: "scrape-all-rehovot-events.mjs",       json: "prisma/data/events-rehovot.json" },
-  { label: "Herzliya",       script: "scrape-all-herzliya-events.mjs",      json: "prisma/data/events-herzliya.json" },
-  { label: "Ganei Tikva",   script: "scrape-all-ganei-tikva-events.mjs",   json: "prisma/data/events-ganei-tikva.json" },
-];
+// ── Scraper definitions (derived from shared config) ────────────
+const SCRAPERS = THEATRES.map((t) => ({
+  label: t.label,
+  script: t.script,
+  json: `prisma/data/${t.jsonFile}`,
+}));
 
 // ── CLI args ────────────────────────────────────────────────────
 const args = process.argv.slice(2);

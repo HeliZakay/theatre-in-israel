@@ -326,36 +326,15 @@ async function syncEvents(prisma, filePath) {
 // ---------------------------------------------------------------------------
 // 3. Sync all event files
 // ---------------------------------------------------------------------------
-const EVENT_FILES = [
-  { file: "events.json", label: "Cameri", required: true },
-  { file: "events-lessin.json", label: "Lessin" },
-  { file: "events-hebrew-theatre.json", label: "Hebrew Theatre" },
-  { file: "events-khan.json", label: "Khan Theatre" },
-  { file: "events-gesher.json", label: "Gesher Theatre" },
-  { file: "events-haifa-theatre.json", label: "Haifa Theatre" },
-  { file: "events-tmuna-theatre.json", label: "Tmuna Theatre" },
-  { file: "events-beer-sheva-theatre.json", label: "Beer Sheva Theatre" },
-  { file: "events-tzavta-theatre.json", label: "Tzavta Theatre" },
-  { file: "events-habima-theatre.json", label: "Habima Theatre" },
-  { file: "events-tomix.json", label: "toMix Theatre" },
-  { file: "events-nes-ziona.json", label: "Nes Ziona Venue" },
-  { file: "events-ashdod.json", label: "Ashdod Venue" },
-  { file: "events-beer-sheva-venue.json", label: "Beer Sheva Venue" },
-  { file: "events-rishon-lezion.json", label: "Rishon LeZion Venue" },
-  { file: "events-petah-tikva.json", label: "Petah Tikva Venue" },
-  { file: "events-or-akiva.json", label: "Or Akiva Venue" },
-  { file: "events-theatron-hazafon.json", label: "Theatron HaZafon Venue" },
-  { file: "events-kfar-saba.json", label: "Kfar Saba Venue" },
-  { file: "events-airport-city.json", label: "Airport City Venue" },
-  { file: "events-ashkelon.json", label: "Ashkelon Venue" },
-  { file: "events-holon.json", label: "Holon Venue" },
-  { file: "events-kiryat-motzkin.json", label: "Kiryat Motzkin Venue" },
-  { file: "events-rehovot.json", label: "Rehovot Venue" },
-  { file: "events-herzliya.json", label: "Herzliya Venue" },
-  { file: "events-ganei-tikva.json", label: "Ganei Tikva Venue" },
-];
-
 async function main() {
+  // Import shared config (ESM) from CJS via dynamic import()
+  const { THEATRES } = await import("../scripts/lib/theatres-config.mjs");
+  const EVENT_FILES = THEATRES.map((t) => ({
+    file: t.jsonFile,
+    label: t.label,
+    required: t.required,
+  }));
+
   const prisma = createPrismaClient();
 
   try {
