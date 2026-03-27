@@ -12,8 +12,9 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const EXCLUDED_FILE = path.join(__dirname, "..", "data", "excluded-shows.json");
 
-// Pure string functions — re-exported from normalize.mjs for testability.
-export { normalise, normaliseForMatch, escapeSql } from "./normalize.mjs";
+// Pure string functions — imported locally (used in this file) and re-exported for consumers.
+import { normalise, normaliseForMatch, escapeSql } from "./normalize.mjs";
+export { normalise, normaliseForMatch, escapeSql };
 
 /**
  * Create a Prisma client backed by a pg Pool.
