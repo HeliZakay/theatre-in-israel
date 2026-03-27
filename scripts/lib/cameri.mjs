@@ -11,7 +11,7 @@
 
 import { fixDoubleProtocol } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
-import { parseLessinDuration } from "./duration.js";
+import { parseLessinDuration } from "./duration.mjs";
 
 // ── Re-export shared browser helpers for backward compatibility ─
 export { launchBrowser, setupRequestInterception } from "./browser.mjs";

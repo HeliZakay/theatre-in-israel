@@ -7,7 +7,7 @@
 
 import { fixDoubleProtocol, extractImageFromPage } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
-import { parseLessinDuration } from "./duration.js";
+import { parseLessinDuration } from "./duration.mjs";
 
 // Re-export so existing consumers can still import from here
 export { parseLessinDuration };

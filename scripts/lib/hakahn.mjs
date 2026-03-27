@@ -20,7 +20,7 @@
 
 import { fixDoubleProtocol, extractImageFromPage } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
-import { parseLessinDuration } from "./duration.js";
+import { parseLessinDuration } from "./duration.mjs";
 import { resolveVenueCity } from "./venues.mjs";
 import { inferYear } from "./date.mjs";
 

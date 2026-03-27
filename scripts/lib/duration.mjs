@@ -1,12 +1,4 @@
 /**
- * Beit Lessin duration parser — parses Hebrew textual duration strings
- * into minutes.
- *
- * Uses CommonJS so it can be imported by both ESM (.mjs) scrapers and
- * CJS test runners (Jest / ts-jest) without extra configuration.
- */
-
-/**
  * Parse a Hebrew textual duration string into minutes.
  *
  * Handles both numeric forms ("90 דקות") and textual forms
@@ -80,4 +72,4 @@ function parseLessinDuration(text) {
   return null;
 }
 
-module.exports = { parseLessinDuration };
+export { parseLessinDuration };

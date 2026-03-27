@@ -1,4 +1,4 @@
-import { parseLessinDuration } from "../../../scripts/lib/duration.js";
+import { parseLessinDuration } from "../../../scripts/lib/duration.mjs";
 
 describe("parseLessinDuration", () => {
   // ── Null / empty ──
