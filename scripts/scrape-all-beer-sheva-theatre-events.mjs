@@ -19,7 +19,7 @@
 
 import { runScraper } from "./lib/scraper-runner.mjs";
 import {
-  fetchShows,
+  fetchListing,
   scrapeShowEvents,
   BEER_SHEVA_THEATRE,
 } from "./lib/beer-sheva.mjs";
@@ -27,7 +27,7 @@ import {
 runScraper({
   label: "Beer Sheva Theatre Events Scraper",
   theatre: BEER_SHEVA_THEATRE,
-  fetchListings: fetchShows,
+  fetchListings: fetchListing,
   scrapeShowEvents,
   touring: true,
 });

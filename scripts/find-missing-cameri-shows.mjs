@@ -16,7 +16,7 @@ import { runPipeline } from "./lib/pipeline.mjs";
 import {
   CAMERI_THEATRE,
   launchBrowser,
-  fetchSchedule,
+  fetchListing,
   scrapeShowDetails,
 } from "./lib/cameri.mjs";
 
@@ -24,7 +24,7 @@ await runPipeline({
   theatreId: "cameri",
   theatreName: CAMERI_THEATRE,
   theatreConst: CAMERI_THEATRE,
-  fetchListing: fetchSchedule,
+  fetchListing,
   scrapeDetails: scrapeShowDetails,
   titlePreference: "detail-first",
   launchBrowser,

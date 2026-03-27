@@ -19,7 +19,7 @@
 
 import { runScraper } from "./lib/scraper-runner.mjs";
 import {
-  fetchShows,
+  fetchListing,
   scrapeShowEvents,
   TZAVTA_THEATRE,
 } from "./lib/tzavta.mjs";
@@ -27,7 +27,7 @@ import {
 runScraper({
   label: "Tzavta Theatre Events Scraper",
   theatre: TZAVTA_THEATRE,
-  fetchListings: fetchShows,
+  fetchListings: fetchListing,
   scrapeShowEvents,
   touring: true,
 });

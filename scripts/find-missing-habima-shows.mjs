@@ -16,7 +16,7 @@ import { runPipeline } from "./lib/pipeline.mjs";
 import { launchBrowser } from "./lib/browser.mjs";
 import {
   HABIMA_THEATRE,
-  fetchRepertoire,
+  fetchListing,
   scrapeShowDetails,
 } from "./lib/habima.mjs";
 
@@ -24,7 +24,7 @@ await runPipeline({
   theatreId: "habima",
   theatreName: HABIMA_THEATRE,
   theatreConst: HABIMA_THEATRE,
-  fetchListing: fetchRepertoire,
+  fetchListing,
   scrapeDetails: scrapeShowDetails,
   titlePreference: "listing-first",
   launchBrowser,

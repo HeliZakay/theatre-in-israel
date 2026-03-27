@@ -20,7 +20,7 @@
 
 import { runScraper } from "./lib/scraper-runner.mjs";
 import {
-  fetchShows,
+  fetchListing,
   scrapeShowEvents,
   TOMIX_THEATRE,
 } from "./lib/tomix.mjs";
@@ -28,7 +28,7 @@ import {
 runScraper({
   label: "toMix Theatre Events Scraper",
   theatre: TOMIX_THEATRE,
-  fetchListings: fetchShows,
+  fetchListings: fetchListing,
   scrapeShowEvents,
   touring: true,
 });

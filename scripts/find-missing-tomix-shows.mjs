@@ -16,7 +16,7 @@ import { runPipeline } from "./lib/pipeline.mjs";
 import { launchBrowser } from "./lib/browser.mjs";
 import {
   TOMIX_THEATRE,
-  fetchShows,
+  fetchListing,
   scrapeShowDetails,
 } from "./lib/tomix.mjs";
 
@@ -24,7 +24,7 @@ await runPipeline({
   theatreId: "tomix",
   theatreName: TOMIX_THEATRE,
   theatreConst: TOMIX_THEATRE,
-  fetchListing: fetchShows,
+  fetchListing,
   scrapeDetails: scrapeShowDetails,
   titlePreference: "detail-first",
   launchBrowser,

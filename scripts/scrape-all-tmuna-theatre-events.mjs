@@ -19,7 +19,7 @@
 
 import { runScraper } from "./lib/scraper-runner.mjs";
 import {
-  fetchShows,
+  fetchListing,
   scrapeShowEvents,
   TMUNA_THEATRE,
 } from "./lib/tmuna.mjs";
@@ -27,7 +27,7 @@ import {
 runScraper({
   label: "Tmuna Theatre Events Scraper",
   theatre: TMUNA_THEATRE,
-  fetchListings: fetchShows,
+  fetchListings: fetchListing,
   scrapeShowEvents,
   touring: true,
 });

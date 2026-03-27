@@ -15,13 +15,13 @@
 
 import { runPipeline } from "./lib/pipeline.mjs";
 import { launchBrowser } from "./lib/browser.mjs";
-import { TMUNA_THEATRE, fetchShows, scrapeShowDetails } from "./lib/tmuna.mjs";
+import { TMUNA_THEATRE, fetchListing, scrapeShowDetails } from "./lib/tmuna.mjs";
 
 await runPipeline({
   theatreId: "tmuna",
   theatreName: TMUNA_THEATRE,
   theatreConst: TMUNA_THEATRE,
-  fetchListing: fetchShows,
+  fetchListing,
   scrapeDetails: scrapeShowDetails,
   titlePreference: "listing-first",
   launchBrowser,

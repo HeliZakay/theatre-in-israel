@@ -14,7 +14,7 @@ import { runCastBackfill } from "./lib/backfill-cast-pipeline.mjs";
 import { launchBrowser } from "./lib/browser.mjs";
 import {
   TZAVTA_THEATRE,
-  fetchShows,
+  fetchListing,
   scrapeCast,
 } from "./lib/tzavta.mjs";
 
@@ -22,7 +22,7 @@ const { sql } = await runCastBackfill({
   theatreName: TZAVTA_THEATRE,
   theatreLabel: "Tzavta Theatre (תיאטרון צוותא)",
   websiteUrl: "tzavta.co.il",
-  fetchListing: fetchShows,
+  fetchListing,
   scrapeCast,
   launchBrowser,
 });

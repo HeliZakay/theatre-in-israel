@@ -14,7 +14,7 @@ import { runCastBackfill } from "./lib/backfill-cast-pipeline.mjs";
 import { launchBrowser } from "./lib/browser.mjs";
 import {
   BEER_SHEVA_THEATRE,
-  fetchShows,
+  fetchListing,
   scrapeCast,
 } from "./lib/beer-sheva.mjs";
 
@@ -22,7 +22,7 @@ const { sql } = await runCastBackfill({
   theatreName: BEER_SHEVA_THEATRE,
   theatreLabel: "Beer Sheva Theatre (תיאטרון באר שבע)",
   websiteUrl: "b7t.co.il",
-  fetchListing: fetchShows,
+  fetchListing,
   scrapeCast,
   launchBrowser,
 });

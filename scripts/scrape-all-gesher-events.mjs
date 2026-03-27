@@ -19,7 +19,7 @@
 
 import { runScraper } from "./lib/scraper-runner.mjs";
 import {
-  fetchShows,
+  fetchListing,
   scrapeShowEvents,
   GESHER_THEATRE,
 } from "./lib/gesher.mjs";
@@ -27,7 +27,7 @@ import {
 runScraper({
   label: "Gesher Theatre Events Scraper",
   theatre: GESHER_THEATRE,
-  fetchListings: fetchShows,
+  fetchListings: fetchListing,
   scrapeShowEvents,
   touring: true,
 });

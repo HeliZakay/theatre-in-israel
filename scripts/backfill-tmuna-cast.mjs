@@ -14,7 +14,7 @@ import { runCastBackfill } from "./lib/backfill-cast-pipeline.mjs";
 import { launchBrowser } from "./lib/browser.mjs";
 import {
   TMUNA_THEATRE,
-  fetchShows,
+  fetchListing,
   scrapeShowDetails,
 } from "./lib/tmuna.mjs";
 
@@ -22,7 +22,7 @@ const { sql } = await runCastBackfill({
   theatreName: TMUNA_THEATRE,
   theatreLabel: "Tmuna Theatre (תיאטרון תמונע)",
   websiteUrl: "tmu-na.org.il",
-  fetchListing: fetchShows,
+  fetchListing,
   scrapeCast: async (browser, url) =>
     (await scrapeShowDetails(browser, url)).cast || null,
   launchBrowser,

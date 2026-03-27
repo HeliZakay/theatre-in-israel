@@ -14,7 +14,7 @@ import { runCastBackfill } from "./lib/backfill-cast-pipeline.mjs";
 import { launchBrowser } from "./lib/browser.mjs";
 import {
   HEBREW_THEATRE,
-  fetchShows,
+  fetchListing,
   scrapeShowDetails,
 } from "./lib/hebrew-theatre.mjs";
 
@@ -22,7 +22,7 @@ const { sql } = await runCastBackfill({
   theatreName: HEBREW_THEATRE,
   theatreLabel: "Hebrew Theatre (התיאטרון העברי)",
   websiteUrl: "teatron.org.il",
-  fetchListing: fetchShows,
+  fetchListing,
   scrapeCast: async (browser, url) =>
     (await scrapeShowDetails(browser, url)).cast || null,
   launchBrowser,

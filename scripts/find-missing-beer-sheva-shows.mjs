@@ -16,7 +16,7 @@ import { runPipeline } from "./lib/pipeline.mjs";
 import { launchBrowser } from "./lib/browser.mjs";
 import {
   BEER_SHEVA_THEATRE,
-  fetchShows,
+  fetchListing,
   scrapeShowDetails,
 } from "./lib/beer-sheva.mjs";
 
@@ -24,7 +24,7 @@ await runPipeline({
   theatreId: "beer-sheva",
   theatreName: BEER_SHEVA_THEATRE,
   theatreConst: BEER_SHEVA_THEATRE,
-  fetchListing: fetchShows,
+  fetchListing,
   scrapeDetails: scrapeShowDetails,
   titlePreference: "listing-first",
   launchBrowser,

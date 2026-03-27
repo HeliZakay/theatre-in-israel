@@ -44,7 +44,7 @@ export const REPERTOIRE_URL =
  * @param {import("puppeteer").Browser} browser
  * @returns {Promise<Array<{ title: string, url: string }>>}
  */
-export async function fetchShows(browser) {
+export async function fetchListing(browser) {
   const page = await browser.newPage();
   await setupRequestInterception(page);
 

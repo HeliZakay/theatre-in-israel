@@ -151,7 +151,7 @@ export function extractCameriImage() {
  * @param {import("puppeteer").Browser} browser
  * @returns {Promise<Array<{ title: string, url: string }>>}
  */
-export async function fetchSchedule(browser) {
+export async function fetchListing(browser) {
   const page = await browser.newPage();
   await setupRequestInterception(page);
 
@@ -778,5 +778,3 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
   return result;
 }
 
-// Alias for consistent naming across all theatre modules.
-export { fetchSchedule as fetchShows };

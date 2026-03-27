@@ -17,7 +17,7 @@
 
 import { runScraper } from "./lib/scraper-runner.mjs";
 import {
-  fetchSchedule,
+  fetchListing,
   scrapeShowEvents,
   CAMERI_THEATRE,
 } from "./lib/cameri.mjs";
@@ -25,7 +25,7 @@ import {
 runScraper({
   label: "Cameri Events Scraper",
   theatre: CAMERI_THEATRE,
-  fetchListings: fetchSchedule,
+  fetchListings: fetchListing,
   scrapeShowEvents,
   venue: { name: "תיאטרון הקאמרי", city: "תל אביב" },
 });

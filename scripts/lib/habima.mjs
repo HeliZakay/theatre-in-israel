@@ -103,7 +103,7 @@ export async function fetchPresentationDates(browser) {
  * @param {import("puppeteer").Browser} browser
  * @returns {Promise<Array<{ title: string, url: string }>>}
  */
-export async function fetchRepertoire(browser) {
+export async function fetchListing(browser) {
   const page = await browser.newPage();
   await setupRequestInterception(page);
 
@@ -520,5 +520,3 @@ export async function scrapeShowEvents(browser, url, { debug = false, validDates
   return result;
 }
 
-// Alias for consistent naming across all theatre modules.
-export { fetchRepertoire as fetchShows };

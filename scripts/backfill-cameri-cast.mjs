@@ -14,7 +14,7 @@ import { runCastBackfill } from "./lib/backfill-cast-pipeline.mjs";
 import { launchBrowser } from "./lib/browser.mjs";
 import {
   CAMERI_THEATRE,
-  fetchSchedule,
+  fetchListing,
   scrapeCast,
 } from "./lib/cameri.mjs";
 
@@ -22,7 +22,7 @@ const { sql } = await runCastBackfill({
   theatreName: CAMERI_THEATRE,
   theatreLabel: "Cameri Theatre (תיאטרון הקאמרי)",
   websiteUrl: "cameri.co.il",
-  fetchListing: fetchSchedule,
+  fetchListing,
   scrapeCast,
   launchBrowser,
 });

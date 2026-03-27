@@ -22,7 +22,7 @@
 
 import { runScraper } from "./lib/scraper-runner.mjs";
 import {
-  fetchShows,
+  fetchListing,
   scrapeShowEvents,
   fetchPresentationDates,
   HABIMA_THEATRE,
@@ -31,7 +31,7 @@ import {
 runScraper({
   label: "Habima Theatre Events Scraper",
   theatre: HABIMA_THEATRE,
-  fetchListings: fetchShows,
+  fetchListings: fetchListing,
   scrapeShowEvents,
   touring: true,
   async prepareScrape(browser) {

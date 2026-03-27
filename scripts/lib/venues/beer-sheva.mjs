@@ -22,7 +22,7 @@ const CATEGORY_URLS = [
 
 /**
  * Scrape show links from a single category page.
- * Same logic as fetchShows() in beer-sheva.mjs but accepts any URL.
+ * Same logic as fetchListing() in beer-sheva.mjs but accepts any URL.
  */
 async function scrapeCategory(browser, categoryUrl) {
   const page = await browser.newPage();

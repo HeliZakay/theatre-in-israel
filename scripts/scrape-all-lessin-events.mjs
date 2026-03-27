@@ -16,12 +16,12 @@
  */
 
 import { runScraper } from "./lib/scraper-runner.mjs";
-import { fetchShows, scrapeShowEvents, LESSIN_THEATRE } from "./lib/lessin.mjs";
+import { fetchListing, scrapeShowEvents, LESSIN_THEATRE } from "./lib/lessin.mjs";
 
 runScraper({
   label: "Lessin Events Scraper",
   theatre: LESSIN_THEATRE,
-  fetchListings: fetchShows,
+  fetchListings: fetchListing,
   scrapeShowEvents,
   venue: { name: "תיאטרון בית ליסין", city: "תל אביב" },
 });

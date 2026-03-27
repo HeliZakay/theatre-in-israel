@@ -17,7 +17,7 @@ import { runPipeline } from "./lib/pipeline.mjs";
 import { launchBrowser } from "./lib/browser.mjs";
 import {
   GESHER_THEATRE,
-  fetchShows,
+  fetchListing,
   scrapeShowDetails,
 } from "./lib/gesher.mjs";
 
@@ -25,7 +25,7 @@ await runPipeline({
   theatreId: "gesher",
   theatreName: GESHER_THEATRE,
   theatreConst: GESHER_THEATRE,
-  fetchListing: fetchShows,
+  fetchListing,
   scrapeDetails: scrapeShowDetails,
   titlePreference: "listing-first",
   launchBrowser,

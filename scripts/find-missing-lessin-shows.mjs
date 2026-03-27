@@ -16,7 +16,7 @@ import { runPipeline } from "./lib/pipeline.mjs";
 import { launchBrowser } from "./lib/browser.mjs";
 import {
   LESSIN_THEATRE,
-  fetchShows,
+  fetchListing,
   scrapeShowDetails,
 } from "./lib/lessin.mjs";
 
@@ -24,7 +24,7 @@ await runPipeline({
   theatreId: "lessin",
   theatreName: LESSIN_THEATRE,
   theatreConst: LESSIN_THEATRE,
-  fetchListing: fetchShows,
+  fetchListing,
   scrapeDetails: scrapeShowDetails,
   titlePreference: "listing-first",
   launchBrowser,

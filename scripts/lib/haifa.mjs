@@ -31,7 +31,7 @@ export const SCHEDULE_URL = "https://www.ht1.co.il/Show";
  * @param {import("puppeteer").Browser} browser
  * @returns {Promise<Array<{ title: string, url: string }>>}
  */
-export async function fetchShows(browser) {
+export async function fetchListing(browser) {
   const page = await browser.newPage();
   await setupRequestInterception(page);
 

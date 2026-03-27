@@ -20,7 +20,7 @@
 
 import { runScraper } from "./lib/scraper-runner.mjs";
 import {
-  fetchShows,
+  fetchListing,
   scrapeShowEvents,
   KHAN_THEATRE,
 } from "./lib/hakahn.mjs";
@@ -28,7 +28,7 @@ import {
 runScraper({
   label: "Khan Theatre Events Scraper",
   theatre: KHAN_THEATRE,
-  fetchListings: fetchShows,
+  fetchListings: fetchListing,
   scrapeShowEvents,
   touring: true,
 });

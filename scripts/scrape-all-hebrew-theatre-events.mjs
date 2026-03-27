@@ -19,7 +19,7 @@
 
 import { runScraper } from "./lib/scraper-runner.mjs";
 import {
-  fetchShows,
+  fetchListing,
   scrapeShowEvents,
   HEBREW_THEATRE,
   resolveVenueCity,
@@ -28,7 +28,7 @@ import {
 runScraper({
   label: "Hebrew Theatre Events Scraper",
   theatre: HEBREW_THEATRE,
-  fetchListings: fetchShows,
+  fetchListings: fetchListing,
   scrapeShowEvents,
   touring: true,
   resolveVenueCity,

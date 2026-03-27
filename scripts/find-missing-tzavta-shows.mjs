@@ -16,7 +16,7 @@ import { runPipeline } from "./lib/pipeline.mjs";
 import { launchBrowser } from "./lib/browser.mjs";
 import {
   TZAVTA_THEATRE,
-  fetchShows,
+  fetchListing,
   scrapeShowDetails,
 } from "./lib/tzavta.mjs";
 
@@ -24,7 +24,7 @@ await runPipeline({
   theatreId: "tzavta",
   theatreName: TZAVTA_THEATRE,
   theatreConst: TZAVTA_THEATRE,
-  fetchListing: fetchShows,
+  fetchListing,
   scrapeDetails: scrapeShowDetails,
   titlePreference: "listing-first",
   launchBrowser,

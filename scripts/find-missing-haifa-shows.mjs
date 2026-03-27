@@ -14,13 +14,13 @@
 
 import { runPipeline } from "./lib/pipeline.mjs";
 import { launchBrowser } from "./lib/browser.mjs";
-import { HAIFA_THEATRE, fetchShows, scrapeShowDetails } from "./lib/haifa.mjs";
+import { HAIFA_THEATRE, fetchListing, scrapeShowDetails } from "./lib/haifa.mjs";
 
 await runPipeline({
   theatreId: "haifa",
   theatreName: HAIFA_THEATRE,
   theatreConst: HAIFA_THEATRE,
-  fetchListing: fetchShows,
+  fetchListing,
   scrapeDetails: scrapeShowDetails,
   titlePreference: "listing-first",
   launchBrowser,

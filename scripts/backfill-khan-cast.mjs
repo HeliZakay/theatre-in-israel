@@ -14,7 +14,7 @@ import { runCastBackfill } from "./lib/backfill-cast-pipeline.mjs";
 import { launchBrowser } from "./lib/browser.mjs";
 import {
   KHAN_THEATRE,
-  fetchShows,
+  fetchListing,
   scrapeCast,
 } from "./lib/hakahn.mjs";
 
@@ -22,7 +22,7 @@ const { sql } = await runCastBackfill({
   theatreName: KHAN_THEATRE,
   theatreLabel: "Khan Theatre (תיאטרון החאן)",
   websiteUrl: "khan.co.il",
-  fetchListing: fetchShows,
+  fetchListing,
   scrapeCast,
   launchBrowser,
 });
