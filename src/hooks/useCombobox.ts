@@ -8,7 +8,7 @@ interface UseComboboxOptions {
   maxItems?: number;
 }
 
-export function useCombobox({
+export function useCombobox<T extends HTMLElement = HTMLElement>({
   items = [],
   value = "",
   onSelect,
@@ -17,7 +17,7 @@ export function useCombobox({
 }: UseComboboxOptions = {}) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
-  const rootRef = useRef<HTMLElement>(null);
+  const rootRef = useRef<T>(null);
 
   /* ── close on tap / click outside ── */
   useEffect(() => {

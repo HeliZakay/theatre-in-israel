@@ -90,7 +90,7 @@ export default function HeaderSearch() {
     selectItem,
     setIsOpen: setSuggestionsOpen,
     setActiveIndex,
-  } = useCombobox({
+  } = useCombobox<HTMLFormElement>({
     items: allItems,
     value,
     onSelect: (item) => {

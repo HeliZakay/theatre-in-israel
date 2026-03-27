@@ -55,8 +55,8 @@ const makeShow = (overrides: Partial<ShowListItem> = {}): ShowListItem => ({
   avgRating: 4.5,
   reviewCount: 10,
   durationMinutes: 120,
-  summary: null,
-  image: null,
+  summary: "",
+  description: null,
   ...overrides,
 });
 

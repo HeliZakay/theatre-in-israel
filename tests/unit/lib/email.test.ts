@@ -18,13 +18,13 @@ beforeEach(() => {
 });
 
 afterAll(() => {
-  process.env.NODE_ENV = originalEnv;
+  (process.env as any).NODE_ENV = originalEnv;
 });
 
 describe("email notifications", () => {
   describe("in production", () => {
     beforeAll(() => {
-      process.env.NODE_ENV = "production";
+      (process.env as any).NODE_ENV = "production";
       jest.resetModules();
     });
 
@@ -71,7 +71,7 @@ describe("email notifications", () => {
   describe("in non-production", () => {
     it("does not send email in development", async () => {
       jest.resetModules();
-      process.env.NODE_ENV = "test";
+      (process.env as any).NODE_ENV = "test";
 
       // Re-import to pick up new NODE_ENV
       const mod = await import("@/lib/email");

@@ -53,6 +53,7 @@ import UpcomingEventsSection from "@/components/Events/UpcomingEventsSection";
 import { getUpcomingEventsVaried } from "@/lib/data/homepage";
 
 const mockEvent = {
+  id: 1,
   showSlug: "test-show",
   showTitle: "הצגת טסט",
   date: "2026-03-25",
@@ -60,6 +61,7 @@ const mockEvent = {
   dateLabel: "מחר",
   venueName: "תיאטרון הקאמרי",
   venueCity: "תל אביב",
+  showTheatre: "הקאמרי",
   showAvgRating: 4.2,
   showReviewCount: 5,
 };

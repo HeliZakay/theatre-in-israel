@@ -28,8 +28,8 @@ function Wrapper(overrides: Partial<Parameters<typeof ReviewFormFields>[0]> = {}
 
   return (
     <ReviewFormFields
-      register={register}
-      control={control}
+      register={register as any}
+      control={control as any}
       errors={formState.errors}
       titleValue=""
       textValue=""

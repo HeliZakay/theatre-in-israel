@@ -51,7 +51,7 @@ export default function SearchBar({
     selectItem,
     setIsOpen,
     setActiveIndex,
-  } = useCombobox({
+  } = useCombobox<HTMLDivElement>({
     items: allItems,
     value,
     onSelect: (item) => setValue(item),

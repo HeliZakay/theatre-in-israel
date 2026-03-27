@@ -103,7 +103,7 @@ function DesktopCombobox({
     selectItem,
     setIsOpen,
     setActiveIndex,
-  } = useCombobox({
+  } = useCombobox<HTMLDivElement>({
     items: labels,
     value: inputValue,
     onSelect: handleSelect,

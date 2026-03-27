@@ -24,7 +24,7 @@ export default function ActorSearch({
     selectItem,
     setIsOpen,
     setActiveIndex,
-  } = useCombobox({
+  } = useCombobox<HTMLDivElement>({
     items: names,
     value,
     onSelect: (name) => onChange(name),

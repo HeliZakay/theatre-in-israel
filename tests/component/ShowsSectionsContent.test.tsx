@@ -41,8 +41,8 @@ const makeShow = (id: number, title: string) => ({
   avgRating: 4.0,
   reviewCount: 5,
   durationMinutes: 90,
-  summary: null,
-  image: null,
+  summary: "",
+  description: null,
 });
 
 const emptySections = {
@@ -52,6 +52,7 @@ const emptySections = {
   musicals: [],
   israeli: [],
   kids: [],
+  featuredShowId: null,
 };
 
 describe("ShowsSectionsContent", () => {

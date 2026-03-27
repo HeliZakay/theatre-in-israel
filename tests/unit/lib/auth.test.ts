@@ -93,7 +93,7 @@ describe("authOptions.callbacks.session", () => {
       trigger: "update",
       newSession: undefined,
     } as any);
-    expect(result.user.id).toBe("user-123");
+    expect((result as any).user.id).toBe("user-123");
   });
 });
 
