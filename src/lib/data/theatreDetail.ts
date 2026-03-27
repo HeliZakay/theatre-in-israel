@@ -1,6 +1,6 @@
 import { unstable_cache } from "next/cache";
 import prisma from "../prisma";
-import { showListInclude } from "../showHelpers";
+import { showListInclude, mapToShowListItem, calculateShowsStats } from "../showHelpers";
 import type { ShowListItem } from "@/types";
 
 export interface TheatreStats {
@@ -32,20 +32,8 @@ async function fetchTheatreData(theatreName: string): Promise<TheatrePageData> {
     }),
   ]);
 
-  const shows: ShowListItem[] = rawShows.map((s) => {
-    const { genres, ...rest } = s;
-    return {
-      ...rest,
-      genre: genres?.map((sg) => sg.genre.name) ?? [],
-    } satisfies ShowListItem;
-  });
-
-  const rated = shows.filter((s) => s.avgRating !== null);
-  const avgRating =
-    rated.length > 0
-      ? rated.reduce((sum, s) => sum + s.avgRating!, 0) / rated.length
-      : null;
-  const totalReviews = shows.reduce((sum, s) => sum + s.reviewCount, 0);
+  const shows: ShowListItem[] = rawShows.map(mapToShowListItem);
+  const { avgRating, totalReviews } = calculateShowsStats(shows);
 
   return {
     shows,

@@ -2,27 +2,13 @@ import { unstable_cache } from "next/cache";
 import prisma from "../prisma";
 import {
   showListInclude,
+  mapToShowListItem,
   KIDS_GENRE_NAME,
   excludeKidsWhere,
 } from "../showHelpers";
 import type { ShowListItem } from "@/types";
 
 const RELATED_LIMIT = 10;
-
-/**
- * Map a Prisma show (with genres relation via showListInclude) to ShowListItem.
- */
-function mapToShowListItem(
-  show: Awaited<
-    ReturnType<typeof prisma.show.findMany<{ include: typeof showListInclude }>>
-  >[number],
-): ShowListItem {
-  const { genres, ...rest } = show;
-  return {
-    ...rest,
-    genre: genres?.map((sg) => sg.genre.name) ?? [],
-  } satisfies ShowListItem;
-}
 
 /**
  * Fetch other shows from the same theatre, excluding the current show.

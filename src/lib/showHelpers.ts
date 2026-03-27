@@ -30,6 +30,37 @@ export const showListInclude = {
   genres: { include: { genre: true } },
 } as const;
 
+/** The Prisma result type when a Show is loaded with `showListInclude`. */
+export type PrismaShowListRow = Prisma.ShowGetPayload<{
+  include: typeof showListInclude;
+}>;
+
+/**
+ * Map a Prisma show (with genres relation via showListInclude) to ShowListItem.
+ */
+export function mapToShowListItem(show: PrismaShowListRow): ShowListItem {
+  const { genres, ...rest } = show;
+  return {
+    ...rest,
+    genre: genres?.map((sg) => sg.genre.name) ?? [],
+  } satisfies ShowListItem;
+}
+
+/**
+ * Calculate aggregate stats (average rating, total reviews) from a list of shows.
+ */
+export function calculateShowsStats(
+  shows: Pick<ShowListItem, "avgRating" | "reviewCount">[],
+): { avgRating: number | null; totalReviews: number } {
+  const rated = shows.filter((s) => s.avgRating !== null);
+  const avgRating =
+    rated.length > 0
+      ? rated.reduce((sum, s) => sum + s.avgRating!, 0) / rated.length
+      : null;
+  const totalReviews = shows.reduce((sum, s) => sum + s.reviewCount, 0);
+  return { avgRating, totalReviews };
+}
+
 /** The Prisma result type when a Show is loaded with `showInclude`. */
 export type PrismaShowWithRelations = Prisma.ShowGetPayload<{
   include: typeof showInclude;
@@ -117,12 +148,6 @@ export async function fetchShowListItems(
 
   return ids
     .map((id) => showMap.get(id))
-    .filter(Boolean)
-    .map((s) => {
-      const { genres, ...rest } = s!;
-      return {
-        ...rest,
-        genre: genres?.map((sg) => sg.genre.name) ?? [],
-      } satisfies ShowListItem;
-    });
+    .filter((s): s is PrismaShowListRow => Boolean(s))
+    .map(mapToShowListItem);
 }

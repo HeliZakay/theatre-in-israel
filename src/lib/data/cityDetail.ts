@@ -1,6 +1,6 @@
 import { unstable_cache } from "next/cache";
 import prisma from "../prisma";
-import { showListInclude } from "../showHelpers";
+import { showListInclude, mapToShowListItem } from "../showHelpers";
 import type { ShowListItem } from "@/types";
 
 export interface CityVenue {
@@ -59,13 +59,7 @@ async function fetchCityData(aliases: string[]): Promise<CityPageData> {
       })
     : [];
 
-  const topShows: ShowListItem[] = rawShows.slice(0, 12).map((s) => {
-    const { genres, ...rest } = s;
-    return {
-      ...rest,
-      genre: genres?.map((sg) => sg.genre.name) ?? [],
-    } satisfies ShowListItem;
-  });
+  const topShows: ShowListItem[] = rawShows.slice(0, 12).map(mapToShowListItem);
 
   // Aggregate stats
   const upcomingEventCount = venues.reduce((sum, v) => sum + v.upcomingEventCount, 0);

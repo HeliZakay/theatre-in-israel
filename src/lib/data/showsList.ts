@@ -2,7 +2,7 @@ import { Prisma } from "@prisma/client";
 import { unstable_cache } from "next/cache";
 import prisma from "../prisma";
 import { parseShowsSearchParams } from "../../utils/showsQuery";
-import { showListInclude, excludeKidsWhere, KIDS_GENRE_NAME } from "../showHelpers";
+import { showListInclude, mapToShowListItem, excludeKidsWhere, KIDS_GENRE_NAME } from "../showHelpers";
 import type { ShowListItem, ShowFilters } from "@/types";
 
 export interface ShowsListData {
@@ -103,13 +103,7 @@ export async function fetchShowsPage(
     take,
   });
 
-  return rawShows.map((s) => {
-    const { genres, ...rest } = s;
-    return {
-      ...rest,
-      genre: genres?.map((sg) => sg.genre.name) ?? [],
-    } satisfies ShowListItem;
-  });
+  return rawShows.map(mapToShowListItem);
 }
 
 /** Cached: distinct theatre names (stable data, revalidate every 60s). */

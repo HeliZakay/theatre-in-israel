@@ -1,11 +1,15 @@
 import { unstable_cache } from "next/cache";
 import prisma from "../prisma";
-import { showListInclude } from "../showHelpers";
+import {
+  showListInclude,
+  mapToShowListItem,
+  excludeKidsWhere,
+  KIDS_GENRE_NAME,
+} from "../showHelpers";
 import type { ShowListItem, Suggestions, LatestReviewItem } from "@/types";
 import type { EventListItem } from "./eventsList";
 import { GENRE_SECTIONS } from "@/constants/genreGroups";
 import { FEATURED_SHOW_SLUG } from "@/constants/featuredShow";
-import { excludeKidsWhere, KIDS_GENRE_NAME } from "../showHelpers";
 import { getSuggestions } from "./suggestions";
 
 const DISPLAY_LIMIT = 10;
@@ -30,21 +34,6 @@ export interface SectionsData {
   israeli: ShowListItem[];
   kids: ShowListItem[];
   featuredShowId: number | null;
-}
-
-/**
- * Map a Prisma show (with genres relation via showListInclude) to ShowListItem.
- */
-export function mapToShowListItem(
-  show: Awaited<
-    ReturnType<typeof prisma.show.findMany<{ include: typeof showListInclude }>>
-  >[number],
-): ShowListItem {
-  const { genres, ...rest } = show;
-  return {
-    ...rest,
-    genre: genres?.map((sg) => sg.genre.name) ?? [],
-  } satisfies ShowListItem;
 }
 
 /**

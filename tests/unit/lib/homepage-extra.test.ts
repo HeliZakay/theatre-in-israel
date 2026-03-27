@@ -18,11 +18,11 @@ jest.mock("next/cache", () => ({
 
 import {
   buildDateLabel,
-  mapToShowListItem,
   settled,
   getLatestReviews,
   getUpcomingEventsVaried,
 } from "@/lib/data/homepage";
+import { mapToShowListItem } from "@/lib/showHelpers";
 
 /* ------------------------------------------------------------------ */
 /*  buildDateLabel                                                     */

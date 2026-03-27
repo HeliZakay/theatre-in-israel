@@ -1,6 +1,6 @@
 import { unstable_cache } from "next/cache";
 import prisma from "../prisma";
-import { showListInclude, excludeKidsWhere, KIDS_GENRE_NAME } from "../showHelpers";
+import { showListInclude, mapToShowListItem, calculateShowsStats, excludeKidsWhere, KIDS_GENRE_NAME } from "../showHelpers";
 import type { ShowListItem } from "@/types";
 
 export interface GenreStats {
@@ -26,20 +26,8 @@ async function fetchGenreData(genreName: string): Promise<GenrePageData> {
     orderBy: [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],
   });
 
-  const shows: ShowListItem[] = rawShows.map((s) => {
-    const { genres, ...rest } = s;
-    return {
-      ...rest,
-      genre: genres?.map((sg) => sg.genre.name) ?? [],
-    } satisfies ShowListItem;
-  });
-
-  const rated = shows.filter((s) => s.avgRating !== null);
-  const avgRating =
-    rated.length > 0
-      ? rated.reduce((sum, s) => sum + s.avgRating!, 0) / rated.length
-      : null;
-  const totalReviews = shows.reduce((sum, s) => sum + s.reviewCount, 0);
+  const shows: ShowListItem[] = rawShows.map(mapToShowListItem);
+  const { avgRating, totalReviews } = calculateShowsStats(shows);
 
   return {
     shows,
@@ -76,16 +64,12 @@ async function fetchAllGenreStats(): Promise<
 
   return genres.map((g) => {
     const shows = g.shows.map((sg) => sg.show);
-    const rated = shows.filter((s) => s.avgRating !== null);
-    const avgRating =
-      rated.length > 0
-        ? rated.reduce((sum, s) => sum + s.avgRating!, 0) / rated.length
-        : null;
+    const { avgRating, totalReviews } = calculateShowsStats(shows);
     return {
       name: g.name,
       showCount: shows.length,
       avgRating,
-      totalReviews: shows.reduce((sum, s) => sum + s.reviewCount, 0),
+      totalReviews,
     };
   });
 }
