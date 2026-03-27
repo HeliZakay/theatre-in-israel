@@ -1,12 +1,25 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function ScrollToTop() {
   const pathname = usePathname();
+  const isPopRef = useRef(false);
 
   useEffect(() => {
+    const onPopState = () => {
+      isPopRef.current = true;
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
+  useEffect(() => {
+    if (isPopRef.current) {
+      isPopRef.current = false;
+      return;
+    }
     window.scrollTo(0, 0);
   }, [pathname]);
 

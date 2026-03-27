@@ -267,13 +267,27 @@ export function useInfiniteShows({
     [loadMore],
   );
 
-  // Cleanup on unmount
+  // Save scroll position on navigation away
   useEffect(() => {
+    const saveScroll = () => {
+      saveToSession({
+        shows,
+        page: pageRef.current,
+        hasMore,
+        filterKey: filterKeyRef.current,
+        scrollY: window.scrollY,
+      });
+    };
+
+    window.addEventListener("beforeunload", saveScroll);
     return () => {
+      window.removeEventListener("beforeunload", saveScroll);
+      // Also save when component unmounts (SPA navigation)
+      saveScroll();
       abortRef.current?.abort();
       observerRef.current?.disconnect();
     };
-  }, []);
+  }, [shows, hasMore]);
 
   return { shows, isLoading, hasMore, error, retry, sentinelRef, announcement };
 }
