@@ -201,7 +201,7 @@ export async function extractAndDownloadImage(
       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     );
 
-    await page.goto(pageUrl, { waitUntil: "networkidle2", timeout: 30_000 });
+    await page.goto(pageUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
 
     let imageUrl = await page.evaluate(extractImageFromPage);
     await page.close();

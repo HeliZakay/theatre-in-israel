@@ -32,7 +32,7 @@ export async function fetchListing(browser) {
   await setupRequestInterception(page, { allowStylesheets: true });
 
   await page.goto(LISTING_URL, {
-    waitUntil: "networkidle2",
+    waitUntil: "domcontentloaded",
     timeout: 60_000,
   });
   await page.waitForSelector(".jet-listing-grid__item", { timeout: 15_000 });

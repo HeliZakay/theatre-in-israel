@@ -155,7 +155,7 @@ export async function fetchSchedule(browser) {
   await setupRequestInterception(page);
 
   await page.goto(REPERTOIRE_URL, {
-    waitUntil: "networkidle2",
+    waitUntil: "domcontentloaded",
     timeout: 30_000,
   });
 
@@ -308,7 +308,7 @@ export async function scrapeShowDetails(browser, url) {
   const page = await browser.newPage();
   await setupRequestInterception(page, { allowImages: true });
 
-  await page.goto(url, { waitUntil: "networkidle2", timeout: 30_000 });
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 30_000 });
   await page.waitForSelector("h1", { timeout: 15_000 });
 
   // ── FIRST evaluate: title, duration, description, cast ──
@@ -441,7 +441,7 @@ export async function scrapeCast(browser, url) {
   const page = await browser.newPage();
   await setupRequestInterception(page);
   try {
-    await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
+    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60_000 });
     await page.waitForSelector("h1", { timeout: 30_000 });
 
     const cast = await page.evaluate(() => {
@@ -527,7 +527,7 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
   const page = await browser.newPage();
   await setupRequestInterception(page);
 
-  await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60_000 });
   await page.waitForSelector("h1", { timeout: 15_000 });
 
   // Scroll to bottom to trigger lazy-loaded dates section.

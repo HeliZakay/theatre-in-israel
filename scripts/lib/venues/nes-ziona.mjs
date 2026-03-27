@@ -25,7 +25,7 @@ export async function fetchListing(browser) {
   const page = await browser.newPage();
   await setupRequestInterception(page, { allowStylesheets: true });
 
-  await page.goto(LISTING_URL, { waitUntil: "networkidle2", timeout: 60_000 });
+  await page.goto(LISTING_URL, { waitUntil: "domcontentloaded", timeout: 60_000 });
   await page.waitForSelector(".ue_post_grid_item", { timeout: 15_000 });
 
   // Click "load more" until no new items appear.

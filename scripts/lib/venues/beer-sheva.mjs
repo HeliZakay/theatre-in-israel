@@ -28,7 +28,7 @@ async function scrapeCategory(browser, categoryUrl) {
   const page = await browser.newPage();
   await setupRequestInterception(page);
 
-  await page.goto(categoryUrl, { waitUntil: "networkidle2", timeout: 60_000 });
+  await page.goto(categoryUrl, { waitUntil: "domcontentloaded", timeout: 60_000 });
 
   // Gracefully handle empty category pages
   const hasLinks = await page

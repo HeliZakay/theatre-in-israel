@@ -37,7 +37,7 @@ const HEB_MONTHS = {
 export async function fetchPresentationDates(browser) {
   const page = await browser.newPage();
   await setupRequestInterception(page);
-  await page.goto(PRESENTATIONS_URL, { waitUntil: "networkidle2", timeout: 60_000 });
+  await page.goto(PRESENTATIONS_URL, { waitUntil: "domcontentloaded", timeout: 60_000 });
 
   // Wait for the month buttons to appear (always present even when a month is empty)
   await page.waitForSelector(".board-controls__months button", { timeout: 10_000 });
@@ -107,7 +107,7 @@ export async function fetchRepertoire(browser) {
   await setupRequestInterception(page);
 
   await page.goto(REPERTOIRE_URL, {
-    waitUntil: "networkidle2",
+    waitUntil: "domcontentloaded",
     timeout: 60_000,
   });
   await page.waitForSelector('a[href*="/shows/"]', { timeout: 30_000 });
@@ -207,7 +207,7 @@ export async function scrapeShowDetails(browser, url) {
   const page = await browser.newPage();
   await setupRequestInterception(page, { allowImages: true });
 
-  await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60_000 });
   await page.waitForSelector("h1", { timeout: 30_000 });
 
   const data = await page.evaluate((extractImage) => {
