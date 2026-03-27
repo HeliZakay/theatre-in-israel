@@ -76,6 +76,7 @@ async function openBrowser(stealth) {
  * @param {function} [config.resolveVenueCity] — (venueName) => city
  * @param {string} [config.defaultVenueName] — Fallback venue name for touring JSON
  * @param {function} [config.prepareScrape] — (browser) => extra opts merged into scrapeShowEvents calls
+ * @param {string} [config.skipTheatre] — Skip matched shows from this theatre (venue mode)
  * @param {boolean} [config.stealth] — Use puppeteer-extra stealth
  * @param {number} [config.politeDelay] — ms between requests (default 1500)
  */
@@ -98,6 +99,7 @@ async function _runScraper(config) {
     resolveVenueCity,
     defaultVenueName,
     prepareScrape,
+    skipTheatre,
     stealth,
     politeDelay = 1500,
   } = config;
@@ -190,19 +192,24 @@ async function _runScraper(config) {
   // ── Match listings to DB shows ──
   const matched = [];
   const unmatched = [];
+  const skippedOwnTheatre = [];
 
   if (venueSource) {
     for (const item of listings) {
       const result = matchVenueTitle(item.title, allDbShows);
       if (result) {
-        matched.push({
-          showId: result.showId,
-          showSlug: result.showSlug,
-          title: item.title,
-          theatre: result.theatre,
-          url: item.detailUrl || null,
-          events: item.events || null,
-        });
+        if (skipTheatre && result.theatre === skipTheatre) {
+          skippedOwnTheatre.push(item.title);
+        } else {
+          matched.push({
+            showId: result.showId,
+            showSlug: result.showSlug,
+            title: item.title,
+            theatre: result.theatre,
+            url: item.detailUrl || null,
+            events: item.events || null,
+          });
+        }
       } else {
         unmatched.push(item.title);
       }
@@ -226,6 +233,17 @@ async function _runScraper(config) {
         unmatched.push(show);
       }
     }
+  }
+
+  // ── Skipped own-theatre listings (venue mode) ──
+  if (skippedOwnTheatre.length > 0) {
+    console.log(
+      dim(`  Skipped ${skippedOwnTheatre.length} own-theatre listing(s) (covered by theatre scraper):`),
+    );
+    for (const t of skippedOwnTheatre) {
+      console.log(dim(`    - ${bidi(t)}`));
+    }
+    console.log("");
   }
 
   // ── Unmatched warnings ──
