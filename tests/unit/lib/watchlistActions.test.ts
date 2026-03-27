@@ -2,6 +2,14 @@ jest.mock("next/cache", () => ({
   revalidatePath: jest.fn(),
 }));
 
+jest.mock("next-auth", () => ({
+  getServerSession: jest.fn(),
+}));
+
+jest.mock("@/lib/auth", () => ({
+  authOptions: {},
+}));
+
 jest.mock("@/utils/actionAuth", () => ({
   requireActionAuth: jest.fn(),
 }));
@@ -9,6 +17,7 @@ jest.mock("@/utils/actionAuth", () => ({
 jest.mock("@/lib/watchlist", () => ({
   addToWatchlist: jest.fn(),
   removeFromWatchlist: jest.fn(),
+  getWatchlistShowIds: jest.fn(),
 }));
 
 jest.mock("@/utils/rateLimitCheckers", () => ({
@@ -16,11 +25,17 @@ jest.mock("@/utils/rateLimitCheckers", () => ({
 }));
 
 import { revalidatePath } from "next/cache";
+import { getServerSession } from "next-auth";
 import { requireActionAuth } from "@/utils/actionAuth";
-import { addToWatchlist, removeFromWatchlist } from "@/lib/watchlist";
+import {
+  addToWatchlist,
+  removeFromWatchlist,
+  getWatchlistShowIds,
+} from "@/lib/watchlist";
 import {
   addToWatchlistAction,
   removeFromWatchlistAction,
+  getWatchlistIdsAction,
 } from "@/lib/watchlistActions";
 
 const mockAuth = requireActionAuth as jest.Mock;
@@ -155,5 +170,29 @@ describe("removeFromWatchlistAction", () => {
 
     const result = await removeFromWatchlistAction(42);
     expect(result.success).toBe(false);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  getWatchlistIdsAction                                              */
+/* ------------------------------------------------------------------ */
+
+describe("getWatchlistIdsAction", () => {
+  const mockGetIds = getWatchlistShowIds as jest.Mock;
+  const mockGetSession = getServerSession as jest.Mock;
+
+  it("returns empty array when not authenticated", async () => {
+    mockGetSession.mockResolvedValue(null);
+    const result = await getWatchlistIdsAction();
+    expect(result).toEqual([]);
+  });
+
+  it("returns show IDs for authenticated user", async () => {
+    mockGetSession.mockResolvedValue({ user: { id: "user1" } });
+    mockGetIds.mockResolvedValue([1, 2, 3]);
+
+    const result = await getWatchlistIdsAction();
+    expect(result).toEqual([1, 2, 3]);
+    expect(mockGetIds).toHaveBeenCalledWith("user1");
   });
 });

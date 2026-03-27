@@ -11,6 +11,10 @@
   margin-inline-start: 16px;
 }
 
+.cardWrapper {
+  position: relative;
+}
+
 .card {
   box-shadow: 0 10px 22px var(--color-slate-008);
   display: flex;

@@ -1,3 +1,9 @@
+jest.mock("@/components/shows/WatchlistToggle/WatchlistToggle", () => {
+  const MockWatchlistToggle = () => <button aria-label="mock-watchlist" />;
+  MockWatchlistToggle.displayName = "MockWatchlistToggle";
+  return { __esModule: true, default: MockWatchlistToggle };
+});
+
 jest.mock("@/components/ui/FallbackImage/FallbackImage", () => {
   const MockFallbackImage = (props: Record<string, unknown>) => (
     <img alt={props.alt as string} src={props.src as string} />

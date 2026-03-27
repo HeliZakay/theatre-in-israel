@@ -1,10 +1,16 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { addToWatchlist, removeFromWatchlist } from "@/lib/watchlist";
+import {
+  addToWatchlist,
+  removeFromWatchlist,
+  getWatchlistShowIds,
+} from "@/lib/watchlist";
 import { requireActionAuth } from "@/utils/actionAuth";
 import { checkWatchlistRateLimit } from "@/utils/rateLimitCheckers";
 import { toPositiveInt } from "@/utils/parseId";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import {
   actionSuccess,
   actionError,
@@ -69,4 +75,10 @@ export async function removeFromWatchlistAction(
   } catch (err: unknown) {
     return actionError(INTERNAL_ERROR_MESSAGE, err);
   }
+}
+
+export async function getWatchlistIdsAction(): Promise<number[]> {
+  const session = await getServerSession(authOptions);
+  if (!session?.user?.id) return [];
+  return getWatchlistShowIds(session.user.id);
 }

@@ -7,7 +7,6 @@ import { cookies, headers } from "next/headers";
 import { authOptions } from "@/lib/auth";
 import { getShowBySlug } from "@/lib/data/showDetail";
 import prisma from "@/lib/prisma";
-import { isShowInWatchlist } from "@/lib/watchlist";
 import Link from "next/link";
 import { ENABLE_REVIEW_AUTH_GATEWAY } from "@/constants/featureFlags";
 import ROUTES, { showPath, showReviewPath, theatrePath, genrePath, actorPath } from "@/constants/routes";
@@ -181,8 +180,7 @@ export default async function ShowPage({
 
   const stats = { reviewCount, avgRating, latestReviewDate: null };
 
-  // Check watchlist + own-review state for authenticated users
-  let initialInWatchlist = false;
+  // Check own-review state for authenticated users
   let userReview: (typeof show.reviews)[number] | null = null;
   let otherReviews = show.reviews;
   let session: Awaited<
@@ -191,7 +189,6 @@ export default async function ShowPage({
   try {
     session = await getServerSession(authOptions);
     if (session?.user?.id) {
-      initialInWatchlist = await isShowInWatchlist(session.user.id, show.id);
       const userId = session.user.id;
       const idx = show.reviews.findIndex((r) => r.userId === userId);
       if (idx !== -1) {
@@ -344,7 +341,6 @@ export default async function ShowPage({
                 <WatchlistButton
                   showId={show.id}
                   showSlug={show.slug}
-                  initialInWatchlist={initialInWatchlist}
                 />
                 <ShareDropdown
                   url={showPath(show.slug)}

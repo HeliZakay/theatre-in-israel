@@ -1,3 +1,9 @@
+jest.mock("@/components/shows/WatchlistToggle/WatchlistToggle", () => {
+  const Mock = () => <button aria-label="mock-watchlist" />;
+  Mock.displayName = "MockWatchlistToggle";
+  return { __esModule: true, default: Mock };
+});
+
 import { render, screen, act, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import ShowsContent from "@/app/shows/ShowsContent";

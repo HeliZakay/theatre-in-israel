@@ -1,5 +1,11 @@
 import { render, screen } from "@testing-library/react";
 
+jest.mock("@/components/shows/WatchlistToggle/WatchlistToggle", () => {
+  const Mock = () => <button aria-label="mock-watchlist" />;
+  Mock.displayName = "MockWatchlistToggle";
+  return { __esModule: true, default: Mock };
+});
+
 jest.mock("@/components/shows/ShowCarousel/ShowCarousel", () => {
   const Mock = ({ children }: { children: React.ReactNode }) => (
     <div data-testid="carousel">{children}</div>

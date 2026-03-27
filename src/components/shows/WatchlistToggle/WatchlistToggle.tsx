@@ -1,0 +1,48 @@
+"use client";
+
+import { useWatchlist } from "@/components/auth/WatchlistProvider/WatchlistProvider";
+import styles from "./WatchlistToggle.module.css";
+
+interface WatchlistToggleProps {
+  showId: number;
+  showSlug: string;
+  className?: string;
+}
+
+export default function WatchlistToggle({
+  showId,
+  showSlug,
+  className,
+}: WatchlistToggleProps) {
+  const { isInWatchlist, toggle } = useWatchlist();
+  const active = isInWatchlist(showId);
+
+  return (
+    <button
+      type="button"
+      className={[styles.toggle, active ? styles.active : "", className]
+        .filter(Boolean)
+        .join(" ")}
+      onClick={(e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        toggle(showId, showSlug);
+      }}
+      aria-label={active ? "הסר מרשימת צפייה" : "הוסף לרשימת צפייה"}
+    >
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill={active ? "currentColor" : "none"}
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+      </svg>
+    </button>
+  );
+}

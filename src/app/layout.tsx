@@ -4,6 +4,7 @@ import Footer from "@/components/layout/Footer/Footer";
 import { Noto_Sans_Hebrew } from "next/font/google";
 import RadixDirectionProvider from "@/components/layout/RadixDirectionProvider/RadixDirectionProvider";
 import AuthSessionProvider from "@/components/auth/AuthSessionProvider/AuthSessionProvider";
+import WatchlistProvider from "@/components/auth/WatchlistProvider/WatchlistProvider";
 import ScrollToTop from "@/components/layout/ScrollToTop/ScrollToTop";
 import SecurityBanner from "@/components/layout/SecurityBanner/SecurityBanner";
 import { Analytics } from "@vercel/analytics/next";
@@ -111,6 +112,7 @@ export default function RootLayout({
       <body className={textFont.variable}>
         <ScrollToTop />
         <AuthSessionProvider>
+          <WatchlistProvider>
           <RadixDirectionProvider dir="rtl">
             <script
               type="application/ld+json"
@@ -128,6 +130,7 @@ export default function RootLayout({
             <div className="appContent">{children}</div>
             <Footer />
           </RadixDirectionProvider>
+          </WatchlistProvider>
         </AuthSessionProvider>
         <Analytics />
         <SpeedInsights />

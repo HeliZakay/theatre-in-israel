@@ -1,0 +1,39 @@
+.toggle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    transform 0.15s,
+    color 0.15s;
+  padding: 0;
+}
+
+.toggle:hover {
+  background: rgba(0, 0, 0, 0.65);
+  transform: scale(1.1);
+}
+
+.toggle:active {
+  transform: scale(0.95);
+}
+
+.active {
+  color: var(--color-curtain-red);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.active:hover {
+  background: rgba(255, 255, 255, 1);
+}
