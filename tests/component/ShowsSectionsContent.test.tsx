@@ -4,10 +4,12 @@ jest.mock("@/lib/data/homepage", () => ({
   getSectionsData: jest.fn(),
 }));
 
+const capturedProps: Record<string, string[] | undefined>[] = [];
 jest.mock("@/components/ShowsSection/ShowsSection", () => {
-  const Mock = ({ title }: { title: string }) => (
-    <div data-testid="shows-section">{title}</div>
-  );
+  const Mock = ({ title, sectionGenres }: { title: string; sectionGenres?: string[] }) => {
+    capturedProps.push({ title: [title], sectionGenres });
+    return <div data-testid="shows-section">{title}</div>;
+  };
   Mock.displayName = "MockShowsSection";
   return { __esModule: true, default: Mock };
 });
@@ -53,7 +55,10 @@ const emptySections = {
 };
 
 describe("ShowsSectionsContent", () => {
-  beforeEach(() => jest.clearAllMocks());
+  beforeEach(() => {
+    jest.clearAllMocks();
+    capturedProps.length = 0;
+  });
 
   it("renders all 6 genre sections", async () => {
     jest.mocked(getSectionsData).mockResolvedValue(emptySections);
@@ -80,6 +85,20 @@ describe("ShowsSectionsContent", () => {
     const { container } = render(Component);
     const script = container.querySelector('script[type="application/ld+json"]');
     expect(script).not.toBeInTheDocument();
+  });
+
+  it("passes sectionGenres to genre sections but not topRated", async () => {
+    jest.mocked(getSectionsData).mockResolvedValue(emptySections);
+    const Component = await ShowsSectionsContent({});
+    render(Component);
+    // topRated has no sectionGenres
+    expect(capturedProps[0].sectionGenres).toBeUndefined();
+    // Genre sections have sectionGenres
+    expect(capturedProps[1].sectionGenres).toEqual(["דרמה"]);
+    expect(capturedProps[2].sectionGenres).toEqual(["קומדיה"]);
+    expect(capturedProps[3].sectionGenres).toEqual(["מחזמר"]);
+    expect(capturedProps[4].sectionGenres).toEqual(["ישראלי"]);
+    expect(capturedProps[5].sectionGenres).toEqual(["ילדים"]);
   });
 
   it("renders banner between sections", async () => {

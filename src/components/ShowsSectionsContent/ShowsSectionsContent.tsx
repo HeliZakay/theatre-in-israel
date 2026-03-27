@@ -51,6 +51,7 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         shows={dramas}
         linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.dramas.genres] })}#results`}
         linkText={GENRE_SECTIONS.dramas.linkText}
+        sectionGenres={[...GENRE_SECTIONS.dramas.genres]}
       />
 
       <ShowsSection
@@ -59,6 +60,7 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         shows={comedies}
         linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.comedies.genres] })}#results`}
         linkText={GENRE_SECTIONS.comedies.linkText}
+        sectionGenres={[...GENRE_SECTIONS.comedies.genres]}
       />
 
       <ShowsSection
@@ -67,6 +69,7 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         shows={musicals}
         linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.musicals.genres] })}#results`}
         linkText={GENRE_SECTIONS.musicals.linkText}
+        sectionGenres={[...GENRE_SECTIONS.musicals.genres]}
       />
 
       <ShowsSection
@@ -75,6 +78,7 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         shows={israeli}
         linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.israeli.genres] })}#results`}
         linkText={GENRE_SECTIONS.israeli.linkText}
+        sectionGenres={[...GENRE_SECTIONS.israeli.genres]}
       />
 
       <ShowsSection
@@ -83,6 +87,7 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         shows={kids}
         linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.kids.genres] })}#results`}
         linkText={GENRE_SECTIONS.kids.linkText}
+        sectionGenres={[...GENRE_SECTIONS.kids.genres]}
       />
 
       {banner}

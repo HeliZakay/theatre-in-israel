@@ -88,4 +88,30 @@ describe("ShowsSection", () => {
     );
     expect(screen.getByText("טרם דורג")).toBeInTheDocument();
   });
+
+  it("promotes sectionGenres to front of displayed genres", () => {
+    const show = makeShow({
+      genre: ["ישראלי", "דרמה", "קלאסיקה", "קומדיה"],
+    });
+    render(
+      <ShowsSection title="קומדיות" shows={[show]} sectionGenres={["קומדיה"]} />
+    );
+    // "קומדיה" should be promoted to front and visible (within slice of 3)
+    expect(screen.getByText("קומדיה")).toBeInTheDocument();
+    // "קלאסיקה" was 3rd but "קומדיה" took its spot, pushing it to 4th (hidden)
+    expect(screen.queryByText("קלאסיקה")).not.toBeInTheDocument();
+  });
+
+  it("keeps default genre order when sectionGenres is not provided", () => {
+    const show = makeShow({
+      genre: ["ישראלי", "דרמה", "קלאסיקה", "קומדיה"],
+    });
+    render(<ShowsSection title="t" shows={[show]} />);
+    // First 3 genres in original order
+    expect(screen.getByText("ישראלי")).toBeInTheDocument();
+    expect(screen.getByText("דרמה")).toBeInTheDocument();
+    expect(screen.getByText("קלאסיקה")).toBeInTheDocument();
+    // 4th genre hidden
+    expect(screen.queryByText("קומדיה")).not.toBeInTheDocument();
+  });
 });

@@ -15,6 +15,7 @@ interface ShowsSectionProps {
   linkHref?: string;
   linkText?: string;
   className?: string;
+  sectionGenres?: string[];
 }
 
 export default function ShowsSection({
@@ -24,6 +25,7 @@ export default function ShowsSection({
   linkHref,
   linkText,
   className,
+  sectionGenres,
 }: ShowsSectionProps) {
   return (
     <section className={[styles.section, className].filter(Boolean).join(" ")}>
@@ -60,9 +62,18 @@ export default function ShowsSection({
                   <h3 className={styles.cardTitle}>{show.title}</h3>
                   <p className={styles.meta}>{show.theatre}</p>
                   <div className={styles.genreRow}>
-                    {(show.genre ?? []).slice(0, 3).map((item) => (
-                      <Tag key={item}>{item}</Tag>
-                    ))}
+                    {(() => {
+                      const genres = show.genre ?? [];
+                      const ordered = sectionGenres
+                        ? [
+                            ...genres.filter((g) => sectionGenres.includes(g)),
+                            ...genres.filter((g) => !sectionGenres.includes(g)),
+                          ]
+                        : genres;
+                      return ordered.slice(0, 3).map((item) => (
+                        <Tag key={item}>{item}</Tag>
+                      ));
+                    })()}
                   </div>
                   <div className={styles.rating}>
                     {show.avgRating !== null ? (
