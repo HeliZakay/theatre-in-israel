@@ -75,6 +75,7 @@ async function openBrowser(stealth) {
  * @param {boolean} [config.touring] — Per-event venue from scrape results
  * @param {function} [config.resolveVenueCity] — (venueName) => city
  * @param {string} [config.defaultVenueName] — Fallback venue name for touring JSON
+ * @param {function} [config.prepareScrape] — (browser) => extra opts merged into scrapeShowEvents calls
  * @param {boolean} [config.stealth] — Use puppeteer-extra stealth
  * @param {number} [config.politeDelay] — ms between requests (default 1500)
  */
@@ -96,6 +97,7 @@ async function _runScraper(config) {
     touring,
     resolveVenueCity,
     defaultVenueName,
+    prepareScrape,
     stealth,
     politeDelay = 1500,
   } = config;
@@ -274,6 +276,17 @@ async function _runScraper(config) {
     console.log(dim(`  Venue: ${fixedVenue.name} (id=${fixedVenue.id})\n`));
   }
 
+  // ── Optional pre-scrape hook (e.g. Habima presentations calendar) ──
+  let extraOpts = {};
+  if (prepareScrape) {
+    try {
+      extraOpts = (await prepareScrape(browser)) || {};
+    } catch (err) {
+      console.log(yellow(`  prepareScrape failed: ${err.message}`));
+      console.log(yellow("  Proceeding without extra options.\n"));
+    }
+  }
+
   // ── Scrape loop ──
   const venueCache = new Map();
   const totals = { shows: 0, events: 0, created: 0, skipped: 0, failed: 0 };
@@ -288,7 +301,7 @@ async function _runScraper(config) {
 
       if (scrapeShowEvents) {
         // Detail scraping — call scrapeShowEvents per show
-        const result = await scrapeShowEvents(browser, show.url, { debug });
+        const result = await scrapeShowEvents(browser, show.url, { debug, ...extraOpts });
         events = result.events;
 
         if (events.length === 0) {
