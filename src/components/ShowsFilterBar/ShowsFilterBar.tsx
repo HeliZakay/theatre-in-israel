@@ -91,48 +91,54 @@ export default function ShowsFilterBar({
   return (
     <div className={styles.filterBar} aria-busy={isUpdating}>
       <div className={styles.filterForm}>
-        <label className={styles.filterLabel} htmlFor="query">
-          חיפוש
-        </label>
-        <input
-          id="query"
-          name="query"
-          type="search"
-          className={styles.searchInput}
-          placeholder="חפש.י הצגה, תיאטרון או ז׳אנר"
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
-        />
-        <label className={styles.filterLabel} htmlFor="theatre">
-          תיאטרון
-        </label>
-        <AppSelect
-          id="theatre"
-          name="theatre"
-          className={styles.select}
-          ariaLabel="תיאטרון"
-          value={optimisticFilters.theatre || ALL_THEATRES_VALUE}
-          onValueChange={(value) => {
-            const theatre = value === ALL_THEATRES_VALUE ? "" : value;
-            applyFilterUpdate({ theatre });
-          }}
-          options={theatreOptions}
-        />
-        <label className={styles.filterLabel} htmlFor="sort">
-          מיון
-        </label>
-        <AppSelect
-          id="sort"
-          name="sort"
-          className={styles.select}
-          ariaLabel="מיון"
-          value={optimisticFilters.sort}
-          onValueChange={(value) => applyFilterUpdate({ sort: value })}
-          options={[
-            { value: "rating", label: "דירוג גבוה" },
-            { value: "reviews", label: "הכי הרבה ביקורות" },
-          ]}
-        />
+        <div className={styles.filterGroup}>
+          <label className={styles.filterLabel} htmlFor="query">
+            חיפוש
+          </label>
+          <input
+            id="query"
+            name="query"
+            type="search"
+            className={styles.searchInput}
+            placeholder="חפש.י הצגה, תיאטרון או ז׳אנר"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+        </div>
+        <div className={styles.filterGroup}>
+          <label className={styles.filterLabel} htmlFor="theatre">
+            תיאטרון
+          </label>
+          <AppSelect
+            id="theatre"
+            name="theatre"
+            className={styles.select}
+            ariaLabel="תיאטרון"
+            value={optimisticFilters.theatre || ALL_THEATRES_VALUE}
+            onValueChange={(value) => {
+              const theatre = value === ALL_THEATRES_VALUE ? "" : value;
+              applyFilterUpdate({ theatre });
+            }}
+            options={theatreOptions}
+          />
+        </div>
+        <div className={styles.filterGroup}>
+          <label className={styles.filterLabel} htmlFor="sort">
+            מיון
+          </label>
+          <AppSelect
+            id="sort"
+            name="sort"
+            className={styles.select}
+            ariaLabel="מיון"
+            value={optimisticFilters.sort}
+            onValueChange={(value) => applyFilterUpdate({ sort: value })}
+            options={[
+              { value: "rating", label: "דירוג גבוה" },
+              { value: "reviews", label: "הכי הרבה ביקורות" },
+            ]}
+          />
+        </div>
       </div>
       <div className={styles.chipRow}>
         <span className={styles.filterLabel}>ז&apos;אנר</span>

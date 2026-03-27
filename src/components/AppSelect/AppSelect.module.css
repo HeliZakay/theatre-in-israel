@@ -126,6 +126,8 @@
 @media (max-width: 640px) {
   .nativeWrapper {
     display: block;
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .radixWrapper {
