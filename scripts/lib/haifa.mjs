@@ -9,7 +9,7 @@
 import { fixDoubleProtocol, extractImageFromPage } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
 import { resolveVenueCity } from "./venues.mjs";
-import { parseShortYear } from "./date.mjs";
+import { parseShortYear, formatDate } from "./date.mjs";
 
 // ── Constants ──────────────────────────────────────────────────
 
@@ -413,7 +413,7 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
 
   for (const e of result.events) {
     const year = parseShortYear(e.yearShort);
-    const dateStr = `${year}-${String(e.month).padStart(2, "0")}-${String(e.day).padStart(2, "0")}`;
+    const dateStr = formatDate(e.day, e.month, year);
     const key = e.ticketUrl || `${dateStr}|${e.hour}`;
 
     if (!seen.has(key)) {

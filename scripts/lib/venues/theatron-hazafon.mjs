@@ -9,27 +9,11 @@
  */
 
 import { setupRequestInterception } from "../browser.mjs";
+import { inferYear, formatDate, parseTime } from "../date.mjs";
 
 export const VENUE_NAME = "תיאטרון הצפון";
 export const VENUE_CITY = "קריית חיים";
 export const LISTING_URL = "https://www.theatron-hazafon.co.il/events.asp";
-
-/**
- * Infer year for a day/month pair.
- * Dates on the listing are future events without a year.
- * Use the current year unless the date has already passed (> 30 days ago),
- * in which case use next year.
- */
-function inferYear(day, month) {
-  const now = new Date();
-  const candidate = new Date(now.getFullYear(), month - 1, day);
-  const thirtyDaysAgo = new Date(now);
-  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-  if (candidate < thirtyDaysAgo) {
-    return now.getFullYear() + 1;
-  }
-  return now.getFullYear();
-}
 
 /**
  * Fetch all event listings with their dates from the venue's events page.
@@ -101,11 +85,8 @@ export async function fetchListing(browser) {
     const day = parseInt(dateMatch[1], 10);
     const month = parseInt(dateMatch[2], 10);
     const year = inferYear(day, month);
-
-    const date = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-
-    const timeMatch = row.dateText.match(TIME_RE);
-    const hour = timeMatch ? timeMatch[1] : "";
+    const date = formatDate(day, month, year);
+    const hour = parseTime(row.dateText);
 
     grouped.get(detailUrl).events.push({ date, hour });
   }

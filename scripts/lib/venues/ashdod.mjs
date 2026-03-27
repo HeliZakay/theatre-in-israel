@@ -9,6 +9,7 @@
  */
 
 import { setupRequestInterception } from "../browser.mjs";
+import { parseDotDate, parseTime } from "../date.mjs";
 
 export const VENUE_NAME = "המשכן לאמנויות הבמה אשדוד";
 export const VENUE_CITY = "אשדוד";
@@ -75,14 +76,12 @@ export async function fetchListing(browser) {
       grouped.set(detailUrl, { title: row.title, detailUrl, events: [] });
     }
 
-    // Parse DD.MM.YYYY → YYYY-MM-DD
-    const dateMatch = row.dateText.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
-    if (!dateMatch) continue;
+    const parsed = parseDotDate(row.dateText);
+    if (!parsed) continue;
 
-    const date = `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`;
-    const hour = row.timeText.match(/^\d{1,2}:\d{2}$/) ? row.timeText : "";
+    const hour = parseTime(row.timeText);
 
-    grouped.get(detailUrl).events.push({ date, hour });
+    grouped.get(detailUrl).events.push({ date: parsed.date, hour });
   }
 
   return [...grouped.values()];

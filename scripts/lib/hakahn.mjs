@@ -22,7 +22,7 @@ import { fixDoubleProtocol, extractImageFromPage } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
 import { parseLessinDuration } from "./duration.mjs";
 import { resolveVenueCity } from "./venues.mjs";
-import { inferYear } from "./date.mjs";
+import { inferYear, formatDate } from "./date.mjs";
 
 // ── Constants ──────────────────────────────────────────────────
 
@@ -454,7 +454,7 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
 
   for (const e of result.events) {
     const year = e.year || inferYear(e.day, e.month);
-    const dateStr = `${year}-${String(e.month).padStart(2, "0")}-${String(e.day).padStart(2, "0")}`;
+    const dateStr = formatDate(e.day, e.month, year);
     const key = e.ticketUrl || `${dateStr}|${e.hour}`;
 
     if (!seen.has(key)) {

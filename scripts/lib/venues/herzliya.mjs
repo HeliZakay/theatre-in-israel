@@ -9,6 +9,7 @@
  */
 
 import { setupRequestInterception } from "../browser.mjs";
+import { HEBREW_MONTHS, parseHebrewDate, formatDate, parseTime } from "../date.mjs";
 
 export const VENUE_NAME = "היכל אמנויות הבמה הרצליה";
 export const VENUE_CITY = "הרצליה";
@@ -106,13 +107,7 @@ export async function fetchListing(browser) {
   return cleaned;
 }
 
-// Hebrew month name → 1-based month number
-const HEBREW_MONTHS = {
-  "ינואר": 1, "פברואר": 2, "מרס": 3, "מרץ": 3,
-  "אפריל": 4, "מאי": 5, "יוני": 6,
-  "יולי": 7, "אוגוסט": 8, "ספטמבר": 9,
-  "אוקטובר": 10, "נובמבר": 11, "דצמבר": 12,
-};
+// Re-use shared HEBREW_MONTHS from date.mjs (imported above).
 
 /**
  * Scrape all performance dates from a show detail page.
@@ -139,82 +134,55 @@ export async function scrapeEventDetail(browser, detailUrl, { debug = false } = 
     .waitForSelector("a[href*='smarticket'], a[href*='ticket']", { timeout: 15_000 })
     .catch(() => {});
 
-  const hebrewMonths = HEBREW_MONTHS;
+  const result = await page.evaluate((debugMode) => {
+    const output = { lines: [], debugHtml: null };
 
-  const result = await page.evaluate((months, debugMode) => {
-    const output = { events: [], debugHtml: null };
-
-    // Hebrew date pattern: "Day, DD MonthName YYYY" followed somewhere by "HH:MM"
-    // We'll extract all text blocks that contain dates
-    const monthNames = Object.keys(months).join("|");
-    const DATE_RE = new RegExp(`(\\d{1,2})\\s+(${monthNames})\\s+(\\d{4})`, "g");
-    const TIME_RE = /\b(\d{1,2}:\d{2})\b/g;
-
+    // Extract raw text lines for Node-side parsing
     const body = document.body?.textContent || "";
-
-    // Strategy: find date-time pairs by scanning the body text
-    // Dates and times appear in table-like rows: date, then time on same line or nearby
-    const lines = body.split("\n").map((l) => l.trim()).filter(Boolean);
-
-    let currentDate = null;
-    for (const line of lines) {
-      const dateMatch = line.match(new RegExp(`(\\d{1,2})\\s+(${monthNames})\\s+(\\d{4})`));
-      if (dateMatch) {
-        const day = parseInt(dateMatch[1], 10);
-        const monthNum = months[dateMatch[2]];
-        const year = parseInt(dateMatch[3], 10);
-        currentDate = { day, month: monthNum, year };
-      }
-
-      // Look for time on the same line or a subsequent line
-      const timeMatch = line.match(/^(\d{1,2}:\d{2})$/);
-      if (timeMatch && currentDate) {
-        output.events.push({
-          ...currentDate,
-          hour: timeMatch[1],
-        });
-        // Don't reset currentDate — same date may have multiple times
-      }
-
-      // Also check if date and time are on the same line
-      if (dateMatch) {
-        const timesOnLine = [...line.matchAll(/\b(\d{1,2}:\d{2})\b/g)];
-        for (const tm of timesOnLine) {
-          // Avoid duplicating if already captured above
-          const hour = tm[1];
-          const exists = output.events.some(
-            (e) =>
-              e.day === currentDate.day &&
-              e.month === currentDate.month &&
-              e.year === currentDate.year &&
-              e.hour === hour,
-          );
-          if (!exists) {
-            output.events.push({ ...currentDate, hour });
-          }
-        }
-      }
-    }
+    output.lines = body.split("\n").map((l) => l.trim()).filter(Boolean);
 
     if (debugMode) {
       output.debugHtml = document.body?.innerHTML?.slice(0, 15_000) || "";
     }
 
     return output;
-  }, hebrewMonths, debug);
+  }, debug);
 
   await page.close();
 
-  // Convert to ISO date strings and deduplicate
-  const seen = new Set();
+  // Parse Hebrew dates and times from raw text lines (Node context)
+  const monthNames = Object.keys(HEBREW_MONTHS).join("|");
+  const DATE_RE = new RegExp(`\\d{1,2}\\s+(?:ב)?(?:${monthNames})\\s+\\d{4}`);
+  const TIME_ONLY_RE = /^(\d{1,2}:\d{2})$/;
+
   const events = [];
-  for (const ev of result.events) {
-    const date = `${ev.year}-${String(ev.month).padStart(2, "0")}-${String(ev.day).padStart(2, "0")}`;
-    const hour = ev.hour || "";
-    const key = `${date}|${hour}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    events.push({ date, hour });
+  const seen = new Set();
+  let currentDate = null;
+
+  for (const line of result.lines) {
+    const hebParsed = parseHebrewDate(line);
+    if (hebParsed) {
+      currentDate = hebParsed.date;
+      // Check for times on the same line
+      const timesOnLine = [...line.matchAll(/\b(\d{1,2}:\d{2})\b/g)];
+      for (const tm of timesOnLine) {
+        const key = `${currentDate}|${tm[1]}`;
+        if (!seen.has(key)) {
+          seen.add(key);
+          events.push({ date: currentDate, hour: tm[1] });
+        }
+      }
+    }
+
+    // Time on its own line → attach to currentDate
+    const timeMatch = line.match(TIME_ONLY_RE);
+    if (timeMatch && currentDate) {
+      const key = `${currentDate}|${timeMatch[1]}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        events.push({ date: currentDate, hour: timeMatch[1] });
+      }
+    }
   }
 
   return { events, debugHtml: result.debugHtml || undefined };

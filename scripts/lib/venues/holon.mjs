@@ -9,6 +9,7 @@
  */
 
 import { setupRequestInterception } from "../browser.mjs";
+import { formatDate } from "../date.mjs";
 
 export const VENUE_NAME = "תיאטרון חולון";
 export const VENUE_CITY = "חולון";
@@ -152,7 +153,7 @@ export async function scrapeEventDetail(browser, detailUrl, { debug = false } = 
   const seen = new Set();
   const events = [];
   for (const ev of result.events) {
-    const date = `${ev.year}-${String(ev.month).padStart(2, "0")}-${String(ev.day).padStart(2, "0")}`;
+    const date = formatDate(ev.day, ev.month, ev.year);
     const hour = ev.hour || "";
     const key = `${date}|${hour}`;
     if (seen.has(key)) continue;

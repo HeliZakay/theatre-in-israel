@@ -18,6 +18,7 @@
 
 import { fixDoubleProtocol, extractImageFromPage } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
+import { formatDate } from "./date.mjs";
 
 // ── Constants ──────────────────────────────────────────────────
 
@@ -461,7 +462,7 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
   const seen = new Set();
 
   for (const e of result.events) {
-    const dateStr = `${e.year}-${String(e.month).padStart(2, "0")}-${String(e.day).padStart(2, "0")}`;
+    const dateStr = formatDate(e.day, e.month, e.year);
     const key = `${dateStr}|${e.hour}`;
 
     if (!seen.has(key)) {

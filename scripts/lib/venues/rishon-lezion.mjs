@@ -8,6 +8,7 @@
  */
 
 import { setupRequestInterception } from "../browser.mjs";
+import { parseShortYear, formatDate } from "../date.mjs";
 
 export const VENUE_NAME = "היכל התרבות ראשון לציון";
 export const VENUE_CITY = "ראשון לציון";
@@ -163,9 +164,8 @@ export async function scrapeEventDetail(browser, detailUrl, { debug = false } = 
   const seen = new Set();
   const events = [];
   for (const ev of result.events) {
-    // Handle 2-digit year: YY → 20YY
-    const year = ev.year < 100 ? 2000 + ev.year : ev.year;
-    const date = `${year}-${String(ev.month).padStart(2, "0")}-${String(ev.day).padStart(2, "0")}`;
+    const year = ev.year < 100 ? parseShortYear(ev.year) : ev.year;
+    const date = formatDate(ev.day, ev.month, year);
     const hour = ev.hour || "";
     const key = `${date}|${hour}`;
     if (seen.has(key)) continue;

@@ -8,48 +8,12 @@
  */
 
 import { setupRequestInterception } from "../browser.mjs";
+import { parseHebrewDate } from "../date.mjs";
 
 export const VENUE_NAME = "היכל התרבות כפר סבא";
 export const VENUE_CITY = "כפר סבא";
 export const LISTING_URL =
   "https://ksaba.smarticket.co.il/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F_page_36";
-
-/** Hebrew month name → 1-based month number */
-const HEBREW_MONTHS = {
-  ינואר: 1,
-  פברואר: 2,
-  מרץ: 3,
-  אפריל: 4,
-  מאי: 5,
-  יוני: 6,
-  יולי: 7,
-  אוגוסט: 8,
-  ספטמבר: 9,
-  אוקטובר: 10,
-  נובמבר: 11,
-  דצמבר: 12,
-};
-
-/**
- * Parse a Hebrew date string like "ביום שבת, 21 במרץ 2026 : בשעה 21:00"
- * into { date: "YYYY-MM-DD", hour: "HH:MM" }.
- */
-function parseHebrewDate(text) {
-  // Extract day, month name, year, and time
-  const m = text.match(/(\d{1,2})\s+ב([א-ת]+)\s+(\d{4})\s*:\s*בשעה\s+(\d{1,2}:\d{2})/);
-  if (!m) return null;
-
-  const day = parseInt(m[1], 10);
-  const monthName = m[2];
-  const year = parseInt(m[3], 10);
-  const hour = m[4];
-
-  const month = HEBREW_MONTHS[monthName];
-  if (!month) return null;
-
-  const date = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-  return { date, hour };
-}
 
 /**
  * Fetch all event listings from the venue's theatre category page.

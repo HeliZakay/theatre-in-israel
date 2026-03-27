@@ -12,6 +12,7 @@
 import { fixDoubleProtocol } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
 import { parseLessinDuration } from "./duration.mjs";
+import { normalizeYear, formatDate } from "./date.mjs";
 
 // ── Re-export shared browser helpers for backward compatibility ─
 export { launchBrowser, setupRequestInterception } from "./browser.mjs";
@@ -649,7 +650,6 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
     // Try multiple strategies for extracting structured date data.
 
     const events = [];
-    const currentYear = new Date().getFullYear();
 
     // Strategy 1 (precise): Cameri's known DOM structure.
     // <ul class="events-of-this-show"> > <li> > <a> > <p>
@@ -675,18 +675,11 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
       const dateMatch = dateText.match(/^(\d{1,2})\.(\d{1,2})$/);
       if (!dateMatch) continue;
 
-      const day = dateMatch[1].padStart(2, "0");
-      const month = dateMatch[2].padStart(2, "0");
-
-      // Infer year: if month is before current month, it's next year.
-      const now = new Date();
-      const monthNum = parseInt(month, 10);
-      const year =
-        monthNum < now.getMonth() + 1 ? currentYear + 1 : currentYear;
-
       const subtitleEl = li.querySelector("span.sbttls");
       events.push({
-        date: `${year}-${month}-${day}`,
+        rawDay: parseInt(dateMatch[1], 10),
+        rawMonth: parseInt(dateMatch[2], 10),
+        rawYear: "",
         hour: timeText || "",
         note: subtitleEl ? subtitleEl.textContent.trim() : null,
         rawText: li.textContent?.trim().slice(0, 250) || "",
@@ -705,12 +698,10 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
         );
         const timeMatch = text.match(/(\d{1,2}:\d{2})/);
         if (dateMatch) {
-          const day = dateMatch[1].padStart(2, "0");
-          const month = dateMatch[2].padStart(2, "0");
-          let year = dateMatch[3] || currentYear.toString();
-          if (year.length === 2) year = "20" + year;
           events.push({
-            date: `${year}-${month}-${day}`,
+            rawDay: parseInt(dateMatch[1], 10),
+            rawMonth: parseInt(dateMatch[2], 10),
+            rawYear: dateMatch[3] || "",
             hour: timeMatch ? timeMatch[1] : "",
             note:
               text.includes("כתוביות") || text.includes("subtitles")
@@ -722,7 +713,7 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
       }
     }
 
-    // Strategy 2: If no structured elements found, parse the full body text
+    // Strategy 3: If no structured elements found, parse the full body text
     // for date+time pairs near each other.
     if (events.length === 0) {
       const bodyText = document.body.innerText;
@@ -731,16 +722,14 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
         /(\d{1,2})[./](\d{1,2})[./](\d{2,4})\s*[\s|,\-–—]*\s*(\d{1,2}:\d{2})?/g;
       let match;
       while ((match = dateRegex.exec(bodyText)) !== null) {
-        const day = match[1].padStart(2, "0");
-        const month = match[2].padStart(2, "0");
-        let year = match[3];
-        if (year.length === 2) year = "20" + year;
         const surrounding = bodyText.slice(
           Math.max(0, match.index - 50),
           match.index + match[0].length + 50,
         );
         events.push({
-          date: `${year}-${month}-${day}`,
+          rawDay: parseInt(match[1], 10),
+          rawMonth: parseInt(match[2], 10),
+          rawYear: match[3] || "",
           hour: match[4] || "",
           note:
             surrounding.includes("כתוביות") || surrounding.includes("subtitles")
@@ -755,7 +744,7 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
     // lists, but two shows on the same day at different times are distinct.
     const bestByDateHour = new Map();
     for (const e of events) {
-      const key = `${e.date}|${e.hour}`;
+      const key = `${e.rawDay}.${e.rawMonth}.${e.rawYear}|${e.hour}`;
       const existing = bestByDateHour.get(key);
       if (!existing || (!existing.hour && e.hour)) {
         bestByDateHour.set(key, e);
@@ -776,6 +765,16 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
   }, debug);
 
   await page.close();
+
+  // ── Convert raw date components to YYYY-MM-DD (Node context) ──
+  for (const e of result.events) {
+    const year = parseInt(normalizeYear(String(e.rawYear ?? ""), e.rawDay, e.rawMonth), 10);
+    e.date = formatDate(e.rawDay, e.rawMonth, year);
+    delete e.rawDay;
+    delete e.rawMonth;
+    delete e.rawYear;
+  }
+
   return result;
 }
 

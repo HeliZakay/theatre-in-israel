@@ -8,6 +8,7 @@
  */
 
 import { setupRequestInterception } from "../browser.mjs";
+import { parseISODatetime } from "../date.mjs";
 
 export const VENUE_NAME = "היכל התרבות פתח תקווה";
 export const VENUE_CITY = "פתח תקווה";
@@ -140,13 +141,8 @@ export async function scrapeEventDetail(browser, detailUrl, { debug = false } = 
         const data = JSON.parse(script.textContent);
         if (data["@type"] !== "Event" || !data.startDate) continue;
 
-        // startDate format: "2026-03-25T20:30:00"
-        const dt = data.startDate;
-        const date = dt.slice(0, 10); // "YYYY-MM-DD"
-        const timePart = dt.slice(11, 16); // "HH:MM"
-        const hour = /^\d{2}:\d{2}$/.test(timePart) ? timePart : "";
-
-        output.events.push({ date, hour });
+        // startDate format: "2026-03-25T20:30:00" — extract raw for Node parsing
+        output.events.push({ rawDatetime: data.startDate });
       } catch {
         // skip malformed JSON-LD
       }
@@ -161,5 +157,12 @@ export async function scrapeEventDetail(browser, detailUrl, { debug = false } = 
 
   await page.close();
 
-  return { events: result.events, debugHtml: result.debugHtml || undefined };
+  // Parse ISO datetimes in Node context
+  const events = [];
+  for (const e of result.events) {
+    const parsed = parseISODatetime(e.rawDatetime);
+    if (parsed) events.push(parsed);
+  }
+
+  return { events, debugHtml: result.debugHtml || undefined };
 }

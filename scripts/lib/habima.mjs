@@ -7,6 +7,7 @@
 
 import { fixDoubleProtocol, extractImageFromPage } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
+import { parseISODatetime } from "./date.mjs";
 
 // ── Constants ──────────────────────────────────────────────────
 
@@ -460,12 +461,7 @@ export async function scrapeShowEvents(browser, url, { debug = false, validDates
 
       // datetime="2026-03-30 20:00:00"
       const datetimeAttr = timeEl.getAttribute("datetime") || "";
-      // Parse: "YYYY-MM-DD HH:MM" (with optional :SS)
-      const dtMatch = datetimeAttr.match(/^(\d{4}-\d{2}-\d{2})\s+(\d{2}:\d{2})/);
-      if (!dtMatch) continue;
-
-      const dateStr = dtMatch[1]; // "2026-03-30"
-      const timeStr = dtMatch[2]; // "20:00"
+      if (!/\d{4}-\d{2}-\d{2}/.test(datetimeAttr)) continue;
 
       const ticketLink = li.querySelector("a[href]");
       const ticketUrl = ticketLink ? ticketLink.getAttribute("href") : null;
@@ -473,8 +469,7 @@ export async function scrapeShowEvents(browser, url, { debug = false, validDates
       const rawText = li.textContent?.replace(/\s+/g, " ").trim() || "";
 
       events.push({
-        date: dateStr,
-        hour: timeStr,
+        rawDatetime: datetimeAttr,
         ticketUrl,
         rawText: rawText.slice(0, 250),
       });
@@ -489,6 +484,14 @@ export async function scrapeShowEvents(browser, url, { debug = false, validDates
   }, debug);
 
   await page.close();
+
+  // ── Convert raw datetime strings to date/hour (Node context) ──
+  for (const e of result.events) {
+    const parsed = parseISODatetime(e.rawDatetime);
+    e.date = parsed ? parsed.date : e.rawDatetime.slice(0, 10);
+    e.hour = parsed ? parsed.hour : "";
+    delete e.rawDatetime;
+  }
 
   // Filter out past events and deduplicate by ticketUrl or date+hour
   const today = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Jerusalem" }); // "YYYY-MM-DD"

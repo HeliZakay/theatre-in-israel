@@ -8,6 +8,7 @@
 import { fixDoubleProtocol, extractImageFromPage } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
 import { parseLessinDuration } from "./duration.mjs";
+import { normalizeYear, formatDate } from "./date.mjs";
 
 // Re-export so existing consumers can still import from here
 export { parseLessinDuration };
@@ -360,7 +361,6 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
 
   const result = await page.evaluate((debugMode) => {
     const output = { events: [], venue: null, debugHtml: null };
-    const currentYear = new Date().getFullYear();
     const events = [];
 
     // ── Strategy 1 (precise): pres.global ticket links ──
@@ -405,14 +405,8 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
 
         if (!dateMatch) continue;
 
-        const day = dateMatch[1].padStart(2, "0");
-        const month = dateMatch[2].padStart(2, "0");
-
-        // Infer year: if month < current month, assume next year.
-        const now = new Date();
-        const monthNum = parseInt(month, 10);
-        const year =
-          monthNum < now.getMonth() + 1 ? currentYear + 1 : currentYear;
+        const rawDay = parseInt(dateMatch[1], 10);
+        const rawMonth = parseInt(dateMatch[2], 10);
 
         // Hall: look for "אולם X" in cell text
         let hall = null;
@@ -445,7 +439,9 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
         const note = noteParts.length > 0 ? noteParts.join(" | ") : null;
 
         events.push({
-          date: `${year}-${month}-${day}`,
+          rawDay,
+          rawMonth,
+          rawYear: "",
           hour: timeMatch ? timeMatch[1] : "",
           note,
           href: href || null,
@@ -504,18 +500,9 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
           const timeMatch = text.match(/(\d{1,2}:\d{2})/);
           if (!dateMatch) continue;
 
-          const day = dateMatch[1].padStart(2, "0");
-          const month = dateMatch[2].padStart(2, "0");
-          let year = dateMatch[3] || "";
-          if (year && year.length === 2) year = "20" + year;
-          if (!year) {
-            const monthNum = parseInt(month, 10);
-            const now = new Date();
-            year =
-              monthNum < now.getMonth() + 1
-                ? String(currentYear + 1)
-                : String(currentYear);
-          }
+          const rawDay = parseInt(dateMatch[1], 10);
+          const rawMonth = parseInt(dateMatch[2], 10);
+          const rawYear = dateMatch[3] || "";
 
           // Hall
           let hall = null;
@@ -535,7 +522,9 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
           const note = noteParts.length > 0 ? noteParts.join(" | ") : null;
 
           events.push({
-            date: `${year}-${month}-${day}`,
+            rawDay,
+            rawMonth,
+            rawYear,
             hour: timeMatch ? timeMatch[1] : "",
             note,
             rawText: text.slice(0, 250),
@@ -551,18 +540,9 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
         /(\d{1,2})[./](\d{1,2})(?:[./](\d{2,4}))?\s*[\s|,\-–—]*\s*(\d{1,2}:\d{2})?/g;
       let match;
       while ((match = dateRegex.exec(bodyText)) !== null) {
-        const day = match[1].padStart(2, "0");
-        const month = match[2].padStart(2, "0");
-        let year = match[3] || "";
-        if (year && year.length === 2) year = "20" + year;
-        if (!year) {
-          const monthNum = parseInt(month, 10);
-          const now = new Date();
-          year =
-            monthNum < now.getMonth() + 1
-              ? String(currentYear + 1)
-              : String(currentYear);
-        }
+        const rawDay = parseInt(match[1], 10);
+        const rawMonth = parseInt(match[2], 10);
+        const rawYear = match[3] || "";
 
         const surrounding = bodyText.slice(
           Math.max(0, match.index - 50),
@@ -579,7 +559,9 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
         }
 
         events.push({
-          date: `${year}-${month}-${day}`,
+          rawDay,
+          rawMonth,
+          rawYear,
           hour: match[4] || "",
           note: subtitleNote,
           rawText: surrounding.trim(),
@@ -587,10 +569,10 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
       }
     }
 
-    // ── Deduplicate: prefer href as key (Strategy 1), fall back to date|hour ──
+    // ── Deduplicate: prefer href as key (Strategy 1), fall back to day.month|hour ──
     const bestByKey = new Map();
     for (const e of events) {
-      const key = e.href || `${e.date}|${e.hour}`;
+      const key = e.href || `${e.rawDay}.${e.rawMonth}.${e.rawYear}|${e.hour}`;
       const existing = bestByKey.get(key);
       if (!existing || (!existing.hour && e.hour)) {
         bestByKey.set(key, e);
@@ -669,5 +651,15 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
   }, debug);
 
   await page.close();
+
+  // ── Convert raw date components to YYYY-MM-DD (Node context) ──
+  for (const e of result.events) {
+    const year = parseInt(normalizeYear(String(e.rawYear ?? ""), e.rawDay, e.rawMonth), 10);
+    e.date = formatDate(e.rawDay, e.rawMonth, year);
+    delete e.rawDay;
+    delete e.rawMonth;
+    delete e.rawYear;
+  }
+
   return result;
 }

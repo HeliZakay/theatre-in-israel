@@ -9,6 +9,7 @@
  */
 
 import { setupRequestInterception } from "../browser.mjs";
+import { parseSlashDate } from "../date.mjs";
 
 export const VENUE_NAME = "היכל התרבות אשקלון";
 export const VENUE_CITY = "אשקלון";
@@ -38,7 +39,6 @@ export async function fetchListing(browser) {
     .catch(() => {});
 
   const listings = await page.evaluate(() => {
-    const DATE_TIME_RE = /(\d{2})\/(\d{2})\/(\d{4}),?\s*(\d{1,2}:\d{2})/;
     const rows = document.querySelectorAll(".event_tbl");
     const results = [];
 
@@ -57,17 +57,10 @@ export async function fetchListing(browser) {
 
       // Date/time in <span class="post-date">יום: DD/MM/YYYY, HH:MM</span>
       const dateSpan = row.querySelector(".post-date");
-      const dateText = dateSpan?.textContent?.trim() || "";
-      const match = dateText.match(DATE_TIME_RE);
-      if (!match) continue;
+      const rawDateText = dateSpan?.textContent?.trim() || "";
+      if (!rawDateText) continue;
 
-      const day = parseInt(match[1], 10);
-      const month = parseInt(match[2], 10);
-      const year = parseInt(match[3], 10);
-      const dateStr = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-      const hour = match[4];
-
-      results.push({ title, date: dateStr, hour });
+      results.push({ title, rawDateText });
     }
 
     return results;
@@ -75,13 +68,15 @@ export async function fetchListing(browser) {
 
   await page.close();
 
-  // Group flat results by title
+  // Parse dates in Node context and group by title
   const byTitle = new Map();
   for (const item of listings) {
+    const parsed = parseSlashDate(item.rawDateText);
+    if (!parsed) continue;
     if (!byTitle.has(item.title)) {
       byTitle.set(item.title, { title: item.title, events: [] });
     }
-    byTitle.get(item.title).events.push({ date: item.date, hour: item.hour });
+    byTitle.get(item.title).events.push({ date: parsed.date, hour: parsed.hour });
   }
   return [...byTitle.values()];
 }

@@ -10,6 +10,7 @@
  */
 
 import { setupRequestInterception } from "../browser.mjs";
+import { parseSlashDate, parseTime } from "../date.mjs";
 
 export const VENUE_NAME = "היכל התרבות אור עקיבא";
 export const VENUE_CITY = "אור עקיבא";
@@ -58,9 +59,6 @@ export async function fetchListing(browser) {
     const items = document.querySelectorAll(".jet-listing-grid__item");
     const results = [];
 
-    const DATE_RE = /^(\d{2})\/(\d{2})\/(\d{2})$/;
-    const TIME_RE = /^(\d{1,2}:\d{2})$/;
-
     for (const item of items) {
       const fields = item.querySelectorAll(
         ".jet-listing-dynamic-field__content",
@@ -71,13 +69,10 @@ export async function fetchListing(browser) {
 
       // Fields: [0]=title, [1]=date DD/MM/YY, [2]=day, [3]=time HH:MM, [4]=empty
       let title = texts[0] || "";
-      const dateText = texts[1] || "";
-      const timeText = texts[3] || "";
+      const rawDateText = texts[1] || "";
+      const rawTimeText = texts[3] || "";
 
-      const dateMatch = dateText.match(DATE_RE);
-      if (!dateMatch) continue; // skip items without a valid date
-
-      const timeMatch = timeText.match(TIME_RE);
+      if (!/\d{2}\/\d{2}\/\d{2}/.test(rawDateText)) continue;
 
       // If title is empty, decode it from the purchase link URL slug
       if (!title) {
@@ -96,14 +91,7 @@ export async function fetchListing(browser) {
 
       if (!title) continue;
 
-      const day = parseInt(dateMatch[1], 10);
-      const month = parseInt(dateMatch[2], 10);
-      const year = 2000 + parseInt(dateMatch[3], 10);
-
-      const date = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-      const hour = timeMatch ? timeMatch[1] : "";
-
-      results.push({ title, date, hour });
+      results.push({ title, rawDateText, rawTimeText });
     }
 
     return results;
@@ -111,13 +99,16 @@ export async function fetchListing(browser) {
 
   await page.close();
 
-  // Group flat results by title
+  // Parse dates in Node context and group by title
   const byTitle = new Map();
   for (const item of listings) {
+    const parsed = parseSlashDate(item.rawDateText);
+    if (!parsed) continue;
+    const hour = parseTime(item.rawTimeText);
     if (!byTitle.has(item.title)) {
       byTitle.set(item.title, { title: item.title, events: [] });
     }
-    byTitle.get(item.title).events.push({ date: item.date, hour: item.hour });
+    byTitle.get(item.title).events.push({ date: parsed.date, hour });
   }
   return [...byTitle.values()];
 }
