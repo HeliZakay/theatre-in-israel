@@ -224,6 +224,17 @@ export function useInfiniteShows({
         setAnnouncement(`נטענו ${newShows.length} הצגות נוספות`);
         setTimeout(() => setAnnouncement(""), 1000);
       }
+
+      // Force observer to re-evaluate after DOM update.
+      // Without this, if the sentinel stays within the rootMargin
+      // throughout the DOM update, no intersection transition occurs
+      // and the observer never fires again.
+      requestAnimationFrame(() => {
+        if (observerRef.current && sentinelNodeRef.current) {
+          observerRef.current.unobserve(sentinelNodeRef.current);
+          observerRef.current.observe(sentinelNodeRef.current);
+        }
+      });
     } catch (err: unknown) {
       if (err instanceof Error && err.name === "AbortError") return;
       setError(
