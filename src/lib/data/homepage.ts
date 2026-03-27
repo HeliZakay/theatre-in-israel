@@ -6,6 +6,7 @@ import type { EventListItem } from "./eventsList";
 import { GENRE_SECTIONS } from "@/constants/genreGroups";
 import { FEATURED_SHOW_SLUG } from "@/constants/featuredShow";
 import { excludeKidsWhere, KIDS_GENRE_NAME } from "../showHelpers";
+import { getSuggestions } from "./suggestions";
 
 const DISPLAY_LIMIT = 10;
 const FETCH_LIMIT = 40;
@@ -29,24 +30,6 @@ export interface SectionsData {
   israeli: ShowListItem[];
   kids: ShowListItem[];
   featuredShowId: number | null;
-}
-
-/**
- * Build autocomplete suggestions from distinct show values.
- */
-async function getSuggestions(): Promise<Suggestions> {
-  const [showFields, genreNames] = await Promise.all([
-    prisma.show.findMany({ select: { title: true, theatre: true } }),
-    prisma.genre.findMany({ select: { name: true } }),
-  ]);
-
-  return {
-    shows: Array.from(new Set(showFields.map((s) => s.title).filter(Boolean))),
-    theatres: Array.from(
-      new Set(showFields.map((s) => s.theatre).filter(Boolean)),
-    ),
-    genres: genreNames.map((g) => g.name).filter(Boolean),
-  };
 }
 
 /**
