@@ -2,7 +2,7 @@
 
 import prisma from "@/lib/prisma";
 import { contactSchema } from "@/lib/contactSchemas";
-import { checkContactRateLimit } from "@/utils/contactRateLimit";
+import { checkContactRateLimit } from "@/utils/rateLimitCheckers";
 import { checkFieldsForProfanity } from "@/utils/profanityFilter";
 import { escapeHtml } from "@/utils/escapeHtml";
 import { headers } from "next/headers";

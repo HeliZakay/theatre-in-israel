@@ -1,13 +1,11 @@
 import prisma from "@/lib/prisma";
-import { checkRateLimit } from "@/utils/rateLimit";
 
-// Rate limit configuration
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour in milliseconds
 const MAX_REVIEWS_PER_WINDOW = 50; // Maximum 50 reviews per hour
-const MAX_EDITS_PER_WINDOW = 50; // Maximum 50 edits/deletes per hour
 
 /**
- * Check if user has exceeded the rate limit for creating reviews
+ * Check if user has exceeded the rate limit for creating reviews.
+ * Uses a direct Prisma query on the reviews table (not the generic rate-limit utility).
  * @param userId - The user ID to check
  * @returns Object with isLimited (boolean) and remainingTime (minutes until limit resets)
  */
@@ -32,7 +30,6 @@ export async function checkReviewRateLimit(
   });
 
   if (recentReviews.length >= MAX_REVIEWS_PER_WINDOW) {
-    // Calculate when the oldest review in the window will expire
     const oldestReviewTime = recentReviews[0].createdAt.getTime();
     const resetTime = oldestReviewTime + RATE_LIMIT_WINDOW_MS;
     const remainingMs = resetTime - Date.now();
@@ -47,54 +44,4 @@ export async function checkReviewRateLimit(
   return {
     isLimited: false,
   };
-}
-
-/**
- * Check if user has exceeded the rate limit for editing/deleting reviews.
- * Uses a DB-backed sliding window via the shared rate-limit utility.
- */
-export async function checkEditDeleteRateLimit(userId: string): Promise<{
-  isLimited: boolean;
-  remainingTime?: number;
-}> {
-  const result = await checkRateLimit(
-    `user:${userId}`,
-    "editDelete",
-    MAX_EDITS_PER_WINDOW,
-    RATE_LIMIT_WINDOW_MS,
-  );
-
-  if (!result.allowed) {
-    return { isLimited: true, remainingTime: 60 };
-  }
-
-  return { isLimited: false };
-}
-
-const ANONYMOUS_REVIEW_WINDOW_MS = 60 * 60 * 1000; // 1 hour
-const ANONYMOUS_MAX_REVIEWS = 20; // max 20 anonymous reviews per hour per IP
-const ANONYMOUS_UNKNOWN_IP_MAX = 5; // only 5 if IP is unknown
-
-/**
- * Check if an anonymous visitor (identified by IP) has exceeded the
- * rate limit for creating reviews.
- */
-export async function checkAnonymousReviewRateLimit(
-  ip: string,
-): Promise<{ isLimited: boolean; remainingTime?: number }> {
-  const maxAttempts =
-    ip === "unknown" ? ANONYMOUS_UNKNOWN_IP_MAX : ANONYMOUS_MAX_REVIEWS;
-
-  const result = await checkRateLimit(
-    `ip:${ip}`,
-    "anonymous-review",
-    maxAttempts,
-    ANONYMOUS_REVIEW_WINDOW_MS,
-  );
-
-  if (!result.allowed) {
-    return { isLimited: true, remainingTime: 60 };
-  }
-
-  return { isLimited: false };
 }

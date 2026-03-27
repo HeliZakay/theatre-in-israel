@@ -5,7 +5,7 @@ jest.mock("@/lib/prisma", () => ({
 jest.mock("@/lib/auth", () => ({ authOptions: {} }));
 jest.mock("@/utils/actionAuth");
 jest.mock("@/lib/watchlist");
-jest.mock("@/utils/watchlistRateLimit");
+jest.mock("@/utils/rateLimitCheckers");
 jest.mock("next/cache", () => ({
   revalidatePath: jest.fn(),
 }));

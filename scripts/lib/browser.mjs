@@ -6,6 +6,8 @@
  */
 
 import puppeteer from "puppeteer";
+import puppeteerExtra from "puppeteer-extra";
+import StealthPlugin from "puppeteer-extra-plugin-stealth";
 
 /**
  * Launch a headless Puppeteer browser.
@@ -13,6 +15,19 @@ import puppeteer from "puppeteer";
  */
 export async function launchBrowser() {
   return puppeteer.launch({
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
+}
+
+/**
+ * Launch a headless Puppeteer browser with stealth plugin enabled.
+ * Use this for sites behind Cloudflare or similar bot-detection.
+ * @returns {Promise<import("puppeteer").Browser>}
+ */
+export async function launchStealthBrowser() {
+  puppeteerExtra.use(StealthPlugin());
+  return puppeteerExtra.launch({
     headless: true,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });

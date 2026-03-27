@@ -8,7 +8,7 @@ import prisma from "@/lib/prisma";
 import ROUTES from "@/constants/routes";
 import bcrypt from "bcryptjs";
 import { headers } from "next/headers";
-import { checkLoginRateLimit } from "@/utils/authRateLimit";
+import { checkLoginRateLimit } from "@/utils/rateLimitCheckers";
 
 /** A session that is guaranteed to have a user with an id. */
 export interface AuthenticatedSession extends Session {

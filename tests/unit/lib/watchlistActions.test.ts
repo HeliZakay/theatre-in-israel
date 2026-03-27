@@ -11,7 +11,7 @@ jest.mock("@/lib/watchlist", () => ({
   removeFromWatchlist: jest.fn(),
 }));
 
-jest.mock("@/utils/watchlistRateLimit", () => ({
+jest.mock("@/utils/rateLimitCheckers", () => ({
   checkWatchlistRateLimit: jest.fn(),
 }));
 

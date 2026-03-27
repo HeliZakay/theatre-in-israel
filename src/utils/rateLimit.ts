@@ -47,3 +47,37 @@ export async function checkRateLimit(
 
   return { allowed: true, remainingAttempts: maxAttempts - count - 1 };
 }
+
+/**
+ * Factory that creates a rate-limit checker function.
+ * Wraps `checkRateLimit` with pre-configured action, window, key prefix,
+ * and a fixed `remainingTime` value returned when the limit is hit.
+ */
+export function createRateLimitChecker(config: {
+  action: string;
+  maxAttempts: number | ((identifier: string) => number);
+  windowMs: number;
+  keyPrefix?: string;
+  remainingTime?: number;
+}): (identifier: string) => Promise<{ isLimited: boolean; remainingTime?: number }> {
+  const { action, maxAttempts, windowMs, keyPrefix = "", remainingTime } = config;
+
+  return async (identifier: string) => {
+    const max =
+      typeof maxAttempts === "function" ? maxAttempts(identifier) : maxAttempts;
+    const result = await checkRateLimit(
+      `${keyPrefix}${identifier}`,
+      action,
+      max,
+      windowMs,
+    );
+
+    if (!result.allowed) {
+      return remainingTime !== undefined
+        ? { isLimited: true, remainingTime }
+        : { isLimited: true };
+    }
+
+    return { isLimited: false };
+  };
+}

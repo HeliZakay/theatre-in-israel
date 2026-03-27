@@ -3,7 +3,7 @@
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 import prisma from "@/lib/prisma";
-import { checkSignupRateLimit } from "@/utils/authRateLimit";
+import { checkSignupRateLimit } from "@/utils/rateLimitCheckers";
 import { headers } from "next/headers";
 import {
   actionSuccess,

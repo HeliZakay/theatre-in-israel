@@ -14,6 +14,7 @@ jest.mock("@/utils/actionAuth");
 jest.mock("@/lib/reviews");
 jest.mock("@/utils/profanityFilter");
 jest.mock("@/utils/reviewRateLimit");
+jest.mock("@/utils/rateLimitCheckers");
 jest.mock("next/cache", () => ({
   revalidatePath: jest.fn(),
   revalidateTag: jest.fn(),
@@ -30,7 +31,7 @@ jest.mock("next/headers", () => ({
 import { createAnonymousReview } from "@/app/reviews/actions";
 import { addReview } from "@/lib/reviews";
 import { checkFieldsForProfanity } from "@/utils/profanityFilter";
-import { checkAnonymousReviewRateLimit } from "@/utils/reviewRateLimit";
+import { checkAnonymousReviewRateLimit } from "@/utils/rateLimitCheckers";
 import prisma from "@/lib/prisma";
 
 function createFormData(fields: Record<string, string>): FormData {

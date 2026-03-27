@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { addToWatchlist, removeFromWatchlist } from "@/lib/watchlist";
 import { requireActionAuth } from "@/utils/actionAuth";
-import { checkWatchlistRateLimit } from "@/utils/watchlistRateLimit";
+import { checkWatchlistRateLimit } from "@/utils/rateLimitCheckers";
 import { toPositiveInt } from "@/utils/parseId";
 import {
   actionSuccess,

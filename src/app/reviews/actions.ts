@@ -14,11 +14,11 @@ import {
   formatZodErrors,
 } from "@/lib/reviewSchemas";
 import { checkFieldsForProfanity } from "@/utils/profanityFilter";
+import { checkReviewRateLimit } from "@/utils/reviewRateLimit";
 import {
-  checkReviewRateLimit,
   checkEditDeleteRateLimit,
   checkAnonymousReviewRateLimit,
-} from "@/utils/reviewRateLimit";
+} from "@/utils/rateLimitCheckers";
 import { requireActionAuth } from "@/utils/actionAuth";
 import { getLotteryEntriesCount } from "@/lib/lottery";
 import { isLotteryActive } from "@/constants/lottery";

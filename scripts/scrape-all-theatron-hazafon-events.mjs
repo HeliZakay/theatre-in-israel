@@ -18,8 +18,7 @@ import fs from "fs";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
-import puppeteer from "puppeteer-extra";
-import StealthPlugin from "puppeteer-extra-plugin-stealth";
+import { launchStealthBrowser } from "./lib/browser.mjs";
 import { createPrismaClient } from "./lib/db.mjs";
 import { fetchAllDbShows, matchVenueTitle } from "./lib/venue-match.mjs";
 import {
@@ -74,12 +73,7 @@ async function main() {
   console.log(dim(`\n  Found ${allDbShows.length} shows in DB (all theatres).\n`));
 
   // ── 2. Launch browser and fetch venue listing ──
-  // Site is behind Cloudflare — use puppeteer-extra stealth plugin
-  puppeteer.use(StealthPlugin());
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
-  });
+  const browser = await launchStealthBrowser();
 
   let listings;
   try {

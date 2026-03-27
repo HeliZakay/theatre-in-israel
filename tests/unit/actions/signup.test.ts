@@ -16,7 +16,7 @@ jest.mock("bcryptjs", () => ({
   hash: jest.fn().mockResolvedValue("hashed-password"),
 }));
 
-jest.mock("@/utils/authRateLimit", () => ({
+jest.mock("@/utils/rateLimitCheckers", () => ({
   checkSignupRateLimit: jest.fn().mockResolvedValue({ isLimited: false }),
 }));
 

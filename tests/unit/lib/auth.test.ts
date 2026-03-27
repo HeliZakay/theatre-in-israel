@@ -50,7 +50,7 @@ jest.mock("bcryptjs", () => ({
   compare: jest.fn(),
 }));
 
-jest.mock("@/utils/authRateLimit", () => ({
+jest.mock("@/utils/rateLimitCheckers", () => ({
   checkLoginRateLimit: jest.fn(() =>
     Promise.resolve({ isLimited: false })
   ),

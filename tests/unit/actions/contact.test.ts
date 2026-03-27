@@ -8,7 +8,7 @@ jest.mock("@/lib/email", () => ({
   resend: { emails: { send: jest.fn() } },
   NOTIFICATION_RECIPIENT: "test@example.com",
 }));
-jest.mock("@/utils/contactRateLimit");
+jest.mock("@/utils/rateLimitCheckers");
 jest.mock("@/utils/profanityFilter");
 jest.mock("@/utils/escapeHtml", () => ({
   escapeHtml: jest.fn((s: string) => s),
@@ -18,7 +18,7 @@ jest.mock("next/headers", () => ({
 }));
 
 import { sendContactMessage } from "@/app/contact/actions";
-import { checkContactRateLimit } from "@/utils/contactRateLimit";
+import { checkContactRateLimit } from "@/utils/rateLimitCheckers";
 import { checkFieldsForProfanity } from "@/utils/profanityFilter";
 import prisma from "@/lib/prisma";
 import { resend } from "@/lib/email";
