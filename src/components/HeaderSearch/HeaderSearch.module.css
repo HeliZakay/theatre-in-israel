@@ -1,0 +1,208 @@
+/* ── Trigger button ── */
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(26, 26, 26, 0.2);
+  background: #ffffff;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.trigger:hover {
+  background: var(--color-curtain-red-008);
+  border-color: rgba(26, 26, 26, 0.3);
+}
+
+.triggerIcon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ── Dialog overlay ── */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 12, 18, 0.5);
+  z-index: 1100;
+  animation: overlayFadeIn 200ms ease-out;
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ── Dialog content (the unified search box) ── */
+
+.content {
+  position: fixed;
+  top: 15vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 560px;
+  max-width: 90vw;
+  z-index: 1101;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  padding: 0;
+  overflow: hidden;
+  animation: contentSlideIn 200ms ease-out;
+}
+
+@keyframes contentSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ── Search row (input + close button) ── */
+
+.searchForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.searchShell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 56px;
+  padding: 0 16px;
+}
+
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: rgba(26, 26, 26, 0.4);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.close:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--color-text-primary);
+}
+
+.searchIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: #8a94a6;
+  flex-shrink: 0;
+}
+
+.searchInput {
+  flex: 1;
+  height: 40px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1.1rem;
+  color: #1f2937;
+  text-align: right;
+  font-family: inherit;
+}
+
+.searchInput:focus,
+.searchInput:focus-visible {
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: #9aa3b2;
+}
+
+/* ── Divider between input and suggestions ── */
+
+.divider {
+  height: 1px;
+  background: #e1e4ea;
+  margin: 0;
+}
+
+/* ── Inline suggestions (overrides absolute positioning) ── */
+
+.suggestionsInline {
+  position: static;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  max-height: 300px;
+}
+
+/* ── Loading ── */
+
+.loading {
+  padding: 16px;
+  font-size: 0.9rem;
+  color: var(--color-text-placeholder);
+  text-align: center;
+}
+
+/* ── Mobile ── */
+
+@media (max-width: 640px) {
+  .content {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: auto;
+    width: auto;
+    max-width: none;
+    transform: none;
+    max-height: calc(100dvh - 24px);
+    overflow-y: auto;
+    animation: contentFadeIn 200ms ease-out;
+  }
+
+  @keyframes contentFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .searchShell {
+    height: 52px;
+    padding: 0 12px;
+    gap: 6px;
+  }
+
+  .searchInput {
+    font-size: 1rem;
+  }
+
+  .suggestionsInline {
+    max-height: calc(100dvh - 90px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .content {
+    animation: none;
+  }
+}

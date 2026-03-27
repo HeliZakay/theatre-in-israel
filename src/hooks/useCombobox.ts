@@ -17,7 +17,7 @@ export function useCombobox({
 }: UseComboboxOptions = {}) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
-  const rootRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLElement>(null);
 
   /* ── close on tap / click outside ── */
   useEffect(() => {
@@ -84,6 +84,7 @@ export function useCombobox({
       case "Escape":
         if (isOpen) {
           event.preventDefault();
+          event.stopPropagation();
           setIsOpen(false);
           setActiveIndex(-1);
         }
