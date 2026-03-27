@@ -47,6 +47,9 @@ jobs:
             git push
           fi
 
+      - name: Check scraper freshness
+        run: node scripts/check-scraper-freshness.mjs
+
       - name: Send events report email
         if: always()
         continue-on-error: true
