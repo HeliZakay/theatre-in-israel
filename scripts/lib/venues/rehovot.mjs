@@ -16,14 +16,12 @@ export const LISTING_URL = "https://www.beithaam.co.il/events/";
 /**
  * Fetch all events from the listing page.
  *
- * Returns a flat list — each entry is one performance with title, date, hour.
- * Events are grouped by title downstream (in the scrape-all script).
+ * Returns events grouped by title — each entry is one show with its events.
  *
  * @param {import("puppeteer").Browser} browser
- * @param {{ debug?: boolean }} [options]
- * @returns {Promise<{ title: string, date: string, hour: string }[]>}
+ * @returns {Promise<{ title: string, events: { date: string, hour: string }[] }[]>}
  */
-export async function fetchListing(browser, { debug = false } = {}) {
+export async function fetchListing(browser) {
   const page = await browser.newPage();
   await setupRequestInterception(page);
 
@@ -37,13 +35,12 @@ export async function fetchListing(browser, { debug = false } = {}) {
     .waitForSelector("a[href*='smarticket.co.il']", { timeout: 15_000 })
     .catch(() => {});
 
-  const result = await page.evaluate((debugMode) => {
+  const listings = await page.evaluate(() => {
     const DATE_TIME_RE = /(\d{2})\/(\d{2})\/(\d{4})\s+בשעה\s+(\d{1,2}:\d{2})/;
     const results = [];
 
     // Find all links to smarticket detail pages
     const links = document.querySelectorAll("a[href*='smarticket.co.il']");
-    const debugInfo = debugMode ? [] : null;
 
     for (const link of links) {
       const href = link.getAttribute("href") || "";
@@ -67,16 +64,6 @@ export async function fetchListing(browser, { debug = false } = {}) {
       // Extract date/time from card text
       const cardText = link.textContent || "";
       const match = cardText.match(DATE_TIME_RE);
-
-      if (debugMode) {
-        debugInfo.push({
-          href,
-          title,
-          cardText: cardText.trim().slice(0, 200),
-          matched: !!match,
-        });
-      }
-
       if (!match) continue;
 
       const day = parseInt(match[1], 10);
@@ -88,20 +75,18 @@ export async function fetchListing(browser, { debug = false } = {}) {
       results.push({ title, date: dateStr, hour });
     }
 
-    return { listings: results, debugInfo };
-  }, debug);
-
-  if (debug && result.debugInfo) {
-    console.log("  [DEBUG] Raw card data:");
-    for (const item of result.debugInfo) {
-      console.log(`    href: ${item.href}`);
-      console.log(`    title: ${item.title}`);
-      console.log(`    text: ${item.cardText}`);
-      console.log(`    matched: ${item.matched}`);
-      console.log("");
-    }
-  }
+    return results;
+  });
 
   await page.close();
-  return result.listings;
+
+  // Group flat results by title
+  const byTitle = new Map();
+  for (const item of listings) {
+    if (!byTitle.has(item.title)) {
+      byTitle.set(item.title, { title: item.title, events: [] });
+    }
+    byTitle.get(item.title).events.push({ date: item.date, hour: item.hour });
+  }
+  return [...byTitle.values()];
 }

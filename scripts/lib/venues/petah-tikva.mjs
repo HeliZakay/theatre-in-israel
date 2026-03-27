@@ -62,6 +62,56 @@ export async function fetchListing(browser) {
   return listings;
 }
 
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+/**
+ * Fetch all events grouped by show title.
+ * Calls fetchListing to get raw cards, groups by title, scrapes each
+ * detail URL via scrapeEventDetail, and deduplicates events.
+ *
+ * @param {import("puppeteer").Browser} browser
+ * @returns {Promise<{ title: string, events: { date: string, hour: string }[] }[]>}
+ */
+export async function fetchAllEvents(browser) {
+  const listings = await fetchListing(browser);
+
+  // Group by title, collecting unique detail URLs per show
+  const byTitle = new Map();
+  for (const item of listings) {
+    if (!byTitle.has(item.title)) {
+      byTitle.set(item.title, { title: item.title, detailUrls: new Set() });
+    }
+    byTitle.get(item.title).detailUrls.add(item.detailUrl);
+  }
+
+  const results = [];
+  const groups = [...byTitle.values()];
+
+  for (let i = 0; i < groups.length; i++) {
+    const group = groups[i];
+    const events = [];
+    const seen = new Set();
+    const urls = [...group.detailUrls];
+
+    for (let j = 0; j < urls.length; j++) {
+      const result = await scrapeEventDetail(browser, urls[j]);
+      for (const ev of result.events) {
+        const key = `${ev.date}|${ev.hour}`;
+        if (!seen.has(key)) {
+          seen.add(key);
+          events.push(ev);
+        }
+      }
+      if (j < urls.length - 1) await sleep(1500);
+    }
+
+    results.push({ title: group.title, events });
+    if (i < groups.length - 1) await sleep(1500);
+  }
+
+  return results;
+}
+
 /**
  * Scrape event date/time from a detail page using JSON-LD structured data.
  * Each detail page represents a single performance date.

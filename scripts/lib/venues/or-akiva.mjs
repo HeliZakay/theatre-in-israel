@@ -22,11 +22,10 @@ const MAX_SCROLL_ATTEMPTS = 20;
  * Fetch all events from the listing page.
  * Handles scroll-based infinite loading to get all items.
  *
- * Returns a flat list — each entry is one performance with title, date, hour.
- * Events are grouped by title downstream (in the scrape-all script).
+ * Returns events grouped by title — each entry is one show with its events.
  *
  * @param {import("puppeteer").Browser} browser
- * @returns {Promise<{ title: string, date: string, hour: string }[]>}
+ * @returns {Promise<{ title: string, events: { date: string, hour: string }[] }[]>}
  */
 export async function fetchListing(browser) {
   const page = await browser.newPage();
@@ -111,5 +110,14 @@ export async function fetchListing(browser) {
   });
 
   await page.close();
-  return listings;
+
+  // Group flat results by title
+  const byTitle = new Map();
+  for (const item of listings) {
+    if (!byTitle.has(item.title)) {
+      byTitle.set(item.title, { title: item.title, events: [] });
+    }
+    byTitle.get(item.title).events.push({ date: item.date, hour: item.hour });
+  }
+  return [...byTitle.values()];
 }
