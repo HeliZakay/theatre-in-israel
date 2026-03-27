@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-03-26T09:26:49.439Z",
+  "scrapedAt": "2026-03-27T04:09:41.438Z",
   "venue": {
     "name": "תיאטרון הקאמרי",
     "city": "תל אביב"
@@ -11,20 +11,6 @@
       "date": "2026-05-06",
       "hour": "20:30",
       "note": null
-    },
-    {
-      "showId": 5,
-      "showSlug": "גרושים",
-      "date": "2026-03-27",
-      "hour": "20:30",
-      "note": null
-    },
-    {
-      "showId": 5,
-      "showSlug": "גרושים",
-      "date": "2026-03-28",
-      "hour": "17:00",
-      "note": "English subtitles"
     },
     {
       "showId": 5,
@@ -207,27 +193,6 @@
       "date": "2026-05-04",
       "hour": "19:00",
       "note": "English subtitles"
-    },
-    {
-      "showId": 27,
-      "showSlug": "הלוויה-חורפית",
-      "date": "2026-03-28",
-      "hour": "17:30",
-      "note": null
-    },
-    {
-      "showId": 27,
-      "showSlug": "הלוויה-חורפית",
-      "date": "2026-03-28",
-      "hour": "21:00",
-      "note": null
-    },
-    {
-      "showId": 27,
-      "showSlug": "הלוויה-חורפית",
-      "date": "2026-03-29",
-      "hour": "19:00",
-      "note": null
     },
     {
       "showId": 27,
@@ -738,34 +703,6 @@
       "showSlug": "כל-הדברים-הטובים",
       "date": "2026-05-23",
       "hour": "18:00",
-      "note": null
-    },
-    {
-      "showId": 25,
-      "showSlug": "לא-הייתם-צריכים",
-      "date": "2026-03-27",
-      "hour": "12:00",
-      "note": "כתוביות בעברית"
-    },
-    {
-      "showId": 25,
-      "showSlug": "לא-הייתם-צריכים",
-      "date": "2026-03-27",
-      "hour": "20:00",
-      "note": null
-    },
-    {
-      "showId": 25,
-      "showSlug": "לא-הייתם-צריכים",
-      "date": "2026-03-28",
-      "hour": "17:00",
-      "note": "English subtitles"
-    },
-    {
-      "showId": 25,
-      "showSlug": "לא-הייתם-צריכים",
-      "date": "2026-03-28",
-      "hour": "20:30",
       "note": null
     },
     {

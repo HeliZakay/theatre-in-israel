@@ -1,35 +1,11 @@
 {
-  "scrapedAt": "2026-03-26T09:25:24.687Z",
+  "scrapedAt": "2026-03-27T04:08:30.444Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות ראשון לציון",
     "city": "ראשון לציון"
   },
   "events": [
-    {
-      "showId": 82,
-      "showSlug": "היומן",
-      "date": "2026-03-27",
-      "hour": "12:00"
-    },
-    {
-      "showId": 82,
-      "showSlug": "היומן",
-      "date": "2026-03-28",
-      "hour": "21:00"
-    },
-    {
-      "showId": 82,
-      "showSlug": "היומן",
-      "date": "2026-03-29",
-      "hour": "20:30"
-    },
-    {
-      "showId": 82,
-      "showSlug": "היומן",
-      "date": "2026-03-30",
-      "hour": "20:30"
-    },
     {
       "showId": 12,
       "showSlug": "פיטר-פן",

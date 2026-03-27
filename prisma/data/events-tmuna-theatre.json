@@ -1,7 +1,15 @@
 {
-  "scrapedAt": "2026-03-26T09:22:32.631Z",
+  "scrapedAt": "2026-03-27T04:05:39.729Z",
   "touring": true,
   "events": [
+    {
+      "showId": 213,
+      "showSlug": "Can-you-beat-the-KGB",
+      "date": "2026-04-26",
+      "hour": "21:00",
+      "venueName": "תיאטרון תמונע",
+      "venueCity": "תל אביב"
+    },
     {
       "showId": 261,
       "showSlug": "Die-Blumen",
@@ -99,6 +107,22 @@
       "venueCity": "תל אביב"
     },
     {
+      "showId": 106,
+      "showSlug": "דיק-פיק",
+      "date": "2026-04-26",
+      "hour": "19:00",
+      "venueName": "תיאטרון תמונע",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 277,
+      "showSlug": "האוגרת",
+      "date": "2026-04-25",
+      "hour": "20:00",
+      "venueName": "תיאטרון תמונע",
+      "venueCity": "תל אביב"
+    },
+    {
       "showId": 109,
       "showSlug": "האוויר-הוא-של-כולם",
       "date": "2026-04-16",
@@ -163,6 +187,14 @@
       "venueCity": "תל אביב"
     },
     {
+      "showId": 278,
+      "showSlug": "מה-פה-מופע-פה",
+      "date": "2026-04-25",
+      "hour": "11:00",
+      "venueName": "תיאטרון תמונע",
+      "venueCity": "תל אביב"
+    },
+    {
       "showId": 231,
       "showSlug": "עיגולים-של-שמחה",
       "date": "2026-04-11",
@@ -219,18 +251,18 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 234,
-      "showSlug": "שחף-עודד-קוטלר",
-      "date": "2026-03-28",
-      "hour": "19:00",
+      "showId": 279,
+      "showSlug": "שורה",
+      "date": "2026-04-23",
+      "hour": "20:00",
       "venueName": "תיאטרון תמונע",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 234,
-      "showSlug": "שחף-עודד-קוטלר",
-      "date": "2026-03-29",
-      "hour": "19:00",
+      "showId": 279,
+      "showSlug": "שורה",
+      "date": "2026-04-24",
+      "hour": "13:00",
       "venueName": "תיאטרון תמונע",
       "venueCity": "תל אביב"
     },
@@ -246,6 +278,14 @@
       "showId": 235,
       "showSlug": "שלא-יגמר-לי",
       "date": "2026-04-04",
+      "hour": "19:00",
+      "venueName": "תיאטרון תמונע",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 280,
+      "showSlug": "תיאטרון-רפרטוארי",
+      "date": "2026-04-26",
       "hour": "19:00",
       "venueName": "תיאטרון תמונע",
       "venueCity": "תל אביב"
