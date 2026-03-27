@@ -98,6 +98,7 @@ const organizationJsonLd = {
   name: SITE_NAME,
   url: siteUrl,
   logo: toAbsoluteUrl("/logo-img.png"),
+  sameAs: ["https://www.facebook.com/groups/965299379184440"],
 };
 
 export default function RootLayout({

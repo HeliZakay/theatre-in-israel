@@ -51,6 +51,15 @@ export default function Footer() {
               <li>
                 <Link href={ROUTES.CONTACT}>שלח.י לנו הודעה</Link>
               </li>
+              <li>
+                <a
+                  href="https://www.facebook.com/groups/965299379184440"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  קבוצת פייסבוק
+                </a>
+              </li>
             </ul>
           </div>
         </div>

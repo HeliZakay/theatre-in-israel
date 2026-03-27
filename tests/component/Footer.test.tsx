@@ -34,6 +34,16 @@ describe("Footer", () => {
     expect(link).toHaveAttribute("href", "/contact");
   });
 
+  it("renders Facebook group link", () => {
+    render(<Footer />);
+    const link = screen.getByRole("link", { name: "קבוצת פייסבוק" });
+    expect(link).toHaveAttribute(
+      "href",
+      "https://www.facebook.com/groups/965299379184440",
+    );
+    expect(link).toHaveAttribute("target", "_blank");
+  });
+
   it("renders brand name and tagline", () => {
     render(<Footer />);
     expect(screen.getByText("תיאטרון בישראל")).toBeInTheDocument();
