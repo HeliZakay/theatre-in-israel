@@ -10,6 +10,7 @@ import { useRef, useState } from "react";
 import { useHeaderOffset } from "@/hooks/useHeaderOffset";
 import DesktopNav from "./DesktopNav";
 import MobileMenu from "./MobileMenu";
+import HeaderSearch from "@/components/HeaderSearch/HeaderSearch";
 
 export default function Header() {
   const { data: session, status } = useSession();
@@ -53,52 +54,57 @@ export default function Header() {
     <header className={styles.header} ref={headerRef}>
       <Logo />
 
-      <Dialog.Root open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-        <Dialog.Trigger asChild>
-          <button
-            type="button"
-            className={styles.menuToggle}
-            aria-label={
-              isMobileMenuOpen ? "סגירת תפריט ניווט" : "פתיחת תפריט ניווט"
-            }
-          >
-            <svg
-              viewBox="0 0 24 24"
-              className={styles.menuToggleIcon}
-              aria-hidden="true"
-            >
-              {isMobileMenuOpen ? (
-                <path
-                  fill="currentColor"
-                  d="M18.3 5.7 12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z"
-                />
-              ) : (
-                <path
-                  fill="currentColor"
-                  d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"
-                />
-              )}
-            </svg>
-            <span className={styles.menuToggleLabel}>תפריט</span>
-          </button>
-        </Dialog.Trigger>
+      <div className={styles.mobileControls}>
+        <HeaderSearch />
 
-        <Dialog.Portal>
-          <Dialog.Overlay className={styles.mobileBackdrop} />
-          <Dialog.Content
-            className={styles.mobileDialogContent}
-            aria-label="תפריט ניווט"
-          >
-            <VisuallyHidden.Root>
-              <Dialog.Title>תפריט ניווט</Dialog.Title>
-            </VisuallyHidden.Root>
-            <MobileMenu {...mobileMenuProps} />
-          </Dialog.Content>
-        </Dialog.Portal>
-      </Dialog.Root>
+        <Dialog.Root open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+          <Dialog.Trigger asChild>
+            <button
+              type="button"
+              className={styles.menuToggle}
+              aria-label={
+                isMobileMenuOpen ? "סגירת תפריט ניווט" : "פתיחת תפריט ניווט"
+              }
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className={styles.menuToggleIcon}
+                aria-hidden="true"
+              >
+                {isMobileMenuOpen ? (
+                  <path
+                    fill="currentColor"
+                    d="M18.3 5.7 12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z"
+                  />
+                ) : (
+                  <path
+                    fill="currentColor"
+                    d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"
+                  />
+                )}
+              </svg>
+              <span className={styles.menuToggleLabel}>תפריט</span>
+            </button>
+          </Dialog.Trigger>
+
+          <Dialog.Portal>
+            <Dialog.Overlay className={styles.mobileBackdrop} />
+            <Dialog.Content
+              className={styles.mobileDialogContent}
+              aria-label="תפריט ניווט"
+            >
+              <VisuallyHidden.Root>
+                <Dialog.Title>תפריט ניווט</Dialog.Title>
+              </VisuallyHidden.Root>
+              <MobileMenu {...mobileMenuProps} />
+            </Dialog.Content>
+          </Dialog.Portal>
+        </Dialog.Root>
+      </div>
 
       {/* Desktop-only nav (hidden on mobile via CSS) */}
       <div className={styles.menu}>
+        <HeaderSearch />
         <DesktopNav pathname={pathname} onNavigate={closeMenus} />
         <MobileMenu {...mobileMenuProps} />
       </div>

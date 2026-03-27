@@ -16,6 +16,10 @@
 }
 
 
+.mobileControls {
+  display: none;
+}
+
 .menuToggle {
   display: none;
   align-items: center;
@@ -412,6 +416,12 @@
     flex-wrap: nowrap;
     padding: 12px 14px;
     gap: 10px;
+  }
+
+  .mobileControls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .menuToggle {

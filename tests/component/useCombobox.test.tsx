@@ -167,6 +167,7 @@ describe("useCombobox", () => {
       result.current.handleKeyDown({
         key: "Escape",
         preventDefault: jest.fn(),
+        stopPropagation: jest.fn(),
       } as unknown as React.KeyboardEvent);
     });
 

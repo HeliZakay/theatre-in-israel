@@ -1,19 +1,17 @@
 "use client";
 
-import { Fragment, useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo } from "react";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import Button from "../Button/Button";
+import SearchSuggestions, {
+  CATEGORIES,
+  buildCategoryLookup,
+} from "../SearchSuggestions/SearchSuggestions";
 import styles from "./SearchBar.module.css";
 import { useCombobox } from "@/hooks/useCombobox";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import ROUTES from "@/constants/routes";
 import type { Suggestions } from "@/types";
-
-const CATEGORIES = [
-  { key: "shows" as const, label: "הצגות" },
-  { key: "theatres" as const, label: "תיאטראות" },
-  { key: "genres" as const, label: "ז'אנרים" },
-];
 
 interface SearchBarProps {
   suggestions?: Suggestions;
@@ -38,15 +36,10 @@ export default function SearchBar({
     [suggestions],
   );
 
-  const categoryLookup = useMemo(() => {
-    const lookup = new Map<string, string>();
-    for (const cat of CATEGORIES) {
-      for (const item of suggestions[cat.key] || []) {
-        if (!lookup.has(item)) lookup.set(item, cat.key);
-      }
-    }
-    return lookup;
-  }, [suggestions]);
+  const categoryLookup = useMemo(
+    () => buildCategoryLookup(suggestions),
+    [suggestions],
+  );
 
   const {
     activeIndex,
@@ -113,51 +106,21 @@ export default function SearchBar({
           aria-controls={!isMobile ? listboxId : undefined}
           aria-activedescendant={
             !isMobile && activeIndex >= 0
-              ? `shows-suggestion-${activeIndex}`
+              ? `${listboxId}-option-${activeIndex}`
               : undefined
           }
         />
 
         {/* Desktop-only suggestions dropdown */}
         {!isMobile && isOpen && (
-          <div className={styles.suggestions} id={listboxId} role="listbox">
-            {filteredItems.length === 0 ? (
-              <div className={styles.empty}>לא נמצאו תוצאות</div>
-            ) : (
-              filteredItems.map((item, index) => {
-                const cat = categoryLookup.get(item);
-                const prevCat =
-                  index > 0
-                    ? categoryLookup.get(filteredItems[index - 1])
-                    : null;
-                const showHeader = cat !== prevCat;
-                const catLabel = CATEGORIES.find((c) => c.key === cat)?.label;
-
-                return (
-                  <Fragment key={item}>
-                    {showHeader && (
-                      <div className={styles.groupHeader} role="presentation">
-                        {catLabel}
-                      </div>
-                    )}
-                    <div
-                      id={`shows-suggestion-${index}`}
-                      className={`${styles.suggestion} ${
-                        index === activeIndex ? styles.suggestionActive : ""
-                      }`}
-                      role="option"
-                      aria-selected={index === activeIndex}
-                      onMouseDown={(e) => e.preventDefault()}
-                      onMouseEnter={() => setActiveIndex(index)}
-                      onClick={() => selectItem(item)}
-                    >
-                      {item}
-                    </div>
-                  </Fragment>
-                );
-              })
-            )}
-          </div>
+          <SearchSuggestions
+            filteredItems={filteredItems}
+            categoryLookup={categoryLookup}
+            activeIndex={activeIndex}
+            listboxId={listboxId}
+            onSelect={selectItem}
+            onHover={setActiveIndex}
+          />
         )}
 
         <Button type="submit">חפש.י הצגה</Button>
