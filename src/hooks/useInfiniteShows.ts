@@ -267,13 +267,23 @@ export function useInfiniteShows({
     [loadMore],
   );
 
-  // Save scroll position on navigation away
+  // Keep refs in sync for the save-on-unmount closure
+  const showsRef = useRef(shows);
+  const hasMoreRef = useRef(hasMore);
+  useEffect(() => {
+    showsRef.current = shows;
+  }, [shows]);
+  useEffect(() => {
+    hasMoreRef.current = hasMore;
+  }, [hasMore]);
+
+  // Save scroll position on navigation away + cleanup on unmount
   useEffect(() => {
     const saveScroll = () => {
       saveToSession({
-        shows,
+        shows: showsRef.current,
         page: pageRef.current,
-        hasMore,
+        hasMore: hasMoreRef.current,
         filterKey: filterKeyRef.current,
         scrollY: window.scrollY,
       });
@@ -287,7 +297,7 @@ export function useInfiniteShows({
       abortRef.current?.abort();
       observerRef.current?.disconnect();
     };
-  }, [shows, hasMore]);
+  }, []);
 
   return { shows, isLoading, hasMore, error, retry, sentinelRef, announcement };
 }
