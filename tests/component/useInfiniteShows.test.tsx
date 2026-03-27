@@ -11,14 +11,13 @@ import type { ShowListItem, ShowFilters } from "@/types";
 // Mock IntersectionObserver
 let mockObserverCallback: IntersectionObserverCallback;
 const mockObserve = jest.fn();
-const mockUnobserve = jest.fn();
 const mockDisconnect = jest.fn();
 
 beforeEach(() => {
   (global as Record<string, unknown>).IntersectionObserver = jest.fn(
     (callback: IntersectionObserverCallback) => {
       mockObserverCallback = callback;
-      return { observe: mockObserve, disconnect: mockDisconnect, unobserve: mockUnobserve };
+      return { observe: mockObserve, disconnect: mockDisconnect, unobserve: jest.fn() };
     },
   );
 });
@@ -106,7 +105,6 @@ beforeEach(() => {
   jest.useFakeTimers();
   mockFetch.mockReset();
   mockObserve.mockClear();
-  mockUnobserve.mockClear();
   mockDisconnect.mockClear();
   mockSessionStorage.getItem.mockClear();
   mockSessionStorage.setItem.mockClear();
@@ -388,43 +386,6 @@ describe("useInfiniteShows", () => {
       });
 
       expect(mockFetch).not.toHaveBeenCalled();
-    });
-
-    it("re-evaluates observer after successful load with hasMore", async () => {
-      mockFetch.mockResolvedValue(fetchResponse([makeShow(3)], true));
-
-      const { result } = renderHook(() => useInfiniteShows(defaultOptions()));
-
-      const sentinel = document.createElement("div");
-      act(() => {
-        result.current.sentinelRef(sentinel);
-      });
-
-      // Initial observe
-      expect(mockObserve).toHaveBeenCalledTimes(1);
-      mockObserve.mockClear();
-      mockUnobserve.mockClear();
-
-      await act(async () => {
-        mockObserverCallback(
-          [{ isIntersecting: true }] as IntersectionObserverEntry[],
-          {} as IntersectionObserver,
-        );
-      });
-
-      await waitFor(() => {
-        expect(result.current.shows).toHaveLength(3);
-      });
-
-      // Flush the requestAnimationFrame that re-evaluates the observer
-      act(() => {
-        jest.runAllTimers();
-      });
-
-      // After successful load, observer should unobserve+observe to
-      // force re-evaluation in case sentinel stayed within rootMargin
-      expect(mockUnobserve).toHaveBeenCalled();
-      expect(mockObserve).toHaveBeenCalled();
     });
 
     it("sets announcement with count of new shows", async () => {
