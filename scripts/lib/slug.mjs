@@ -4,7 +4,8 @@
  * Keeps Hebrew characters intact for SEO, replaces spaces with hyphens,
  * and normalises special characters (e.g. ASCII apostrophe → Hebrew geresh ׳).
  *
- * @note Canonical source: src/utils/generateSlug.ts — keep in sync.
+ * This is the single source of truth — src/utils/generateSlug.ts re-exports
+ * this function.
  *
  * @param {string} title
  * @returns {string}
