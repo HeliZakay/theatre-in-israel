@@ -1,5 +1,6 @@
 import ROUTES from "@/constants/routes";
-import { requireAuth } from "@/lib/auth";
+import { authOptions, type AuthenticatedSession } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 import { getUserProfile } from "@/lib/data/profile";
 import { redirect } from "next/navigation";
 import Link from "next/link";
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function MyProfilePage() {
-  const session = await requireAuth(ROUTES.MY_PROFILE);
+  const session = (await getServerSession(authOptions)) as AuthenticatedSession;
 
   const profile = await getUserProfile(session.user.id);
   if (!profile) {

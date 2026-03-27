@@ -1,5 +1,6 @@
 import ROUTES from "@/constants/routes";
-import { requireAuth } from "@/lib/auth";
+import { authOptions, type AuthenticatedSession } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 import { getWatchlistShowIds } from "@/lib/watchlist";
 import { fetchShowListItems } from "@/lib/showHelpers";
 import ShowCard from "@/components/shows/ShowCard/ShowCard";
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function MyWatchlistPage() {
-  const session = await requireAuth(ROUTES.MY_WATCHLIST);
+  const session = (await getServerSession(authOptions)) as AuthenticatedSession;
 
   const showIds = await getWatchlistShowIds(session.user.id);
   const shows = await fetchShowListItems(showIds);

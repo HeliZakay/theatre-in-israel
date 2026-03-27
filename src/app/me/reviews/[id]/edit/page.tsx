@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import ROUTES from "@/constants/routes";
-import { requireAuth } from "@/lib/auth";
+import { authOptions, type AuthenticatedSession } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 import { getReviewByOwner } from "@/lib/reviews";
 import { toPositiveInt } from "@/utils/parseId";
 import EditReviewForm from "./EditReviewForm";
@@ -24,7 +24,7 @@ interface EditReviewPageProps {
 export const dynamic = "force-dynamic";
 
 export default async function EditReviewPage({ params }: EditReviewPageProps) {
-  const session = await requireAuth(ROUTES.MY_REVIEWS);
+  const session = (await getServerSession(authOptions)) as AuthenticatedSession;
 
   const { id } = await params;
   const reviewId = toPositiveInt(id);

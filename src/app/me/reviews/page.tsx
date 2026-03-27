@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ROUTES, { showPath } from "@/constants/routes";
-import { requireAuth } from "@/lib/auth";
+import { authOptions, type AuthenticatedSession } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 import { getReviewsByUser } from "@/lib/reviews";
 import { formatDate } from "@/utils/formatDate";
 import Button from "@/components/ui/Button/Button";
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function MyReviewsPage() {
-  const session = await requireAuth(ROUTES.MY_REVIEWS);
+  const session = (await getServerSession(authOptions)) as AuthenticatedSession;
 
   const reviews = await getReviewsByUser(session.user.id);
 
