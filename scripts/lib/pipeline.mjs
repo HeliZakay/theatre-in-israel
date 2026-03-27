@@ -2,9 +2,11 @@
 /**
  * pipeline.mjs — shared scraping pipeline for theatre show discovery.
  *
- * Extracts all common logic (AI processing, HTML generation,
- * migration SQL, interactive server) so each theatre scraper
- * is a thin wrapper that passes its config here.
+ * Extracts all common logic (HTML generation, interactive server)
+ * so each theatre scraper is a thin wrapper that passes its config here.
+ *
+ * AI processing lives in ./ai.mjs; migration SQL in ./migration.mjs.
+ * Both are re-exported here for backward compatibility.
  *
  * Exports:
  *   runPipeline(config)                  — full single-theatre pipeline (original entry point)
@@ -12,11 +14,11 @@
  *   generateHtml(title, groups)          — multi-theatre HTML report
  *   startServer(title, theatreId, groups)— interactive server with migration endpoint
  *   saveAndOpenHtml(title, theatreId, groups)
- *   createAIClient()
- *   processDescriptions(aiClient, results, opts)
- *   classifyGenres(aiClient, results, opts)
- *   generateMigrationSQL(shows, theatreId)
- *   writeMigrationFile(sql, theatreId)
+ *   createAIClient()                     — re-exported from ./ai.mjs
+ *   processDescriptions(aiClient, results, opts) — re-exported from ./ai.mjs
+ *   classifyGenres(aiClient, results, opts)      — re-exported from ./ai.mjs
+ *   generateMigrationSQL(shows, theatreId)       — re-exported from ./migration.mjs
+ *   writeMigrationFile(sql, theatreId)            — re-exported from ./migration.mjs
  */
 
 import dotenv from "dotenv";
@@ -25,7 +27,6 @@ import http from "node:http";
 import { execSync } from "child_process";
 import path from "path";
 import { fileURLToPath } from "url";
-import OpenAI from "openai";
 
 import { generateSlug } from "./slug.mjs";
 import { downloadAndConvert } from "./image.mjs";
@@ -37,33 +38,22 @@ import {
   saveExcludedShows,
 } from "./db.mjs";
 import { green, red } from "./cli.mjs";
+import {
+  createAIClient,
+  processDescriptions,
+  classifyGenres,
+} from "./ai.mjs";
+import {
+  generateMigrationSQL,
+  writeMigrationFile,
+  validateShowsForMigration,
+} from "./migration.mjs";
 
 // ── Setup ───────────────────────────────────────────────────────
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, "..", "..");
 
 const POLITE_DELAY = 1500;
-
-// ── AI configuration ────────────────────────────────────────────
-const AI_MODEL = "gpt-4o-mini";
-const AI_ENDPOINT = "https://models.inference.ai.azure.com";
-
-const EXISTING_GENRES = [
-  "מוזיקלי",
-  "ישראלי",
-  "מרגש",
-  "מחזמר",
-  "דרמה",
-  "קלאסיקה",
-  "קומדיה",
-  "סאטירה",
-  "דרמה קומית",
-  "ילדים",
-  "פנטזיה",
-  "מותחן",
-  "קומדיה שחורה",
-  "רומנטי",
-];
 
 // ── Helpers ─────────────────────────────────────────────────────
 
@@ -717,323 +707,16 @@ ${groupCards}`;
 </html>`;
 }
 
-// ── AI description processing ───────────────────────────────────
-
-export function createAIClient() {
-  const token = process.env.GITHUB_TOKEN;
-  if (!token) return null;
-  return new OpenAI({ baseURL: AI_ENDPOINT, apiKey: token });
-}
-
-export async function processDescriptions(
-  aiClient,
-  results,
-  { quiet = false } = {},
-) {
-  const BATCH_SIZE = 7;
-  const validResults = results.filter((r) => !r.error && r.rawDescription);
-  if (!aiClient || validResults.length === 0) return;
-
-  // Process in batches of BATCH_SIZE
-  for (let start = 0; start < validResults.length; start += BATCH_SIZE) {
-    const batch = validResults.slice(start, start + BATCH_SIZE);
-
-    const showList = batch
-      .map(
-        (r, i) =>
-          `${i + 1}. שם: ${r.title}\n   טקסט גולמי:\n${r.rawDescription.slice(0, 1500)}`,
-      )
-      .join("\n\n");
-
-    try {
-      const response = await aiClient.chat.completions.create({
-        model: AI_MODEL,
-        temperature: 0.4,
-        max_tokens: 5000,
-        response_format: { type: "json_object" },
-        messages: [
-          {
-            role: "system",
-            content: [
-              "אתה עורך תיאורי הצגות תיאטרון בעברית. עבור כל הצגה, בצע שתי משימות:",
-              "",
-              "1. ניקוי תיאור: קיבלת טקסט גולמי שנגרד מאתר אינטרנט ועלול להכיל רעשים.",
-              "הסר את כל מה שאינו חלק מתיאור העלילה והתוכן האמנותי של ההצגה:",
-              "רשימות משתתפים, שחקנים, יוצרים, צוות, קרדיטים, צילום, עיצוב,",
-              "מספרי טלפון, כתובות, מידע על הנגשה, הפקה, תמיכה, פרסים,",
-              "הפניות לאתרים, הערות שוליים, וכל טקסט טכני או שיווקי.",
-              "שמור רק את הפסקאות שמתארות את העלילה, הנושא והחוויה התיאטרונית.",
-              "",
-              "2. כתיבת תקציר: כתוב משפט אחד עד שניים (20-40 מילים) שמתאר את ההצגה בסגנון עיתונאי-שיווקי:",
-              "תמציתי, מרתק, כולל את הז'אנר, העלילה המרכזית ואלמנט מושך.",
-              "אל תשתמש במירכאות בתקציר.",
-              "",
-              'החזר JSON בפורמט: { "shows": [{ "title": "שם ההצגה", "description": "התיאור הנקי", "summary": "התקציר" }] }',
-              "ללא הערות או הסברים נוספים.",
-            ].join("\n"),
-          },
-          {
-            role: "user",
-            content: `עבד את התיאורים עבור ההצגות הבאות:\n\n${showList}`,
-          },
-        ],
-      });
-
-      const content = response.choices[0]?.message?.content?.trim();
-      if (!content) continue;
-
-      const parsed = JSON.parse(content);
-      const descMap = new Map();
-
-      if (Array.isArray(parsed.shows)) {
-        for (const entry of parsed.shows) {
-          if (entry.title) {
-            descMap.set(normalise(entry.title), {
-              description: entry.description?.trim() || null,
-              summary: entry.summary?.trim() || "",
-            });
-          }
-        }
-      }
-
-      for (const r of batch) {
-        const match = descMap.get(normalise(r.title));
-        if (match) {
-          r.description = match.description || r.rawDescription;
-          r.summary = match.summary;
-        }
-      }
-    } catch (err) {
-      if (!quiet) {
-        console.warn(`  ⚠️  Description processing failed: ${err.message}`);
-      }
-    }
-  }
-}
-
-export async function classifyGenres(
-  aiClient,
-  results,
-  { quiet = false } = {},
-) {
-  const validResults = results.filter((r) => !r.error);
-  if (!aiClient || validResults.length === 0) return;
-
-  const showList = validResults
-    .map(
-      (r, i) =>
-        `${i + 1}. שם: ${r.title}\n   תקציר: ${r.summary || "(אין)"}\n   תיאור: ${(r.description || "(אין)").slice(0, 300)}`,
-    )
-    .join("\n\n");
-
-  try {
-    const response = await aiClient.chat.completions.create({
-      model: AI_MODEL,
-      temperature: 0.3,
-      max_tokens: 1000,
-      response_format: { type: "json_object" },
-      messages: [
-        {
-          role: "system",
-          content: [
-            "אתה מסווג ז'אנרים של הצגות תיאטרון בעברית.",
-            `הז'אנרים הקיימים במערכת הם: ${EXISTING_GENRES.join(", ")}.`,
-            "עבור כל הצגה, בחר 1-3 ז'אנרים מתאימים.",
-            "העדף תמיד ז'אנרים מהרשימה הקיימת.",
-            "צור ז'אנר חדש רק אם אף ז'אנר קיים לא מתאר את ההצגה בצורה סבירה.",
-            "ז'אנר חדש צריך להיות מילה אחת או שתיים בעברית, בסגנון דומה לז'אנרים הקיימים.",
-            'החזר JSON בפורמט: { "shows": [ { "title": "שם ההצגה", "genres": ["ז\'אנר1", "ז\'אנר2"] } ] }',
-            "אל תוסיף הערות או הסברים — רק את ה-JSON.",
-          ].join(" "),
-        },
-        {
-          role: "user",
-          content: `סווג את הז'אנרים עבור ההצגות הבאות:\n\n${showList}`,
-        },
-      ],
-    });
-
-    const content = response.choices[0]?.message?.content?.trim();
-    if (!content) return;
-
-    const parsed = JSON.parse(content);
-    const genreMap = new Map();
-
-    if (Array.isArray(parsed.shows)) {
-      for (const entry of parsed.shows) {
-        if (entry.title && Array.isArray(entry.genres)) {
-          genreMap.set(normalise(entry.title), entry.genres);
-        }
-      }
-    }
-
-    for (const r of validResults) {
-      const genres = genreMap.get(normalise(r.title));
-      if (genres && genres.length > 0) {
-        r.genre = genres;
-      }
-    }
-  } catch (err) {
-    if (!quiet) {
-      console.warn(`  ⚠️  Genre classification failed: ${err.message}`);
-    }
-  }
-}
-
-// ── Migration SQL generator ─────────────────────────────────────
-
-function validateShowsForMigration(shows) {
-  const errors = [];
-  const slugs = new Set();
-
-  for (let i = 0; i < shows.length; i++) {
-    const show = shows[i];
-    const num = i + 1;
-
-    if (!show.title || !show.title.trim()) {
-      errors.push(`Show #${num}: missing title`);
-    }
-    if (!show.slug || !show.slug.trim()) {
-      errors.push(`Show #${num}: missing slug`);
-    } else if (/\s/.test(show.slug)) {
-      errors.push(`Show #${num}: slug contains whitespace`);
-    } else if (slugs.has(show.slug)) {
-      errors.push(`Show #${num}: duplicate slug "${show.slug}"`);
-    } else {
-      slugs.add(show.slug);
-    }
-    if (!show.theatre || !show.theatre.trim()) {
-      errors.push(`Show #${num}: missing theatre`);
-    }
-    if (
-      show.durationMinutes == null ||
-      isNaN(show.durationMinutes) ||
-      show.durationMinutes <= 0
-    ) {
-      errors.push(
-        `Show #${num} ("${show.title || "?"}"): invalid duration (${show.durationMinutes})`,
-      );
-    }
-    if (!show.summary || !show.summary.trim()) {
-      errors.push(`Show #${num} ("${show.title || "?"}"): missing summary`);
-    }
-  }
-
-  return errors;
-}
-
-function escapeSql(s) {
-  if (s == null) return "NULL";
-  return "'" + String(s).replace(/'/g, "''") + "'";
-}
-
-export function generateMigrationSQL(shows, theatreId) {
-  const lines = [
-    `-- Migration: Add new ${theatreId} shows`,
-    `-- Generated on ${new Date().toISOString()}`,
-    "-- This migration is idempotent (uses ON CONFLICT DO NOTHING).",
-    "",
-  ];
-
-  // 1. Insert genres
-  const allGenres = new Set();
-  for (const show of shows) {
-    for (const g of show.genre || []) {
-      if (g) allGenres.add(g);
-    }
-  }
-
-  if (allGenres.size > 0) {
-    lines.push(
-      "-- ============================================================",
-    );
-    lines.push("-- 1. Insert Genres");
-    lines.push(
-      "-- ============================================================",
-    );
-    for (const name of [...allGenres].sort()) {
-      lines.push(
-        `INSERT INTO "Genre" (name) VALUES (${escapeSql(name)}) ON CONFLICT (name) DO NOTHING;`,
-      );
-    }
-    lines.push("");
-  }
-
-  // 2. Insert shows (no explicit id — let autoincrement handle it)
-  lines.push("-- ============================================================");
-  lines.push("-- 2. Insert Shows");
-  lines.push("-- ============================================================");
-  for (const show of shows) {
-    const title = escapeSql(show.title);
-    const slug = escapeSql(show.slug);
-    const theatre = escapeSql(show.theatre);
-    const duration = show.durationMinutes;
-    const summary = escapeSql(show.summary);
-    const description = show.description ? escapeSql(show.description) : "NULL";
-    const cast = show.cast ? escapeSql(show.cast) : "NULL";
-    lines.push(
-      `INSERT INTO "Show" (title, slug, theatre, "durationMinutes", summary, description, "cast") ` +
-        `VALUES (${title}, ${slug}, ${theatre}, ${duration}, ${summary}, ${description}, ${cast}) ` +
-        `ON CONFLICT (slug) DO NOTHING;`,
-    );
-  }
-  lines.push("");
-
-  // 3. Insert ShowGenre join records (resolve IDs via subselects)
-  const hasGenreLinks = shows.some((s) => (s.genre || []).length > 0);
-  if (hasGenreLinks) {
-    lines.push(
-      "-- ============================================================",
-    );
-    lines.push("-- 3. Insert ShowGenre join records");
-    lines.push(
-      "-- ============================================================",
-    );
-    for (const show of shows) {
-      for (const genre of show.genre || []) {
-        const slug = escapeSql(show.slug);
-        const genreName = escapeSql(genre);
-        lines.push(
-          `INSERT INTO "ShowGenre" ("showId", "genreId") ` +
-            `SELECT s.id, g.id FROM "Show" s, "Genre" g ` +
-            `WHERE s.slug = ${slug} AND g.name = ${genreName} ` +
-            `ON CONFLICT DO NOTHING;`,
-        );
-      }
-    }
-    lines.push("");
-  }
-
-  // 4. Reset sequences
-  lines.push("-- ============================================================");
-  lines.push("-- 4. Reset sequences");
-  lines.push("-- ============================================================");
-  lines.push(
-    `SELECT setval(pg_get_serial_sequence('"Show"', 'id'), (SELECT MAX(id) FROM "Show"));`,
-  );
-  lines.push(
-    `SELECT setval(pg_get_serial_sequence('"Genre"', 'id'), (SELECT MAX(id) FROM "Genre"));`,
-  );
-  lines.push("");
-
-  return lines.join("\n");
-}
-
-export function writeMigrationFile(sql, theatreId) {
-  const now = new Date();
-  const ts = now.toISOString().replace(/[-:T]/g, "").slice(0, 14);
-  const migrationName = `${ts}_add_${theatreId}_shows`;
-  const migrationDir = path.join(
-    rootDir,
-    "prisma",
-    "migrations",
-    migrationName,
-  );
-  fs.mkdirSync(migrationDir, { recursive: true });
-  const filePath = path.join(migrationDir, "migration.sql");
-  fs.writeFileSync(filePath, sql, "utf-8");
-  return { migrationName, filePath: path.relative(rootDir, filePath) };
-}
+// Re-export AI and migration functions for backward compatibility
+export {
+  createAIClient,
+  processDescriptions,
+  classifyGenres,
+} from "./ai.mjs";
+export {
+  generateMigrationSQL,
+  writeMigrationFile,
+} from "./migration.mjs";
 
 // ── HTML report output ──────────────────────────────────────────
 
