@@ -79,12 +79,10 @@ async function getShowsByGenres(
 ): Promise<ShowListItem[]> {
   const shows = await prisma.show.findMany({
     where: {
-      genres: {
-        some: {
-          genre: { name: { in: genreNames } },
-        },
-      },
-      ...excludeKidsWhere,
+      AND: [
+        { genres: { some: { genre: { name: { in: genreNames } } } } },
+        excludeKidsWhere,
+      ],
     },
     include: showListInclude,
     orderBy: [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],

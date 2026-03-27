@@ -17,8 +17,10 @@ export interface GenrePageData {
 async function fetchGenreData(genreName: string): Promise<GenrePageData> {
   const rawShows = await prisma.show.findMany({
     where: {
-      genres: { some: { genre: { name: genreName } } },
-      ...(genreName !== KIDS_GENRE_NAME ? excludeKidsWhere : {}),
+      AND: [
+        { genres: { some: { genre: { name: genreName } } } },
+        ...(genreName !== KIDS_GENRE_NAME ? [excludeKidsWhere] : []),
+      ],
     },
     include: showListInclude,
     orderBy: [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],
