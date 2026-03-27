@@ -106,7 +106,7 @@ describe("ShowsContent", () => {
       />,
     );
 
-    expect(screen.getByText("12 מתוך 30 הצגות")).toBeInTheDocument();
+    expect(screen.getByText("30 הצגות")).toBeInTheDocument();
   });
 
   it("renders sentinel div when hasMore is true", () => {

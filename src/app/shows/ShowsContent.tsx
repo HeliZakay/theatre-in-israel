@@ -37,7 +37,6 @@ export default function ShowsContent({
   } = useInfiniteShows({ initialShows, initialHasMore, filters });
 
   const totalCount = filters.total ?? shows.length;
-  const showingCount = shows.length;
   const isFiltered =
     filters.theatre || filters.query || filters.genres.length > 0;
 
@@ -70,9 +69,7 @@ export default function ShowsContent({
                 </span>
               ) : null}
               <span className={styles.filterCount}>
-                {showingCount < totalCount
-                  ? `${showingCount} מתוך ${totalCount} תוצאות`
-                  : `${totalCount} תוצאות`}
+                {totalCount} תוצאות
               </span>
               <Link
                 className={styles.clearLink}
@@ -84,9 +81,7 @@ export default function ShowsContent({
             </>
           ) : (
             <span className={styles.filterCount}>
-              {showingCount < totalCount
-                ? `${showingCount} מתוך ${totalCount} הצגות`
-                : `${totalCount} הצגות`}
+              {totalCount} הצגות
             </span>
           )}
         </div>
