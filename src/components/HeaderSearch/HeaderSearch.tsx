@@ -10,6 +10,7 @@ import SearchSuggestions, {
 import styles from "./HeaderSearch.module.css";
 import { useCombobox } from "@/hooks/useCombobox";
 import ROUTES from "@/constants/routes";
+import { buildShowsQueryString } from "@/utils/showsQuery";
 import type { Suggestions } from "@/types";
 
 const EMPTY_SUGGESTIONS: Suggestions = {
@@ -74,7 +75,7 @@ export default function HeaderSearch() {
   const navigate = useCallback(
     (query: string) => {
       if (!query.trim()) return;
-      router.push(`${ROUTES.SHOWS}#results?query=${encodeURIComponent(query.trim())}`);
+      router.push(`${ROUTES.SHOWS}${buildShowsQueryString({ query: query.trim() })}#results`);
       setOpen(false);
     },
     [router],
