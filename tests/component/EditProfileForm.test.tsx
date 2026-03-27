@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import EditProfileForm from "@/components/EditProfileForm/EditProfileForm";
+import EditProfileForm from "@/components/forms/EditProfileForm/EditProfileForm";
 
 // Mock next-auth/react
 const mockUpdate = jest.fn();

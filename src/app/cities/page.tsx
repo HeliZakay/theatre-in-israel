@@ -3,7 +3,7 @@ import Image from "next/image";
 import { getAllCityStats } from "@/lib/data/cityDetail";
 import { CITIES } from "@/constants/cities";
 import ROUTES, { cityPath } from "@/constants/routes";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
+import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
 import {
   SITE_NAME,
   buildBreadcrumbJsonLd,

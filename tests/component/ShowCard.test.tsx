@@ -1,4 +1,4 @@
-jest.mock("@/components/FallbackImage/FallbackImage", () => {
+jest.mock("@/components/ui/FallbackImage/FallbackImage", () => {
   const MockFallbackImage = (props: Record<string, unknown>) => (
     <img alt={props.alt as string} src={props.src as string} />
   );
@@ -6,7 +6,7 @@ jest.mock("@/components/FallbackImage/FallbackImage", () => {
   return { __esModule: true, default: MockFallbackImage };
 });
 
-jest.mock("@/components/Tag/Tag", () => {
+jest.mock("@/components/ui/Tag/Tag", () => {
   const MockTag = ({ children }: { children: React.ReactNode }) => (
     <span data-testid="tag">{children}</span>
   );
@@ -15,7 +15,7 @@ jest.mock("@/components/Tag/Tag", () => {
 });
 
 import { render, screen } from "@testing-library/react";
-import ShowCard from "@/components/ShowCard/ShowCard";
+import ShowCard from "@/components/shows/ShowCard/ShowCard";
 import type { ShowListItem } from "@/types";
 
 function makeShow(overrides: Partial<ShowListItem> = {}): ShowListItem {

@@ -5,7 +5,7 @@ jest.mock("embla-carousel-react", () => ({
   default: jest.fn(() => [jest.fn(), null]),
 }));
 
-import ShowCarousel from "@/components/ShowCarousel/ShowCarousel";
+import ShowCarousel from "@/components/shows/ShowCarousel/ShowCarousel";
 
 describe("ShowCarousel", () => {
   it("renders children inside carousel", () => {

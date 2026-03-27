@@ -1,15 +1,15 @@
 import { render, screen } from "@testing-library/react";
-import ExploreBanner from "@/components/ExploreBanner/ExploreBanner";
+import ExploreBanner from "@/components/shows/ExploreBanner/ExploreBanner";
 
 // Mock the headline sub-component
-jest.mock("@/components/ExploreBanner/ExploreBannerHeadline", () => {
+jest.mock("@/components/shows/ExploreBanner/ExploreBannerHeadline", () => {
   const MockHeadline = () => <h2>mock headline</h2>;
   MockHeadline.displayName = "MockExploreBannerHeadline";
   return { __esModule: true, default: MockHeadline };
 });
 
 // Mock ExploreBannerGrid — renders pool prop for verification
-jest.mock("@/components/ExploreBanner/ExploreBannerGrid", () => {
+jest.mock("@/components/shows/ExploreBanner/ExploreBannerGrid", () => {
   const MockGrid = ({
     pool,
   }: {

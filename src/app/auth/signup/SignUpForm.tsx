@@ -4,7 +4,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import ROUTES from "@/constants/routes";
-import { GoogleIcon } from "@/components/SocialIcons/SocialIcons";
+import { GoogleIcon } from "@/components/ui/SocialIcons/SocialIcons";
 import { signup } from "./actions";
 import styles from "../signin/page.module.css";
 

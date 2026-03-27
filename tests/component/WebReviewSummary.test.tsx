@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import WebReviewSummary from "@/components/WebReviewSummary/WebReviewSummary";
+import WebReviewSummary from "@/components/reviews/WebReviewSummary/WebReviewSummary";
 
 describe("WebReviewSummary", () => {
   it("returns null when summary is null", () => {

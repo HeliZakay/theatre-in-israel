@@ -1,11 +1,11 @@
-jest.mock("@/components/ShareButtons/ShareButtons", () => {
+jest.mock("@/components/ui/ShareButtons/ShareButtons", () => {
   const MockShareButtons = () => <div data-testid="share-buttons" />;
   MockShareButtons.displayName = "MockShareButtons";
   return { __esModule: true, default: MockShareButtons };
 });
 
 import { render, screen } from "@testing-library/react";
-import ReviewSuccessBanner from "@/components/ReviewSuccessBanner/ReviewSuccessBanner";
+import ReviewSuccessBanner from "@/components/reviews/ReviewSuccessBanner/ReviewSuccessBanner";
 
 const defaultProps = {
   showSlug: "hamlet",

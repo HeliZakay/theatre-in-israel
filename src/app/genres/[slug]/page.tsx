@@ -4,8 +4,8 @@ import { getGenreData } from "@/lib/data/genreDetail";
 import { GENRES, GENRE_BY_SLUG } from "@/constants/genres";
 import { THEATRE_BY_NAME } from "@/constants/theatres";
 import ROUTES, { genrePath, showPath, theatrePath } from "@/constants/routes";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
-import ShowCard from "@/components/ShowCard/ShowCard";
+import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
+import ShowCard from "@/components/shows/ShowCard/ShowCard";
 import {
   SITE_NAME,
   buildBreadcrumbJsonLd,

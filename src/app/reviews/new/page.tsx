@@ -3,10 +3,10 @@ import ROUTES from "@/constants/routes";
 import { getShowOptions } from "@/lib/reviews";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import ReviewForm from "@/components/ReviewForm/ReviewForm";
+import ReviewForm from "@/components/reviews/ReviewForm/ReviewForm";
 import CancelButton from "./CancelButton";
 import { SITE_NAME } from "@/lib/seo";
-import ReviewAuthGateway from "@/components/ReviewAuthGateway/ReviewAuthGateway";
+import ReviewAuthGateway from "@/components/reviews/ReviewAuthGateway/ReviewAuthGateway";
 import { ENABLE_REVIEW_AUTH_GATEWAY } from "@/constants/featureFlags";
 
 import type { Metadata } from "next";

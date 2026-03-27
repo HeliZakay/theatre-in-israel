@@ -20,7 +20,7 @@ jest.mock("@/hooks/useCombobox", () => ({
   })),
 }));
 
-import ActorSearch from "@/components/ActorSearch/ActorSearch";
+import ActorSearch from "@/components/ui/ActorSearch/ActorSearch";
 import { useCombobox } from "@/hooks/useCombobox";
 
 const baseProps = {

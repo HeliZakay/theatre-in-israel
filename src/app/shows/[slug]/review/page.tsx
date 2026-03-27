@@ -6,10 +6,10 @@ import { showPath, showReviewPath } from "@/constants/routes";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { getShowBySlug } from "@/lib/data/showDetail";
-import ReviewForm from "@/components/ReviewForm/ReviewForm";
-import ReviewAuthGateway from "@/components/ReviewAuthGateway/ReviewAuthGateway";
+import ReviewForm from "@/components/reviews/ReviewForm/ReviewForm";
+import ReviewAuthGateway from "@/components/reviews/ReviewAuthGateway/ReviewAuthGateway";
 import { ENABLE_REVIEW_AUTH_GATEWAY } from "@/constants/featureFlags";
-import FallbackImage from "@/components/FallbackImage/FallbackImage";
+import FallbackImage from "@/components/ui/FallbackImage/FallbackImage";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import { SITE_NAME } from "@/lib/seo";
 

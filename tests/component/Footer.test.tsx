@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Footer from "@/components/Footer/Footer";
+import Footer from "@/components/layout/Footer/Footer";
 
 jest.mock("@/lib/fonts", () => ({
   titleFont: { variable: "mock-font-variable" },

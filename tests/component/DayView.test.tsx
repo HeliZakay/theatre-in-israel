@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import DayView from "@/components/Events/DayView";
-import type { EventCardProps } from "@/components/Events/EventCard";
-import type { DateGroup } from "@/components/Events/EventsList";
+import DayView from "@/components/events/DayView";
+import type { EventCardProps } from "@/components/events/EventCard";
+import type { DateGroup } from "@/components/events/EventsList";
 
 function makeEvent(hour: string, overrides: Partial<EventCardProps> = {}): EventCardProps {
   return {

@@ -5,8 +5,8 @@ import { getActorData } from "@/lib/data/actorDetail";
 import { ACTORS, ACTOR_BY_SLUG } from "@/constants/actors";
 import { THEATRE_BY_NAME } from "@/constants/theatres";
 import ROUTES, { actorPath, showPath, theatrePath } from "@/constants/routes";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
-import ShowCard from "@/components/ShowCard/ShowCard";
+import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
+import ShowCard from "@/components/shows/ShowCard/ShowCard";
 import {
   SITE_NAME,
   buildBreadcrumbJsonLd,

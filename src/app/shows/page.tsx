@@ -1,5 +1,5 @@
 import { getShowsForList } from "@/lib/data/showsList";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
+import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
 import ROUTES, { showPath } from "@/constants/routes";
 import { DEFAULT_SORT } from "@/constants/sorts";
 import {

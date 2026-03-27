@@ -1,6 +1,6 @@
 "use client";
 
-import ShareButtons from "@/components/ShareButtons/ShareButtons";
+import ShareButtons from "@/components/ui/ShareButtons/ShareButtons";
 import styles from "./page.module.css";
 import Link from "next/link";
 import ROUTES from "@/constants/routes";

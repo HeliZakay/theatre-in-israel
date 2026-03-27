@@ -13,20 +13,20 @@ import { ENABLE_REVIEW_AUTH_GATEWAY } from "@/constants/featureFlags";
 import ROUTES, { showPath, showReviewPath, theatrePath, genrePath, actorPath } from "@/constants/routes";
 import { THEATRE_BY_NAME } from "@/constants/theatres";
 import { GENRE_BY_NAME } from "@/constants/genres";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
-import ReviewCard from "@/components/ReviewCard/ReviewCard";
+import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
+import ReviewCard from "@/components/reviews/ReviewCard/ReviewCard";
 import Image from "next/image";
-import FallbackImage from "@/components/FallbackImage/FallbackImage";
-import WatchlistButton from "@/components/WatchlistButton/WatchlistButton";
-import LotteryBadge from "@/components/LotteryBadge/LotteryBadge";
-import StickyReviewCTA from "@/components/StickyReviewCTA/StickyReviewCTA";
-import InlineReviewForm from "@/components/InlineReviewForm/InlineReviewForm";
-import ReviewSuccessBanner from "@/components/ReviewSuccessBanner/ReviewSuccessBanner";
-import ScrollToReviewButton from "@/components/ScrollToReviewButton/ScrollToReviewButton";
-import ShareDropdown from "@/components/ShareDropdown/ShareDropdown";
-import WebReviewSummary from "@/components/WebReviewSummary/WebReviewSummary";
-import ShowsSection from "@/components/ShowsSection/ShowsSection";
-import PerformancesSidebar from "@/components/PerformancesSidebar/PerformancesSidebar";
+import FallbackImage from "@/components/ui/FallbackImage/FallbackImage";
+import WatchlistButton from "@/components/shows/WatchlistButton/WatchlistButton";
+import LotteryBadge from "@/components/shows/LotteryBadge/LotteryBadge";
+import StickyReviewCTA from "@/components/shows/StickyReviewCTA/StickyReviewCTA";
+import InlineReviewForm from "@/components/reviews/InlineReviewForm/InlineReviewForm";
+import ReviewSuccessBanner from "@/components/reviews/ReviewSuccessBanner/ReviewSuccessBanner";
+import ScrollToReviewButton from "@/components/reviews/ScrollToReviewButton/ScrollToReviewButton";
+import ShareDropdown from "@/components/ui/ShareDropdown/ShareDropdown";
+import WebReviewSummary from "@/components/reviews/WebReviewSummary/WebReviewSummary";
+import ShowsSection from "@/components/shows/ShowsSection/ShowsSection";
+import PerformancesSidebar from "@/components/shows/PerformancesSidebar/PerformancesSidebar";
 import {
   getRelatedByTheatre,
   getRelatedByGenres,

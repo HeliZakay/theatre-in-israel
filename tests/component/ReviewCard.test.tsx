@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import ReviewCard from "@/components/ReviewCard/ReviewCard";
+import ReviewCard from "@/components/reviews/ReviewCard/ReviewCard";
 import type { Review } from "@/types";
 
 function makeReview(overrides: Partial<Review> = {}): Review {

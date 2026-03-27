@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import ShareButtons from "@/components/ShareButtons/ShareButtons";
+import ShareButtons from "@/components/ui/ShareButtons/ShareButtons";
 
 describe("ShareButtons", () => {
   it("renders WhatsApp and Facebook links", () => {

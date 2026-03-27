@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import GlobalLoading from "@/components/GlobalLoading/GlobalLoading";
+import GlobalLoading from "@/components/layout/GlobalLoading/GlobalLoading";
 
 describe("GlobalLoading", () => {
   it("renders main with aria-busy='true'", () => {

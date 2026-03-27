@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import ReviewAuthGateway from "@/components/ReviewAuthGateway/ReviewAuthGateway";
+import ReviewAuthGateway from "@/components/reviews/ReviewAuthGateway/ReviewAuthGateway";
 
 describe("ReviewAuthGateway", () => {
   const callbackUrl = "/shows/hamlet/review";

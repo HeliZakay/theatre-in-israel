@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import ContentWithSidebar from "@/components/ContentWithSidebar/ContentWithSidebar";
+import ContentWithSidebar from "@/components/layout/ContentWithSidebar/ContentWithSidebar";
 
 describe("ContentWithSidebar", () => {
   it("renders main content children", () => {

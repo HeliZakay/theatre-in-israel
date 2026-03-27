@@ -5,7 +5,7 @@ jest.mock("@/lib/data/homepage", () => ({
 }));
 
 const capturedProps: Record<string, string[] | undefined>[] = [];
-jest.mock("@/components/ShowsSection/ShowsSection", () => {
+jest.mock("@/components/shows/ShowsSection/ShowsSection", () => {
   const Mock = ({ title, sectionGenres }: { title: string; sectionGenres?: string[] }) => {
     capturedProps.push({ title: [title], sectionGenres });
     return <div data-testid="shows-section">{title}</div>;
@@ -29,7 +29,7 @@ jest.mock("@/utils/showsQuery", () => ({
   buildShowsQueryString: () => "?genres=test",
 }));
 
-import ShowsSectionsContent from "@/components/ShowsSectionsContent/ShowsSectionsContent";
+import ShowsSectionsContent from "@/components/shows/ShowsSectionsContent/ShowsSectionsContent";
 import { getSectionsData } from "@/lib/data/homepage";
 
 const makeShow = (id: number, title: string) => ({

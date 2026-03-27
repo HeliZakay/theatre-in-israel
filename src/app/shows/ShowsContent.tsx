@@ -1,8 +1,8 @@
 "use client";
 
-import ShowCard from "@/components/ShowCard/ShowCard";
-import ShowsFilterBar from "@/components/ShowsFilterBar/ShowsFilterBar";
-import ShowCardSkeleton from "@/components/ShowCardSkeleton/ShowCardSkeleton";
+import ShowCard from "@/components/shows/ShowCard/ShowCard";
+import ShowsFilterBar from "@/components/shows/ShowsFilterBar/ShowsFilterBar";
+import ShowCardSkeleton from "@/components/shows/ShowCardSkeleton/ShowCardSkeleton";
 import Link from "next/link";
 import styles from "./page.module.css";
 import type { ShowFilters, ShowListItem } from "@/types";

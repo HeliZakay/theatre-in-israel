@@ -3,7 +3,7 @@ jest.mock("@/app/reviews/actions", () => ({
   createAnonymousReview: jest.fn(),
 }));
 
-jest.mock("@/components/AppSelect/AppSelect", () => {
+jest.mock("@/components/ui/AppSelect/AppSelect", () => {
   const MockAppSelect = ({
     value,
     onValueChange,
@@ -61,7 +61,7 @@ jest.mock("next/navigation", () => ({
 
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import InlineReviewForm from "@/components/InlineReviewForm/InlineReviewForm";
+import InlineReviewForm from "@/components/reviews/InlineReviewForm/InlineReviewForm";
 import {
   createReview,
   createAnonymousReview,

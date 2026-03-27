@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import SearchBar from "@/components/SearchBar/SearchBar";
+import SearchBar from "@/components/ui/SearchBar/SearchBar";
 
 const SUGGESTIONS = {
   shows: ["המלט", "קברט", "שיכור"],

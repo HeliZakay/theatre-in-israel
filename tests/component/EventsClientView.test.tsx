@@ -2,15 +2,15 @@
 
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import EventsClientView from "@/components/Events/EventsClientView";
-import type { DateTab } from "@/components/Events/DateStrip";
-import type { DateGroup } from "@/components/Events/EventsList";
+import EventsClientView from "@/components/events/EventsClientView";
+import type { DateTab } from "@/components/events/DateStrip";
+import type { DateGroup } from "@/components/events/EventsList";
 
 /* ------------------------------------------------------------------ */
 /*  Mocks                                                              */
 /* ------------------------------------------------------------------ */
 
-jest.mock("@/components/Events/DateStrip", () => {
+jest.mock("@/components/events/DateStrip", () => {
   const MockDateStrip = ({
     tabs,
     selected,
@@ -36,7 +36,7 @@ jest.mock("@/components/Events/DateStrip", () => {
   return { __esModule: true, default: MockDateStrip };
 });
 
-jest.mock("@/components/Events/DayView", () => {
+jest.mock("@/components/events/DayView", () => {
   const MockDayView = ({ group }: { group: DateGroup }) => (
     <div data-testid="day-view">{group.dateKey}</div>
   );

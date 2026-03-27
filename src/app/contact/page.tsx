@@ -1,5 +1,5 @@
 import styles from "./page.module.css";
-import ContactForm from "@/components/ContactForm/ContactForm";
+import ContactForm from "@/components/forms/ContactForm/ContactForm";
 import { SITE_NAME } from "@/lib/seo";
 import ROUTES from "@/constants/routes";
 

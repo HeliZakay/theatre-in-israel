@@ -5,14 +5,14 @@ jest.mock("@/app/reviews/actions", () => ({
 
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import ReviewForm from "@/components/ReviewForm/ReviewForm";
-import type { ShowOption } from "@/components/ReviewForm/ReviewForm";
+import ReviewForm from "@/components/reviews/ReviewForm/ReviewForm";
+import type { ShowOption } from "@/components/reviews/ReviewForm/ReviewForm";
 import { createReview, createAnonymousReview } from "@/app/reviews/actions";
 
 // ---------- Mock Radix Select used inside ReviewFormFields ----------
 // Radix Select uses portals and complex internals that are hard to test with
 // jsdom. Replace AppSelect with a plain `<select>` for form integration tests.
-jest.mock("@/components/AppSelect/AppSelect", () => {
+jest.mock("@/components/ui/AppSelect/AppSelect", () => {
   const MockAppSelect = ({
     value,
     onValueChange,

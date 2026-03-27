@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import SecurityBanner from "@/components/SecurityBanner/SecurityBanner";
+import SecurityBanner from "@/components/layout/SecurityBanner/SecurityBanner";
 
 describe("SecurityBanner", () => {
   it("renders with role='alert'", () => {

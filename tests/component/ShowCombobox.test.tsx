@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import ShowCombobox from "@/components/ShowCombobox/ShowCombobox";
+import ShowCombobox from "@/components/shows/ShowCombobox/ShowCombobox";
 
 /* ── Mock useMediaQuery so desktop tests keep the inline dropdown ── */
 const mockUseMediaQuery = jest.fn((_width: number) => false);

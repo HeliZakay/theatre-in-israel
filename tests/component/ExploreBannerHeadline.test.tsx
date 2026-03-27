@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import ExploreBannerHeadline from "@/components/ExploreBanner/ExploreBannerHeadline";
+import ExploreBannerHeadline from "@/components/shows/ExploreBanner/ExploreBannerHeadline";
 
 describe("ExploreBannerHeadline", () => {
   it('renders headline "גלו הצגות"', () => {

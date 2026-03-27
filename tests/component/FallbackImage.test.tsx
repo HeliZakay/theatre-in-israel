@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import FallbackImage from "@/components/FallbackImage/FallbackImage";
+import FallbackImage from "@/components/ui/FallbackImage/FallbackImage";
 
 describe("FallbackImage", () => {
   it("renders an image with the given src and alt", () => {

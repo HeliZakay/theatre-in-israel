@@ -16,13 +16,13 @@ import {
   buildBreadcrumbJsonLd,
 } from "@/lib/seo";
 import { getShowImagePath } from "@/utils/getShowImagePath";
-import DateChips from "@/components/Events/DateChips";
-import RegionChips from "@/components/Events/RegionChips";
-import EventsClientView from "@/components/Events/EventsClientView";
-import EventsEmptyState from "@/components/Events/EventsEmptyState";
-import EventsFAQ from "@/components/Events/EventsFAQ";
-import type { DateGroup } from "@/components/Events/EventsList";
-import type { DateTab } from "@/components/Events/DateStrip";
+import DateChips from "@/components/events/DateChips";
+import RegionChips from "@/components/events/RegionChips";
+import EventsClientView from "@/components/events/EventsClientView";
+import EventsEmptyState from "@/components/events/EventsEmptyState";
+import EventsFAQ from "@/components/events/EventsFAQ";
+import type { DateGroup } from "@/components/events/EventsList";
+import type { DateTab } from "@/components/events/DateStrip";
 import styles from "./page.module.css";
 
 import type { Metadata } from "next";

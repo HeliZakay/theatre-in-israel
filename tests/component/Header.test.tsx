@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { useSession } from "next-auth/react";
-import Header from "@/components/Header/Header";
+import Header from "@/components/layout/Header/Header";
 
 // Override usePathname per test
 let mockPathname = "/";
@@ -20,7 +20,7 @@ jest.mock("@/hooks/useHeaderOffset", () => ({
 }));
 
 // Mock child components to isolate Header logic
-jest.mock("@/components/Header/AccountDropdown", () => {
+jest.mock("@/components/layout/Header/AccountDropdown", () => {
   const Mock = (props: { firstName: string }) => (
     <div data-testid="account-dropdown">{props.firstName}</div>
   );
@@ -28,15 +28,15 @@ jest.mock("@/components/Header/AccountDropdown", () => {
   return { __esModule: true, default: Mock };
 });
 
-jest.mock("@/components/Header/DesktopNav", () => {
+jest.mock("@/components/layout/Header/DesktopNav", () => {
   const Mock = () => <nav data-testid="desktop-nav" />;
   Mock.displayName = "MockDesktopNav";
   return { __esModule: true, default: Mock };
 });
 
-jest.mock("@/components/Header/MobileMenu", () => {
+jest.mock("@/components/layout/Header/MobileMenu", () => {
   const AccountDropdown =
-    require("@/components/Header/AccountDropdown").default;
+    require("@/components/layout/Header/AccountDropdown").default;
   const ROUTES = require("@/constants/routes").default;
   const Mock = (props: {
     pathname: string;
@@ -66,7 +66,7 @@ jest.mock("@/components/Header/MobileMenu", () => {
   return { __esModule: true, default: Mock };
 });
 
-jest.mock("@/components/Logo/Logo", () => {
+jest.mock("@/components/layout/Logo/Logo", () => {
   const Mock = () => <div data-testid="logo" />;
   Mock.displayName = "MockLogo";
   return { __esModule: true, default: Mock };

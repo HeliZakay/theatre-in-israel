@@ -6,9 +6,9 @@ import { getShowImagePath } from "@/utils/getShowImagePath";
 import ROUTES, { showPath, showReviewsPath } from "@/constants/routes";
 import { THEATRE_BY_NAME } from "@/constants/theatres";
 import { theatrePath } from "@/constants/routes";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
-import ReviewCard from "@/components/ReviewCard/ReviewCard";
-import FallbackImage from "@/components/FallbackImage/FallbackImage";
+import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
+import ReviewCard from "@/components/reviews/ReviewCard/ReviewCard";
+import FallbackImage from "@/components/ui/FallbackImage/FallbackImage";
 import {
   SITE_NAME,
   toJsonLd,

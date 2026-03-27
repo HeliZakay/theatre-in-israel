@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import ShowsSectionsSkeleton from "@/components/ShowsSectionsSkeleton/ShowsSectionsSkeleton";
+import ShowsSectionsSkeleton from "@/components/shows/ShowsSectionsSkeleton/ShowsSectionsSkeleton";
 
 describe("ShowsSectionsSkeleton", () => {
   it("renders with aria-busy='true'", () => {

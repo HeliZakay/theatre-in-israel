@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-jest.mock("@/components/ShowCarousel/ShowCarousel", () => {
+jest.mock("@/components/shows/ShowCarousel/ShowCarousel", () => {
   const Mock = ({ children }: { children: React.ReactNode }) => (
     <div data-testid="carousel">{children}</div>
   );
@@ -8,13 +8,13 @@ jest.mock("@/components/ShowCarousel/ShowCarousel", () => {
   return { __esModule: true, default: Mock };
 });
 
-jest.mock("@/components/SectionHeader/SectionHeader", () => {
+jest.mock("@/components/ui/SectionHeader/SectionHeader", () => {
   const Mock = ({ title }: { title: string }) => <h2>{title}</h2>;
   Mock.displayName = "MockSectionHeader";
   return { __esModule: true, default: Mock };
 });
 
-jest.mock("@/components/Card/Card", () => {
+jest.mock("@/components/ui/Card/Card", () => {
   const Mock = ({
     children,
     ...rest
@@ -25,13 +25,13 @@ jest.mock("@/components/Card/Card", () => {
   return { __esModule: true, default: Mock };
 });
 
-jest.mock("@/components/FallbackImage/FallbackImage", () => {
+jest.mock("@/components/ui/FallbackImage/FallbackImage", () => {
   const Mock = () => <div data-testid="image" />;
   Mock.displayName = "MockFallbackImage";
   return { __esModule: true, default: Mock };
 });
 
-jest.mock("@/components/Tag/Tag", () => {
+jest.mock("@/components/ui/Tag/Tag", () => {
   const Mock = ({ children }: { children: React.ReactNode }) => (
     <span>{children}</span>
   );
@@ -43,7 +43,7 @@ jest.mock("@/utils/getShowImagePath", () => ({
   getShowImagePath: (t: string) => `/images/${t}.webp`,
 }));
 
-import ShowsSection from "@/components/ShowsSection/ShowsSection";
+import ShowsSection from "@/components/shows/ShowsSection/ShowsSection";
 import type { ShowListItem } from "@/types";
 
 const makeShow = (overrides: Partial<ShowListItem> = {}): ShowListItem => ({

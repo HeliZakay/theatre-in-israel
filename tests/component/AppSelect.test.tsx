@@ -17,7 +17,7 @@ jest.mock("@radix-ui/react-select", () => {
   };
 });
 
-import AppSelect from "@/components/AppSelect/AppSelect";
+import AppSelect from "@/components/ui/AppSelect/AppSelect";
 
 const options = [
   { value: "a", label: "Option A" },

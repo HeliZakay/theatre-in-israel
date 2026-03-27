@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import MobileMenu from "@/components/Header/MobileMenu";
+import MobileMenu from "@/components/layout/Header/MobileMenu";
 import * as Dialog from "@radix-ui/react-dialog";
 
-jest.mock("@/components/Header/AccountDropdown", () => {
+jest.mock("@/components/layout/Header/AccountDropdown", () => {
   const Mock = (props: { firstName: string }) => (
     <div data-testid="account-dropdown">{props.firstName}</div>
   );
@@ -10,7 +10,7 @@ jest.mock("@/components/Header/AccountDropdown", () => {
   return { __esModule: true, default: Mock };
 });
 
-jest.mock("@/components/Button/Button", () => {
+jest.mock("@/components/ui/Button/Button", () => {
   const Mock = ({
     children,
     href,

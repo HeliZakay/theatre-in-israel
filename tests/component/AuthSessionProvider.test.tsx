@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import AuthSessionProvider from "@/components/AuthSessionProvider/AuthSessionProvider";
+import AuthSessionProvider from "@/components/auth/AuthSessionProvider/AuthSessionProvider";
 
 describe("AuthSessionProvider", () => {
   it("renders children", () => {

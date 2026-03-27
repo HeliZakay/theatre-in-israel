@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import WatchlistButton from "@/components/WatchlistButton/WatchlistButton";
+import WatchlistButton from "@/components/shows/WatchlistButton/WatchlistButton";
 import { useSession } from "next-auth/react";
 import {
   addToWatchlistAction,

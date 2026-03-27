@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import EventsFAQ from "@/components/Events/EventsFAQ";
+import EventsFAQ from "@/components/events/EventsFAQ";
 
 jest.mock("@/lib/seo", () => ({
   toJsonLd: (v: unknown) => JSON.stringify(v),

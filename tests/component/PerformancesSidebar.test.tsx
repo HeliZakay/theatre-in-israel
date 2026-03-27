@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import PerformancesSidebar from "@/components/PerformancesSidebar/PerformancesSidebar";
+import PerformancesSidebar from "@/components/shows/PerformancesSidebar/PerformancesSidebar";
 import type { ShowEvent } from "@/types";
 
 function makeEvent(overrides: Partial<ShowEvent> & { id: number; date: string; hour: string }): ShowEvent {

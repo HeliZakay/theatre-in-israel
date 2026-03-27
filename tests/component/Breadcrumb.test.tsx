@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
+import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
 
 describe("Breadcrumb", () => {
   it("renders the last item as a span with aria-current='page'", () => {

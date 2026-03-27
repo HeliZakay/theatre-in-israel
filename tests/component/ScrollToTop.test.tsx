@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 const mockScrollTo = jest.fn();
 Object.defineProperty(window, "scrollTo", { value: mockScrollTo, writable: true });
 
-import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
+import ScrollToTop from "@/components/layout/ScrollToTop/ScrollToTop";
 
 describe("ScrollToTop", () => {
   beforeEach(() => mockScrollTo.mockClear());

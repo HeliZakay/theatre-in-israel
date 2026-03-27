@@ -1,4 +1,4 @@
-import styles from "@/components/GlobalLoading/GlobalLoading.module.css";
+import styles from "@/components/layout/GlobalLoading/GlobalLoading.module.css";
 
 export default function EditReviewLoading() {
   return (

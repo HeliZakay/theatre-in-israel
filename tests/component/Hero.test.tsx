@@ -1,12 +1,12 @@
 import { render, screen } from "@testing-library/react";
 
-jest.mock("@/components/SearchBar/SearchBar", () => {
+jest.mock("@/components/ui/SearchBar/SearchBar", () => {
   const Mock = () => <div data-testid="search-bar" />;
   Mock.displayName = "MockSearchBar";
   return { __esModule: true, default: Mock };
 });
 
-jest.mock("@/components/FeaturedShow/FeaturedShow", () => {
+jest.mock("@/components/shows/FeaturedShow/FeaturedShow", () => {
   const Mock = ({ title }: { title: string }) => (
     <div data-testid="featured-show">{title}</div>
   );
@@ -24,7 +24,7 @@ jest.mock("@/constants/routes", () => ({
   showPath: (slug: string) => `/shows/${slug}`,
 }));
 
-import Hero from "@/components/Hero/Hero";
+import Hero from "@/components/layout/Hero/Hero";
 import type { ShowListItem } from "@/types";
 
 const makeShow = (overrides: Partial<ShowListItem> = {}): ShowListItem => ({

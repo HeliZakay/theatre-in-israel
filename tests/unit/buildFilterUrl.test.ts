@@ -1,4 +1,4 @@
-import { buildFilterUrl } from "@/components/Events/buildFilterUrl";
+import { buildFilterUrl } from "@/components/events/buildFilterUrl";
 
 describe("buildFilterUrl", () => {
   it("returns /events when all params are undefined", () => {

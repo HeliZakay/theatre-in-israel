@@ -1,7 +1,7 @@
 import { getAllActorStats } from "@/lib/data/actorDetail";
 import { ACTORS } from "@/constants/actors";
 import ROUTES, { actorPath } from "@/constants/routes";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
+import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
 import {
   SITE_NAME,
   buildBreadcrumbJsonLd,

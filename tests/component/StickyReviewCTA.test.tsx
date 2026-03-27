@@ -5,7 +5,7 @@ jest.mock("@/constants/lottery", () => ({
   isLotteryActive: jest.fn(() => false),
 }));
 
-import StickyReviewCTA from "@/components/StickyReviewCTA/StickyReviewCTA";
+import StickyReviewCTA from "@/components/shows/StickyReviewCTA/StickyReviewCTA";
 import { isLotteryActive } from "@/constants/lottery";
 
 describe("StickyReviewCTA", () => {

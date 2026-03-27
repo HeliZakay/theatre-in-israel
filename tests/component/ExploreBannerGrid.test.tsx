@@ -1,8 +1,8 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
-import ExploreBannerGrid from "@/components/ExploreBanner/ExploreBannerGrid";
+import ExploreBannerGrid from "@/components/shows/ExploreBanner/ExploreBannerGrid";
 
 // Mock FallbackImage to a plain <img>
-jest.mock("@/components/FallbackImage/FallbackImage", () => {
+jest.mock("@/components/ui/FallbackImage/FallbackImage", () => {
   const MockFallbackImage = (props: Record<string, unknown>) => {
     const { fill, sizes, ...rest } = props;
     // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text

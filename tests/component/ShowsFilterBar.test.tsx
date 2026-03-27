@@ -2,7 +2,7 @@
 
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import ShowsFilterBar from "@/components/ShowsFilterBar/ShowsFilterBar";
+import ShowsFilterBar from "@/components/shows/ShowsFilterBar/ShowsFilterBar";
 import type { ShowFilters } from "@/types";
 
 /* ------------------------------------------------------------------ */

@@ -4,13 +4,13 @@ jest.mock("@/lib/data/homepage", () => ({
   getUpcomingEventsVaried: jest.fn(),
 }));
 
-jest.mock("@/components/SectionHeader/SectionHeader", () => {
+jest.mock("@/components/ui/SectionHeader/SectionHeader", () => {
   const Mock = ({ title }: { title: string }) => <h2>{title}</h2>;
   Mock.displayName = "MockSectionHeader";
   return { __esModule: true, default: Mock };
 });
 
-jest.mock("@/components/ShowCarousel/ShowCarousel", () => {
+jest.mock("@/components/shows/ShowCarousel/ShowCarousel", () => {
   const Mock = ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
   );
@@ -18,7 +18,7 @@ jest.mock("@/components/ShowCarousel/ShowCarousel", () => {
   return { __esModule: true, default: Mock };
 });
 
-jest.mock("@/components/Card/Card", () => {
+jest.mock("@/components/ui/Card/Card", () => {
   const Mock = ({
     children,
     ...rest
@@ -29,7 +29,7 @@ jest.mock("@/components/Card/Card", () => {
   return { __esModule: true, default: Mock };
 });
 
-jest.mock("@/components/FallbackImage/FallbackImage", () => {
+jest.mock("@/components/ui/FallbackImage/FallbackImage", () => {
   const Mock = () => <div />;
   Mock.displayName = "MockFallbackImage";
   return { __esModule: true, default: Mock };
@@ -49,7 +49,7 @@ jest.mock("@/constants/routes", () => ({
   showPath: (slug: string) => `/shows/${slug}`,
 }));
 
-import UpcomingEventsSection from "@/components/Events/UpcomingEventsSection";
+import UpcomingEventsSection from "@/components/events/UpcomingEventsSection";
 import { getUpcomingEventsVaried } from "@/lib/data/homepage";
 
 const mockEvent = {

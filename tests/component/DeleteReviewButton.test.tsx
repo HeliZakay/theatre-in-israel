@@ -2,7 +2,7 @@
 
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import DeleteReviewButton from "@/components/DeleteReviewButton/DeleteReviewButton";
+import DeleteReviewButton from "@/components/reviews/DeleteReviewButton/DeleteReviewButton";
 
 /* ------------------------------------------------------------------ */
 /*  Mocks                                                              */

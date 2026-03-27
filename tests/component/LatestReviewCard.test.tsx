@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import LatestReviewCard from "@/components/LatestReviewCard/LatestReviewCard";
+import LatestReviewCard from "@/components/reviews/LatestReviewCard/LatestReviewCard";
 import type { LatestReviewItem } from "@/types";
 
 jest.mock("@/utils/formatDate", () => ({

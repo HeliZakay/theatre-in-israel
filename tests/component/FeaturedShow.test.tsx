@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import FeaturedShow from "@/components/FeaturedShow/FeaturedShow";
+import FeaturedShow from "@/components/shows/FeaturedShow/FeaturedShow";
 
 const baseProps = {
   title: "המלט",

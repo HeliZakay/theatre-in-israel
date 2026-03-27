@@ -4,7 +4,7 @@ jest.mock("@/lib/fonts", () => ({
   titleFont: { variable: "mock-title-font" },
 }));
 
-import Logo from "@/components/Logo/Logo";
+import Logo from "@/components/layout/Logo/Logo";
 
 describe("Logo", () => {
   it("renders link to home page", () => {

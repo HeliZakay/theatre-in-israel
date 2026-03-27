@@ -4,8 +4,8 @@ import { getTheatreData } from "@/lib/data/theatreDetail";
 import { THEATRES, THEATRE_BY_SLUG } from "@/constants/theatres";
 import { CITIES } from "@/constants/cities";
 import ROUTES, { theatrePath, showPath, cityPath } from "@/constants/routes";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
-import ShowCard from "@/components/ShowCard/ShowCard";
+import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
+import ShowCard from "@/components/shows/ShowCard/ShowCard";
 import {
   SITE_NAME,
   buildBreadcrumbJsonLd,

@@ -4,7 +4,7 @@ jest.mock("@/app/contact/actions", () => ({
 
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import ContactForm from "@/components/ContactForm/ContactForm";
+import ContactForm from "@/components/forms/ContactForm/ContactForm";
 import { sendContactMessage } from "@/app/contact/actions";
 
 describe("ContactForm", () => {

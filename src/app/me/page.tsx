@@ -4,7 +4,7 @@ import { getUserProfile } from "@/lib/data/profile";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { formatDate } from "@/utils/formatDate";
-import EditProfileForm from "@/components/EditProfileForm/EditProfileForm";
+import EditProfileForm from "@/components/forms/EditProfileForm/EditProfileForm";
 import { isLotteryActive } from "@/constants/lottery";
 import { getLotteryEntriesCount } from "@/lib/lottery";
 import LotterySection from "./LotterySection";

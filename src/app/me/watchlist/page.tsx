@@ -2,8 +2,8 @@ import ROUTES from "@/constants/routes";
 import { requireAuth } from "@/lib/auth";
 import { getWatchlistShowIds } from "@/lib/watchlist";
 import { fetchShowListItems } from "@/lib/showHelpers";
-import ShowCard from "@/components/ShowCard/ShowCard";
-import Button from "@/components/Button/Button";
+import ShowCard from "@/components/shows/ShowCard/ShowCard";
+import Button from "@/components/ui/Button/Button";
 import RemoveFromWatchlistButton from "./RemoveFromWatchlistButton";
 import styles from "./page.module.css";
 

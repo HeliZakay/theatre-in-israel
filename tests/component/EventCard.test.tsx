@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import EventCard from "@/components/Events/EventCard";
-import type { EventCardProps } from "@/components/Events/EventCard";
+import EventCard from "@/components/events/EventCard";
+import type { EventCardProps } from "@/components/events/EventCard";
 
 const baseProps: EventCardProps = {
   hour: "20:00",

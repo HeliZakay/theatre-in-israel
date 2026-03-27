@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Pagination from "@/components/Pagination/Pagination";
+import Pagination from "@/components/ui/Pagination/Pagination";
 import type { ShowFilters } from "@/types";
 
 function makeFilters(overrides: Partial<ShowFilters> = {}): ShowFilters {

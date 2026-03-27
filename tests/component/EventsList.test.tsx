@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import EventsList from "@/components/Events/EventsList";
-import type { DateGroup } from "@/components/Events/EventsList";
-import type { EventCardProps } from "@/components/Events/EventCard";
+import EventsList from "@/components/events/EventsList";
+import type { DateGroup } from "@/components/events/EventsList";
+import type { EventCardProps } from "@/components/events/EventCard";
 
 const makeEvent = (overrides: Partial<EventCardProps> = {}): EventCardProps => ({
   hour: "20:00",

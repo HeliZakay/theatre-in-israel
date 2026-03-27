@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import StarRating from "@/components/StarRating/StarRating";
+import StarRating from "@/components/reviews/StarRating/StarRating";
 
 function renderStars(
   props: Partial<React.ComponentProps<typeof StarRating>> = {},

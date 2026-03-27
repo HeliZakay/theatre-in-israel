@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import ActorSearch from "@/components/ActorSearch/ActorSearch";
+import ActorSearch from "@/components/ui/ActorSearch/ActorSearch";
 import { actorPath } from "@/constants/routes";
 import type { ActorInfo } from "@/constants/actors";
 import styles from "./page.module.css";

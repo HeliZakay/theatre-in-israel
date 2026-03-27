@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import RegionChips from "@/components/Events/RegionChips";
+import RegionChips from "@/components/events/RegionChips";
 
-jest.mock("@/components/Events/buildFilterUrl", () => ({
+jest.mock("@/components/events/buildFilterUrl", () => ({
   buildFilterUrl: (date: string | undefined, region: string | undefined, theatre?: string) =>
     `/events/${date ?? ""}/${region ?? ""}${theatre ? `?theatre=${theatre}` : ""}`,
 }));

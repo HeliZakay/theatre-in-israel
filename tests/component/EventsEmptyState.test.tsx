@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import EventsEmptyState from "@/components/Events/EventsEmptyState";
+import EventsEmptyState from "@/components/events/EventsEmptyState";
 
-jest.mock("@/components/Events/buildFilterUrl", () => ({
+jest.mock("@/components/events/buildFilterUrl", () => ({
   buildFilterUrl: (...args: unknown[]) => `/events/mock?${args.join(",")}`,
 }));
 

@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import LatestReviewsSection from "@/components/LatestReviewsSection/LatestReviewsSection";
+import LatestReviewsSection from "@/components/reviews/LatestReviewsSection/LatestReviewsSection";
 import type { LatestReviewItem } from "@/types";
 
 // Mock ShowCarousel to just render children
-jest.mock("@/components/ShowCarousel/ShowCarousel", () => {
+jest.mock("@/components/shows/ShowCarousel/ShowCarousel", () => {
   const MockCarousel = ({
     children,
     label,
@@ -16,7 +16,7 @@ jest.mock("@/components/ShowCarousel/ShowCarousel", () => {
 });
 
 // Mock LatestReviewCard
-jest.mock("@/components/LatestReviewCard/LatestReviewCard", () => {
+jest.mock("@/components/reviews/LatestReviewCard/LatestReviewCard", () => {
   const MockCard = ({ review }: { review: LatestReviewItem }) => (
     <div data-testid="review-card">{review.showTitle}</div>
   );

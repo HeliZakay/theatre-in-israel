@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import ScrollToReviewButton from "@/components/ScrollToReviewButton/ScrollToReviewButton";
+import ScrollToReviewButton from "@/components/reviews/ScrollToReviewButton/ScrollToReviewButton";
 
 describe("ScrollToReviewButton", () => {
   // ── getButtonLabel ──

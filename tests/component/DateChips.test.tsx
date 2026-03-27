@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import DateChips from "@/components/Events/DateChips";
+import DateChips from "@/components/events/DateChips";
 import { DATE_SLUGS, DEFAULT_DATE_PRESET } from "@/lib/eventsConstants";
 
 describe("DateChips", () => {

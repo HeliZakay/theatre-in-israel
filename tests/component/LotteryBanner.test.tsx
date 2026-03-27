@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import LotteryBanner from "@/components/LotteryBanner/LotteryBanner";
+import LotteryBanner from "@/components/shows/LotteryBanner/LotteryBanner";
 
 jest.mock("@/constants/lottery", () => ({
   isLotteryActive: jest.fn(),

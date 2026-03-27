@@ -13,7 +13,7 @@ jest.mock("@radix-ui/react-dropdown-menu", () => {
   };
 });
 
-import ShareDropdown from "@/components/ShareDropdown/ShareDropdown";
+import ShareDropdown from "@/components/ui/ShareDropdown/ShareDropdown";
 
 describe("ShareDropdown", () => {
   const props = {

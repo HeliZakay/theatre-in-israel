@@ -10,7 +10,7 @@ jest.mock("@radix-ui/react-direction", () => ({
   }) => <div data-dir={dir}>{children}</div>,
 }));
 
-import RadixDirectionProvider from "@/components/RadixDirectionProvider/RadixDirectionProvider";
+import RadixDirectionProvider from "@/components/layout/RadixDirectionProvider/RadixDirectionProvider";
 
 describe("RadixDirectionProvider", () => {
   it("renders children", () => {

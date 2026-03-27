@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Card from "@/components/Card/Card";
+import Card from "@/components/ui/Card/Card";
 
 describe("Card", () => {
   it("renders children in a div by default", () => {

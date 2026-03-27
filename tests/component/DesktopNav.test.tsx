@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import DesktopNav from "@/components/Header/DesktopNav";
+import DesktopNav from "@/components/layout/Header/DesktopNav";
 
 // Radix NavigationMenu renders portals — mock to simplify
 jest.mock("@radix-ui/react-navigation-menu", () => {

@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import BackLink from "@/components/BackLink/BackLink";
+import BackLink from "@/components/layout/BackLink/BackLink";
 
 describe("BackLink", () => {
   it("renders default text and href when no props given", () => {

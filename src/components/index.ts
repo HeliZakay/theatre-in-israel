@@ -1,35 +1,47 @@
-export { default as AppSelect } from "./AppSelect/AppSelect";
-export { default as AuthSessionProvider } from "./AuthSessionProvider/AuthSessionProvider";
-export { default as BackLink } from "./BackLink/BackLink";
-export { default as Breadcrumb } from "./Breadcrumb/Breadcrumb";
-export { default as Button } from "./Button/Button";
-export { default as Card } from "./Card/Card";
-export { default as ExploreBanner } from "./ExploreBanner/ExploreBanner";
-export { default as DeleteReviewButton } from "./DeleteReviewButton/DeleteReviewButton";
-export { default as ContactForm } from "./ContactForm/ContactForm";
-export { default as FallbackImage } from "./FallbackImage/FallbackImage";
-export { default as FeaturedShow } from "./FeaturedShow/FeaturedShow";
-export { default as Footer } from "./Footer/Footer";
-export { default as Header } from "./Header/Header";
-export { default as Hero } from "./Hero/Hero";
-export { default as Logo } from "./Logo/Logo";
-export { default as LotteryBadge } from "./LotteryBadge/LotteryBadge";
-export { default as LotteryBanner } from "./LotteryBanner/LotteryBanner";
-export { default as Pagination } from "./Pagination/Pagination";
-export { default as RadixDirectionProvider } from "./RadixDirectionProvider/RadixDirectionProvider";
-export { default as ReviewCard } from "./ReviewCard/ReviewCard";
-export { default as ReviewFormFields } from "./ReviewFormFields/ReviewFormFields";
-export { default as SearchBar } from "./SearchBar/SearchBar";
-export { default as SecurityBanner } from "./SecurityBanner/SecurityBanner";
-export { default as ShowCard } from "./ShowCard/ShowCard";
-export { default as StickyReviewCTA } from "./StickyReviewCTA/StickyReviewCTA";
-export { default as ShowCombobox } from "./ShowCombobox/ShowCombobox";
-export { default as ShowCarousel } from "./ShowCarousel/ShowCarousel";
-export { default as ShareButtons } from "./ShareButtons/ShareButtons";
-export { default as ShareDropdown } from "./ShareDropdown/ShareDropdown";
-export { default as ShowsFilterBar } from "./ShowsFilterBar/ShowsFilterBar";
-export { default as ShowsSection } from "./ShowsSection/ShowsSection";
-export { default as SectionHeader } from "./SectionHeader/SectionHeader";
-export { default as Tag } from "./Tag/Tag";
-export { default as WatchlistButton } from "./WatchlistButton/WatchlistButton";
-export { GoogleIcon } from "./SocialIcons/SocialIcons";
+// ui
+export { default as AppSelect } from "./ui/AppSelect/AppSelect";
+export { default as Button } from "./ui/Button/Button";
+export { default as Card } from "./ui/Card/Card";
+export { default as FallbackImage } from "./ui/FallbackImage/FallbackImage";
+export { default as Pagination } from "./ui/Pagination/Pagination";
+export { default as SearchBar } from "./ui/SearchBar/SearchBar";
+export { default as SectionHeader } from "./ui/SectionHeader/SectionHeader";
+export { default as ShareButtons } from "./ui/ShareButtons/ShareButtons";
+export { default as ShareDropdown } from "./ui/ShareDropdown/ShareDropdown";
+export { default as Tag } from "./ui/Tag/Tag";
+export { GoogleIcon } from "./ui/SocialIcons/SocialIcons";
+
+// layout
+export { default as BackLink } from "./layout/BackLink/BackLink";
+export { default as Breadcrumb } from "./layout/Breadcrumb/Breadcrumb";
+export { default as Footer } from "./layout/Footer/Footer";
+export { default as Header } from "./layout/Header/Header";
+export { default as Hero } from "./layout/Hero/Hero";
+export { default as Logo } from "./layout/Logo/Logo";
+export { default as RadixDirectionProvider } from "./layout/RadixDirectionProvider/RadixDirectionProvider";
+export { default as SecurityBanner } from "./layout/SecurityBanner/SecurityBanner";
+
+// shows
+export { default as ExploreBanner } from "./shows/ExploreBanner/ExploreBanner";
+export { default as FeaturedShow } from "./shows/FeaturedShow/FeaturedShow";
+export { default as LotteryBadge } from "./shows/LotteryBadge/LotteryBadge";
+export { default as LotteryBanner } from "./shows/LotteryBanner/LotteryBanner";
+export { default as ShowCard } from "./shows/ShowCard/ShowCard";
+export { default as ShowCarousel } from "./shows/ShowCarousel/ShowCarousel";
+export { default as ShowCombobox } from "./shows/ShowCombobox/ShowCombobox";
+export { default as ShowsFilterBar } from "./shows/ShowsFilterBar/ShowsFilterBar";
+export { default as ShowsSection } from "./shows/ShowsSection/ShowsSection";
+export { default as StickyReviewCTA } from "./shows/StickyReviewCTA/StickyReviewCTA";
+export { default as WatchlistButton } from "./shows/WatchlistButton/WatchlistButton";
+
+// reviews
+export { default as DeleteReviewButton } from "./reviews/DeleteReviewButton/DeleteReviewButton";
+export { default as ReviewCard } from "./reviews/ReviewCard/ReviewCard";
+export { default as ReviewFormFields } from "./reviews/ReviewFormFields/ReviewFormFields";
+export { default as ScrollToReviewButton } from "./reviews/ScrollToReviewButton/ScrollToReviewButton";
+
+// auth
+export { default as AuthSessionProvider } from "./auth/AuthSessionProvider/AuthSessionProvider";
+
+// forms
+export { default as ContactForm } from "./forms/ContactForm/ContactForm";

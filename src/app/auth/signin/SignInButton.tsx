@@ -2,7 +2,7 @@
 
 import { signIn } from "next-auth/react";
 import { useState } from "react";
-import { GoogleIcon } from "@/components/SocialIcons/SocialIcons";
+import { GoogleIcon } from "@/components/ui/SocialIcons/SocialIcons";
 import styles from "./page.module.css";
 
 /* ── component ──────────────────────────────────────── */

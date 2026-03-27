@@ -1,10 +1,10 @@
 import { Suspense } from "react";
-import Hero from "@/components/Hero/Hero";
-import UpcomingEventsSection from "@/components/Events/UpcomingEventsSection";
-import ShowsSectionsContent from "@/components/ShowsSectionsContent/ShowsSectionsContent";
-import ShowsSectionsSkeleton from "@/components/ShowsSectionsSkeleton/ShowsSectionsSkeleton";
-import LotteryBanner from "@/components/LotteryBanner/LotteryBanner";
-import ExploreBanner from "@/components/ExploreBanner/ExploreBanner";
+import Hero from "@/components/layout/Hero/Hero";
+import UpcomingEventsSection from "@/components/events/UpcomingEventsSection";
+import ShowsSectionsContent from "@/components/shows/ShowsSectionsContent/ShowsSectionsContent";
+import ShowsSectionsSkeleton from "@/components/shows/ShowsSectionsSkeleton/ShowsSectionsSkeleton";
+import LotteryBanner from "@/components/shows/LotteryBanner/LotteryBanner";
+import ExploreBanner from "@/components/shows/ExploreBanner/ExploreBanner";
 import { isLotteryActive } from "@/constants/lottery";
 import styles from "./page.module.css";
 import ROUTES from "@/constants/routes";
@@ -13,7 +13,7 @@ import {
   getExploreBannerShows,
   getLatestReviews,
 } from "@/lib/data/homepage";
-import LatestReviewsSection from "@/components/LatestReviewsSection/LatestReviewsSection";
+import LatestReviewsSection from "@/components/reviews/LatestReviewsSection/LatestReviewsSection";
 import { SITE_NAME } from "@/lib/seo";
 
 import type { Metadata } from "next";

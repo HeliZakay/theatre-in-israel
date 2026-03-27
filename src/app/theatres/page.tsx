@@ -3,7 +3,7 @@ import Image from "next/image";
 import { getAllTheatreStats } from "@/lib/data/theatreDetail";
 import { THEATRES, THEATRE_BY_NAME } from "@/constants/theatres";
 import ROUTES, { theatrePath } from "@/constants/routes";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
+import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
 import {
   SITE_NAME,
   buildBreadcrumbJsonLd,

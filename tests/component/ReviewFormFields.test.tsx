@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { useForm } from "react-hook-form";
-import ReviewFormFields from "@/components/ReviewFormFields/ReviewFormFields";
+import ReviewFormFields from "@/components/reviews/ReviewFormFields/ReviewFormFields";
 
-jest.mock("@/components/AppSelect/AppSelect", () => {
+jest.mock("@/components/ui/AppSelect/AppSelect", () => {
   const MockSelect = (props: Record<string, unknown>) => (
     <select aria-label={props.ariaLabel as string} data-testid="rating-select">
       <option>mock</option>

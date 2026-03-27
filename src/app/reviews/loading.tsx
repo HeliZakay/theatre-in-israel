@@ -1,4 +1,4 @@
-import GlobalLoading from "@/components/GlobalLoading/GlobalLoading";
+import GlobalLoading from "@/components/layout/GlobalLoading/GlobalLoading";
 
 export default function ReviewsLoading() {
   return <GlobalLoading />;

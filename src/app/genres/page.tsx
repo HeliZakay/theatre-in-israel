@@ -3,7 +3,7 @@ import Image from "next/image";
 import { getAllGenreStats } from "@/lib/data/genreDetail";
 import { GENRES, GENRE_BY_NAME } from "@/constants/genres";
 import ROUTES, { genrePath } from "@/constants/routes";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
+import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
 import {
   SITE_NAME,
   buildBreadcrumbJsonLd,
