@@ -1,7 +1,23 @@
 {
-  "scrapedAt": "2026-03-27T02:53:40.227Z",
+  "scrapedAt": "2026-03-28T03:54:25.413Z",
   "touring": true,
   "events": [
+    {
+      "showId": 161,
+      "showSlug": "אבדוֹת-ומציאוּת",
+      "date": "2026-05-07",
+      "hour": "20:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 161,
+      "showSlug": "אבדוֹת-ומציאוּת",
+      "date": "2026-05-09",
+      "hour": "20:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
     {
       "showId": 91,
       "showSlug": "אם-זה-אדם",
@@ -14,6 +30,94 @@
       "showId": 91,
       "showSlug": "אם-זה-אדם",
       "date": "2026-04-13",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 92,
+      "showSlug": "דרייפוס",
+      "date": "2026-04-14",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 92,
+      "showSlug": "דרייפוס",
+      "date": "2026-04-15",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 93,
+      "showSlug": "הורים-יקרים",
+      "date": "2026-05-05",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 93,
+      "showSlug": "הורים-יקרים",
+      "date": "2026-05-06",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 87,
+      "showSlug": "הסבתות",
+      "date": "2026-05-25",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 85,
+      "showSlug": "יעקובי-ולידנטל",
+      "date": "2026-04-09",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 85,
+      "showSlug": "יעקובי-ולידנטל",
+      "date": "2026-04-11",
+      "hour": "21:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 85,
+      "showSlug": "יעקובי-ולידנטל",
+      "date": "2026-04-26",
+      "hour": "20:00",
+      "venueName": "בית ציוני אמריקה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 85,
+      "showSlug": "יעקובי-ולידנטל",
+      "date": "2026-04-27",
+      "hour": "18:00",
+      "venueName": "בית ציוני אמריקה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 88,
+      "showSlug": "מחכים-לגודו",
+      "date": "2026-05-20",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 88,
+      "showSlug": "מחכים-לגודו",
+      "date": "2026-05-24",
       "hour": "20:00",
       "venueName": "תיאטרון החאן",
       "venueCity": "ירושלים"
@@ -107,14 +211,6 @@
       "venueCity": "ירושלים"
     },
     {
-      "showId": 86,
-      "showSlug": "נער-האופניים",
-      "date": "2026-05-03",
-      "hour": "20:00",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
-    },
-    {
       "showId": 95,
       "showSlug": "מיתה-טובה",
       "date": "2026-05-28",
@@ -147,105 +243,9 @@
       "venueCity": "ירושלים"
     },
     {
-      "showId": 93,
-      "showSlug": "הורים-יקרים",
-      "date": "2026-05-05",
-      "hour": "20:00",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 93,
-      "showSlug": "הורים-יקרים",
-      "date": "2026-05-06",
-      "hour": "20:00",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 88,
-      "showSlug": "מחכים-לגודו",
-      "date": "2026-05-20",
-      "hour": "20:00",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 88,
-      "showSlug": "מחכים-לגודו",
-      "date": "2026-05-24",
-      "hour": "20:00",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 87,
-      "showSlug": "הסבתות",
-      "date": "2026-05-25",
-      "hour": "20:00",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 85,
-      "showSlug": "יעקובי-ולידנטל",
-      "date": "2026-04-09",
-      "hour": "20:00",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 85,
-      "showSlug": "יעקובי-ולידנטל",
-      "date": "2026-04-11",
-      "hour": "21:00",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 85,
-      "showSlug": "יעקובי-ולידנטל",
-      "date": "2026-04-26",
-      "hour": "20:00",
-      "venueName": "בית ציוני אמריקה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 85,
-      "showSlug": "יעקובי-ולידנטל",
-      "date": "2026-04-27",
-      "hour": "18:00",
-      "venueName": "בית ציוני אמריקה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 162,
-      "showSlug": "אבדוֹת-ומציאוּת",
-      "date": "2026-05-07",
-      "hour": "20:30",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 162,
-      "showSlug": "אבדוֹת-ומציאוּת",
-      "date": "2026-05-09",
-      "hour": "20:30",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 92,
-      "showSlug": "דרייפוס",
-      "date": "2026-04-14",
-      "hour": "20:00",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 92,
-      "showSlug": "דרייפוס",
-      "date": "2026-04-15",
+      "showId": 86,
+      "showSlug": "נער-האופניים",
+      "date": "2026-05-03",
       "hour": "20:00",
       "venueName": "תיאטרון החאן",
       "venueCity": "ירושלים"

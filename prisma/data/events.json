@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-03-27T09:23:20.922Z",
+  "scrapedAt": "2026-03-28T03:57:23.162Z",
   "venue": {
     "name": "תיאטרון הקאמרי",
     "city": "תל אביב"
@@ -9,15 +9,13 @@
       "showId": 32,
       "showSlug": "איש-הגשם",
       "date": "2026-05-06",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 5,
       "showSlug": "גרושים",
       "date": "2026-05-05",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 5,
@@ -30,78 +28,67 @@
       "showId": 26,
       "showSlug": "האבא",
       "date": "2026-04-23",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 26,
       "showSlug": "האבא",
       "date": "2026-04-24",
-      "hour": "12:00",
-      "note": null
+      "hour": "12:00"
     },
     {
       "showId": 26,
       "showSlug": "האבא",
       "date": "2026-04-25",
-      "hour": "17:00",
-      "note": null
+      "hour": "17:00"
     },
     {
       "showId": 26,
       "showSlug": "האבא",
       "date": "2026-05-29",
-      "hour": "12:00",
-      "note": null
+      "hour": "12:00"
     },
     {
       "showId": 26,
       "showSlug": "האבא",
       "date": "2026-05-29",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 26,
       "showSlug": "האבא",
       "date": "2026-05-30",
-      "hour": "17:30",
-      "note": null
+      "hour": "17:30"
     },
     {
       "showId": 26,
       "showSlug": "האבא",
       "date": "2026-05-30",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 26,
       "showSlug": "האבא",
       "date": "2026-05-31",
-      "hour": "19:30",
-      "note": null
+      "hour": "19:30"
     },
     {
       "showId": 6,
       "showSlug": "הבן-של-מושיקו-הגדול",
       "date": "2026-06-10",
-      "hour": "18:00",
-      "note": null
+      "hour": "18:00"
     },
     {
       "showId": 6,
       "showSlug": "הבן-של-מושיקו-הגדול",
       "date": "2026-06-10",
-      "hour": "21:00",
-      "note": null
+      "hour": "21:00"
     },
     {
       "showId": 8,
       "showSlug": "החבדניקים",
       "date": "2026-04-09",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 8,
@@ -114,8 +101,7 @@
       "showId": 8,
       "showSlug": "החבדניקים",
       "date": "2026-04-10",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 8,
@@ -128,8 +114,7 @@
       "showId": 8,
       "showSlug": "החבדניקים",
       "date": "2026-05-06",
-      "hour": "19:30",
-      "note": null
+      "hour": "19:30"
     },
     {
       "showId": 8,
@@ -142,8 +127,7 @@
       "showId": 8,
       "showSlug": "החבדניקים",
       "date": "2026-05-08",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 8,
@@ -156,8 +140,7 @@
       "showId": 9,
       "showSlug": "החולה-ההודי",
       "date": "2026-04-03",
-      "hour": "12:30",
-      "note": null
+      "hour": "12:30"
     },
     {
       "showId": 9,
@@ -177,15 +160,13 @@
       "showId": 9,
       "showSlug": "החולה-ההודי",
       "date": "2026-04-04",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 16,
       "showSlug": "היי-אוון-הנסן",
       "date": "2026-05-03",
-      "hour": "19:30",
-      "note": null
+      "hour": "19:30"
     },
     {
       "showId": 16,
@@ -198,15 +179,13 @@
       "showId": 27,
       "showSlug": "הלוויה-חורפית",
       "date": "2026-03-30",
-      "hour": "19:00",
-      "note": null
+      "hour": "19:00"
     },
     {
       "showId": 27,
       "showSlug": "הלוויה-חורפית",
       "date": "2026-04-02",
-      "hour": "17:30",
-      "note": null
+      "hour": "17:30"
     },
     {
       "showId": 27,
@@ -219,8 +198,7 @@
       "showId": 27,
       "showSlug": "הלוויה-חורפית",
       "date": "2026-04-03",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 27,
@@ -233,8 +211,7 @@
       "showId": 27,
       "showSlug": "הלוויה-חורפית",
       "date": "2026-05-20",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 27,
@@ -247,22 +224,19 @@
       "showId": 27,
       "showSlug": "הלוויה-חורפית",
       "date": "2026-05-23",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 27,
       "showSlug": "הלוויה-חורפית",
       "date": "2026-05-24",
-      "hour": "19:00",
-      "note": null
+      "hour": "19:00"
     },
     {
       "showId": 28,
       "showSlug": "הלווייתן",
       "date": "2026-03-29",
-      "hour": "19:30",
-      "note": null
+      "hour": "19:30"
     },
     {
       "showId": 28,
@@ -275,15 +249,13 @@
       "showId": 28,
       "showSlug": "הלווייתן",
       "date": "2026-04-02",
-      "hour": "18:00",
-      "note": null
+      "hour": "18:00"
     },
     {
       "showId": 28,
       "showSlug": "הלווייתן",
       "date": "2026-05-19",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 28,
@@ -296,8 +268,7 @@
       "showId": 11,
       "showSlug": "הנפש-הטובה-מסצ׳ואן",
       "date": "2026-04-12",
-      "hour": "19:30",
-      "note": null
+      "hour": "19:30"
     },
     {
       "showId": 11,
@@ -324,50 +295,43 @@
       "showId": 11,
       "showSlug": "הנפש-הטובה-מסצ׳ואן",
       "date": "2026-05-23",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 13,
       "showSlug": "הציפור-הכחולה",
       "date": "2026-04-03",
-      "hour": "12:00",
-      "note": null
+      "hour": "12:00"
     },
     {
       "showId": 13,
       "showSlug": "הציפור-הכחולה",
       "date": "2026-04-04",
-      "hour": "17:30",
-      "note": null
+      "hour": "17:30"
     },
     {
       "showId": 13,
       "showSlug": "הציפור-הכחולה",
       "date": "2026-04-05",
-      "hour": "11:00",
-      "note": null
+      "hour": "11:00"
     },
     {
       "showId": 13,
       "showSlug": "הציפור-הכחולה",
       "date": "2026-04-05",
-      "hour": "16:00",
-      "note": null
+      "hour": "16:00"
     },
     {
       "showId": 13,
       "showSlug": "הציפור-הכחולה",
       "date": "2026-04-06",
-      "hour": "11:00",
-      "note": null
+      "hour": "11:00"
     },
     {
       "showId": 21,
       "showSlug": "הריטריט",
       "date": "2026-04-16",
-      "hour": "19:30",
-      "note": null
+      "hour": "19:30"
     },
     {
       "showId": 21,
@@ -380,8 +344,7 @@
       "showId": 21,
       "showSlug": "הריטריט",
       "date": "2026-04-17",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 21,
@@ -394,8 +357,7 @@
       "showId": 21,
       "showSlug": "הריטריט",
       "date": "2026-04-18",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 21,
@@ -408,8 +370,7 @@
       "showId": 21,
       "showSlug": "הריטריט",
       "date": "2026-05-27",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 21,
@@ -429,8 +390,7 @@
       "showId": 21,
       "showSlug": "הריטריט",
       "date": "2026-05-29",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 21,
@@ -443,8 +403,7 @@
       "showId": 21,
       "showSlug": "הריטריט",
       "date": "2026-05-30",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 21,
@@ -457,57 +416,49 @@
       "showId": 31,
       "showSlug": "השותפה",
       "date": "2026-05-01",
-      "hour": "12:30",
-      "note": null
+      "hour": "12:30"
     },
     {
       "showId": 31,
       "showSlug": "השותפה",
       "date": "2026-05-01",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 31,
       "showSlug": "השותפה",
       "date": "2026-05-02",
-      "hour": "17:30",
-      "note": null
+      "hour": "17:30"
     },
     {
       "showId": 31,
       "showSlug": "השותפה",
       "date": "2026-05-02",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 31,
       "showSlug": "השותפה",
       "date": "2026-05-03",
-      "hour": "19:00",
-      "note": null
+      "hour": "19:00"
     },
     {
       "showId": 31,
       "showSlug": "השותפה",
       "date": "2026-05-04",
-      "hour": "19:30",
-      "note": null
+      "hour": "19:30"
     },
     {
       "showId": 31,
       "showSlug": "השותפה",
       "date": "2026-05-05",
-      "hour": "19:30",
-      "note": null
+      "hour": "19:30"
     },
     {
       "showId": 19,
       "showSlug": "זינגר",
       "date": "2026-04-12",
-      "hour": "19:30",
-      "note": null
+      "hour": "19:30"
     },
     {
       "showId": 19,
@@ -520,8 +471,7 @@
       "showId": 19,
       "showSlug": "זינגר",
       "date": "2026-04-15",
-      "hour": "19:00",
-      "note": null
+      "hour": "19:00"
     },
     {
       "showId": 19,
@@ -541,8 +491,7 @@
       "showId": 19,
       "showSlug": "זינגר",
       "date": "2026-04-17",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 19,
@@ -562,8 +511,7 @@
       "showId": 19,
       "showSlug": "זינגר",
       "date": "2026-05-28",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 19,
@@ -576,8 +524,7 @@
       "showId": 19,
       "showSlug": "זינגר",
       "date": "2026-05-29",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 19,
@@ -590,29 +537,25 @@
       "showId": 19,
       "showSlug": "זינגר",
       "date": "2026-06-05",
-      "hour": "11:30",
-      "note": null
+      "hour": "11:30"
     },
     {
       "showId": 19,
       "showSlug": "זינגר",
       "date": "2026-06-05",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 19,
       "showSlug": "זינגר",
       "date": "2026-06-06",
-      "hour": "17:00",
-      "note": null
+      "hour": "17:00"
     },
     {
       "showId": 15,
       "showSlug": "חשמלית-ושמה-תשוקה",
       "date": "2026-04-23",
-      "hour": "19:00",
-      "note": null
+      "hour": "19:00"
     },
     {
       "showId": 15,
@@ -625,8 +568,7 @@
       "showId": 15,
       "showSlug": "חשמלית-ושמה-תשוקה",
       "date": "2026-04-24",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 15,
@@ -639,15 +581,13 @@
       "showId": 15,
       "showSlug": "חשמלית-ושמה-תשוקה",
       "date": "2026-04-25",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 15,
       "showSlug": "חשמלית-ושמה-תשוקה",
       "date": "2026-05-07",
-      "hour": "19:30",
-      "note": null
+      "hour": "19:30"
     },
     {
       "showId": 15,
@@ -674,8 +614,7 @@
       "showId": 15,
       "showSlug": "חשמלית-ושמה-תשוקה",
       "date": "2026-05-09",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 33,
@@ -688,29 +627,25 @@
       "showId": 33,
       "showSlug": "טרטיף",
       "date": "2026-06-01",
-      "hour": "19:30",
-      "note": null
+      "hour": "19:30"
     },
     {
       "showId": 22,
       "showSlug": "כל-הדברים-הטובים",
       "date": "2026-04-27",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 22,
       "showSlug": "כל-הדברים-הטובים",
       "date": "2026-05-23",
-      "hour": "18:00",
-      "note": null
+      "hour": "18:00"
     },
     {
       "showId": 25,
       "showSlug": "לא-הייתם-צריכים",
       "date": "2026-04-09",
-      "hour": "18:00",
-      "note": null
+      "hour": "18:00"
     },
     {
       "showId": 25,
@@ -723,8 +658,7 @@
       "showId": 25,
       "showSlug": "לא-הייתם-צריכים",
       "date": "2026-05-10",
-      "hour": "19:00",
-      "note": null
+      "hour": "19:00"
     },
     {
       "showId": 25,
@@ -744,8 +678,7 @@
       "showId": 25,
       "showSlug": "לא-הייתם-צריכים",
       "date": "2026-05-13",
-      "hour": "19:30",
-      "note": null
+      "hour": "19:30"
     },
     {
       "showId": 25,
@@ -758,15 +691,13 @@
       "showId": 23,
       "showSlug": "לילה-טוב-אמא",
       "date": "2026-04-08",
-      "hour": "18:30",
-      "note": null
+      "hour": "18:30"
     },
     {
       "showId": 23,
       "showSlug": "לילה-טוב-אמא",
       "date": "2026-05-11",
-      "hour": "19:30",
-      "note": null
+      "hour": "19:30"
     },
     {
       "showId": 23,
@@ -779,8 +710,7 @@
       "showId": 3,
       "showSlug": "לנקות-את-הראש",
       "date": "2026-04-05",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 3,
@@ -793,8 +723,7 @@
       "showId": 3,
       "showSlug": "לנקות-את-הראש",
       "date": "2026-04-07",
-      "hour": "11:30",
-      "note": null
+      "hour": "11:30"
     },
     {
       "showId": 3,
@@ -814,8 +743,7 @@
       "showId": 3,
       "showSlug": "לנקות-את-הראש",
       "date": "2026-05-15",
-      "hour": "12:00",
-      "note": null
+      "hour": "12:00"
     },
     {
       "showId": 3,
@@ -835,8 +763,7 @@
       "showId": 3,
       "showSlug": "לנקות-את-הראש",
       "date": "2026-05-16",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 3,
@@ -856,8 +783,7 @@
       "showId": 30,
       "showSlug": "מדיאה",
       "date": "2026-04-10",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 30,
@@ -870,8 +796,7 @@
       "showId": 30,
       "showSlug": "מדיאה",
       "date": "2026-04-11",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 29,
@@ -891,15 +816,13 @@
       "showId": 4,
       "showSlug": "מי-בעד",
       "date": "2026-04-30",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 4,
       "showSlug": "מי-בעד",
       "date": "2026-05-01",
-      "hour": "12:00",
-      "note": null
+      "hour": "12:00"
     },
     {
       "showId": 4,
@@ -919,8 +842,7 @@
       "showId": 4,
       "showSlug": "מי-בעד",
       "date": "2026-05-02",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 4,
@@ -933,92 +855,79 @@
       "showId": 20,
       "showSlug": "מיקי-מציל",
       "date": "2026-06-09",
-      "hour": "19:00",
-      "note": null
+      "hour": "19:00"
     },
     {
       "showId": 20,
       "showSlug": "מיקי-מציל",
       "date": "2026-06-09",
-      "hour": "21:15",
-      "note": null
+      "hour": "21:15"
     },
     {
       "showId": 1,
       "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-03-29",
-      "hour": "10:00",
-      "note": null
+      "hour": "10:00"
     },
     {
       "showId": 1,
       "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-03-29",
-      "hour": "12:30",
-      "note": null
+      "hour": "12:30"
     },
     {
       "showId": 1,
       "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-04-16",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 1,
       "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-04-17",
-      "hour": "11:30",
-      "note": null
+      "hour": "11:30"
     },
     {
       "showId": 1,
       "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-04-18",
-      "hour": "17:00",
-      "note": null
+      "hour": "17:00"
     },
     {
       "showId": 1,
       "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-04-18",
-      "hour": "19:30",
-      "note": null
+      "hour": "19:30"
     },
     {
       "showId": 1,
       "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-05-08",
-      "hour": "11:30",
-      "note": null
+      "hour": "11:30"
     },
     {
       "showId": 1,
       "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-05-08",
-      "hour": "13:30",
-      "note": null
+      "hour": "13:30"
     },
     {
       "showId": 1,
       "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-05-09",
-      "hour": "17:00",
-      "note": null
+      "hour": "17:00"
     },
     {
       "showId": 1,
       "showSlug": "מישהו-שר-את-זה-קודם",
       "date": "2026-05-09",
-      "hour": "19:30",
-      "note": null
+      "hour": "19:30"
     },
     {
       "showId": 24,
       "showSlug": "נעמי-ונורמה",
       "date": "2026-05-25",
-      "hour": "19:30",
-      "note": null
+      "hour": "19:30"
     },
     {
       "showId": 24,
@@ -1038,8 +947,7 @@
       "showId": 7,
       "showSlug": "סוס-אחד-נכנס-לבר",
       "date": "2026-05-25",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 7,
@@ -1052,29 +960,25 @@
       "showId": 14,
       "showSlug": "עוץ-לי-גוץ-לי",
       "date": "2026-04-06",
-      "hour": "10:30",
-      "note": null
+      "hour": "10:30"
     },
     {
       "showId": 14,
       "showSlug": "עוץ-לי-גוץ-לי",
       "date": "2026-04-06",
-      "hour": "13:30",
-      "note": null
+      "hour": "13:30"
     },
     {
       "showId": 14,
       "showSlug": "עוץ-לי-גוץ-לי",
       "date": "2026-04-06",
-      "hour": "16:30",
-      "note": null
+      "hour": "16:30"
     },
     {
       "showId": 10,
       "showSlug": "צ׳ילבות",
       "date": "2026-04-07",
-      "hour": "12:00",
-      "note": null
+      "hour": "12:00"
     },
     {
       "showId": 10,
@@ -1094,8 +998,7 @@
       "showId": 10,
       "showSlug": "צ׳ילבות",
       "date": "2026-05-25",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 10,
@@ -1115,22 +1018,19 @@
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-04-23",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-04-24",
-      "hour": "11:30",
-      "note": null
+      "hour": "11:30"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-04-24",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 2,
@@ -1143,15 +1043,13 @@
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-04-25",
-      "hour": "21:00",
-      "note": null
+      "hour": "21:00"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-04-26",
-      "hour": "19:00",
-      "note": null
+      "hour": "19:00"
     },
     {
       "showId": 2,
@@ -1164,8 +1062,7 @@
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-04-28",
-      "hour": "19:00",
-      "note": null
+      "hour": "19:00"
     },
     {
       "showId": 2,
@@ -1178,15 +1075,13 @@
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-05-12",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-05-13",
-      "hour": "19:00",
-      "note": null
+      "hour": "19:00"
     },
     {
       "showId": 2,
@@ -1206,85 +1101,73 @@
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-05-15",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-05-16",
-      "hour": "17:00",
-      "note": null
+      "hour": "17:00"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-05-16",
-      "hour": "21:00",
-      "note": null
+      "hour": "21:00"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-05-17",
-      "hour": "19:30",
-      "note": null
+      "hour": "19:30"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-05-18",
-      "hour": "19:00",
-      "note": null
+      "hour": "19:00"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-05-19",
-      "hour": "19:00",
-      "note": null
+      "hour": "19:00"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-06-14",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-06-15",
-      "hour": "19:00",
-      "note": null
+      "hour": "19:00"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-06-16",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-06-17",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-06-18",
-      "hour": "16:30",
-      "note": null
+      "hour": "16:30"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-06-18",
-      "hour": "21:00",
-      "note": null
+      "hour": "21:00"
     },
     {
       "showId": 2,
@@ -1297,8 +1180,7 @@
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-06-19",
-      "hour": "20:00",
-      "note": null
+      "hour": "20:00"
     },
     {
       "showId": 2,
@@ -1311,36 +1193,31 @@
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-06-20",
-      "hour": "21:00",
-      "note": null
+      "hour": "21:00"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-06-21",
-      "hour": "19:00",
-      "note": null
+      "hour": "19:00"
     },
     {
       "showId": 132,
       "showSlug": "רינגו",
       "date": "2026-04-10",
-      "hour": "20:30",
-      "note": null
+      "hour": "20:30"
     },
     {
       "showId": 132,
       "showSlug": "רינגו",
       "date": "2026-04-11",
-      "hour": "21:00",
-      "note": null
+      "hour": "21:00"
     },
     {
       "showId": 132,
       "showSlug": "רינגו",
       "date": "2026-05-14",
-      "hour": "21:00",
-      "note": null
+      "hour": "21:00"
     },
     {
       "showId": 132,
@@ -1353,8 +1230,7 @@
       "showId": 132,
       "showSlug": "רינגו",
       "date": "2026-05-16",
-      "hour": "21:00",
-      "note": null
+      "hour": "21:00"
     },
     {
       "showId": 132,
