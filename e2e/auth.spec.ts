@@ -11,7 +11,9 @@ test.describe("Authentication", () => {
       page.getByRole("heading", { name: "התחברות לאתר" }),
     ).toBeVisible();
     await expect(
-      page.getByText("כדי לכתוב ביקורת ולנהל את הביקורות שלך, צריך להתחבר."),
+      page.getByText(
+        "עם חשבון אפשר לערוך ולמחוק ביקורות, לשמור הצגות לרשימת צפייה ולנהל פרופיל אישי.",
+      ),
     ).toBeVisible();
     await expect(
       page.getByRole("button", { name: "המשך עם Google" }),

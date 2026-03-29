@@ -9,7 +9,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "התחברות",
-  description: "התחברות לחשבון כדי לכתוב ולנהל ביקורות.",
+  description:
+    "עם חשבון אפשר לערוך ולמחוק ביקורות, לשמור הצגות לרשימת צפייה ולנהל פרופיל אישי.",
   robots: {
     index: false,
     follow: false,
@@ -39,7 +40,8 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
           <p className={styles.notice}>כדי להמשיך, צריך להתחבר קודם לחשבון.</p>
         ) : null}
         <p className={styles.subtitle}>
-          כדי לכתוב ביקורת ולנהל את הביקורות שלך, צריך להתחבר.
+          עם חשבון אפשר לערוך ולמחוק ביקורות, לשמור הצגות לרשימת צפייה
+          ולנהל פרופיל אישי.
         </p>
         {isLotteryActive() && (
           <p className={styles.lotteryIncentive}>
