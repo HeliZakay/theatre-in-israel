@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-03-29T04:08:55.765Z",
+  "scrapedAt": "2026-03-29T09:14:56.664Z",
   "touring": true,
   "events": [
     {
@@ -7,14 +7,6 @@
       "showSlug": "Mix-Match",
       "date": "2026-04-12",
       "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 173,
-      "showSlug": "אהבה-וחושך",
-      "date": "2026-04-17",
-      "hour": "12:00",
       "venueName": "תיאטרון צוותא",
       "venueCity": "תל אביב"
     },
@@ -118,14 +110,6 @@
       "showId": 183,
       "showSlug": "גידול-ושמו-בועז-קומדיה-רומנטית-בקטע-דפוק",
       "date": "2026-05-03",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 184,
-      "showSlug": "דמות-אב",
-      "date": "2026-04-05",
       "hour": "20:30",
       "venueName": "תיאטרון צוותא",
       "venueCity": "תל אביב"
@@ -342,14 +326,6 @@
       "showId": 208,
       "showSlug": "שותפים-לנצח",
       "date": "2026-05-17",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 209,
-      "showSlug": "שחקן-מחפש-במה",
-      "date": "2026-04-06",
       "hour": "20:30",
       "venueName": "תיאטרון צוותא",
       "venueCity": "תל אביב"
