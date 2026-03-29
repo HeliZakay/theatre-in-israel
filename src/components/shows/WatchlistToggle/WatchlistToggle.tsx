@@ -6,12 +6,14 @@ import styles from "./WatchlistToggle.module.css";
 interface WatchlistToggleProps {
   showId: number;
   showSlug: string;
+  variant?: "default" | "inline";
   className?: string;
 }
 
 export default function WatchlistToggle({
   showId,
   showSlug,
+  variant = "default",
   className,
 }: WatchlistToggleProps) {
   const { isInWatchlist, toggle } = useWatchlist();
@@ -20,7 +22,12 @@ export default function WatchlistToggle({
   return (
     <button
       type="button"
-      className={[styles.toggle, active ? styles.active : "", className]
+      className={[
+        styles.toggle,
+        variant === "inline" ? styles.inline : "",
+        active ? styles.active : "",
+        className,
+      ]
         .filter(Boolean)
         .join(" ")}
       onClick={(e) => {

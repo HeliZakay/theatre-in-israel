@@ -33,3 +33,27 @@
 .active:hover {
   background: rgba(255, 255, 255, 1);
 }
+
+.inline {
+  width: 34px;
+  height: 34px;
+  background: var(--color-slate-006);
+  color: var(--color-text-muted);
+  box-shadow: inset 0 0 0 1px var(--color-slate-012);
+}
+
+.inline:hover {
+  background: var(--color-slate-012);
+  box-shadow: inset 0 0 0 1px var(--color-slate-020);
+}
+
+.inline.active {
+  background: var(--color-curtain-red-008);
+  color: var(--color-curtain-red);
+  box-shadow: inset 0 0 0 1px var(--color-curtain-red-012);
+}
+
+.inline.active:hover {
+  background: var(--color-curtain-red-012);
+  box-shadow: inset 0 0 0 1px var(--color-curtain-red-025);
+}

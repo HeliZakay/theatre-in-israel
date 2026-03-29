@@ -77,17 +77,6 @@
   justify-content: space-between;
 }
 
-.inlineToggle {
-  width: 30px;
-  height: 30px;
-  background: transparent;
-  color: var(--color-text-faint);
-}
-
-.inlineToggle:hover {
-  background: var(--color-slate-008);
-}
-
 .rating {
   display: inline-flex;
   align-items: center;

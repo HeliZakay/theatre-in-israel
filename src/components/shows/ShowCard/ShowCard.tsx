@@ -65,7 +65,7 @@ export default function ShowCard({ show, priority }: ShowCardProps) {
             <WatchlistToggle
               showId={show.id}
               showSlug={slug}
-              className={styles.inlineToggle}
+              variant="inline"
             />
           </div>
         </Card>

@@ -96,7 +96,7 @@ export default function ShowsSection({
                       <WatchlistToggle
                         showId={show.id}
                         showSlug={show.slug ?? String(show.id)}
-                        className={styles.inlineToggle}
+                        variant="inline"
                       />
                     </div>
                   </div>
