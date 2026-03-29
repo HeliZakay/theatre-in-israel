@@ -314,6 +314,23 @@
   cursor: pointer;
 }
 
+/* ── Clickable review count in header meta row ── */
+.reviewsLink {
+  all: unset;
+  color: var(--color-curtain-red);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.reviewsLink:hover {
+  text-decoration: underline;
+}
+
+/* ── Reviews section scroll anchor ── */
+.reviewsAnchor {
+  scroll-margin-top: calc(var(--header-offset) + 16px);
+}
+
 /* ── Own-review pinned block ── */
 .ownReviewBlock {
   display: flex;

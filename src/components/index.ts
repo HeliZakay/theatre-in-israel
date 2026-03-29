@@ -39,6 +39,7 @@ export { default as DeleteReviewButton } from "./reviews/DeleteReviewButton/Dele
 export { default as ReviewCard } from "./reviews/ReviewCard/ReviewCard";
 export { default as ReviewFormFields } from "./reviews/ReviewFormFields/ReviewFormFields";
 export { default as ScrollToReviewButton } from "./reviews/ScrollToReviewButton/ScrollToReviewButton";
+export { default as ScrollToReviewsLink } from "./reviews/ScrollToReviewsLink/ScrollToReviewsLink";
 
 // auth
 export { default as AuthSessionProvider } from "./auth/AuthSessionProvider/AuthSessionProvider";

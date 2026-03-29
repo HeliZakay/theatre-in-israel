@@ -22,6 +22,7 @@ import StickyReviewCTA from "@/components/shows/StickyReviewCTA/StickyReviewCTA"
 import InlineReviewForm from "@/components/reviews/InlineReviewForm/InlineReviewForm";
 import ReviewSuccessBanner from "@/components/reviews/ReviewSuccessBanner/ReviewSuccessBanner";
 import ScrollToReviewButton from "@/components/reviews/ScrollToReviewButton/ScrollToReviewButton";
+import ScrollToReviewsLink from "@/components/reviews/ScrollToReviewsLink/ScrollToReviewsLink";
 import ShareDropdown from "@/components/ui/ShareDropdown/ShareDropdown";
 import WebReviewSummary from "@/components/reviews/WebReviewSummary/WebReviewSummary";
 import ShowsSection from "@/components/shows/ShowsSection/ShowsSection";
@@ -305,7 +306,11 @@ export default async function ShowPage({
                   <span>{show.theatre}</span>
                 )}
                 <span>{show.durationMinutes} דקות</span>
-                <span>{reviewCount} ביקורות</span>
+                {reviewCount > 0 ? (
+                  <ScrollToReviewsLink reviewCount={reviewCount} className={styles.reviewsLink} />
+                ) : (
+                  <span>{reviewCount} ביקורות</span>
+                )}
               </div>
               <div className={styles.genreRow}>
                 {(show.genre ?? []).map((item) => {
@@ -421,7 +426,7 @@ export default async function ShowPage({
           )}
 
           {(userReview || otherReviews.length > 0) && (
-            <section className={styles.section}>
+            <section className={`${styles.section} ${styles.reviewsAnchor}`} id="reviews">
               <h2 className={styles.sectionTitle}>ביקורות הקהל</h2>
 
               {userReview && (
