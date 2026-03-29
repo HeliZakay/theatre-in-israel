@@ -7,6 +7,7 @@ import AuthSessionProvider from "@/components/auth/AuthSessionProvider/AuthSessi
 import WatchlistProvider from "@/components/auth/WatchlistProvider/WatchlistProvider";
 import ScrollToTop from "@/components/layout/ScrollToTop/ScrollToTop";
 import SecurityBanner from "@/components/layout/SecurityBanner/SecurityBanner";
+import TooltipProvider from "@/components/ui/Tooltip/TooltipProvider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import ROUTES from "@/constants/routes";
@@ -114,6 +115,7 @@ export default function RootLayout({
         <AuthSessionProvider>
           <WatchlistProvider>
           <RadixDirectionProvider dir="rtl">
+          <TooltipProvider>
             <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{ __html: toJsonLd(websiteJsonLd) }}
@@ -129,6 +131,7 @@ export default function RootLayout({
             <SecurityBanner />
             <div className="appContent">{children}</div>
             <Footer />
+          </TooltipProvider>
           </RadixDirectionProvider>
           </WatchlistProvider>
         </AuthSessionProvider>

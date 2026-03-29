@@ -1,6 +1,7 @@
 "use client";
 
 import { useWatchlist } from "@/components/auth/WatchlistProvider/WatchlistProvider";
+import Tooltip from "@/components/ui/Tooltip/Tooltip";
 import styles from "./WatchlistToggle.module.css";
 
 interface WatchlistToggleProps {
@@ -19,7 +20,10 @@ export default function WatchlistToggle({
   const { isInWatchlist, toggle } = useWatchlist();
   const active = isInWatchlist(showId);
 
+  const tooltipText = active ? "הסר מרשימת צפייה" : "הוסף לרשימת צפייה";
+
   return (
+    <Tooltip content={tooltipText}>
     <button
       type="button"
       className={[
@@ -51,5 +55,6 @@ export default function WatchlistToggle({
         <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
       </svg>
     </button>
+    </Tooltip>
   );
 }
