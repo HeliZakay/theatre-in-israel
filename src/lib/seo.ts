@@ -69,17 +69,34 @@ export function buildCreativeWorkJsonLd(
   show: Show,
   stats: ShowStats,
   canonicalPath: string,
+  options?: { maxReviews?: number },
 ) {
   const { avgRating, reviewCount } = stats;
+  const entityUrl = toAbsoluteUrl(canonicalPath);
+  const entityId = `${entityUrl}#show`;
+  const maxReviews = options?.maxReviews ?? 5;
+
+  const itemReviewed = {
+    "@type": "CreativeWorkSeries" as const,
+    "@id": entityId,
+    name: show.title,
+  };
+
+  const publisher = {
+    "@type": "Organization" as const,
+    name: SITE_NAME,
+    url: getSiteUrl(),
+  };
 
   return {
     "@context": "https://schema.org",
     "@type": "CreativeWorkSeries",
+    "@id": entityId,
     name: show.title,
     description: show.description ?? show.summary,
     inLanguage: "he-IL",
     image: toAbsoluteUrl(getShowImagePath(show.title)),
-    url: toAbsoluteUrl(canonicalPath),
+    url: entityUrl,
     contentLocation: {
       "@type": "PerformingArtsTheater",
       name: show.theatre,
@@ -89,17 +106,20 @@ export function buildCreativeWorkJsonLd(
         ? {
             "@type": "AggregateRating",
             ratingValue: Number(avgRating.toFixed(1)),
+            ratingCount: reviewCount,
             reviewCount,
             bestRating: 5,
             worstRating: 1,
           }
         : undefined,
-    review: show.reviews.slice(0, 5).map((review) => ({
+    review: show.reviews.slice(0, maxReviews).map((review) => ({
       "@type": "Review",
       author: {
         "@type": "Person",
         name: review.author,
       },
+      publisher,
+      itemReviewed,
       name: review.title ?? `ביקורת על ${show.title}`,
       reviewBody: review.text,
       datePublished: new Date(review.date).toISOString(),

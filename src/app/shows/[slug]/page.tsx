@@ -175,10 +175,9 @@ export default async function ShowPage({
     notFound();
   }
 
-  const { reviewCount, avgRating } = getShowStats(show);
+  const stats = getShowStats(show);
+  const { reviewCount, avgRating } = stats;
   const canonicalPath = showPath(show.slug);
-
-  const stats = { reviewCount, avgRating, latestReviewDate: null };
 
   // Check own-review state for authenticated users
   let userReview: (typeof show.reviews)[number] | null = null;

@@ -14,6 +14,7 @@ import {
   toJsonLd,
   toAbsoluteUrl,
   buildBreadcrumbJsonLd,
+  buildCreativeWorkJsonLd,
   getShowImageAlt,
 } from "@/lib/seo";
 import prisma from "@/lib/prisma";
@@ -112,37 +113,10 @@ export default async function ShowReviewsPage({ params }: ReviewsPageProps) {
     { name: "ביקורות", path: canonicalPath },
   ]);
 
-  // Full reviews JSON-LD (all reviews, not just first 5)
-  const reviewsJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "CreativeWorkSeries",
-    name: show.title,
-    url: toAbsoluteUrl(showPagePath),
-    image: toAbsoluteUrl(getShowImagePath(show.title)),
-    aggregateRating:
-      avgRating !== null
-        ? {
-            "@type": "AggregateRating",
-            ratingValue: Number(avgRating.toFixed(1)),
-            reviewCount,
-            bestRating: 5,
-            worstRating: 1,
-          }
-        : undefined,
-    review: show.reviews.map((review) => ({
-      "@type": "Review",
-      author: { "@type": "Person", name: review.author },
-      name: review.title ?? `ביקורת על ${show.title}`,
-      reviewBody: review.text,
-      datePublished: new Date(review.date).toISOString(),
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: review.rating,
-        bestRating: 5,
-        worstRating: 1,
-      },
-    })),
-  };
+  const stats = { reviewCount, avgRating, latestReviewDate: null };
+  const reviewsJsonLd = buildCreativeWorkJsonLd(show, stats, showPagePath, {
+    maxReviews: 20,
+  });
 
   return (
     <main className={styles.page} id="main-content">
