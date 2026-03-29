@@ -80,8 +80,25 @@
   opacity: 0.5;
 }
 
-.rating {
+.bottomRow {
   margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inlineToggle {
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  color: var(--color-text-faint);
+}
+
+.inlineToggle:hover {
+  background: var(--color-slate-008);
+}
+
+.rating {
   font-weight: 700;
   font-size: 1.1rem;
   color: var(--color-curtain-red);

@@ -77,28 +77,31 @@ export default function ShowsSection({
                         ));
                       })()}
                     </div>
-                    <div className={styles.rating}>
-                      {show.avgRating !== null ? (
-                        <>
-                          {show.avgRating.toFixed(1)}
-                          <span className={styles.star}>★</span>
-                          {show.reviewCount > 0 && (
-                            <span className={styles.reviewCount}>
-                              {show.reviewCount} ביקורות
-                            </span>
-                          )}
-                        </>
-                      ) : (
-                        <span className={styles.noRating}>טרם דורג</span>
-                      )}
+                    <div className={styles.bottomRow}>
+                      <div className={styles.rating}>
+                        {show.avgRating !== null ? (
+                          <>
+                            {show.avgRating.toFixed(1)}
+                            <span className={styles.star}>★</span>
+                            {show.reviewCount > 0 && (
+                              <span className={styles.reviewCount}>
+                                {show.reviewCount} ביקורות
+                              </span>
+                            )}
+                          </>
+                        ) : (
+                          <span className={styles.noRating}>טרם דורג</span>
+                        )}
+                      </div>
+                      <WatchlistToggle
+                        showId={show.id}
+                        showSlug={show.slug ?? String(show.id)}
+                        className={styles.inlineToggle}
+                      />
                     </div>
                   </div>
                 </Card>
               </Link>
-              <WatchlistToggle
-                showId={show.id}
-                showSlug={show.slug ?? String(show.id)}
-              />
             </div>
           </div>
         ))}

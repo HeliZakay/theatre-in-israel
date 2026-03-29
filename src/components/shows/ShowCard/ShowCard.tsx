@@ -52,16 +52,24 @@ export default function ShowCard({ show, priority }: ShowCardProps) {
             ))}
           </div>
 
-          <div className={styles.rating}>
-            {avgRating !== null ? (
-              <span className={styles.ratingValue}>{avgRating.toFixed(1)}</span>
-            ) : (
-              <span className={styles.ratingEmpty}>עדיין אין דירוגים</span>
-            )}
+          <div className={styles.bottomRow}>
+            <div className={styles.rating}>
+              {avgRating !== null ? (
+                <span className={styles.ratingValue}>
+                  {avgRating.toFixed(1)}
+                </span>
+              ) : (
+                <span className={styles.ratingEmpty}>עדיין אין דירוגים</span>
+              )}
+            </div>
+            <WatchlistToggle
+              showId={show.id}
+              showSlug={slug}
+              className={styles.inlineToggle}
+            />
           </div>
         </Card>
       </Link>
-      <WatchlistToggle showId={show.id} showSlug={slug} />
     </div>
   );
 }
