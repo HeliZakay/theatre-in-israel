@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-03-30T04:08:45.455Z",
+  "scrapedAt": "2026-03-30T09:29:49.981Z",
   "touring": true,
   "events": [
     {
@@ -94,14 +94,6 @@
       "showId": 241,
       "showSlug": "אנה-קרנינה",
       "date": "2026-06-13",
-      "hour": "18:00",
-      "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
-    },
-    {
-      "showId": 243,
-      "showSlug": "הדיבוק",
-      "date": "2026-04-08",
       "hour": "18:00",
       "venueName": "תיאטרון גשר",
       "venueCity": "תל אביב-יפו"
