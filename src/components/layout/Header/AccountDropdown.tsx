@@ -75,11 +75,6 @@ export default function AccountDropdown({
                 רשימת הצפייה שלי
               </Link>
             </DropdownMenu.Item>
-            <DropdownMenu.Item asChild className={styles.accountMenuItem}>
-              <Link href={ROUTES.REVIEWS_NEW} onClick={onNavigate}>
-                כתב.י ביקורת
-              </Link>
-            </DropdownMenu.Item>
             <DropdownMenu.Item
               className={styles.accountMenuItemButton}
               onSelect={() => {
