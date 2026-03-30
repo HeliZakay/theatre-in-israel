@@ -288,7 +288,7 @@ async function _runScraper(config) {
     }
     fixedVenue = await db.prisma.venue.upsert({
       where: { name_city: { name: venue.name, city: venue.city } },
-      create: { name: venue.name, city: venue.city },
+      create: { name: venue.name, city: venue.city, regions: [] },
       update: {},
     });
     console.log(dim(`  Venue: ${fixedVenue.name} (id=${fixedVenue.id})\n`));
@@ -432,7 +432,7 @@ async function _runScraper(config) {
             if (!eventVenue) {
               eventVenue = await db.prisma.venue.upsert({
                 where: { name_city: { name: venueName, city: venueCity } },
-                create: { name: venueName, city: venueCity },
+                create: { name: venueName, city: venueCity, regions: [] },
                 update: {},
               });
               venueCache.set(cacheKey, eventVenue);

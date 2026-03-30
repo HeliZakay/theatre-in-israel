@@ -36,4 +36,5 @@ export const THEATRES = [
   { label: "Rehovot",           script: "scrape-all-rehovot-events.mjs",             jsonFile: "events-rehovot.json" },
   { label: "Herzliya",          script: "scrape-all-herzliya-events.mjs",            jsonFile: "events-herzliya.json" },
   { label: "Ganei Tikva",       script: "scrape-all-ganei-tikva-events.mjs",         jsonFile: "events-ganei-tikva.json" },
+  { label: "Or Yehuda",        script: "scrape-all-or-yehuda-events.mjs",           jsonFile: "events-or-yehuda.json" },
 ];

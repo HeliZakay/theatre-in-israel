@@ -115,7 +115,7 @@ const VENUE_ALIASES = new Map([
 ]);
 
 const CITY_REGIONS_MAP = {
-  'תל אביב': ['center'], 'תל אביב-יפו': ['center'], 'רמת גן': ['center'], 'גבעתיים': ['center'], 'חולון': ['center'], 'בת ים': ['center'], 'פתח תקווה': ['center'], 'ראש העין': ['center'], 'גני תקווה': ['center'], 'אקספו ת"א': ['center'], 'אקספו ת״א': ['center'], 'אקספו תל אביב': ['center'],
+  'תל אביב': ['center'], 'תל אביב-יפו': ['center'], 'רמת גן': ['center'], 'גבעתיים': ['center'], 'חולון': ['center'], 'בת ים': ['center'], 'פתח תקווה': ['center'], 'ראש העין': ['center'], 'גני תקווה': ['center'], 'אור יהודה': ['center'], 'אקספו ת"א': ['center'], 'אקספו ת״א': ['center'], 'אקספו תל אביב': ['center'],
   'נתניה': ['sharon'], 'כפר סבא': ['sharon'], 'רעננה': ['sharon'], 'נווה ירק': ['sharon'], 'תל מונד': ['sharon'],
   'הרצליה': ['sharon', 'center'], 'גלילות': ['sharon', 'center'], 'אריאל': ['sharon', 'center'],
   'ראשון לציון': ['shfela', 'center'], 'רחובות': ['shfela'], 'נס ציונה': ['shfela'], 'יבנה': ['shfela'], 'מזכרת בתיה': ['shfela'], 'גבעת ברנר': ['shfela'], 'קריית שדה התעופה': ['shfela'], 'איירפורט סיטי': ['shfela', 'center'],
