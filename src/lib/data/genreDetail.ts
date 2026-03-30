@@ -23,7 +23,7 @@ async function fetchGenreData(genreName: string): Promise<GenrePageData> {
       ],
     },
     include: showListInclude,
-    orderBy: [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],
+    orderBy: [{ reviewCount: "desc" }, { avgRating: { sort: "desc", nulls: "last" } }],
   });
 
   const shows: ShowListItem[] = rawShows.map(mapToShowListItem);

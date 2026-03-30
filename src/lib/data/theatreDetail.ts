@@ -22,7 +22,7 @@ async function fetchTheatreData(theatreName: string): Promise<TheatrePageData> {
     prisma.show.findMany({
       where: { theatre: theatreName },
       include: showListInclude,
-      orderBy: [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],
+      orderBy: [{ reviewCount: "desc" }, { avgRating: { sort: "desc", nulls: "last" } }],
     }),
     prisma.event.count({
       where: {

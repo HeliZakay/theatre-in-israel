@@ -55,7 +55,7 @@ async function fetchCityData(aliases: string[]): Promise<CityPageData> {
     ? await prisma.show.findMany({
         where: { id: { in: ids } },
         include: showListInclude,
-        orderBy: [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],
+        orderBy: [{ reviewCount: "desc" }, { avgRating: { sort: "desc", nulls: "last" } }],
       })
     : [];
 
