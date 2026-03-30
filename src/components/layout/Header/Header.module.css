@@ -356,23 +356,26 @@
   border: 1px solid rgba(26, 26, 26, 0.12);
   border-radius: 10px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  overflow: hidden;
+  padding: 6px;
   z-index: 1100;
 }
 
 .accountMenuItem,
 .accountMenuItemButton {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   width: 100%;
   text-align: right;
-  padding: 10px 12px;
-  font-size: 0.92rem;
+  padding: 10px 14px;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--color-text-primary);
   background: transparent;
   border: 0;
   text-decoration: none;
   cursor: pointer;
+  border-radius: 6px;
 }
 
 .accountMenuItem:hover,
@@ -381,6 +384,20 @@
 .accountMenuItemButton[data-highlighted] {
   background: rgba(26, 26, 26, 0.06);
   outline: none;
+}
+
+.accountMenuItemIcon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  opacity: 0.55;
+}
+
+.accountMenuDivider {
+  height: 1px;
+  background: rgba(26, 26, 26, 0.08);
+  margin: 4px 0;
+  border: none;
 }
 
 .authBtn:disabled {

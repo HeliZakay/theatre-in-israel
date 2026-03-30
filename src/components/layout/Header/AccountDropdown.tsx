@@ -6,6 +6,43 @@ import { signOut } from "next-auth/react";
 import styles from "./Header.module.css";
 import ROUTES from "@/constants/routes";
 
+/* ── Inline SVG icons (stroke-based, matching mobile drawer) ── */
+
+function UserIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+      <circle cx="12" cy="7" r="4" />
+    </svg>
+  );
+}
+
+function StarIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+    </svg>
+  );
+}
+
+function BookmarkIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />
+    </svg>
+  );
+}
+
+function LogOutIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+      <polyline points="16 17 21 12 16 7" />
+      <line x1="21" y1="12" x2="9" y2="12" />
+    </svg>
+  );
+}
+
 interface AccountDropdownProps {
   fullName: string;
   firstName: string;
@@ -62,19 +99,23 @@ export default function AccountDropdown({
           >
             <DropdownMenu.Item asChild className={styles.accountMenuItem}>
               <Link href={ROUTES.MY_PROFILE} onClick={onNavigate}>
+                <UserIcon className={styles.accountMenuItemIcon} />
                 האזור האישי
               </Link>
             </DropdownMenu.Item>
             <DropdownMenu.Item asChild className={styles.accountMenuItem}>
               <Link href={ROUTES.MY_REVIEWS} onClick={onNavigate}>
+                <StarIcon className={styles.accountMenuItemIcon} />
                 הביקורות שלי
               </Link>
             </DropdownMenu.Item>
             <DropdownMenu.Item asChild className={styles.accountMenuItem}>
               <Link href={ROUTES.MY_WATCHLIST} onClick={onNavigate}>
+                <BookmarkIcon className={styles.accountMenuItemIcon} />
                 רשימת הצפייה שלי
               </Link>
             </DropdownMenu.Item>
+            <DropdownMenu.Separator className={styles.accountMenuDivider} />
             <DropdownMenu.Item
               className={styles.accountMenuItemButton}
               onSelect={() => {
@@ -82,6 +123,7 @@ export default function AccountDropdown({
                 signOut({ callbackUrl: ROUTES.HOME });
               }}
             >
+              <LogOutIcon className={styles.accountMenuItemIcon} />
               התנתקות
             </DropdownMenu.Item>
           </DropdownMenu.Content>
