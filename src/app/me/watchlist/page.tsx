@@ -5,7 +5,6 @@ import { getWatchlistShowIds } from "@/lib/watchlist";
 import { fetchShowListItems } from "@/lib/showHelpers";
 import ShowCard from "@/components/shows/ShowCard/ShowCard";
 import Button from "@/components/ui/Button/Button";
-import RemoveFromWatchlistButton from "./RemoveFromWatchlistButton";
 import styles from "./page.module.css";
 
 import type { Metadata } from "next";
@@ -38,10 +37,7 @@ export default async function MyWatchlistPage() {
       {shows.length ? (
         <section className={styles.grid}>
           {shows.map((show) => (
-            <div key={show.id} className={styles.gridItem}>
-              <ShowCard show={show} />
-              <RemoveFromWatchlistButton showId={show.id} />
-            </div>
+            <ShowCard key={show.id} show={show} />
           ))}
         </section>
       ) : (

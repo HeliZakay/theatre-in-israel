@@ -76,15 +76,8 @@ test.describe("Watchlist", () => {
     await page.goto("/me/watchlist");
     await expect(page.getByText(firstShow.title).first()).toBeVisible();
 
-    // Click remove
-    await page.getByRole("button", { name: "הסיר.י מהרשימה" }).click();
-
-    // Confirmation dialog
-    await expect(page.getByText("הסיר.י מרשימת הצפייה")).toBeVisible();
-    await expect(page.getByText("להסיר את ההצגה מרשימת הצפייה?")).toBeVisible();
-
-    // Confirm in the dialog
-    await page.getByRole("alertdialog").getByRole("button", { name: "הסרה" }).click();
+    // Click the bookmark toggle to remove from watchlist
+    await page.getByRole("button", { name: "הסר מרשימת צפייה" }).click();
 
     // Show should be gone, empty state should appear
     await expect(
