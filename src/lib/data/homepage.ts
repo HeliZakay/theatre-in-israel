@@ -37,18 +37,18 @@ export interface SectionsData {
 }
 
 /**
- * Top-rated shows by average review rating.
- * Ties on avg rating are broken by review count (higher wins),
+ * Top shows by review count (most-reviewed first).
+ * Ties on review count are broken by avg rating (higher wins),
  * then by id for deterministic ordering.
- * Uses the denormalized avgRating column — no raw SQL aggregation needed.
+ * Uses denormalized columns — no raw SQL aggregation needed.
  */
 async function getTopRated(): Promise<ShowListItem[]> {
   const shows = await prisma.show.findMany({
     where: { avgRating: { not: null }, ...excludeKidsWhere },
     include: showListInclude,
     orderBy: [
-      { avgRating: { sort: "desc", nulls: "last" } },
       { reviewCount: "desc" },
+      { avgRating: { sort: "desc", nulls: "last" } },
       { id: "asc" },
     ],
     take: FETCH_LIMIT,
@@ -59,8 +59,9 @@ async function getTopRated(): Promise<ShowListItem[]> {
 
 /**
  * Fetch shows whose **first** (principal) genre matches any of the given
- * names, sorted by average rating and limited to `limit` results.
- * Uses denormalized avgRating column — no raw SQL aggregation needed.
+ * names, sorted by review count (most-reviewed first), then avg rating,
+ * and limited to `limit` results.
+ * Uses denormalized columns — no raw SQL aggregation needed.
  */
 async function getShowsByGenres(
   genreNames: string[],
@@ -74,7 +75,7 @@ async function getShowsByGenres(
       ],
     },
     include: showListInclude,
-    orderBy: [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],
+    orderBy: [{ reviewCount: "desc" }, { avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],
     take: limit,
   });
 
@@ -92,7 +93,7 @@ async function getKidsShows(limit = 5): Promise<ShowListItem[]> {
       },
     },
     include: showListInclude,
-    orderBy: [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],
+    orderBy: [{ reviewCount: "desc" }, { avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }],
     take: limit,
   });
 
