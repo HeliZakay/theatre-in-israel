@@ -27,6 +27,7 @@ import {
 runScraper({
   label: "Rehovot Venue Scraper — בית העם רחובות",
   venueSource: true,
+  stealth: true,
   fetchListings: fetchListing,
   venue: { name: VENUE_NAME, city: VENUE_CITY },
 });
