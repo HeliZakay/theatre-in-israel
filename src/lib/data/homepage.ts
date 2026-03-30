@@ -243,9 +243,9 @@ async function fetchSectionsData(): Promise<SectionsData> {
   const deduped = deduplicateSections(
     [
       { key: "topRated", shows: topRated },
+      { key: "musicals", shows: musicals },
       { key: "dramas", shows: dramas },
       { key: "comedies", shows: comedies },
-      { key: "musicals", shows: musicals },
       { key: "israeli", shows: israeli },
       { key: "kids", shows: kids },
     ],

@@ -46,6 +46,15 @@ export default async function ShowsSectionsContent({ banner }: Props) {
       />
 
       <ShowsSection
+        kicker={GENRE_SECTIONS.musicals.kicker}
+        title={GENRE_SECTIONS.musicals.title}
+        shows={musicals}
+        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.musicals.genres] })}#results`}
+        linkText={GENRE_SECTIONS.musicals.linkText}
+        sectionGenres={[...GENRE_SECTIONS.musicals.genres]}
+      />
+
+      <ShowsSection
         kicker={GENRE_SECTIONS.dramas.kicker}
         title={GENRE_SECTIONS.dramas.title}
         shows={dramas}
@@ -61,15 +70,6 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.comedies.genres] })}#results`}
         linkText={GENRE_SECTIONS.comedies.linkText}
         sectionGenres={[...GENRE_SECTIONS.comedies.genres]}
-      />
-
-      <ShowsSection
-        kicker={GENRE_SECTIONS.musicals.kicker}
-        title={GENRE_SECTIONS.musicals.title}
-        shows={musicals}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.musicals.genres] })}#results`}
-        linkText={GENRE_SECTIONS.musicals.linkText}
-        sectionGenres={[...GENRE_SECTIONS.musicals.genres]}
       />
 
       <ShowsSection
