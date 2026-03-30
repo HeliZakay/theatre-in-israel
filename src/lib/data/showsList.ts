@@ -72,9 +72,9 @@ export function buildWhereClause({
 export function buildOrderBy(sort: string): Prisma.ShowOrderByWithRelationInput[] {
   switch (sort) {
     case "rating":
-      return [{ avgRating: { sort: "desc", nulls: "last" } }, { id: "asc" }];
+      return [{ avgRating: { sort: "desc", nulls: "last" } }, { reviewCount: "desc" }, { id: "asc" }];
     case "rating-asc":
-      return [{ avgRating: { sort: "asc", nulls: "last" } }, { id: "asc" }];
+      return [{ avgRating: { sort: "asc", nulls: "last" } }, { reviewCount: "desc" }, { id: "asc" }];
     case "reviews":
       return [
         { reviewCount: "desc" },

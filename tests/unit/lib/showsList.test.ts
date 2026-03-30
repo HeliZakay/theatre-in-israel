@@ -109,6 +109,7 @@ describe("buildOrderBy", () => {
     const result = buildOrderBy("rating");
     expect(result).toEqual([
       { avgRating: { sort: "desc", nulls: "last" } },
+      { reviewCount: "desc" },
       { id: "asc" },
     ]);
   });
@@ -117,6 +118,7 @@ describe("buildOrderBy", () => {
     const result = buildOrderBy("rating-asc");
     expect(result).toEqual([
       { avgRating: { sort: "asc", nulls: "last" } },
+      { reviewCount: "desc" },
       { id: "asc" },
     ]);
   });
