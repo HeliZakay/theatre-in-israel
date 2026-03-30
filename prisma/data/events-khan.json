@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-03-29T09:12:09.220Z",
+  "scrapedAt": "2026-03-30T04:08:00.391Z",
   "touring": true,
   "events": [
     {
@@ -118,14 +118,6 @@
       "showId": 88,
       "showSlug": "מחכים-לגודו",
       "date": "2026-05-24",
-      "hour": "20:00",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 90,
-      "showSlug": "מי-שסוכתו-נופלת",
-      "date": "2026-04-05",
       "hour": "20:00",
       "venueName": "תיאטרון החאן",
       "venueCity": "ירושלים"

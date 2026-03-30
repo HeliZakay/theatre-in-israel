@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-03-29T09:14:02.457Z",
+  "scrapedAt": "2026-03-30T04:09:51.713Z",
   "touring": true,
   "events": [
     {
@@ -35,26 +35,10 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 258,
-      "showSlug": "Mamachine",
-      "date": "2026-03-30",
-      "hour": "19:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
       "showId": 108,
       "showSlug": "אבא-יצא-מהקבוצה",
       "date": "2026-04-09",
       "hour": "20:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 257,
-      "showSlug": "אש-בארזים",
-      "date": "2026-03-30",
-      "hour": "19:00",
       "venueName": "תיאטרון תמונע",
       "venueCity": "תל אביב"
     },
@@ -78,14 +62,6 @@
       "showId": 260,
       "showSlug": "בדיחה",
       "date": "2026-04-04",
-      "hour": "19:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 107,
-      "showSlug": "בית-בעזה",
-      "date": "2026-03-31",
       "hour": "19:00",
       "venueName": "תיאטרון תמונע",
       "venueCity": "תל אביב"
