@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
 import ShowsSection from "@/components/shows/ShowsSection/ShowsSection";
 import { getSectionsData } from "@/lib/data/homepage";
-import ROUTES, { showPath } from "@/constants/routes";
-import { buildShowsQueryString } from "@/utils/showsQuery";
+import ROUTES, { genrePath, showPath } from "@/constants/routes";
 import { GENRE_SECTIONS } from "@/constants/genreGroups";
+import { GENRE_BY_NAME } from "@/constants/genres";
 import { toAbsoluteUrl, toJsonLd } from "@/lib/seo";
 
 interface Props {
@@ -49,7 +49,7 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         kicker={GENRE_SECTIONS.musicals.kicker}
         title={GENRE_SECTIONS.musicals.title}
         shows={musicals}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.musicals.genres] })}#results`}
+        linkHref={genrePath(GENRE_BY_NAME.get(GENRE_SECTIONS.musicals.genres[0])!.slug)}
         linkText={GENRE_SECTIONS.musicals.linkText}
         sectionGenres={[...GENRE_SECTIONS.musicals.genres]}
       />
@@ -58,7 +58,7 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         kicker={GENRE_SECTIONS.dramas.kicker}
         title={GENRE_SECTIONS.dramas.title}
         shows={dramas}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.dramas.genres] })}#results`}
+        linkHref={genrePath(GENRE_BY_NAME.get(GENRE_SECTIONS.dramas.genres[0])!.slug)}
         linkText={GENRE_SECTIONS.dramas.linkText}
         sectionGenres={[...GENRE_SECTIONS.dramas.genres]}
       />
@@ -67,7 +67,7 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         kicker={GENRE_SECTIONS.comedies.kicker}
         title={GENRE_SECTIONS.comedies.title}
         shows={comedies}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.comedies.genres] })}#results`}
+        linkHref={genrePath(GENRE_BY_NAME.get(GENRE_SECTIONS.comedies.genres[0])!.slug)}
         linkText={GENRE_SECTIONS.comedies.linkText}
         sectionGenres={[...GENRE_SECTIONS.comedies.genres]}
       />
@@ -76,7 +76,7 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         kicker={GENRE_SECTIONS.israeli.kicker}
         title={GENRE_SECTIONS.israeli.title}
         shows={israeli}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.israeli.genres] })}#results`}
+        linkHref={genrePath(GENRE_BY_NAME.get(GENRE_SECTIONS.israeli.genres[0])!.slug)}
         linkText={GENRE_SECTIONS.israeli.linkText}
         sectionGenres={[...GENRE_SECTIONS.israeli.genres]}
       />
@@ -85,7 +85,7 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         kicker={GENRE_SECTIONS.kids.kicker}
         title={GENRE_SECTIONS.kids.title}
         shows={kids}
-        linkHref={`${ROUTES.SHOWS}${buildShowsQueryString({ genres: [...GENRE_SECTIONS.kids.genres] })}#results`}
+        linkHref={genrePath(GENRE_BY_NAME.get(GENRE_SECTIONS.kids.genres[0])!.slug)}
         linkText={GENRE_SECTIONS.kids.linkText}
         sectionGenres={[...GENRE_SECTIONS.kids.genres]}
       />
