@@ -76,12 +76,6 @@ export function buildCreativeWorkJsonLd(
   const entityId = `${entityUrl}#show`;
   const maxReviews = options?.maxReviews ?? 5;
 
-  const itemReviewed = {
-    "@type": "CreativeWorkSeries" as const,
-    "@id": entityId,
-    name: show.title,
-  };
-
   const publisher = {
     "@type": "Organization" as const,
     name: SITE_NAME,
@@ -119,7 +113,6 @@ export function buildCreativeWorkJsonLd(
         name: review.author,
       },
       publisher,
-      itemReviewed,
       name: review.title ?? `ביקורת על ${show.title}`,
       reviewBody: review.text,
       datePublished: new Date(review.date).toISOString(),

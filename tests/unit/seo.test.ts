@@ -310,6 +310,17 @@ describe("seo", () => {
       expect(result.aggregateRating?.ratingValue).toBe(3.7);
     });
 
+    it("does not include itemReviewed in nested reviews", () => {
+      const result = buildCreativeWorkJsonLd(
+        makeShow(),
+        stats,
+        "/shows/hamlet",
+      );
+      for (const review of result.review) {
+        expect(review).not.toHaveProperty("itemReviewed");
+      }
+    });
+
     it("includes content location from show theatre", () => {
       const result = buildCreativeWorkJsonLd(
         makeShow(),
