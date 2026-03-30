@@ -95,9 +95,9 @@ describe("ShowsSectionsContent", () => {
     // topRated has no sectionGenres
     expect(capturedProps[0].sectionGenres).toBeUndefined();
     // Genre sections have sectionGenres
-    expect(capturedProps[1].sectionGenres).toEqual(["דרמה"]);
-    expect(capturedProps[2].sectionGenres).toEqual(["קומדיה"]);
-    expect(capturedProps[3].sectionGenres).toEqual(["מחזמר"]);
+    expect(capturedProps[1].sectionGenres).toEqual(["מחזמר"]);
+    expect(capturedProps[2].sectionGenres).toEqual(["דרמה"]);
+    expect(capturedProps[3].sectionGenres).toEqual(["קומדיה"]);
     expect(capturedProps[4].sectionGenres).toEqual(["ישראלי"]);
     expect(capturedProps[5].sectionGenres).toEqual(["ילדים"]);
   });

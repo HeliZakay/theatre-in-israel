@@ -44,11 +44,11 @@ export interface SectionsData {
  */
 async function getTopRated(): Promise<ShowListItem[]> {
   const shows = await prisma.show.findMany({
-    where: { avgRating: { not: null }, ...excludeKidsWhere },
+    where: { avgRating: { not: null }, reviewCount: { gte: 5 }, ...excludeKidsWhere },
     include: showListInclude,
     orderBy: [
-      { reviewCount: "desc" },
       { avgRating: { sort: "desc", nulls: "last" } },
+      { reviewCount: "desc" },
       { id: "asc" },
     ],
     take: FETCH_LIMIT,
