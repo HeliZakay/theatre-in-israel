@@ -2,7 +2,7 @@
 
 > Reference document for adding new theatre scrapers. Read this before building a scraper for a new theatre.
 >
-> For **event scraping** (performance dates/times), see `EVENTS_SYSTEM.md`.
+> For **event scraping** (performance dates/times), see `events-system.md`.
 
 ## 1. Architecture Overview
 
@@ -242,7 +242,7 @@ To make an excluded show reappear in future scraping runs, manually remove its e
 
 Copy-paste this into a new agent chat, replacing `{THEATRE_NAME}` and `{THEATRE_URL}`:
 
-> **Read `THEATRE_SCRAPING_GUIDE.md` first** — it documents our full scraping pipeline architecture.
+> **Read `docs/theatre-scraping-guide.md` first** — it documents our full scraping pipeline architecture.
 >
 > Build a scraper for **{THEATRE_NAME}** (`{THEATRE_URL}` — verify the actual URL by fetching it).
 >

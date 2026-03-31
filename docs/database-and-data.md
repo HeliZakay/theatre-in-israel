@@ -262,4 +262,4 @@ Yes. The scraper needs a `GITHUB_TOKEN` environment variable for AI-generated su
 3. **Real show IDs start at 1**; **10001+ are test fixtures** from `e2e/data/shows.json`
 4. **Data migrations are one-way** — once deployed, don't edit them; create new migrations instead
 5. **The scraper generates migration files** — it never inserts directly into any database
-6. **Events are synced from JSON, not migrations** — see `EVENTS_SYSTEM.md` for the events pipeline
+6. **Events are synced from JSON, not migrations** — see `events-system.md` for the events pipeline
