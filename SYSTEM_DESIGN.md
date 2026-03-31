@@ -1,14 +1,14 @@
 # System Design — Theatre in Israel
 
-Last updated: 2026-02-25
+Last updated: 2026-03-31
 
 ## Architecture Overview
 
 ```mermaid
 graph TB
     subgraph Browser["Browser (Client)"]
-        SSR["Server-Rendered Pages\n(Home, Shows, Show Detail,\nMy Reviews, My Watchlist)"]
-        CC["Client Components\n(ReviewForm, WatchlistButton,\nSearchBar, ShowsFilterBar,\nShowCarousel, Header)"]
+        SSR["Server-Rendered Pages\n(Home, Shows, Show Detail,\nEvents, Theatres, Genres,\nCities, Actors, Reviews,\nMy Reviews, My Watchlist)"]
+        CC["Client Components\n(ReviewForm, WatchlistButton,\nSearchBar, ShowsFilterBar,\nShowCarousel, Header,\nEventsClientView)"]
     end
 
     subgraph NextServer["Next.js Server (Node.js 20)"]
@@ -25,6 +25,7 @@ graph TB
             HP["homepage.ts"]
             SL["showsList.ts"]
             SD["showDetail.ts"]
+            EL["eventsList.ts"]
         end
 
         subgraph ServiceLayer["Service Layer (src/lib/)"]
@@ -44,7 +45,7 @@ graph TB
     end
 
     subgraph DB["PostgreSQL (Neon Serverless)"]
-        MODELS["User - Show - Review\nWatchlist - Genre - ShowGenre\nAccount - Session"]
+        MODELS["User - Show - Review\nWatchlist - Genre - ShowGenre\nEvent - Venue - Actor - ShowActor\nAccount - Session - ContactMessage\nRateLimitAttempt"]
     end
 
     subgraph ExtAuth["External Auth"]
@@ -89,7 +90,7 @@ graph TB
 | **API Routes**    | 7 endpoints under `src/app/api/` | REST-style mutations (reviews CRUD, watchlist CRUD, auth)                                                      |
 | **Auth**          | NextAuth v4 (JWT sessions)       | Google OAuth + credentials provider; Prisma adapter                                                            |
 | **ORM**           | Prisma 7 with driver adapters    | Auto-selects Neon serverless adapter or standard pg                                                            |
-| **Database**      | PostgreSQL (Neon)                | 10 models: User, Show, Review, Watchlist, Genre, ShowGenre, Account, Session, ContactMessage, RateLimitAttempt |
+| **Database**      | PostgreSQL (Neon)                | 13 models: User, Show, Review, Watchlist, Genre, ShowGenre, Event, Venue, Actor, ShowActor, Account, Session, ContactMessage, RateLimitAttempt |
 | **Middleware**    | `src/middleware.ts`              | CSRF protection on all `/api/*` mutating requests                                                              |
 | **Rate Limiter**  | `src/utils/reviewRateLimit.ts`   | All DB-backed (RateLimitAttempt). Auth create: 50/hr, Anon: 20/hr (5/hr unknown IP), Edit/delete: 50/hr        |
 | **Cache**         | Next.js ISR + `React.cache()`    | No external cache — ISR for home/show detail; force-dynamic for filtered lists                                 |
@@ -112,7 +113,11 @@ erDiagram
     Show ||--o{ Review : "has reviews"
     Show ||--o{ Watchlist : "on watchlists"
     Show ||--o{ ShowGenre : "tagged with"
+    Show ||--o{ Event : "has events"
+    Show ||--o{ ShowActor : "performed by"
     Genre ||--o{ ShowGenre : "tags"
+    Venue ||--o{ Event : "hosts"
+    Actor ||--o{ ShowActor : "acts in"
 
     User {
         string id PK
@@ -132,6 +137,8 @@ erDiagram
         int durationMinutes
         string summary
         string description
+        string cast
+        string webReviewSummary
         float avgRating
         int reviewCount
     }
@@ -144,9 +151,37 @@ erDiagram
         string title
         string text
         int rating
+        boolean isAnonymous
         datetime date
         datetime createdAt
         datetime updatedAt
+    }
+
+    Event {
+        int id PK
+        int showId FK
+        int venueId FK
+        date date
+        string hour
+    }
+
+    Venue {
+        int id PK
+        string name
+        string city
+        string address
+        string[] regions
+    }
+
+    Actor {
+        int id PK
+        string name UK
+        string slug UK
+    }
+
+    ShowActor {
+        int showId PK_FK
+        int actorId PK_FK
     }
 
     Watchlist {

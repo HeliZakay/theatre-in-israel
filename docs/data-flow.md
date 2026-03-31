@@ -14,13 +14,13 @@ Shows are created via Prisma migrations. Events are scraped nightly and synced d
 ## 1. How Shows Enter the Database
 
 ```
-Developer runs find-all-missing-shows.mjs (locally)
+Developer runs find-missing scripts (locally)
         │
         ▼
 Scrapes theatre websites for new show titles
         │
         ▼
-Enriches with AI summaries, cast, genres (via GitHub Copilot API)
+Enriches with AI summaries, cast, genres (via GitHub Models API)
         │
         ▼
 Developer reviews in local web UI → clicks "Generate Migration"
@@ -51,23 +51,26 @@ the same migration is idempotent but may assign different IDs on different datab
 ## 2. How Events Are Scraped (Nightly)
 
 ```
-GitHub Actions cron (3 AM UTC) — .github/workflows/refresh-events.yml
+GitHub Actions cron (3 AM + 9 AM UTC) — .github/workflows/refresh-events.yml
         │
         ▼
-For each of the 10 theatres:
-  node scripts/scrape-all-{theatre}-events.mjs --json prisma/data/events-{theatre}.json
+node scripts/scrape-all-events.mjs
+  (runs all scrapers from scripts/lib/theatres-config.mjs)
+        │
+        ├── For each of the 11 theatre scrapers + 16 venue scrapers:
+        │     node scripts/scrapers/scrape-all-{name}-events.mjs --json prisma/data/events-{name}.json
         │
         ├── Connects to PRODUCTION database (${{ secrets.DATABASE_URL }})
         ├── Queries: SELECT id, slug, title FROM Show WHERE theatre = '...'
         ├── Scrapes each show's page for upcoming dates/times/venues
-        └── Writes JSON file with events: [{ showId, showSlug, date, hour, ... }]
+        └── Writes JSON file with events
         │
         ▼
 Commits JSON files to git → triggers Vercel build
 ```
 
 **Database connection**: GitHub Actions scrapers connect to **production** Neon DB.
-The `showId` and `showSlug` in the JSON come from production's Show table.
+The `showSlug` in the JSON comes from production's Show table.
 
 ---
 
@@ -82,51 +85,75 @@ Vercel build (package.json "build" script):
   5. next build                      ← builds the Next.js app
 
 sync-events.js:
-  For each events-{theatre}.json:
+  EVENT_FILES generated dynamically from theatres-config.mjs
+  For each events-*.json:
     1. Reads JSON file
-    2. Resolves showSlug → showId (queries Show table by slug)
-       Falls back to showId from JSON if no slug present
-    3. Upserts venues
-    4. Deletes stale events (events in DB but no longer in JSON)
-    5. Upserts events (showId + venueId + date + hour = unique key)
+    2. Auto-detects format (fixed-venue, touring, or venueSource)
+    3. Resolves showSlug → showId (queries Show table by slug)
+    4. Upserts venues (with region assignment from CITY_REGION_MAP)
+    5. Deletes stale events (theatre-scoped or venue-scoped depending on format)
+    6. Upserts events (showId + venueId + date + hour = unique key)
 ```
 
 ---
 
 ## 4. JSON File Formats
 
-### Fixed-venue format (used by syncFile)
+### Theatre format (touring)
+
+Used when a theatre performs at multiple venues:
 
 ```json
 {
-  "scrapedAt": "2026-03-12T03:00:00.000Z",
-  "venue": { "name": "תיאטרון הקאמרי", "city": "תל אביב" },
+  "scrapedAt": "2026-03-31T03:00:00.000Z",
+  "touring": true,
   "events": [
     {
       "showId": 42,
-      "showSlug": "שם-ההצגה",
+      "showSlug": "show-name",
       "date": "2026-04-01",
       "hour": "20:00",
-      "note": "אולם 1"
+      "venueName": "היכל התרבות ראשון לציון",
+      "venueCity": "ראשון לציון"
     }
   ]
 }
 ```
 
-### Touring format (used by syncTouringFile)
+### Theatre format (fixed venue)
+
+Used when a theatre has a single home venue:
 
 ```json
 {
-  "scrapedAt": "2026-03-12T03:00:00.000Z",
-  "touring": true,
+  "scrapedAt": "2026-03-31T03:00:00.000Z",
+  "venue": { "name": "תיאטרון הקאמרי", "city": "תל אביב" },
   "events": [
     {
       "showId": 42,
-      "showSlug": "שם-ההצגה",
+      "showSlug": "show-name",
       "date": "2026-04-01",
-      "hour": "20:00",
-      "venueName": "...",
-      "venueCity": "..."
+      "hour": "20:00"
+    }
+  ]
+}
+```
+
+### Venue format (venue-scoped deletion)
+
+Used by venue scrapers. The `venueSource: true` flag triggers venue-scoped deletion in sync (only deletes stale events at this specific venue, not across all venues for matched shows):
+
+```json
+{
+  "scrapedAt": "2026-03-31T03:00:00.000Z",
+  "venueSource": true,
+  "venue": { "name": "היכל התרבות נס ציונה", "city": "נס ציונה" },
+  "events": [
+    {
+      "showId": 42,
+      "showSlug": "show-name",
+      "date": "2026-04-01",
+      "hour": "20:00"
     }
   ]
 }
@@ -155,39 +182,38 @@ Events JSON now includes `showSlug` (deterministic, derived from show title).
 `sync-events.js` resolves slugs to IDs at sync time by querying the target database.
 This makes the JSON portable across any database instance.
 
-### Why not just use slugs as the primary key?
-
-The Event table's foreign key (`showId`) is a numeric reference to `Show.id`.
-Changing the schema to use slugs as FK would be a large migration with no benefit —
-the slug is only needed as a stable lookup key in the JSON intermediary format.
-
 ---
 
 ## 6. File Map
 
-| Purpose                      | Files                                                            |
-| ---------------------------- | ---------------------------------------------------------------- |
-| Show creation                | `scripts/find-all-missing-shows.mjs`, `scripts/lib/pipeline.mjs` |
-| Migrations                   | `prisma/migrations/*/migration.sql`                              |
-| Event scrapers (all shows)   | `scripts/scrape-all-{theatre}-events.mjs` (10 files)             |
-| Event scrapers (single show) | `scripts/scrape-{theatre}-events.mjs` (10 files)                 |
-| Scraper libraries            | `scripts/lib/{theatre}.mjs`                                      |
-| Event JSON data              | `prisma/data/events-{theatre}.json`                              |
-| Event sync                   | `prisma/sync-events.js`                                          |
-| GitHub Actions               | `.github/workflows/refresh-events.yml`                           |
-| DB schema                    | `prisma/schema.prisma`                                           |
-| Build pipeline               | `package.json` → `"build"` script                                |
-| Neon warmup                  | `prisma/warmup.js`                                               |
-| Test seed                    | `prisma/seed.js` + `e2e/data/shows.json`                         |
+| Purpose                      | Files                                                                   |
+| ---------------------------- | ----------------------------------------------------------------------- |
+| Scraper config (source of truth) | `scripts/lib/theatres-config.mjs`                                   |
+| Show creation                | `scripts/find-missing/find-missing-{id}-shows.mjs`, `scripts/lib/pipeline.mjs` |
+| Migrations                   | `prisma/migrations/*/migration.sql`                                     |
+| Event scrapers (all)         | `scripts/scrape-all-events.mjs` (entry point)                          |
+| Event scrapers (per-theatre) | `scripts/scrapers/scrape-all-{name}-events.mjs`                        |
+| Event scrapers (single show) | `scripts/scrapers/scrape-{name}-events.mjs`                            |
+| Theatre scraper libraries    | `scripts/lib/{theatre}.mjs`                                            |
+| Venue scraper libraries      | `scripts/lib/venues/{venue}.mjs`                                       |
+| Shared scraper harness       | `scripts/lib/scraper-runner.mjs`                                       |
+| Event JSON data              | `prisma/data/events-*.json`                                            |
+| Event sync                   | `prisma/sync-events.js`                                                |
+| GitHub Actions               | `.github/workflows/refresh-events.yml`                                 |
+| DB schema                    | `prisma/schema.prisma`                                                 |
+| Build pipeline               | `package.json` → `"build"` script                                      |
+| Neon warmup                  | `prisma/warmup.js`                                                     |
+| Test seed                    | `prisma/seed.js` + `e2e/data/shows.json`                               |
 
 ---
 
 ## 7. Adding a New Theatre (Quick Reference)
 
 1. Create scraper lib: `scripts/lib/{theatre}.mjs`
-2. Create single-show scraper: `scripts/scrape-{theatre}-events.mjs`
-3. Create all-shows scraper: `scripts/scrape-all-{theatre}-events.mjs`
-4. Add sync block in `prisma/sync-events.js`
-5. Add scrape step + `git add` in `.github/workflows/refresh-events.yml`
-6. Create placeholder `prisma/data/events-{theatre}.json`
-7. Dry-run → fix → apply → commit + push
+2. Create single-show scraper: `scripts/scrapers/scrape-{theatre}-events.mjs`
+3. Create all-shows scraper: `scripts/scrapers/scrape-all-{theatre}-events.mjs`
+4. Register in `scripts/lib/theatres-config.mjs`
+5. Create placeholder `prisma/data/events-{theatre}.json`
+6. Dry-run → fix → apply → commit + push
+
+For venue scrapers, follow the same pattern but place the lib file in `scripts/lib/venues/`.

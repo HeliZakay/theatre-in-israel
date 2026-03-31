@@ -1,16 +1,18 @@
 # Theatre Scraping & Pipeline Guide
 
 > Reference document for adding new theatre scrapers. Read this before building a scraper for a new theatre.
+>
+> For **event scraping** (performance dates/times), see `EVENTS_SYSTEM.md`.
 
 ## 1. Architecture Overview
 
 The scraping system has three layers:
 
-| Layer           | File                                  | Role                                                                                                  |
-| --------------- | ------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| Layer           | File                                             | Role                                                                                                  |
+| --------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
 | Entry point     | `scripts/find-missing/find-missing-{id}-shows.mjs` | ~15-line CLI wrapper that wires theatre-specific functions into the pipeline                          |
-| Theatre scraper | `scripts/lib/{id}.mjs`                | Theatre-specific listing + detail scraping logic                                                      |
-| Shared pipeline | `scripts/lib/pipeline.mjs`            | Everything else: DB dedup, AI processing, image download, migration generation, interactive review UI |
+| Theatre scraper | `scripts/lib/{id}.mjs`                           | Theatre-specific listing + detail scraping logic                                                      |
+| Shared pipeline | `scripts/lib/pipeline.mjs`                       | Everything else: DB dedup, AI processing, image download, migration generation, interactive review UI |
 
 **Data flow:**
 
@@ -112,24 +114,26 @@ Two patterns exist in the codebase:
 | **Description** | Find text between a start marker (e.g. `"על ההצגה"`) and stop markers (e.g. `"יוצרים ושחקנים"`, `"משך ההצגה"`). Clean up credits, phone numbers, promotional lines     |
 | **Image**       | Call `extractImageFromPage` (shared utility). Requires `allowImages: true` in request interception if the image is a DOM `<img>` element rather than a meta tag        |
 
-## 5. Comparison of Existing Scrapers
+## 5. Existing Theatre Scrapers
 
-| Dimension             | Cameri                                                             | Habima                                                                               | Lessin                                                                      |
-| --------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
-| **Module**            | `scripts/lib/cameri.mjs`                                           | `scripts/lib/habima.mjs`                                                             | `scripts/lib/lessin.mjs`                                                    |
-| **Theatre name**      | `"תיאטרון הקאמרי"`                                                 | `"תיאטרון הבימה"`                                                                    | `"תיאטרון בית ליסין"`                                                       |
-| **Listing URL**       | `cameri.co.il/לוח_הצגות_מלא`                                       | `habima.co.il/רפרטואר/`                                                              | `lessin.co.il/` (main page)                                                 |
-| **Link selector**     | `a[href*="/show_"]`                                                | `a[href*="/shows/"]`                                                                 | `a[href*="/shows/"]`                                                        |
-| **Listing pattern**   | Pattern A (direct links)                                           | Pattern B (h3 + parent walk)                                                         | Pattern B (h3 + parent walk)                                                |
-| **Title cleanup**     | Strip `חדש` prefix                                                 | Strip `הצגה אורחת` prefix; filter generic h3s                                        | Strip `(הצגות אחרונות)`, `(הצגה אורחת)` suffixes; filter non-show h3s       |
-| **Duration parsing**  | Standard regex: `X דקות`                                           | Standard regex: `X דקות`                                                             | Custom Hebrew textual parser (`scripts/lib/duration.js`)                    |
-| **Description start** | `"על ההצגה"` marker                                                | No marker — uses h1 position                                                         | `"על ההצגה"` marker                                                         |
-| **Description stops** | `"צוות ושחקנים"`, `"משך ההצגה"`, `"גלריית תמונות"`                 | `"הצגות קרובות"`, `"יוצרים ומשתתפים"`, `"ביקורות"`, `"משך ההצגה"`, `"מנויים מקבלים"` | `"יוצרים ושחקנים"`, `"משך ההצגה"`, `"הביקורות משבחות"`, `"מועמדויות"`       |
-| **Image loading**     | Blocked (uses serialized function)                                 | Allowed (`allowImages: true`)                                                        | Allowed (`allowImages: true`)                                               |
-| **Image extraction**  | `extractImageFromPage` serialized as argument to `page.evaluate()` | `extractImageFromPage` passed directly to `page.evaluate()`                          | Same as Habima                                                              |
-| **Title preference**  | `"detail-first"`                                                   | `"listing-first"`                                                                    | `"listing-first"`                                                           |
-| **Browser export**    | Re-exports `launchBrowser` from own module                         | Imports from `browser.mjs`                                                           | Imports from `browser.mjs`                                                  |
-| **Non-show filters**  | None                                                               | `"לרכישה"`, `"רוצים לראות עוד?"`, etc.                                               | `"הזמנה מהירה"`, `"GIFT CARD"`, `"לוח הצגות"`, `"אזור אישי"`, `"דלג לתוכן"` |
+There are currently **11 theatre scrapers** and **16+ venue scrapers** for events, plus show-discovery scrapers for all theatres. All are registered in `scripts/lib/theatres-config.mjs`.
+
+### Show-discovery scrapers (find-missing)
+
+Each theatre has a `scripts/find-missing/find-missing-{id}-shows.mjs` entry point and a `scripts/lib/{id}.mjs` module. The original three (Cameri, Habima, Lessin) established the patterns used by all subsequent scrapers.
+
+| Theatre | Module | Theatre Name | Title Preference |
+| ------- | ------ | ------------ | --------------- |
+| Cameri | `scripts/lib/cameri.mjs` | תיאטרון הקאמרי | detail-first |
+| Habima | `scripts/lib/habima.mjs` | תיאטרון הבימה | listing-first |
+| Lessin | `scripts/lib/lessin.mjs` | תיאטרון בית ליסין | listing-first |
+| Khan | `scripts/lib/hakahn.mjs` | תיאטרון החאן | listing-first |
+| Gesher | `scripts/lib/gesher.mjs` | תיאטרון גשר | listing-first |
+| Haifa | `scripts/lib/haifa.mjs` | תיאטרון חיפה | listing-first |
+| Tmuna | `scripts/lib/tmuna.mjs` | תיאטרון תמונע | listing-first |
+| Beer Sheva | `scripts/lib/beer-sheva.mjs` | תיאטרון באר שבע | listing-first |
+| Tzavta | `scripts/lib/tzavta.mjs` | תיאטרון צוותא | listing-first |
+| Habima | `scripts/lib/habima.mjs` | תיאטרון הבימה | listing-first |
 
 ## 6. Step-by-Step: Adding a New Theatre
 
@@ -234,20 +238,20 @@ When you generate a migration from the interactive review UI, any **unchecked** 
 
 To make an excluded show reappear in future scraping runs, manually remove its entry from `scripts/data/excluded-shows.json`.
 
-## 9. Prompt for Adding תיאטרון חיפה
+## 9. Prompt Template for Adding a New Theatre
 
-Copy-paste this into a new Copilot agent-mode chat:
+Copy-paste this into a new agent chat, replacing `{THEATRE_NAME}` and `{THEATRE_URL}`:
 
 > **Read `THEATRE_SCRAPING_GUIDE.md` first** — it documents our full scraping pipeline architecture.
 >
-> Build a scraper for **תיאטרון חיפה** (`https://www.haifatheater.co.il/` — verify the actual URL by fetching it).
+> Build a scraper for **{THEATRE_NAME}** (`{THEATRE_URL}` — verify the actual URL by fetching it).
 >
 > **What to create:**
 >
-> 1. `scripts/lib/haifa.mjs` — theatre-specific scraper module
-> 2. `scripts/find-missing/find-missing-haifa-shows.mjs` — thin entry-point script
+> 1. `scripts/lib/{id}.mjs` — theatre-specific scraper module
+> 2. `scripts/find-missing/find-missing-{id}-shows.mjs` — thin entry-point script
 >
-> **Before writing code**, research the תיאטרון חיפה website to understand:
+> **Before writing code**, research the theatre website to understand:
 >
 > - Which page lists all current shows (repertoire/schedule page)
 > - The CSS selector pattern for show links
@@ -260,9 +264,9 @@ Copy-paste this into a new Copilot agent-mode chat:
 >
 > **Theatre-specific decisions to make:**
 >
-> - `theatreId`: `"haifa"`
-> - `theatreName` / `theatreConst`: `"תיאטרון חיפה"`
-> - `titlePreference`: decide based on which source has cleaner titles
+> - `theatreId`: lowercase identifier
+> - `theatreName` / `theatreConst`: Hebrew display name
+> - `titlePreference`: `"listing-first"` or `"detail-first"`
 > - Duration format: standard `X דקות` or custom parser needed?
 > - Description markers: what signals start/end of description?
 > - Title cleanup: any prefixes/suffixes to strip?
