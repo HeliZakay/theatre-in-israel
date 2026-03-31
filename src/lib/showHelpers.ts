@@ -1,5 +1,6 @@
 import { Prisma } from "@prisma/client";
 import prisma from "./prisma";
+import { ACTOR_BY_SLUG } from "@/constants/actors";
 import { enrichShow } from "@/utils/showStats";
 import type { Show, EnrichedShow, ShowListItem } from "@/types";
 
@@ -85,7 +86,7 @@ export function normalizeShow(
       id: sa.actor.id,
       name: sa.actor.name,
       slug: sa.actor.slug,
-      image: sa.actor.image,
+      image: ACTOR_BY_SLUG.get(sa.actor.slug)?.image ?? sa.actor.image,
     })),
     reviews:
       reviews?.map((r) => ({
