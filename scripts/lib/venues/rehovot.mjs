@@ -27,14 +27,14 @@ export async function fetchListing(browser) {
   await setupRequestInterception(page);
 
   await page.goto(LISTING_URL, {
-    waitUntil: "domcontentloaded",
+    waitUntil: "networkidle2",
     timeout: 60_000,
   });
 
   // Wait for event cards to appear
-  await page
-    .waitForSelector("a[href*='smarticket.co.il']", { timeout: 15_000 })
-    .catch(() => {});
+  await page.waitForSelector("a[href*='smarticket.co.il']", {
+    timeout: 15_000,
+  });
 
   const listings = await page.evaluate(() => {
     const DATE_TIME_RE = /(\d{2})\/(\d{2})\/(\d{4})\s+בשעה\s+(\d{1,2}:\d{2})/;

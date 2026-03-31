@@ -264,6 +264,27 @@ async function _runScraper(config) {
 
   if (matched.length === 0) {
     console.log(red("  No shows matched — nothing to scrape."));
+
+    // Still write JSON so scrapedAt is refreshed (prevents stale freshness check)
+    if (jsonPath) {
+      const output = { scrapedAt: new Date().toISOString() };
+      if (venueSource) {
+        output.venueSource = true;
+        output.venue = { name: venue.name, city: venue.city };
+      } else if (touring) {
+        output.touring = true;
+      } else if (venue) {
+        output.venue = { name: venue.name, city: venue.city };
+      }
+      output.events = [];
+      const outPath = path.resolve(rootDir, jsonPath);
+      fs.mkdirSync(path.dirname(outPath), { recursive: true });
+      fs.writeFileSync(outPath, JSON.stringify(output, null, 2), "utf-8");
+      console.log(
+        yellow(`\n  Wrote 0 events to ${outPath}`),
+      );
+    }
+
     if (!(venueSource && !scrapeShowEvents)) await browser.close();
     if (db) {
       await db.prisma.$disconnect();
