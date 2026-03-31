@@ -23,6 +23,7 @@ jest.mock("@/constants/routes", () => ({
   __esModule: true,
   default: { SHOWS: "/shows" },
   showPath: (slug: string) => `/shows/${slug}`,
+  genrePath: (slug: string) => `/genres/${slug}`,
 }));
 
 jest.mock("@/utils/showsQuery", () => ({
