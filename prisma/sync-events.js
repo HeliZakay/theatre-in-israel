@@ -79,7 +79,9 @@ async function resolveShowIds(prisma, events) {
 }
 
 // ---------------------------------------------------------------------------
-// Batched INSERT ... ON CONFLICT DO NOTHING for events
+// Batched INSERT ... ON CONFLICT DO NOTHING for events.
+// Uses raw SQL for performance; falls back to individual Prisma upserts if a
+// batch fails (e.g., schema mismatch or connection issue).
 // ---------------------------------------------------------------------------
 async function batchInsertEvents(prisma, rows, batchSize = 200) {
   let inserted = 0;

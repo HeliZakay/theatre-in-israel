@@ -1,3 +1,7 @@
+/**
+ * Modal search dialog (Radix UI Dialog) with lazy-loaded suggestions
+ * and combobox keyboard navigation (delegated to useCombobox hook).
+ */
 "use client";
 
 import { useCallback, useMemo, useRef, useState } from "react";
@@ -25,6 +29,8 @@ export default function HeaderSearch() {
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] =
     useState<Suggestions>(EMPTY_SUGGESTIONS);
+  // Fetch-once cache: suggestions are loaded on first dialog open and reused
+  // for subsequent opens without re-fetching.
   const suggestionsRef = useRef<Suggestions | null>(null);
   const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);

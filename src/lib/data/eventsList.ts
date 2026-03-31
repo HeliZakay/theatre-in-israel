@@ -94,6 +94,12 @@ export const getEvents = unstable_cache(
   { revalidate: 120, tags: ["events-list"] },
 );
 
+/**
+ * Count events per region for the RegionChips badge numbers.
+ *
+ * Two-step approach: first groupBy venueId to count events (Prisma can't
+ * groupBy a relation field), then resolve each venue's regions and aggregate.
+ */
 async function fetchRegionCounts(
   datePreset: string = DEFAULT_DATE_PRESET,
 ): Promise<Record<string, number>> {

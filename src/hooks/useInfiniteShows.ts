@@ -1,3 +1,16 @@
+/**
+ * Infinite-scroll hook for the shows list page.
+ *
+ * Key design decisions:
+ * - **Session storage**: Scroll position and loaded pages are persisted to
+ *   sessionStorage so users can navigate to a show detail page and press
+ *   back without losing their place.
+ * - **IntersectionObserver**: A sentinel div near the bottom of the list
+ *   triggers the next page fetch when it enters the viewport.
+ * - **isLoadingRef**: A ref mirrors the `isLoading` state because the
+ *   IntersectionObserver callback captures a stale closure — the ref is
+ *   the source of truth for "is a fetch in flight".
+ */
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -145,8 +158,9 @@ export function useInfiniteShows({
     clearSession();
   }, [filterKey, initialShows, initialHasMore]);
 
-  // Also reset when initialShows changes for the same filter key
-  // (e.g., server re-render with updated data)
+  // Second reset effect: handles the case where the server re-renders the page
+  // with different initial data but the same filter key (e.g., a show was added).
+  // The first effect above only fires on filter key changes.
   const initialShowsKeyRef = useRef(initialShows.map((s) => s.id).join(","));
   useEffect(() => {
     const newKey = initialShows.map((s) => s.id).join(",");
@@ -203,7 +217,8 @@ export function useInfiniteShows({
 
       setShows((prev) => {
         const updated = [...prev, ...newShows];
-        // Save to session after update
+        // Defer sessionStorage write to after React commits the DOM update,
+        // so window.scrollY reflects the actual post-render scroll position.
         const currentFilterKey = filterKeyRef.current;
         requestAnimationFrame(() => {
           saveToSession({
@@ -241,7 +256,9 @@ export function useInfiniteShows({
     // loadMore will be triggered by the observer on next tick
   }, []);
 
-  // IntersectionObserver via ref callback
+  // Callback ref: when React mounts/unmounts the sentinel div, this creates
+  // or destroys the IntersectionObserver. Using a callback ref (instead of
+  // useEffect + useRef) ensures the observer is always in sync with the DOM.
   const sentinelRef = useCallback(
     (node: HTMLDivElement | null) => {
       // Disconnect previous observer

@@ -143,6 +143,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ];
 
+  // Only shows with 5+ reviews get a dedicated /shows/:slug/reviews page in
+  // the sitemap — below that threshold the reviews section on the show page
+  // is sufficient and a separate page would be thin content for SEO.
   const reviewRoutes: MetadataRoute.Sitemap = shows
     .filter((s) => s.reviewCount >= 5)
     .map((show) => {

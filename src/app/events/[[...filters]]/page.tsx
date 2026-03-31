@@ -1,3 +1,16 @@
+/**
+ * Events calendar page using a Next.js catch-all route: /events/[[...filters]].
+ *
+ * URL segments are order-independent and map to three filter dimensions:
+ *   - date preset  (e.g. "weekend", "week", "today")
+ *   - region       (e.g. "center", "north")
+ *   - city         (e.g. "tel-aviv", "haifa")
+ *
+ * Constraints enforced by parseFilters():
+ *   - Region and city are mutually exclusive (can't combine both).
+ *   - Duplicate date segments trigger a 404.
+ *   - Unknown segments trigger a 404.
+ */
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import ROUTES, { eventsPath, showPath } from "@/constants/routes";
@@ -456,7 +469,8 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
       buildDateTab(dateKey, dayEvents.length, todayKey, tomorrowKey),
   );
 
-  // Find nearest region with events for empty state
+  // Empty-state fallback: find the region with the most events to suggest
+  // as an alternative when the current filter combination yields no results.
   let nearestRegion: { slug: string; label: string; count: number } | null = null;
   if (events.length === 0 && hasNonDefaultFilter && !theatre) {
     let maxCount = 0;

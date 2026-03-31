@@ -1,3 +1,13 @@
+/**
+ * Server Actions for review CRUD.
+ *
+ * Validation pipeline (in order):
+ *   1. Auth check (session required for signed-in flow)
+ *   2. Rate limit (per-user or per-IP)
+ *   3. Zod schema validation
+ *   4. Profanity filter (Hebrew + English)
+ *   5. Business rules (IP dedup for anonymous, unique constraint for signed-in)
+ */
 "use server";
 
 import { revalidatePath, revalidateTag } from "next/cache";
@@ -120,6 +130,8 @@ export async function createReview(
 
     return actionSuccess({ showId, reviewCount });
   } catch (err: unknown) {
+    // Prisma error codes: P2002 = unique constraint violation (duplicate review),
+    // P2003 = foreign key violation (show doesn't exist).
     if (typeof err === "object" && err !== null && "code" in err) {
       if (err.code === "P2002") {
         return actionError("כבר כתבת ביקורת להצגה זו.");
@@ -142,7 +154,8 @@ export async function createAnonymousReview(
 
     const payload = Object.fromEntries(formData.entries());
 
-    // Silent bot rejection: if honeypot is filled, pretend success
+    // Honeypot field: bots fill hidden fields, humans don't. Return fake
+    // success so the bot doesn't know it was detected.
     if (payload.honeypot) {
       const showId = Number(payload.showId) || 0;
       return actionSuccess({ showId, reviewCount: 1 });
@@ -181,7 +194,8 @@ export async function createAnonymousReview(
       return actionError(profanityMessages[badField]);
     }
 
-    // IP-based dedup: one anonymous review per IP per show
+    // IP-based dedup: one anonymous review per IP per show.
+    // Admin bypass cookie lets admins test the flow without being blocked.
     const bypassToken = process.env.ADMIN_BYPASS_TOKEN;
     const cookieStore = await cookies();
     const hasAdminBypass =

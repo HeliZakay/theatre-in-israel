@@ -1,3 +1,7 @@
+/**
+ * Pre-configured rate limiters for each action in the app.
+ * Each uses createRateLimitChecker() with action-specific windows and thresholds.
+ */
 import { createRateLimitChecker } from "./rateLimit";
 
 export const checkLoginRateLimit = createRateLimitChecker({

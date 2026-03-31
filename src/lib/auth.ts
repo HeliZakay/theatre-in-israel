@@ -64,6 +64,8 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: googleClientId,
       clientSecret: googleClientSecret,
+      // Allows a user who signed up with email/password to later sign in with
+      // Google using the same email, linking both auth methods to one account.
       allowDangerousEmailAccountLinking: true,
       profile(profile) {
         return {
@@ -141,7 +143,8 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         token.sub = user.id;
       }
-      // When session.update() is called from the client, refresh the token
+      // Handles client-side session.update() calls (e.g., after a user
+      // changes their display name on the profile page).
       if (trigger === "update" && updateData?.name !== undefined) {
         token.name = updateData.name;
       }

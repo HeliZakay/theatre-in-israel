@@ -157,6 +157,10 @@ export async function fetchShowsForList(
   const skip = (clampedPage - 1) * perPage;
 
   // Step 2: fetch shows page + available genres in parallel.
+  // availableGenres: compute which genres have matching shows under the current
+  // non-genre filters (theatre, query). This lets the UI disable genre chips
+  // that would yield zero results. If no non-genre filter is active, all genres
+  // are available — skip the extra query.
   const baseWhere = buildWhereClause({
     theatre: filters.theatre,
     query: filters.query,

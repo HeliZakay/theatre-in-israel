@@ -1,3 +1,16 @@
+/**
+ * Show detail page — SSG with ISR (revalidate every 2 min).
+ *
+ * Key logic:
+ * - Legacy numeric URLs (/shows/42) are permanently redirected to slug URLs.
+ * - Review ownership is detected for both authenticated users (by userId) and
+ *   anonymous visitors (by IP), so the page can highlight "your review".
+ * - When ENABLE_REVIEW_AUTH_GATEWAY is on and the visitor is unauthenticated,
+ *   the review CTA links to a separate /shows/:slug/review page instead of
+ *   showing the inline form.
+ * - Related shows: theatre carousel first, then genre carousel with theatre
+ *   duplicates removed.
+ */
 import { permanentRedirect } from "next/navigation";
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
@@ -196,7 +209,9 @@ export default async function ShowPage({
         otherReviews = show.reviews.filter((_, i) => i !== idx);
       }
     } else {
-      // Anonymous visitor: check if they already reviewed (by IP)
+      // Anonymous visitor: check if they already reviewed (by IP).
+      // Admin bypass cookie skips this check so admins can test the
+      // anonymous review flow repeatedly without IP-based dedup blocking them.
       const bypassToken = process.env.ADMIN_BYPASS_TOKEN;
       const cookieStore = await cookies();
       const hasAdminBypass =
@@ -236,6 +251,9 @@ export default async function ShowPage({
   const theatreIds = new Set(sameTheatreShows.map((s) => s.id));
   const similarShows = sameGenreShows.filter((s) => !theatreIds.has(s.id));
 
+  // When the auth gateway flag is on and the user is not signed in, CTA buttons
+  // link to /shows/:slug/review (a dedicated page) instead of scrolling to the
+  // inline review form on this page.
   const showGateway = ENABLE_REVIEW_AUTH_GATEWAY && !session;
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([

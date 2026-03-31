@@ -13,6 +13,8 @@ import { FEATURED_SHOW_SLUG } from "@/constants/featuredShow";
 import { getSuggestions } from "./suggestions";
 
 const DISPLAY_LIMIT = 10;
+// Over-fetch to have enough candidates after deduplication across sections
+// (e.g., a show in "top rated" is excluded from genre carousels).
 const FETCH_LIMIT = 40;
 
 export interface FeaturedReview {
@@ -417,7 +419,8 @@ async function fetchUpcomingEventsVaried(): Promise<UpcomingEventItem[]> {
     });
   }
 
-  // Greedy diversity pick
+  // Greedy diversity pick: avoid more than 2 consecutive events from the same
+  // region so the homepage carousel represents geographic variety.
   const picked: (EventListItem & { regions: string[] })[] = [];
   const seenSlugs = new Set<string>();
   const lastTwoRegions: string[] = [];
