@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-03-31T04:06:35.066Z",
+  "scrapedAt": "2026-03-31T09:26:19.687Z",
   "touring": true,
   "events": [
     {
@@ -167,14 +167,6 @@
       "showSlug": "מיינדפאק",
       "date": "2026-04-14",
       "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 195,
-      "showSlug": "מכתב-הקסם",
-      "date": "2026-04-04",
-      "hour": "12:00",
       "venueName": "תיאטרון צוותא",
       "venueCity": "תל אביב"
     },
