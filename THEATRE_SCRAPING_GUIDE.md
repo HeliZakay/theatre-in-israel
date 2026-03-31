@@ -8,7 +8,7 @@ The scraping system has three layers:
 
 | Layer           | File                                  | Role                                                                                                  |
 | --------------- | ------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| Entry point     | `scripts/find-missing-{id}-shows.mjs` | ~15-line CLI wrapper that wires theatre-specific functions into the pipeline                          |
+| Entry point     | `scripts/find-missing/find-missing-{id}-shows.mjs` | ~15-line CLI wrapper that wires theatre-specific functions into the pipeline                          |
 | Theatre scraper | `scripts/lib/{id}.mjs`                | Theatre-specific listing + detail scraping logic                                                      |
 | Shared pipeline | `scripts/lib/pipeline.mjs`            | Everything else: DB dedup, AI processing, image download, migration generation, interactive review UI |
 
@@ -155,13 +155,13 @@ Two patterns exist in the codebase:
    - Export the detail scraping function
    - If duration format is non-standard, add a custom parser (see `scripts/lib/duration.js`)
 
-3. **Create `scripts/find-missing-{id}-shows.mjs`**:
+3. **Create `scripts/find-missing/find-missing-{id}-shows.mjs`**:
 
    ```js
    #!/usr/bin/env node
-   import { runPipeline } from "./lib/pipeline.mjs";
-   import { launchBrowser } from "./lib/browser.mjs";
-   import { THEATRE_CONST, fetchXxx, scrapeShowDetails } from "./lib/{id}.mjs";
+   import { runPipeline } from "../lib/pipeline.mjs";
+   import { launchBrowser } from "../lib/browser.mjs";
+   import { THEATRE_CONST, fetchXxx, scrapeShowDetails } from "../lib/{id}.mjs";
 
    await runPipeline({
      theatreId: "{id}",
@@ -177,7 +177,7 @@ Two patterns exist in the codebase:
 4. **Run and test**:
 
    ```bash
-   node scripts/find-missing-{id}-shows.mjs
+   node scripts/find-missing/find-missing-{id}-shows.mjs
    ```
 
    - Verify listing count looks right
@@ -245,7 +245,7 @@ Copy-paste this into a new Copilot agent-mode chat:
 > **What to create:**
 >
 > 1. `scripts/lib/haifa.mjs` — theatre-specific scraper module
-> 2. `scripts/find-missing-haifa-shows.mjs` — thin entry-point script
+> 2. `scripts/find-missing/find-missing-haifa-shows.mjs` — thin entry-point script
 >
 > **Before writing code**, research the תיאטרון חיפה website to understand:
 >

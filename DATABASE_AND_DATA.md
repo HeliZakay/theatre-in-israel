@@ -60,8 +60,8 @@ All 133 real shows, 14 genres, and 351 ShowGenre records are inserted via a **Pr
 
 ### 3. Scraper Scripts (adding new real shows)
 
-**Cameri:** `scripts/find-missing-cameri-shows.mjs`
-**Habima:** `scripts/find-missing-habima-shows.mjs`
+**Cameri:** `scripts/find-missing/find-missing-cameri-shows.mjs`
+**Habima:** `scripts/find-missing/find-missing-habima-shows.mjs`
 
 - Scrapes each theatre's website for shows not yet in the local DB
 - Uses AI (GitHub Models) to generate Hebrew summaries
@@ -145,8 +145,8 @@ See `prisma/schema.prisma` for the full schema. Notable points:
 | `prisma/migrations/`                    | All migrations (schema DDL + data inserts)                  |
 | `prisma/seed.js`                        | Test data seeder (reads from `e2e/data/shows.json`)         |
 | `e2e/data/shows.json`                   | 6 fake test shows for E2E (IDs 10001–10006)                 |
-| `scripts/find-missing-cameri-shows.mjs` | Scraper: finds new Cameri shows & generates migration files |
-| `scripts/find-missing-habima-shows.mjs` | Scraper: finds new Habima shows & generates migration files |
+| `scripts/find-missing/find-missing-cameri-shows.mjs` | Scraper: finds new Cameri shows & generates migration files |
+| `scripts/find-missing/find-missing-habima-shows.mjs` | Scraper: finds new Habima shows & generates migration files |
 | `scripts/setup-e2e.sh`                  | E2E environment setup (Docker + migrate + seed + test user) |
 | `scripts/teardown-e2e.sh`               | E2E cleanup (stops Docker)                                  |
 
@@ -158,8 +158,8 @@ See `prisma/schema.prisma` for the full schema. Notable points:
 
 ```bash
 # 1. Run the scraper for the relevant theatre
-node scripts/find-missing-habima-shows.mjs   # Habima Theatre
-node scripts/find-missing-cameri-shows.mjs   # Cameri Theatre
+node scripts/find-missing/find-missing-habima-shows.mjs   # Habima Theatre
+node scripts/find-missing/find-missing-cameri-shows.mjs   # Cameri Theatre
 
 # 2. A browser UI opens (~port 3456). The scraper has already:
 #    - Scraped the theatre's website for current shows
