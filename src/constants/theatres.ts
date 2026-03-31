@@ -14,17 +14,17 @@ export interface TheatreInfo {
 }
 
 export const THEATRES: TheatreInfo[] = [
-  { slug: "cameri", name: "תיאטרון הקאמרי", image: "/תיאטרון-הקאמרי.webp" },
-  { slug: "habima", name: "תיאטרון הבימה", image: "/תיאטרון-הבימה.webp" },
-  { slug: "gesher", name: "תיאטרון גשר", image: "/תיאטרון-גשר.webp" },
-  { slug: "beit-lessin", name: "תיאטרון בית ליסין", image: "/תיאטרון-בית-ליסין.webp" },
-  { slug: "haifa", name: "תיאטרון חיפה", image: "/תיאטרון-חיפה.webp" },
-  { slug: "beer-sheva", name: "תיאטרון באר שבע", image: "/תיאטרון-באר-שבע.webp" },
-  { slug: "khan", name: "תיאטרון החאן", image: "/תיאטרון-החאן.webp" },
-  { slug: "hebrew-theatre", name: "התיאטרון העברי", image: "/תיאטרון-העברי.webp" },
-  { slug: "tmuna", name: "תיאטרון תמונע", image: "/תיאטרון-תמונע.webp" },
-  { slug: "tzavta", name: "תיאטרון צוותא", image: "/תיאטרון-צוותא.webp" },
-  { slug: "tomix", name: "תיאטרון toMix", image: "/תיאטרון-tomix.webp" },
+  { slug: "cameri", name: "תיאטרון הקאמרי", image: "/images/theatres/תיאטרון-הקאמרי.webp" },
+  { slug: "habima", name: "תיאטרון הבימה", image: "/images/theatres/תיאטרון-הבימה.webp" },
+  { slug: "gesher", name: "תיאטרון גשר", image: "/images/theatres/תיאטרון-גשר.webp" },
+  { slug: "beit-lessin", name: "תיאטרון בית ליסין", image: "/images/theatres/תיאטרון-בית-ליסין.webp" },
+  { slug: "haifa", name: "תיאטרון חיפה", image: "/images/theatres/תיאטרון-חיפה.webp" },
+  { slug: "beer-sheva", name: "תיאטרון באר שבע", image: "/images/theatres/תיאטרון-באר-שבע.webp" },
+  { slug: "khan", name: "תיאטרון החאן", image: "/images/theatres/תיאטרון-החאן.webp" },
+  { slug: "hebrew-theatre", name: "התיאטרון העברי", image: "/images/theatres/תיאטרון-העברי.webp" },
+  { slug: "tmuna", name: "תיאטרון תמונע", image: "/images/theatres/תיאטרון-תמונע.webp" },
+  { slug: "tzavta", name: "תיאטרון צוותא", image: "/images/theatres/תיאטרון-צוותא.webp" },
+  { slug: "tomix", name: "תיאטרון toMix", image: "/images/theatres/תיאטרון-tomix.webp" },
 ];
 
 /** Map from URL slug → theatre info */

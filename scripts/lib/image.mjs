@@ -10,7 +10,7 @@ import { fileURLToPath } from "url";
 import { generateSlug } from "./slug.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const PUBLIC_DIR = path.join(__dirname, "..", "..", "public");
+const PUBLIC_DIR = path.join(__dirname, "..", "..", "public", "images", "shows");
 
 /**
  * Check whether a file exists.

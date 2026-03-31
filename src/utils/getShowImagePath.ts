@@ -9,5 +9,5 @@ import { generateSlug } from "./generateSlug";
  * @returns {string} public image path, e.g. "/קזבלן.webp"
  */
 export function getShowImagePath(title: string): string {
-  return `/${generateSlug(title)}.webp`;
+  return `/images/shows/${generateSlug(title)}.webp`;
 }
