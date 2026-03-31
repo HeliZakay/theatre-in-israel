@@ -36,7 +36,7 @@ export const CITIES: CityInfo[] = [
       "תיאטרון צוותא",
       "תיאטרון toMix",
     ],
-    image: "/תל-אביב.webp",
+    image: "/cities/תל-אביב.webp",
   },
   {
     slug: "haifa",
@@ -45,7 +45,7 @@ export const CITIES: CityInfo[] = [
     description:
       "חיפה מציעה סצנת תיאטרון עשירה בצפון הארץ — תיאטרון חיפה, אודיטוריום חיפה ומבחר הצגות מגוון לאורך כל השנה.",
     residentTheatres: ["תיאטרון חיפה"],
-    image: "/חיפה.webp",
+    image: "/cities/חיפה.webp",
   },
   {
     slug: "jerusalem",
@@ -54,7 +54,7 @@ export const CITIES: CityInfo[] = [
     description:
       "ירושלים היא ביתו של תיאטרון החאן ומציעה חוויות תיאטרון ייחודיות — הצגות מקוריות, הפקות אורחות ומופעים בהיכלי התרבות של הבירה.",
     residentTheatres: ["תיאטרון החאן"],
-    image: "/ירושלים.webp",
+    image: "/cities/ירושלים.webp",
   },
   {
     slug: "beer-sheva",
@@ -63,7 +63,7 @@ export const CITIES: CityInfo[] = [
     description:
       "באר שבע היא מרכז התיאטרון של הנגב — תיאטרון באר שבע מעלה הפקות מקוריות, ואולמות העיר מארחים מיטב ההצגות מכל הארץ.",
     residentTheatres: ["תיאטרון באר שבע"],
-    image: "/באר שבע.webp",
+    image: "/cities/באר שבע.webp",
   },
 ];
 
