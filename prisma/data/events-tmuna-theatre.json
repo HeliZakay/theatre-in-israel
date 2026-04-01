@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-01T04:11:20.197Z",
+  "scrapedAt": "2026-04-01T09:27:36.487Z",
   "touring": true,
   "events": [
     {
@@ -166,6 +166,22 @@
       "showId": 227,
       "showSlug": "לא-שקט",
       "date": "2026-04-06",
+      "hour": "20:00",
+      "venueName": "תיאטרון תמונע",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 283,
+      "showSlug": "מדעי-הוודאות",
+      "date": "2026-04-29",
+      "hour": "20:00",
+      "venueName": "תיאטרון תמונע",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 283,
+      "showSlug": "מדעי-הוודאות",
+      "date": "2026-04-30",
       "hour": "20:00",
       "venueName": "תיאטרון תמונע",
       "venueCity": "תל אביב"
