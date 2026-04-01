@@ -24,6 +24,13 @@ describe("useCombobox", () => {
     expect(result.current.filteredItems).toEqual(["Apple", "Apricot"]);
   });
 
+  it("matches items when query uses Hebrew geresh instead of ASCII apostrophe", () => {
+    const { result } = renderHook(() =>
+      useCombobox({ items: ["צ'ילבות", "המלט"], value: "צ\u05F3ילבות" }),
+    );
+    expect(result.current.filteredItems).toEqual(["צ'ילבות"]);
+  });
+
   it("deduplicates items", () => {
     const { result } = renderHook(() =>
       useCombobox({ items: ["a", "b", "a", "b", "c"], value: "" }),

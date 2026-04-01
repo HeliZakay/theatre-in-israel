@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { normalizeQuotes } from "@/utils/normalizeQuery";
 
 interface UseComboboxOptions {
   items?: string[];
@@ -41,9 +42,9 @@ export function useCombobox<T extends HTMLElement = HTMLElement>({
   const filteredItems = useMemo(() => {
     const unique = Array.from(new Set(items.filter(Boolean)));
     if (!value.trim()) return unique.slice(0, maxItems);
-    const query = value.toLowerCase();
+    const query = normalizeQuotes(value.toLowerCase());
     return unique
-      .filter((item) => item.toLowerCase().includes(query))
+      .filter((item) => normalizeQuotes(item.toLowerCase()).includes(query))
       .slice(0, maxItems);
   }, [items, value, maxItems]);
 

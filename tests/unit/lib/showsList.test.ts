@@ -72,6 +72,27 @@ describe("buildWhereClause", () => {
     expect(conditions[3]).toEqual(excludeKidsWhere);
   });
 
+  it("normalizes Hebrew geresh in query to ASCII apostrophe", () => {
+    const result = buildWhereClause({ theatre: "", query: "צ\u05F3ילבות", genres: [] });
+    expect(result).toEqual({
+      AND: [
+        {
+          OR: [
+            { title: { contains: "צ'ילבות", mode: "insensitive" } },
+            { theatre: { contains: "צ'ילבות", mode: "insensitive" } },
+            {
+              genres: {
+                some: {
+                  genre: { name: { contains: "צ'ילבות", mode: "insensitive" } },
+                },
+              },
+            },
+          ],
+        },
+      ],
+    });
+  });
+
   it("handles single genre", () => {
     const result = buildWhereClause({ theatre: "", query: "", genres: ["דרמה"] });
     expect(result).toEqual({

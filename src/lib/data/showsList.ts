@@ -2,6 +2,7 @@ import { Prisma } from "@prisma/client";
 import { unstable_cache } from "next/cache";
 import prisma from "../prisma";
 import { parseShowsSearchParams } from "../../utils/showsQuery";
+import { normalizeQuotes } from "../../utils/normalizeQuery";
 import { showListInclude, mapToShowListItem, excludeKidsWhere, KIDS_GENRE_NAME } from "../showHelpers";
 import type { ShowListItem, ShowFilters } from "@/types";
 
@@ -32,7 +33,7 @@ export function buildWhereClause({
   }
 
   if (query) {
-    const q = query;
+    const q = normalizeQuotes(query);
     conditions.push({
       OR: [
         { title: { contains: q, mode: "insensitive" as const } },
