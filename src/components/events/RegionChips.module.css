@@ -27,14 +27,14 @@
 }
 
 .chipActive {
-  background: var(--color-text-primary);
+  background: var(--color-curtain-red);
   color: #fff;
-  border-color: var(--color-text-primary);
+  border-color: var(--color-curtain-red);
 }
 
 .chipActive:hover {
-  background: var(--color-text-primary);
-  border-color: var(--color-text-primary);
+  background: var(--color-curtain-red);
+  border-color: var(--color-curtain-red);
   color: #fff;
 }
 
