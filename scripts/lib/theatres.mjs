@@ -20,6 +20,7 @@ export const THEATRE_IDS = [
   "tmuna",
   "tzavta",
   "tomix",
+  "meshulash",
 ];
 
 /**
@@ -239,6 +240,26 @@ const LOADERS = {
       theatreConst: TOMIX_THEATRE,
       theatreLabel: "toMix Theatre (תיאטרון toMix)",
       websiteUrl: "to-mix.co.il",
+      fetchListing,
+      scrapeDetails: scrapeShowDetails,
+      scrapeCast: async (browser, url) =>
+        (await scrapeShowDetails(browser, url)).cast || null,
+      titlePreference: "detail-first",
+      launchBrowser,
+    };
+  },
+
+  async meshulash() {
+    const { MESHULASH_THEATRE, fetchListing, scrapeShowDetails } =
+      await import("./meshulash.mjs");
+    const { launchBrowser } = await import("./browser.mjs");
+
+    return {
+      theatreId: "meshulash",
+      theatreName: MESHULASH_THEATRE,
+      theatreConst: MESHULASH_THEATRE,
+      theatreLabel: "Meshulash Theatre (תיאטרון המשולש)",
+      websiteUrl: "hameshulash.com",
       fetchListing,
       scrapeDetails: scrapeShowDetails,
       scrapeCast: async (browser, url) =>
