@@ -1,6 +1,6 @@
 /**
- * Modal search dialog (Radix UI Dialog) with lazy-loaded suggestions
- * and combobox keyboard navigation (delegated to useCombobox hook).
+ * Header search: inline combobox on desktop, modal dialog on mobile.
+ * Suggestions are lazy-loaded on first interaction and cached.
  */
 "use client";
 
@@ -13,6 +13,7 @@ import SearchSuggestions, {
 } from "../SearchSuggestions/SearchSuggestions";
 import styles from "./HeaderSearch.module.css";
 import { useCombobox } from "@/hooks/useCombobox";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import ROUTES from "@/constants/routes";
 import { buildShowsQueryString } from "@/utils/showsQuery";
 import type { Suggestions } from "@/types";
@@ -25,12 +26,11 @@ const EMPTY_SUGGESTIONS: Suggestions = {
 
 export default function HeaderSearch() {
   const router = useRouter();
+  const isMobile = useMediaQuery(640);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] =
     useState<Suggestions>(EMPTY_SUGGESTIONS);
-  // Fetch-once cache: suggestions are loaded on first dialog open and reused
-  // for subsequent opens without re-fetching.
   const suggestionsRef = useRef<Suggestions | null>(null);
   const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -83,6 +83,7 @@ export default function HeaderSearch() {
       if (!query.trim()) return;
       router.push(`${ROUTES.SHOWS}${buildShowsQueryString({ query: query.trim() })}#results`);
       setOpen(false);
+      setValue("");
     },
     [router],
   );
@@ -114,7 +115,89 @@ export default function HeaderSearch() {
   };
 
   const showSuggestions = !loading && suggestionsOpen && filteredItems.length > 0;
+  const showEmpty = !loading && suggestionsOpen && filteredItems.length === 0 && value.trim();
 
+  // ── Desktop: inline search bar ──
+  if (!isMobile) {
+    return (
+      <form
+        className={styles.inlineWrapper}
+        role="search"
+        aria-label="חיפוש הצגות"
+        onSubmit={handleSubmit}
+        ref={rootRef}
+      >
+        <div className={styles.inlineShell}>
+          <input
+            ref={inputRef}
+            type="search"
+            dir="rtl"
+            placeholder="חיפוש..."
+            className={styles.inlineInput}
+            autoComplete="off"
+            name="query"
+            value={value}
+            onChange={(e) => {
+              setValue(e.target.value);
+              setSuggestionsOpen(true);
+            }}
+            onFocus={() => {
+              fetchSuggestions();
+              setSuggestionsOpen(true);
+            }}
+            onKeyDown={handleKeyDown}
+            role="combobox"
+            aria-autocomplete="list"
+            aria-expanded={suggestionsOpen}
+            aria-controls={listboxId}
+            aria-activedescendant={
+              activeIndex >= 0
+                ? `${listboxId}-option-${activeIndex}`
+                : undefined
+            }
+          />
+          <span className={styles.inlineIcon} aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path
+                d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Zm0-2a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11Zm8.2 4.6-4.2-4.2 1.4-1.4 4.2 4.2-1.4 1.4Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+
+        {loading && (
+          <div className={styles.inlineLoading}>טוען...</div>
+        )}
+
+        {showSuggestions && (
+          <SearchSuggestions
+            filteredItems={filteredItems}
+            categoryLookup={categoryLookup}
+            activeIndex={activeIndex}
+            listboxId={listboxId}
+            onSelect={selectItem}
+            onHover={setActiveIndex}
+            className={styles.inlineDropdown}
+          />
+        )}
+
+        {showEmpty && (
+          <SearchSuggestions
+            filteredItems={filteredItems}
+            categoryLookup={categoryLookup}
+            activeIndex={activeIndex}
+            listboxId={listboxId}
+            onSelect={selectItem}
+            onHover={setActiveIndex}
+            className={styles.inlineDropdown}
+          />
+        )}
+      </form>
+    );
+  }
+
+  // ── Mobile: modal dialog (unchanged) ──
   return (
     <Dialog.Root open={open} onOpenChange={handleOpenChange}>
       <Dialog.Trigger asChild>
@@ -238,7 +321,7 @@ export default function HeaderSearch() {
               </>
             )}
 
-            {!loading && suggestionsOpen && filteredItems.length === 0 && value.trim() && (
+            {showEmpty && (
               <>
                 <div className={styles.divider} />
                 <SearchSuggestions
