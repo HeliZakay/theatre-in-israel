@@ -20,6 +20,7 @@ export const THEATRES = [
   { label: "Tzavta",            script: "scrapers/scrape-all-tzavta-theatre-events.mjs",      jsonFile: "events-tzavta-theatre.json" },
   { label: "Habima",            script: "scrapers/scrape-all-habima-theatre-events.mjs",       jsonFile: "events-habima-theatre.json" },
   { label: "toMix",             script: "scrapers/scrape-all-tomix-events.mjs",               jsonFile: "events-tomix.json" },
+  { label: "Meshulash",         script: "scrapers/scrape-all-meshulash-events.mjs",           jsonFile: "events-meshulash.json" },
   // Venue scrapers
   { label: "Nes Ziona",         script: "scrapers/scrape-all-nes-ziona-events.mjs",           jsonFile: "events-nes-ziona.json" },
   { label: "Ashdod",            script: "scrapers/scrape-all-ashdod-events.mjs",              jsonFile: "events-ashdod.json" },

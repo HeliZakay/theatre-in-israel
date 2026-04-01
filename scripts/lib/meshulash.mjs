@@ -20,12 +20,15 @@
 import { fixDoubleProtocol } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
 import { parseLessinDuration } from "./duration.mjs";
+import { parseHebrewDate } from "./date.mjs";
 
 // ── Constants ──────────────────────────────────────────────────
 
 export const MESHULASH_THEATRE = "תיאטרון המשולש";
 export const MESHULASH_BASE = "https://www.hameshulash.com";
 export const SHOWS_URL = "https://www.hameshulash.com/shows";
+/** Map<showUrl, showTitle> — populated by fetchListing() as a side effect. */
+let _urlToTitle = new Map();
 
 // ── Shows listing page scraper ─────────────────────────────────
 
@@ -83,7 +86,12 @@ export async function fetchListing(browser) {
   }, SHOWS_URL);
 
   await page.close();
-  return shows.sort((a, b) => a.title.localeCompare(b.title, "he"));
+  const sorted = shows.sort((a, b) => a.title.localeCompare(b.title, "he"));
+
+  // Populate URL→title map for scrapeShowEvents matching
+  _urlToTitle = new Map(sorted.map((s) => [s.url, s.title]));
+
+  return sorted;
 }
 
 // ── Show detail page scraper ──────────────────────────────────
@@ -250,4 +258,101 @@ export async function scrapeShowDetails(browser, url) {
     imageUrl,
     cast: data.cast,
   };
+}
+
+// ── Per-show event scraper ───────────────────────────────────
+
+/**
+ * Scrape events for a specific Meshulash show directly from its page.
+ *
+ * Each show page (e.g. /geva) embeds a Wix Events widget pre-filtered
+ * to that show, with full dates including year: "04 במאי 2026, 20:00".
+ *
+ * @param {import('puppeteer').Browser} browser
+ * @param {string} url — The show's detail page URL
+ * @param {{ debug?: boolean }} [opts]
+ * @returns {Promise<{ events: Array<{ date: string, hour: string, ticketUrl: string|null, rawText: string }>, title: string, debugHtml?: string }>}
+ */
+export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
+  const showTitle = _urlToTitle.get(url) || url;
+
+  const page = await browser.newPage();
+  await setupRequestInterception(page);
+
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60_000 });
+
+  // Wait for the Wix events widget to render
+  try {
+    await page.waitForSelector('[data-hook="event-list-item"]', {
+      timeout: 30_000,
+    });
+  } catch {
+    // No events for this show
+    await page.close();
+    return { events: [], title: showTitle };
+  }
+
+  // Wix client-side rendering settle delay
+  await new Promise((r) => setTimeout(r, 2000));
+
+  // Click "load more" until all events are visible
+  for (let i = 0; i < 5; i++) {
+    const btn = await page.$('[data-hook="load-more-button"]');
+    if (!btn) break;
+    const isVisible = await btn.evaluate((el) => {
+      const rect = el.getBoundingClientRect();
+      return rect.width > 0 && rect.height > 0;
+    });
+    if (!isVisible) break;
+    await btn.click();
+    await new Promise((r) => setTimeout(r, 2000));
+  }
+
+  // Extract event data from cards
+  const rawCards = await page.evaluate(() => {
+    const cards = document.querySelectorAll('[data-hook="event-list-item"]');
+    return [...cards].map((card) => {
+      const fullDateEl = card.querySelector(
+        '[data-hook="ev-full-date-location"]',
+      );
+      const rsvpEl = card.querySelector('[data-hook="ev-rsvp-button"]');
+      const ticketLink = rsvpEl?.closest("a")?.href || rsvpEl?.href || null;
+
+      return {
+        fullDateText: fullDateEl?.textContent?.trim() || "",
+        ticketUrl: ticketLink,
+      };
+    });
+  });
+
+  await page.close();
+
+  // Parse cards into structured events
+  const events = [];
+  const seen = new Set();
+
+  for (const card of rawCards) {
+    if (!card.fullDateText) continue;
+
+    // Full date format: "DD בMonthName YYYY, HH:MM"
+    const parsed = parseHebrewDate(card.fullDateText);
+    if (!parsed) {
+      if (debug) console.log(`    [debug] Unparseable date: "${card.fullDateText}"`);
+      continue;
+    }
+
+    // Deduplicate by date + hour
+    const key = `${parsed.date}|${parsed.hour}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+
+    events.push({
+      date: parsed.date,
+      hour: parsed.hour,
+      ticketUrl: card.ticketUrl,
+      rawText: card.fullDateText,
+    });
+  }
+
+  return { events, title: showTitle };
 }
