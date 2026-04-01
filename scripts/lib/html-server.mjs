@@ -186,7 +186,7 @@ export async function startServer(title, theatreId, groupsOrResults) {
     // ── Serve images from public/ ──
     if (req.method === "GET" && req.url.endsWith(".webp")) {
       const safeName = path.basename(decodeURIComponent(req.url));
-      const imgPath = path.join(rootDir, "public", safeName);
+      const imgPath = path.join(rootDir, "public", "images", "shows", safeName);
       try {
         const data = fs.readFileSync(imgPath);
         res.writeHead(200, { "Content-Type": "image/webp" });

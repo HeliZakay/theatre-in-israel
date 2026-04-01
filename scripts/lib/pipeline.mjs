@@ -234,11 +234,15 @@ export async function collectMissingShows(config, options = {}) {
           const originalFile = path.join(
             rootDir,
             "public",
+            "images",
+            "shows",
             `${generateSlug(showTitle)}.webp`,
           );
           const disambiguatedFile = path.join(
             rootDir,
             "public",
+            "images",
+            "shows",
             `${slug}.webp`,
           );
           try {
