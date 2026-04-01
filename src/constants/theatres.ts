@@ -25,6 +25,7 @@ export const THEATRES: TheatreInfo[] = [
   { slug: "tmuna", name: "תיאטרון תמונע", image: "/images/theatres/תיאטרון-תמונע.webp" },
   { slug: "tzavta", name: "תיאטרון צוותא", image: "/images/theatres/תיאטרון-צוותא.webp" },
   { slug: "tomix", name: "תיאטרון toMix", image: "/images/theatres/תיאטרון-tomix.webp" },
+  { slug: "meshulash", name: "תיאטרון המשולש", image: "/images/theatres/תיאטרון-המשולש.webp" },
 ];
 
 /** Map from URL slug → theatre info */

@@ -35,6 +35,7 @@ export const CITIES: CityInfo[] = [
       "תיאטרון תמונע",
       "תיאטרון צוותא",
       "תיאטרון toMix",
+      "תיאטרון המשולש",
     ],
     image: "/images/cities/תל-אביב.webp",
   },
