@@ -1,0 +1,75 @@
+.chipWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.honestyNote {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin: 0;
+}
+
+.optionalHint {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin: 0;
+}
+
+.chipRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 4px 0;
+}
+
+.chip {
+  appearance: none;
+  border: 1px solid var(--color-slate-015);
+  background: var(--background);
+  color: var(--color-text-primary);
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+  min-height: 44px;
+}
+
+.chip:hover {
+  border-color: var(--color-curtain-red);
+}
+
+.chip:focus-visible {
+  outline: 3px solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+.chip:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.chipActive {
+  background: var(--color-curtain-red);
+  border-color: var(--color-curtain-red);
+  color: #fff;
+}
+
+.chipActive:hover {
+  background: var(--color-curtain-red-hover);
+  border-color: var(--color-curtain-red-hover);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip {
+    transition: none;
+  }
+}

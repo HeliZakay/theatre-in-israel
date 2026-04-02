@@ -1,0 +1,235 @@
+.exitSummary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 480px;
+  gap: 24px;
+  padding: 40px 16px;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Heading with odometer                                              */
+/* ------------------------------------------------------------------ */
+
+.heading {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  text-align: center;
+  margin: 0;
+}
+
+.odometerCount {
+  display: inline-block;
+  min-width: 1.2ch;
+  text-align: center;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Reviewed shows list                                                */
+/* ------------------------------------------------------------------ */
+
+.showList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-height: 280px;
+  overflow-y: auto;
+  padding: 0 4px;
+}
+
+.showRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+}
+
+.showPoster {
+  position: relative;
+  width: 40px;
+  height: 53px;
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--color-slate-008);
+}
+
+.showImage {
+  object-fit: cover;
+}
+
+.showInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.showTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.viewLink {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+
+.viewLink:hover {
+  text-decoration: underline;
+}
+
+.editLink {
+  font-size: 0.8rem;
+  color: var(--color-curtain-red);
+  text-decoration: none;
+  flex-shrink: 0;
+  padding: 4px 0;
+}
+
+.editLink:hover {
+  text-decoration: underline;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  width: 14px;
+  height: 14px;
+  color: #b8860b;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Skipped shows section                                              */
+/* ------------------------------------------------------------------ */
+
+.skippedSection {
+  width: 100%;
+}
+
+.skippedHeading {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin: 0 0 8px;
+}
+
+.reviewSkippedButton {
+  appearance: none;
+  border: 1.5px solid var(--color-curtain-red);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-curtain-red);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  min-height: 32px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.reviewSkippedButton:hover {
+  background: var(--color-curtain-red);
+  color: #fff;
+}
+
+.reviewSkippedButton:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring-color);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Review more button                                                 */
+/* ------------------------------------------------------------------ */
+
+.reviewMoreButton {
+  appearance: none;
+  border: 2px solid var(--color-curtain-red);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-curtain-red);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 10px 28px;
+  min-height: 44px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.reviewMoreButton:hover:not(:disabled) {
+  background: var(--color-curtain-red);
+  color: #fff;
+}
+
+.reviewMoreButton:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.reviewMoreButton:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring-color);
+}
+
+.reviewMoreButton:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* Spinner */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Screen-reader only text */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+    border-top-color: currentColor;
+    opacity: 0.5;
+  }
+}

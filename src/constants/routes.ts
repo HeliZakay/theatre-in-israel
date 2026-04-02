@@ -15,6 +15,7 @@ export const ROUTES = {
   MY_WATCHLIST: "/me/watchlist",
   ACTORS: "/actors",
   CONTACT: "/contact",
+  REVIEWS_BATCH: "/reviews/batch",
 } as const;
 
 export type Routes = typeof ROUTES;
