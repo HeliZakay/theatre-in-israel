@@ -5,6 +5,7 @@
   flex-direction: column;
   gap: 10px;
   height: 100%;
+  overflow: hidden;
 }
 
 .header {
@@ -47,6 +48,7 @@
   font-weight: 700;
   color: var(--color-text-primary);
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .text {
