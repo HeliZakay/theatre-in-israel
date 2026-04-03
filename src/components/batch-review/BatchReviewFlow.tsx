@@ -25,7 +25,6 @@ interface BatchFlowState {
   currentIndex: number;
   completedReviews: { showId: number; rating: number }[];
   skippedShowIds: number[];
-  displayName: string | null;
   alreadyReviewedIds: Set<number>;
   submissionStatus: "idle" | "pending" | "confirmed" | "error";
   errorMessage: string;
@@ -38,7 +37,6 @@ type BatchFlowAction =
   | { type: "SET_SUBMISSION_STATUS"; status: BatchFlowState["submissionStatus"] }
   | { type: "SET_ERROR"; message: string }
   | { type: "REVIEW_CONFIRMED"; showId: number; rating: number }
-  | { type: "SET_DISPLAY_NAME"; name: string }
   | { type: "SKIP_SHOW" }
   | { type: "AUTO_ADVANCE" }
   | { type: "FINISH" }
@@ -54,7 +52,6 @@ function createInitialState(reviewedShowIds: number[]): BatchFlowState {
     currentIndex: 0,
     completedReviews: [],
     skippedShowIds: [],
-    displayName: null,
     alreadyReviewedIds: new Set(reviewedShowIds),
     submissionStatus: "idle",
     errorMessage: "",
@@ -141,11 +138,6 @@ function reducer(
         ],
         submissionStatus: "confirmed",
         errorMessage: "",
-      };
-    case "SET_DISPLAY_NAME":
-      return {
-        ...state,
-        displayName: action.name,
       };
     case "SKIP_SHOW": {
       const nextIndex = state.currentIndex + 1;
@@ -333,7 +325,7 @@ export default function BatchReviewFlow({
   /* ---------------------------------------------------------------- */
 
   const submitToServer = useCallback(
-    async (review: { showId: number; rating: number; text: string }, displayName: string | null) => {
+    async (review: { showId: number; rating: number; text: string }) => {
       const formData = new FormData();
       formData.set("showId", String(review.showId));
       formData.set("rating", String(review.rating));
@@ -341,7 +333,7 @@ export default function BatchReviewFlow({
       formData.set("title", "");
 
       if (!isAuthenticated) {
-        formData.set("name", displayName || "");
+        formData.set("name", "");
         formData.set("honeypot", "");
       }
 
@@ -384,20 +376,13 @@ export default function BatchReviewFlow({
   };
 
   const handleReviewSubmitted = useCallback(
-    async (showId: number, rating: number, text: string, name?: string) => {
+    async (showId: number, rating: number, text: string) => {
       dispatch({ type: "SET_SUBMISSION_STATUS", status: "pending" });
 
       const review = { showId, rating, text };
 
-      // Capture/update the display name for reuse on subsequent reviews
-      if (!isAuthenticated && name !== undefined) {
-        dispatch({ type: "SET_DISPLAY_NAME", name });
-      }
-
-      const displayName = name ?? state.displayName ?? "";
-
       try {
-        await submitToServer(review, displayName);
+        await submitToServer(review);
         logEvent("batch_review_submit", { showId, rating });
         dispatch({ type: "REVIEW_CONFIRMED", showId, rating });
       } catch (err: unknown) {
@@ -407,7 +392,7 @@ export default function BatchReviewFlow({
         dispatch({ type: "SET_ERROR", message: msg });
       }
     },
-    [isAuthenticated, state.displayName, submitToServer],
+    [isAuthenticated, submitToServer],
   );
 
   const handleBackToSelect = useCallback(() => {
@@ -532,7 +517,6 @@ export default function BatchReviewFlow({
               totalCount={state.selectedShowIds.length}
               submissionStatus={state.submissionStatus}
               errorMessage={state.errorMessage}
-              defaultName={isAuthenticated ? null : (state.displayName ?? "")}
               onSubmitted={handleReviewSubmitted}
               onBack={handleBackToSelect}
               onSkip={() =>

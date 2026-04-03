@@ -15,8 +15,7 @@ interface ReviewStepProps {
   totalCount: number;
   submissionStatus: "idle" | "pending" | "confirmed" | "error";
   errorMessage: string;
-  defaultName: string | null;
-  onSubmitted: (showId: number, rating: number, text: string, name?: string) => void;
+  onSubmitted: (showId: number, rating: number, text: string) => void;
   onBack?: () => void;
   onSkip: () => void;
 }
@@ -27,14 +26,12 @@ export default function ReviewStep({
   totalCount,
   submissionStatus,
   errorMessage: externalError,
-  defaultName,
   onSubmitted,
   onBack,
   onSkip,
 }: ReviewStepProps) {
   const [rating, setRating] = useState<number | null>(null);
   const [text, setText] = useState("");
-  const [name, setName] = useState(defaultName ?? "");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const progress = ((currentIndex + 1) / totalCount) * 100;
@@ -56,7 +53,7 @@ export default function ReviewStep({
 
   const handleSubmit = () => {
     if (!rating) return;
-    onSubmitted(show.id, rating, text, defaultName !== null ? name.trim() : undefined);
+    onSubmitted(show.id, rating, text);
   };
 
   const handleSkip = () => {
@@ -155,27 +152,6 @@ export default function ReviewStep({
         disabled={isDisabled}
       />
 
-      {/* Effort hint */}
-      <p className={styles.effortHint}>
-        גם תגיות בלבד או משפט קצר זה מעולה
-      </p>
-
-      {/* Optional display name */}
-      {defaultName !== null && (
-        <div className={styles.nameSection}>
-          <input
-            type="text"
-            className={styles.nameInput}
-            placeholder="שם תצוגה (אופציונלי)"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            maxLength={80}
-            disabled={isDisabled}
-            aria-label="שם תצוגה"
-          />
-        </div>
-      )}
-
       {/* Error */}
       {externalError && (
         <p className={styles.error} role="alert">
@@ -199,7 +175,6 @@ export default function ReviewStep({
         >
           דלג
         </button>
-        <span className={styles.anonNote}>בלי שם תצוגה, הביקורת תופיע כאנונימית</span>
       </div>
     </div>
   );
