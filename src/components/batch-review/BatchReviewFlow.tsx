@@ -24,11 +24,9 @@ interface BatchFlowState {
   selectedShowIds: number[];
   currentIndex: number;
   completedReviews: { showId: number; rating: number; text: string }[];
-  skippedShowIds: number[];
   alreadyReviewedIds: Set<number>;
   submissionStatus: "idle" | "pending" | "confirmed" | "error";
   errorMessage: string;
-  returnToExit: boolean;
 }
 
 type BatchFlowAction =
@@ -41,7 +39,6 @@ type BatchFlowAction =
   | { type: "AUTO_ADVANCE" }
   | { type: "FINISH" }
   | { type: "BACK_TO_SELECT" }
-  | { type: "REVIEW_SKIPPED_SHOW"; showId: number }
   | { type: "RESET"; reviewedShowIds: number[] };
 
 function createInitialState(reviewedShowIds: number[]): BatchFlowState {
@@ -51,11 +48,9 @@ function createInitialState(reviewedShowIds: number[]): BatchFlowState {
     selectedShowIds: [],
     currentIndex: 0,
     completedReviews: [],
-    skippedShowIds: [],
     alreadyReviewedIds: new Set(reviewedShowIds),
     submissionStatus: "idle",
     errorMessage: "",
-    returnToExit: false,
   };
 }
 
@@ -104,7 +99,6 @@ function reducer(
         step: "select",
         currentIndex: 0,
         completedReviews: [],
-        skippedShowIds: [],
         submissionStatus: "idle",
         errorMessage: "",
       });
@@ -113,7 +107,6 @@ function reducer(
         step: "review",
         currentIndex: 0,
         completedReviews: [],
-        skippedShowIds: [],
         submissionStatus: "idle",
         errorMessage: "",
       });
@@ -142,13 +135,8 @@ function reducer(
     case "SKIP_SHOW": {
       const nextIndex = state.currentIndex + 1;
       const isLast = nextIndex >= state.selectedShowIds.length;
-      const skippedShowIds = [
-        ...state.skippedShowIds,
-        state.selectedShowIds[state.currentIndex],
-      ];
       if (isLast) {
         return withStepTransition(state, {
-          skippedShowIds,
           currentIndex: nextIndex,
           step: "exit",
           submissionStatus: "idle",
@@ -158,7 +146,6 @@ function reducer(
       // Same step (review→review): force prevStep so transition animation fires
       return {
         ...state,
-        skippedShowIds,
         currentIndex: nextIndex,
         step: "review",
         prevStep: "review",
@@ -167,14 +154,6 @@ function reducer(
       };
     }
     case "AUTO_ADVANCE": {
-      if (state.returnToExit) {
-        return withStepTransition(state, {
-          step: "exit",
-          submissionStatus: "idle",
-          errorMessage: "",
-          returnToExit: false,
-        });
-      }
       const nextIndex = state.currentIndex + 1;
       const isLast = nextIndex >= state.selectedShowIds.length;
       if (isLast) {
@@ -201,20 +180,6 @@ function reducer(
         submissionStatus: "idle",
         errorMessage: "",
       });
-    case "REVIEW_SKIPPED_SHOW": {
-      const idx = state.selectedShowIds.indexOf(action.showId);
-      if (idx === -1) return state;
-      return withStepTransition(state, {
-        skippedShowIds: state.skippedShowIds.filter(
-          (id) => id !== action.showId,
-        ),
-        currentIndex: idx,
-        step: "review",
-        submissionStatus: "idle",
-        errorMessage: "",
-        returnToExit: true,
-      });
-    }
     case "RESET":
       return createInitialState(action.reviewedShowIds);
     default:
@@ -289,11 +254,10 @@ export default function BatchReviewFlow({
     } else if (state.step === "exit") {
       logEvent("batch_complete", {
         reviewedCount: state.completedReviews.length,
-        skippedCount: state.skippedShowIds.length,
         selectedCount: state.selectedShowIds.length,
       });
     }
-  }, [state.step, state.currentIndex, state.selectedShowIds, state.completedReviews.length, state.skippedShowIds.length, shows, announce]);
+  }, [state.step, state.currentIndex, state.selectedShowIds, state.completedReviews.length, shows, announce]);
 
   // Announce confirmation via aria-live (without changing step)
   useEffect(() => {
@@ -407,10 +371,6 @@ export default function BatchReviewFlow({
     },
     [],
   );
-
-  const handleReviewSkipped = useCallback((showId: number) => {
-    dispatch({ type: "REVIEW_SKIPPED_SHOW", showId });
-  }, []);
 
   const handleFinish = () => {
     dispatch({ type: "FINISH" });
@@ -533,11 +493,9 @@ export default function BatchReviewFlow({
         <div className={transitionClass}>
           <ExitSummary
             completedReviews={state.completedReviews}
-            skippedShowIds={state.skippedShowIds}
             shows={shows}
             isAuthenticated={isAuthenticated}
             onReviewMore={handleReviewMore}
-            onReviewSkipped={handleReviewSkipped}
           />
         </div>
       )}

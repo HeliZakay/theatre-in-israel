@@ -124,20 +124,16 @@ function useOdometer(target: number, durationMs = 800): number {
 
 interface ExitSummaryProps {
   completedReviews: { showId: number; rating: number; text: string }[];
-  skippedShowIds: number[];
   shows: BatchShowItem[];
   isAuthenticated: boolean;
   onReviewMore: () => Promise<void>;
-  onReviewSkipped: (showId: number) => void;
 }
 
 export default function ExitSummary({
   completedReviews,
-  skippedShowIds,
   shows,
   isAuthenticated,
   onReviewMore,
-  onReviewSkipped,
 }: ExitSummaryProps) {
   const [loading, setLoading] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -244,41 +240,6 @@ export default function ExitSummary({
             text={`ביקרתי ${completedReviews.length} הצגות באתר תיאטרון בישראל!`}
             url={ROUTES.REVIEWS_BATCH}
           />
-        </div>
-      )}
-
-      {/* Skipped shows */}
-      {skippedShowIds.length > 0 && (
-        <div className={styles.skippedSection}>
-          <h2 className={styles.skippedHeading}>הצגות שדילגתם עליהן</h2>
-          <div className={styles.skippedList} role="list">
-            {skippedShowIds.map((showId) => {
-              const show = shows.find((s) => s.id === showId);
-              if (!show) return null;
-              return (
-                <div key={showId} className={styles.showRow} role="listitem">
-                  <div className={styles.showPoster}>
-                    <FallbackImage
-                      src={getShowImagePath(show.title)}
-                      alt={show.title}
-                      fill
-                      sizes="56px"
-                      className={styles.showImage}
-                    />
-                  </div>
-                  <div className={styles.showInfo}>
-                    <span className={styles.showTitle}>{show.title}</span>
-                  </div>
-                  <button
-                    className={styles.reviewSkippedButton}
-                    onClick={() => onReviewSkipped(showId)}
-                  >
-                    כתבו ביקורת
-                  </button>
-                </div>
-              );
-            })}
-          </div>
         </div>
       )}
 

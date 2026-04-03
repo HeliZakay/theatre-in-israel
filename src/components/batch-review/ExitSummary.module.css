@@ -208,63 +208,6 @@
 }
 
 /* ------------------------------------------------------------------ */
-/*  Skipped shows section                                              */
-/* ------------------------------------------------------------------ */
-
-.skippedSection {
-  width: 100%;
-  max-width: 480px;
-}
-
-.skippedHeading {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-text-secondary);
-  margin: 0 0 8px;
-}
-
-.skippedList {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.showRow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 0;
-}
-
-.reviewSkippedButton {
-  appearance: none;
-  border: 1.5px solid var(--color-curtain-red);
-  border-radius: var(--radius-sm);
-  background: transparent;
-  color: var(--color-curtain-red);
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 4px 12px;
-  min-height: 32px;
-  cursor: pointer;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition:
-    background 0.15s ease,
-    color 0.15s ease;
-}
-
-.reviewSkippedButton:hover {
-  background: var(--color-curtain-red);
-  color: #fff;
-}
-
-.reviewSkippedButton:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--focus-ring-color);
-}
-
-/* ------------------------------------------------------------------ */
 /*  CTA row                                                            */
 /* ------------------------------------------------------------------ */
 
