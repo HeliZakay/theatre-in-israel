@@ -126,18 +126,6 @@ export default function ReviewStep({
         <StarRating value={rating} onChange={setRating} disabled={isDisabled} />
       </div>
 
-      {/* Expression chips */}
-      <ExpressionChips
-        text={text}
-        onTextChange={handleChipTextChange}
-        disabled={isDisabled}
-      />
-
-      {/* Effort hint */}
-      <p className={styles.effortHint}>
-        גם תגיות בלבד או משפט קצר זה מעולה
-      </p>
-
       {/* Textarea */}
       <div className={styles.textSection}>
         <textarea
@@ -159,6 +147,18 @@ export default function ReviewStep({
           </span>
         )}
       </div>
+
+      {/* Expression chips */}
+      <ExpressionChips
+        text={text}
+        onTextChange={handleChipTextChange}
+        disabled={isDisabled}
+      />
+
+      {/* Effort hint */}
+      <p className={styles.effortHint}>
+        גם תגיות בלבד או משפט קצר זה מעולה
+      </p>
 
       {/* Optional display name */}
       {defaultName !== null && (
