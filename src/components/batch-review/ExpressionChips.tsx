@@ -83,9 +83,15 @@ export default function ExpressionChips({
 
   return (
     <div className={styles.chipWrapper}>
-      {rating !== null && rating <= 3 && (
+      {rating !== null && (
         <p className={styles.honestyNote} aria-live="polite">
-          דעה כנה עוזרת לכולם — אנחנו מעריכים את זה
+          {rating <= 2
+            ? "דעה כנה עוזרת לכולם — אנחנו מעריכים את זה"
+            : rating === 3
+              ? "מה עבד ומה פחות? נשמח לשמוע"
+              : rating === 4
+                ? "שמחים שנהניתם! מה הכי בלט?"
+                : "וואו, איזה חוויה! ספרו לנו עוד"}
         </p>
       )}
       <p className={styles.optionalHint}>
