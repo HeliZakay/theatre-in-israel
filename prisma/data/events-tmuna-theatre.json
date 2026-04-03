@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-03T09:20:31.207Z",
+  "scrapedAt": "2026-04-03T10:35:02.006Z",
   "touring": true,
   "events": [
     {
@@ -7,14 +7,6 @@
       "showSlug": "Can-you-beat-the-KGB",
       "date": "2026-04-26",
       "hour": "21:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 261,
-      "showSlug": "Die-Blumen",
-      "date": "2026-04-06",
-      "hour": "22:00",
       "venueName": "תיאטרון תמונע",
       "venueCity": "תל אביב"
     },
