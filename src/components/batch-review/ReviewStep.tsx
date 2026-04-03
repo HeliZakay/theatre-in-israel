@@ -39,6 +39,8 @@ export default function ReviewStep({
 
   const progress = ((currentIndex + 1) / totalCount) * 100;
   const isPending = submissionStatus === "pending";
+  const isConfirmed = submissionStatus === "confirmed";
+  const isDisabled = isPending || isConfirmed;
   const showCharCount = text.length > 500;
 
   const handleTextChange = useCallback(
@@ -65,6 +67,18 @@ export default function ReviewStep({
 
   return (
     <div className={styles.reviewStep}>
+      {/* Confirmed toast overlay */}
+      {isConfirmed && (
+        <div className={styles.toastOverlay}>
+          <div className={styles.toast}>
+            <svg className={styles.toastCheck} viewBox="0 0 24 24" fill="none" stroke="#34c759" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            <span className={styles.toastText}>פורסמה!</span>
+          </div>
+        </div>
+      )}
+
       {/* Progress */}
       <div className={styles.progressSection}>
         {onBack && (
@@ -72,7 +86,7 @@ export default function ReviewStep({
             className={styles.backButton}
             onClick={onBack}
             aria-label="חזרה לבחירת הצגות"
-            disabled={isPending}
+            disabled={isDisabled}
           >
             &#8592;
           </button>
@@ -109,14 +123,14 @@ export default function ReviewStep({
 
       {/* Star rating */}
       <div className={styles.ratingSection}>
-        <StarRating value={rating} onChange={setRating} disabled={isPending} />
+        <StarRating value={rating} onChange={setRating} disabled={isDisabled} />
       </div>
 
       {/* Expression chips */}
       <ExpressionChips
         text={text}
         onTextChange={handleChipTextChange}
-        disabled={isPending}
+        disabled={isDisabled}
       />
 
       {/* Effort hint */}
@@ -134,7 +148,7 @@ export default function ReviewStep({
           placeholder="במילה, במשפט, או בפסקה — הכל בסדר"
           value={text}
           onChange={handleTextChange}
-          disabled={isPending}
+          disabled={isDisabled}
           onFocus={(e) => {
             e.currentTarget.rows = 6;
           }}
@@ -156,7 +170,7 @@ export default function ReviewStep({
             value={name}
             onChange={(e) => setName(e.target.value)}
             maxLength={80}
-            disabled={isPending}
+            disabled={isDisabled}
             aria-label="שם תצוגה"
           />
         </div>
@@ -174,14 +188,14 @@ export default function ReviewStep({
         <button
           className={styles.submitButton}
           onClick={handleSubmit}
-          disabled={!rating || text.length < REVIEW_TEXT_MIN || isPending}
+          disabled={!rating || text.length < REVIEW_TEXT_MIN || isDisabled}
         >
           {isPending ? "שולח..." : "שלח ביקורת"}
         </button>
         <button
           className={styles.skipButton}
           onClick={handleSkip}
-          disabled={isPending}
+          disabled={isDisabled}
         >
           דלג
         </button>

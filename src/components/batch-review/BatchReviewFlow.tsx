@@ -4,7 +4,6 @@ import { useReducer, useCallback, useRef, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ShowSelectionGrid from "./ShowSelectionGrid";
 import ReviewStep from "./ReviewStep";
-import CelebrationStep from "./CelebrationStep";
 import ExitSummary from "./ExitSummary";
 import { createReview, createAnonymousReview } from "@/app/reviews/actions";
 import { refetchReviewedIds } from "@/app/reviews/batch/actions";
@@ -17,7 +16,7 @@ import type { BatchShowItem } from "@/lib/data/batchReview";
 /*  State                                                              */
 /* ------------------------------------------------------------------ */
 
-type Step = "select" | "review" | "celebrate" | "exit";
+type Step = "select" | "review" | "exit";
 
 interface BatchFlowState {
   step: Step;
@@ -41,7 +40,7 @@ type BatchFlowAction =
   | { type: "REVIEW_CONFIRMED"; showId: number; rating: number }
   | { type: "SET_DISPLAY_NAME"; name: string }
   | { type: "SKIP_SHOW" }
-  | { type: "ADVANCE_TO_NEXT" }
+  | { type: "AUTO_ADVANCE" }
   | { type: "FINISH" }
   | { type: "BACK_TO_SELECT" }
   | { type: "REVIEW_SKIPPED_SHOW"; showId: number }
@@ -67,11 +66,10 @@ function getTransitionClass(
   prevStep: Step | null,
   step: Step,
 ): string | null {
-  if (!prevStep || prevStep === step) return null;
+  if (!prevStep) return null;
   if (prevStep === "select" && step === "review") return "slideInFromLeft";
   if (prevStep === "review" && step === "select") return "fadeIn";
-  if (prevStep === "review" && step === "celebrate") return "crossfadeIn";
-  if (prevStep === "celebrate" && step === "review") return "fadeSlideIn";
+  if (prevStep === "review" && step === "review") return "fadeSlideIn";
   if (step === "exit") return "fadeIn";
   return null;
 }
@@ -134,15 +132,15 @@ function reducer(
         errorMessage: action.message,
       };
     case "REVIEW_CONFIRMED":
-      return withStepTransition(state, {
+      return {
+        ...state,
         completedReviews: [
           ...state.completedReviews,
           { showId: action.showId, rating: action.rating },
         ],
-        step: "celebrate",
         submissionStatus: "confirmed",
         errorMessage: "",
-      });
+      };
     case "SET_DISPLAY_NAME":
       return {
         ...state,
@@ -162,27 +160,40 @@ function reducer(
         errorMessage: "",
       });
     }
-    case "ADVANCE_TO_NEXT": {
+    case "AUTO_ADVANCE": {
       if (state.returnToExit) {
         return withStepTransition(state, {
           step: "exit",
           submissionStatus: "idle",
           errorMessage: "",
-            returnToExit: false,
+          returnToExit: false,
         });
       }
       const nextIndex = state.currentIndex + 1;
       const isLast = nextIndex >= state.selectedShowIds.length;
-      return withStepTransition(state, {
+      if (isLast) {
+        return withStepTransition(state, {
+          currentIndex: nextIndex,
+          step: "exit",
+          submissionStatus: "idle",
+          errorMessage: "",
+        });
+      }
+      // Same step (review→review): force prevStep so transition animation fires
+      return {
+        ...state,
         currentIndex: nextIndex,
-        step: isLast ? "exit" : "review",
+        step: "review",
+        prevStep: "review",
         submissionStatus: "idle",
         errorMessage: "",
-      });
+      };
     }
     case "FINISH":
       return withStepTransition(state, {
         step: "exit",
+        submissionStatus: "idle",
+        errorMessage: "",
       });
     case "REVIEW_SKIPPED_SHOW": {
       const idx = state.selectedShowIds.indexOf(action.showId);
@@ -236,15 +247,19 @@ export default function BatchReviewFlow({
     requestAnimationFrame(() => setAnnouncement(msg));
   }, []);
 
-  // Focus management: move focus after step transitions
+  // Focus management: move focus after step transitions (including review→review)
   const prevStepRef = useRef(state.step);
+  const prevIndexRef = useRef(state.currentIndex);
   useEffect(() => {
-    if (prevStepRef.current === state.step) return;
+    const stepChanged = prevStepRef.current !== state.step;
+    const indexChanged = prevIndexRef.current !== state.currentIndex;
+    if (!stepChanged && !indexChanged) return;
     const prev = prevStepRef.current;
     prevStepRef.current = state.step;
+    prevIndexRef.current = state.currentIndex;
 
     requestAnimationFrame(() => {
-      if (state.step === "review") {
+      if (state.step === "review" && (stepChanged || indexChanged)) {
         const star = document.querySelector<HTMLElement>(
           '[role="radiogroup"] [role="radio"][tabindex="0"]',
         );
@@ -255,8 +270,6 @@ export default function BatchReviewFlow({
         announce(
           `ביקורת ${state.currentIndex + 1} מתוך ${state.selectedShowIds.length}: ${show?.title ?? ""}`,
         );
-      } else if (state.step === "celebrate") {
-        announce("הביקורת שלכם פורסמה!");
       } else if (state.step === "exit") {
         announce(`ביקרתם ${state.completedReviews.length} הצגות!`);
       }
@@ -275,6 +288,22 @@ export default function BatchReviewFlow({
       });
     }
   }, [state.step, state.currentIndex, state.selectedShowIds, state.completedReviews.length, state.skippedShowIds.length, shows, announce]);
+
+  // Announce confirmation via aria-live (without changing step)
+  useEffect(() => {
+    if (state.submissionStatus === "confirmed") {
+      announce("הביקורת שלכם פורסמה!");
+    }
+  }, [state.submissionStatus, announce]);
+
+  // Auto-advance after review confirmed
+  useEffect(() => {
+    if (state.submissionStatus !== "confirmed") return;
+    const timer = setTimeout(() => {
+      dispatch({ type: "AUTO_ADVANCE" });
+    }, 1200);
+    return () => clearTimeout(timer);
+  }, [state.submissionStatus]);
 
   // Track page entry
   const entryTracked = useRef(false);
@@ -412,7 +441,6 @@ export default function BatchReviewFlow({
 
   const transitionStyleMap: Record<string, string> = {
     slideInFromLeft: styles.slideInFromLeft,
-    crossfadeIn: styles.crossfadeIn,
     fadeSlideIn: styles.fadeSlideIn,
     fadeIn: styles.fadeIn,
   };
@@ -421,9 +449,7 @@ export default function BatchReviewFlow({
     ? transitionStyleMap[transitionName] ?? ""
     : "";
 
-  const showFinishLink =
-    state.step === "review" ||
-    state.step === "celebrate";
+  const showFinishLink = state.step === "review";
 
   return (
     <main className={styles.flow} dir="rtl">
@@ -441,7 +467,7 @@ export default function BatchReviewFlow({
         ✕
       </button>
 
-      {/* Finish link — visible in review, name, and celebrate steps */}
+      {/* Finish link — visible during review step */}
       {showFinishLink && (
         <button className={styles.finishLink} onClick={handleFinish}>
           סיום
@@ -502,15 +528,6 @@ export default function BatchReviewFlow({
           </div>
         );
       })()}
-
-      {state.step === "celebrate" && (
-        <div className={transitionClass}>
-          <CelebrationStep
-            isLastShow={state.returnToExit || state.currentIndex + 1 >= state.selectedShowIds.length}
-            onAdvance={() => dispatch({ type: "ADVANCE_TO_NEXT" })}
-          />
-        </div>
-      )}
 
       {state.step === "exit" && (
         <div className={transitionClass}>

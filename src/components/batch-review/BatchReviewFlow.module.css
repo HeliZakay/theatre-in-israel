@@ -172,21 +172,7 @@
   }
 }
 
-/* Step 2 → Step 3: crossfade in */
-.crossfadeIn {
-  animation: crossfade 0.2s ease-out;
-}
-
-@keyframes crossfade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Step 3 → Step 2: fade + slide */
+/* Review → next Review: fade + slide */
 .fadeSlideIn {
   animation: fadeSlide 0.25s ease-out;
 }
@@ -239,7 +225,6 @@
   }
 
   .slideInFromLeft,
-  .crossfadeIn,
   .fadeSlideIn,
   .fadeIn {
     animation: none;
