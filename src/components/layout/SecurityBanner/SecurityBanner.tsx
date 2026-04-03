@@ -1,6 +1,12 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import styles from "./SecurityBanner.module.css";
 
 export default function SecurityBanner() {
+  const pathname = usePathname();
+  if (pathname.startsWith("/reviews/batch")) return null;
+
   return (
     <div className={styles.banner} role="alert">
       <p className={styles.text}>
