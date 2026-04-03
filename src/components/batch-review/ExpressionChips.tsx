@@ -1,14 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef } from "react";
-import { getChipsForRating } from "@/constants/expressionChips";
+import { useCallback, useRef } from "react";
+import { EXPRESSION_CHIPS } from "@/constants/expressionChips";
 import styles from "./ExpressionChips.module.css";
 import { cx } from "@/utils/cx";
 
 interface ExpressionChipsProps {
   text: string;
   onTextChange: (text: string) => void;
-  rating: number | null;
   disabled?: boolean;
 }
 
@@ -24,22 +23,9 @@ function parseChips(text: string): Set<string> {
 export default function ExpressionChips({
   text,
   onTextChange,
-  rating,
   disabled = false,
 }: ExpressionChipsProps) {
   const activeChips = parseChips(text);
-
-  const visibleChips = useMemo(() => getChipsForRating(rating), [rating]);
-
-  // Remove selected chips that are no longer visible when rating changes
-  const visibleSet = useMemo(() => new Set(visibleChips), [visibleChips]);
-  useEffect(() => {
-    const current = parseChips(text);
-    const filtered = Array.from(current).filter((c) => visibleSet.has(c));
-    if (filtered.length < current.size) {
-      onTextChange(filtered.join(", "));
-    }
-  }, [visibleSet]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const toolbarRef = useRef<HTMLDivElement>(null);
 
@@ -83,17 +69,6 @@ export default function ExpressionChips({
 
   return (
     <div className={styles.chipWrapper}>
-      {rating !== null && (
-        <p className={styles.honestyNote} aria-live="polite">
-          {rating <= 2
-            ? "דעה כנה עוזרת לכולם — אנחנו מעריכים את זה"
-            : rating === 3
-              ? "מה עבד ומה פחות? נשמח לשמוע"
-              : rating === 4
-                ? "שמחים שנהניתם! מה הכי בלט?"
-                : "וואו, איזה חוויה! ספרו לנו עוד"}
-        </p>
-      )}
       <p className={styles.optionalHint}>
         אפשר לבחור תגיות במקום לכתוב
       </p>
@@ -104,7 +79,7 @@ export default function ExpressionChips({
       aria-label="ביטויים מוצעים"
       onKeyDown={handleKeyDown}
     >
-      {visibleChips.map((chip, i) => {
+      {EXPRESSION_CHIPS.map((chip, i) => {
         const isActive = activeChips.has(chip);
         return (
           <button

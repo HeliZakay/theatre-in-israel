@@ -116,7 +116,6 @@ export default function ReviewStep({
       <ExpressionChips
         text={text}
         onTextChange={handleChipTextChange}
-        rating={rating}
         disabled={isPending}
       />
 
