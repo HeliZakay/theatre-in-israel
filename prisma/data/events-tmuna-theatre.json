@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-03T04:03:44.348Z",
+  "scrapedAt": "2026-04-03T09:20:31.207Z",
   "touring": true,
   "events": [
     {
@@ -54,14 +54,6 @@
       "showId": 272,
       "showSlug": "את-מדברת.-אני-מדברת",
       "date": "2026-04-11",
-      "hour": "19:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 260,
-      "showSlug": "בדיחה",
-      "date": "2026-04-04",
       "hour": "19:00",
       "venueName": "תיאטרון תמונע",
       "venueCity": "תל אביב"
@@ -158,14 +150,6 @@
       "showId": 226,
       "showSlug": "לא-סוף-העולם",
       "date": "2026-04-16",
-      "hour": "20:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 227,
-      "showSlug": "לא-שקט",
-      "date": "2026-04-06",
       "hour": "20:00",
       "venueName": "תיאטרון תמונע",
       "venueCity": "תל אביב"
@@ -278,14 +262,6 @@
       "showId": 234,
       "showSlug": "שחף-עודד-קוטלר",
       "date": "2026-04-29",
-      "hour": "19:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 235,
-      "showSlug": "שלא-יגמר-לי",
-      "date": "2026-04-04",
       "hour": "19:00",
       "venueName": "תיאטרון תמונע",
       "venueCity": "תל אביב"
