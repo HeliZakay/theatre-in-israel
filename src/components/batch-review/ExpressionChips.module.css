@@ -61,6 +61,17 @@
   border-color: var(--color-curtain-red-hover);
 }
 
+@media (min-width: 768px) {
+  .chipRow {
+    gap: 10px;
+  }
+
+  .chip {
+    padding: 8px 18px;
+    font-size: 0.9rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .chip {
     transition: none;

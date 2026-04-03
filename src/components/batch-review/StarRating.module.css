@@ -63,6 +63,17 @@
   stroke-width: 1;
 }
 
+@media (min-width: 768px) {
+  .container {
+    gap: 6px;
+  }
+
+  .starSvg {
+    width: 42px;
+    height: 42px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .star {
     transition: none;

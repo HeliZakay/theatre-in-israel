@@ -312,6 +312,73 @@
   text-align: center;
 }
 
+/* ------------------------------------------------------------------ */
+/*  Desktop enhancements                                               */
+/* ------------------------------------------------------------------ */
+
+@media (min-width: 768px) {
+  .reviewStep {
+    max-width: 720px;
+    background: var(--background);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-slate-008);
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.06),
+      0 8px 24px rgba(0, 0, 0, 0.06);
+    padding: 32px 40px 32px;
+    gap: 20px;
+  }
+
+  .showCard {
+    padding: 16px;
+  }
+
+  .showPoster {
+    width: 68px;
+    height: 92px;
+  }
+
+  .showTitle {
+    font-size: 1.15rem;
+  }
+
+  .textarea {
+    padding: 14px 16px;
+    min-height: 100px;
+  }
+
+  .nameInput {
+    padding: 14px 16px;
+    max-width: 50%;
+  }
+
+  .bottomBar {
+    position: static;
+    border-top: none;
+    padding: 8px 0 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    animation: none;
+  }
+
+  .submitButton {
+    width: auto;
+    max-width: none;
+    padding: 0 48px;
+  }
+
+  .skipButton {
+    min-height: auto;
+    padding: 4px 16px;
+  }
+
+  .anonNote {
+    width: 100%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .bottomBar {
     animation: none;
