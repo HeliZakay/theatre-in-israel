@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import FallbackImage from "@/components/ui/FallbackImage/FallbackImage";
-import ShareButtons from "@/components/ui/ShareButtons/ShareButtons";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import { showPath } from "@/constants/routes";
 import { ROUTES } from "@/constants/routes";
@@ -229,17 +228,6 @@ export default function ExitSummary({
               </div>
             );
           })}
-        </div>
-      )}
-
-      {/* Share section */}
-      {hasReviews && (
-        <div className={styles.shareSection}>
-          <p className={styles.sharePrompt}>ספרו לחברים שביקרתם!</p>
-          <ShareButtons
-            text={`ביקרתי ${completedReviews.length} הצגות באתר תיאטרון בישראל!`}
-            url={ROUTES.REVIEWS_BATCH}
-          />
         </div>
       )}
 
