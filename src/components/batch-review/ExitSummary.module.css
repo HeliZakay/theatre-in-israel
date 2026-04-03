@@ -200,52 +200,14 @@
   justify-content: center;
 }
 
-.reviewMoreButton {
-  appearance: none;
-  border: none;
-  border-radius: var(--radius-sm);
-  background: var(--color-curtain-red);
-  color: #fff;
-  font-size: 0.95rem;
-  font-weight: 600;
-  padding: 10px 28px;
-  min-height: 44px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition:
-    background 0.15s ease,
-    opacity 0.15s ease;
-}
-
-.reviewMoreButton:hover:not(:disabled) {
-  background: var(--color-curtain-red-hover);
-}
-
-.reviewMoreButton:active:not(:disabled) {
-  transform: scale(0.98);
-}
-
-.reviewMoreButton:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--focus-ring-color);
-}
-
-.reviewMoreButton:disabled {
-  opacity: 0.6;
-  cursor: default;
-}
-
 .exploreButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--color-curtain-red);
+  border: none;
   border-radius: var(--radius-sm);
-  background: transparent;
-  color: var(--color-curtain-red);
+  background: var(--color-curtain-red);
+  color: #fff;
   font-size: 0.95rem;
   font-weight: 600;
   padding: 10px 28px;
@@ -257,29 +219,12 @@
 }
 
 .exploreButton:hover {
-  background: var(--color-curtain-red);
-  color: #fff;
+  background: var(--color-curtain-red-hover);
 }
 
 .exploreButton:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px var(--focus-ring-color);
-}
-
-/* Spinner */
-.spinner {
-  width: 18px;
-  height: 18px;
-  border: 2px solid currentColor;
-  border-top-color: transparent;
-  border-radius: 50%;
-  animation: spin 0.6s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 /* Screen-reader only text */
@@ -304,9 +249,4 @@
     animation: none;
   }
 
-  .spinner {
-    animation: none;
-    border-top-color: currentColor;
-    opacity: 0.5;
-  }
 }

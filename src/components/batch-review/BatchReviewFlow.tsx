@@ -6,7 +6,6 @@ import ShowSelectionGrid from "./ShowSelectionGrid";
 import ReviewStep from "./ReviewStep";
 import ExitSummary from "./ExitSummary";
 import { createReview, createAnonymousReview } from "@/app/reviews/actions";
-import { refetchReviewedIds } from "@/app/reviews/batch/actions";
 import { logEvent } from "@/lib/analytics";
 import { EXPRESSION_CHIPS } from "@/constants/expressionChips";
 import styles from "./BatchReviewFlow.module.css";
@@ -38,8 +37,7 @@ type BatchFlowAction =
   | { type: "SKIP_SHOW" }
   | { type: "AUTO_ADVANCE" }
   | { type: "FINISH" }
-  | { type: "BACK_TO_SELECT" }
-  | { type: "RESET"; reviewedShowIds: number[] };
+  | { type: "BACK_TO_SELECT" };
 
 function createInitialState(reviewedShowIds: number[]): BatchFlowState {
   return {
@@ -180,8 +178,6 @@ function reducer(
         submissionStatus: "idle",
         errorMessage: "",
       });
-    case "RESET":
-      return createInitialState(action.reviewedShowIds);
     default:
       return state;
   }
@@ -392,12 +388,6 @@ export default function BatchReviewFlow({
     router.push("/");
   };
 
-  const handleReviewMore = async () => {
-    logEvent("batch_review_more_click", {});
-    const freshIds = await refetchReviewedIds();
-    dispatch({ type: "RESET", reviewedShowIds: freshIds });
-  };
-
   const transitionStyleMap: Record<string, string> = {
     slideInFromLeft: styles.slideInFromLeft,
     fadeSlideIn: styles.fadeSlideIn,
@@ -495,7 +485,6 @@ export default function BatchReviewFlow({
             completedReviews={state.completedReviews}
             shows={shows}
             isAuthenticated={isAuthenticated}
-            onReviewMore={handleReviewMore}
           />
         </div>
       )}

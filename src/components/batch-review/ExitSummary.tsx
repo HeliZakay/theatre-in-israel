@@ -125,16 +125,13 @@ interface ExitSummaryProps {
   completedReviews: { showId: number; rating: number; text: string }[];
   shows: BatchShowItem[];
   isAuthenticated: boolean;
-  onReviewMore: () => Promise<void>;
 }
 
 export default function ExitSummary({
   completedReviews,
   shows,
   isAuthenticated,
-  onReviewMore,
 }: ExitSummaryProps) {
-  const [loading, setLoading] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const count = useOdometer(completedReviews.length);
 
@@ -144,15 +141,6 @@ export default function ExitSummary({
       headingRef.current?.focus();
     });
   }, []);
-
-  const handleReviewMore = async () => {
-    setLoading(true);
-    try {
-      await onReviewMore();
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const hasReviews = completedReviews.length > 0;
 
@@ -231,16 +219,8 @@ export default function ExitSummary({
         </div>
       )}
 
-      {/* CTAs */}
+      {/* CTA */}
       <div className={styles.ctaRow}>
-        <button
-          className={styles.reviewMoreButton}
-          onClick={handleReviewMore}
-          disabled={loading}
-        >
-          {loading && <span className={styles.spinner} aria-hidden="true" />}
-          לביקורות נוספות
-        </button>
         <Link href={ROUTES.SHOWS} className={styles.exploreButton}>
           גלו הצגות נוספות
         </Link>
