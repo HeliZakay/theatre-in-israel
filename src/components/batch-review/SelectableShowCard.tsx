@@ -53,7 +53,7 @@ export default function SelectableShowCard({
           src={getShowImagePath(show.title)}
           alt={show.title}
           fill
-          sizes="(max-width: 480px) 50vw, 33vw"
+          sizes="(max-width: 400px) 45vw, (max-width: 900px) 25vw, 200px"
           className={styles.image}
         />
         <div className={styles.gradient} />

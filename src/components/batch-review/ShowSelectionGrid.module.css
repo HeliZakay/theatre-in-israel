@@ -13,6 +13,8 @@
   gap: 8px;
   background: var(--background);
   padding: 12px 0;
+  max-width: 640px;
+  margin: 0 auto;
 }
 
 .searchInput {
@@ -39,8 +41,8 @@
 }
 
 .theatreSelect {
-  flex: 0 1 35%;
-  min-width: 0;
+  flex: 0 1 40%;
+  min-width: 140px;
   height: 44px;
   padding: 0 10px;
   border: 1px solid var(--color-slate-015);
@@ -60,15 +62,9 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-
-@media (min-width: 480px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-  }
+  grid-template-columns: repeat(auto-fill, minmax(150px, 200px));
+  justify-content: center;
+  gap: 16px;
 }
 
 .empty {

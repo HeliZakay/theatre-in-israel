@@ -32,9 +32,10 @@ function matchesSearch(title: string, query: string): boolean {
   return strippedTitle.includes(strippedQuery);
 }
 
-/** Determine column count matching CSS grid breakpoints. */
-function getColumnCount(): number {
-  return typeof window !== "undefined" && window.innerWidth >= 480 ? 3 : 2;
+/** Read actual column count from the computed grid layout. */
+function getColumnCount(gridEl: HTMLElement | null): number {
+  if (!gridEl) return 3;
+  return getComputedStyle(gridEl).gridTemplateColumns.split(" ").length;
 }
 
 export default function ShowSelectionGrid({
@@ -105,7 +106,7 @@ export default function ShowSelectionGrid({
       if (idx === -1) return;
 
       e.preventDefault();
-      const cols = getColumnCount();
+      const cols = getColumnCount(gridRef.current);
       let next = idx;
 
       // RTL: ArrowRight = previous, ArrowLeft = next
