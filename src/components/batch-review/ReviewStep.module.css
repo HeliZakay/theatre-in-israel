@@ -375,7 +375,7 @@
 
 @media (min-width: 768px) {
   .reviewStep {
-    max-width: 720px;
+    max-width: 820px;
     background: var(--background);
     border-radius: var(--radius-md);
     border: 1px solid var(--color-slate-008);
