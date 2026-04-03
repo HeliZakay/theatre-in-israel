@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour in milliseconds
-const MAX_REVIEWS_PER_WINDOW = 50; // Maximum 50 reviews per hour
+const MAX_REVIEWS_PER_WINDOW = 50;
 
 /**
  * Check if user has exceeded the rate limit for creating reviews.
@@ -12,6 +12,10 @@ const MAX_REVIEWS_PER_WINDOW = 50; // Maximum 50 reviews per hour
 export async function checkReviewRateLimit(
   userId: string,
 ): Promise<{ isLimited: boolean; remainingTime?: number }> {
+  if (!process.env.VERCEL) {
+    return { isLimited: false };
+  }
+
   const windowStart = new Date(Date.now() - RATE_LIMIT_WINDOW_MS);
 
   const recentReviews = await prisma.review.findMany({

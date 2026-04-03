@@ -1,3 +1,6 @@
+// Set VERCEL env before import so MAX_REVIEWS_PER_WINDOW resolves to 50
+process.env.VERCEL = "1";
+
 const mockReviewFindMany = jest.fn();
 
 jest.mock("@/lib/prisma", () => ({

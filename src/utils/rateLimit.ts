@@ -63,6 +63,10 @@ export function createRateLimitChecker(config: {
   const { action, maxAttempts, windowMs, keyPrefix = "", remainingTime } = config;
 
   return async (identifier: string) => {
+    if (!process.env.VERCEL) {
+      return { isLimited: false };
+    }
+
     const max =
       typeof maxAttempts === "function" ? maxAttempts(identifier) : maxAttempts;
     const result = await checkRateLimit(
