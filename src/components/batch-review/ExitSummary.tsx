@@ -20,6 +20,12 @@ const CONFETTI_COLORS = [
   "#2563eb",
   "#16a34a",
   "#f59e0b",
+  "#ec4899",
+  "#8b5cf6",
+  "#14b8a6",
+  "#f97316",
+  "#e11d48",
+  "#06b6d4",
 ];
 
 /* ------------------------------------------------------------------ */
@@ -53,7 +59,7 @@ function Confetti() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(false), 4000);
+    const timer = setTimeout(() => setVisible(false), 9000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -61,20 +67,61 @@ function Confetti() {
 
   return (
     <div className={styles.confettiContainer} aria-hidden="true">
-      {Array.from({ length: 24 }, (_, i) => (
-        <span
-          key={i}
-          className={styles.confettiPiece}
-          style={
-            {
-              "--x": `${4 + ((i * 4) % 92)}%`,
-              "--delay": `${i * 0.12}s`,
-              "--color": CONFETTI_COLORS[i % CONFETTI_COLORS.length],
-              "--drift": `${(i % 2 === 0 ? 1 : -1) * (10 + (i % 5) * 8)}px`,
-            } as React.CSSProperties
-          }
-        />
-      ))}
+      {Array.from({ length: 60 }, (_, i) => {
+        const x = ((i * 17 + i * i * 3) % 96) + 2;
+
+        const shapeType = i % 4;
+        let w: number, h: number, radius: string;
+        if (shapeType === 0) {
+          w = 8 + (i % 5) * 1.5;
+          h = w * 0.5;
+          radius = "1px";
+        } else if (shapeType === 1) {
+          const size = 6 + (i % 4) * 2;
+          w = size;
+          h = size;
+          radius = "2px";
+        } else if (shapeType === 2) {
+          w = 3 + (i % 3);
+          h = 10 + (i % 4) * 2;
+          radius = "1px";
+        } else {
+          const size = 5 + (i % 4) * 1.5;
+          w = size;
+          h = size;
+          radius = "50%";
+        }
+
+        const y = (i % 4) * -1;
+        const wave = Math.floor(i / 40);
+        const delay = wave * 0.35 + (i % 10) * 0.04;
+        const duration = 3 + ((i * 7) % 25) / 10;
+        const sway = (15 + ((i * 13) % 46)) * (i % 2 === 0 ? 1 : -1);
+        const rz = 180 + ((i * 11) % 900);
+        const ry = 180 + ((i * 23) % 540);
+
+        return (
+          <span
+            key={i}
+            className={styles.confettiPiece}
+            style={
+              {
+                "--x": `${x}%`,
+                "--y": `${y}vh`,
+                "--delay": `${delay}s`,
+                "--color": CONFETTI_COLORS[i % CONFETTI_COLORS.length],
+                "--w": `${w}px`,
+                "--h": `${h}px`,
+                "--radius": radius,
+                "--duration": `${duration}s`,
+                "--sway": `${sway}px`,
+                "--rz": `${rz}deg`,
+                "--ry": `${ry}deg`,
+              } as React.CSSProperties
+            }
+          />
+        );
+      })}
     </div>
   );
 }
