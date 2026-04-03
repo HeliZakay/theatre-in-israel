@@ -23,7 +23,7 @@ interface BatchFlowState {
   prevStep: Step | null;
   selectedShowIds: number[];
   currentIndex: number;
-  completedReviews: { showId: number; rating: number }[];
+  completedReviews: { showId: number; rating: number; text: string }[];
   skippedShowIds: number[];
   alreadyReviewedIds: Set<number>;
   submissionStatus: "idle" | "pending" | "confirmed" | "error";
@@ -36,7 +36,7 @@ type BatchFlowAction =
   | { type: "START_REVIEWS" }
   | { type: "SET_SUBMISSION_STATUS"; status: BatchFlowState["submissionStatus"] }
   | { type: "SET_ERROR"; message: string }
-  | { type: "REVIEW_CONFIRMED"; showId: number; rating: number }
+  | { type: "REVIEW_CONFIRMED"; showId: number; rating: number; text: string }
   | { type: "SKIP_SHOW" }
   | { type: "AUTO_ADVANCE" }
   | { type: "FINISH" }
@@ -134,7 +134,7 @@ function reducer(
         ...state,
         completedReviews: [
           ...state.completedReviews,
-          { showId: action.showId, rating: action.rating },
+          { showId: action.showId, rating: action.rating, text: action.text },
         ],
         submissionStatus: "confirmed",
         errorMessage: "",
@@ -277,7 +277,7 @@ export default function BatchReviewFlow({
           `ביקורת ${state.currentIndex + 1} מתוך ${state.selectedShowIds.length}: ${show?.title ?? ""}`,
         );
       } else if (state.step === "exit") {
-        announce(`ביקרתם ${state.completedReviews.length} הצגות!`);
+        announce(`תודה! ביקרתם ${state.completedReviews.length} הצגות!`);
       }
     });
 
@@ -384,7 +384,7 @@ export default function BatchReviewFlow({
       try {
         await submitToServer(review);
         logEvent("batch_review_submit", { showId, rating });
-        dispatch({ type: "REVIEW_CONFIRMED", showId, rating });
+        dispatch({ type: "REVIEW_CONFIRMED", showId, rating, text });
       } catch (err: unknown) {
         const msg =
           err instanceof Error ? err.message : "שגיאה בשליחת הביקורת";

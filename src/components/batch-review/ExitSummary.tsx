@@ -3,10 +3,25 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import FallbackImage from "@/components/ui/FallbackImage/FallbackImage";
+import ShareButtons from "@/components/ui/ShareButtons/ShareButtons";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import { showPath } from "@/constants/routes";
+import { ROUTES } from "@/constants/routes";
 import styles from "./ExitSummary.module.css";
 import type { BatchShowItem } from "@/lib/data/batchReview";
+
+/* ------------------------------------------------------------------ */
+/*  Constants                                                          */
+/* ------------------------------------------------------------------ */
+
+const CONFETTI_COLORS = [
+  "#9c1b20",
+  "#d4a017",
+  "#e8524a",
+  "#2563eb",
+  "#16a34a",
+  "#f59e0b",
+];
 
 /* ------------------------------------------------------------------ */
 /*  Star display (small, non-interactive)                              */
@@ -32,6 +47,40 @@ function MiniStars({ rating }: { rating: number }) {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Confetti                                                           */
+/* ------------------------------------------------------------------ */
+
+function Confetti() {
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setVisible(false), 4000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!visible) return null;
+
+  return (
+    <div className={styles.confettiContainer} aria-hidden="true">
+      {Array.from({ length: 24 }, (_, i) => (
+        <span
+          key={i}
+          className={styles.confettiPiece}
+          style={
+            {
+              "--x": `${4 + ((i * 4) % 92)}%`,
+              "--delay": `${i * 0.12}s`,
+              "--color": CONFETTI_COLORS[i % CONFETTI_COLORS.length],
+              "--drift": `${(i % 2 === 0 ? 1 : -1) * (10 + (i % 5) * 8)}px`,
+            } as React.CSSProperties
+          }
+        />
+      ))}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Odometer count-up                                                  */
 /* ------------------------------------------------------------------ */
 
@@ -44,7 +93,6 @@ function useOdometer(target: number, durationMs = 800): number {
     ).matches;
 
     if (prefersReduced || target === 0) {
-      // Use rAF callback to avoid synchronous setState in effect
       const id = requestAnimationFrame(() => setValue(target));
       return () => cancelAnimationFrame(id);
     }
@@ -75,7 +123,7 @@ function useOdometer(target: number, durationMs = 800): number {
 /* ------------------------------------------------------------------ */
 
 interface ExitSummaryProps {
-  completedReviews: { showId: number; rating: number }[];
+  completedReviews: { showId: number; rating: number; text: string }[];
   skippedShowIds: number[];
   shows: BatchShowItem[];
   isAuthenticated: boolean;
@@ -111,57 +159,99 @@ export default function ExitSummary({
     }
   };
 
+  const hasReviews = completedReviews.length > 0;
+
   return (
     <div className={styles.exitSummary}>
-      <h1
-        ref={headingRef}
-        className={styles.heading}
-        tabIndex={-1}
-        aria-live="polite"
-      >
-        ביקרתם{" "}
-        <span className={styles.odometerCount} aria-hidden="true">
-          {count}
-        </span>
-        <span className={styles.srOnly}>{completedReviews.length}</span> הצגות!
-      </h1>
+      {hasReviews && <Confetti />}
 
-      <div className={styles.showList} role="list">
-        {completedReviews.map(({ showId, rating }) => {
-          const show = shows.find((s) => s.id === showId);
-          if (!show) return null;
-          return (
-            <div key={showId} className={styles.showRow} role="listitem">
-              <div className={styles.showPoster}>
-                <FallbackImage
-                  src={getShowImagePath(show.title)}
-                  alt={show.title}
-                  fill
-                  sizes="40px"
-                  className={styles.showImage}
-                />
-              </div>
-              <div className={styles.showInfo}>
-                <span className={styles.showTitle}>{show.title}</span>
-                <MiniStars rating={rating} />
-                <Link href={showPath(show.slug)} className={styles.viewLink}>
-                  צפו בביקורת
-                </Link>
-              </div>
-              {isAuthenticated && (
-                <Link href={showPath(show.slug)} className={styles.editLink}>
-                  עריכה
-                </Link>
-              )}
-            </div>
-          );
-        })}
+      {/* Header */}
+      <div className={styles.headerSection}>
+        <h1
+          ref={headingRef}
+          className={styles.heading}
+          tabIndex={-1}
+          aria-live="polite"
+        >
+          {hasReviews ? "תודה על הביקורות!" : "אולי בפעם הבאה"}
+        </h1>
+        <p className={styles.subtitle}>
+          {hasReviews ? (
+            <>
+              כתבתם{" "}
+              <span className={styles.odometerCount} aria-hidden="true">
+                {count}
+              </span>
+              <span className={styles.srOnly}>{completedReviews.length}</span>{" "}
+              ביקורות — הקהילה מודה לכם
+            </>
+          ) : (
+            "לא כתבתם ביקורות הפעם"
+          )}
+        </p>
       </div>
 
+      {/* Review cards grid */}
+      {hasReviews && (
+        <div className={styles.reviewGrid} role="list">
+          {completedReviews.map(({ showId, rating, text }, index) => {
+            const show = shows.find((s) => s.id === showId);
+            if (!show) return null;
+            return (
+              <div
+                key={showId}
+                className={styles.reviewCard}
+                role="listitem"
+                style={{ "--card-index": index } as React.CSSProperties}
+              >
+                <div className={styles.cardHeader}>
+                  <div className={styles.showPoster}>
+                    <FallbackImage
+                      src={getShowImagePath(show.title)}
+                      alt={show.title}
+                      fill
+                      sizes="56px"
+                      className={styles.showImage}
+                    />
+                  </div>
+                  <div className={styles.showInfo}>
+                    <span className={styles.showTitle}>{show.title}</span>
+                    <MiniStars rating={rating} />
+                    {isAuthenticated && (
+                      <Link
+                        href={showPath(show.slug)}
+                        className={styles.editLink}
+                      >
+                        עריכה
+                      </Link>
+                    )}
+                  </div>
+                </div>
+                {text && text.length > 5 && (
+                  <p className={styles.reviewSnippet}>{text}</p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Share section */}
+      {hasReviews && (
+        <div className={styles.shareSection}>
+          <p className={styles.sharePrompt}>ספרו לחברים שביקרתם!</p>
+          <ShareButtons
+            text={`ביקרתי ${completedReviews.length} הצגות באתר תיאטרון בישראל!`}
+            url={ROUTES.REVIEWS_BATCH}
+          />
+        </div>
+      )}
+
+      {/* Skipped shows */}
       {skippedShowIds.length > 0 && (
         <div className={styles.skippedSection}>
           <h2 className={styles.skippedHeading}>הצגות שדילגתם עליהן</h2>
-          <div className={styles.showList} role="list">
+          <div className={styles.skippedList} role="list">
             {skippedShowIds.map((showId) => {
               const show = shows.find((s) => s.id === showId);
               if (!show) return null;
@@ -172,7 +262,7 @@ export default function ExitSummary({
                       src={getShowImagePath(show.title)}
                       alt={show.title}
                       fill
-                      sizes="40px"
+                      sizes="56px"
                       className={styles.showImage}
                     />
                   </div>
@@ -192,14 +282,20 @@ export default function ExitSummary({
         </div>
       )}
 
-      <button
-        className={styles.reviewMoreButton}
-        onClick={handleReviewMore}
-        disabled={loading}
-      >
-        {loading && <span className={styles.spinner} aria-hidden="true" />}
-        לביקורות נוספות
-      </button>
+      {/* CTAs */}
+      <div className={styles.ctaRow}>
+        <button
+          className={styles.reviewMoreButton}
+          onClick={handleReviewMore}
+          disabled={loading}
+        >
+          {loading && <span className={styles.spinner} aria-hidden="true" />}
+          לביקורות נוספות
+        </button>
+        <Link href={ROUTES.SHOWS} className={styles.exploreButton}>
+          גלו הצגות נוספות
+        </Link>
+      </div>
     </div>
   );
 }
