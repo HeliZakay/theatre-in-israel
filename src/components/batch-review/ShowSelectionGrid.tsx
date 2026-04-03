@@ -53,17 +53,20 @@ export default function ShowSelectionGrid({
     return [...set].filter(Boolean).sort();
   }, [shows]);
 
+  const isSearching = search.trim().length > 0 || theatreFilter.length > 0;
+
   const filtered = useMemo(() => {
     return shows.filter((show) => {
       if (theatreFilter && show.theatre !== theatreFilter) return false;
       if (search && !matchesSearch(show.title, search)) return false;
+      // Hide reviewed shows unless user is actively searching
+      if (reviewedIds.has(show.id) && !search.trim()) return false;
       return true;
     });
-  }, [shows, search, theatreFilter]);
+  }, [shows, search, theatreFilter, reviewedIds, isSearching]);
 
   const maxReached = selectedIds.size >= 50;
   const hasResults = filtered.length > 0;
-  const isSearching = search.trim().length > 0 || theatreFilter.length > 0;
 
   const handleToggle = useCallback(
     (showId: number) => {
