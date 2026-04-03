@@ -509,20 +509,22 @@ export default function BatchReviewFlow({
         const currentShow = shows.find((s) => s.id === currentShowId);
         if (!currentShow) return null;
         return (
-          <div key={`review-${currentShowId}`} className={transitionClass}>
-            <ReviewStep
-              key={currentShowId}
-              show={currentShow}
-              currentIndex={state.currentIndex}
-              totalCount={state.selectedShowIds.length}
-              submissionStatus={state.submissionStatus}
-              errorMessage={state.errorMessage}
-              onSubmitted={handleReviewSubmitted}
-              onBack={handleBackToSelect}
-              onSkip={() =>
-                handleSkip(currentShowId, state.currentIndex + 1)
-              }
-            />
+          <div className={styles.reviewWrapper}>
+            <div key={`review-${currentShowId}`} className={transitionClass}>
+              <ReviewStep
+                key={currentShowId}
+                show={currentShow}
+                currentIndex={state.currentIndex}
+                totalCount={state.selectedShowIds.length}
+                submissionStatus={state.submissionStatus}
+                errorMessage={state.errorMessage}
+                onSubmitted={handleReviewSubmitted}
+                onBack={handleBackToSelect}
+                onSkip={() =>
+                  handleSkip(currentShowId, state.currentIndex + 1)
+                }
+              />
+            </div>
           </div>
         );
       })()}

@@ -10,6 +10,14 @@
   position: relative;
 }
 
+.reviewWrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 .header {
   text-align: center;
   margin-bottom: 8px;
