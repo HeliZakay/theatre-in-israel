@@ -124,6 +124,7 @@ function reducer(
       return {
         ...state,
         submissionStatus: action.status,
+        errorMessage: "",
       };
     case "SET_ERROR":
       return {
@@ -149,16 +150,29 @@ function reducer(
     case "SKIP_SHOW": {
       const nextIndex = state.currentIndex + 1;
       const isLast = nextIndex >= state.selectedShowIds.length;
-      return withStepTransition(state, {
-        skippedShowIds: [
-          ...state.skippedShowIds,
-          state.selectedShowIds[state.currentIndex],
-        ],
+      const skippedShowIds = [
+        ...state.skippedShowIds,
+        state.selectedShowIds[state.currentIndex],
+      ];
+      if (isLast) {
+        return withStepTransition(state, {
+          skippedShowIds,
+          currentIndex: nextIndex,
+          step: "exit",
+          submissionStatus: "idle",
+          errorMessage: "",
+        });
+      }
+      // Same step (review→review): force prevStep so transition animation fires
+      return {
+        ...state,
+        skippedShowIds,
         currentIndex: nextIndex,
-        step: isLast ? "exit" : "review",
+        step: "review",
+        prevStep: "review",
         submissionStatus: "idle",
         errorMessage: "",
-      });
+      };
     }
     case "AUTO_ADVANCE": {
       if (state.returnToExit) {
