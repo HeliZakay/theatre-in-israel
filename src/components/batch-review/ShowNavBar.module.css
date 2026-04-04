@@ -57,8 +57,19 @@
 }
 
 .segmentCurrent {
-  background: var(--color-curtain-red);
-  box-shadow: 0 0 4px var(--color-curtain-red-025);
+  background: var(--color-slate-040, #999);
+  transform: scaleY(2);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 /* ── Prev button (outline style) ─────────────────── */
