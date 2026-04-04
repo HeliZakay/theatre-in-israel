@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import Link from "next/link";
 import FallbackImage from "@/components/ui/FallbackImage/FallbackImage";
 import { getShowImagePath } from "@/utils/getShowImagePath";
@@ -330,6 +330,16 @@ export default function ExitSummary({
     });
   }, []);
 
+  const [expandedCards, setExpandedCards] = useState<Set<number>>(new Set());
+  const toggleExpand = useCallback((showId: number) => {
+    setExpandedCards((prev) => {
+      const next = new Set(prev);
+      if (next.has(showId)) next.delete(showId);
+      else next.add(showId);
+      return next;
+    });
+  }, []);
+
   const hasReviews = completedReviews.length > 0;
 
   return (
@@ -400,7 +410,26 @@ export default function ExitSummary({
                   </div>
                 </div>
                 {text && text.length > 5 && (
-                  <p className={styles.reviewSnippet}>{text}</p>
+                  <>
+                    <p
+                      className={`${styles.reviewSnippet} ${expandedCards.has(showId) ? styles.reviewSnippetExpanded : ""}`}
+                    >
+                      {text}
+                    </p>
+                    {text.length > 120 && (
+                      <button
+                        className={styles.readMoreButton}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          toggleExpand(showId);
+                        }}
+                        aria-expanded={expandedCards.has(showId)}
+                      >
+                        {expandedCards.has(showId) ? "פחות" : "עוד"}
+                      </button>
+                    )}
+                  </>
                 )}
               </Link>
             );

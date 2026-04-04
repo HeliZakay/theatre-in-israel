@@ -189,6 +189,28 @@
   overflow: hidden;
 }
 
+.reviewSnippetExpanded {
+  -webkit-line-clamp: unset;
+  display: block;
+}
+
+.readMoreButton {
+  appearance: none;
+  border: none;
+  background: none;
+  color: var(--color-curtain-red);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 0;
+  margin-top: 2px;
+  align-self: flex-start;
+}
+
+.readMoreButton:hover {
+  text-decoration: underline;
+}
+
 /* ------------------------------------------------------------------ */
 /*  Stats Row                                                          */
 /* ------------------------------------------------------------------ */
