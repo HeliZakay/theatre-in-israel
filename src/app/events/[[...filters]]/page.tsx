@@ -28,6 +28,7 @@ import {
   toJsonLd,
   buildBreadcrumbJsonLd,
 } from "@/lib/seo";
+import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import DateChips from "@/components/events/DateChips";
 import RegionChips from "@/components/events/RegionChips";
@@ -404,6 +405,11 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
   }
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbItems);
+  const breadcrumbUiItems = breadcrumbItems.map((item, i) =>
+    i < breadcrumbItems.length - 1
+      ? { label: item.name, href: item.path }
+      : { label: item.name },
+  );
 
   // Event JSON-LD (ItemList with Event items, capped at 20)
   const itemListJsonLd =
@@ -498,6 +504,7 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
         />
       )}
 
+      <Breadcrumb items={breadcrumbUiItems} />
       <header className={styles.header}>
         <h1 className={styles.title}>{title}</h1>
         <p className={styles.subtitle}>
