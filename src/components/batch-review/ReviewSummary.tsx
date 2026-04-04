@@ -132,10 +132,40 @@ export default function ReviewSummary({
     return (
       <div className={styles.summary}>
         <div className={styles.emptyState}>
+          <svg
+            className={styles.emptyIllustration}
+            viewBox="0 0 120 80"
+            fill="none"
+            aria-hidden="true"
+          >
+            <rect x="10" y="62" width="100" height="8" rx="2" fill="var(--color-slate-008)" />
+            <path
+              d="M10 8 C10 8, 12 60, 30 60 C36 60, 38 40, 38 8Z"
+              fill="var(--color-curtain-red)"
+              opacity="0.85"
+            />
+            <path
+              d="M110 8 C110 8, 108 60, 90 60 C84 60, 82 40, 82 8Z"
+              fill="var(--color-curtain-red)"
+              opacity="0.85"
+            />
+            <rect x="6" y="4" width="108" height="8" rx="2" fill="var(--color-curtain-red)" />
+            <ellipse cx="60" cy="58" rx="16" ry="4" fill="var(--color-slate-008)" opacity="0.5" />
+          </svg>
+
           <h1 ref={headingRef} className={styles.heading} tabIndex={-1}>
-            אין ביקורות לשלוח
+            הבמה ריקה
           </h1>
-          <p className={styles.subtitle}>חזרו אחורה וכתבו ביקורת אחת לפחות</p>
+          <p className={styles.emptySubtitle}>
+            עדיין לא נכתבה אף ביקורת. חזרו אחורה כדי לכתוב את הביקורת הראשונה.
+          </p>
+          <button
+            className={styles.emptyBackButton}
+            onClick={onBack}
+            aria-label="חזרה לכתיבת ביקורות"
+          >
+            חזרה לכתיבה
+          </button>
         </div>
       </div>
     );

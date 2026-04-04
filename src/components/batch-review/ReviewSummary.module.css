@@ -36,8 +36,57 @@
 /* ------------------------------------------------------------------ */
 
 .emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  padding: 48px 16px;
+  padding: 48px 24px;
+  max-width: 400px;
+  gap: 12px;
+}
+
+.emptyIllustration {
+  width: 120px;
+  height: 80px;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+.emptySubtitle {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.emptyBackButton {
+  appearance: none;
+  margin-top: 8px;
+  height: 48px;
+  padding: 0 32px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--color-curtain-red);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    transform 0.1s ease;
+}
+
+.emptyBackButton:hover {
+  background: var(--color-curtain-red-hover);
+}
+
+.emptyBackButton:active {
+  transform: scale(0.98);
+}
+
+.emptyBackButton:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring-color);
 }
 
 /* ------------------------------------------------------------------ */
@@ -434,6 +483,10 @@
   }
 
   .progressFill {
+    transition: none;
+  }
+
+  .emptyBackButton {
     transition: none;
   }
 }
