@@ -357,7 +357,7 @@ export default function ExitSummary({
           {hasReviews
             ? reviewerName
               ? `תודה, ${reviewerName}!`
-              : "תודה על הביקורות!"
+              : "תודה על הביקורות! 🎉"
             : "אולי בפעם הבאה"}
         </h1>
         <p className={styles.subtitle}>
