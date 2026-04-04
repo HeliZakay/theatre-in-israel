@@ -83,14 +83,14 @@
 
 .textarea {
   width: 100%;
-  border: 1px solid var(--color-slate-015);
+  border: 2px solid var(--color-slate-015);
   border-radius: var(--radius-sm);
   padding: 10px 12px;
   font-size: 0.95rem;
   font-family: inherit;
   color: var(--color-text-primary);
   background: var(--background);
-  resize: vertical;
+  resize: none;
   transition: border-color 0.15s ease;
 }
 
@@ -101,7 +101,6 @@
 .textarea:focus {
   outline: none;
   border-color: var(--color-curtain-red);
-  box-shadow: 0 0 0 3px var(--focus-ring-color);
 }
 
 .charCount {

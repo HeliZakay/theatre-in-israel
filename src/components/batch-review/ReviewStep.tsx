@@ -109,9 +109,6 @@ export default function ReviewStep({
               placeholder="במילה, במשפט, או בפסקה — הכל בסדר"
               value={text}
               onChange={handleTextChange}
-              onFocus={(e) => {
-                e.currentTarget.rows = 6;
-              }}
             />
             {showCharCount && (
               <span className={styles.charCount}>
