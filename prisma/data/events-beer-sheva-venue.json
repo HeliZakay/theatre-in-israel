@@ -1,34 +1,9 @@
 {
-  "scrapedAt": "2026-04-04T03:57:05.398Z",
+  "scrapedAt": "2026-04-04T09:16:49.574Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון באר שבע",
     "city": "באר שבע"
   },
-  "events": [
-    {
-      "showId": 30,
-      "showSlug": "מדיאה",
-      "date": "2026-05-03",
-      "hour": "20:30"
-    },
-    {
-      "showId": 30,
-      "showSlug": "מדיאה",
-      "date": "2026-05-04",
-      "hour": "20:30"
-    },
-    {
-      "showId": 38,
-      "showSlug": "משכנתא",
-      "date": "2026-04-28",
-      "hour": "20:30"
-    },
-    {
-      "showId": 38,
-      "showSlug": "משכנתא",
-      "date": "2026-04-29",
-      "hour": "20:30"
-    }
-  ]
+  "events": []
 }
