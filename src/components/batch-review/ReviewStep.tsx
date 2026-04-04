@@ -73,55 +73,61 @@ export default function ReviewStep({
 
   return (
     <div className={styles.reviewStep}>
-      {/* Show card */}
-      <div className={styles.showCard}>
-        <div className={styles.showPoster}>
-          <FallbackImage
-            src={getShowImagePath(show.title)}
-            alt={show.title}
-            fill
-            sizes="(min-width: 768px) 820px, 100vw"
-            className={styles.showImage}
+      <div className={styles.contentRow}>
+        {/* Show card */}
+        <div className={styles.showCard}>
+          <div className={styles.showPoster}>
+            <FallbackImage
+              src={getShowImagePath(show.title)}
+              alt={show.title}
+              fill
+              sizes="(min-width: 768px) 280px, 100vw"
+              className={styles.showImage}
+            />
+          </div>
+        </div>
+
+        {/* Review form */}
+        <div className={styles.formColumn}>
+          <div className={styles.showInfo}>
+            <h2 className={styles.showTitle}>{show.title}</h2>
+            <span className={styles.showTheatre}>{show.theatre}</span>
+          </div>
+
+          {/* Star rating */}
+          <div className={styles.ratingSection}>
+            <StarRating value={rating} onChange={setRating} disabled={false} />
+          </div>
+
+          {/* Textarea */}
+          <div className={styles.textSection}>
+            <textarea
+              ref={textareaRef}
+              className={styles.textarea}
+              rows={3}
+              maxLength={REVIEW_TEXT_MAX}
+              placeholder="במילה, במשפט, או בפסקה — הכל בסדר"
+              value={text}
+              onChange={handleTextChange}
+              onFocus={(e) => {
+                e.currentTarget.rows = 6;
+              }}
+            />
+            {showCharCount && (
+              <span className={styles.charCount}>
+                {text.length} / {REVIEW_TEXT_MAX}
+              </span>
+            )}
+          </div>
+
+          {/* Expression chips */}
+          <ExpressionChips
+            text={text}
+            onTextChange={handleChipTextChange}
+            disabled={false}
           />
         </div>
-        <div className={styles.showInfo}>
-          <h2 className={styles.showTitle}>{show.title}</h2>
-          <span className={styles.showTheatre}>{show.theatre}</span>
-        </div>
       </div>
-
-      {/* Star rating */}
-      <div className={styles.ratingSection}>
-        <StarRating value={rating} onChange={setRating} disabled={false} />
-      </div>
-
-      {/* Textarea */}
-      <div className={styles.textSection}>
-        <textarea
-          ref={textareaRef}
-          className={styles.textarea}
-          rows={3}
-          maxLength={REVIEW_TEXT_MAX}
-          placeholder="במילה, במשפט, או בפסקה — הכל בסדר"
-          value={text}
-          onChange={handleTextChange}
-          onFocus={(e) => {
-            e.currentTarget.rows = 6;
-          }}
-        />
-        {showCharCount && (
-          <span className={styles.charCount}>
-            {text.length} / {REVIEW_TEXT_MAX}
-          </span>
-        )}
-      </div>
-
-      {/* Expression chips */}
-      <ExpressionChips
-        text={text}
-        onTextChange={handleChipTextChange}
-        disabled={false}
-      />
 
       {/* Navigation bottom bar */}
       <div className={styles.bottomBar}>
