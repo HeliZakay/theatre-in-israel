@@ -20,7 +20,7 @@ export default function Header() {
   const fullName = session?.user?.name?.trim() || "";
   const firstName = fullName.split(/\s+/).filter(Boolean)[0] || "";
   const isWriteReviewPage =
-    pathname === ROUTES.REVIEWS_NEW || pathname.endsWith("/review");
+    pathname === ROUTES.REVIEWS_BATCH || pathname.endsWith("/review");
   const isMyReviewsPage =
     pathname === ROUTES.MY_REVIEWS ||
     pathname.startsWith(`${ROUTES.MY_REVIEWS}/`);

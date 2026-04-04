@@ -161,7 +161,7 @@ export default function MobileMenu({
       <div className={styles.actionsSection}>
         <div className={styles.actions}>
           <Button
-            href={ROUTES.REVIEWS_NEW}
+            href={ROUTES.REVIEWS_BATCH}
             aria-label="כתב.י ביקורת"
             className={`${styles.reviewAction} ${styles.desktopOnlyAction}`}
             onClick={onClose}
@@ -280,7 +280,7 @@ export default function MobileMenu({
             צר.י קשר
           </Link>
           <Link
-            href={ROUTES.REVIEWS_NEW}
+            href={ROUTES.REVIEWS_BATCH}
             className={cx(styles.drawerItem, isWriteReviewPage && styles.drawerItemActive)}
             onClick={onClose}
           >
