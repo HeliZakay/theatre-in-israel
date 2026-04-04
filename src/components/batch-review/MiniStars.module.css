@@ -1,0 +1,10 @@
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  width: 18px;
+  height: 18px;
+  color: var(--color-curtain-red);
+}

@@ -3,7 +3,7 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import FallbackImage from "@/components/ui/FallbackImage/FallbackImage";
 import { getShowImagePath } from "@/utils/getShowImagePath";
-import { REVIEW_TEXT_MAX, REVIEW_TEXT_MIN } from "@/constants/reviewValidation";
+import { REVIEW_TEXT_MAX } from "@/constants/reviewValidation";
 import StarRating from "./StarRating";
 import ExpressionChips from "./ExpressionChips";
 import ShowNavStrip from "./ShowNavStrip";
@@ -14,17 +14,15 @@ interface ReviewStepProps {
   show: BatchShowItem;
   currentIndex: number;
   totalCount: number;
-  submissionStatus: "idle" | "pending" | "confirmed" | "error";
-  errorMessage: string;
-  onSubmitted: (showId: number, rating: number, text: string) => void;
-  onSkip: () => void;
-  onFinish: () => void;
-  completedReview?: { showId: number; rating: number; text: string };
+  onNext: () => void;
+  onPrev: () => void;
+  isFirst: boolean;
+  isLast: boolean;
+  editingFromSummary: boolean;
   shows: BatchShowItem[];
   selectedShowIds: number[];
-  completedReviews: { showId: number; rating: number; text: string }[];
   onJumpTo: (index: number) => void;
-  hasNextUnreviewed: boolean;
+  draftedShowIds: Set<number>;
   initialDraft?: { rating: number | null; text: string };
   onDraftChange?: (showId: number, draft: { rating: number | null; text: string }) => void;
 }
@@ -33,17 +31,15 @@ export default function ReviewStep({
   show,
   currentIndex,
   totalCount,
-  submissionStatus,
-  errorMessage: externalError,
-  onSubmitted,
-  onSkip,
-  onFinish,
-  completedReview,
+  onNext,
+  onPrev,
+  isFirst,
+  isLast,
+  editingFromSummary,
   shows,
   selectedShowIds,
-  completedReviews,
   onJumpTo,
-  hasNextUnreviewed,
+  draftedShowIds,
   initialDraft,
   onDraftChange,
 }: ReviewStepProps) {
@@ -51,24 +47,13 @@ export default function ReviewStep({
   const [text, setText] = useState(initialDraft?.text ?? "");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const isReadOnly = !!completedReview;
-
   // Sync draft changes back to parent (writes to a ref, no re-renders)
   useEffect(() => {
-    if (!isReadOnly) {
-      onDraftChange?.(show.id, { rating, text });
-    }
-  }, [rating, text, show.id, onDraftChange, isReadOnly]);
-  const displayRating = isReadOnly ? completedReview.rating : rating;
-  const displayText = isReadOnly ? completedReview.text : text;
-
-  const completedShowIds = new Set(completedReviews.map((r) => r.showId));
+    onDraftChange?.(show.id, { rating, text });
+  }, [rating, text, show.id, onDraftChange]);
 
   const progress = ((currentIndex + 1) / totalCount) * 100;
-  const isPending = submissionStatus === "pending";
-  const isConfirmed = submissionStatus === "confirmed";
-  const isDisabled = isPending || isConfirmed || isReadOnly;
-  const showCharCount = !isReadOnly && text.length > 500;
+  const showCharCount = text.length > 500;
 
   const handleTextChange = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -81,29 +66,14 @@ export default function ReviewStep({
     setText(newText);
   }, []);
 
-  const handleSubmit = () => {
-    if (!rating) return;
-    onSubmitted(show.id, rating, text);
-  };
-
-  const handleSkip = () => {
-    onSkip();
-  };
+  const nextLabel = editingFromSummary
+    ? "חזרה לסיכום"
+    : isLast
+      ? "סיום"
+      : "הבא";
 
   return (
     <div className={styles.reviewStep}>
-      {/* Confirmed toast overlay */}
-      {isConfirmed && (
-        <div className={styles.toastOverlay}>
-          <div className={styles.toast}>
-            <svg className={styles.toastCheck} viewBox="0 0 24 24" fill="none" stroke="#34c759" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-            <span className={styles.toastText}>פורסמה!</span>
-          </div>
-        </div>
-      )}
-
       {/* Progress */}
       <div className={styles.progressSection}>
         <div className={styles.progressContent}>
@@ -125,9 +95,9 @@ export default function ReviewStep({
           shows={shows}
           selectedShowIds={selectedShowIds}
           currentIndex={currentIndex}
-          completedShowIds={completedShowIds}
+          completedShowIds={draftedShowIds}
           onJumpTo={onJumpTo}
-          disabled={isPending || isConfirmed}
+          disabled={false}
         />
       )}
 
@@ -150,7 +120,7 @@ export default function ReviewStep({
 
       {/* Star rating */}
       <div className={styles.ratingSection}>
-        <StarRating value={displayRating} onChange={setRating} disabled={isDisabled} />
+        <StarRating value={rating} onChange={setRating} disabled={false} />
       </div>
 
       {/* Textarea */}
@@ -161,12 +131,10 @@ export default function ReviewStep({
           rows={3}
           maxLength={REVIEW_TEXT_MAX}
           placeholder="במילה, במשפט, או בפסקה — הכל בסדר"
-          value={displayText}
+          value={text}
           onChange={handleTextChange}
-          disabled={isDisabled}
-          readOnly={isReadOnly}
           onFocus={(e) => {
-            if (!isReadOnly) e.currentTarget.rows = 6;
+            e.currentTarget.rows = 6;
           }}
         />
         {showCharCount && (
@@ -178,59 +146,29 @@ export default function ReviewStep({
 
       {/* Expression chips */}
       <ExpressionChips
-        text={displayText}
+        text={text}
         onTextChange={handleChipTextChange}
-        disabled={isDisabled}
+        disabled={false}
       />
 
-      {/* Error */}
-      {externalError && (
-        <p className={styles.error} role="alert">
-          {externalError}
-        </p>
-      )}
-
-      {/* Sticky bottom bar */}
+      {/* Navigation bottom bar */}
       <div className={styles.bottomBar}>
-        {isReadOnly ? (
-          <>
-            <span className={styles.reviewedLabel}>נכתבה ביקורת</span>
+        <div className={styles.navButtons}>
+          {!isFirst && !editingFromSummary && (
             <button
-              className={styles.finishButton}
-              onClick={onFinish}
+              className={styles.prevButton}
+              onClick={onPrev}
             >
-              סיום
+              הקודם
             </button>
-          </>
-        ) : (
-          <>
-            <button
-              className={styles.submitButton}
-              onClick={handleSubmit}
-              disabled={!rating || text.length < REVIEW_TEXT_MIN || isDisabled}
-            >
-              {isPending ? "שולח..." : "שלח ביקורת"}
-            </button>
-            <div className={styles.secondaryActions}>
-              {hasNextUnreviewed && (
-                <button
-                  className={styles.skipButton}
-                  onClick={handleSkip}
-                  disabled={isDisabled}
-                >
-                  דלג
-                </button>
-              )}
-              <button
-                className={styles.finishButton}
-                onClick={onFinish}
-                disabled={isDisabled}
-              >
-                סיום
-              </button>
-            </div>
-          </>
-        )}
+          )}
+          <button
+            className={styles.nextButton}
+            onClick={onNext}
+          >
+            {nextLabel}
+          </button>
+        </div>
       </div>
     </div>
   );

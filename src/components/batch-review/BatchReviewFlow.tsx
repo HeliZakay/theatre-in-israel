@@ -4,10 +4,12 @@ import { useReducer, useCallback, useRef, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ShowSelectionGrid from "./ShowSelectionGrid";
 import ReviewStep from "./ReviewStep";
+import ReviewSummary from "./ReviewSummary";
 import ExitSummary from "./ExitSummary";
 import { createReview, createAnonymousReview } from "@/app/reviews/actions";
 import { logEvent } from "@/lib/analytics";
 import { EXPRESSION_CHIPS } from "@/constants/expressionChips";
+import { REVIEW_TEXT_MIN } from "@/constants/reviewValidation";
 import styles from "./BatchReviewFlow.module.css";
 import type { BatchShowItem } from "@/lib/data/batchReview";
 
@@ -15,7 +17,7 @@ import type { BatchShowItem } from "@/lib/data/batchReview";
 /*  State                                                              */
 /* ------------------------------------------------------------------ */
 
-type Step = "select" | "review" | "exit";
+type Step = "select" | "review" | "summary" | "exit";
 
 interface BatchFlowState {
   step: Step;
@@ -24,20 +26,19 @@ interface BatchFlowState {
   currentIndex: number;
   completedReviews: { showId: number; rating: number; text: string }[];
   alreadyReviewedIds: Set<number>;
-  submissionStatus: "idle" | "pending" | "confirmed" | "error";
-  errorMessage: string;
+  editingFromSummary: boolean;
 }
 
 type BatchFlowAction =
   | { type: "TOGGLE_SHOW"; showId: number }
   | { type: "START_REVIEWS" }
-  | { type: "SET_SUBMISSION_STATUS"; status: BatchFlowState["submissionStatus"] }
-  | { type: "SET_ERROR"; message: string }
-  | { type: "REVIEW_CONFIRMED"; showId: number; rating: number; text: string }
-  | { type: "SKIP_SHOW" }
-  | { type: "AUTO_ADVANCE" }
+  | { type: "NEXT_SHOW" }
+  | { type: "PREV_SHOW" }
   | { type: "JUMP_TO"; index: number }
-  | { type: "FINISH" }
+  | { type: "GO_TO_SUMMARY"; drafts: { showId: number; rating: number; text: string }[] }
+  | { type: "EDIT_FROM_SUMMARY"; index: number }
+  | { type: "RETURN_TO_SUMMARY"; drafts: { showId: number; rating: number; text: string }[] }
+  | { type: "BULK_SUBMIT_COMPLETE"; reviews: { showId: number; rating: number; text: string }[] }
   | { type: "BACK_TO_SELECT" };
 
 function createInitialState(reviewedShowIds: number[]): BatchFlowState {
@@ -48,8 +49,7 @@ function createInitialState(reviewedShowIds: number[]): BatchFlowState {
     currentIndex: 0,
     completedReviews: [],
     alreadyReviewedIds: new Set(reviewedShowIds),
-    submissionStatus: "idle",
-    errorMessage: "",
+    editingFromSummary: false,
   };
 }
 
@@ -61,6 +61,9 @@ function getTransitionClass(
   if (prevStep === "select" && step === "review") return "slideInFromLeft";
   if (prevStep === "review" && step === "select") return "fadeIn";
   if (prevStep === "review" && step === "review") return "fadeSlideIn";
+  if (prevStep === "review" && step === "summary") return "fadeIn";
+  if (prevStep === "summary" && step === "review") return "slideInFromLeft";
+  if (prevStep === "summary" && step === "exit") return "fadeIn";
   if (step === "exit") return "fadeIn";
   return null;
 }
@@ -98,87 +101,31 @@ function reducer(
         step: "select",
         currentIndex: 0,
         completedReviews: [],
-        submissionStatus: "idle",
-        errorMessage: "",
+        editingFromSummary: false,
       });
     case "START_REVIEWS":
       return withStepTransition(state, {
         step: "review",
         currentIndex: 0,
         completedReviews: [],
-        submissionStatus: "idle",
-        errorMessage: "",
+        editingFromSummary: false,
       });
-    case "SET_SUBMISSION_STATUS":
+    case "NEXT_SHOW": {
+      if (state.currentIndex >= state.selectedShowIds.length - 1) return state;
       return {
         ...state,
-        submissionStatus: action.status,
-        errorMessage: "",
-      };
-    case "SET_ERROR":
-      return {
-        ...state,
-        submissionStatus: "error",
-        errorMessage: action.message,
-      };
-    case "REVIEW_CONFIRMED":
-      return {
-        ...state,
-        completedReviews: [
-          ...state.completedReviews,
-          { showId: action.showId, rating: action.rating, text: action.text },
-        ],
-        submissionStatus: "confirmed",
-        errorMessage: "",
-      };
-    case "SKIP_SHOW": {
-      // Find next unreviewed show
-      const skippedReviewedIds = new Set(
-        state.completedReviews.map((r) => r.showId),
-      );
-      let nextIndex = state.currentIndex + 1;
-      while (
-        nextIndex < state.selectedShowIds.length &&
-        skippedReviewedIds.has(state.selectedShowIds[nextIndex])
-      ) {
-        nextIndex++;
-      }
-      // No more unreviewed shows — stay put
-      if (nextIndex >= state.selectedShowIds.length) {
-        return { ...state, submissionStatus: "idle", errorMessage: "" };
-      }
-      // Same step (review→review): force prevStep so transition animation fires
-      return {
-        ...state,
-        currentIndex: nextIndex,
+        currentIndex: state.currentIndex + 1,
         step: "review",
         prevStep: "review",
-        submissionStatus: "idle",
-        errorMessage: "",
       };
     }
-    case "AUTO_ADVANCE": {
-      // Find next unreviewed show (skip already-completed ones)
-      const reviewedIds = new Set(state.completedReviews.map((r) => r.showId));
-      let nextIndex = state.currentIndex + 1;
-      while (
-        nextIndex < state.selectedShowIds.length &&
-        reviewedIds.has(state.selectedShowIds[nextIndex])
-      ) {
-        nextIndex++;
-      }
-      // No more unreviewed shows — stay on current (read-only view)
-      if (nextIndex >= state.selectedShowIds.length) {
-        return { ...state, submissionStatus: "idle", errorMessage: "" };
-      }
-      // Same step (review→review): force prevStep so transition animation fires
+    case "PREV_SHOW": {
+      if (state.currentIndex <= 0) return state;
       return {
         ...state,
-        currentIndex: nextIndex,
+        currentIndex: state.currentIndex - 1,
         step: "review",
         prevStep: "review",
-        submissionStatus: "idle",
-        errorMessage: "",
       };
     }
     case "JUMP_TO":
@@ -187,14 +134,30 @@ function reducer(
         currentIndex: action.index,
         step: "review",
         prevStep: "review",
-        submissionStatus: "idle",
-        errorMessage: "",
       };
-    case "FINISH":
+    case "GO_TO_SUMMARY":
+      return withStepTransition(state, {
+        step: "summary",
+        completedReviews: action.drafts,
+        editingFromSummary: false,
+      });
+    case "EDIT_FROM_SUMMARY":
+      return withStepTransition(state, {
+        step: "review",
+        currentIndex: action.index,
+        editingFromSummary: true,
+      });
+    case "RETURN_TO_SUMMARY":
+      return withStepTransition(state, {
+        step: "summary",
+        completedReviews: action.drafts,
+        editingFromSummary: false,
+      });
+    case "BULK_SUBMIT_COMPLETE":
       return withStepTransition(state, {
         step: "exit",
-        submissionStatus: "idle",
-        errorMessage: "",
+        completedReviews: action.reviews,
+        editingFromSummary: false,
       });
     default:
       return state;
@@ -265,6 +228,8 @@ export default function BatchReviewFlow({
         announce(
           `ביקורת ${state.currentIndex + 1} מתוך ${state.selectedShowIds.length}: ${show?.title ?? ""}`,
         );
+      } else if (state.step === "summary") {
+        announce(`סיכום ${state.completedReviews.length} ביקורות`);
       } else if (state.step === "exit") {
         announce(`תודה! ביקרתם ${state.completedReviews.length} הצגות!`);
       }
@@ -275,6 +240,11 @@ export default function BatchReviewFlow({
       logEvent("batch_start_reviews", {
         showCount: state.selectedShowIds.length,
       });
+    } else if (state.step === "summary" && prev === "review") {
+      logEvent("batch_summary_view", {
+        draftCount: state.completedReviews.length,
+        selectedCount: state.selectedShowIds.length,
+      });
     } else if (state.step === "exit") {
       logEvent("batch_complete", {
         reviewedCount: state.completedReviews.length,
@@ -282,22 +252,6 @@ export default function BatchReviewFlow({
       });
     }
   }, [state.step, state.currentIndex, state.selectedShowIds, state.completedReviews.length, shows, announce]);
-
-  // Announce confirmation via aria-live (without changing step)
-  useEffect(() => {
-    if (state.submissionStatus === "confirmed") {
-      announce("הביקורת שלכם פורסמה!");
-    }
-  }, [state.submissionStatus, announce]);
-
-  // Auto-advance after review confirmed
-  useEffect(() => {
-    if (state.submissionStatus !== "confirmed") return;
-    const timer = setTimeout(() => {
-      dispatch({ type: "AUTO_ADVANCE" });
-    }, 1200);
-    return () => clearTimeout(timer);
-  }, [state.submissionStatus]);
 
   // Track page entry
   const entryTracked = useRef(false);
@@ -349,6 +303,22 @@ export default function BatchReviewFlow({
   );
 
   /* ---------------------------------------------------------------- */
+  /*  Draft collection helper                                          */
+  /* ---------------------------------------------------------------- */
+
+  const collectValidDrafts = useCallback(() => {
+    return state.selectedShowIds
+      .map((id) => {
+        const draft = draftsRef.current[id];
+        if (draft && draft.rating !== null && draft.text.length >= REVIEW_TEXT_MIN) {
+          return { showId: id, rating: draft.rating, text: draft.text };
+        }
+        return null;
+      })
+      .filter((d): d is { showId: number; rating: number; text: string } => d !== null);
+  }, [state.selectedShowIds]);
+
+  /* ---------------------------------------------------------------- */
   /*  Handlers                                                         */
   /* ---------------------------------------------------------------- */
 
@@ -364,34 +334,22 @@ export default function BatchReviewFlow({
     }
   };
 
-  const handleReviewSubmitted = useCallback(
-    async (showId: number, rating: number, text: string) => {
-      dispatch({ type: "SET_SUBMISSION_STATUS", status: "pending" });
+  const handleNextShow = useCallback(() => {
+    if (state.editingFromSummary) {
+      dispatch({ type: "RETURN_TO_SUMMARY", drafts: collectValidDrafts() });
+      return;
+    }
+    const isLast = state.currentIndex === state.selectedShowIds.length - 1;
+    if (isLast) {
+      dispatch({ type: "GO_TO_SUMMARY", drafts: collectValidDrafts() });
+    } else {
+      dispatch({ type: "NEXT_SHOW" });
+    }
+  }, [state.currentIndex, state.selectedShowIds.length, state.editingFromSummary, collectValidDrafts]);
 
-      const review = { showId, rating, text };
-
-      try {
-        await submitToServer(review);
-        logEvent("batch_review_submit", { showId, rating });
-        dispatch({ type: "REVIEW_CONFIRMED", showId, rating, text });
-        delete draftsRef.current[showId];
-      } catch (err: unknown) {
-        const msg =
-          err instanceof Error ? err.message : "שגיאה בשליחת הביקורת";
-        logEvent("batch_review_error", { message: msg });
-        dispatch({ type: "SET_ERROR", message: msg });
-      }
-    },
-    [isAuthenticated, submitToServer],
-  );
-
-  const handleSkip = useCallback(
-    (showId: number, position: number) => {
-      logEvent("batch_review_skip", { showId, position });
-      dispatch({ type: "SKIP_SHOW" });
-    },
-    [],
-  );
+  const handlePrevShow = useCallback(() => {
+    dispatch({ type: "PREV_SHOW" });
+  }, []);
 
   const handleJumpTo = useCallback(
     (index: number) => {
@@ -402,20 +360,33 @@ export default function BatchReviewFlow({
     [state.currentIndex],
   );
 
-  const handleFinish = () => {
-    draftsRef.current = {};
-    dispatch({ type: "FINISH" });
-  };
+  const handleEditFromSummary = useCallback(
+    (showId: number) => {
+      const index = state.selectedShowIds.indexOf(showId);
+      if (index !== -1) {
+        dispatch({ type: "EDIT_FROM_SUMMARY", index });
+      }
+    },
+    [state.selectedShowIds],
+  );
+
+  const handleBulkSubmitComplete = useCallback(
+    (reviews: { showId: number; rating: number; text: string }[]) => {
+      draftsRef.current = {};
+      dispatch({ type: "BULK_SUBMIT_COMPLETE", reviews });
+    },
+    [],
+  );
 
   const handleClose = () => {
-    const hasUnfinished =
-      state.completedReviews.length < state.selectedShowIds.length &&
+    const hasDrafts =
       state.step !== "select" &&
-      state.step !== "exit";
+      state.step !== "exit" &&
+      Object.values(draftsRef.current).some((d) => d.rating !== null);
 
-    if (hasUnfinished) {
+    if (hasDrafts) {
       const confirmed = window.confirm(
-        "יש ביקורות שעוד לא הושלמו. לצאת בכל זאת?",
+        "יש ביקורות שעוד לא נשלחו. לצאת בכל זאת?",
       );
       if (!confirmed) return;
     }
@@ -432,6 +403,14 @@ export default function BatchReviewFlow({
   const transitionClass = transitionName
     ? transitionStyleMap[transitionName] ?? ""
     : "";
+
+  // Compute draftedShowIds for ShowNavStrip (shows with rating set)
+  const draftedShowIds = new Set(
+    state.selectedShowIds.filter((id) => {
+      const draft = draftsRef.current[id];
+      return draft && draft.rating !== null;
+    }),
+  );
 
   return (
     <main className={`${styles.flow} ${state.step === "exit" ? styles.flowExit : ""}`} dir="rtl">
@@ -484,16 +463,6 @@ export default function BatchReviewFlow({
         const currentShowId = state.selectedShowIds[state.currentIndex];
         const currentShow = shows.find((s) => s.id === currentShowId);
         if (!currentShow) return null;
-        const completedReview = state.completedReviews.find(
-          (r) => r.showId === currentShowId,
-        );
-        // Check if there's a next unreviewed show after the current one
-        const reviewedIdSet = new Set(
-          state.completedReviews.map((r) => r.showId),
-        );
-        const hasNextUnreviewed = state.selectedShowIds
-          .slice(state.currentIndex + 1)
-          .some((id) => !reviewedIdSet.has(id));
         return (
           <div className={styles.reviewWrapper}>
             <div key={`review-${currentShowId}`} className={transitionClass}>
@@ -502,26 +471,35 @@ export default function BatchReviewFlow({
                 show={currentShow}
                 currentIndex={state.currentIndex}
                 totalCount={state.selectedShowIds.length}
-                submissionStatus={state.submissionStatus}
-                errorMessage={state.errorMessage}
-                onSubmitted={handleReviewSubmitted}
-                onSkip={() =>
-                  handleSkip(currentShowId, state.currentIndex + 1)
-                }
-                onFinish={handleFinish}
-                completedReview={completedReview}
+                onNext={handleNextShow}
+                onPrev={handlePrevShow}
+                isFirst={state.currentIndex === 0}
+                isLast={state.currentIndex === state.selectedShowIds.length - 1}
+                editingFromSummary={state.editingFromSummary}
                 shows={shows}
                 selectedShowIds={state.selectedShowIds}
-                completedReviews={state.completedReviews}
                 onJumpTo={handleJumpTo}
-                hasNextUnreviewed={hasNextUnreviewed}
-                initialDraft={completedReview ? undefined : draftsRef.current[currentShowId]}
+                draftedShowIds={draftedShowIds}
+                initialDraft={draftsRef.current[currentShowId]}
                 onDraftChange={handleDraftChange}
               />
             </div>
           </div>
         );
       })()}
+
+      {state.step === "summary" && (
+        <div className={transitionClass} style={{ width: "100%" }}>
+          <ReviewSummary
+            drafts={state.completedReviews}
+            shows={shows}
+            isAuthenticated={isAuthenticated}
+            onEdit={handleEditFromSummary}
+            onSubmitComplete={handleBulkSubmitComplete}
+            submitToServer={submitToServer}
+          />
+        </div>
+      )}
 
       {state.step === "exit" && (
         <div className={transitionClass} style={{ width: "100%" }}>

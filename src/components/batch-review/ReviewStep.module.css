@@ -9,62 +9,6 @@
   padding-bottom: 96px;
 }
 
-/* ------------------------------------------------------------------ */
-/*  Confirmed toast overlay                                            */
-/* ------------------------------------------------------------------ */
-
-.toastOverlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.75);
-  border-radius: inherit;
-  z-index: 10;
-  animation: toastFadeIn 0.15s ease-out;
-}
-
-@media (prefers-color-scheme: dark) {
-  .toastOverlay {
-    background: rgba(0, 0, 0, 0.6);
-  }
-}
-
-.toast {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  border-radius: var(--radius-sm);
-  background: var(--background);
-  border: 1px solid #34c759;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.toastCheck {
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-}
-
-.toastText {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #34c759;
-}
-
-@keyframes toastFadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
 /* Progress */
 .progressSection {
   display: flex;
@@ -185,24 +129,12 @@
   box-shadow: 0 0 0 3px var(--focus-ring-color);
 }
 
-.textarea:disabled {
-  opacity: 0.5;
-  cursor: default;
-}
-
 .charCount {
   position: absolute;
   bottom: 8px;
   left: 12px;
   font-size: 0.75rem;
   color: var(--color-text-muted);
-}
-
-/* Error */
-.error {
-  font-size: 0.85rem;
-  color: #dc2626;
-  margin: 0;
 }
 
 /* Bottom bar */
@@ -217,9 +149,7 @@
   border-top: 1px solid var(--color-slate-008);
   z-index: 20;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
+  justify-content: center;
   animation: slideUp 0.2s ease-out;
 }
 
@@ -232,9 +162,15 @@
   }
 }
 
-.submitButton {
+.navButtons {
+  display: flex;
+  gap: 12px;
   width: 100%;
   max-width: 640px;
+}
+
+.nextButton {
+  flex: 1;
   height: 48px;
   border: none;
   border-radius: var(--radius-sm);
@@ -248,89 +184,46 @@
     transform 0.1s ease;
 }
 
-.submitButton:hover:not(:disabled) {
+.nextButton:hover {
   background: var(--color-curtain-red-hover);
 }
 
-.submitButton:active:not(:disabled) {
+.nextButton:active {
   transform: scale(0.98);
 }
 
-.submitButton:focus-visible {
+.nextButton:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px var(--focus-ring-color);
 }
 
-.submitButton:disabled {
-  opacity: 0.5;
-  cursor: default;
-}
-
-.skipButton {
-  appearance: none;
-  border: none;
-  background: none;
-  color: var(--color-text-muted);
-  font-size: 0.9rem;
-  cursor: pointer;
-  padding: 4px 12px;
-  min-height: 44px;
-}
-
-.skipButton:hover:not(:disabled) {
-  color: var(--color-text-primary);
-}
-
-.skipButton:focus-visible {
-  outline: 3px solid var(--focus-ring-color);
-  border-radius: 4px;
-}
-
-.skipButton:disabled {
-  opacity: 0.5;
-  cursor: default;
-}
-
-.secondaryActions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.finishButton {
-  appearance: none;
-  border: none;
-  background: none;
-  color: var(--color-text-muted);
-  font-size: 0.9rem;
-  cursor: pointer;
-  padding: 4px 12px;
-  min-height: 44px;
-}
-
-.finishButton:hover:not(:disabled) {
-  color: var(--color-text-primary);
-}
-
-.finishButton:focus-visible {
-  outline: 3px solid var(--focus-ring-color);
-  border-radius: 4px;
-}
-
-.finishButton:disabled {
-  opacity: 0.5;
-  cursor: default;
-}
-
-.reviewedLabel {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #34c759;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.prevButton {
   height: 48px;
-  justify-content: center;
+  padding: 0 24px;
+  border: 1.5px solid var(--color-slate-015);
+  border-radius: var(--radius-sm);
+  background: var(--background);
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.prevButton:hover {
+  border-color: var(--color-slate-030, var(--color-slate-015));
+  background: var(--color-slate-006);
+}
+
+.prevButton:active {
+  transform: scale(0.98);
+}
+
+.prevButton:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring-color);
 }
 
 /* ------------------------------------------------------------------ */
@@ -372,22 +265,20 @@
     position: static;
     border-top: none;
     padding: 8px 0 0;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
     animation: none;
   }
 
-  .submitButton {
-    width: auto;
-    max-width: none;
+  .navButtons {
+    justify-content: center;
+  }
+
+  .nextButton {
+    flex: none;
     padding: 0 48px;
   }
 
-  .skipButton {
-    min-height: auto;
-    padding: 4px 16px;
+  .prevButton {
+    padding: 0 32px;
   }
 }
 
@@ -398,9 +289,5 @@
 
   .progressFill {
     transition: none;
-  }
-
-  .toastOverlay {
-    animation: none;
   }
 }
