@@ -113,6 +113,7 @@
 }
 
 .reviewCard {
+  display: block;
   background: var(--card-bg);
   border: var(--card-border);
   border-radius: var(--radius-lg);
@@ -120,6 +121,13 @@
   box-shadow: var(--card-shadow);
   animation: cardFadeIn 0.4s ease-out backwards;
   animation-delay: calc(var(--card-index, 0) * 0.1s);
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.15s ease;
+}
+
+.reviewCard:hover {
+  box-shadow: var(--card-shadow-hover, 0 2px 8px rgba(0, 0, 0, 0.12));
 }
 
 @keyframes cardFadeIn {
@@ -168,17 +176,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.editLink {
-  font-size: 0.8rem;
-  color: var(--color-curtain-red);
-  text-decoration: none;
-  width: fit-content;
-}
-
-.editLink:hover {
-  text-decoration: underline;
 }
 
 .stars {

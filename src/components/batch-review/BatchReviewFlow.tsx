@@ -484,7 +484,6 @@ export default function BatchReviewFlow({
           <ExitSummary
             completedReviews={state.completedReviews}
             shows={shows}
-            isAuthenticated={isAuthenticated}
           />
         </div>
       )}

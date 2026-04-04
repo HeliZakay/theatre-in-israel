@@ -334,13 +334,11 @@ function FeatureCards() {
 interface ExitSummaryProps {
   completedReviews: { showId: number; rating: number; text: string }[];
   shows: BatchShowItem[];
-  isAuthenticated: boolean;
 }
 
 export default function ExitSummary({
   completedReviews,
   shows,
-  isAuthenticated,
 }: ExitSummaryProps) {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const count = useOdometer(completedReviews.length);
@@ -394,8 +392,10 @@ export default function ExitSummary({
             const show = shows.find((s) => s.id === showId);
             if (!show) return null;
             return (
-              <div
+              <Link
                 key={showId}
+                href={showPath(show.slug)}
+                target="_blank"
                 className={styles.reviewCard}
                 role="listitem"
                 style={{ "--card-index": index } as React.CSSProperties}
@@ -413,21 +413,12 @@ export default function ExitSummary({
                   <div className={styles.showInfo}>
                     <span className={styles.showTitle}>{show.title}</span>
                     <MiniStars rating={rating} />
-                    {isAuthenticated && (
-                      <Link
-                        href={showPath(show.slug)}
-                        target="_blank"
-                        className={styles.editLink}
-                      >
-                        עריכה
-                      </Link>
-                    )}
                   </div>
                 </div>
                 {text && text.length > 5 && (
                   <p className={styles.reviewSnippet}>{text}</p>
                 )}
-              </div>
+              </Link>
             );
           })}
         </div>
