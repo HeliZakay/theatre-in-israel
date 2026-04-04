@@ -332,32 +332,6 @@ function FeatureCards({ isAuthenticated }: { isAuthenticated: boolean }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Auth Nudge                                                         */
-/* ------------------------------------------------------------------ */
-
-function AuthNudge() {
-  return (
-    <section className={styles.authNudge}>
-      <div className={styles.authNudgeContent}>
-        <svg className={styles.authNudgeIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
-          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-          <circle cx="12" cy="7" r="4" />
-        </svg>
-        <div>
-          <h2 className={styles.authNudgeTitle}>שמרו על הביקורות שלכם</h2>
-          <p className={styles.authNudgeBody}>
-            צרו חשבון כדי לערוך ביקורות, לבנות רשימת צפייה ולעקוב אחרי הדירוגים שלכם
-          </p>
-        </div>
-      </div>
-      <Link href={ROUTES.AUTH_SIGNUP} target="_blank" className={styles.authNudgeButton}>
-        יצירת חשבון
-      </Link>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
 /*  ExitSummary                                                        */
 /* ------------------------------------------------------------------ */
 
@@ -473,9 +447,6 @@ export default function ExitSummary({
 
       {/* Feature discovery */}
       <FeatureCards isAuthenticated={isAuthenticated} />
-
-      {/* Auth nudge for unauthenticated users */}
-      {!isAuthenticated && <AuthNudge />}
 
       {/* CTA row */}
       <div className={styles.ctaRow}>
