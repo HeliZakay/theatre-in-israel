@@ -1,10 +1,11 @@
 .strip {
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   overflow-x: auto;
-  padding: 4px 2px;
+  padding: 8px 4px;
   scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 
   /* Hide scrollbar */
@@ -18,17 +19,19 @@
 
 .thumb {
   position: relative;
-  width: 56px;
-  height: 75px;
-  border-radius: 6px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
   cursor: pointer;
-  border: 2px solid transparent;
+  border: 2px solid var(--color-slate-015);
   background: var(--color-slate-008);
+  scroll-snap-align: center;
   transition:
-    border-color 0.15s ease,
-    opacity 0.15s ease;
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .thumb:focus-visible {
@@ -37,49 +40,34 @@
 }
 
 .thumbCurrent {
-  border-color: var(--color-curtain-red);
+  border: 3px solid var(--color-curtain-red);
+  transform: scale(1.15);
+  box-shadow: 0 0 0 3px var(--color-curtain-red-025);
+  z-index: 2;
 }
 
 .thumbCompleted {
-  opacity: 0.7;
+  border-color: #34c759;
 }
 
 .thumbCompleted::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
   z-index: 1;
 }
 
-.numberBadge {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  min-width: 16px;
-  height: 16px;
-  border-radius: 8px;
-  background: rgba(0, 0, 0, 0.55);
-  color: #fff;
-  font-size: 0.65rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 3px;
-  z-index: 2;
-  line-height: 1;
-}
-
-.thumbCurrent .numberBadge {
-  background: var(--color-curtain-red);
+/* Current + completed: keep red border, not green */
+.thumbCurrent.thumbCompleted {
+  border-color: var(--color-curtain-red);
 }
 
 .checkBadge {
   position: absolute;
-  bottom: 2px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: -1px;
+  right: -1px;
   width: 16px;
   height: 16px;
   border-radius: 50%;
@@ -88,11 +76,12 @@
   align-items: center;
   justify-content: center;
   z-index: 2;
+  border: 2px solid var(--background);
 }
 
 .checkIcon {
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   color: #fff;
 }
 

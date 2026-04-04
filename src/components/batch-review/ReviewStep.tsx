@@ -6,17 +6,14 @@ import { getShowImagePath } from "@/utils/getShowImagePath";
 import { REVIEW_TEXT_MAX } from "@/constants/reviewValidation";
 import StarRating from "./StarRating";
 import ExpressionChips from "./ExpressionChips";
-import ShowNavStrip from "./ShowNavStrip";
+import ShowNavBar from "./ShowNavBar";
 import styles from "./ReviewStep.module.css";
 import type { BatchShowItem } from "@/lib/data/batchReview";
 
 interface ReviewStepProps {
   show: BatchShowItem;
   currentIndex: number;
-  totalCount: number;
   onNext: () => void;
-  onPrev: () => void;
-  isFirst: boolean;
   isLast: boolean;
   editingFromSummary: boolean;
   shows: BatchShowItem[];
@@ -30,10 +27,7 @@ interface ReviewStepProps {
 export default function ReviewStep({
   show,
   currentIndex,
-  totalCount,
   onNext,
-  onPrev,
-  isFirst,
   isLast,
   editingFromSummary,
   shows,
@@ -128,32 +122,16 @@ export default function ReviewStep({
 
       {/* Navigation bottom bar */}
       <div className={styles.bottomBar}>
-        <div className={styles.navButtons}>
-          {!isFirst && !editingFromSummary && (
-            <button
-              className={styles.prevButton}
-              onClick={onPrev}
-            >
-              הקודם
-            </button>
-          )}
-          <button
-            className={styles.nextButton}
-            onClick={onNext}
-          >
-            {nextLabel}
-          </button>
-        </div>
-        {totalCount > 1 && (
-          <ShowNavStrip
-            shows={shows}
-            selectedShowIds={selectedShowIds}
-            currentIndex={currentIndex}
-            completedShowIds={draftedShowIds}
-            onJumpTo={onJumpTo}
-            disabled={false}
-          />
-        )}
+        <ShowNavBar
+          shows={shows}
+          selectedShowIds={selectedShowIds}
+          currentIndex={currentIndex}
+          completedShowIds={draftedShowIds}
+          onJumpTo={onJumpTo}
+          disabled={false}
+          onNext={onNext}
+          nextLabel={nextLabel}
+        />
       </div>
     </div>
   );

@@ -59,14 +59,11 @@ export default function ShowNavStrip({
             onClick={() => onJumpTo(index)}
             disabled={disabled}
           >
-            <span className={styles.numberBadge} aria-hidden="true">
-              {index + 1}
-            </span>
             <FallbackImage
               src={getShowImagePath(show.title)}
               alt=""
               fill
-              sizes="56px"
+              sizes="48px"
               className={styles.thumbImage}
             />
             {isCompleted && (

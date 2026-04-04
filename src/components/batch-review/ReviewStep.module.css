@@ -6,7 +6,7 @@
   width: 100%;
   max-width: 640px;
   margin: 0 auto;
-  padding-bottom: 96px;
+  padding-bottom: 160px;
 }
 
 /* Content row: stacks on mobile, side-by-side on desktop */
@@ -138,69 +138,6 @@
   }
 }
 
-.navButtons {
-  display: flex;
-  gap: 12px;
-  width: 100%;
-  max-width: 640px;
-}
-
-.nextButton {
-  flex: 1;
-  height: 48px;
-  border: none;
-  border-radius: var(--radius-sm);
-  background: var(--color-curtain-red);
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    background 0.15s ease,
-    transform 0.1s ease;
-}
-
-.nextButton:hover {
-  background: var(--color-curtain-red-hover);
-}
-
-.nextButton:active {
-  transform: scale(0.98);
-}
-
-.nextButton:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--focus-ring-color);
-}
-
-.prevButton {
-  height: 48px;
-  padding: 0 24px;
-  border: 1.5px solid var(--color-slate-015);
-  border-radius: var(--radius-sm);
-  background: var(--background);
-  color: var(--color-text-primary);
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition:
-    border-color 0.15s ease,
-    background 0.15s ease;
-}
-
-.prevButton:hover {
-  border-color: var(--color-slate-030, var(--color-slate-015));
-  background: var(--color-slate-006);
-}
-
-.prevButton:active {
-  transform: scale(0.98);
-}
-
-.prevButton:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--focus-ring-color);
-}
 
 /* ------------------------------------------------------------------ */
 /*  Desktop enhancements                                               */
@@ -261,18 +198,6 @@
     animation: none;
   }
 
-  .navButtons {
-    justify-content: center;
-  }
-
-  .nextButton {
-    flex: none;
-    padding: 0 48px;
-  }
-
-  .prevButton {
-    padding: 0 32px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
