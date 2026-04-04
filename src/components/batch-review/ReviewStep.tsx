@@ -141,7 +141,7 @@ export default function ReviewStep({
               onChange={handleTextChange}
             />
             {validationError === "text" && (
-              <span className={styles.validationHint}>חסר טקסט לביקורת</span>
+              <span className={styles.validationHint}>חסר טקסט לביקורת, גם מילה אחת זה טוב!</span>
             )}
             {showCharCount && (
               <span className={styles.charCount}>
