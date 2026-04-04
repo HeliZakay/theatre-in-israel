@@ -39,7 +39,8 @@ type BatchFlowAction =
   | { type: "EDIT_FROM_SUMMARY"; index: number }
   | { type: "RETURN_TO_SUMMARY"; drafts: { showId: number; rating: number; text: string }[] }
   | { type: "BULK_SUBMIT_COMPLETE"; reviews: { showId: number; rating: number; text: string }[] }
-  | { type: "BACK_TO_SELECT" };
+  | { type: "BACK_TO_SELECT" }
+  | { type: "BACK_TO_REVIEW" };
 
 function createInitialState(reviewedShowIds: number[]): BatchFlowState {
   return {
@@ -101,6 +102,12 @@ function reducer(
         step: "select",
         currentIndex: 0,
         completedReviews: [],
+        editingFromSummary: false,
+      });
+    case "BACK_TO_REVIEW":
+      return withStepTransition(state, {
+        step: "review",
+        currentIndex: state.selectedShowIds.length - 1,
         editingFromSummary: false,
       });
     case "START_REVIEWS":
@@ -370,6 +377,10 @@ export default function BatchReviewFlow({
     [state.selectedShowIds],
   );
 
+  const handleBackFromSummary = useCallback(() => {
+    dispatch({ type: "BACK_TO_REVIEW" });
+  }, []);
+
   const handleBulkSubmitComplete = useCallback(
     (reviews: { showId: number; rating: number; text: string }[]) => {
       draftsRef.current = {};
@@ -495,6 +506,7 @@ export default function BatchReviewFlow({
             shows={shows}
             isAuthenticated={isAuthenticated}
             onEdit={handleEditFromSummary}
+            onBack={handleBackFromSummary}
             onSubmitComplete={handleBulkSubmitComplete}
             submitToServer={submitToServer}
           />

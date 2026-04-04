@@ -26,6 +26,7 @@ interface ReviewSummaryProps {
   shows: BatchShowItem[];
   isAuthenticated: boolean;
   onEdit: (showId: number) => void;
+  onBack: () => void;
   onSubmitComplete: (reviews: { showId: number; rating: number; text: string }[]) => void;
   submitToServer: (review: { showId: number; rating: number; text: string }) => Promise<unknown>;
 }
@@ -39,11 +40,25 @@ export default function ReviewSummary({
   shows,
   isAuthenticated,
   onEdit,
+  onBack,
   onSubmitComplete,
   submitToServer,
 }: ReviewSummaryProps) {
   const [submissionState, setSubmissionState] = useState<SubmissionState>({ status: "idle" });
+  const [expandedCards, setExpandedCards] = useState<Set<number>>(new Set());
   const headingRef = useRef<HTMLHeadingElement>(null);
+
+  const toggleExpand = useCallback((showId: number) => {
+    setExpandedCards((prev) => {
+      const next = new Set(prev);
+      if (next.has(showId)) {
+        next.delete(showId);
+      } else {
+        next.add(showId);
+      }
+      return next;
+    });
+  }, []);
 
   // Focus heading on mount for a11y
   useEffect(() => {
@@ -161,7 +176,7 @@ export default function ReviewSummary({
                     src={getShowImagePath(show.title)}
                     alt={show.title}
                     fill
-                    sizes="56px"
+                    sizes="72px"
                     className={styles.showImage}
                   />
                 </div>
@@ -188,7 +203,22 @@ export default function ReviewSummary({
                 )}
               </div>
               {text && text.length > 5 && (
-                <p className={styles.reviewSnippet}>{text}</p>
+                <>
+                  <p
+                    className={`${styles.reviewSnippet} ${expandedCards.has(showId) ? styles.reviewSnippetExpanded : ""}`}
+                  >
+                    {text}
+                  </p>
+                  {text.length > 120 && (
+                    <button
+                      className={styles.readMoreButton}
+                      onClick={() => toggleExpand(showId)}
+                      aria-expanded={expandedCards.has(showId)}
+                    >
+                      {expandedCards.has(showId) ? "פחות" : "עוד"}
+                    </button>
+                  )}
+                </>
               )}
               {failError && (
                 <p className={styles.cardError}>{failError}</p>
@@ -216,12 +246,21 @@ export default function ReviewSummary({
       {/* Bottom bar */}
       <div className={styles.bottomBar}>
         {submissionState.status === "idle" && (
-          <button
-            className={styles.sendAllButton}
-            onClick={handleSubmitAll}
-          >
-            שלח הכל ({drafts.length})
-          </button>
+          <div className={styles.bottomBarActions}>
+            <button
+              className={styles.backButton}
+              onClick={onBack}
+              aria-label="חזרה לביקורות"
+            >
+              חזרה
+            </button>
+            <button
+              className={styles.sendAllButton}
+              onClick={handleSubmitAll}
+            >
+              שלח הכל ({drafts.length})
+            </button>
+          </div>
         )}
         {submissionState.status === "submitting" && (
           <button className={styles.sendAllButton} disabled>
