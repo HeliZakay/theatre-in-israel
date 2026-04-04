@@ -3,7 +3,7 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import FallbackImage from "@/components/ui/FallbackImage/FallbackImage";
 import { getShowImagePath } from "@/utils/getShowImagePath";
-import { REVIEW_TEXT_MAX } from "@/constants/reviewValidation";
+import { REVIEW_TEXT_MAX, REVIEW_TEXT_MIN } from "@/constants/reviewValidation";
 import StarRating from "./StarRating";
 import ExpressionChips from "./ExpressionChips";
 import ShowNavBar from "./ShowNavBar";
@@ -43,6 +43,7 @@ export default function ReviewStep({
 }: ReviewStepProps) {
   const [rating, setRating] = useState<number | null>(initialDraft?.rating ?? null);
   const [text, setText] = useState(initialDraft?.text ?? "");
+  const [validationError, setValidationError] = useState<"rating" | "text" | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const prevShowIdRef = useRef(show.id);
 
@@ -52,6 +53,7 @@ export default function ReviewStep({
       prevShowIdRef.current = show.id;
       setRating(initialDraft?.rating ?? null);
       setText(initialDraft?.text ?? "");
+      setValidationError(null);
     }
   }, [show.id, initialDraft]);
 
@@ -59,6 +61,12 @@ export default function ReviewStep({
   useEffect(() => {
     onDraftChange?.(show.id, { rating, text });
   }, [rating, text, show.id, onDraftChange]);
+
+  // Clear validation error when the user fills in the missing field
+  useEffect(() => {
+    if (validationError === "rating" && rating !== null) setValidationError(null);
+    if (validationError === "text" && text.trim().length >= REVIEW_TEXT_MIN) setValidationError(null);
+  }, [rating, text, validationError]);
 
   const showCharCount = text.length > 500;
 
@@ -72,6 +80,17 @@ export default function ReviewStep({
   const handleChipTextChange = useCallback((newText: string) => {
     setText(newText);
   }, []);
+
+  const handleNext = useCallback(() => {
+    const hasRating = rating !== null;
+    const hasText = text.trim().length >= REVIEW_TEXT_MIN;
+    if (hasRating !== hasText) {
+      setValidationError(hasRating ? "text" : "rating");
+      return;
+    }
+    setValidationError(null);
+    onNext();
+  }, [rating, text, onNext]);
 
   const nextLabel = editingFromSummary
     ? "חזרה לסיכום"
@@ -105,19 +124,25 @@ export default function ReviewStep({
           {/* Star rating */}
           <div className={styles.ratingSection}>
             <StarRating value={rating} onChange={setRating} disabled={false} />
+            {validationError === "rating" && (
+              <span className={styles.validationHint}>חסר דירוג כוכבים</span>
+            )}
           </div>
 
           {/* Textarea */}
           <div className={styles.textSection}>
             <textarea
               ref={textareaRef}
-              className={styles.textarea}
+              className={`${styles.textarea} ${validationError === "text" ? styles.textareaError : ""}`}
               rows={3}
               maxLength={REVIEW_TEXT_MAX}
               placeholder="במילה, במשפט, או בפסקה — הכל בסדר"
               value={text}
               onChange={handleTextChange}
             />
+            {validationError === "text" && (
+              <span className={styles.validationHint}>חסר טקסט לביקורת</span>
+            )}
             {showCharCount && (
               <span className={styles.charCount}>
                 {text.length} / {REVIEW_TEXT_MAX}
@@ -143,7 +168,7 @@ export default function ReviewStep({
           completedShowIds={draftedShowIds}
           onJumpTo={onJumpTo}
           disabled={false}
-          onNext={onNext}
+          onNext={handleNext}
           nextLabel={nextLabel}
           onPrev={onPrev}
           isFirst={isFirst}

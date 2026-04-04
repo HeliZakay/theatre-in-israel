@@ -75,6 +75,18 @@
   padding: 4px 0;
 }
 
+/* Validation hints */
+.validationHint {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--color-curtain-red);
+  margin-top: 4px;
+}
+
+.textareaError {
+  border-color: var(--color-curtain-red);
+}
+
 /* Text */
 .textSection {
   position: relative;
