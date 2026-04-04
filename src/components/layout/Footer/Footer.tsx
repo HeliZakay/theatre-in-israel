@@ -1,9 +1,15 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import styles from "./Footer.module.css";
 import ROUTES from "@/constants/routes";
 import { titleFont } from "@/lib/fonts";
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname.startsWith("/reviews/batch")) return null;
+
   return (
     <footer className={`${styles.footer} ${titleFont.variable}`}>
       <div className={styles.glow} aria-hidden="true" />

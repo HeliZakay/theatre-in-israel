@@ -5,7 +5,7 @@
   width: 100%;
   gap: clamp(24px, 4vw, 40px);
   padding: clamp(16px, 3vw, 32px) clamp(8px, 2vw, 24px);
-  padding-bottom: 100px;
+  padding-bottom: 76px;
 }
 
 /* ------------------------------------------------------------------ */
