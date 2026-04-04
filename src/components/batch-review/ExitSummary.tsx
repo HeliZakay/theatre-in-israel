@@ -287,7 +287,7 @@ function FeatureCards({ isAuthenticated }: { isAuthenticated: boolean }) {
   return (
     <section className={styles.featureSection}>
       <div className={styles.featureGrid}>
-        <Link href={ROUTES.EVENTS} className={styles.featureCard}>
+        <Link href={ROUTES.EVENTS} target="_blank" className={styles.featureCard}>
           <span className={styles.featureIcon} aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
               <rect x="3" y="4" width="18" height="18" rx="2" />
@@ -302,6 +302,7 @@ function FeatureCards({ isAuthenticated }: { isAuthenticated: boolean }) {
 
         <Link
           href={isAuthenticated ? ROUTES.MY_WATCHLIST : ROUTES.AUTH_SIGNUP}
+          target="_blank"
           className={styles.featureCard}
         >
           <span className={styles.featureIcon} aria-hidden="true">
@@ -313,7 +314,7 @@ function FeatureCards({ isAuthenticated }: { isAuthenticated: boolean }) {
           <span className={styles.featureDesc}>שמרו הצגות לצפייה עתידית</span>
         </Link>
 
-        <Link href={ROUTES.GENRES} className={styles.featureCard}>
+        <Link href={ROUTES.GENRES} target="_blank" className={styles.featureCard}>
           <span className={styles.featureIcon} aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
               <circle cx="12" cy="12" r="10" />
@@ -349,7 +350,7 @@ function AuthNudge() {
           </p>
         </div>
       </div>
-      <Link href={ROUTES.AUTH_SIGNUP} className={styles.authNudgeButton}>
+      <Link href={ROUTES.AUTH_SIGNUP} target="_blank" className={styles.authNudgeButton}>
         יצירת חשבון
       </Link>
     </section>
@@ -478,10 +479,10 @@ export default function ExitSummary({
 
       {/* CTA row */}
       <div className={styles.ctaRow}>
-        <Link href={ROUTES.SHOWS} className={styles.exploreButton}>
+        <Link href={ROUTES.SHOWS} target="_blank" className={styles.exploreButton}>
           גלו הצגות נוספות
         </Link>
-        <Link href={ROUTES.REVIEWS_BATCH} className={styles.secondaryButton}>
+        <Link href={ROUTES.REVIEWS_BATCH} target="_blank" className={styles.secondaryButton}>
           כתבו עוד ביקורות
         </Link>
       </div>
