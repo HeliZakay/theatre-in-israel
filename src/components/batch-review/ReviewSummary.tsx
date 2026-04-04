@@ -260,7 +260,7 @@ export default function ReviewSummary({
                   </span>
                 )}
               </div>
-              {text && text.length > 5 && (
+              {text && text.trim() && (
                 <>
                   <p
                     className={`${styles.reviewSnippet} ${expandedCards.has(showId) ? styles.reviewSnippetExpanded : ""}`}
