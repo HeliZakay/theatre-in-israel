@@ -18,6 +18,7 @@ interface ShowNavBarProps {
   nextLabel: string;
   onPrev: () => void;
   isFirst: boolean;
+  onEditSelection?: () => void;
 }
 
 function ArrowIcon() {
@@ -119,6 +120,7 @@ export default function ShowNavBar({
   nextLabel,
   onPrev,
   isFirst,
+  onEditSelection,
 }: ShowNavBarProps) {
   const [stripOpen, setStripOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -202,15 +204,27 @@ export default function ShowNavBar({
 
       {/* Row 1: Prev button + progress bar + Next button */}
       <div className={styles.progressRow}>
-        <button
-          className={styles.prevButton}
-          onClick={onPrev}
-          disabled={disabled || isFirst}
-          aria-label="הקודם"
-        >
-          <PrevArrowIcon />
-          <span>הקודם</span>
-        </button>
+        {isFirst && onEditSelection ? (
+          <button
+            className={styles.editSelectionButton}
+            onClick={onEditSelection}
+            disabled={disabled}
+            aria-label="עריכת בחירת הצגות"
+          >
+            <PrevArrowIcon />
+            <span>חזרה</span>
+          </button>
+        ) : (
+          <button
+            className={styles.prevButton}
+            onClick={onPrev}
+            disabled={disabled || isFirst}
+            aria-label="הקודם"
+          >
+            <PrevArrowIcon />
+            <span>הקודם</span>
+          </button>
+        )}
 
         <div
           className={styles.segmentRow}

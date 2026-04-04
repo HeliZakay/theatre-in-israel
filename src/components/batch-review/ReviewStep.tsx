@@ -24,6 +24,7 @@ interface ReviewStepProps {
   draftedShowIds: Set<number>;
   initialDraft?: { rating: number | null; text: string };
   onDraftChange?: (showId: number, draft: { rating: number | null; text: string }) => void;
+  onEditSelection?: () => void;
 }
 
 export default function ReviewStep({
@@ -40,6 +41,7 @@ export default function ReviewStep({
   draftedShowIds,
   initialDraft,
   onDraftChange,
+  onEditSelection,
 }: ReviewStepProps) {
   const [rating, setRating] = useState<number | null>(initialDraft?.rating ?? null);
   const [text, setText] = useState(initialDraft?.text ?? "");
@@ -172,6 +174,7 @@ export default function ReviewStep({
           nextLabel={nextLabel}
           onPrev={onPrev}
           isFirst={isFirst}
+          onEditSelection={onEditSelection}
         />
       </div>
     </div>

@@ -43,6 +43,7 @@ type BatchFlowAction =
   | { type: "BULK_SUBMIT_COMPLETE"; reviews: { showId: number; rating: number; text: string }[]; reviewerName: string }
   | { type: "BACK_TO_SELECT" }
   | { type: "BACK_TO_REVIEW" }
+  | { type: "RESUME_REVIEWS" }
   | { type: "RESTORE_STATE"; selectedShowIds: number[]; completedReviews: { showId: number; rating: number; text: string }[] };
 
 function createInitialState(reviewedShowIds: number[]): BatchFlowState {
@@ -104,14 +105,18 @@ function reducer(
     case "BACK_TO_SELECT":
       return withStepTransition(state, {
         step: "select",
-        currentIndex: 0,
-        completedReviews: [],
         editingFromSummary: false,
       });
     case "BACK_TO_REVIEW":
       return withStepTransition(state, {
         step: "review",
         currentIndex: state.selectedShowIds.length - 1,
+        editingFromSummary: false,
+      });
+    case "RESUME_REVIEWS":
+      return withStepTransition(state, {
+        step: "review",
+        currentIndex: Math.min(state.currentIndex, state.selectedShowIds.length - 1),
         editingFromSummary: false,
       });
     case "START_REVIEWS":
@@ -387,8 +392,14 @@ export default function BatchReviewFlow({
 
   const handleNext = () => {
     if (selectionCount > 0) {
-      draftsRef.current = {};
-      dispatch({ type: "START_REVIEWS" });
+      if (state.prevStep === "review") {
+        // Returning from edit selection — preserve drafts
+        dispatch({ type: "RESUME_REVIEWS" });
+      } else {
+        // First time starting reviews — clear drafts
+        draftsRef.current = {};
+        dispatch({ type: "START_REVIEWS" });
+      }
     }
   };
 
@@ -417,6 +428,11 @@ export default function BatchReviewFlow({
     },
     [state.currentIndex],
   );
+
+  const handleEditSelection = useCallback(() => {
+    logEvent("batch_edit_selection", { fromIndex: state.currentIndex, showCount: state.selectedShowIds.length });
+    dispatch({ type: "BACK_TO_SELECT" });
+  }, [state.currentIndex, state.selectedShowIds.length]);
 
   const handleEditFromSummary = useCallback(
     (showId: number) => {
@@ -542,6 +558,7 @@ export default function BatchReviewFlow({
                 draftedShowIds={draftedShowIds}
                 initialDraft={draftsRef.current[currentShowId]}
                 onDraftChange={handleDraftChange}
+                onEditSelection={handleEditSelection}
               />
             </div>
           </div>

@@ -114,6 +114,48 @@
   box-shadow: 0 0 0 3px var(--focus-ring-color);
 }
 
+/* ── Edit selection button (replaces prev on first show) ── */
+
+.editSelectionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 16px;
+  border: 2px solid var(--color-curtain-red);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--color-curtain-red);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition:
+    background 0.15s ease,
+    opacity 0.15s ease,
+    transform 0.1s ease;
+}
+
+.editSelectionButton:hover:not(:disabled) {
+  background: var(--color-curtain-red-008, rgba(139, 30, 30, 0.06));
+}
+
+.editSelectionButton:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.editSelectionButton:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.editSelectionButton:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring-color);
+}
+
 /* ── Context row ─────────────────────────────────── */
 
 .contextRow {
@@ -317,6 +359,10 @@
   }
 
   .prevButton {
+    transition: none;
+  }
+
+  .editSelectionButton {
     transition: none;
   }
 
