@@ -90,6 +90,28 @@
 }
 
 /* ------------------------------------------------------------------ */
+/*  Login / anonymous divider                                          */
+/* ------------------------------------------------------------------ */
+
+.anonDivider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 800px;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.anonDivider::before,
+.anonDivider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--color-slate-015);
+}
+
+/* ------------------------------------------------------------------ */
 /*  Name input                                                         */
 /* ------------------------------------------------------------------ */
 

@@ -2,6 +2,7 @@
 
 import { useReducer, useCallback, useRef, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import ShowSelectionGrid from "./ShowSelectionGrid";
 import ReviewStep from "./ReviewStep";
 import ReviewSummary from "./ReviewSummary";
@@ -41,7 +42,8 @@ type BatchFlowAction =
   | { type: "RETURN_TO_SUMMARY"; drafts: { showId: number; rating: number; text: string }[] }
   | { type: "BULK_SUBMIT_COMPLETE"; reviews: { showId: number; rating: number; text: string }[]; reviewerName: string }
   | { type: "BACK_TO_SELECT" }
-  | { type: "BACK_TO_REVIEW" };
+  | { type: "BACK_TO_REVIEW" }
+  | { type: "RESTORE_STATE"; selectedShowIds: number[]; completedReviews: { showId: number; rating: number; text: string }[] };
 
 function createInitialState(reviewedShowIds: number[]): BatchFlowState {
   return {
@@ -169,6 +171,13 @@ function reducer(
         editingFromSummary: false,
         reviewerName: action.reviewerName,
       });
+    case "RESTORE_STATE":
+      return withStepTransition(state, {
+        step: "summary",
+        selectedShowIds: action.selectedShowIds,
+        completedReviews: action.completedReviews,
+        editingFromSummary: false,
+      });
     default:
       return state;
   }
@@ -184,6 +193,9 @@ interface BatchReviewFlowProps {
   isAuthenticated: boolean;
 }
 
+const DRAFT_STORAGE_KEY = "batch-review-drafts";
+const DRAFT_TTL_MS = 60 * 60 * 1000; // 1 hour
+
 export default function BatchReviewFlow({
   shows,
   reviewedShowIds,
@@ -195,9 +207,45 @@ export default function BatchReviewFlow({
     createInitialState,
   );
   const router = useRouter();
+  const { status: sessionStatus } = useSession();
+  const effectiveAuth = isAuthenticated || sessionStatus === "authenticated";
 
   // Draft state persisted across show navigation (ref to avoid re-renders on every keystroke)
   const draftsRef = useRef<Record<number, { rating: number | null; text: string }>>({});
+
+  // Save drafts to localStorage (for Google OAuth redirect survival)
+  const saveDraftsToStorage = useCallback(() => {
+    try {
+      const data = {
+        drafts: draftsRef.current,
+        selectedShowIds: state.selectedShowIds,
+        completedReviews: state.completedReviews,
+        timestamp: Date.now(),
+      };
+      localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(data));
+    } catch { /* storage full or unavailable */ }
+  }, [state.selectedShowIds, state.completedReviews]);
+
+  // Restore drafts from localStorage on mount (after Google OAuth redirect)
+  const restoredRef = useRef(false);
+  useEffect(() => {
+    if (restoredRef.current) return;
+    restoredRef.current = true;
+    try {
+      const raw = localStorage.getItem(DRAFT_STORAGE_KEY);
+      if (!raw) return;
+      localStorage.removeItem(DRAFT_STORAGE_KEY);
+      const data = JSON.parse(raw);
+      if (Date.now() - data.timestamp > DRAFT_TTL_MS) return;
+      if (!Array.isArray(data.selectedShowIds) || !Array.isArray(data.completedReviews)) return;
+      if (data.drafts) draftsRef.current = data.drafts;
+      dispatch({
+        type: "RESTORE_STATE",
+        selectedShowIds: data.selectedShowIds,
+        completedReviews: data.completedReviews,
+      });
+    } catch { /* corrupted data, ignore */ }
+  }, []);
 
   const handleDraftChange = useCallback(
     (showId: number, draft: { rating: number | null; text: string }) => {
@@ -284,12 +332,12 @@ export default function BatchReviewFlow({
       formData.set("text", review.text);
       formData.set("title", "");
 
-      if (!isAuthenticated) {
+      if (!effectiveAuth) {
         formData.set("name", review.name || "");
         formData.set("honeypot", "");
       }
 
-      const action = isAuthenticated ? createReview : createAnonymousReview;
+      const action = effectiveAuth ? createReview : createAnonymousReview;
       const result = await action(formData);
 
       if (!result.success) {
@@ -309,7 +357,7 @@ export default function BatchReviewFlow({
 
       return result;
     },
-    [isAuthenticated],
+    [effectiveAuth],
   );
 
   /* ---------------------------------------------------------------- */
@@ -499,11 +547,12 @@ export default function BatchReviewFlow({
           <ReviewSummary
             drafts={state.completedReviews}
             shows={shows}
-            isAuthenticated={isAuthenticated}
+            isAuthenticated={effectiveAuth}
             onEdit={handleEditFromSummary}
             onBack={handleBackFromSummary}
             onSubmitComplete={handleBulkSubmitComplete}
             submitToServer={submitToServer}
+            onBeforeGoogleRedirect={saveDraftsToStorage}
           />
         </div>
       )}

@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useCallback, useEffect, useRef } from "react";
+import { useSession } from "next-auth/react";
 import FallbackImage from "@/components/ui/FallbackImage/FallbackImage";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import MiniStars from "./MiniStars";
+import InlineSignIn from "./InlineSignIn";
 import { logEvent } from "@/lib/analytics";
 import styles from "./ReviewSummary.module.css";
 import fieldStyles from "@/components/reviews/ReviewFormFields/ReviewFormFields.module.css";
@@ -30,6 +32,7 @@ interface ReviewSummaryProps {
   onBack: () => void;
   onSubmitComplete: (reviews: { showId: number; rating: number; text: string }[], reviewerName: string) => void;
   submitToServer: (review: { showId: number; rating: number; text: string; name?: string }) => Promise<unknown>;
+  onBeforeGoogleRedirect: () => void;
 }
 
 /* ------------------------------------------------------------------ */
@@ -44,7 +47,11 @@ export default function ReviewSummary({
   onBack,
   onSubmitComplete,
   submitToServer,
+  onBeforeGoogleRedirect,
 }: ReviewSummaryProps) {
+  const { status: sessionStatus } = useSession();
+  const isLoggedIn = isAuthenticated || sessionStatus === "authenticated";
+
   const [submissionState, setSubmissionState] = useState<SubmissionState>({ status: "idle" });
   const [reviewerName, setReviewerName] = useState("");
   const [expandedCards, setExpandedCards] = useState<Set<number>>(new Set());
@@ -187,23 +194,39 @@ export default function ReviewSummary({
         </p>
       </div>
 
-      {/* Reviewer name (anonymous users only) */}
-      {!isAuthenticated && (
-        <div className={styles.nameSection}>
-          <label className={fieldStyles.field}>
-            <span className={fieldStyles.label}>שם (לא חובה)</span>
-            <input
-              className={`${fieldStyles.input} ${styles.nameInput}`}
-              type="text"
-              value={reviewerName}
-              onChange={(e) => setReviewerName(e.target.value)}
-              placeholder="אנונימי"
-              disabled={submissionState.status !== "idle"}
-              maxLength={50}
-              autoComplete="name"
-            />
-          </label>
-        </div>
+      {/* Login / reviewer name (anonymous users only) */}
+      {!isLoggedIn && (
+        <>
+          <InlineSignIn
+            onLoginSuccess={() => {
+              logEvent("batch_inline_login", { method: "credentials" });
+            }}
+            onBeforeGoogleRedirect={() => {
+              logEvent("batch_inline_login", { method: "google" });
+              onBeforeGoogleRedirect();
+            }}
+          />
+
+          <div className={styles.anonDivider}>
+            <span>או המשיכו בלי חשבון</span>
+          </div>
+
+          <div className={styles.nameSection}>
+            <label className={fieldStyles.field}>
+              <span className={fieldStyles.label}>שם (לא חובה)</span>
+              <input
+                className={`${fieldStyles.input} ${styles.nameInput}`}
+                type="text"
+                value={reviewerName}
+                onChange={(e) => setReviewerName(e.target.value)}
+                placeholder="אנונימי"
+                disabled={submissionState.status !== "idle"}
+                maxLength={50}
+                autoComplete="name"
+              />
+            </label>
+          </div>
+        </>
       )}
 
       {/* Review cards grid */}
