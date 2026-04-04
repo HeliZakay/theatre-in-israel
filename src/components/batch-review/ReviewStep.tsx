@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import FallbackImage from "@/components/ui/FallbackImage/FallbackImage";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import { REVIEW_TEXT_MAX, REVIEW_TEXT_MIN } from "@/constants/reviewValidation";
@@ -25,6 +25,8 @@ interface ReviewStepProps {
   completedReviews: { showId: number; rating: number; text: string }[];
   onJumpTo: (index: number) => void;
   hasNextUnreviewed: boolean;
+  initialDraft?: { rating: number | null; text: string };
+  onDraftChange?: (showId: number, draft: { rating: number | null; text: string }) => void;
 }
 
 export default function ReviewStep({
@@ -42,12 +44,21 @@ export default function ReviewStep({
   completedReviews,
   onJumpTo,
   hasNextUnreviewed,
+  initialDraft,
+  onDraftChange,
 }: ReviewStepProps) {
-  const [rating, setRating] = useState<number | null>(null);
-  const [text, setText] = useState("");
+  const [rating, setRating] = useState<number | null>(initialDraft?.rating ?? null);
+  const [text, setText] = useState(initialDraft?.text ?? "");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const isReadOnly = !!completedReview;
+
+  // Sync draft changes back to parent (writes to a ref, no re-renders)
+  useEffect(() => {
+    if (!isReadOnly) {
+      onDraftChange?.(show.id, { rating, text });
+    }
+  }, [rating, text, show.id, onDraftChange, isReadOnly]);
   const displayRating = isReadOnly ? completedReview.rating : rating;
   const displayText = isReadOnly ? completedReview.text : text;
 
@@ -76,8 +87,6 @@ export default function ReviewStep({
   };
 
   const handleSkip = () => {
-    setRating(null);
-    setText("");
     onSkip();
   };
 

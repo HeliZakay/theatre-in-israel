@@ -222,6 +222,16 @@ export default function BatchReviewFlow({
     createInitialState,
   );
   const router = useRouter();
+
+  // Draft state persisted across show navigation (ref to avoid re-renders on every keystroke)
+  const draftsRef = useRef<Record<number, { rating: number | null; text: string }>>({});
+
+  const handleDraftChange = useCallback(
+    (showId: number, draft: { rating: number | null; text: string }) => {
+      draftsRef.current[showId] = draft;
+    },
+    [],
+  );
   const selectedSet = new Set(state.selectedShowIds);
   const selectionCount = state.selectedShowIds.length;
 
@@ -349,6 +359,7 @@ export default function BatchReviewFlow({
 
   const handleNext = () => {
     if (selectionCount > 0) {
+      draftsRef.current = {};
       dispatch({ type: "START_REVIEWS" });
     }
   };
@@ -363,6 +374,7 @@ export default function BatchReviewFlow({
         await submitToServer(review);
         logEvent("batch_review_submit", { showId, rating });
         dispatch({ type: "REVIEW_CONFIRMED", showId, rating, text });
+        delete draftsRef.current[showId];
       } catch (err: unknown) {
         const msg =
           err instanceof Error ? err.message : "שגיאה בשליחת הביקורת";
@@ -391,6 +403,7 @@ export default function BatchReviewFlow({
   );
 
   const handleFinish = () => {
+    draftsRef.current = {};
     dispatch({ type: "FINISH" });
   };
 
@@ -502,6 +515,8 @@ export default function BatchReviewFlow({
                 completedReviews={state.completedReviews}
                 onJumpTo={handleJumpTo}
                 hasNextUnreviewed={hasNextUnreviewed}
+                initialDraft={completedReview ? undefined : draftsRef.current[currentShowId]}
+                onDraftChange={handleDraftChange}
               />
             </div>
           </div>
