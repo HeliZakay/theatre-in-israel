@@ -9,43 +9,6 @@
   padding-bottom: 96px;
 }
 
-/* Progress */
-.progressSection {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-}
-
-.progressContent {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  flex: 1;
-  min-width: 0;
-}
-
-.progressTrack {
-  width: 100%;
-  height: 4px;
-  background: var(--color-slate-008);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.progressFill {
-  height: 100%;
-  background: var(--color-curtain-red);
-  border-radius: 2px;
-  transition: width 0.3s ease;
-}
-
-.progressText {
-  font-size: 0.85rem;
-  color: var(--color-text-muted);
-  text-align: center;
-}
-
 /* Show card */
 .showCard {
   display: flex;
@@ -149,7 +112,9 @@
   border-top: 1px solid var(--color-slate-008);
   z-index: 20;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
   animation: slideUp 0.2s ease-out;
 }
 
@@ -287,7 +252,4 @@
     animation: none;
   }
 
-  .progressFill {
-    transition: none;
-  }
 }

@@ -66,7 +66,7 @@ export default function ShowNavStrip({
               src={getShowImagePath(show.title)}
               alt=""
               fill
-              sizes="48px"
+              sizes="56px"
               className={styles.thumbImage}
             />
             {isCompleted && (

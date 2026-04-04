@@ -408,7 +408,7 @@ export default function BatchReviewFlow({
   const draftedShowIds = new Set(
     state.selectedShowIds.filter((id) => {
       const draft = draftsRef.current[id];
-      return draft && draft.rating !== null;
+      return draft && draft.rating !== null && draft.text.length >= REVIEW_TEXT_MIN;
     }),
   );
 

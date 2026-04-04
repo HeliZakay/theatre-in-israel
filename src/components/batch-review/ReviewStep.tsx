@@ -52,7 +52,6 @@ export default function ReviewStep({
     onDraftChange?.(show.id, { rating, text });
   }, [rating, text, show.id, onDraftChange]);
 
-  const progress = ((currentIndex + 1) / totalCount) * 100;
   const showCharCount = text.length > 500;
 
   const handleTextChange = useCallback(
@@ -74,33 +73,6 @@ export default function ReviewStep({
 
   return (
     <div className={styles.reviewStep}>
-      {/* Progress */}
-      <div className={styles.progressSection}>
-        <div className={styles.progressContent}>
-          <div className={styles.progressTrack}>
-            <div
-              className={styles.progressFill}
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-          <span className={styles.progressText} role="status">
-            ביקורת {currentIndex + 1} מתוך {totalCount}
-          </span>
-        </div>
-      </div>
-
-      {/* Show navigation strip */}
-      {totalCount > 1 && (
-        <ShowNavStrip
-          shows={shows}
-          selectedShowIds={selectedShowIds}
-          currentIndex={currentIndex}
-          completedShowIds={draftedShowIds}
-          onJumpTo={onJumpTo}
-          disabled={false}
-        />
-      )}
-
       {/* Show card */}
       <div className={styles.showCard}>
         <div className={styles.showPoster}>
@@ -169,6 +141,16 @@ export default function ReviewStep({
             {nextLabel}
           </button>
         </div>
+        {totalCount > 1 && (
+          <ShowNavStrip
+            shows={shows}
+            selectedShowIds={selectedShowIds}
+            currentIndex={currentIndex}
+            completedShowIds={draftedShowIds}
+            onJumpTo={onJumpTo}
+            disabled={false}
+          />
+        )}
       </div>
     </div>
   );

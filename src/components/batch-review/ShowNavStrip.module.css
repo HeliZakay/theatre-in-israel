@@ -1,5 +1,6 @@
 .strip {
   display: flex;
+  justify-content: center;
   gap: 8px;
   overflow-x: auto;
   padding: 4px 2px;
@@ -17,8 +18,8 @@
 
 .thumb {
   position: relative;
-  width: 48px;
-  height: 64px;
+  width: 56px;
+  height: 75px;
   border-radius: 6px;
   overflow: hidden;
   flex-shrink: 0;
