@@ -405,6 +405,10 @@ export default function BatchReviewFlow({
     }
   }, [state.currentIndex, state.selectedShowIds.length, state.editingFromSummary, collectValidDrafts]);
 
+  const handlePrevShow = useCallback(() => {
+    dispatch({ type: "PREV_SHOW" });
+  }, []);
+
   const handleJumpTo = useCallback(
     (index: number) => {
       if (index === state.currentIndex) return;
@@ -528,6 +532,8 @@ export default function BatchReviewFlow({
                 show={currentShow}
                 currentIndex={state.currentIndex}
                 onNext={handleNextShow}
+                onPrev={handlePrevShow}
+                isFirst={state.currentIndex === 0}
                 isLast={state.currentIndex === state.selectedShowIds.length - 1}
                 editingFromSummary={state.editingFromSummary}
                 shows={shows}

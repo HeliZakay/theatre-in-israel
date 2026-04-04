@@ -10,12 +10,22 @@
   position: relative;
 }
 
+/* ── Progress row (prev + segments + next) ─────── */
+
+.progressRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 /* ── Segmented progress bar ──────────────────────── */
 
 .segmentRow {
   display: flex;
   gap: 2px;
   padding: 0 2px;
+  flex: 1;
+  min-width: 0;
 }
 
 .segment {
@@ -51,12 +61,54 @@
   box-shadow: 0 0 4px var(--color-curtain-red-025);
 }
 
-/* ── Context + action row ────────────────────────── */
+/* ── Prev button (outline style) ─────────────────── */
+
+.prevButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 16px;
+  border: 2px solid var(--color-curtain-red);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--color-curtain-red);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition:
+    background 0.15s ease,
+    opacity 0.15s ease,
+    transform 0.1s ease;
+}
+
+.prevButton:hover:not(:disabled) {
+  background: var(--color-curtain-red-008, rgba(139, 30, 30, 0.06));
+}
+
+.prevButton:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.prevButton:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.prevButton:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring-color);
+}
+
+/* ── Context row ─────────────────────────────────── */
 
 .contextRow {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 10px;
   min-height: 40px;
 }
@@ -250,6 +302,10 @@
   }
 
   .actionButton {
+    transition: none;
+  }
+
+  .prevButton {
     transition: none;
   }
 

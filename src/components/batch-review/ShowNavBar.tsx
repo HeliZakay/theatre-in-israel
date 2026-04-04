@@ -16,6 +16,8 @@ interface ShowNavBarProps {
   disabled?: boolean;
   onNext: () => void;
   nextLabel: string;
+  onPrev: () => void;
+  isFirst: boolean;
 }
 
 function ArrowIcon() {
@@ -88,6 +90,24 @@ function ChevronDownIcon({ className }: { className?: string }) {
   );
 }
 
+function PrevArrowIcon() {
+  return (
+    <svg
+      className={styles.buttonIcon}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <line x1="5" y1="12" x2="19" y2="12" />
+      <polyline points="12 5 19 12 12 19" />
+    </svg>
+  );
+}
+
 export default function ShowNavBar({
   shows,
   selectedShowIds,
@@ -97,6 +117,8 @@ export default function ShowNavBar({
   disabled,
   onNext,
   nextLabel,
+  onPrev,
+  isFirst,
 }: ShowNavBarProps) {
   const [stripOpen, setStripOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -178,32 +200,53 @@ export default function ShowNavBar({
         </>
       )}
 
-      {/* Row 1: Segmented progress bar */}
-      <div
-        className={styles.segmentRow}
-        role="tablist"
-        aria-label="ניווט בין הצגות"
-      >
-        {selectedShowIds.map((showId, index) => {
-          const show = shows.find((s) => s.id === showId);
-          const isCurrent = index === currentIndex;
-          const isCompleted = completedShowIds.has(showId);
+      {/* Row 1: Prev button + progress bar + Next button */}
+      <div className={styles.progressRow}>
+        <button
+          className={styles.prevButton}
+          onClick={onPrev}
+          disabled={disabled || isFirst}
+          aria-label="הקודם"
+        >
+          <PrevArrowIcon />
+          <span>הקודם</span>
+        </button>
 
-          return (
-            <button
-              key={showId}
-              role="tab"
-              aria-selected={isCurrent}
-              aria-label={`${show?.title ?? `הצגה ${index + 1}`}${isCompleted ? " (נכתבה ביקורת)" : ""}`}
-              className={`${styles.segment} ${isCurrent ? styles.segmentCurrent : ""} ${isCompleted && !isCurrent ? styles.segmentCompleted : ""}`}
-              onClick={() => handleSegmentClick(index)}
-              disabled={disabled}
-            />
-          );
-        })}
+        <div
+          className={styles.segmentRow}
+          role="tablist"
+          aria-label="ניווט בין הצגות"
+        >
+          {selectedShowIds.map((showId, index) => {
+            const show = shows.find((s) => s.id === showId);
+            const isCurrent = index === currentIndex;
+            const isCompleted = completedShowIds.has(showId);
+
+            return (
+              <button
+                key={showId}
+                role="tab"
+                aria-selected={isCurrent}
+                aria-label={`${show?.title ?? `הצגה ${index + 1}`}${isCompleted ? " (נכתבה ביקורת)" : ""}`}
+                className={`${styles.segment} ${isCurrent ? styles.segmentCurrent : ""} ${isCompleted && !isCurrent ? styles.segmentCompleted : ""}`}
+                onClick={() => handleSegmentClick(index)}
+                disabled={disabled}
+              />
+            );
+          })}
+        </div>
+
+        <button
+          className={styles.actionButton}
+          onClick={onNext}
+          disabled={disabled}
+        >
+          <span>{nextLabel}</span>
+          {buttonIcon}
+        </button>
       </div>
 
-      {/* Row 2: Current show context + action button */}
+      {/* Row 2: Current show context */}
       <div className={styles.contextRow}>
         <button
           className={`${styles.currentShowButton} ${stripOpen ? styles.expandIndicatorOpen : ""}`}
@@ -231,15 +274,6 @@ export default function ShowNavBar({
             </span>
           </div>
           <ChevronDownIcon className={styles.expandIndicatorIcon} />
-        </button>
-
-        <button
-          className={styles.actionButton}
-          onClick={onNext}
-          disabled={disabled}
-        >
-          <span>{nextLabel}</span>
-          {buttonIcon}
         </button>
       </div>
     </nav>

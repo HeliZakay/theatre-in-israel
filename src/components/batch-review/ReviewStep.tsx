@@ -14,6 +14,8 @@ interface ReviewStepProps {
   show: BatchShowItem;
   currentIndex: number;
   onNext: () => void;
+  onPrev: () => void;
+  isFirst: boolean;
   isLast: boolean;
   editingFromSummary: boolean;
   shows: BatchShowItem[];
@@ -28,6 +30,8 @@ export default function ReviewStep({
   show,
   currentIndex,
   onNext,
+  onPrev,
+  isFirst,
   isLast,
   editingFromSummary,
   shows,
@@ -141,6 +145,8 @@ export default function ReviewStep({
           disabled={false}
           onNext={onNext}
           nextLabel={nextLabel}
+          onPrev={onPrev}
+          isFirst={isFirst}
         />
       </div>
     </div>
