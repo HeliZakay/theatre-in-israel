@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
 import FallbackImage from "@/components/ui/FallbackImage/FallbackImage";
 import { getShowImagePath } from "@/utils/getShowImagePath";
@@ -165,6 +165,189 @@ function useOdometer(target: number, durationMs = 800): number {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Stats Row                                                          */
+/* ------------------------------------------------------------------ */
+
+function getReviewerLabel(avgRating: number): string {
+  if (avgRating >= 4.5) return "מבקר/ת נלהב/ת";
+  if (avgRating >= 3.5) return "מבקר/ת נדיב/ה";
+  if (avgRating >= 2.5) return "מבקר/ת מאוזנ/ת";
+  return "מבקר/ת מדויק/ת";
+}
+
+function StatsRow({
+  completedReviews,
+}: {
+  completedReviews: { rating: number }[];
+}) {
+  const avgRating =
+    completedReviews.reduce((sum, r) => sum + r.rating, 0) /
+    completedReviews.length;
+  const label = getReviewerLabel(avgRating);
+
+  return (
+    <div className={styles.statsRow} aria-label="סטטיסטיקת ביקורות">
+      <div className={styles.statPill} style={{ "--pill-index": 0 } as React.CSSProperties}>
+        <span className={styles.statValue}>{completedReviews.length}</span>
+        <span className={styles.statLabel}>ביקורות</span>
+      </div>
+      <div className={styles.statPill} style={{ "--pill-index": 1 } as React.CSSProperties}>
+        <span className={styles.statValue}>
+          {avgRating.toFixed(1)}
+          <svg className={styles.statStar} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+        </span>
+        <span className={styles.statLabel}>ממוצע</span>
+      </div>
+      <div className={styles.statPill} style={{ "--pill-index": 2 } as React.CSSProperties}>
+        <span className={styles.statValue}>{label}</span>
+        <span className={styles.statLabel}>הסגנון שלכם</span>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Theatre Recommendations                                            */
+/* ------------------------------------------------------------------ */
+
+function TheatreRecommendations({
+  completedReviews,
+  shows,
+}: {
+  completedReviews: { showId: number }[];
+  shows: BatchShowItem[];
+}) {
+  const recommendations = useMemo(() => {
+    const reviewedIds = new Set(completedReviews.map((r) => r.showId));
+    const reviewedTheatres = new Set(
+      completedReviews
+        .map((r) => shows.find((s) => s.id === r.showId)?.theatre)
+        .filter(Boolean),
+    );
+    return shows
+      .filter((s) => !reviewedIds.has(s.id) && reviewedTheatres.has(s.theatre))
+      .sort((a, b) => (b.avgRating ?? 0) - (a.avgRating ?? 0))
+      .slice(0, 10);
+  }, [completedReviews, shows]);
+
+  if (recommendations.length < 2) return null;
+
+  return (
+    <section className={styles.recsSection}>
+      <h2 className={styles.recsHeading}>עוד הצגות מאותם תיאטרונות</h2>
+      <div className={styles.recsScroll}>
+        {recommendations.map((show) => (
+          <Link
+            key={show.id}
+            href={showPath(show.slug)}
+            className={styles.recCard}
+          >
+            <div className={styles.recPoster}>
+              <FallbackImage
+                src={getShowImagePath(show.title)}
+                alt={show.title}
+                fill
+                sizes="120px"
+                className={styles.showImage}
+              />
+            </div>
+            <span className={styles.recTitle}>{show.title}</span>
+            <span className={styles.recTheatre}>{show.theatre}</span>
+            {show.avgRating && (
+              <span className={styles.recRating}>
+                <svg className={styles.statStar} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+                {show.avgRating.toFixed(1)}
+              </span>
+            )}
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Feature Discovery Cards                                            */
+/* ------------------------------------------------------------------ */
+
+function FeatureCards({ isAuthenticated }: { isAuthenticated: boolean }) {
+  return (
+    <section className={styles.featureSection}>
+      <div className={styles.featureGrid}>
+        <Link href={ROUTES.EVENTS} className={styles.featureCard}>
+          <span className={styles.featureIcon} aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+              <rect x="3" y="4" width="18" height="18" rx="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+          </span>
+          <span className={styles.featureTitle}>הצגות השבוע</span>
+          <span className={styles.featureDesc}>גלו מה מתרחש על הבמות</span>
+        </Link>
+
+        <Link
+          href={isAuthenticated ? ROUTES.MY_WATCHLIST : ROUTES.AUTH_SIGNUP}
+          className={styles.featureCard}
+        >
+          <span className={styles.featureIcon} aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+              <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z" />
+            </svg>
+          </span>
+          <span className={styles.featureTitle}>רשימת צפייה</span>
+          <span className={styles.featureDesc}>שמרו הצגות לצפייה עתידית</span>
+        </Link>
+
+        <Link href={ROUTES.GENRES} className={styles.featureCard}>
+          <span className={styles.featureIcon} aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+              <circle cx="12" cy="12" r="10" />
+              <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+              <line x1="9" y1="9" x2="9.01" y2="9" strokeWidth={2.5} strokeLinecap="round" />
+              <line x1="15" y1="9" x2="15.01" y2="9" strokeWidth={2.5} strokeLinecap="round" />
+            </svg>
+          </span>
+          <span className={styles.featureTitle}>גלו לפי ז׳אנר</span>
+          <span className={styles.featureDesc}>דרמה, קומדיה, מחזמר ועוד</span>
+        </Link>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Auth Nudge                                                         */
+/* ------------------------------------------------------------------ */
+
+function AuthNudge() {
+  return (
+    <section className={styles.authNudge}>
+      <div className={styles.authNudgeContent}>
+        <svg className={styles.authNudgeIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+        <div>
+          <h2 className={styles.authNudgeTitle}>שמרו על הביקורות שלכם</h2>
+          <p className={styles.authNudgeBody}>
+            צרו חשבון כדי לערוך ביקורות, לבנות רשימת צפייה ולעקוב אחרי הדירוגים שלכם
+          </p>
+        </div>
+      </div>
+      <Link href={ROUTES.AUTH_SIGNUP} className={styles.authNudgeButton}>
+        יצירת חשבון
+      </Link>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  ExitSummary                                                        */
 /* ------------------------------------------------------------------ */
 
@@ -221,6 +404,9 @@ export default function ExitSummary({
         </p>
       </div>
 
+      {/* Stats row */}
+      {hasReviews && <StatsRow completedReviews={completedReviews} />}
+
       {/* Review cards grid */}
       {hasReviews && (
         <div className={styles.reviewGrid} role="list">
@@ -266,10 +452,27 @@ export default function ExitSummary({
         </div>
       )}
 
-      {/* CTA */}
+      {/* Theatre recommendations */}
+      {hasReviews && (
+        <TheatreRecommendations
+          completedReviews={completedReviews}
+          shows={shows}
+        />
+      )}
+
+      {/* Feature discovery */}
+      <FeatureCards isAuthenticated={isAuthenticated} />
+
+      {/* Auth nudge for unauthenticated users */}
+      {!isAuthenticated && <AuthNudge />}
+
+      {/* CTA row */}
       <div className={styles.ctaRow}>
         <Link href={ROUTES.SHOWS} className={styles.exploreButton}>
           גלו הצגות נוספות
+        </Link>
+        <Link href={ROUTES.REVIEWS_BATCH} className={styles.secondaryButton}>
+          כתבו עוד ביקורות
         </Link>
       </div>
     </div>

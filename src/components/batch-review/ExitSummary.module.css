@@ -216,6 +216,275 @@
 }
 
 /* ------------------------------------------------------------------ */
+/*  Stats Row                                                          */
+/* ------------------------------------------------------------------ */
+
+.statsRow {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.statPill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 20px;
+  background: var(--color-slate-006);
+  border-radius: var(--radius-md);
+  min-width: 100px;
+  animation: cardFadeIn 0.4s ease-out backwards;
+  animation-delay: calc(var(--pill-index, 0) * 0.12s);
+}
+
+.statValue {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.statStar {
+  width: 16px;
+  height: 16px;
+  color: #b8860b;
+}
+
+.statLabel {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Theatre Recommendations                                            */
+/* ------------------------------------------------------------------ */
+
+.recsSection {
+  width: 100%;
+}
+
+.recsHeading {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 12px;
+}
+
+.recsScroll {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar but keep functionality */
+.recsScroll::-webkit-scrollbar {
+  height: 4px;
+}
+.recsScroll::-webkit-scrollbar-thumb {
+  background: var(--color-slate-012);
+  border-radius: 4px;
+}
+
+.recCard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 130px;
+  max-width: 130px;
+  text-decoration: none;
+  scroll-snap-align: start;
+  transition: transform 0.15s ease;
+}
+
+.recCard:hover {
+  transform: translateY(-2px);
+}
+
+.recPoster {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--color-slate-008);
+}
+
+.recTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recTheatre {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recRating {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Feature Discovery Cards                                            */
+/* ------------------------------------------------------------------ */
+
+.featureSection {
+  width: 100%;
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 540px) {
+  .featureGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.featureCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 20px 12px;
+  background: var(--color-slate-006);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  text-align: center;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.featureCard:hover {
+  background: var(--color-slate-008);
+  border-color: var(--color-slate-012);
+}
+
+.featureCard:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring-color);
+}
+
+.featureIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--color-curtain-red);
+}
+
+.featureIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.featureTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.featureDesc {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Auth Nudge                                                         */
+/* ------------------------------------------------------------------ */
+
+.authNudge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 20px 24px;
+  background: #fffbf0;
+  border: 1px solid #e8d5a0;
+  border-radius: var(--radius-md);
+}
+
+.authNudgeContent {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
+}
+
+.authNudgeIcon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  color: #b8860b;
+}
+
+.authNudgeTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 4px;
+}
+
+.authNudgeBody {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.authNudgeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 24px;
+  min-height: 40px;
+  background: #b8860b;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.authNudgeButton:hover {
+  background: #a07509;
+}
+
+.authNudgeButton:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring-color);
+}
+
+/* ------------------------------------------------------------------ */
 /*  CTA row                                                            */
 /* ------------------------------------------------------------------ */
 
@@ -253,6 +522,33 @@
   box-shadow: 0 0 0 3px var(--focus-ring-color);
 }
 
+.secondaryButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--color-curtain-red);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-curtain-red);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 10px 28px;
+  min-height: 44px;
+  text-decoration: none;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.secondaryButton:hover {
+  background: var(--color-curtain-red-008);
+}
+
+.secondaryButton:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring-color);
+}
+
 /* Screen-reader only text */
 .srOnly {
   position: absolute;
@@ -271,8 +567,8 @@
     display: none;
   }
 
-  .reviewCard {
+  .reviewCard,
+  .statPill {
     animation: none;
   }
-
 }
