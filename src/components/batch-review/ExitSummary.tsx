@@ -6,6 +6,7 @@ import FallbackImage from "@/components/ui/FallbackImage/FallbackImage";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import { showPath } from "@/constants/routes";
 import { ROUTES } from "@/constants/routes";
+import ShowCarousel from "@/components/shows/ShowCarousel/ShowCarousel";
 import styles from "./ExitSummary.module.css";
 import type { BatchShowItem } from "@/lib/data/batchReview";
 
@@ -236,37 +237,44 @@ function TheatreRecommendations({
 
   return (
     <section className={styles.recsSection}>
-      <h2 className={styles.recsHeading}>עוד הצגות מאותם תיאטרונות</h2>
-      <div className={styles.recsScroll}>
-        {recommendations.map((show) => (
-          <Link
+      <h2 className={styles.recsHeading}>עוד הצגות מאותם תיאטראות</h2>
+      <ShowCarousel label="עוד הצגות מאותם תיאטראות">
+        {recommendations.map((show, index) => (
+          <div
             key={show.id}
-            href={showPath(show.slug)}
-            target="_blank"
-            className={styles.recCard}
+            className={styles.recSlide}
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`${index + 1} מתוך ${recommendations.length}`}
           >
-            <div className={styles.recPoster}>
-              <FallbackImage
-                src={getShowImagePath(show.title)}
-                alt={show.title}
-                fill
-                sizes="120px"
-                className={styles.showImage}
-              />
-            </div>
-            <span className={styles.recTitle}>{show.title}</span>
-            <span className={styles.recTheatre}>{show.theatre}</span>
-            {show.avgRating && (
-              <span className={styles.recRating}>
-                <svg className={styles.statStar} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                </svg>
-                {show.avgRating.toFixed(1)}
-              </span>
-            )}
-          </Link>
+            <Link
+              href={showPath(show.slug)}
+              target="_blank"
+              className={styles.recCard}
+            >
+              <div className={styles.recPoster}>
+                <FallbackImage
+                  src={getShowImagePath(show.title)}
+                  alt={show.title}
+                  fill
+                  sizes="120px"
+                  className={styles.showImage}
+                />
+              </div>
+              <span className={styles.recTitle}>{show.title}</span>
+              <span className={styles.recTheatre}>{show.theatre}</span>
+              {show.avgRating && (
+                <span className={styles.recRating}>
+                  <svg className={styles.statStar} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                  {show.avgRating.toFixed(1)}
+                </span>
+              )}
+            </Link>
+          </div>
         ))}
-      </div>
+      </ShowCarousel>
     </section>
   );
 }
