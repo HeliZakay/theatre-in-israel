@@ -200,9 +200,28 @@
 
 }
 
+/* Content transition on show change */
+.fadeSlideIn {
+  animation: fadeSlide 0.25s ease-out;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .bottomBar {
     animation: none;
   }
 
+  .fadeSlideIn {
+    animation: none;
+  }
 }

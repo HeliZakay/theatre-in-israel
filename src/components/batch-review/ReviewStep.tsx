@@ -40,6 +40,16 @@ export default function ReviewStep({
   const [rating, setRating] = useState<number | null>(initialDraft?.rating ?? null);
   const [text, setText] = useState(initialDraft?.text ?? "");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const prevShowIdRef = useRef(show.id);
+
+  // Reset local state when show changes (replaces key-driven remount)
+  useEffect(() => {
+    if (prevShowIdRef.current !== show.id) {
+      prevShowIdRef.current = show.id;
+      setRating(initialDraft?.rating ?? null);
+      setText(initialDraft?.text ?? "");
+    }
+  }, [show.id, initialDraft]);
 
   // Sync draft changes back to parent (writes to a ref, no re-renders)
   useEffect(() => {
@@ -67,7 +77,7 @@ export default function ReviewStep({
 
   return (
     <div className={styles.reviewStep}>
-      <div className={styles.contentRow}>
+      <div key={show.id} className={`${styles.contentRow} ${styles.fadeSlideIn}`}>
         {/* Show card */}
         <div className={styles.showCard}>
           <div className={styles.showPoster}>

@@ -472,9 +472,8 @@ export default function BatchReviewFlow({
         if (!currentShow) return null;
         return (
           <div className={styles.reviewWrapper}>
-            <div key={`review-${currentShowId}`} className={transitionClass}>
+            <div className={transitionClass}>
               <ReviewStep
-                key={currentShowId}
                 show={currentShow}
                 currentIndex={state.currentIndex}
                 onNext={handleNextShow}
