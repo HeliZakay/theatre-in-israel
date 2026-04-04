@@ -74,40 +74,6 @@
 }
 
 /* ------------------------------------------------------------------ */
-/*  Finish link (top-left in RTL = top-right visually, below close)    */
-/* ------------------------------------------------------------------ */
-
-.finishLink {
-  position: fixed;
-  top: 12px;
-  left: 56px;
-  min-width: 44px;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #767676;
-  cursor: pointer;
-  z-index: 30;
-  padding: 0 8px;
-  border-radius: var(--radius-sm);
-  transition: color 0.15s ease;
-}
-
-.finishLink:hover {
-  color: var(--color-text-primary);
-}
-
-.finishLink:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--focus-ring-color);
-}
-
-/* ------------------------------------------------------------------ */
 /*  Bottom bar                                                         */
 /* ------------------------------------------------------------------ */
 

@@ -1,0 +1,110 @@
+.strip {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 2px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+
+  /* Hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.strip::-webkit-scrollbar {
+  display: none;
+}
+
+.thumb {
+  position: relative;
+  width: 48px;
+  height: 64px;
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: 2px solid transparent;
+  background: var(--color-slate-008);
+  transition:
+    border-color 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.thumb:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring-color);
+}
+
+.thumbCurrent {
+  border-color: var(--color-curtain-red);
+}
+
+.thumbCompleted {
+  opacity: 0.7;
+}
+
+.thumbCompleted::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.numberBadge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+  z-index: 2;
+  line-height: 1;
+}
+
+.thumbCurrent .numberBadge {
+  background: var(--color-curtain-red);
+}
+
+.checkBadge {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #34c759;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.checkIcon {
+  width: 10px;
+  height: 10px;
+  color: #fff;
+}
+
+.thumbImage {
+  object-fit: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strip {
+    scroll-behavior: auto;
+  }
+
+  .thumb {
+    transition: none;
+  }
+}

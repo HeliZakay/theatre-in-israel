@@ -6,6 +6,7 @@ import { getShowImagePath } from "@/utils/getShowImagePath";
 import { REVIEW_TEXT_MAX, REVIEW_TEXT_MIN } from "@/constants/reviewValidation";
 import StarRating from "./StarRating";
 import ExpressionChips from "./ExpressionChips";
+import ShowNavStrip from "./ShowNavStrip";
 import styles from "./ReviewStep.module.css";
 import type { BatchShowItem } from "@/lib/data/batchReview";
 
@@ -16,8 +17,14 @@ interface ReviewStepProps {
   submissionStatus: "idle" | "pending" | "confirmed" | "error";
   errorMessage: string;
   onSubmitted: (showId: number, rating: number, text: string) => void;
-  onBack?: () => void;
   onSkip: () => void;
+  onFinish: () => void;
+  completedReview?: { showId: number; rating: number; text: string };
+  shows: BatchShowItem[];
+  selectedShowIds: number[];
+  completedReviews: { showId: number; rating: number; text: string }[];
+  onJumpTo: (index: number) => void;
+  hasNextUnreviewed: boolean;
 }
 
 export default function ReviewStep({
@@ -27,18 +34,30 @@ export default function ReviewStep({
   submissionStatus,
   errorMessage: externalError,
   onSubmitted,
-  onBack,
   onSkip,
+  onFinish,
+  completedReview,
+  shows,
+  selectedShowIds,
+  completedReviews,
+  onJumpTo,
+  hasNextUnreviewed,
 }: ReviewStepProps) {
   const [rating, setRating] = useState<number | null>(null);
   const [text, setText] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
+  const isReadOnly = !!completedReview;
+  const displayRating = isReadOnly ? completedReview.rating : rating;
+  const displayText = isReadOnly ? completedReview.text : text;
+
+  const completedShowIds = new Set(completedReviews.map((r) => r.showId));
+
   const progress = ((currentIndex + 1) / totalCount) * 100;
   const isPending = submissionStatus === "pending";
   const isConfirmed = submissionStatus === "confirmed";
-  const isDisabled = isPending || isConfirmed;
-  const showCharCount = text.length > 500;
+  const isDisabled = isPending || isConfirmed || isReadOnly;
+  const showCharCount = !isReadOnly && text.length > 500;
 
   const handleTextChange = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -78,16 +97,6 @@ export default function ReviewStep({
 
       {/* Progress */}
       <div className={styles.progressSection}>
-        {onBack && (
-          <button
-            className={styles.backButton}
-            onClick={onBack}
-            aria-label="חזרה לבחירת הצגות"
-            disabled={isDisabled}
-          >
-            &#8592;
-          </button>
-        )}
         <div className={styles.progressContent}>
           <div className={styles.progressTrack}>
             <div
@@ -100,6 +109,18 @@ export default function ReviewStep({
           </span>
         </div>
       </div>
+
+      {/* Show navigation strip */}
+      {totalCount > 1 && (
+        <ShowNavStrip
+          shows={shows}
+          selectedShowIds={selectedShowIds}
+          currentIndex={currentIndex}
+          completedShowIds={completedShowIds}
+          onJumpTo={onJumpTo}
+          disabled={isPending || isConfirmed}
+        />
+      )}
 
       {/* Show card */}
       <div className={styles.showCard}>
@@ -120,7 +141,7 @@ export default function ReviewStep({
 
       {/* Star rating */}
       <div className={styles.ratingSection}>
-        <StarRating value={rating} onChange={setRating} disabled={isDisabled} />
+        <StarRating value={displayRating} onChange={setRating} disabled={isDisabled} />
       </div>
 
       {/* Textarea */}
@@ -131,11 +152,12 @@ export default function ReviewStep({
           rows={3}
           maxLength={REVIEW_TEXT_MAX}
           placeholder="במילה, במשפט, או בפסקה — הכל בסדר"
-          value={text}
+          value={displayText}
           onChange={handleTextChange}
           disabled={isDisabled}
+          readOnly={isReadOnly}
           onFocus={(e) => {
-            e.currentTarget.rows = 6;
+            if (!isReadOnly) e.currentTarget.rows = 6;
           }}
         />
         {showCharCount && (
@@ -147,7 +169,7 @@ export default function ReviewStep({
 
       {/* Expression chips */}
       <ExpressionChips
-        text={text}
+        text={displayText}
         onTextChange={handleChipTextChange}
         disabled={isDisabled}
       />
@@ -161,20 +183,45 @@ export default function ReviewStep({
 
       {/* Sticky bottom bar */}
       <div className={styles.bottomBar}>
-        <button
-          className={styles.submitButton}
-          onClick={handleSubmit}
-          disabled={!rating || text.length < REVIEW_TEXT_MIN || isDisabled}
-        >
-          {isPending ? "שולח..." : "שלח ביקורת"}
-        </button>
-        <button
-          className={styles.skipButton}
-          onClick={handleSkip}
-          disabled={isDisabled}
-        >
-          דלג
-        </button>
+        {isReadOnly ? (
+          <>
+            <span className={styles.reviewedLabel}>נכתבה ביקורת</span>
+            <button
+              className={styles.finishButton}
+              onClick={onFinish}
+            >
+              סיום
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              className={styles.submitButton}
+              onClick={handleSubmit}
+              disabled={!rating || text.length < REVIEW_TEXT_MIN || isDisabled}
+            >
+              {isPending ? "שולח..." : "שלח ביקורת"}
+            </button>
+            <div className={styles.secondaryActions}>
+              {hasNextUnreviewed && (
+                <button
+                  className={styles.skipButton}
+                  onClick={handleSkip}
+                  disabled={isDisabled}
+                >
+                  דלג
+                </button>
+              )}
+              <button
+                className={styles.finishButton}
+                onClick={onFinish}
+                disabled={isDisabled}
+              >
+                סיום
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

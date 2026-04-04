@@ -36,6 +36,7 @@ type BatchFlowAction =
   | { type: "REVIEW_CONFIRMED"; showId: number; rating: number; text: string }
   | { type: "SKIP_SHOW" }
   | { type: "AUTO_ADVANCE" }
+  | { type: "JUMP_TO"; index: number }
   | { type: "FINISH" }
   | { type: "BACK_TO_SELECT" };
 
@@ -131,15 +132,20 @@ function reducer(
         errorMessage: "",
       };
     case "SKIP_SHOW": {
-      const nextIndex = state.currentIndex + 1;
-      const isLast = nextIndex >= state.selectedShowIds.length;
-      if (isLast) {
-        return withStepTransition(state, {
-          currentIndex: nextIndex,
-          step: "exit",
-          submissionStatus: "idle",
-          errorMessage: "",
-        });
+      // Find next unreviewed show
+      const skippedReviewedIds = new Set(
+        state.completedReviews.map((r) => r.showId),
+      );
+      let nextIndex = state.currentIndex + 1;
+      while (
+        nextIndex < state.selectedShowIds.length &&
+        skippedReviewedIds.has(state.selectedShowIds[nextIndex])
+      ) {
+        nextIndex++;
+      }
+      // No more unreviewed shows — stay put
+      if (nextIndex >= state.selectedShowIds.length) {
+        return { ...state, submissionStatus: "idle", errorMessage: "" };
       }
       // Same step (review→review): force prevStep so transition animation fires
       return {
@@ -152,15 +158,18 @@ function reducer(
       };
     }
     case "AUTO_ADVANCE": {
-      const nextIndex = state.currentIndex + 1;
-      const isLast = nextIndex >= state.selectedShowIds.length;
-      if (isLast) {
-        return withStepTransition(state, {
-          currentIndex: nextIndex,
-          step: "exit",
-          submissionStatus: "idle",
-          errorMessage: "",
-        });
+      // Find next unreviewed show (skip already-completed ones)
+      const reviewedIds = new Set(state.completedReviews.map((r) => r.showId));
+      let nextIndex = state.currentIndex + 1;
+      while (
+        nextIndex < state.selectedShowIds.length &&
+        reviewedIds.has(state.selectedShowIds[nextIndex])
+      ) {
+        nextIndex++;
+      }
+      // No more unreviewed shows — stay on current (read-only view)
+      if (nextIndex >= state.selectedShowIds.length) {
+        return { ...state, submissionStatus: "idle", errorMessage: "" };
       }
       // Same step (review→review): force prevStep so transition animation fires
       return {
@@ -172,6 +181,15 @@ function reducer(
         errorMessage: "",
       };
     }
+    case "JUMP_TO":
+      return {
+        ...state,
+        currentIndex: action.index,
+        step: "review",
+        prevStep: "review",
+        submissionStatus: "idle",
+        errorMessage: "",
+      };
     case "FINISH":
       return withStepTransition(state, {
         step: "exit",
@@ -355,17 +373,21 @@ export default function BatchReviewFlow({
     [isAuthenticated, submitToServer],
   );
 
-  const handleBackToSelect = useCallback(() => {
-    logEvent("batch_back_to_select", {});
-    dispatch({ type: "BACK_TO_SELECT" });
-  }, []);
-
   const handleSkip = useCallback(
     (showId: number, position: number) => {
       logEvent("batch_review_skip", { showId, position });
       dispatch({ type: "SKIP_SHOW" });
     },
     [],
+  );
+
+  const handleJumpTo = useCallback(
+    (index: number) => {
+      if (index === state.currentIndex) return;
+      logEvent("batch_jump_to", { from: state.currentIndex, to: index });
+      dispatch({ type: "JUMP_TO", index });
+    },
+    [state.currentIndex],
   );
 
   const handleFinish = () => {
@@ -398,8 +420,6 @@ export default function BatchReviewFlow({
     ? transitionStyleMap[transitionName] ?? ""
     : "";
 
-  const showFinishLink = state.step === "review";
-
   return (
     <main className={`${styles.flow} ${state.step === "exit" ? styles.flowExit : ""}`} dir="rtl">
       {/* Screen reader live region for announcements */}
@@ -415,13 +435,6 @@ export default function BatchReviewFlow({
       >
         ✕
       </button>
-
-      {/* Finish link — visible during review step */}
-      {showFinishLink && (
-        <button className={styles.finishLink} onClick={handleFinish}>
-          סיום
-        </button>
-      )}
 
       {state.step === "select" && (
         <>
@@ -458,6 +471,16 @@ export default function BatchReviewFlow({
         const currentShowId = state.selectedShowIds[state.currentIndex];
         const currentShow = shows.find((s) => s.id === currentShowId);
         if (!currentShow) return null;
+        const completedReview = state.completedReviews.find(
+          (r) => r.showId === currentShowId,
+        );
+        // Check if there's a next unreviewed show after the current one
+        const reviewedIdSet = new Set(
+          state.completedReviews.map((r) => r.showId),
+        );
+        const hasNextUnreviewed = state.selectedShowIds
+          .slice(state.currentIndex + 1)
+          .some((id) => !reviewedIdSet.has(id));
         return (
           <div className={styles.reviewWrapper}>
             <div key={`review-${currentShowId}`} className={transitionClass}>
@@ -469,10 +492,16 @@ export default function BatchReviewFlow({
                 submissionStatus={state.submissionStatus}
                 errorMessage={state.errorMessage}
                 onSubmitted={handleReviewSubmitted}
-                onBack={handleBackToSelect}
                 onSkip={() =>
                   handleSkip(currentShowId, state.currentIndex + 1)
                 }
+                onFinish={handleFinish}
+                completedReview={completedReview}
+                shows={shows}
+                selectedShowIds={state.selectedShowIds}
+                completedReviews={state.completedReviews}
+                onJumpTo={handleJumpTo}
+                hasNextUnreviewed={hasNextUnreviewed}
               />
             </div>
           </div>
