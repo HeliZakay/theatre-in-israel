@@ -27,6 +27,7 @@ interface BatchFlowState {
   completedReviews: { showId: number; rating: number; text: string }[];
   alreadyReviewedIds: Set<number>;
   editingFromSummary: boolean;
+  reviewerName: string;
 }
 
 type BatchFlowAction =
@@ -38,7 +39,7 @@ type BatchFlowAction =
   | { type: "GO_TO_SUMMARY"; drafts: { showId: number; rating: number; text: string }[] }
   | { type: "EDIT_FROM_SUMMARY"; index: number }
   | { type: "RETURN_TO_SUMMARY"; drafts: { showId: number; rating: number; text: string }[] }
-  | { type: "BULK_SUBMIT_COMPLETE"; reviews: { showId: number; rating: number; text: string }[] }
+  | { type: "BULK_SUBMIT_COMPLETE"; reviews: { showId: number; rating: number; text: string }[]; reviewerName: string }
   | { type: "BACK_TO_SELECT" }
   | { type: "BACK_TO_REVIEW" };
 
@@ -51,6 +52,7 @@ function createInitialState(reviewedShowIds: number[]): BatchFlowState {
     completedReviews: [],
     alreadyReviewedIds: new Set(reviewedShowIds),
     editingFromSummary: false,
+    reviewerName: "",
   };
 }
 
@@ -165,6 +167,7 @@ function reducer(
         step: "exit",
         completedReviews: action.reviews,
         editingFromSummary: false,
+        reviewerName: action.reviewerName,
       });
     default:
       return state;
@@ -274,7 +277,7 @@ export default function BatchReviewFlow({
   /* ---------------------------------------------------------------- */
 
   const submitToServer = useCallback(
-    async (review: { showId: number; rating: number; text: string }) => {
+    async (review: { showId: number; rating: number; text: string; name?: string }) => {
       const formData = new FormData();
       formData.set("showId", String(review.showId));
       formData.set("rating", String(review.rating));
@@ -282,7 +285,7 @@ export default function BatchReviewFlow({
       formData.set("title", "");
 
       if (!isAuthenticated) {
-        formData.set("name", "");
+        formData.set("name", review.name || "");
         formData.set("honeypot", "");
       }
 
@@ -378,9 +381,9 @@ export default function BatchReviewFlow({
   }, []);
 
   const handleBulkSubmitComplete = useCallback(
-    (reviews: { showId: number; rating: number; text: string }[]) => {
+    (reviews: { showId: number; rating: number; text: string }[], reviewerName: string) => {
       draftsRef.current = {};
-      dispatch({ type: "BULK_SUBMIT_COMPLETE", reviews });
+      dispatch({ type: "BULK_SUBMIT_COMPLETE", reviews, reviewerName });
     },
     [],
   );
@@ -510,6 +513,7 @@ export default function BatchReviewFlow({
           <ExitSummary
             completedReviews={state.completedReviews}
             shows={shows}
+            reviewerName={state.reviewerName}
           />
         </div>
       )}

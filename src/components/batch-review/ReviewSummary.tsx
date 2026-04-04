@@ -6,6 +6,7 @@ import { getShowImagePath } from "@/utils/getShowImagePath";
 import MiniStars from "./MiniStars";
 import { logEvent } from "@/lib/analytics";
 import styles from "./ReviewSummary.module.css";
+import fieldStyles from "@/components/reviews/ReviewFormFields/ReviewFormFields.module.css";
 import type { BatchShowItem } from "@/lib/data/batchReview";
 
 /* ------------------------------------------------------------------ */
@@ -27,8 +28,8 @@ interface ReviewSummaryProps {
   isAuthenticated: boolean;
   onEdit: (showId: number) => void;
   onBack: () => void;
-  onSubmitComplete: (reviews: { showId: number; rating: number; text: string }[]) => void;
-  submitToServer: (review: { showId: number; rating: number; text: string }) => Promise<unknown>;
+  onSubmitComplete: (reviews: { showId: number; rating: number; text: string }[], reviewerName: string) => void;
+  submitToServer: (review: { showId: number; rating: number; text: string; name?: string }) => Promise<unknown>;
 }
 
 /* ------------------------------------------------------------------ */
@@ -45,6 +46,7 @@ export default function ReviewSummary({
   submitToServer,
 }: ReviewSummaryProps) {
   const [submissionState, setSubmissionState] = useState<SubmissionState>({ status: "idle" });
+  const [reviewerName, setReviewerName] = useState("");
   const [expandedCards, setExpandedCards] = useState<Set<number>>(new Set());
   const headingRef = useRef<HTMLHeadingElement>(null);
 
@@ -82,7 +84,7 @@ export default function ReviewSummary({
       for (let i = 0; i < reviewsToSubmit.length; i++) {
         setSubmissionState({ status: "submitting", progress: i + 1, total });
         try {
-          await submitToServer(reviewsToSubmit[i]);
+          await submitToServer({ ...reviewsToSubmit[i], name: reviewerName });
           succeeded.push(reviewsToSubmit[i]);
         } catch (err) {
           failed.push({
@@ -94,13 +96,13 @@ export default function ReviewSummary({
 
       if (failed.length === 0) {
         logEvent("batch_bulk_submit", { count: total, allSucceeded: true });
-        onSubmitComplete(succeeded);
+        onSubmitComplete(succeeded, reviewerName);
       } else {
         logEvent("batch_bulk_submit", { count: total, failedCount: failed.length });
         setSubmissionState({ status: "partial_failure", succeeded, failed });
       }
     },
-    [submitToServer, onSubmitComplete],
+    [submitToServer, onSubmitComplete, reviewerName],
   );
 
   const handleSubmitAll = useCallback(() => {
@@ -115,8 +117,8 @@ export default function ReviewSummary({
 
   const handleContinueAnyway = useCallback(() => {
     if (submissionState.status !== "partial_failure") return;
-    onSubmitComplete(submissionState.succeeded);
-  }, [submissionState, onSubmitComplete]);
+    onSubmitComplete(submissionState.succeeded, reviewerName);
+  }, [submissionState, onSubmitComplete, reviewerName]);
 
   // Succeeded show IDs for partial failure display
   const succeededIds =
@@ -184,6 +186,25 @@ export default function ReviewSummary({
           בדקו ושלחו
         </p>
       </div>
+
+      {/* Reviewer name (anonymous users only) */}
+      {!isAuthenticated && (
+        <div className={styles.nameSection}>
+          <label className={fieldStyles.field}>
+            <span className={fieldStyles.label}>שם (לא חובה)</span>
+            <input
+              className={`${fieldStyles.input} ${styles.nameInput}`}
+              type="text"
+              value={reviewerName}
+              onChange={(e) => setReviewerName(e.target.value)}
+              placeholder="אנונימי"
+              disabled={submissionState.status !== "idle"}
+              maxLength={50}
+              autoComplete="name"
+            />
+          </label>
+        </div>
+      )}
 
       {/* Review cards grid */}
       <div className={styles.reviewGrid} role="list">

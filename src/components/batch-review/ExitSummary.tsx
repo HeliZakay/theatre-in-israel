@@ -312,11 +312,13 @@ function FeatureCards() {
 interface ExitSummaryProps {
   completedReviews: { showId: number; rating: number; text: string }[];
   shows: BatchShowItem[];
+  reviewerName?: string;
 }
 
 export default function ExitSummary({
   completedReviews,
   shows,
+  reviewerName,
 }: ExitSummaryProps) {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const count = useOdometer(completedReviews.length);
@@ -342,7 +344,11 @@ export default function ExitSummary({
           tabIndex={-1}
           aria-live="polite"
         >
-          {hasReviews ? "תודה על הביקורות!" : "אולי בפעם הבאה"}
+          {hasReviews
+            ? reviewerName
+              ? `תודה, ${reviewerName}!`
+              : "תודה על הביקורות!"
+            : "אולי בפעם הבאה"}
         </h1>
         <p className={styles.subtitle}>
           {hasReviews ? (
