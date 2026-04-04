@@ -66,7 +66,7 @@ function getTransitionClass(
   if (!prevStep) return null;
   if (prevStep === "select" && step === "review") return "slideInFromLeft";
   if (prevStep === "review" && step === "select") return "fadeIn";
-  if (prevStep === "review" && step === "review") return "fadeSlideIn";
+  if (prevStep === "review" && step === "review") return null;
   if (prevStep === "review" && step === "summary") return "fadeIn";
   if (prevStep === "summary" && step === "review") return "slideInFromLeft";
   if (prevStep === "summary" && step === "exit") return "fadeIn";

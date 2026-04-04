@@ -102,7 +102,7 @@ export default function ReviewStep({
 
   return (
     <div className={styles.reviewStep}>
-      <div key={show.id} className={`${styles.contentRow} ${styles.fadeSlideIn}`}>
+      <div className={styles.contentRow}>
         {/* Show card */}
         <div className={styles.showCard}>
           <div className={styles.showPoster}>
