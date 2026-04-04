@@ -194,39 +194,23 @@ export default function ReviewSummary({
         </p>
       </div>
 
-      {/* Login / reviewer name (anonymous users only) */}
+      {/* Reviewer name (anonymous users only) */}
       {!isLoggedIn && (
-        <>
-          <InlineSignIn
-            onLoginSuccess={() => {
-              logEvent("batch_inline_login", { method: "credentials" });
-            }}
-            onBeforeGoogleRedirect={() => {
-              logEvent("batch_inline_login", { method: "google" });
-              onBeforeGoogleRedirect();
-            }}
-          />
-
-          <div className={styles.anonDivider}>
-            <span>או המשיכו בלי חשבון</span>
-          </div>
-
-          <div className={styles.nameSection}>
-            <label className={fieldStyles.field}>
-              <span className={fieldStyles.label}>שם (לא חובה)</span>
-              <input
-                className={`${fieldStyles.input} ${styles.nameInput}`}
-                type="text"
-                value={reviewerName}
-                onChange={(e) => setReviewerName(e.target.value)}
-                placeholder="אנונימי"
-                disabled={submissionState.status !== "idle"}
-                maxLength={50}
-                autoComplete="name"
-              />
-            </label>
-          </div>
-        </>
+        <div className={styles.nameSection}>
+          <label className={fieldStyles.field}>
+            <span className={fieldStyles.label}>שם (לא חובה)</span>
+            <input
+              className={`${fieldStyles.input} ${styles.nameInput}`}
+              type="text"
+              value={reviewerName}
+              onChange={(e) => setReviewerName(e.target.value)}
+              placeholder="אנונימי"
+              disabled={submissionState.status !== "idle"}
+              maxLength={50}
+              autoComplete="name"
+            />
+          </label>
+        </div>
       )}
 
       {/* Review cards grid */}
@@ -358,6 +342,25 @@ export default function ReviewSummary({
           </div>
         )}
       </div>
+
+      {/* Login option (anonymous users only) */}
+      {!isLoggedIn && (
+        <>
+          <div className={styles.anonDivider}>
+            <span>או התחברו לחשבון</span>
+          </div>
+
+          <InlineSignIn
+            onLoginSuccess={() => {
+              logEvent("batch_inline_login", { method: "credentials" });
+            }}
+            onBeforeGoogleRedirect={() => {
+              logEvent("batch_inline_login", { method: "google" });
+              onBeforeGoogleRedirect();
+            }}
+          />
+        </>
+      )}
     </div>
   );
 }
