@@ -229,7 +229,7 @@
   align-items: center;
   gap: 4px;
   padding: 12px 20px;
-  background: var(--color-slate-006);
+  background: var(--color-curtain-red-008);
   border-radius: var(--radius-md);
   min-width: 100px;
   animation: cardFadeIn 0.4s ease-out backwards;
@@ -242,7 +242,7 @@
   gap: 3px;
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--color-curtain-red);
 }
 
 .statStar {
@@ -253,7 +253,7 @@
 
 .statLabel {
   font-size: 0.8rem;
-  color: var(--color-text-muted);
+  color: var(--color-curtain-red-070);
 }
 
 /* ------------------------------------------------------------------ */
@@ -391,8 +391,8 @@
 }
 
 .featureCard:hover {
-  background: var(--color-slate-006);
-  border-color: var(--color-slate-015);
+  background: var(--color-curtain-red-008);
+  border-color: var(--color-curtain-red-012);
 }
 
 .featureCard:focus-visible {
