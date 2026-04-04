@@ -52,24 +52,6 @@
 
 @media (max-width: 900px) {
   .logo {
-    gap: 10px;
-  }
-
-  .logoIcon {
-    width: 72px;
-  }
-
-  .logoTitle {
-    font-size: 2rem;
-  }
-
-  .logoSubtitle {
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .logo {
     gap: 8px;
   }
 

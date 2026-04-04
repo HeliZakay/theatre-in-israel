@@ -407,28 +407,6 @@
 
 @media (max-width: 900px) {
   .header {
-    padding: 14px 18px;
-  }
-
-  .menu {
-    gap: 1.25rem;
-  }
-
-  .navList li {
-    padding: 0 10px;
-  }
-
-  .navText {
-    font-size: 0.95rem;
-  }
-
-  .userName {
-    max-width: 90px;
-  }
-}
-
-@media (max-width: 640px) {
-  .header {
     align-items: center;
     flex-wrap: nowrap;
     padding: 12px 14px;
