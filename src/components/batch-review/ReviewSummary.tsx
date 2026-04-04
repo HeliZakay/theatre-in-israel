@@ -185,7 +185,7 @@ export default function ReviewSummary({
       {/* Header */}
       <div className={styles.headerSection}>
         <h1 ref={headingRef} className={styles.heading} tabIndex={-1}>
-          כמעט שם!
+          תודה - כמעט שם!
         </h1>
         <p className={styles.subtitle}>
           כתבתם {drafts.length === 1 ? "ביקורת אחת" : `${drafts.length} ביקורות`}
