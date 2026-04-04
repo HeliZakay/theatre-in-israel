@@ -89,6 +89,31 @@
   object-fit: cover;
 }
 
+/* Compact variant (used in expand panel) */
+.stripCompact {
+  gap: 8px;
+  padding: 4px;
+}
+
+.stripCompact .thumb {
+  width: 40px;
+  height: 40px;
+}
+
+.stripCompact .thumbCurrent {
+  transform: scale(1.1);
+}
+
+.stripCompact .checkBadge {
+  width: 14px;
+  height: 14px;
+}
+
+.stripCompact .checkIcon {
+  width: 7px;
+  height: 7px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .strip {
     scroll-behavior: auto;

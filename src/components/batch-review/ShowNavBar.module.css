@@ -1,108 +1,170 @@
-/* Unified container */
+/* ── Container ────────────────────────────────────── */
+
 .container {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   width: 100%;
   max-width: 640px;
-  padding: 12px;
-  border: 1px solid var(--color-slate-012);
-  border-radius: var(--radius-md);
-  background: var(--background);
-}
-
-/* ── Progress row ─────────────────────────────────── */
-
-.progressRow {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0 4px;
-}
-
-.progressLabel {
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.progressTrack {
-  flex: 1;
-  height: 4px;
-  border-radius: 2px;
-  background: var(--color-slate-008);
-  overflow: hidden;
-}
-
-.progressFill {
-  height: 100%;
-  background: var(--color-curtain-red);
-  border-radius: 2px;
-  transition: width 0.3s ease;
-}
-
-/* ── Strip row (arrows + thumbnails) ──────────────── */
-
-.stripRow {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+  padding: 8px 12px;
   position: relative;
 }
 
-.stripWrapper {
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
+/* ── Segmented progress bar ──────────────────────── */
+
+.segmentRow {
+  display: flex;
+  gap: 2px;
+  padding: 0 2px;
 }
 
-.scrollArrow {
-  width: 28px;
-  height: 28px;
+.segment {
+  flex: 1;
+  min-width: 12px;
+  height: 4px;
+  border-radius: 2px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: var(--color-slate-015);
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+.segment:hover {
+  transform: scaleY(1.8);
+}
+
+.segment:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--focus-ring-color);
+  border-radius: 2px;
+}
+
+.segmentCompleted {
+  background: #34c759;
+}
+
+.segmentCurrent {
+  background: var(--color-curtain-red);
+  box-shadow: 0 0 4px var(--color-curtain-red-025);
+}
+
+/* ── Context + action row ────────────────────────── */
+
+.contextRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 40px;
+}
+
+.currentShowButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  min-width: 0;
+  flex: 1;
+  transition: background 0.15s ease;
+}
+
+.currentShowButton:hover {
+  background: var(--color-slate-008);
+}
+
+.currentShowButton:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--focus-ring-color);
+}
+
+.currentThumb {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid var(--color-curtain-red);
+  background: var(--color-slate-008);
+}
+
+.currentThumbImage {
+  object-fit: cover;
+}
+
+.expandIndicator {
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: var(--color-slate-008);
-  border: none;
-  cursor: pointer;
-  flex-shrink: 0;
+  border: 1.5px solid var(--color-slate-015);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-text-muted);
-  padding: 0;
-  transition: background 0.15s ease;
 }
 
-.scrollArrow svg {
-  width: 14px;
-  height: 14px;
+.expandIndicatorIcon {
+  width: 8px;
+  height: 8px;
+  transition: transform 0.2s ease;
 }
 
-.scrollArrow:hover {
-  background: var(--color-slate-015);
+.expandIndicatorOpen .expandIndicatorIcon {
+  transform: rotate(180deg);
 }
 
-.scrollArrowHidden {
-  visibility: hidden;
+.currentShowInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  text-align: start;
 }
 
-/* ── Action button ────────────────────────────────── */
+.currentShowTitle {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.currentShowCount {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+}
+
+/* ── Pill action button ──────────────────────────── */
 
 .actionButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  width: 100%;
-  height: 48px;
+  gap: 6px;
+  height: 40px;
+  padding: 0 20px;
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: 20px;
   background: var(--color-curtain-red);
   color: #fff;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
+  flex-shrink: 0;
   transition:
     background 0.15s ease,
     transform 0.1s ease;
@@ -113,7 +175,7 @@
 }
 
 .actionButton:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
 }
 
 .actionButton:focus-visible {
@@ -122,12 +184,57 @@
 }
 
 .buttonIcon {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
 }
 
-/* ── Desktop ──────────────────────────────────────── */
+/* ── Expand panel (thumbnail strip) ──────────────── */
+
+.expandBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background: rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.15s ease-out;
+}
+
+.expandPanel {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  z-index: 31;
+  background: var(--background);
+  border: 1px solid var(--color-slate-012);
+  border-bottom: none;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+  padding: 8px 4px;
+  animation: slideUp 0.2s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ── Desktop ─────────────────────────────────────── */
 
 @media (min-width: 768px) {
   .container {
@@ -135,10 +242,10 @@
   }
 }
 
-/* ── Reduced motion ───────────────────────────────── */
+/* ── Reduced motion ──────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
-  .progressFill {
+  .segment {
     transition: none;
   }
 
@@ -146,7 +253,15 @@
     transition: none;
   }
 
-  .scrollArrow {
+  .expandPanel {
+    animation: none;
+  }
+
+  .expandBackdrop {
+    animation: none;
+  }
+
+  .expandIndicatorIcon {
     transition: none;
   }
 }

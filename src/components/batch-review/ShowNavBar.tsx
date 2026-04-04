@@ -1,6 +1,8 @@
 "use client";
 
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
+import FallbackImage from "@/components/ui/FallbackImage/FallbackImage";
+import { getShowImagePath } from "@/utils/getShowImagePath";
 import ShowNavStrip from "./ShowNavStrip";
 import styles from "./ShowNavBar.module.css";
 import type { BatchShowItem } from "@/lib/data/batchReview";
@@ -14,23 +16,6 @@ interface ShowNavBarProps {
   disabled?: boolean;
   onNext: () => void;
   nextLabel: string;
-}
-
-function ChevronIcon({ direction }: { direction: "start" | "end" }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      style={direction === "start" ? { transform: "scaleX(-1)" } : undefined}
-    >
-      <polyline points="9 18 15 12 9 6" />
-    </svg>
-  );
 }
 
 function ArrowIcon() {
@@ -86,6 +71,23 @@ function ReturnIcon() {
   );
 }
 
+function ChevronDownIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  );
+}
+
 export default function ShowNavBar({
   shows,
   selectedShowIds,
@@ -96,52 +98,49 @@ export default function ShowNavBar({
   onNext,
   nextLabel,
 }: ShowNavBarProps) {
-  const stripWrapperRef = useRef<HTMLDivElement>(null);
-  const [canScrollStart, setCanScrollStart] = useState(false);
-  const [canScrollEnd, setCanScrollEnd] = useState(false);
+  const [stripOpen, setStripOpen] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   const totalCount = selectedShowIds.length;
-  const completedCount = completedShowIds.size;
+  const currentShowId = selectedShowIds[currentIndex];
+  const currentShow = shows.find((s) => s.id === currentShowId);
 
-  const checkOverflow = useCallback(() => {
-    const el = stripWrapperRef.current?.querySelector<HTMLElement>(
-      '[role="tablist"]',
-    );
-    if (!el) return;
-    // In RTL, scrollLeft is negative in some browsers
-    const scrollPos = Math.abs(el.scrollLeft);
-    const maxScroll = el.scrollWidth - el.clientWidth;
-    setCanScrollStart(scrollPos > 2);
-    setCanScrollEnd(maxScroll - scrollPos > 2);
-  }, []);
-
+  // Close panel on outside click
   useEffect(() => {
-    const el = stripWrapperRef.current?.querySelector<HTMLElement>(
-      '[role="tablist"]',
-    );
-    if (!el) return;
-    checkOverflow();
-    el.addEventListener("scroll", checkOverflow, { passive: true });
-    const ro = new ResizeObserver(checkOverflow);
-    ro.observe(el);
-    return () => {
-      el.removeEventListener("scroll", checkOverflow);
-      ro.disconnect();
-    };
-  }, [checkOverflow, selectedShowIds.length]);
+    if (!stripOpen) return;
+    function handleClick(e: MouseEvent) {
+      if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
+        setStripOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [stripOpen]);
 
-  const scroll = (direction: "start" | "end") => {
-    const el = stripWrapperRef.current?.querySelector<HTMLElement>(
-      '[role="tablist"]',
-    );
-    if (!el) return;
-    const amount = 58 * 3; // 3 thumbnails worth
-    // In RTL, "start" means scrolling right (positive), "end" means left (negative)
-    const isRtl = getComputedStyle(el).direction === "rtl";
-    const sign =
-      (direction === "end" ? 1 : -1) * (isRtl ? -1 : 1);
-    el.scrollBy({ left: sign * amount, behavior: "smooth" });
-  };
+  // Close panel on Escape
+  useEffect(() => {
+    if (!stripOpen) return;
+    function handleKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setStripOpen(false);
+    }
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [stripOpen]);
+
+  const handleJumpTo = useCallback(
+    (index: number) => {
+      setStripOpen(false);
+      onJumpTo(index);
+    },
+    [onJumpTo],
+  );
+
+  const handleSegmentClick = useCallback(
+    (index: number) => {
+      onJumpTo(index);
+    },
+    [onJumpTo],
+  );
 
   const buttonIcon =
     nextLabel === "סיום" ? (
@@ -153,68 +152,96 @@ export default function ShowNavBar({
     );
 
   return (
-    <nav className={styles.container} aria-label={`ניווט ביקורות: ${currentIndex + 1} מתוך ${totalCount}`}>
-      {/* Progress row */}
-      <div className={styles.progressRow}>
-        <span className={styles.progressLabel}>
-          ביקורת {currentIndex + 1} מתוך {totalCount}
-        </span>
-        <div
-          className={styles.progressTrack}
-          role="progressbar"
-          aria-valuenow={completedCount}
-          aria-valuemin={0}
-          aria-valuemax={totalCount}
-          aria-label={`${completedCount} מתוך ${totalCount} הושלמו`}
-        >
+    <nav
+      className={styles.container}
+      aria-label={`ניווט ביקורות: ${currentIndex + 1} מתוך ${totalCount}`}
+    >
+      {/* Expand panel (thumbnail strip, rendered above the bar) */}
+      {stripOpen && (
+        <>
           <div
-            className={styles.progressFill}
-            style={{ width: `${totalCount > 0 ? (completedCount / totalCount) * 100 : 0}%` }}
+            className={styles.expandBackdrop}
+            onClick={() => setStripOpen(false)}
+            aria-hidden="true"
           />
-        </div>
-      </div>
+          <div className={styles.expandPanel} ref={panelRef}>
+            <ShowNavStrip
+              shows={shows}
+              selectedShowIds={selectedShowIds}
+              currentIndex={currentIndex}
+              completedShowIds={completedShowIds}
+              onJumpTo={handleJumpTo}
+              disabled={disabled}
+              compact
+            />
+          </div>
+        </>
+      )}
 
-      {/* Thumbnail strip with scroll arrows */}
-      <div className={styles.stripRow}>
-        <button
-          className={`${styles.scrollArrow} ${!canScrollStart ? styles.scrollArrowHidden : ""}`}
-          onClick={() => scroll("start")}
-          aria-label="הצגות נוספות"
-          tabIndex={-1}
-        >
-          <ChevronIcon direction="start" />
-        </button>
-
-        <div className={styles.stripWrapper} ref={stripWrapperRef}>
-          <ShowNavStrip
-            shows={shows}
-            selectedShowIds={selectedShowIds}
-            currentIndex={currentIndex}
-            completedShowIds={completedShowIds}
-            onJumpTo={onJumpTo}
-            disabled={disabled}
-          />
-        </div>
-
-        <button
-          className={`${styles.scrollArrow} ${!canScrollEnd ? styles.scrollArrowHidden : ""}`}
-          onClick={() => scroll("end")}
-          aria-label="הצגות נוספות"
-          tabIndex={-1}
-        >
-          <ChevronIcon direction="end" />
-        </button>
-      </div>
-
-      {/* Action button */}
-      <button
-        className={styles.actionButton}
-        onClick={onNext}
-        disabled={disabled}
+      {/* Row 1: Segmented progress bar */}
+      <div
+        className={styles.segmentRow}
+        role="tablist"
+        aria-label="ניווט בין הצגות"
       >
-        <span>{nextLabel}</span>
-        {buttonIcon}
-      </button>
+        {selectedShowIds.map((showId, index) => {
+          const show = shows.find((s) => s.id === showId);
+          const isCurrent = index === currentIndex;
+          const isCompleted = completedShowIds.has(showId);
+
+          return (
+            <button
+              key={showId}
+              role="tab"
+              aria-selected={isCurrent}
+              aria-label={`${show?.title ?? `הצגה ${index + 1}`}${isCompleted ? " (נכתבה ביקורת)" : ""}`}
+              className={`${styles.segment} ${isCurrent ? styles.segmentCurrent : ""} ${isCompleted && !isCurrent ? styles.segmentCompleted : ""}`}
+              onClick={() => handleSegmentClick(index)}
+              disabled={disabled}
+            />
+          );
+        })}
+      </div>
+
+      {/* Row 2: Current show context + action button */}
+      <div className={styles.contextRow}>
+        <button
+          className={`${styles.currentShowButton} ${stripOpen ? styles.expandIndicatorOpen : ""}`}
+          onClick={() => setStripOpen((prev) => !prev)}
+          aria-expanded={stripOpen}
+          aria-label={`${currentShow?.title ?? ""} — לחצו לניווט בין הצגות`}
+        >
+          <div className={styles.currentThumb}>
+            {currentShow && (
+              <FallbackImage
+                src={getShowImagePath(currentShow.title)}
+                alt=""
+                fill
+                sizes="32px"
+                className={styles.currentThumbImage}
+              />
+            )}
+          </div>
+          <div className={styles.currentShowInfo}>
+            <span className={styles.currentShowTitle}>
+              {currentShow?.title}
+            </span>
+            <span className={styles.currentShowCount}>
+              {currentIndex + 1} מתוך {totalCount}
+            </span>
+          </div>
+          <ChevronDownIcon className={styles.expandIndicatorIcon} />
+        </button>
+
+        <button
+          className={styles.actionButton}
+          onClick={onNext}
+          disabled={disabled}
+        >
+          <span>{nextLabel}</span>
+          {buttonIcon}
+        </button>
+      </div>
     </nav>
   );
 }

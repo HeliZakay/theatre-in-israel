@@ -13,6 +13,7 @@ interface ShowNavStripProps {
   completedShowIds: Set<number>;
   onJumpTo: (index: number) => void;
   disabled?: boolean;
+  compact?: boolean;
 }
 
 export default function ShowNavStrip({
@@ -22,6 +23,7 @@ export default function ShowNavStrip({
   completedShowIds,
   onJumpTo,
   disabled,
+  compact,
 }: ShowNavStripProps) {
   const stripRef = useRef<HTMLDivElement>(null);
   const currentThumbRef = useRef<HTMLButtonElement>(null);
@@ -37,7 +39,7 @@ export default function ShowNavStrip({
 
   return (
     <div
-      className={styles.strip}
+      className={`${styles.strip} ${compact ? styles.stripCompact : ""}`}
       ref={stripRef}
       role="tablist"
       aria-label="ניווט בין הצגות"
