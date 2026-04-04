@@ -80,7 +80,7 @@ export default function ReviewStep({
             src={getShowImagePath(show.title)}
             alt={show.title}
             fill
-            sizes="60px"
+            sizes="88px"
             className={styles.showImage}
           />
         </div>
