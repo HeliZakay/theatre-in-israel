@@ -242,6 +242,7 @@ function TheatreRecommendations({
           <Link
             key={show.id}
             href={showPath(show.slug)}
+            target="_blank"
             className={styles.recCard}
           >
             <div className={styles.recPoster}>
@@ -436,6 +437,7 @@ export default function ExitSummary({
                     {isAuthenticated && (
                       <Link
                         href={showPath(show.slug)}
+                        target="_blank"
                         className={styles.editLink}
                       >
                         עריכה
