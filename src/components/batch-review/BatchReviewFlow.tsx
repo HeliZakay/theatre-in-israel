@@ -401,7 +401,7 @@ export default function BatchReviewFlow({
   const showFinishLink = state.step === "review";
 
   return (
-    <main className={styles.flow} dir="rtl">
+    <main className={`${styles.flow} ${state.step === "exit" ? styles.flowExit : ""}`} dir="rtl">
       {/* Screen reader live region for announcements */}
       <div aria-live="polite" aria-atomic="true" className={styles.srOnly}>
         {announcement}

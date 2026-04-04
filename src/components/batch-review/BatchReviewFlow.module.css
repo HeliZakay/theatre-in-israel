@@ -10,6 +10,10 @@
   position: relative;
 }
 
+.flowExit {
+  padding-bottom: clamp(32px, 5vw, 48px);
+}
+
 .reviewWrapper {
   flex: 1;
   display: flex;

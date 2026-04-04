@@ -4,7 +4,7 @@
   align-items: center;
   width: 100%;
   gap: clamp(32px, 5vw, 56px);
-  padding: clamp(24px, 4vw, 48px) 0;
+  padding: clamp(24px, 4vw, 48px) clamp(8px, 2vw, 24px);
 }
 
 /* ------------------------------------------------------------------ */
