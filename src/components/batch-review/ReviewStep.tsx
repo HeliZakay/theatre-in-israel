@@ -118,6 +118,11 @@ export default function ReviewStep({
 
         {/* Review form */}
         <div className={styles.formColumn}>
+          {!editingFromSummary && (
+            <button type="button" className={styles.skipButton} onClick={onNext}>
+              דלג &raquo;
+            </button>
+          )}
           <div className={styles.showInfo}>
             <h2 className={styles.showTitle}>{show.title}</h2>
             <span className={styles.showTheatre}>{show.theatre}</span>
