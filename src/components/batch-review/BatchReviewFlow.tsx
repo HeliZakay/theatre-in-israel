@@ -212,7 +212,7 @@ export default function BatchReviewFlow({
     createInitialState,
   );
   const router = useRouter();
-  const { status: sessionStatus } = useSession();
+  const { data: session, status: sessionStatus } = useSession();
   const effectiveAuth = isAuthenticated || sessionStatus === "authenticated";
 
   // Draft state persisted across show navigation (ref to avoid re-renders on every keystroke)
@@ -451,9 +451,10 @@ export default function BatchReviewFlow({
   const handleBulkSubmitComplete = useCallback(
     (reviews: { showId: number; rating: number; text: string }[], reviewerName: string) => {
       draftsRef.current = {};
-      dispatch({ type: "BULK_SUBMIT_COMPLETE", reviews, reviewerName });
+      const name = reviewerName || session?.user?.name?.split(/\s+/)[0] || "";
+      dispatch({ type: "BULK_SUBMIT_COMPLETE", reviews, reviewerName: name });
     },
-    [],
+    [session],
   );
 
   const handleClose = () => {
