@@ -283,7 +283,7 @@ function TheatreRecommendations({
 /*  Feature Discovery Cards                                            */
 /* ------------------------------------------------------------------ */
 
-function FeatureCards({ isAuthenticated }: { isAuthenticated: boolean }) {
+function FeatureCards() {
   return (
     <section className={styles.featureSection}>
       <div className={styles.featureGrid}>
@@ -300,18 +300,14 @@ function FeatureCards({ isAuthenticated }: { isAuthenticated: boolean }) {
           <span className={styles.featureDesc}>גלו מה מתרחש על הבמות</span>
         </Link>
 
-        <Link
-          href={isAuthenticated ? ROUTES.MY_WATCHLIST : ROUTES.AUTH_SIGNUP}
-          target="_blank"
-          className={styles.featureCard}
-        >
+        <Link href={ROUTES.THEATRES} target="_blank" className={styles.featureCard}>
           <span className={styles.featureIcon} aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
-              <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z" />
+              <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" />
             </svg>
           </span>
-          <span className={styles.featureTitle}>רשימת צפייה</span>
-          <span className={styles.featureDesc}>שמרו הצגות לצפייה עתידית</span>
+          <span className={styles.featureTitle}>גלו לפי תיאטרון</span>
+          <span className={styles.featureDesc}>כל התיאטראות במקום אחד</span>
         </Link>
 
         <Link href={ROUTES.GENRES} target="_blank" className={styles.featureCard}>
@@ -446,7 +442,7 @@ export default function ExitSummary({
       )}
 
       {/* Feature discovery */}
-      <FeatureCards isAuthenticated={isAuthenticated} />
+      <FeatureCards />
 
       {/* CTA row */}
       <div className={styles.ctaRow}>
