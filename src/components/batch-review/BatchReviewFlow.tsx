@@ -480,7 +480,7 @@ export default function BatchReviewFlow({
       })()}
 
       {state.step === "exit" && (
-        <div className={transitionClass}>
+        <div className={transitionClass} style={{ width: "100%" }}>
           <ExitSummary
             completedReviews={state.completedReviews}
             shows={shows}
