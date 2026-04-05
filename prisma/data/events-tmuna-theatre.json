@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-04T09:14:57.638Z",
+  "scrapedAt": "2026-04-05T04:07:46.536Z",
   "touring": true,
   "events": [
     {
@@ -22,14 +22,6 @@
       "showId": 275,
       "showSlug": "Frau-Marlene",
       "date": "2026-04-17",
-      "hour": "20:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 108,
-      "showSlug": "אבא-יצא-מהקבוצה",
-      "date": "2026-04-09",
       "hour": "20:00",
       "venueName": "תיאטרון תמונע",
       "venueCity": "תל אביב"
