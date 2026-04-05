@@ -6,7 +6,7 @@ import type { Suggestions } from "@/types";
  */
 export async function getSuggestions(): Promise<Suggestions> {
   const [showFields, genreNames] = await Promise.all([
-    prisma.show.findMany({ select: { title: true, theatre: true } }),
+    prisma.show.findMany({ select: { title: true, theatre: true }, take: 5000 }),
     prisma.genre.findMany({ select: { name: true } }),
   ]);
 

@@ -288,6 +288,7 @@ export interface ExploreBannerShow {
 async function fetchExploreBannerShows(): Promise<ExploreBannerShow[]> {
   const rows = await prisma.show.findMany({
     where: excludeKidsWhere,
+    take: 200,
     select: {
       id: true,
       slug: true,

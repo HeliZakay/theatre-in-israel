@@ -3,9 +3,8 @@
 import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
-import { Controller, useForm, useWatch } from "react-hook-form";
+import { Controller, useForm, useWatch, type Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import type * as z from "zod";
 import styles from "./ReviewForm.module.css";
 import fieldStyles from "@/components/reviews/ReviewFormFields/ReviewFormFields.module.css";
 import { createReview, createAnonymousReview } from "@/app/reviews/actions";
@@ -20,6 +19,16 @@ import { getShowImagePath } from "@/utils/getShowImagePath";
 import { REVIEW_NAME_MAX } from "@/constants/reviewValidation";
 import ROUTES from "@/constants/routes";
 import type { Show } from "@/types";
+
+/** Raw form field values before Zod transformation (rating is a string in the form). */
+interface ReviewFormValues {
+  showId: string;
+  title: string;
+  rating: string;
+  text: string;
+  name: string;
+  honeypot: string;
+}
 
 /** Minimal show data needed for the combobox + poster. */
 export type ShowOption = Pick<Show, "id" | "slug" | "title">;
@@ -51,14 +60,15 @@ export default function ReviewForm({
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm({
-    resolver: zodResolver(schema),
+  } = useForm<ReviewFormValues>({
+    resolver: zodResolver(schema) as unknown as Resolver<ReviewFormValues>,
     defaultValues: {
       showId: String(initialShowId ?? ""),
       title: "",
       rating: "",
       text: "",
-      ...(isAuthenticated ? {} : { name: "", honeypot: "" }),
+      name: "",
+      honeypot: "",
     },
   });
 
@@ -72,7 +82,7 @@ export default function ReviewForm({
   const titleValue = useWatch({ control, name: "title" }) ?? "";
   const textValue = useWatch({ control, name: "text" }) ?? "";
 
-  const onSubmit = async (values: Record<string, unknown>) => {
+  const onSubmit = async (values: ReviewFormValues) => {
     setServerError("");
     try {
       const formData = new FormData();
@@ -171,11 +181,11 @@ export default function ReviewForm({
               placeholder="אנונימי"
               maxLength={REVIEW_NAME_MAX}
               disabled={isSubmitting}
-              {...(register as Function)("name")}
+              {...register("name")}
             />
-            {(errors as Record<string, { message?: string }>).name ? (
+            {errors.name ? (
               <p className={fieldStyles.fieldError} role="alert">
-                {(errors as Record<string, { message?: string }>).name?.message}
+                {errors.name.message}
               </p>
             ) : null}
           </label>
@@ -188,7 +198,7 @@ export default function ReviewForm({
                 type="text"
                 tabIndex={-1}
                 autoComplete="off"
-                {...(register as Function)("honeypot")}
+                {...register("honeypot")}
               />
             </label>
           </div>

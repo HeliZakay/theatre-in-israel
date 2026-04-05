@@ -133,7 +133,7 @@ export async function createReview(
       title,
       text,
       isAnonymous: false,
-    }).catch(console.error);
+    }).catch((err) => console.error("[Email]", err));
 
     const reviewCount = show?.reviewCount ?? 1;
 
@@ -243,7 +243,7 @@ export async function createAnonymousReview(
       title,
       text,
       isAnonymous: true,
-    }).catch(console.error);
+    }).catch((err) => console.error("[Email]", err));
 
     const reviewCount = show?.reviewCount ?? 1;
 
