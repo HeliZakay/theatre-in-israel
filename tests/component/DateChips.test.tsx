@@ -4,7 +4,7 @@ import { DATE_SLUGS, DEFAULT_DATE_PRESET } from "@/lib/eventsConstants";
 
 describe("DateChips", () => {
   it("renders all date slug labels", () => {
-    render(<DateChips datePreset="7days" />);
+    render(<DateChips datePreset="all" />);
 
     for (const label of Object.values(DATE_SLUGS)) {
       expect(screen.getByText(label)).toBeInTheDocument();
@@ -25,8 +25,8 @@ describe("DateChips", () => {
     expect(inactiveChip).toHaveAttribute("aria-checked", "false");
   });
 
-  it('default preset "7days" href is /events (no slug segment)', () => {
-    render(<DateChips datePreset="7days" />);
+  it('default preset "all" href is /events (no slug segment)', () => {
+    render(<DateChips datePreset="all" />);
 
     const defaultChip = screen.getByText(DATE_SLUGS[DEFAULT_DATE_PRESET]);
     expect(defaultChip).toHaveAttribute("href", "/events");
@@ -42,7 +42,7 @@ describe("DateChips", () => {
   it("locationSlug and theatre params pass through to hrefs", () => {
     render(
       <DateChips
-        datePreset="7days"
+        datePreset="all"
         locationSlug="center"
         theatre="הבימה"
       />,

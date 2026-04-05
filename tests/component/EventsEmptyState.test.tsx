@@ -9,7 +9,7 @@ describe("EventsEmptyState", () => {
   it("shows theatre-specific message when theatre filter is set", () => {
     render(
       <EventsEmptyState
-        datePreset="7days"
+        datePreset="all"
         theatre="תיאטרון הקאמרי"
         nearestRegion={null}
       />,
@@ -21,7 +21,7 @@ describe("EventsEmptyState", () => {
 
   it("shows generic message when no filters and no nearestRegion", () => {
     render(
-      <EventsEmptyState datePreset="7days" nearestRegion={null} />,
+      <EventsEmptyState datePreset="all" nearestRegion={null} />,
     );
     expect(screen.getByText("אין הופעות קרובות כרגע.")).toBeInTheDocument();
   });
@@ -54,13 +54,13 @@ describe("EventsEmptyState", () => {
   it("shows region suggestion with default date when region filter is non-default", () => {
     render(
       <EventsEmptyState
-        datePreset="7days"
+        datePreset="all"
         region="south"
         nearestRegion={{ slug: "center", label: "מרכז", count: 10 }}
       />,
     );
     expect(screen.getByText(/בדרום/)).toBeInTheDocument();
     // Should not include date text since it's the default preset
-    expect(screen.queryByText(/ב7 ימים קרובים/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/בהכל/)).not.toBeInTheDocument();
   });
 });

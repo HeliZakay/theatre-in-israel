@@ -5,8 +5,8 @@ describe("buildFilterUrl", () => {
     expect(buildFilterUrl(undefined, undefined)).toBe("/events");
   });
 
-  it("omits the default preset (7days) from URL segments", () => {
-    expect(buildFilterUrl("7days", undefined)).toBe("/events");
+  it("omits the default preset (all) from URL segments", () => {
+    expect(buildFilterUrl("all", undefined)).toBe("/events");
   });
 
   it("includes a non-default date preset", () => {

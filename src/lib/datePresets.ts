@@ -101,7 +101,7 @@ export function resolveDatePreset(
       return { from: utcDate(year, month, day), to: utcDate(2030, 12, 31) };
 
     default:
-      // Fall back to 7 days
-      return resolveDatePreset('7days', ref);
+      // Fall back to all
+      return resolveDatePreset('all', ref);
   }
 }

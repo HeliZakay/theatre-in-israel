@@ -94,10 +94,10 @@ describe("resolveDatePreset", () => {
     expect(fmt(to)).toBe("2030-12-31");
   });
 
-  it("unknown preset — falls back to 7days", () => {
+  it("unknown preset — falls back to all", () => {
     const { from, to } = resolveDatePreset("nonsense", wed);
     expect(fmt(from)).toBe("2026-03-25");
-    expect(fmt(to)).toBe("2026-03-31");
+    expect(fmt(to)).toBe("2030-12-31");
   });
 
   it("handles late-night UTC that is already next day in Jerusalem", () => {

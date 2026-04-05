@@ -2,7 +2,6 @@ import { unstable_cache } from "next/cache";
 import prisma from "../prisma";
 import { resolveDatePreset } from "../datePresets";
 import {
-  DEFAULT_DATE_PRESET,
   REGION_SLUGS,
   CITY_SLUGS,
 } from "../eventsConstants";
@@ -28,12 +27,11 @@ interface EventsQuery {
 }
 
 async function fetchEvents({
-  datePreset = DEFAULT_DATE_PRESET,
   region,
   city,
   theatre,
 }: EventsQuery): Promise<EventListItem[]> {
-  const { from, to } = resolveDatePreset(datePreset);
+  const { from, to } = resolveDatePreset('all');
 
   const venueWhere: Record<string, unknown> = {};
   if (region && region in REGION_SLUGS) {
@@ -100,10 +98,8 @@ export const getEvents = unstable_cache(
  * Two-step approach: first groupBy venueId to count events (Prisma can't
  * groupBy a relation field), then resolve each venue's regions and aggregate.
  */
-async function fetchRegionCounts(
-  datePreset: string = DEFAULT_DATE_PRESET,
-): Promise<Record<string, number>> {
-  const { from, to } = resolveDatePreset(datePreset);
+async function fetchRegionCounts(): Promise<Record<string, number>> {
+  const { from, to } = resolveDatePreset('all');
 
   const counts = await prisma.event.groupBy({
     by: ["venueId"],
@@ -139,7 +135,7 @@ async function fetchRegionCounts(
 }
 
 export const getRegionCounts = unstable_cache(
-  (datePreset?: string) => fetchRegionCounts(datePreset),
+  () => fetchRegionCounts(),
   ["events-region-counts"],
   { revalidate: 120, tags: ["events-list"] },
 );

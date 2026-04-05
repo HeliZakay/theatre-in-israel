@@ -85,7 +85,7 @@ export function parseFilters(filters: string[] = []): ParsedFilters {
 // Indexing rules
 // ---------------------------------------------------------------------------
 
-const INDEXED_DATE_SLUGS = new Set(["weekend", "week", "nextweek"]);
+const INDEXED_DATE_SLUGS = new Set(["weekend", "nextweek"]);
 const INDEXED_REGION_SLUGS = new Set(Object.keys(REGION_SLUGS));
 const INDEXED_CITY_SLUGS = new Set(Object.keys(CITY_SLUGS));
 
@@ -120,11 +120,10 @@ const CITY_DISPLAY: Record<string, string> = {
 
 /** How each date preset appears in the page title (with correct ב/no-ב). */
 const DATE_TITLE_FORM: Record<string, string> = {
-  "7days": "ב7 ימים הקרובים",
   today: "היום",
   tomorrow: "מחר",
   weekend: "בסוף השבוע",
-  week: "השבוע",
+
   nextweek: "בשבוע הבא",
   all: "",
 };
@@ -199,7 +198,7 @@ interface EventsPageProps {
 const DATE_DESCRIPTION: Record<string, string> = {
   weekend:
     "מה הולך בתיאטרון בסוף השבוע? כל ההצגות והמופעים הקרובים — דירוגים, ביקורות צופים ולוח מועדים מעודכן.",
-  week: "מה הולך בתיאטרון השבוע? כל ההצגות והמופעים הקרובים — דירוגים, ביקורות צופים ולוח מועדים מעודכן.",
+
   nextweek:
     "תכננו את השבוע הבא — כל הצגות התיאטרון, דירוגי צופים ולוח מועדים מעודכן.",
 };
@@ -364,8 +363,8 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
   const locationSlug = region ?? city;
 
   const [events, regionCounts] = await Promise.all([
-    getEvents({ datePreset, region, city, theatre }),
-    getRegionCounts(datePreset),
+    getEvents({ region, city, theatre }),
+    getRegionCounts(),
   ]);
 
   const title = theatre
@@ -542,6 +541,7 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
           <EventsClientView
             groups={dateGroupsFormatted}
             dateTabs={dateTabs}
+            datePreset={datePreset}
           />
         )}
       </div>

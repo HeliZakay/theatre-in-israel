@@ -19,7 +19,7 @@ describe("RegionChips", () => {
   it("renders 'all' chip plus one chip per region", () => {
     render(
       <RegionChips
-        datePreset="7days"
+        datePreset="all"
         regionCounts={regionCounts}
       />,
     );
@@ -30,7 +30,7 @@ describe("RegionChips", () => {
 
   it("marks 'all' chip as checked when no region is selected", () => {
     render(
-      <RegionChips datePreset="7days" regionCounts={regionCounts} />,
+      <RegionChips datePreset="all" regionCounts={regionCounts} />,
     );
     expect(screen.getByText("הכל")).toHaveAttribute("aria-checked", "true");
   });
@@ -38,7 +38,7 @@ describe("RegionChips", () => {
   it("marks the matching region chip as checked", () => {
     render(
       <RegionChips
-        datePreset="7days"
+        datePreset="all"
         region="center"
         regionCounts={regionCounts}
       />,
@@ -52,7 +52,7 @@ describe("RegionChips", () => {
 
   it("disables chips with count 0", () => {
     render(
-      <RegionChips datePreset="7days" regionCounts={regionCounts} />,
+      <RegionChips datePreset="all" regionCounts={regionCounts} />,
     );
     const shfela = screen.getByText("שפלה").closest("[role='radio']");
     expect(shfela).toHaveAttribute("aria-disabled", "true");
@@ -61,7 +61,7 @@ describe("RegionChips", () => {
 
   it("does not disable chips with count > 0", () => {
     render(
-      <RegionChips datePreset="7days" regionCounts={regionCounts} />,
+      <RegionChips datePreset="all" regionCounts={regionCounts} />,
     );
     const center = screen.getByText("מרכז").closest("[role='radio']");
     expect(center).not.toHaveAttribute("aria-disabled");
@@ -69,7 +69,7 @@ describe("RegionChips", () => {
 
   it("renders count badges", () => {
     render(
-      <RegionChips datePreset="7days" regionCounts={regionCounts} />,
+      <RegionChips datePreset="all" regionCounts={regionCounts} />,
     );
     expect(screen.getByText("10")).toBeInTheDocument();
     expect(screen.getAllByText("0")).toHaveLength(2); // shfela + south
@@ -77,7 +77,7 @@ describe("RegionChips", () => {
 
   it("has accessible radiogroup label", () => {
     render(
-      <RegionChips datePreset="7days" regionCounts={regionCounts} />,
+      <RegionChips datePreset="all" regionCounts={regionCounts} />,
     );
     expect(screen.getByRole("radiogroup")).toHaveAttribute(
       "aria-label",

@@ -1,11 +1,10 @@
 export const DATE_SLUGS: Record<string, string> = {
-  '7days': '7 ימים קרובים',
+  all: 'הכל',
   today: 'היום',
   tomorrow: 'מחר',
   weekend: 'סוף השבוע',
-  week: 'השבוע',
+
   nextweek: 'השבוע הבא',
-  all: 'הכל',
 };
 
 export const REGION_SLUGS: Record<string, string> = {
@@ -23,4 +22,4 @@ export const CITY_SLUGS: Record<string, string[]> = {
   'beer-sheva': ['באר שבע'],
 };
 
-export const DEFAULT_DATE_PRESET = '7days';
+export const DEFAULT_DATE_PRESET = 'all';
