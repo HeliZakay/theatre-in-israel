@@ -26,7 +26,7 @@ const EMPTY_SUGGESTIONS: Suggestions = {
 
 export default function HeaderSearch() {
   const router = useRouter();
-  const isMobile = useMediaQuery(640);
+  const isMobile = useMediaQuery(1050);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] =
