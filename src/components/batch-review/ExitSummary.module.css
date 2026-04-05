@@ -107,9 +107,12 @@
 
 .reviewGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
   width: 100%;
+  max-width: 740px;
+  margin: 0 auto;
+  justify-content: center;
 }
 
 .reviewCard {
@@ -117,7 +120,7 @@
   background: var(--card-bg);
   border: var(--card-border);
   border-radius: var(--radius-lg);
-  padding: 16px;
+  padding: 20px;
   box-shadow: var(--card-shadow);
   animation: cardFadeIn 0.4s ease-out backwards;
   animation-delay: calc(var(--card-index, 0) * 0.1s);
@@ -144,13 +147,13 @@
 .cardHeader {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 16px;
 }
 
 .showPoster {
   position: relative;
-  width: 56px;
-  height: 75px;
+  width: 72px;
+  height: 96px;
   border-radius: var(--radius-sm);
   overflow: hidden;
   flex-shrink: 0;
@@ -170,7 +173,7 @@
 }
 
 .showTitle {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--color-text-primary);
   overflow: hidden;
@@ -179,7 +182,7 @@
 }
 
 .reviewSnippet {
-  font-size: 0.875rem;
+  font-size: 0.95rem;
   color: var(--color-text-muted);
   line-height: 1.5;
   margin: 10px 0 0;

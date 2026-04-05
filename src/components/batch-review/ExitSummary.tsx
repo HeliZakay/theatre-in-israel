@@ -400,7 +400,7 @@ export default function ExitSummary({
                       src={getShowImagePath(show.title)}
                       alt={show.title}
                       fill
-                      sizes="56px"
+                      sizes="72px"
                       className={styles.showImage}
                     />
                   </div>
