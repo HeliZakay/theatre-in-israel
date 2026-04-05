@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import { TWENTY_FOUR_HOURS_MS } from "@/constants/rateLimits";
 
 /**
  * Generic DB-backed rate limiter.
@@ -15,12 +16,12 @@ export async function checkRateLimit(
   const windowStart = new Date(Date.now() - windowMs);
 
   // Clean up expired entries for this key, plus stale entries older than 24h across all keys
-  prisma.rateLimitAttempt
+  await prisma.rateLimitAttempt
     .deleteMany({
       where: {
         OR: [
           { key, action, createdAt: { lt: windowStart } },
-          { createdAt: { lt: new Date(Date.now() - 24 * 60 * 60 * 1000) } },
+          { createdAt: { lt: new Date(Date.now() - TWENTY_FOUR_HOURS_MS) } },
         ],
       },
     })

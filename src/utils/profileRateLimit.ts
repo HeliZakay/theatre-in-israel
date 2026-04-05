@@ -1,7 +1,8 @@
 import prisma from "@/lib/prisma";
 import { checkRateLimit } from "@/utils/rateLimit";
+import { ONE_HOUR_MS } from "@/constants/rateLimits";
 
-const PROFILE_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+const PROFILE_WINDOW_MS = ONE_HOUR_MS;
 const MAX_PROFILE_UPDATES = 5;
 
 /**

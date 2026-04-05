@@ -35,7 +35,7 @@ export async function requireActionAuth(
     const result = await rateLimit.check(session.user.id);
     if (result.isLimited) {
       return {
-        error: actionError(rateLimit.message(result.remainingTime!)),
+        error: actionError(rateLimit.message(result.remainingTime ?? 1)),
       };
     }
   }

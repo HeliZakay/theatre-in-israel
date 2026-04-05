@@ -38,7 +38,7 @@ export async function requireApiAuth(
     if (result.isLimited) {
       return {
         session: undefined,
-        error: apiError(rateLimit.message(result.remainingTime!), 429),
+        error: apiError(rateLimit.message(result.remainingTime ?? 1), 429),
       };
     }
   }

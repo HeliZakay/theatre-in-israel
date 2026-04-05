@@ -3,6 +3,7 @@
 import prisma from "@/lib/prisma";
 import { contactSchema } from "@/lib/contactSchemas";
 import { checkContactRateLimit } from "@/utils/rateLimitCheckers";
+import { getClientIp } from "@/utils/getClientIp";
 import { checkFieldsForProfanity } from "@/utils/profanityFilter";
 import { escapeHtml } from "@/utils/escapeHtml";
 import { headers } from "next/headers";
@@ -22,8 +23,7 @@ export async function sendContactMessage(values: {
 }): Promise<ActionResult<{ sent: boolean }>> {
   try {
     const headersList = await headers();
-    const ip =
-      headersList.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    const ip = getClientIp(headersList);
 
     const rateLimit = await checkContactRateLimit(ip);
     if (rateLimit.isLimited) {

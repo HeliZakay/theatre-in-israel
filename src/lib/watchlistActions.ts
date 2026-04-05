@@ -17,6 +17,7 @@ import {
   INTERNAL_ERROR_MESSAGE,
   type ActionResult,
 } from "@/types/actionResult";
+import { isPrismaError } from "@/utils/prismaError";
 
 export async function addToWatchlistAction(
   showId: number,
@@ -37,11 +38,11 @@ export async function addToWatchlistAction(
     await addToWatchlist(session.user.id, validId);
     return actionSuccess(undefined);
   } catch (err: unknown) {
-    if (typeof err === "object" && err !== null && "code" in err) {
-      if ((err as any).code === "P2002") {
+    if (isPrismaError(err)) {
+      if (err.code === "P2002") {
         return actionError("ההצגה כבר ברשימת הצפייה");
       }
-      if ((err as any).code === "P2003") {
+      if (err.code === "P2003") {
         return actionError("ההצגה לא נמצאה");
       }
     }

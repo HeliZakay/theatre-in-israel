@@ -4,6 +4,7 @@ import { z } from "zod";
 import bcrypt from "bcryptjs";
 import prisma from "@/lib/prisma";
 import { checkSignupRateLimit } from "@/utils/rateLimitCheckers";
+import { getClientIp } from "@/utils/getClientIp";
 import { headers } from "next/headers";
 import {
   actionSuccess,
@@ -35,8 +36,7 @@ export async function signup(values: {
 > {
   try {
     const headersList = await headers();
-    const ip =
-      headersList.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    const ip = getClientIp(headersList);
     const rateLimit = await checkSignupRateLimit(ip);
     if (rateLimit.isLimited) {
       return actionError("יותר מדי ניסיונות הרשמה. נס.י שוב מאוחר יותר.");

@@ -13,6 +13,7 @@
 import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies, headers } from "next/headers";
 import { getOrCreateAnonToken } from "@/utils/anonToken";
+import { getClientIp } from "@/utils/getClientIp";
 import {
   addReview,
   updateReviewByOwner,
@@ -40,6 +41,24 @@ import {
   type ActionResult,
 } from "@/types/actionResult";
 import { notifyNewReview } from "@/lib/email";
+import { isPrismaError } from "@/utils/prismaError";
+
+const PROFANITY_MESSAGES: Record<string, string> = {
+  title: "הכותרת מכילה שפה לא הולמת. אנא נסח.י מחדש.",
+  text: "התגובה מכילה שפה לא הולמת. אנא נסח.י מחדש.",
+  authorName: "השם מכיל שפה לא הולמת. אנא בחר.י שם אחר.",
+};
+
+async function resolveReviewTitle(
+  rawTitle: string | undefined,
+  lookupShowTitle: () => Promise<string | null | undefined>,
+  fallback: string,
+): Promise<string> {
+  const title = rawTitle?.trim() || "";
+  if (title) return title;
+  const showTitle = await lookupShowTitle();
+  return showTitle ?? fallback;
+}
 
 async function revalidateAfterReviewChange(showId: number): Promise<void> {
   const show = await prisma.show.findUnique({
@@ -77,24 +96,18 @@ export async function createReview(
     const { showId, name, rating, text } = result.data;
     const authorName = session.user.name?.trim() || name?.trim() || "משתמש/ת";
 
-    // When title is empty, fall back to the show name
-    let title = result.data.title?.trim() || "";
-    if (!title) {
-      const showForTitle = await prisma.show.findUnique({
-        where: { id: showId },
-        select: { title: true },
-      });
-      title = showForTitle?.title ?? `הצגה #${showId}`;
-    }
+    const title = await resolveReviewTitle(
+      result.data.title,
+      async () => {
+        const s = await prisma.show.findUnique({ where: { id: showId }, select: { title: true } });
+        return s?.title;
+      },
+      `הצגה #${showId}`,
+    );
 
-    const profanityMessages: Record<string, string> = {
-      title: "הכותרת מכילה שפה לא הולמת. אנא נסח.י מחדש.",
-      text: "התגובה מכילה שפה לא הולמת. אנא נסח.י מחדש.",
-      authorName: "השם מכיל שפה לא הולמת. אנא בחר.י שם אחר.",
-    };
     const badField = checkFieldsForProfanity({ title, text, authorName });
     if (badField) {
-      return actionError(profanityMessages[badField]);
+      return actionError(PROFANITY_MESSAGES[badField]);
     }
 
     const today = new Date().toISOString().slice(0, 10);
@@ -133,7 +146,7 @@ export async function createReview(
   } catch (err: unknown) {
     // Prisma error codes: P2002 = unique constraint violation (duplicate review),
     // P2003 = foreign key violation (show doesn't exist).
-    if (typeof err === "object" && err !== null && "code" in err) {
+    if (isPrismaError(err)) {
       if (err.code === "P2002") {
         return actionError("כבר כתבת ביקורת להצגה זו.");
       }
@@ -150,8 +163,7 @@ export async function createAnonymousReview(
 ): Promise<ActionResult<{ showId: number; reviewCount: number }>> {
   try {
     const headersList = await headers();
-    const ip =
-      headersList.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    const ip = getClientIp(headersList);
 
     const payload = Object.fromEntries(formData.entries());
 
@@ -175,24 +187,18 @@ export async function createAnonymousReview(
     const { showId, name, rating, text } = result.data;
     const authorName = name?.trim() || "אנונימי";
 
-    // When title is empty, fall back to the show name
-    let title = result.data.title?.trim() || "";
-    if (!title) {
-      const showForTitle = await prisma.show.findUnique({
-        where: { id: showId },
-        select: { title: true },
-      });
-      title = showForTitle?.title ?? `הצגה #${showId}`;
-    }
+    const title = await resolveReviewTitle(
+      result.data.title,
+      async () => {
+        const s = await prisma.show.findUnique({ where: { id: showId }, select: { title: true } });
+        return s?.title;
+      },
+      `הצגה #${showId}`,
+    );
 
-    const profanityMessages: Record<string, string> = {
-      title: "הכותרת מכילה שפה לא הולמת. אנא נסח.י מחדש.",
-      text: "התגובה מכילה שפה לא הולמת. אנא נסח.י מחדש.",
-      authorName: "השם מכיל שפה לא הולמת. אנא בחר.י שם אחר.",
-    };
     const badField = checkFieldsForProfanity({ title, text, authorName });
     if (badField) {
-      return actionError(profanityMessages[badField]);
+      return actionError(PROFANITY_MESSAGES[badField]);
     }
 
     // Cookie-based dedup: one anonymous review per browser per show.
@@ -243,7 +249,7 @@ export async function createAnonymousReview(
 
     return actionSuccess({ showId, reviewCount });
   } catch (err: unknown) {
-    if (typeof err === "object" && err !== null && "code" in err) {
+    if (isPrismaError(err)) {
       if (err.code === "P2002") {
         return actionError("כבר כתבת ביקורת להצגה זו.");
       }
@@ -272,26 +278,24 @@ export async function updateReview(
       return actionError(formatZodErrors(result.error));
     }
 
-    // When title is empty, fall back to the show name
-    let title = result.data.title?.trim() || "";
-    if (!title) {
-      const reviewForShow = await prisma.review.findUnique({
-        where: { id: reviewId },
-        select: { show: { select: { title: true } } },
-      });
-      title = reviewForShow?.show?.title ?? "ביקורת";
-    }
+    const title = await resolveReviewTitle(
+      result.data.title,
+      async () => {
+        const r = await prisma.review.findUnique({
+          where: { id: reviewId },
+          select: { show: { select: { title: true } } },
+        });
+        return r?.show?.title;
+      },
+      "ביקורת",
+    );
 
-    const profanityMessages: Record<string, string> = {
-      title: "הכותרת מכילה שפה לא הולמת. אנא נסח.י מחדש.",
-      text: "התגובה מכילה שפה לא הולמת. אנא נסח.י מחדש.",
-    };
     const badField = checkFieldsForProfanity({
       title,
       text: result.data.text,
     });
     if (badField) {
-      return actionError(profanityMessages[badField]);
+      return actionError(PROFANITY_MESSAGES[badField]);
     }
 
     const updated = await updateReviewByOwner(reviewId, session.user.id, {

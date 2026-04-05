@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
+import { ONE_HOUR_MS } from "@/constants/rateLimits";
 
-const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour in milliseconds
+const RATE_LIMIT_WINDOW_MS = ONE_HOUR_MS;
 const MAX_REVIEWS_PER_WINDOW = 50;
 
 /**
