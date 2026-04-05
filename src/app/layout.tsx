@@ -84,6 +84,7 @@ const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: SITE_NAME,
+  alternateName: "Theatre in Israel",
   url: siteUrl,
   inLanguage: "he-IL",
   description: SITE_DESCRIPTION,
