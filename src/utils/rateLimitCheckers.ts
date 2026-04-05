@@ -45,7 +45,7 @@ export const checkEditDeleteRateLimit = createRateLimitChecker({
 
 export const checkAnonymousReviewRateLimit = createRateLimitChecker({
   action: "anonymous-review",
-  maxAttempts: (ip) => (ip === "unknown" ? 5 : 20),
+  maxAttempts: (ip) => (ip === "unknown" ? 5 : 100),
   windowMs: ONE_HOUR_MS,
   keyPrefix: "ip:",
   remainingTime: 60,
