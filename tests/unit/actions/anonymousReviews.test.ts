@@ -25,6 +25,7 @@ jest.mock("next/headers", () => ({
   }),
   cookies: jest.fn().mockResolvedValue({
     get: jest.fn().mockReturnValue(undefined),
+    set: jest.fn(),
   }),
 }));
 
@@ -202,7 +203,7 @@ describe("createAnonymousReview", () => {
     await createAnonymousReview(createFormData(validFormData));
 
     expect(prisma.review.findFirst).toHaveBeenCalledWith({
-      where: { ip: "1.2.3.4", showId: 1, userId: null },
+      where: { anonToken: expect.any(String), showId: 1, userId: null },
       select: { id: true },
     });
   });

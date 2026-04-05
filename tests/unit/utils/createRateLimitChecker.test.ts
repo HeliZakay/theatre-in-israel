@@ -2,6 +2,13 @@ const mockCount = jest.fn();
 const mockCreate = jest.fn().mockResolvedValue({});
 const mockDeleteMany = jest.fn().mockReturnValue({ catch: () => {} });
 
+beforeAll(() => {
+  process.env.VERCEL = "1";
+});
+afterAll(() => {
+  delete process.env.VERCEL;
+});
+
 jest.mock("@/lib/prisma", () => ({
   __esModule: true,
   default: {
