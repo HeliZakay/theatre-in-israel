@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { DATE_SLUGS, DEFAULT_DATE_PRESET } from "@/lib/eventsConstants";
 import { buildFilterUrl } from "./buildFilterUrl";
 import styles from "./DateChips.module.css";
@@ -26,7 +27,7 @@ export default function DateChips({ datePreset, locationSlug, theatre }: DateChi
           theatre,
         );
         return (
-          <a
+          <Link
             key={slug}
             role="radio"
             aria-checked={isActive}
@@ -34,7 +35,7 @@ export default function DateChips({ datePreset, locationSlug, theatre }: DateChi
             className={`${styles.chip} ${isActive ? styles.chipActive : ""}`}
           >
             {label}
-          </a>
+          </Link>
         );
       })}
     </nav>

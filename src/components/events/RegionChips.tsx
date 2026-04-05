@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { REGION_SLUGS, DEFAULT_DATE_PRESET } from "@/lib/eventsConstants";
 import { buildFilterUrl } from "./buildFilterUrl";
 import styles from "./RegionChips.module.css";
@@ -25,14 +26,14 @@ export default function RegionChips({
       aria-label="סינון לפי אזור"
       className={styles.chipRow}
     >
-      <a
+      <Link
         role="radio"
         aria-checked={!region && !city}
         href={buildFilterUrl(isDefaultDate ? undefined : datePreset, undefined, theatre)}
         className={`${styles.chip} ${!region && !city ? styles.chipActive : ""}`}
       >
         הכל
-      </a>
+      </Link>
       {Object.entries(REGION_SLUGS).map(([slug, label]) => {
         const count = regionCounts[slug] ?? 0;
         const isActive = region === slug;
@@ -43,7 +44,7 @@ export default function RegionChips({
         );
         const disabled = count === 0;
         return (
-          <a
+          <Link
             key={slug}
             role="radio"
             aria-checked={isActive}
@@ -54,7 +55,7 @@ export default function RegionChips({
           >
             {label}
             <span className={styles.chipBadge}>{count}</span>
-          </a>
+          </Link>
         );
       })}
     </nav>
