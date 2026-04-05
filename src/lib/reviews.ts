@@ -59,6 +59,7 @@ export async function addReview(
       rating: review.rating,
       date: new Date(review.date),
       ip: review.ip,
+      anonToken: review.anonToken,
     },
   });
 

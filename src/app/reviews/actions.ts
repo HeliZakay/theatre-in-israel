@@ -6,12 +6,13 @@
  *   2. Rate limit (per-user or per-IP)
  *   3. Zod schema validation
  *   4. Profanity filter (Hebrew + English)
- *   5. Business rules (IP dedup for anonymous, unique constraint for signed-in)
+ *   5. Business rules (cookie dedup for anonymous, unique constraint for signed-in)
  */
 "use server";
 
 import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies, headers } from "next/headers";
+import { getOrCreateAnonToken } from "@/utils/anonToken";
 import {
   addReview,
   updateReviewByOwner,
@@ -194,8 +195,9 @@ export async function createAnonymousReview(
       return actionError(profanityMessages[badField]);
     }
 
-    // IP-based dedup: one anonymous review per IP per show.
+    // Cookie-based dedup: one anonymous review per browser per show.
     // Admin bypass cookie lets admins test the flow without being blocked.
+    const anonToken = await getOrCreateAnonToken();
     const bypassToken = process.env.ADMIN_BYPASS_TOKEN;
     const cookieStore = await cookies();
     const hasAdminBypass =
@@ -203,7 +205,7 @@ export async function createAnonymousReview(
 
     if (!hasAdminBypass) {
       const existingAnonymousReview = await prisma.review.findFirst({
-        where: { ip, showId, userId: null },
+        where: { anonToken, showId, userId: null },
         select: { id: true },
       });
       if (existingAnonymousReview) {
@@ -219,6 +221,7 @@ export async function createAnonymousReview(
       rating,
       date: today,
       ip,
+      anonToken,
     });
 
     await revalidateAfterReviewChange(showId);

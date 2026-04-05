@@ -80,10 +80,10 @@ export async function getReviewedShowIds(userId: string): Promise<number[]> {
 }
 
 export async function getAnonymousReviewedShowIds(
-  ip: string,
+  anonToken: string,
 ): Promise<number[]> {
   const reviews = await prisma.review.findMany({
-    where: { ip, userId: null },
+    where: { anonToken, userId: null },
     select: { showId: true },
   });
   return reviews.map((r) => r.showId);

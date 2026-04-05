@@ -4,7 +4,7 @@
  * Key logic:
  * - Legacy numeric URLs (/shows/42) are permanently redirected to slug URLs.
  * - Review ownership is detected for both authenticated users (by userId) and
- *   anonymous visitors (by IP), so the page can highlight "your review".
+ *   anonymous visitors (by cookie token), so the page can highlight "your review".
  * - When ENABLE_REVIEW_AUTH_GATEWAY is on and the visitor is unauthenticated,
  *   the review CTA links to a separate /shows/:slug/review page instead of
  *   showing the inline form.
@@ -16,7 +16,7 @@ import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 import { getServerSession } from "next-auth";
-import { cookies, headers } from "next/headers";
+import { getAnonToken } from "@/utils/anonToken";
 import { authOptions } from "@/lib/auth";
 import { getShowBySlug } from "@/lib/data/showDetail";
 import prisma from "@/lib/prisma";
@@ -209,30 +209,18 @@ export default async function ShowPage({
         otherReviews = show.reviews.filter((_, i) => i !== idx);
       }
     } else {
-      // Anonymous visitor: check if they already reviewed (by IP).
-      // Admin bypass cookie skips this check so admins can test the
-      // anonymous review flow repeatedly without IP-based dedup blocking them.
-      const bypassToken = process.env.ADMIN_BYPASS_TOKEN;
-      const cookieStore = await cookies();
-      const hasAdminBypass =
-        bypassToken &&
-        cookieStore.get("admin_bypass")?.value === bypassToken;
-
-      if (!hasAdminBypass) {
-        const headersList = await headers();
-        const ip =
-          headersList.get("x-forwarded-for")?.split(",")[0]?.trim() || null;
-        if (ip) {
-          const anonReview = await prisma.review.findFirst({
-            where: { ip, showId: show.id, userId: null },
-            select: { id: true },
-          });
-          if (anonReview) {
-            const idx = show.reviews.findIndex((r) => r.id === anonReview.id);
-            if (idx !== -1) {
-              userReview = show.reviews[idx];
-              otherReviews = show.reviews.filter((_, i) => i !== idx);
-            }
+      // Anonymous visitor: check if they already reviewed (by cookie token).
+      const anonToken = await getAnonToken();
+      if (anonToken) {
+        const anonReview = await prisma.review.findFirst({
+          where: { anonToken, showId: show.id, userId: null },
+          select: { id: true },
+        });
+        if (anonReview) {
+          const idx = show.reviews.findIndex((r) => r.id === anonReview.id);
+          if (idx !== -1) {
+            userReview = show.reviews[idx];
+            otherReviews = show.reviews.filter((_, i) => i !== idx);
           }
         }
       }

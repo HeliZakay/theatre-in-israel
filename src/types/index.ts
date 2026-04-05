@@ -21,6 +21,7 @@ export interface ReviewInput {
   date: string;
   userId?: string;
   ip?: string;
+  anonToken?: string;
 }
 
 export interface ShowEvent {

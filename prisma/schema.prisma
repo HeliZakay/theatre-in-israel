@@ -113,12 +113,14 @@ model Review {
   rating    Int
   date      DateTime
   ip        String?
+  anonToken String?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 
   @@index([showId])
   @@index([userId])
   @@index([ip, showId])
+  @@index([anonToken, showId])
   @@unique([userId, showId])
 }
 

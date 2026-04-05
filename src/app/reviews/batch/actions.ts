@@ -1,12 +1,12 @@
 "use server";
 
-import { headers } from "next/headers";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import {
   getReviewedShowIds,
   getAnonymousReviewedShowIds,
 } from "@/lib/data/batchReview";
+import { getAnonToken } from "@/utils/anonToken";
 
 /**
  * Re-fetch already-reviewed show IDs from the server.
@@ -20,8 +20,6 @@ export async function refetchReviewedIds(): Promise<number[]> {
     return getReviewedShowIds(session.user.id as string);
   }
 
-  const headersList = await headers();
-  const ip =
-    headersList.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-  return getAnonymousReviewedShowIds(ip);
+  const anonToken = await getAnonToken();
+  return anonToken ? getAnonymousReviewedShowIds(anonToken) : [];
 }

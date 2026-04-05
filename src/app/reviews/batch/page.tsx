@@ -1,4 +1,3 @@
-import { headers } from "next/headers";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import {
@@ -6,6 +5,7 @@ import {
   getReviewedShowIds,
   getAnonymousReviewedShowIds,
 } from "@/lib/data/batchReview";
+import { getAnonToken } from "@/utils/anonToken";
 import BatchReviewFlow from "@/components/batch-review/BatchReviewFlow";
 import ROUTES from "@/constants/routes";
 import { SITE_NAME } from "@/lib/seo";
@@ -26,21 +26,18 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function BatchReviewPage() {
-  const [session, headersList] = await Promise.all([
-    getServerSession(authOptions),
-    headers(),
-  ]);
-
+  const session = await getServerSession(authOptions);
   const isAuthenticated = !!session;
+
+  const anonToken = isAuthenticated ? null : await getAnonToken();
 
   const [shows, reviewedShowIds] = await Promise.all([
     getBatchShows(),
     isAuthenticated
       ? getReviewedShowIds(session!.user!.id as string)
-      : getAnonymousReviewedShowIds(
-          headersList.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-            "unknown",
-        ),
+      : anonToken
+        ? getAnonymousReviewedShowIds(anonToken)
+        : Promise.resolve([]),
   ]);
 
   return (
