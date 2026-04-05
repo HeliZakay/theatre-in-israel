@@ -1,3 +1,6 @@
+// If a scrape returns <30% of existing DB events, skip deletion to prevent
+// data loss from a broken or partial scrape. Only applies when the DB already
+// has a meaningful number of events for the source (at least 5).
 const WIPE_PROTECTION_THRESHOLD = 0.3;
 const WIPE_PROTECTION_MIN_EXISTING = 5;
 
@@ -171,6 +174,7 @@ async function syncEvents(prisma, filePath) {
   try {
     data = JSON.parse(fs.readFileSync(filePath, "utf8"));
   } catch (err) {
+    console.error(`  Parse error in ${path.basename(filePath)}: ${err.message}`);
     return null;
   }
 

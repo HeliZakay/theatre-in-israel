@@ -18,7 +18,7 @@ const shared = {
       },
     ],
   },
-  transformIgnorePatterns: [],
+  transformIgnorePatterns: ["/node_modules/"],
 };
 
 const config = {

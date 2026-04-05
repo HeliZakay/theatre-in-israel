@@ -41,7 +41,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to events"
           else
-            LABELS=$(node -e "import('./scripts/lib/theatres-config.mjs').then(m => console.log(m.THEATRES.map(t => t.label).join(' + ')))")
+            LABELS=$(node -e "import('./scripts/lib/theatres-config.mjs').then(m => console.log(m.THEATRES.map(t => t.label).join(' + ')))" 2>/dev/null || echo "all theatres")
             git commit -m "chore: refresh ${LABELS} events [$(date -u +%Y-%m-%d)]"
             git pull --rebase
             git push
