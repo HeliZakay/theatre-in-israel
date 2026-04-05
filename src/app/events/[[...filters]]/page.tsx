@@ -364,7 +364,7 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
 
   const [events, regionCounts] = await Promise.all([
     getEvents({ region, city, theatre }),
-    getRegionCounts(),
+    getRegionCounts(datePreset),
   ]);
 
   const title = theatre

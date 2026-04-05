@@ -98,8 +98,8 @@ export const getEvents = unstable_cache(
  * Two-step approach: first groupBy venueId to count events (Prisma can't
  * groupBy a relation field), then resolve each venue's regions and aggregate.
  */
-async function fetchRegionCounts(): Promise<Record<string, number>> {
-  const { from, to } = resolveDatePreset('all');
+async function fetchRegionCounts(datePreset = 'all'): Promise<Record<string, number>> {
+  const { from, to } = resolveDatePreset(datePreset);
 
   const counts = await prisma.event.groupBy({
     by: ["venueId"],
@@ -135,7 +135,7 @@ async function fetchRegionCounts(): Promise<Record<string, number>> {
 }
 
 export const getRegionCounts = unstable_cache(
-  () => fetchRegionCounts(),
+  (datePreset?: string) => fetchRegionCounts(datePreset),
   ["events-region-counts"],
   { revalidate: 120, tags: ["events-list"] },
 );

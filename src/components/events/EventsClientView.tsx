@@ -32,14 +32,14 @@ function resolveInitialDate(preset: string, tabs: DateTab[]): string {
   const todayKey = fmt.format(now);
 
   if (preset === "today") {
-    return tabs.find((t) => t.dateKey === todayKey)?.dateKey ?? tabs[0].dateKey;
+    return tabs.find((t) => t.dateKey === todayKey)?.dateKey ?? "";
   }
 
   if (preset === "tomorrow") {
     const tomorrow = new Date(now);
     tomorrow.setDate(tomorrow.getDate() + 1);
     const tomorrowKey = fmt.format(tomorrow);
-    return tabs.find((t) => t.dateKey === tomorrowKey)?.dateKey ?? tabs[0].dateKey;
+    return tabs.find((t) => t.dateKey === tomorrowKey)?.dateKey ?? "";
   }
 
   if (preset === "weekend") {
@@ -57,7 +57,7 @@ function resolveInitialDate(preset: string, tabs: DateTab[]): string {
       const dow = weekdayIndex(t.dateKey);
       return dow >= 4 && t.dateKey >= todayKey;
     });
-    return target?.dateKey ?? tabs[0].dateKey;
+    return target?.dateKey ?? "";
   }
 
   if (preset === "week") {
@@ -68,7 +68,7 @@ function resolveInitialDate(preset: string, tabs: DateTab[]): string {
     const sunKey = sun.toISOString().slice(0, 10);
     // Find first tab on or after that Sunday
     const target = tabs.find((t) => t.dateKey >= sunKey);
-    return target?.dateKey ?? tabs[0].dateKey;
+    return target?.dateKey ?? "";
   }
 
   if (preset === "nextweek") {
@@ -77,10 +77,10 @@ function resolveInitialDate(preset: string, tabs: DateTab[]): string {
     sun.setUTCDate(sun.getUTCDate() - dow + 7);
     const sunKey = sun.toISOString().slice(0, 10);
     const target = tabs.find((t) => t.dateKey >= sunKey);
-    return target?.dateKey ?? tabs[0].dateKey;
+    return target?.dateKey ?? "";
   }
 
-  return tabs[0].dateKey;
+  return "";
 }
 
 export default function EventsClientView({ groups, dateTabs, datePreset }: EventsClientViewProps) {

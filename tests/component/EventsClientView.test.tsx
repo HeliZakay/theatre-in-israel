@@ -79,7 +79,7 @@ describe("EventsClientView", () => {
     const tabs = [makeTab("2026-03-24", "יום שלישי", 5), makeTab("2026-03-25", "יום רביעי", 3)];
     const groups = [makeGroup("2026-03-24", 5), makeGroup("2026-03-25", 3)];
 
-    render(<EventsClientView groups={groups} dateTabs={tabs} />);
+    render(<EventsClientView groups={groups} dateTabs={tabs} datePreset="all" />);
 
     expect(screen.getByTestId("date-strip")).toBeInTheDocument();
     expect(screen.getByTestId("day-view")).toHaveTextContent("2026-03-24");
@@ -89,7 +89,7 @@ describe("EventsClientView", () => {
     const tabs = [makeTab("2026-03-24", "יום שלישי", 5)];
     const groups = [makeGroup("2026-03-24", 5)];
 
-    render(<EventsClientView groups={groups} dateTabs={tabs} />);
+    render(<EventsClientView groups={groups} dateTabs={tabs} datePreset="all" />);
 
     expect(screen.getByText("5 הופעות")).toBeInTheDocument();
   });
@@ -98,13 +98,13 @@ describe("EventsClientView", () => {
     const tabs = [makeTab("2026-03-24", "יום שלישי", 0)];
     const groups: DateGroup[] = []; // No matching group
 
-    render(<EventsClientView groups={groups} dateTabs={tabs} />);
+    render(<EventsClientView groups={groups} dateTabs={tabs} datePreset="all" />);
 
     expect(screen.getByText("לא נמצאו הופעות")).toBeInTheDocument();
   });
 
   it("handles empty dateTabs gracefully", () => {
-    render(<EventsClientView groups={[]} dateTabs={[]} />);
+    render(<EventsClientView groups={[]} dateTabs={[]} datePreset="all" />);
 
     expect(screen.getByText("לא נמצאו הופעות")).toBeInTheDocument();
     expect(screen.queryByTestId("day-view")).not.toBeInTheDocument();
@@ -115,7 +115,7 @@ describe("EventsClientView", () => {
     const tabs = [makeTab("2026-03-24", "יום שלישי", 5), makeTab("2026-03-25", "יום רביעי", 3)];
     const groups = [makeGroup("2026-03-24", 5), makeGroup("2026-03-25", 3)];
 
-    render(<EventsClientView groups={groups} dateTabs={tabs} />);
+    render(<EventsClientView groups={groups} dateTabs={tabs} datePreset="all" />);
 
     expect(screen.getByTestId("day-view")).toHaveTextContent("2026-03-24");
 
