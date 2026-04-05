@@ -103,6 +103,11 @@
   font-size: 0.8rem;
   color: var(--color-curtain-red);
   margin-top: 4px;
+  visibility: hidden;
+}
+
+.validationHintVisible {
+  visibility: visible;
 }
 
 .textareaError {

@@ -131,9 +131,9 @@ export default function ReviewStep({
           {/* Star rating */}
           <div className={styles.ratingSection}>
             <StarRating value={rating} onChange={setRating} disabled={false} />
-            {validationError === "rating" && (
-              <span className={styles.validationHint}>חסר דירוג כוכבים</span>
-            )}
+            <span className={`${styles.validationHint} ${validationError === "rating" ? styles.validationHintVisible : ""}`}>
+              חסר דירוג כוכבים
+            </span>
           </div>
 
           {/* Textarea */}
@@ -147,9 +147,9 @@ export default function ReviewStep({
               value={text}
               onChange={handleTextChange}
             />
-            {validationError === "text" && (
-              <span className={styles.validationHint}>חסר טקסט לביקורת, גם מילה אחת זה טוב!</span>
-            )}
+            <span className={`${styles.validationHint} ${validationError === "text" ? styles.validationHintVisible : ""}`}>
+              חסר טקסט לביקורת, גם מילה אחת זה טוב!
+            </span>
             {showCharCount && (
               <span className={styles.charCount}>
                 {text.length} / {REVIEW_TEXT_MAX}
