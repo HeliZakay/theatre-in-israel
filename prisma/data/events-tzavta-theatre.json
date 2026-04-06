@@ -1,23 +1,7 @@
 {
-  "scrapedAt": "2026-04-05T09:16:55.968Z",
+  "scrapedAt": "2026-04-06T04:09:29.413Z",
   "touring": true,
   "events": [
-    {
-      "showId": 212,
-      "showSlug": "Mix-Match",
-      "date": "2026-04-12",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 174,
-      "showSlug": "אורות-קטנות",
-      "date": "2026-04-27",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
     {
       "showId": 175,
       "showSlug": "אחינועם-ואני",
@@ -115,38 +99,6 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 187,
-      "showSlug": "העורף",
-      "date": "2026-04-21",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 188,
-      "showSlug": "הפנס-הסגול",
-      "date": "2026-04-18",
-      "hour": "11:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 190,
-      "showSlug": "זה-בסדר.",
-      "date": "2026-04-10",
-      "hour": "12:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 191,
-      "showSlug": "טובעים-השניים",
-      "date": "2026-04-26",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
       "showId": 194,
       "showSlug": "מה-שקרה-לנו",
       "date": "2026-04-08",
@@ -203,14 +155,6 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 102,
-      "showSlug": "משחקי-נישואים",
-      "date": "2026-04-16",
-      "hour": "20:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
       "showId": 199,
       "showSlug": "נישואים-גרעיניים",
       "date": "2026-04-24",
@@ -223,38 +167,6 @@
       "showSlug": "סונטת-קרויצר",
       "date": "2026-05-02",
       "hour": "21:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 201,
-      "showSlug": "עוברת-בירושה",
-      "date": "2026-04-15",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 203,
-      "showSlug": "ערוץ-שטות-עשרה",
-      "date": "2026-04-11",
-      "hour": "11:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 204,
-      "showSlug": "פאק-בסיסטם",
-      "date": "2026-04-10",
-      "hour": "22:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 204,
-      "showSlug": "פאק-בסיסטם",
-      "date": "2026-04-24",
-      "hour": "22:00",
       "venueName": "תיאטרון צוותא",
       "venueCity": "תל אביב"
     },
@@ -279,14 +191,6 @@
       "showSlug": "פצעים",
       "date": "2026-04-22",
       "hour": "21:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 207,
-      "showSlug": "קצר-לילדים",
-      "date": "2026-04-25",
-      "hour": "11:00",
       "venueName": "תיאטרון צוותא",
       "venueCity": "תל אביב"
     },
