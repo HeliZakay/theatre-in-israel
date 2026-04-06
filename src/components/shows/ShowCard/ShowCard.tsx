@@ -32,7 +32,7 @@ export default function ShowCard({ show, priority }: ShowCardProps) {
             />
           </div>
           <header className={styles.header}>
-            <h3 className={styles.title}>{show.title}</h3>
+            <h2 className={styles.title}>{show.title}</h2>
             <span className={styles.theatre}>{show.theatre}</span>
           </header>
 
