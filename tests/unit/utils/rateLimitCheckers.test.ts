@@ -197,13 +197,13 @@ describe("checkAnonymousReviewRateLimit", () => {
     expect(result).toEqual({ isLimited: true, remainingTime: 60 });
   });
 
-  it("calls checkRateLimit with maxAttempts=20 for known IP", async () => {
-    mockCheckRateLimit.mockResolvedValue({ allowed: true, remainingAttempts: 19 });
+  it("calls checkRateLimit with maxAttempts=100 for known IP", async () => {
+    mockCheckRateLimit.mockResolvedValue({ allowed: true, remainingAttempts: 99 });
     await checkAnonymousReviewRateLimit("1.2.3.4");
     expect(mockCheckRateLimit).toHaveBeenCalledWith(
       "ip:1.2.3.4",
       "anonymous-review",
-      20,
+      100,
       60 * 60 * 1000,
     );
   });
