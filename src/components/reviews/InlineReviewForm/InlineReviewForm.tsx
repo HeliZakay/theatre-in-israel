@@ -171,7 +171,7 @@ export default function InlineReviewForm({
 
       <div
         className={cx(styles.expandWrapper, isExpanded && styles.expanded)}
-        aria-hidden={!isExpanded}
+        inert={!isExpanded || undefined}
       >
         <div className={styles.expandInner}>
           <form
