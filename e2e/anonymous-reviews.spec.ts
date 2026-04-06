@@ -86,8 +86,9 @@ test.describe("Anonymous Reviews", () => {
   }) => {
     await page.goto(`/shows/${firstShow.slug}/review`);
 
-    await expect(page.getByText("יש לך חשבון?")).toBeVisible();
-    await expect(page.getByRole("link", { name: "התחבר.י" })).toBeVisible();
+    const main = page.getByRole("main");
+    await expect(main.getByText("יש לך חשבון?")).toBeVisible();
+    await expect(main.getByRole("link", { name: "התחבר.י" })).toBeVisible();
   });
 
   // Skipped: ENABLE_REVIEW_AUTH_GATEWAY is currently false

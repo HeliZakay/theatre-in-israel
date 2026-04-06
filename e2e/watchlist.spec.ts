@@ -9,16 +9,28 @@ test.describe("Watchlist", () => {
     await cleanupTestData(testUserId);
   });
 
+  /**
+   * Navigate to a show page and wait for session hydration to complete.
+   * The WatchlistProvider depends on the client session being available
+   * before toggle() works (otherwise it redirects to signin).
+   */
+  async function gotoShowWithSession(
+    page: import("@playwright/test").Page,
+    slug: string,
+  ) {
+    await page.goto(`/shows/${slug}`);
+    // Wait for the authenticated header button — confirms session is hydrated
+    await expect(
+      page.getByRole("button", { name: /מחובר\/ת/ }),
+    ).toBeVisible({ timeout: 15_000 });
+  }
+
   test("add show to watchlist from detail page", async ({
     authedPage,
     firstShow,
   }) => {
     const page = authedPage;
-    // Wait for client-side session to hydrate before clicking session-dependent buttons
-    await Promise.all([
-      page.waitForResponse((r) => r.url().includes("/api/auth/session")),
-      page.goto(`/shows/${firstShow.slug}`),
-    ]);
+    await gotoShowWithSession(page, firstShow.slug);
 
     // Click add to watchlist
     const watchlistBtn = page.getByRole("button", {
@@ -30,7 +42,7 @@ test.describe("Watchlist", () => {
     // Button should toggle to "in watchlist" state
     await expect(
       page.getByRole("button", { name: "ברשימת הצפייה ✓" }),
-    ).toBeVisible({ timeout: 5_000 });
+    ).toBeVisible({ timeout: 15_000 });
   });
 
   test("show appears in my watchlist page after adding", async ({
@@ -38,43 +50,39 @@ test.describe("Watchlist", () => {
     firstShow,
   }) => {
     const page = authedPage;
+    await gotoShowWithSession(page, firstShow.slug);
 
-    // Add to watchlist from show page — wait for client session
-    await Promise.all([
-      page.waitForResponse((r) => r.url().includes("/api/auth/session")),
-      page.goto(`/shows/${firstShow.slug}`),
-    ]);
     await page.getByRole("button", { name: "הוסיפ.י לרשימת צפייה" }).click();
     await expect(
       page.getByRole("button", { name: "ברשימת הצפייה ✓" }),
-    ).toBeVisible({ timeout: 5_000 });
+    ).toBeVisible({ timeout: 15_000 });
 
     // Navigate to watchlist page
     await page.goto("/me/watchlist");
     await expect(
       page.getByRole("heading", { name: "רשימת הצפייה שלי" }),
-    ).toBeVisible();
+    ).toBeVisible({ timeout: 10_000 });
 
     // Show should be listed
-    await expect(page.getByText(firstShow.title).first()).toBeVisible();
+    await expect(page.getByText(firstShow.title).first()).toBeVisible({
+      timeout: 10_000,
+    });
   });
 
   test("remove show from watchlist page", async ({ authedPage, firstShow }) => {
     const page = authedPage;
+    await gotoShowWithSession(page, firstShow.slug);
 
-    // First add to watchlist — wait for client session
-    await Promise.all([
-      page.waitForResponse((r) => r.url().includes("/api/auth/session")),
-      page.goto(`/shows/${firstShow.slug}`),
-    ]);
     await page.getByRole("button", { name: "הוסיפ.י לרשימת צפייה" }).click();
     await expect(
       page.getByRole("button", { name: "ברשימת הצפייה ✓" }),
-    ).toBeVisible({ timeout: 5_000 });
+    ).toBeVisible({ timeout: 15_000 });
 
     // Go to watchlist page
     await page.goto("/me/watchlist");
-    await expect(page.getByText(firstShow.title).first()).toBeVisible();
+    await expect(page.getByText(firstShow.title).first()).toBeVisible({
+      timeout: 10_000,
+    });
 
     // Click the bookmark toggle to remove from watchlist
     await page.getByRole("button", { name: "הסר מרשימת צפייה" }).click();

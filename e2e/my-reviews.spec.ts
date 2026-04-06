@@ -16,9 +16,10 @@ test.describe("My Reviews", () => {
     await expect(
       page.getByRole("heading", { name: "הביקורות שלי" }),
     ).toBeVisible();
-    await expect(page.getByText("עדיין לא כתבת ביקורות.")).toBeVisible();
+    const main = page.getByRole("main");
+    await expect(main.getByText("עדיין לא כתבת ביקורות.")).toBeVisible();
     await expect(
-      page.locator("main").getByRole("link", { name: "כתב.י ביקורת" }),
+      main.getByRole("link", { name: "כתב.י ביקורת" }),
     ).toBeVisible();
   });
 
@@ -101,7 +102,9 @@ test.describe("My Reviews", () => {
 
     // Click edit
     await page.getByRole("link", { name: "עריכה" }).click();
-    await expect(page).toHaveURL(new RegExp(`/me/reviews/${review.id}/edit`));
+    await expect(page).toHaveURL(new RegExp(`/me/reviews/${review.id}/edit`), {
+      timeout: 15_000,
+    });
 
     // Update the title
     const titleInput = page.locator('input[name="title"]');

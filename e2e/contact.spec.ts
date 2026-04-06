@@ -76,7 +76,7 @@ test.describe("Contact Form", () => {
     await page.goto("/contact");
 
     // Honeypot should exist but be hidden from view
-    const honeypot = page.locator("#website");
+    const honeypot = page.getByRole("main").locator("#website");
     await expect(honeypot).toBeAttached();
     // The parent div has aria-hidden="true"
     await expect(honeypot.locator("..")).toHaveAttribute("aria-hidden", "true");

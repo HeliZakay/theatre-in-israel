@@ -44,7 +44,9 @@ test.describe("Show Reviews Page", () => {
     );
     // Either 404 or 200 depending on review count
     if (response?.status() === 404) {
-      await expect(page).toHaveTitle(/לא נמצא|404/);
+      await expect(
+        page.getByRole("heading", { name: /404/ }),
+      ).toBeVisible();
     }
   });
 });
