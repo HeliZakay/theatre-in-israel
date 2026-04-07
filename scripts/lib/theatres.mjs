@@ -22,6 +22,7 @@ export const THEATRE_IDS = [
   "tomix",
   "meshulash",
   "incubator",
+  "independent",
 ];
 
 /**
@@ -282,6 +283,36 @@ const LOADERS = {
       theatreLabel: "Incubator Theatre (תיאטרון האינקובטור)",
       websiteUrl: "incubator.org.il",
       fetchListing,
+      scrapeDetails: scrapeShowDetails,
+      scrapeCast: async (browser, url) =>
+        (await scrapeShowDetails(browser, url)).cast || null,
+      titlePreference: "listing-first",
+      launchBrowser,
+    };
+  },
+
+  async independent() {
+    const { fetchListing: fetchGuestListing } = await import(
+      "./venues/habima-guest.mjs"
+    );
+    const { scrapeShowDetails } = await import("./habima.mjs");
+    const { launchBrowser } = await import("./browser.mjs");
+
+    const INDEPENDENT_THEATRE = "הפקות עצמאיות";
+
+    return {
+      theatreId: "independent",
+      theatreName: INDEPENDENT_THEATRE,
+      theatreConst: INDEPENDENT_THEATRE,
+      theatreLabel: "Independent Productions (הפקות עצמאיות)",
+      websiteUrl: "habima.co.il",
+      async fetchListing(browser) {
+        const listings = await fetchGuestListing(browser);
+        return listings.map(({ title, detailUrl }) => ({
+          title,
+          url: detailUrl,
+        }));
+      },
       scrapeDetails: scrapeShowDetails,
       scrapeCast: async (browser, url) =>
         (await scrapeShowDetails(browser, url)).cast || null,
