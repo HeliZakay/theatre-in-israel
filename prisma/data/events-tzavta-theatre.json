@@ -3,30 +3,6 @@
   "touring": true,
   "events": [
     {
-      "showId": 175,
-      "showSlug": "אחינועם-ואני",
-      "date": "2026-05-28",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 175,
-      "showSlug": "אחינועם-ואני",
-      "date": "2026-06-09",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 175,
-      "showSlug": "אחינועם-ואני",
-      "date": "2026-06-29",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
       "showId": 181,
       "showSlug": "ארטיסט",
       "date": "2026-04-29",
