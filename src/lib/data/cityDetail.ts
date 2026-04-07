@@ -59,7 +59,7 @@ async function fetchCityData(aliases: string[]): Promise<CityPageData> {
       })
     : [];
 
-  const topShows: ShowListItem[] = rawShows.slice(0, 12).map(mapToShowListItem);
+  const topShows: ShowListItem[] = rawShows.map(mapToShowListItem);
 
   // Aggregate stats
   const upcomingEventCount = venues.reduce((sum, v) => sum + v.upcomingEventCount, 0);
