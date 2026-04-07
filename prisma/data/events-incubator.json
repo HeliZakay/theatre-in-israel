@@ -1,0 +1,78 @@
+{
+  "scrapedAt": "2026-04-07T06:54:19.882Z",
+  "touring": true,
+  "events": [
+    {
+      "showId": 211,
+      "showSlug": "שיר-של-אמונה-וכפירה",
+      "date": "2026-04-27",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 183,
+      "showSlug": "בוז׳ולה",
+      "date": "2026-04-26",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 183,
+      "showSlug": "בוז׳ולה",
+      "date": "2026-05-27",
+      "hour": "21:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 180,
+      "showSlug": "אסתר",
+      "date": "2026-05-20",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 180,
+      "showSlug": "אסתר",
+      "date": "2026-06-23",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 101,
+      "showSlug": "אנטי-אייג׳ינג",
+      "date": "2026-05-06",
+      "hour": "20:30",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 212,
+      "showSlug": "תיכון-מגשימים",
+      "date": "2026-04-29",
+      "hour": "21:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 212,
+      "showSlug": "תיכון-מגשימים",
+      "date": "2026-05-13",
+      "hour": "21:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 212,
+      "showSlug": "תיכון-מגשימים",
+      "date": "2026-06-03",
+      "hour": "21:00",
+      "venueName": "תיאטרון צוותא",
+      "venueCity": "תל אביב"
+    }
+  ]
+}
