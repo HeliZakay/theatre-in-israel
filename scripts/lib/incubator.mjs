@@ -8,10 +8,9 @@
  * original Hebrew productions and English-language musicals.
  * Their website is built on WordPress + Elementor + JetEngine.
  *
- * Listing pages: two JetEngine grids contain different subsets of shows:
- *   /repertoire/           — English-language musicals + select Hebrew shows
- *   /show-type/play-category/ — Hebrew original productions
- * Both must be scraped and deduplicated.
+ * Listing page: a JetEngine grid at /show-type/play-category/ lists
+ * current productions. (The /repertoire/ page includes archived shows
+ * with no upcoming events, so it is intentionally excluded.)
  *
  * Detail pages: /{show-slug}/ with h1 title, description paragraphs,
  * "יוצרים ושחקנים" credits heading, "משך ההצגה:" duration text,
@@ -28,7 +27,6 @@ import { inferYear, formatDate } from "./date.mjs";
 export const INCUBATOR_THEATRE = "תיאטרון האינקובטור";
 const INCUBATOR_BASE = "https://incubator.org.il";
 const LISTING_URLS = [
-  "https://incubator.org.il/repertoire/",
   "https://incubator.org.il/show-type/play-category/",
 ];
 
@@ -40,8 +38,7 @@ const NON_SHOW_PATTERNS = ["פואטרי סלאם", "poetry slam", "קול קו�
 /**
  * Fetch the list of current shows from the Incubator website.
  *
- * Scrapes both listing pages (repertoire + play-category) and
- * deduplicates by URL. Each page uses a JetEngine grid with
+ * Scrapes the play-category listing page. Uses a JetEngine grid with
  * `.jet-listing-grid__item` cards containing overlay links.
  *
  * @param {import('puppeteer').Browser} browser
