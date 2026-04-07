@@ -4,6 +4,8 @@ import { cleanupTestData } from "./helpers/db";
 test.describe("Watchlist", () => {
   // These tests share the same user and mutate watchlist — must run sequentially
   test.describe.configure({ mode: "serial" });
+  // CI server under load — session hydration + server actions need headroom
+  test.slow();
 
   test.afterEach(async ({ testUserId }) => {
     await cleanupTestData(testUserId);
@@ -52,7 +54,11 @@ test.describe("Watchlist", () => {
     const page = authedPage;
     await gotoShowWithSession(page, firstShow.slug);
 
-    await page.getByRole("button", { name: "הוסיפ.י לרשימת צפייה" }).click();
+    const watchlistBtn = page.getByRole("button", {
+      name: "הוסיפ.י לרשימת צפייה",
+    });
+    await expect(watchlistBtn).toBeVisible();
+    await watchlistBtn.click();
     await expect(
       page.getByRole("button", { name: "ברשימת הצפייה ✓" }),
     ).toBeVisible({ timeout: 15_000 });
@@ -73,7 +79,11 @@ test.describe("Watchlist", () => {
     const page = authedPage;
     await gotoShowWithSession(page, firstShow.slug);
 
-    await page.getByRole("button", { name: "הוסיפ.י לרשימת צפייה" }).click();
+    const watchlistBtn = page.getByRole("button", {
+      name: "הוסיפ.י לרשימת צפייה",
+    });
+    await expect(watchlistBtn).toBeVisible();
+    await watchlistBtn.click();
     await expect(
       page.getByRole("button", { name: "ברשימת הצפייה ✓" }),
     ).toBeVisible({ timeout: 15_000 });
