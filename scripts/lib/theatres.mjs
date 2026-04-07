@@ -21,6 +21,7 @@ export const THEATRE_IDS = [
   "tzavta",
   "tomix",
   "meshulash",
+  "incubator",
 ];
 
 /**
@@ -265,6 +266,26 @@ const LOADERS = {
       scrapeCast: async (browser, url) =>
         (await scrapeShowDetails(browser, url)).cast || null,
       titlePreference: "detail-first",
+      launchBrowser,
+    };
+  },
+
+  async incubator() {
+    const { INCUBATOR_THEATRE, fetchListing, scrapeShowDetails } =
+      await import("./incubator.mjs");
+    const { launchBrowser } = await import("./browser.mjs");
+
+    return {
+      theatreId: "incubator",
+      theatreName: INCUBATOR_THEATRE,
+      theatreConst: INCUBATOR_THEATRE,
+      theatreLabel: "Incubator Theatre (תיאטרון האינקובטור)",
+      websiteUrl: "incubator.org.il",
+      fetchListing,
+      scrapeDetails: scrapeShowDetails,
+      scrapeCast: async (browser, url) =>
+        (await scrapeShowDetails(browser, url)).cast || null,
+      titlePreference: "listing-first",
       launchBrowser,
     };
   },
