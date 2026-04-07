@@ -156,19 +156,6 @@ export async function startServer(title, theatreId, groupsOrResults) {
         const sql = generateMigrationSQL(shows, theatreId);
         const { migrationName, filePath } = writeMigrationFile(sql, theatreId);
 
-        // Persist unchecked shows to exclusion list
-        if (
-          Array.isArray(body.excludedShows) &&
-          body.excludedShows.length > 0
-        ) {
-          saveExcludedShows(body.excludedShows);
-          console.log(
-            green(
-              `  ✓ ${body.excludedShows.length} show(s) added to exclusion list`,
-            ),
-          );
-        }
-
         console.log(green(`  ✓ Migration created: `) + filePath);
 
         res.writeHead(200);

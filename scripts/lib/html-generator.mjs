@@ -515,26 +515,10 @@ ${groupCards}`;
 
       var shows = indices.map(function(idx) { return getCardData(idx); });
 
-      // Collect unchecked (non-error) shows for exclusion
-      var checkedSet = {};
-      indices.forEach(function(idx) { checkedSet[idx] = true; });
-      var excludedShows = [];
-      document.querySelectorAll(".card").forEach(function(card) {
-        if (card.classList.contains("error-card")) return;
-        if (card.classList.contains("inserted")) return;
-        var idx = parseInt(card.getAttribute("data-index"), 10);
-        if (!checkedSet[idx]) {
-          excludedShows.push({
-            title: card.querySelector(".title-input").value,
-            theatre: card.querySelector(".theatre-input").value
-          });
-        }
-      });
-
       fetch("/api/generate-migration", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ shows: shows, excludedShows: excludedShows })
+        body: JSON.stringify({ shows: shows })
       })
       .then(function(res) {
         return res.json().then(function(body) { return { ok: res.ok, body: body }; });
