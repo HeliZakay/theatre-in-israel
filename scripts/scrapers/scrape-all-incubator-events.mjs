@@ -3,8 +3,8 @@
  * scrape-all-incubator-events.mjs
  *
  * Scrape performance dates/times for ALL Incubator Theatre shows in one run.
- * Reuses Tzavta's listing and event scraping — Incubator shows perform
- * at the Tzavta venue and appear on the Tzavta website.
+ * Scrapes directly from incubator.org.il — captures events at all venues
+ * (not just Tzavta).
  *
  * Dry-run by default — prints scraped dates for review.
  *
@@ -16,9 +16,11 @@
  */
 
 import { runScraper } from "../lib/scraper-runner.mjs";
-import { fetchListing, scrapeShowEvents } from "../lib/tzavta.mjs";
-
-const INCUBATOR_THEATRE = "תיאטרון האינקובטור";
+import {
+  INCUBATOR_THEATRE,
+  fetchListing,
+  scrapeShowEvents,
+} from "../lib/incubator.mjs";
 
 runScraper({
   label: "Incubator Theatre Events Scraper",

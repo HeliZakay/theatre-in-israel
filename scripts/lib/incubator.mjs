@@ -21,6 +21,7 @@
 import { fixDoubleProtocol } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
 import { parseLessinDuration } from "./duration.mjs";
+import { inferYear, formatDate } from "./date.mjs";
 
 // ── Constants ──────────────────────────────────────────────────
 
@@ -371,5 +372,128 @@ export async function scrapeShowDetails(browser, url) {
     description: data.description,
     imageUrl,
     cast: data.cast,
+  };
+}
+
+// ── Event scraper ─────────────────────────────────────────────
+
+/** City abbreviations found on the Incubator website. */
+const CITY_ABBREVS = {
+  'ת"א': "תל אביב",
+  "ת״א": "תל אביב",
+  "ת''א": "תל אביב",
+  "י-ם": "ירושלים",
+};
+
+/**
+ * Try to extract a city from a venue name when no separate city field is given.
+ * Checks for known city abbreviations at the end of the name.
+ * Falls back to "לא ידוע" — sync-helpers aliases handle the rest.
+ */
+function resolveCityFromVenue(name) {
+  for (const [abbrev, full] of Object.entries(CITY_ABBREVS)) {
+    if (name.endsWith(abbrev) || name.endsWith(` ${abbrev}`)) {
+      return full;
+    }
+  }
+  return "לא ידוע";
+}
+
+/**
+ * Scrape performance dates/times from an Incubator show detail page.
+ *
+ * Events are listed as smarticket links in a "כרטיסים" section:
+ *   <a href="https://incubator.smarticket.co.il/iframe/event/224">
+ *     27.4 | יום שני | 20:30 | צוותא | ת״א
+ *   </a>
+ *
+ * Format: DD.M | dayName | HH:MM | venueName | city
+ *
+ * @param {import('puppeteer').Browser} browser
+ * @param {string} url
+ * @param {{ debug?: boolean }} [opts]
+ * @returns {Promise<{ events: Array<{ date: string, hour: string, venueName: string, venueCity: string, ticketUrl: string }>, title: string, debugHtml?: string }>}
+ */
+export async function scrapeShowEvents(browser, url, opts = {}) {
+  const { debug } = opts;
+  const page = await browser.newPage();
+  await setupRequestInterception(page);
+
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60_000 });
+  await page.waitForSelector("h1", { timeout: 30_000 });
+
+  // Wait for JetEngine grid (ticket section) to render
+  await new Promise((r) => setTimeout(r, 2000));
+
+  const raw = await page.evaluate(() => {
+    const title = document.querySelector("h1")?.textContent.trim().replace(/\s+/g, " ") || "";
+
+    // Find all smarticket links on the page
+    const links = [...document.querySelectorAll('a[href*="smarticket.co.il"]')];
+    const entries = links.map((a) => ({
+      text: a.textContent.trim(),
+      href: a.href,
+    }));
+
+    // Debug: capture the tickets section HTML
+    let debugHtml = null;
+    if (entries.length === 0) {
+      debugHtml = document.body.innerHTML.slice(0, 5000);
+    }
+
+    return { title, entries, debugHtml };
+  });
+
+  await page.close();
+
+  const events = [];
+  const seen = new Set();
+
+  for (const { text, href } of raw.entries) {
+    // Format: "DD.M | dayName | HH:MM | venueName | city"
+    // Or:     "DD.M | dayName | HH:MM | venueName" (4 parts, no separate city)
+    const parts = text.split("|").map((s) => s.trim());
+    if (parts.length < 4) continue;
+
+    // parts[0] = date (DD.M or DD.MM)
+    const dateMatch = parts[0].match(/(\d{1,2})\.(\d{1,2})/);
+    if (!dateMatch) continue;
+    const day = parseInt(dateMatch[1], 10);
+    const month = parseInt(dateMatch[2], 10);
+    const year = inferYear(day, month);
+    const date = formatDate(day, month, year);
+
+    // parts[2] = time (HH:MM)
+    const hourMatch = parts[2].match(/(\d{1,2}:\d{2})/);
+    const hour = hourMatch ? hourMatch[1] : "";
+
+    // parts[3] = venue name, parts[4] = city (if present)
+    let venueName = parts[3] || "";
+    let venueCity;
+
+    if (parts.length >= 5) {
+      venueCity = parts[4];
+    } else {
+      // No separate city — try to extract city abbreviation from venue name
+      venueCity = resolveCityFromVenue(venueName);
+    }
+
+    // Normalize city abbreviations
+    venueCity = CITY_ABBREVS[venueCity] || venueCity;
+
+    if (!venueName) continue;
+
+    // Deduplicate by date+hour+venue
+    const key = `${date}|${hour}|${venueName}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+
+    events.push({ date, hour, venueName, venueCity, ticketUrl: href });
+  }
+
+  return {
+    events,
+    title: raw.title,
+    ...(debug && raw.debugHtml ? { debugHtml: raw.debugHtml } : {}),
   };
 }
