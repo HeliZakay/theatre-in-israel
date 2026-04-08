@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-07T04:05:33.240Z",
+  "scrapedAt": "2026-04-08T04:06:12.683Z",
   "touring": true,
   "events": [
     {
@@ -31,22 +31,6 @@
       "showSlug": "הסוף",
       "date": "2026-05-07",
       "hour": "20:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 194,
-      "showSlug": "מה-שקרה-לנו",
-      "date": "2026-04-08",
-      "hour": "18:00",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 194,
-      "showSlug": "מה-שקרה-לנו",
-      "date": "2026-04-08",
-      "hour": "20:30",
       "venueName": "תיאטרון צוותא",
       "venueCity": "תל אביב"
     },

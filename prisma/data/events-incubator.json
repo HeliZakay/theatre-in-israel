@@ -1,45 +1,117 @@
 {
-  "scrapedAt": "2026-04-07T06:54:19.882Z",
+  "scrapedAt": "2026-04-08T04:07:30.859Z",
   "touring": true,
   "events": [
     {
-      "showId": 211,
-      "showSlug": "שיר-של-אמונה-וכפירה",
-      "date": "2026-04-27",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
+      "showId": 295,
+      "showSlug": "Be-More-Chill",
+      "date": "2026-05-06",
+      "hour": "20:00",
+      "venueName": "בית מזיא",
+      "venueCity": "ירושלים"
     },
     {
-      "showId": 183,
-      "showSlug": "בוז׳ולה",
-      "date": "2026-04-26",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
-      "venueCity": "תל אביב"
+      "showId": 295,
+      "showSlug": "Be-More-Chill",
+      "date": "2026-05-07",
+      "hour": "20:00",
+      "venueName": "בית מזיא",
+      "venueCity": "ירושלים"
     },
     {
-      "showId": 183,
-      "showSlug": "בוז׳ולה",
+      "showId": 295,
+      "showSlug": "Be-More-Chill",
+      "date": "2026-05-13",
+      "hour": "20:00",
+      "venueName": "בית מזיא",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 295,
+      "showSlug": "Be-More-Chill",
       "date": "2026-05-27",
+      "hour": "20:00",
+      "venueName": "בית מזיא",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 295,
+      "showSlug": "Be-More-Chill",
+      "date": "2026-05-28",
+      "hour": "20:00",
+      "venueName": "בית מזיא",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 295,
+      "showSlug": "Be-More-Chill",
+      "date": "2026-06-03",
+      "hour": "20:00",
+      "venueName": "בית מזיא",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 295,
+      "showSlug": "Be-More-Chill",
+      "date": "2026-06-04",
+      "hour": "20:00",
+      "venueName": "בית מזיא",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 290,
+      "showSlug": "אחינועם-ואני-תיאטרון-האינקובטור",
+      "date": "2026-05-28",
+      "hour": "20:30",
+      "venueName": "צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 290,
+      "showSlug": "אחינועם-ואני-תיאטרון-האינקובטור",
+      "date": "2026-06-09",
+      "hour": "20:30",
+      "venueName": "צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 290,
+      "showSlug": "אחינועם-ואני-תיאטרון-האינקובטור",
+      "date": "2026-06-29",
+      "hour": "20:30",
+      "venueName": "צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 291,
+      "showSlug": "איפה-הילד",
+      "date": "2026-06-07",
       "hour": "21:00",
-      "venueName": "תיאטרון צוותא",
+      "venueName": "תיאטרון הבית ת\"א",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 180,
-      "showSlug": "אסתר",
-      "date": "2026-05-20",
-      "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
+      "showId": 291,
+      "showSlug": "איפה-הילד",
+      "date": "2026-06-21",
+      "hour": "21:00",
+      "venueName": "תיאטרון הבית ת\"א",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 180,
-      "showSlug": "אסתר",
-      "date": "2026-06-23",
+      "showId": 101,
+      "showSlug": "אנטי-אייג׳ינג",
+      "date": "2026-04-23",
       "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
+      "venueName": "בית מזיא",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 101,
+      "showSlug": "אנטי-אייג׳ינג",
+      "date": "2026-04-28",
+      "hour": "21:00",
+      "venueName": "תיאטרון הבית ת\"א",
       "venueCity": "תל אביב"
     },
     {
@@ -47,31 +119,95 @@
       "showSlug": "אנטי-אייג׳ינג",
       "date": "2026-05-06",
       "hour": "20:30",
-      "venueName": "תיאטרון צוותא",
+      "venueName": "צוותא",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 212,
-      "showSlug": "תיכון-מגשימים",
-      "date": "2026-04-29",
+      "showId": 101,
+      "showSlug": "אנטי-אייג׳ינג",
+      "date": "2026-06-16",
+      "hour": "20:30",
+      "venueName": "בית מזיא",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 101,
+      "showSlug": "אנטי-אייג׳ינג",
+      "date": "2026-06-18",
       "hour": "21:00",
-      "venueName": "תיאטרון צוותא",
+      "venueName": "תיאטרון הבית ת\"א",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 212,
-      "showSlug": "תיכון-מגשימים",
-      "date": "2026-05-13",
-      "hour": "21:00",
-      "venueName": "תיאטרון צוותא",
+      "showId": 179,
+      "showSlug": "אסתר",
+      "date": "2026-05-20",
+      "hour": "20:30",
+      "venueName": "צוותא",
       "venueCity": "תל אביב"
     },
     {
-      "showId": 212,
-      "showSlug": "תיכון-מגשימים",
-      "date": "2026-06-03",
+      "showId": 179,
+      "showSlug": "אסתר",
+      "date": "2026-06-23",
+      "hour": "20:30",
+      "venueName": "צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 182,
+      "showSlug": "בוז׳ולה",
+      "date": "2026-04-26",
+      "hour": "20:30",
+      "venueName": "צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 182,
+      "showSlug": "בוז׳ולה",
+      "date": "2026-05-27",
       "hour": "21:00",
-      "venueName": "תיאטרון צוותא",
+      "venueName": "צוותא",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 293,
+      "showSlug": "מקום-טוב-הכל-רע",
+      "date": "2026-06-28",
+      "hour": "21:00",
+      "venueName": "תיאטרון הבית ת\"א",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 294,
+      "showSlug": "שובו-של-הקרקס",
+      "date": "2026-05-24",
+      "hour": "17:00",
+      "venueName": "אולם קימרון",
+      "venueCity": "עמק המעיינות"
+    },
+    {
+      "showId": 294,
+      "showSlug": "שובו-של-הקרקס",
+      "date": "2026-05-25",
+      "hour": "17:30",
+      "venueName": "תיאטרון גבעתיים",
+      "venueCity": "לא ידוע"
+    },
+    {
+      "showId": 294,
+      "showSlug": "שובו-של-הקרקס",
+      "date": "2026-07-04",
+      "hour": "11:00",
+      "venueName": "המשכן לאומנויות הבמה",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 210,
+      "showSlug": "שיר-של-אמונה-וכפירה",
+      "date": "2026-04-27",
+      "hour": "20:30",
+      "venueName": "צוותא",
       "venueCity": "תל אביב"
     }
   ]
