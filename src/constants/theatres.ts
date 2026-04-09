@@ -27,6 +27,7 @@ export const THEATRES: TheatreInfo[] = [
   { slug: "tomix", name: "תיאטרון toMix", image: "/images/theatres/תיאטרון-tomix.webp" },
   { slug: "meshulash", name: "תיאטרון המשולש", image: "/images/theatres/תיאטרון-המשולש.webp" },
   { slug: "incubator", name: "תיאטרון האינקובטור", image: "/images/theatres/תיאטרון-האינקובטור.webp" },
+  { slug: "malenki", name: "תיאטרון מלנקי", image: "/images/theatres/תיאטרון-מלנקי.webp" },
   { slug: "independent", name: "הפקות עצמאיות", image: "/images/theatres/הפקות-עצמאיות.webp" },
 ];
 

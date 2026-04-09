@@ -22,6 +22,7 @@ export const THEATRE_IDS = [
   "tomix",
   "meshulash",
   "incubator",
+  "malenki",
   "independent",
 ];
 
@@ -287,6 +288,26 @@ const LOADERS = {
       scrapeCast: async (browser, url) =>
         (await scrapeShowDetails(browser, url)).cast || null,
       titlePreference: "listing-first",
+      launchBrowser,
+    };
+  },
+
+  async malenki() {
+    const { MALENKI_THEATRE, fetchListing, scrapeShowDetails } =
+      await import("./malenki.mjs");
+    const { launchBrowser } = await import("./browser.mjs");
+
+    return {
+      theatreId: "malenki",
+      theatreName: MALENKI_THEATRE,
+      theatreConst: MALENKI_THEATRE,
+      theatreLabel: "Malenki Theatre (תיאטרון מלנקי)",
+      websiteUrl: "malenky.co.il",
+      fetchListing,
+      scrapeDetails: scrapeShowDetails,
+      scrapeCast: async (browser, url) =>
+        (await scrapeShowDetails(browser, url)).cast || null,
+      titlePreference: "detail-first",
       launchBrowser,
     };
   },
