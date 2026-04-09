@@ -45,6 +45,8 @@
 
 .viewport {
   padding: 4px;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .item {
