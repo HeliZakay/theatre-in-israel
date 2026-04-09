@@ -22,7 +22,7 @@
  * scrapeShowEvents() can read from cache without navigating again.
  */
 
-import { fixDoubleProtocol, extractImageFromPage } from "./image.mjs";
+import { fixDoubleProtocol } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
 import { inferYear, formatDate } from "./date.mjs";
 import { parseLessinDuration } from "./duration.mjs";
@@ -51,6 +51,52 @@ function cleanTitle(raw) {
     .replace(/\s*\/.*$/, "") // remove "/ suffix" like "/הצגת ילדים"
     .replace(/\s+/g, " ")
     .trim();
+}
+
+// ── Wix-aware image extraction ───────────────────────────────
+
+/**
+ * Extract the show poster image from a Malenki detail page.
+ *
+ * Runs inside page.evaluate() — must be self-contained.
+ *
+ * On Malenki's Wix site, og:image is a site-wide logo (same on
+ * every page). The actual show poster is a large <img> in the
+ * page body (~980x573, alt contains "פוסטר").
+ *
+ * @returns {string | null}
+ */
+function extractMalenkiImage() {
+  const SKIP_SRC = ["logo", "icon", "facebook", "instagram", "youtube", "twitter", "tiktok"];
+  const SKIP_ALT = ["לוגו", "logo", "icon"];
+
+  function isSkipped(src, alt) {
+    const lowerSrc = (src || "").toLowerCase();
+    const lowerAlt = (alt || "").toLowerCase();
+    return (
+      SKIP_SRC.some((s) => lowerSrc.includes(s)) ||
+      SKIP_ALT.some((s) => lowerAlt.includes(s))
+    );
+  }
+
+  // Strategy 1: Large visible image not in header/footer/nav
+  const imgs = [...document.querySelectorAll("img")];
+  for (const img of imgs) {
+    const src = img.src || img.dataset?.src || "";
+    if (!src || isSkipped(src, img.alt)) continue;
+    if (img.closest("nav") || img.closest("footer") || img.closest("header")) continue;
+    const rect = img.getBoundingClientRect();
+    if (rect.width > 200 && rect.height > 150) return src;
+  }
+
+  // Strategy 2: og:image fallback (only if not a generic logo)
+  const ogImage = document.querySelector('meta[property="og:image"]');
+  if (ogImage) {
+    const content = ogImage.getAttribute("content");
+    if (content && !isSkipped(content, "")) return content;
+  }
+
+  return null;
 }
 
 // ── Shows listing + events scraper (homepage) ─────────────────
@@ -409,7 +455,7 @@ export async function scrapeShowDetails(browser, url) {
   delete data.durationText;
 
   // ── Image URL ──
-  const imageUrl = await page.evaluate(extractImageFromPage);
+  const imageUrl = await page.evaluate(extractMalenkiImage);
   if (imageUrl) {
     data.imageUrl = fixDoubleProtocol(imageUrl);
   } else {
