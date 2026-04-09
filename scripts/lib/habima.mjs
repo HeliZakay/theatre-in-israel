@@ -209,12 +209,20 @@ export async function scrapeShowDetails(browser, url) {
   await setupRequestInterception(page, { allowImages: true });
 
   await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60_000 });
-  await page.waitForSelector("h1", { timeout: 30_000 });
+  await Promise.race([
+    page.waitForSelector("h1", { timeout: 30_000 }),
+    page.waitForSelector("h2", { timeout: 30_000 }),
+  ]);
 
   const data = await page.evaluate((extractImage) => {
     // ── Title ──
     const h1 = document.querySelector("h1");
     let title = h1 ? h1.textContent.trim() : "";
+    if (!title) {
+      // Fallback: some pages lack h1 — extract from <title> tag
+      const pageTitle = document.title || "";
+      title = pageTitle.replace(/\s*-\s*הבימה$/, "").trim();
+    }
     // Strip "הצגה אורחת" prefix (sometimes concatenated without space)
     title = title.replace(/^הצגה אורחת/, "").trim();
     // Collapse newlines in multi-line h1 elements to a single space
@@ -429,7 +437,10 @@ export async function scrapeShowEvents(browser, url, { debug = false, validDates
   await setupRequestInterception(page);
 
   await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60_000 });
-  await page.waitForSelector("h1", { timeout: 15_000 });
+  await Promise.race([
+    page.waitForSelector("h1", { timeout: 15_000 }),
+    page.waitForSelector("h2", { timeout: 15_000 }),
+  ]);
   // Wait for the presentations section (gracefully absent if show has no upcoming dates)
   await page
     .waitForSelector("div.presentations", { timeout: 8_000 })
@@ -441,6 +452,11 @@ export async function scrapeShowEvents(browser, url, { debug = false, validDates
     // ── Page title ──
     const h1 = document.querySelector("h1");
     let title = h1 ? h1.textContent.replace(/\s+/g, " ").trim() : "";
+    if (!title) {
+      // Fallback: some pages lack h1 — extract from <title> tag
+      const pageTitle = document.title || "";
+      title = pageTitle.replace(/\s*-\s*הבימה$/, "").trim();
+    }
     // Strip "הצגה אורחת" prefix (sometimes concatenated without space)
     title = title.replace(/^הצגה אורחת/, "").trim();
     output.title = title;
