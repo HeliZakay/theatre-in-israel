@@ -69,6 +69,12 @@ function parseLessinDuration(text) {
     return parseInt(numericMatch[1], 10);
   }
 
+  // ── 3. Abbreviation form: "55 ד''" / "55 ד׳" ──
+  const abbrMatch = text.match(/(\d+)\s*ד[''׳"״]+/);
+  if (abbrMatch) {
+    return parseInt(abbrMatch[1], 10);
+  }
+
   return null;
 }
 

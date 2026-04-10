@@ -345,7 +345,7 @@ export async function scrapeShowDetails(browser, url) {
 
     // ── Duration ──
     let durationText = null;
-    const durationMatch = body.match(/משך\s+ה?הצגה:?\s*([^\n]+)/);
+    const durationMatch = body.match(/משך\s+ה?(?:הצגה|מופע):?\s*([^\n]+)/);
     if (durationMatch) {
       durationText = durationMatch[0].trim();
     }
@@ -370,6 +370,7 @@ export async function scrapeShowDetails(browser, url) {
       "בהשתתפות:",
       "שחקנים:", "שחקניות:",
       "משך ה",
+      "משך מ",
       "פרטים נוספים",
       "02-624",
     ];
@@ -417,6 +418,7 @@ export async function scrapeShowDetails(browser, url) {
         "עיצוב:", "תאורה:",
         "מוזיקה:", "הפקה:", "צילום:",
         "משך ה",
+        "משך מ",
         "02-624",
       ];
 

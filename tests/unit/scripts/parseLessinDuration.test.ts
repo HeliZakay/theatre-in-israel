@@ -86,4 +86,17 @@ describe("parseLessinDuration", () => {
   it('parses "כשעה ו-15 דקות." with trailing period', () => {
     expect(parseLessinDuration("כשעה ו-15 דקות.")).toBe(75);
   });
+
+  // ── Abbreviation form (ד'' / ד׳) ──
+  it("parses \"55 ד''\" (double-quote abbreviation)", () => {
+    expect(parseLessinDuration("55 ד''")).toBe(55);
+  });
+
+  it('parses "80 ד׳" (geresh abbreviation)', () => {
+    expect(parseLessinDuration("80 ד׳")).toBe(80);
+  });
+
+  it('parses "60 ד\'" (apostrophe abbreviation)', () => {
+    expect(parseLessinDuration("60 ד'")).toBe(60);
+  });
 });
