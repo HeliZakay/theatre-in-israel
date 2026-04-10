@@ -118,23 +118,17 @@ export function useInfiniteShows({
   const isLoadingRef = useRef(false);
   const pageRef = useRef(restoredState?.page ?? 2);
 
-  // Restore scroll position from session
+  // Restore scroll position from session.
+  // Double-rAF ensures the browser has completed layout after the first paint.
   useEffect(() => {
     if (restoredState?.scrollY) {
       requestAnimationFrame(() => {
-        window.scrollTo(0, restoredState.scrollY);
+        requestAnimationFrame(() => {
+          window.scrollTo(0, restoredState.scrollY);
+        });
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // Manual scroll restoration
-  useEffect(() => {
-    const original = window.history.scrollRestoration;
-    window.history.scrollRestoration = "manual";
-    return () => {
-      window.history.scrollRestoration = original;
-    };
   }, []);
 
   // Reset on filter change

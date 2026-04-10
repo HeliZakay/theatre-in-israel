@@ -8,6 +8,12 @@ export default function ScrollToTop() {
   const isPopRef = useRef(false);
 
   useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+  }, []);
+
+  useEffect(() => {
     const onPopState = () => {
       isPopRef.current = true;
     };
