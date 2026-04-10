@@ -53,9 +53,11 @@ const CATEGORY_PREFIXES = [
  * "רפרטואר הקאמרי 2026" banner rather than the show poster.
  * This function prioritises the actual show image in the DOM:
  *
- *  1. Large <img> in the main content area (before #actors) from wp-content
+ *  0. Hero section image (<section class="hero"> / .hero-media)
+ *  1. Large <img> in the main content area (not in header/nav/#actors/footer)
  *  2. og:image — but only if it looks show-specific (skip known banners)
- *  3. First large visible <img> outside the cast/footer sections
+ *  3. twitter:image (same filter)
+ *  4. Any large visible <img> outside header/nav/actors/footer
  *
  * Must be self-contained (runs in browser context).
  * @returns {string | null}
@@ -95,6 +97,14 @@ export function extractCameriImage() {
     return SKIP_SRC.some((s) => lower.includes(s));
   }
 
+  // Strategy 0: Hero section image (Cameri show pages put the poster
+  // in <section class="hero"> inside a <picture>/<img>).
+  const heroImg = document.querySelector("section.hero img, .hero-media img");
+  if (heroImg) {
+    const src = heroImg.src || heroImg.dataset?.src || "";
+    if (src && !isSkipped(src) && !isBanner(src)) return src;
+  }
+
   // Strategy 1: Large wp-content image in the main content area (not in #actors).
   const actorsSection = document.querySelector("#actors");
   const imgs = Array.from(document.querySelectorAll("img"));
@@ -103,9 +113,9 @@ export function extractCameriImage() {
     if (!src || isSkipped(src)) continue;
     // Skip images inside the actors/cast section (headshots).
     if (actorsSection && actorsSection.contains(img)) continue;
-    // Skip images inside footer.
-    const footer = img.closest("footer");
-    if (footer) continue;
+    // Skip images inside footer, header, or nav.
+    if (img.closest("footer") || img.closest("header") || img.closest("nav"))
+      continue;
     const rect = img.getBoundingClientRect();
     if (rect.width > 300 && rect.height > 200) {
       if (!isBanner(src)) return src;
@@ -131,7 +141,8 @@ export function extractCameriImage() {
     const src = img.src || img.dataset?.src || "";
     if (!src || isSkipped(src)) continue;
     if (actorsSection && actorsSection.contains(img)) continue;
-    if (img.closest("footer")) continue;
+    if (img.closest("footer") || img.closest("header") || img.closest("nav"))
+      continue;
     const rect = img.getBoundingClientRect();
     if (rect.width > 200 && rect.height > 100) {
       if (!isBanner(src)) return src;
