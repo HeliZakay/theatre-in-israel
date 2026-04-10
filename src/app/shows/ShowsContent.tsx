@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import ShowCard from "@/components/shows/ShowCard/ShowCard";
 import ShowsFilterBar from "@/components/shows/ShowsFilterBar/ShowsFilterBar";
 import ShowCardSkeleton from "@/components/shows/ShowCardSkeleton/ShowCardSkeleton";
@@ -36,6 +37,25 @@ export default function ShowsContent({
     announcement,
   } = useInfiniteShows({ initialShows, initialHasMore, filters });
 
+  // Scroll to the results area when arriving via #results hash (e.g. from
+  // the home page "all shows" link or the search bar).  The element no
+  // longer carries id="results" so the browser / Next.js layout-router
+  // can't auto-scroll to it — that auto-scroll was overriding the
+  // sessionStorage-based scroll restoration on back-navigation.
+  const resultsRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (window.location.hash === "#results" && resultsRef.current) {
+      resultsRef.current.scrollIntoView();
+    }
+    if (window.location.hash) {
+      history.replaceState(
+        history.state,
+        "",
+        window.location.pathname + window.location.search,
+      );
+    }
+  }, []);
+
   const totalCount = filters.total ?? shows.length;
   const isFiltered =
     filters.theatre || filters.query || filters.genres.length > 0;
@@ -51,7 +71,7 @@ export default function ShowsContent({
           availableGenres={availableGenres}
           filters={filters}
         />
-        <div id="results" className={styles.filterRow}>
+        <div ref={resultsRef} className={styles.filterRow}>
           {isFiltered ? (
             <>
               <span className={styles.filterLabel}>מסונן לפי:</span>

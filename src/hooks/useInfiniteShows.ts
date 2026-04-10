@@ -116,18 +116,29 @@ export function useInfiniteShows({
   const observerRef = useRef<IntersectionObserver | null>(null);
   const sentinelNodeRef = useRef<HTMLDivElement | null>(null);
   const isLoadingRef = useRef(false);
+  const mountedRef = useRef(true);
   const pageRef = useRef(restoredState?.page ?? 2);
 
   // Restore scroll position from session.
-  // Double-rAF ensures the browser has completed layout after the first paint.
+  // Uses a retry loop because Next.js's InnerScrollAndFocusHandler may
+  // reset scroll asynchronously after our first attempt.
   useEffect(() => {
-    if (restoredState?.scrollY) {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          window.scrollTo(0, restoredState.scrollY);
-        });
-      });
+    if (restoredState?.scrollY == null) return;
+    const targetY = restoredState.scrollY;
+    let attempts = 0;
+    let stopped = false;
+
+    function tryScroll() {
+      if (stopped) return;
+      window.scrollTo(0, targetY);
+      if (Math.abs(window.scrollY - targetY) < 10 || ++attempts >= 20) return;
+      requestAnimationFrame(tryScroll);
     }
+
+    requestAnimationFrame(tryScroll);
+    return () => {
+      stopped = true;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -215,6 +226,7 @@ export function useInfiniteShows({
         // so window.scrollY reflects the actual post-render scroll position.
         const currentFilterKey = filterKeyRef.current;
         requestAnimationFrame(() => {
+          if (!mountedRef.current) return;
           saveToSession({
             shows: updated,
             page: currentPage + 1,
@@ -303,6 +315,8 @@ export function useInfiniteShows({
     window.addEventListener("beforeunload", saveScroll);
     return () => {
       window.removeEventListener("beforeunload", saveScroll);
+      // Block any pending rAFs from overwriting the session data
+      mountedRef.current = false;
       // Also save when component unmounts (SPA navigation)
       saveScroll();
       abortRef.current?.abort();
