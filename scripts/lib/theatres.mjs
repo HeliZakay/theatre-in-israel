@@ -26,6 +26,8 @@ export const THEATRE_IDS = [
   "jerusalem-theatre-group",
   "hasimta",
   "hanut31",
+  "niko-nitai",
+  "elad",
   "independent",
 ];
 
@@ -372,6 +374,46 @@ const LOADERS = {
         (await scrapeShowDetails(browser, url)).cast || null,
       titlePreference: "listing-first",
       launchBrowser,
+    };
+  },
+
+  async "niko-nitai"() {
+    const { NIKO_NITAI_THEATRE, fetchListing, scrapeShowDetails } =
+      await import("./niko-nitai.mjs");
+    const { launchStealthBrowser } = await import("./browser.mjs");
+
+    return {
+      theatreId: "niko-nitai",
+      theatreName: NIKO_NITAI_THEATRE,
+      theatreConst: NIKO_NITAI_THEATRE,
+      theatreLabel: "Niko Nitai Theatre (תיאטרון ניקו ניתאי)",
+      websiteUrl: "nikonitai.smarticket.co.il",
+      fetchListing,
+      scrapeDetails: scrapeShowDetails,
+      scrapeCast: async (browser, url) =>
+        (await scrapeShowDetails(browser, url)).cast || null,
+      titlePreference: "listing-first",
+      launchBrowser: launchStealthBrowser,
+    };
+  },
+
+  async elad() {
+    const { ELAD_THEATRE, fetchListing, scrapeShowDetails } =
+      await import("./elad.mjs");
+    const { launchStealthBrowser } = await import("./browser.mjs");
+
+    return {
+      theatreId: "elad",
+      theatreName: ELAD_THEATRE,
+      theatreConst: ELAD_THEATRE,
+      theatreLabel: "Elad Theatre (תיאטרון אלעד)",
+      websiteUrl: "elad-theater.co.il",
+      fetchListing,
+      scrapeDetails: scrapeShowDetails,
+      scrapeCast: async (browser, url) =>
+        (await scrapeShowDetails(browser, url)).cast || null,
+      titlePreference: "detail-first",
+      launchBrowser: launchStealthBrowser,
     };
   },
 
