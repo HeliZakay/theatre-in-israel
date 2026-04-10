@@ -29,6 +29,7 @@ export const THEATRES: TheatreInfo[] = [
   { slug: "incubator", name: "תיאטרון האינקובטור", image: "/images/theatres/תיאטרון-האינקובטור.webp" },
   { slug: "malenki", name: "תיאטרון מלנקי", image: "/images/theatres/תיאטרון-מלנקי.webp" },
   { slug: "jerusalem-theatre-group", name: "קבוצת התיאטרון הירושלמי", image: "/images/theatres/קבוצת-התיאטרון-הירושלמי.webp" },
+  { slug: "hasimta", name: "תיאטרון הסימטה", image: "/images/theatres/תיאטרון-הסימטה.webp" },
   { slug: "independent", name: "הפקות עצמאיות", image: "/images/theatres/הפקות-עצמאיות.webp" },
 ];
 

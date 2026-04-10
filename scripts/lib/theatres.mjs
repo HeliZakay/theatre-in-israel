@@ -24,6 +24,7 @@ export const THEATRE_IDS = [
   "incubator",
   "malenki",
   "jerusalem-theatre-group",
+  "hasimta",
   "independent",
 ];
 
@@ -304,6 +305,26 @@ const LOADERS = {
       theatreConst: MALENKI_THEATRE,
       theatreLabel: "Malenki Theatre (תיאטרון מלנקי)",
       websiteUrl: "malenky.co.il",
+      fetchListing,
+      scrapeDetails: scrapeShowDetails,
+      scrapeCast: async (browser, url) =>
+        (await scrapeShowDetails(browser, url)).cast || null,
+      titlePreference: "detail-first",
+      launchBrowser,
+    };
+  },
+
+  async hasimta() {
+    const { HASIMTA_THEATRE, fetchListing, scrapeShowDetails } =
+      await import("./hasimta.mjs");
+    const { launchBrowser } = await import("./browser.mjs");
+
+    return {
+      theatreId: "hasimta",
+      theatreName: HASIMTA_THEATRE,
+      theatreConst: HASIMTA_THEATRE,
+      theatreLabel: "Hasimta Theatre (תיאטרון הסימטה)",
+      websiteUrl: "hasimta.com",
       fetchListing,
       scrapeDetails: scrapeShowDetails,
       scrapeCast: async (browser, url) =>
