@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-09T04:03:43.495Z",
+  "scrapedAt": "2026-04-10T04:09:19.841Z",
   "touring": true,
   "events": [
     {
@@ -11,42 +11,10 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 275,
-      "showSlug": "Frau-Marlene",
-      "date": "2026-04-17",
-      "hour": "14:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 275,
-      "showSlug": "Frau-Marlene",
-      "date": "2026-04-17",
-      "hour": "20:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
       "showId": 257,
       "showSlug": "אש-בארזים",
       "date": "2026-04-17",
       "hour": "15:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 272,
-      "showSlug": "את-מדברת.-אני-מדברת",
-      "date": "2026-04-11",
-      "hour": "19:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 103,
-      "showSlug": "בת-של-אבא",
-      "date": "2026-04-12",
-      "hour": "19:00",
       "venueName": "תיאטרון תמונע",
       "venueCity": "תל אביב"
     },
@@ -83,22 +51,6 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 273,
-      "showSlug": "הגבירה-מאבו-דיס",
-      "date": "2026-04-12",
-      "hour": "19:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 220,
-      "showSlug": "הכל-נשאר-חי",
-      "date": "2026-04-10",
-      "hour": "20:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
       "showId": 221,
       "showSlug": "המורה",
       "date": "2026-04-15",
@@ -115,9 +67,9 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 110,
-      "showSlug": "השתקפויות",
-      "date": "2026-04-11",
+      "showId": 224,
+      "showSlug": "ימח-שמי",
+      "date": "2026-04-30",
       "hour": "19:00",
       "venueName": "תיאטרון תמונע",
       "venueCity": "תל אביב"
@@ -171,34 +123,10 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 231,
-      "showSlug": "עיגולים-של-שמחה",
-      "date": "2026-04-11",
-      "hour": "11:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 231,
-      "showSlug": "עיגולים-של-שמחה",
-      "date": "2026-04-11",
-      "hour": "13:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
       "showId": 232,
       "showSlug": "פופלינדה-בממלכת-הדמיון",
       "date": "2026-04-18",
       "hour": "11:00",
-      "venueName": "תיאטרון תמונע",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 105,
-      "showSlug": "פריקואל-וסיקואל-יורשים-כת",
-      "date": "2026-04-23",
-      "hour": "20:00",
       "venueName": "תיאטרון תמונע",
       "venueCity": "תל אביב"
     },

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-09T04:04:43.229Z",
+  "scrapedAt": "2026-04-10T04:10:27.461Z",
   "touring": true,
   "events": [
     {
@@ -583,14 +583,6 @@
       "showSlug": "משכנתא",
       "date": "2026-04-18",
       "hour": "20:30",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 38,
-      "showSlug": "משכנתא",
-      "date": "2026-04-22",
-      "hour": "21:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
