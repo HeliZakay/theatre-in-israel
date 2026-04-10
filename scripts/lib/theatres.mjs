@@ -23,6 +23,7 @@ export const THEATRE_IDS = [
   "meshulash",
   "incubator",
   "malenki",
+  "jerusalem-theatre-group",
   "independent",
 ];
 
@@ -308,6 +309,26 @@ const LOADERS = {
       scrapeCast: async (browser, url) =>
         (await scrapeShowDetails(browser, url)).cast || null,
       titlePreference: "detail-first",
+      launchBrowser,
+    };
+  },
+
+  async "jerusalem-theatre-group"() {
+    const { JERUSALEM_THEATRE_GROUP, fetchListing, scrapeShowDetails } =
+      await import("./jerusalem-theatre-group.mjs");
+    const { launchBrowser } = await import("./browser.mjs");
+
+    return {
+      theatreId: "jerusalem-theatre-group",
+      theatreName: JERUSALEM_THEATRE_GROUP,
+      theatreConst: JERUSALEM_THEATRE_GROUP,
+      theatreLabel: "Jerusalem Theatre Group (קבוצת התיאטרון הירושלמי)",
+      websiteUrl: "tcj.org.il",
+      fetchListing,
+      scrapeDetails: scrapeShowDetails,
+      scrapeCast: async (browser, url) =>
+        (await scrapeShowDetails(browser, url)).cast || null,
+      titlePreference: "listing-first",
       launchBrowser,
     };
   },
