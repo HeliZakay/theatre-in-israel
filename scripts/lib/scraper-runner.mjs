@@ -149,6 +149,19 @@ async function _runScraper(config) {
     }
     if (dbShows.length === 0) {
       console.log(yellow(`  No ${label} shows found in DB.`));
+      if (jsonPath) {
+        const output = { scrapedAt: new Date().toISOString() };
+        if (touring) {
+          output.touring = true;
+        } else if (venue) {
+          output.venue = { name: venue.name, city: venue.city };
+        }
+        output.events = [];
+        const outPath = path.resolve(rootDir, jsonPath);
+        fs.mkdirSync(path.dirname(outPath), { recursive: true });
+        fs.writeFileSync(outPath, JSON.stringify(output, null, 2), "utf-8");
+        console.log(green(`  Wrote 0 events to ${outPath}`));
+      }
       await db.prisma.$disconnect();
       await db.pool.end();
       process.exit(0);
