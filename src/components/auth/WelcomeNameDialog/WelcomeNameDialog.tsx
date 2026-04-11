@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
 import * as Dialog from "@radix-ui/react-dialog";
 import { clientProfileSchema } from "@/lib/profileSchemas";
 import { PROFILE_NAME_MAX } from "@/constants/profileValidation";
 import { updateProfile } from "@/app/me/actions";
+import ROUTES from "@/constants/routes";
 import styles from "./WelcomeNameDialog.module.css";
 
 export default function WelcomeNameDialog() {
@@ -15,7 +17,11 @@ export default function WelcomeNameDialog() {
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const isOpen = session?.user?.isNewUser === true;
+  const pathname = usePathname();
+  // Batch review page has its own name field — skip the dialog there
+  const isOpen =
+    session?.user?.isNewUser === true &&
+    !pathname.startsWith(ROUTES.REVIEWS_BATCH);
 
   // Initialize name from session once available
   if (isOpen && !nameInitialized) {

@@ -43,8 +43,16 @@ export default function BatchReviewFlow({
     createInitialState,
   );
   const router = useRouter();
-  const { data: session, status: sessionStatus } = useSession();
+  const { data: session, status: sessionStatus, update: updateSession } = useSession();
   const effectiveAuth = isAuthenticated || sessionStatus === "authenticated";
+
+  // Clear isNewUser flag after Google signup from this page —
+  // the batch flow collects the name inline, no need for WelcomeNameDialog.
+  useEffect(() => {
+    if (session?.user?.isNewUser === true) {
+      updateSession({ isNewUser: false });
+    }
+  }, [session?.user?.isNewUser, updateSession]);
 
   // Draft state persisted across show navigation (ref to avoid re-renders on every keystroke)
   const draftsRef = useRef<Record<number, { rating: number | null; text: string }>>({});
