@@ -18,7 +18,6 @@ export const THEATRE_IDS = [
   "hakahn",
   "hebrew-theatre",
   "tmuna",
-  "tzavta",
   "tomix",
   "meshulash",
   "incubator",
@@ -215,27 +214,6 @@ const LOADERS = {
       scrapeDetails: scrapeShowDetails,
       scrapeCast: async (browser, url) =>
         (await scrapeShowDetails(browser, url)).cast || null,
-      titlePreference: "listing-first",
-      launchBrowser,
-    };
-  },
-
-  async tzavta() {
-    const { TZAVTA_THEATRE, fetchListing, scrapeShowDetails, scrapeCast } =
-      await import("./tzavta.mjs");
-    const { launchBrowser } = await import("./browser.mjs");
-
-    return {
-      theatreId: "tzavta",
-      theatreName: TZAVTA_THEATRE,
-      theatreConst: TZAVTA_THEATRE,
-      assignTheatre: "הפקות עצמאיות",
-      existingTheatres: [TZAVTA_THEATRE, "הפקות עצמאיות", "אנסמבל קבוצת עבודה"],
-      theatreLabel: "Tzavta Theatre (תיאטרון צוותא)",
-      websiteUrl: "tzavta.co.il",
-      fetchListing,
-      scrapeDetails: scrapeShowDetails,
-      scrapeCast,
       titlePreference: "listing-first",
       launchBrowser,
     };

@@ -23,7 +23,6 @@ export const THEATRES: TheatreInfo[] = [
   { slug: "khan", name: "תיאטרון החאן", image: "/images/theatres/תיאטרון-החאן.webp" },
   { slug: "hebrew-theatre", name: "התיאטרון העברי", image: "/images/theatres/תיאטרון-העברי.webp" },
   { slug: "tmuna", name: "אנסמבל תמונע", image: "/images/theatres/אנסמבל-תמונע.webp" },
-  { slug: "tzavta", name: "תיאטרון צוותא", image: "/images/theatres/תיאטרון-צוותא.webp" },
   { slug: "tomix", name: "תיאטרון toMix", image: "/images/theatres/תיאטרון-tomix.webp" },
   { slug: "meshulash", name: "תיאטרון המשולש", image: "/images/theatres/תיאטרון-המשולש.webp" },
   { slug: "incubator", name: "תיאטרון האינקובטור", image: "/images/theatres/תיאטרון-האינקובטור.webp" },

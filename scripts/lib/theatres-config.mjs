@@ -17,7 +17,6 @@ export const THEATRES = [
   { label: "Haifa Theatre",     script: "scrapers/scrape-all-haifa-theatre-events.mjs",       jsonFile: "events-haifa-theatre.json" },
   { label: "Tmuna",             script: "scrapers/scrape-all-tmuna-theatre-events.mjs",       jsonFile: "events-tmuna-theatre.json" },
   { label: "Beer Sheva",        script: "scrapers/scrape-all-beer-sheva-theatre-events.mjs",  jsonFile: "events-beer-sheva-theatre.json" },
-  { label: "Tzavta",            script: "scrapers/scrape-all-tzavta-theatre-events.mjs",      jsonFile: "events-tzavta-theatre.json" },
   { label: "Habima",            script: "scrapers/scrape-all-habima-theatre-events.mjs",       jsonFile: "events-habima-theatre.json" },
   { label: "toMix",             script: "scrapers/scrape-all-tomix-events.mjs",               jsonFile: "events-tomix.json" },
   { label: "Meshulash",         script: "scrapers/scrape-all-meshulash-events.mjs",           jsonFile: "events-meshulash.json" },
@@ -29,6 +28,7 @@ export const THEATRES = [
   { label: "Niko Nitai",            script: "scrapers/scrape-all-niko-nitai-events.mjs",              jsonFile: "events-niko-nitai.json" },
   { label: "Elad",                  script: "scrapers/scrape-all-elad-events.mjs",                    jsonFile: "events-elad.json" },
   // Venue scrapers
+  { label: "Tzavta",            script: "scrapers/scrape-all-tzavta-theatre-events.mjs",      jsonFile: "events-tzavta-theatre.json" },
   { label: "Nes Ziona",         script: "scrapers/scrape-all-nes-ziona-events.mjs",           jsonFile: "events-nes-ziona.json" },
   { label: "Ashdod",            script: "scrapers/scrape-all-ashdod-events.mjs",              jsonFile: "events-ashdod.json" },
   { label: "Beer Sheva Venue",  script: "scrapers/scrape-all-beer-sheva-venue-events.mjs",    jsonFile: "events-beer-sheva-venue.json" },

@@ -132,7 +132,6 @@ Each theatre has a `scripts/find-missing/find-missing-{id}-shows.mjs` entry poin
 | Haifa | `scripts/lib/haifa.mjs` | תיאטרון חיפה | listing-first |
 | Tmuna | `scripts/lib/tmuna.mjs` | אנסמבל תמונע | listing-first |
 | Beer Sheva | `scripts/lib/beer-sheva.mjs` | תיאטרון באר שבע | listing-first |
-| Tzavta | `scripts/lib/tzavta.mjs` | תיאטרון צוותא | listing-first |
 | Habima | `scripts/lib/habima.mjs` | תיאטרון הבימה | listing-first |
 
 ## 6. Step-by-Step: Adding a New Theatre

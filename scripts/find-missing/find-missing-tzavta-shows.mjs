@@ -28,7 +28,7 @@ await runPipeline({
   theatreName: TZAVTA_THEATRE,
   theatreConst: TZAVTA_THEATRE,
   assignTheatre: "הפקות עצמאיות",
-  existingTheatres: [TZAVTA_THEATRE, "הפקות עצמאיות", "אנסמבל קבוצת עבודה"],
+  existingTheatres: ["הפקות עצמאיות", "אנסמבל קבוצת עבודה"],
   fetchListing,
   scrapeDetails: scrapeShowDetails,
   titlePreference: "listing-first",

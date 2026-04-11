@@ -12,7 +12,7 @@
  */
 
 import { launchBrowser } from "../lib/browser.mjs";
-import { scrapeShowEvents, TZAVTA_THEATRE } from "../lib/tzavta.mjs";
+import { scrapeShowEvents } from "../lib/tzavta.mjs";
 import {
   bold,
   cyan,
@@ -114,7 +114,7 @@ async function main() {
 
         const normalisedTitle = normaliseForMatch(pageTitle);
         const dbShows = await db.prisma.show.findMany({
-          where: { theatre: TZAVTA_THEATRE },
+          where: { theatre: "הפקות עצמאיות" },
           select: { id: true, slug: true, title: true },
         });
 
