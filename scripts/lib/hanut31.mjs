@@ -105,23 +105,57 @@ async function fetchEventUrlsFromSitemap() {
 }
 
 /**
- * Fetch all upcoming events by reading the sitemap, visiting each
- * event detail page for JSON-LD, grouping by show title, caching
- * results, and returning the unique list of shows.
+ * Fetch the repertoire show list from the רפרטואר dropdown menu
+ * on the homepage, then scrape event pages from the sitemap to
+ * populate the events cache.
+ *
+ * The menu is the source of truth for which shows belong to the
+ * theatre — the sitemap may contain one-off events or guest shows
+ * that are not part of the repertoire.
  *
  * @param {import('puppeteer').Browser} browser
  * @returns {Promise<Array<{title: string, url: string}>>}
  */
 export async function fetchListing(browser) {
-  // ── 1. Collect event page URLs from sitemap ──
-  const eventUrls = await fetchEventUrlsFromSitemap();
+  // ── 1. Extract shows from the רפרטואר dropdown menu ──
+  const homePage = await browser.newPage();
+  await setupRequestInterception(homePage);
+  await homePage.goto(HANUT31_BASE, {
+    waitUntil: "networkidle2",
+    timeout: 30_000,
+  });
+  await new Promise((r) => setTimeout(r, 3000));
 
-  // Today's date for filtering out past events
+  const menuShows = await homePage.evaluate(() => {
+    const topItems = document.querySelectorAll(
+      "wix-dropdown-menu > nav > ul > li",
+    );
+    for (const li of topItems) {
+      // Top-level labels are in <p> elements, not <a>
+      const label = li.querySelector(":scope > div p")?.textContent?.trim();
+      if (label === "רפרטואר") {
+        return [...li.querySelectorAll("ul a")]
+          .map((a) => ({ title: a.textContent.trim(), url: a.href }))
+          .filter((s) => s.title !== "ארכיון" && s.title && s.url);
+      }
+    }
+    return [];
+  });
+  await homePage.close();
+
+  if (menuShows.length === 0) {
+    console.warn("  ⚠  No shows found in רפרטואר menu");
+    return [];
+  }
+
+  console.log(`  Found ${menuShows.length} shows in רפרטואר menu`);
+
+  // ── 2. Scrape event pages from sitemap for the events cache ──
+  const eventUrls = await fetchEventUrlsFromSitemap();
   const today = new Date().toISOString().slice(0, 10);
 
-  // ── 2. Visit each event page and extract JSON-LD ──
   /** @type {Map<string, { title: string, durationMinutes: number|null, events: Array }>} */
-  const showMap = new Map();
+  const eventsByTitle = new Map();
 
   for (let i = 0; i < eventUrls.length; i++) {
     const eventUrl = eventUrls[i];
@@ -134,7 +168,6 @@ export async function fetchListing(browser) {
         timeout: 30_000,
       });
 
-      // JSON-LD is server-rendered, should be available quickly
       try {
         await eventPage.waitForSelector(
           'script[type="application/ld+json"]',
@@ -146,7 +179,6 @@ export async function fetchListing(browser) {
 
       const jsonLd = await extractJsonLd(eventPage);
       if (jsonLd && jsonLd.name && jsonLd.startDate) {
-        // Skip cancelled events
         const cancelled =
           jsonLd.eventStatus &&
           jsonLd.eventStatus.includes("EventCancelled");
@@ -166,14 +198,14 @@ export async function fetchListing(browser) {
             };
 
             const key = title.toLowerCase();
-            const existing = showMap.get(key);
+            const existing = eventsByTitle.get(key);
             if (existing) {
               existing.events.push(event);
               if (duration && (!existing.durationMinutes || duration > existing.durationMinutes)) {
                 existing.durationMinutes = duration;
               }
             } else {
-              showMap.set(key, {
+              eventsByTitle.set(key, {
                 title,
                 durationMinutes: duration,
                 events: [event],
@@ -194,19 +226,21 @@ export async function fetchListing(browser) {
     }
   }
 
-  // ── 3. Build cache and return show list ──
+  // ── 3. Build cache keyed by show detail page URL ──
   _eventsCache = new Map();
 
   const shows = [];
-  for (const [, data] of showMap) {
-    // Use first event URL as the show's URL
-    const url = data.events[0]?.ticketUrl ?? "";
-    _eventsCache.set(url, {
-      title: data.title,
-      durationMinutes: data.durationMinutes,
-      events: data.events,
+  for (const show of menuShows) {
+    const key = show.title.toLowerCase();
+    const eventsData = eventsByTitle.get(key);
+
+    _eventsCache.set(show.url, {
+      title: show.title,
+      durationMinutes: eventsData?.durationMinutes ?? null,
+      events: eventsData?.events ?? [],
     });
-    shows.push({ title: data.title, url });
+
+    shows.push({ title: show.title, url: show.url });
   }
 
   return shows.sort((a, b) => a.title.localeCompare(b.title, "he"));
