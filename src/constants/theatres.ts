@@ -33,6 +33,7 @@ export const THEATRES: TheatreInfo[] = [
   { slug: "niko-nitai", name: "תיאטרון ניקו ניתאי", image: "/images/theatres/תיאטרון-ניקו-ניתאי.webp" },
   { slug: "elad", name: "תיאטרון אלעד", image: "/images/theatres/תיאטרון-אלעד.webp" },
   { slug: "hanut31", name: "תיאטרון החנות", image: "/images/theatres/תיאטרון-החנות.webp" },
+  { slug: "kvutzat-avoda", name: "אנסמבל קבוצת עבודה", image: "/images/theatres/אנסמבל-קבוצת-עבודה.webp" },
   { slug: "independent", name: "הפקות עצמאיות", image: "/images/theatres/הפקות-עצמאיות.webp" },
 ];
 

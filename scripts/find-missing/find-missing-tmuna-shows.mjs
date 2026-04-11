@@ -25,7 +25,7 @@ await runPipeline({
   theatreName: TMUNA_THEATRE,
   theatreConst: TMUNA_THEATRE,
   assignTheatre: "הפקות עצמאיות",
-  existingTheatres: [TMUNA_THEATRE, "הפקות עצמאיות"],
+  existingTheatres: [TMUNA_THEATRE, "הפקות עצמאיות", "אנסמבל קבוצת עבודה"],
   fetchListing,
   scrapeDetails: scrapeShowDetails,
   titlePreference: "listing-first",
