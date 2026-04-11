@@ -194,6 +194,25 @@ export default function ReviewSummary({
         </p>
       </div>
 
+      {/* Login / signup (anonymous users only) */}
+      {!isLoggedIn && (
+        <InlineSignIn
+          onLoginSuccess={() => {
+            logEvent("batch_inline_login", { method: "credentials" });
+          }}
+          onBeforeGoogleRedirect={() => {
+            logEvent("batch_inline_login", { method: "google" });
+            onBeforeGoogleRedirect();
+          }}
+        />
+      )}
+
+      {!isLoggedIn && (
+        <div className={styles.anonDivider}>
+          <span>או המשיכו בלי חשבון</span>
+        </div>
+      )}
+
       {/* Reviewer name (anonymous users only) */}
       {!isLoggedIn && (
         <div className={styles.nameSection}>
@@ -343,24 +362,6 @@ export default function ReviewSummary({
         )}
       </div>
 
-      {/* Login option (anonymous users only) */}
-      {!isLoggedIn && (
-        <>
-          <div className={styles.anonDivider}>
-            <span>או התחברו לחשבון</span>
-          </div>
-
-          <InlineSignIn
-            onLoginSuccess={() => {
-              logEvent("batch_inline_login", { method: "credentials" });
-            }}
-            onBeforeGoogleRedirect={() => {
-              logEvent("batch_inline_login", { method: "google" });
-              onBeforeGoogleRedirect();
-            }}
-          />
-        </>
-      )}
     </div>
   );
 }

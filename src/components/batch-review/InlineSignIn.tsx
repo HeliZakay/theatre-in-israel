@@ -4,6 +4,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import { GoogleIcon } from "@/components/ui/SocialIcons/SocialIcons";
+import { ROUTES } from "@/constants/routes";
 import styles from "./InlineSignIn.module.css";
 
 interface InlineSignInProps {
@@ -50,6 +51,11 @@ export default function InlineSignIn({
   const handleGoogleSignIn = () => {
     onBeforeGoogleRedirect();
     signIn("google", { callbackUrl: "/reviews/batch" });
+  };
+
+  const handleSignup = () => {
+    onBeforeGoogleRedirect();
+    window.location.href = `${ROUTES.AUTH_SIGNUP}?callbackUrl=${encodeURIComponent(ROUTES.REVIEWS_BATCH)}`;
   };
 
   return (
@@ -112,6 +118,13 @@ export default function InlineSignIn({
           </form>
         )}
       </div>
+
+      <p className={styles.signupNote}>
+        אין לך חשבון?{" "}
+        <button type="button" className={styles.signupLink} onClick={handleSignup}>
+          הרשמה
+        </button>
+      </p>
     </div>
   );
 }

@@ -144,3 +144,27 @@
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+.signupNote {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin: 12px 0 0;
+}
+
+.signupLink {
+  appearance: none;
+  background: none;
+  border: none;
+  color: var(--color-curtain-red);
+  font-size: inherit;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.signupLink:hover {
+  opacity: 0.8;
+}
