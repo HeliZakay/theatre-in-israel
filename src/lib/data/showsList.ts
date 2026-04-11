@@ -2,7 +2,7 @@ import { Prisma } from "@prisma/client";
 import { unstable_cache } from "next/cache";
 import prisma from "../prisma";
 import { parseShowsSearchParams } from "../../utils/showsQuery";
-import { normalizeQuotes } from "../../utils/normalizeQuery";
+import { quoteVariants } from "../../utils/normalizeQuery";
 import { showListInclude, mapToShowListItem, excludeKidsWhere, KIDS_GENRE_NAME } from "../showHelpers";
 import type { ShowListItem, ShowFilters } from "@/types";
 
@@ -33,20 +33,19 @@ export function buildWhereClause({
   }
 
   if (query) {
-    const q = normalizeQuotes(query);
-    conditions.push({
-      OR: [
-        { title: { contains: q, mode: "insensitive" as const } },
-        { theatre: { contains: q, mode: "insensitive" as const } },
-        {
-          genres: {
-            some: {
-              genre: { name: { contains: q, mode: "insensitive" as const } },
-            },
+    const variants = quoteVariants(query);
+    const textConditions = variants.flatMap((q) => [
+      { title: { contains: q, mode: "insensitive" as const } },
+      { theatre: { contains: q, mode: "insensitive" as const } },
+      {
+        genres: {
+          some: {
+            genre: { name: { contains: q, mode: "insensitive" as const } },
           },
         },
-      ],
-    });
+      },
+    ]);
+    conditions.push({ OR: textConditions });
   }
 
   if (genres.length > 0) {
