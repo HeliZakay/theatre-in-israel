@@ -38,19 +38,22 @@ export async function createPrismaClient() {
 }
 
 /**
- * Fetch existing show titles for a given theatre from the database.
+ * Fetch existing show titles for one or more theatres from the database.
  * Returns a Set of normalised titles, or `null` if DB is unavailable.
  *
- * @param {string} theatre — theatre name to filter by (e.g. "תיאטרון הקאמרי")
+ * @param {string | string[]} theatreOrArray — theatre name(s) to filter by
  * @returns {Promise<Set<string> | null>}
  */
-export async function fetchExistingTitles(theatre) {
+export async function fetchExistingTitles(theatreOrArray) {
   const db = await createPrismaClient();
   if (!db) return null;
 
   try {
+    const filter = Array.isArray(theatreOrArray)
+      ? { in: theatreOrArray }
+      : theatreOrArray;
     const shows = await db.prisma.show.findMany({
-      where: { theatre },
+      where: { theatre: filter },
       select: { title: true },
     });
     return new Set(shows.map((s) => normalise(s.title)));

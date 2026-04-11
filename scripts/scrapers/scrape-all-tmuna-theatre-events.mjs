@@ -2,11 +2,9 @@
 /**
  * scrape-all-tmuna-theatre-events.mjs
  *
- * Scrape performance dates/times for ALL Tmuna Theatre shows in one run.
- * Fetches the show listing, matches shows to DB records,
- * then scrapes events from each show's detail page.
- *
- * Tmuna Theatre events include per-event venue info (touring format).
+ * Scrape performance dates/times for shows at Tmuna Theatre.
+ * Matches shows from both אנסמבל תמונע and הפקות עצמאיות (independent
+ * productions that perform at the Tmuna venue).
  *
  * Dry-run by default — prints scraped dates for review.
  *
@@ -26,8 +24,8 @@ import {
 
 runScraper({
   label: "Tmuna Theatre Events Scraper",
-  theatre: TMUNA_THEATRE,
+  theatres: [TMUNA_THEATRE, 'הפקות עצמאיות'],
+  venue: { name: "תיאטרון תמונע", city: "תל אביב" },
   fetchListings: fetchListing,
   scrapeShowEvents,
-  touring: true,
 });

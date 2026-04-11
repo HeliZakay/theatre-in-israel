@@ -70,6 +70,7 @@ async function openBrowser(stealth) {
  * @param {function} config.fetchListings — (browser) => listings array
  * @param {function} [config.scrapeShowEvents] — (browser, url, { debug }) => { events }
  * @param {string} [config.theatre] — DB theatre constant (theatre mode)
+ * @param {string[]} [config.theatres] — Array of theatre names (multi-theatre mode; outputs venueSource format)
  * @param {boolean} [config.venueSource] — Use fetchAllDbShows + matchVenueTitle
  * @param {{ name: string, city: string }} [config.venue] — Fixed venue
  * @param {boolean} [config.touring] — Per-event venue from scrape results
@@ -93,6 +94,7 @@ async function _runScraper(config) {
     fetchListings,
     scrapeShowEvents,
     theatre,
+    theatres,
     venueSource,
     venue,
     touring,
@@ -103,6 +105,8 @@ async function _runScraper(config) {
     stealth,
     politeDelay = 1500,
   } = config;
+
+  const isMultiTheatre = Array.isArray(theatres);
 
   dotenv.config({ path: path.join(rootDir, ".env.local") });
   const { debug, apply, jsonPath } = parseCli();
@@ -138,8 +142,9 @@ async function _runScraper(config) {
       process.exit(1);
     }
     try {
+      const theatreFilter = isMultiTheatre ? { in: theatres } : theatre;
       dbShows = await db.prisma.show.findMany({
-        where: { theatre },
+        where: { theatre: theatreFilter },
         select: { id: true, slug: true, title: true },
         orderBy: { title: "asc" },
       });
@@ -151,7 +156,10 @@ async function _runScraper(config) {
       console.log(yellow(`  No ${label} shows found in DB.`));
       if (jsonPath) {
         const output = { scrapedAt: new Date().toISOString() };
-        if (touring) {
+        if (isMultiTheatre) {
+          output.venueSource = true;
+          output.venue = { name: venue.name, city: venue.city };
+        } else if (touring) {
           output.touring = true;
         } else if (venue) {
           output.venue = { name: venue.name, city: venue.city };
@@ -228,6 +236,28 @@ async function _runScraper(config) {
         unmatched.push(item.title);
       }
     }
+  } else if (isMultiTheatre) {
+    // Multi-theatre: for each listing, look up in DB shows.
+    // Reversed direction avoids reporting hundreds of unmatched DB shows
+    // from other theatres (e.g. all independent shows not on this venue's site).
+    const titleToShow = new Map();
+    for (const show of dbShows) {
+      titleToShow.set(normaliseForMatch(show.title), show);
+    }
+    for (const { title, url } of listings) {
+      const key = normaliseForMatch(title);
+      const show = titleToShow.get(key);
+      if (show) {
+        matched.push({
+          showId: show.id,
+          showSlug: show.slug,
+          title: show.title,
+          url,
+        });
+      } else {
+        unmatched.push(title);
+      }
+    }
   } else {
     const listingMap = new Map();
     for (const { title, url } of listings) {
@@ -262,9 +292,9 @@ async function _runScraper(config) {
 
   // ── Unmatched warnings ──
   if (unmatched.length > 0) {
-    const noun = venueSource ? "listing(s)" : "DB show(s)";
+    const noun = (venueSource || isMultiTheatre) ? "listing(s)" : "DB show(s)";
     console.log(
-      yellow(`  Could not match ${unmatched.length} ${noun} to ${venueSource ? "DB shows" : "listing URLs"}:`),
+      yellow(`  Could not match ${unmatched.length} ${noun} to ${(venueSource || isMultiTheatre) ? "DB shows" : "listing URLs"}:`),
     );
     for (const s of unmatched) {
       if (typeof s === "string") {
@@ -408,7 +438,7 @@ async function _runScraper(config) {
             date: ev.date,
             hour: ev.hour || "00:00",
           };
-          if (touring) {
+          if (touring && !isMultiTheatre) {
             entry.venueName =
               ev.venueName || defaultVenueName || show.title;
             entry.venueCity =
@@ -417,7 +447,7 @@ async function _runScraper(config) {
                 ? resolveVenueCity(entry.venueName)
                 : "לא ידוע");
           }
-          if (!touring && !venueSource && ev.note) {
+          if (!touring && !venueSource && !isMultiTheatre && ev.note) {
             entry.note = ev.note;
           }
           collectedEvents.push(entry);
@@ -435,8 +465,8 @@ async function _runScraper(config) {
         for (const ev of events) {
           let eventVenue = fixedVenue;
 
-          // Touring: resolve venue per event
-          if (touring) {
+          // Touring: resolve venue per event (skip for multi-theatre — uses fixed venue)
+          if (touring && !isMultiTheatre) {
             const venueName =
               ev.venueName || defaultVenueName || show.title;
             const venueCity =
@@ -507,7 +537,7 @@ async function _runScraper(config) {
   // ── JSON output ──
   if (jsonPath) {
     const output = { scrapedAt: new Date().toISOString() };
-    if (venueSource) {
+    if (venueSource || isMultiTheatre) {
       output.venueSource = true;
       output.venue = { name: venue.name, city: venue.city };
     } else if (touring) {
@@ -539,7 +569,7 @@ async function _runScraper(config) {
   separator();
   console.log(bold(cyan("  Summary")));
   separator();
-  if (venueSource) {
+  if (venueSource || isMultiTheatre) {
     console.log(`  Listings found:   ${listings.length}`);
     console.log(`  Shows matched:    ${matched.length}`);
   }
@@ -556,7 +586,7 @@ async function _runScraper(config) {
     console.log(red(`  Shows failed:     ${totals.failed}`));
   }
   if (unmatched.length > 0) {
-    const noun = venueSource ? "Listings skipped" : "Shows unmatched";
+    const noun = (venueSource || isMultiTheatre) ? "Listings skipped" : "Shows unmatched";
     console.log(yellow(`  ${noun}:  ${unmatched.length}`));
   }
   separator();

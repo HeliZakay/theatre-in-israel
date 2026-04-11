@@ -90,19 +90,22 @@ export async function collectMissingShows(config, options = {}) {
     theatreId,
     theatreName,
     theatreConst,
+    assignTheatre,
+    existingTheatres,
     fetchListing,
     scrapeDetails,
     titlePreference,
     launchBrowser,
   } = config;
 
+  const targetTheatre = assignTheatre || theatreConst;
   const quiet = options.quiet ?? false;
 
   // ── Resolve DB state ──────────────────────────────────────────
   const titlesProvided = "existingTitles" in options;
   const existingSet = titlesProvided
     ? options.existingTitles
-    : await fetchExistingTitles(theatreConst);
+    : await fetchExistingTitles(existingTheatres || theatreConst);
 
   const slugsProvided = "existingSlugs" in options;
   const slugMap = slugsProvided
@@ -160,7 +163,7 @@ export async function collectMissingShows(config, options = {}) {
   // ── Filter out previously excluded shows ──────────────────────
   const excludedSet = options.excludedShows ?? loadExcludedShows();
   const afterExclusion = missingShows.filter(
-    (s) => !excludedSet.has(normalise(s.title) + "||" + theatreConst),
+    (s) => !excludedSet.has(normalise(s.title) + "||" + targetTheatre),
   );
   const excludedCount = missingShows.length - afterExclusion.length;
   if (excludedCount > 0 && !quiet) {
@@ -224,8 +227,8 @@ export async function collectMissingShows(config, options = {}) {
 
       // Disambiguate slug if it collides with an existing show from another theatre
       let slug = generateSlug(showTitle);
-      if (slugMap && slugMap.has(slug) && slugMap.get(slug) !== theatreConst) {
-        slug = `${slug}-${generateSlug(theatreConst)}`;
+      if (slugMap && slugMap.has(slug) && slugMap.get(slug) !== targetTheatre) {
+        slug = `${slug}-${generateSlug(targetTheatre)}`;
         if (!quiet) {
           console.log(`    ⚠️  Slug collision — using "${slug}"`);
         }
@@ -257,7 +260,7 @@ export async function collectMissingShows(config, options = {}) {
       results.push({
         title: showTitle,
         slug,
-        theatre: theatreConst,
+        theatre: targetTheatre,
         durationMinutes: details.durationMinutes,
         rawDescription: details.description || null,
         description: details.description || null,
@@ -274,14 +277,14 @@ export async function collectMissingShows(config, options = {}) {
       if (
         slugMap &&
         slugMap.has(errSlug) &&
-        slugMap.get(errSlug) !== theatreConst
+        slugMap.get(errSlug) !== targetTheatre
       ) {
-        errSlug = `${errSlug}-${generateSlug(theatreConst)}`;
+        errSlug = `${errSlug}-${generateSlug(targetTheatre)}`;
       }
       results.push({
         title,
         slug: errSlug,
-        theatre: theatreConst,
+        theatre: targetTheatre,
         durationMinutes: null,
         description: null,
         summary: "",

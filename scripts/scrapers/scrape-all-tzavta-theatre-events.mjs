@@ -2,11 +2,9 @@
 /**
  * scrape-all-tzavta-theatre-events.mjs
  *
- * Scrape performance dates/times for ALL Tzavta Theatre shows in one run.
- * Fetches the show listing, matches shows to DB records,
- * then scrapes events from each show's detail page.
- *
- * Tzavta Theatre events include per-event venue info (touring format).
+ * Scrape performance dates/times for shows at Tzavta Theatre.
+ * All shows are independent productions (הפקות עצמאיות) that perform
+ * at the Tzavta venue.
  *
  * Dry-run by default — prints scraped dates for review.
  *
@@ -21,13 +19,12 @@ import { runScraper } from "../lib/scraper-runner.mjs";
 import {
   fetchListing,
   scrapeShowEvents,
-  TZAVTA_THEATRE,
 } from "../lib/tzavta.mjs";
 
 runScraper({
   label: "Tzavta Theatre Events Scraper",
-  theatre: TZAVTA_THEATRE,
+  theatres: ['הפקות עצמאיות'],
+  venue: { name: "תיאטרון צוותא", city: "תל אביב" },
   fetchListings: fetchListing,
   scrapeShowEvents,
-  touring: true,
 });
