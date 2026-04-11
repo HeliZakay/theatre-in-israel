@@ -208,6 +208,9 @@ export default function ReviewSummary({
           onLoginSuccess={() => {
             logEvent("batch_inline_login", { method: "credentials" });
           }}
+          onSignupSuccess={() => {
+            logEvent("batch_inline_signup", { method: "credentials" });
+          }}
           onBeforeGoogleRedirect={() => {
             logEvent("batch_inline_login", { method: "google" });
             onBeforeGoogleRedirect();
