@@ -2,21 +2,11 @@ import { readFileSync } from "fs";
 import { execSync } from "child_process";
 import { join } from "path";
 import { Resend } from "resend";
+import { THEATRES } from "./lib/theatres-config.mjs";
 
 const DATA_DIR = join(import.meta.dirname, "..", "prisma", "data");
 
-const FILES = [
-  { file: "events.json", label: "תיאטרון הקאמרי" },
-  { file: "events-lessin.json", label: "תיאטרון בית ליסין" },
-  { file: "events-hebrew-theatre.json", label: "התיאטרון העברי" },
-  { file: "events-khan.json", label: "תיאטרון החאן" },
-  { file: "events-gesher.json", label: "תיאטרון גשר" },
-  { file: "events-haifa-theatre.json", label: "תיאטרון חיפה" },
-  { file: "events-tmuna-theatre.json", label: "תיאטרון תמונע" },
-  { file: "events-beer-sheva-theatre.json", label: "תיאטרון באר שבע" },
-  { file: "events-tzavta-theatre.json", label: "תיאטרון צוותא" },
-  { file: "events-habima-theatre.json", label: "תיאטרון הבימה" },
-];
+const FILES = THEATRES.map((t) => ({ file: t.jsonFile, label: t.label }));
 
 const RECIPIENT = "helizakay1@gmail.com";
 const FROM = "תיאטרון בישראל <onboarding@resend.dev>";
