@@ -136,16 +136,28 @@ export const authOptions: NextAuthOptions = {
       if (session.user && token.sub) {
         session.user.id = token.sub;
       }
+      if (session.user && token.isNewUser) {
+        session.user.isNewUser = true;
+      }
       return session;
     },
-    jwt: async ({ token, user, trigger, session: updateData }) => {
+    jwt: async ({ token, user, trigger, session: updateData, account }) => {
       if (user) {
         token.sub = user.id;
       }
+      // Mark first-time Google sign-ups so the client can show the welcome dialog.
+      if (trigger === "signUp" && account?.provider === "google") {
+        token.isNewUser = true;
+      }
       // Handles client-side session.update() calls (e.g., after a user
       // changes their display name on the profile page).
-      if (trigger === "update" && updateData?.name !== undefined) {
-        token.name = updateData.name;
+      if (trigger === "update") {
+        if (updateData?.name !== undefined) {
+          token.name = updateData.name;
+        }
+        if (updateData?.isNewUser === false) {
+          token.isNewUser = false;
+        }
       }
       return token;
     },

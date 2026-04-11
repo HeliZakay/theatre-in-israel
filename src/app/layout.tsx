@@ -7,6 +7,7 @@ import AuthSessionProvider from "@/components/auth/AuthSessionProvider/AuthSessi
 import WatchlistProvider from "@/components/auth/WatchlistProvider/WatchlistProvider";
 import ScrollToTop from "@/components/layout/ScrollToTop/ScrollToTop";
 import SecurityBanner from "@/components/layout/SecurityBanner/SecurityBanner";
+import WelcomeNameDialog from "@/components/auth/WelcomeNameDialog/WelcomeNameDialog";
 import TooltipProvider from "@/components/ui/Tooltip/TooltipProvider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -132,6 +133,7 @@ export default function RootLayout({
             <SecurityBanner />
             <div className="appContent">{children}</div>
             <Footer />
+            <WelcomeNameDialog />
           </TooltipProvider>
           </RadixDirectionProvider>
           </WatchlistProvider>
