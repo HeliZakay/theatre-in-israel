@@ -105,6 +105,7 @@ export default async function NewReviewPage({
             initialShowId={show.id}
             initialShowSlug={show.slug}
             isAuthenticated={isAuthenticated}
+            userName={session?.user?.name ?? ""}
           />
           <div className={styles.cancelRow}>
             <Link className={styles.ghostBtn} href={showPath(show.slug)}>

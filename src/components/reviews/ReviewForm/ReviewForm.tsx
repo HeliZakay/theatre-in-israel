@@ -38,6 +38,7 @@ interface ReviewFormProps {
   initialShowId?: number | string;
   initialShowSlug?: string;
   isAuthenticated?: boolean;
+  userName?: string;
 }
 
 export default function ReviewForm({
@@ -45,6 +46,7 @@ export default function ReviewForm({
   initialShowId = "",
   initialShowSlug = "",
   isAuthenticated = true,
+  userName = "",
 }: ReviewFormProps) {
   const isAnonymous = !isAuthenticated;
   const router = useRouter();
@@ -67,7 +69,7 @@ export default function ReviewForm({
       title: "",
       rating: "",
       text: "",
-      name: "",
+      name: userName,
       honeypot: "",
     },
   });
@@ -91,8 +93,8 @@ export default function ReviewForm({
       formData.set("rating", String(values.rating));
       formData.set("text", String(values.text));
 
+      formData.set("name", String(values.name ?? ""));
       if (!isAuthenticated) {
-        formData.set("name", String(values.name ?? ""));
         formData.set("honeypot", String(values.honeypot ?? ""));
       }
 
@@ -171,38 +173,36 @@ export default function ReviewForm({
         <input type="hidden" {...register("showId")} />
       )}
 
-      {!isAuthenticated && (
-        <>
-          <label className={fieldStyles.field}>
-            <span className={fieldStyles.label}>שם (לא חובה)</span>
-            <input
-              className={fieldStyles.input}
-              type="text"
-              placeholder="אנונימי"
-              maxLength={REVIEW_NAME_MAX}
-              disabled={isSubmitting}
-              {...register("name")}
-            />
-            {errors.name ? (
-              <p className={fieldStyles.fieldError} role="alert">
-                {errors.name.message}
-              </p>
-            ) : null}
-          </label>
+      <label className={fieldStyles.field}>
+        <span className={fieldStyles.label}>שם (לא חובה)</span>
+        <input
+          className={fieldStyles.input}
+          type="text"
+          placeholder="אנונימי"
+          maxLength={REVIEW_NAME_MAX}
+          disabled={isSubmitting}
+          {...register("name")}
+        />
+        {errors.name ? (
+          <p className={fieldStyles.fieldError} role="alert">
+            {errors.name.message}
+          </p>
+        ) : null}
+      </label>
 
-          {/* Honeypot field — hidden from real users, filled by bots */}
-          <div className={styles.honeypot} aria-hidden="true">
-            <label>
-              <span>Leave this empty</span>
-              <input
-                type="text"
-                tabIndex={-1}
-                autoComplete="off"
-                {...register("honeypot")}
-              />
-            </label>
-          </div>
-        </>
+      {/* Honeypot field — hidden from real users, filled by bots */}
+      {isAnonymous && (
+        <div className={styles.honeypot} aria-hidden="true">
+          <label>
+            <span>Leave this empty</span>
+            <input
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              {...register("honeypot")}
+            />
+          </label>
+        </div>
       )}
 
       <ReviewFormFields

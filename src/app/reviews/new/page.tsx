@@ -51,7 +51,7 @@ export default async function NewReviewPage({
         <p className={styles.subtitle}>בחר.י הצגה ולאחר מכן כתב.י ביקורת.</p>
       </header>
 
-      <ReviewForm shows={shows} isAuthenticated={isAuthenticated} />
+      <ReviewForm shows={shows} isAuthenticated={isAuthenticated} userName={session?.user?.name ?? ""} />
 
       <CancelButton />
     </main>

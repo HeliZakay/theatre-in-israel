@@ -8,6 +8,18 @@ import {
 import { containsHebrewProfanity } from "@/utils/profanityFilter";
 
 /**
+ * Name field shared between authenticated and anonymous client schemas.
+ */
+const nameField = z
+  .string()
+  .trim()
+  .max(REVIEW_NAME_MAX, `השם יכול להכיל עד ${REVIEW_NAME_MAX} תווים`)
+  .optional()
+  .refine((val) => !val || !containsHebrewProfanity(val), {
+    message: "השם מכיל שפה לא הולמת. אנא בחר.י שם אחר.",
+  });
+
+/**
  * Rating field shared between create and update schemas.
  */
 const ratingField = z.preprocess(
@@ -85,6 +97,7 @@ export const updateReviewSchema = z.object({
  */
 export const clientReviewSchema = z.object({
   showId: z.string().trim().min(1, "יש לבחור הצגה"),
+  name: nameField,
   title: titleField,
   rating: ratingField,
   text: textField,
@@ -96,14 +109,7 @@ export const clientReviewSchema = z.object({
  */
 export const clientAnonymousReviewSchema = z.object({
   showId: z.string().trim().min(1, "יש לבחור הצגה"),
-  name: z
-    .string()
-    .trim()
-    .max(REVIEW_NAME_MAX, `השם יכול להכיל עד ${REVIEW_NAME_MAX} תווים`)
-    .optional()
-    .refine((val) => !val || !containsHebrewProfanity(val), {
-      message: "השם מכיל שפה לא הולמת. אנא בחר.י שם אחר.",
-    }),
+  name: nameField,
   title: titleField,
   rating: ratingField,
   text: textField,

@@ -94,7 +94,7 @@ export async function createReview(
     }
 
     const { showId, name, rating, text } = result.data;
-    const authorName = session.user.name?.trim() || name?.trim() || "משתמש/ת";
+    const authorName = name?.trim() || "אנונימי";
 
     const title = await resolveReviewTitle(
       result.data.title,

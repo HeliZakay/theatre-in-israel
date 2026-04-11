@@ -24,6 +24,7 @@ interface InlineReviewFormProps {
   showSlug: string;
   showTitle: string;
   isAuthenticated: boolean;
+  userName?: string;
   /** Controls the prompt text */
   variant: "empty" | "after-reviews";
 }
@@ -33,6 +34,7 @@ export default function InlineReviewForm({
   showSlug,
   showTitle,
   isAuthenticated,
+  userName = "",
   variant,
 }: InlineReviewFormProps) {
   const isAnonymous = !isAuthenticated;
@@ -60,7 +62,8 @@ export default function InlineReviewForm({
       title: "",
       rating: "",
       text: "",
-      ...(isAnonymous ? { name: "", honeypot: "" } : {}),
+      name: userName,
+      ...(isAnonymous ? { honeypot: "" } : {}),
     },
   });
 
@@ -87,9 +90,10 @@ export default function InlineReviewForm({
       title: "",
       rating: "",
       text: "",
-      ...(isAnonymous ? { name: "", honeypot: "" } : {}),
+      name: userName,
+      ...(isAnonymous ? { honeypot: "" } : {}),
     });
-  }, [reset, showId, isAnonymous]);
+  }, [reset, showId, isAnonymous, userName]);
 
   const onSubmit = async (values: Record<string, unknown>) => {
     setServerError("");
@@ -100,8 +104,8 @@ export default function InlineReviewForm({
       formData.set("rating", String(values.rating));
       formData.set("text", String(values.text));
 
+      formData.set("name", String(values.name ?? ""));
       if (isAnonymous) {
-        formData.set("name", String(values.name ?? ""));
         formData.set("honeypot", String(values.honeypot ?? ""));
       }
 
@@ -199,40 +203,38 @@ export default function InlineReviewForm({
               </div>
             )}
 
-            {isAnonymous && (
-              <>
-                <label className={fieldStyles.field}>
-                  <span className={fieldStyles.label}>שם (לא חובה)</span>
-                  <input
-                    className={fieldStyles.input}
-                    type="text"
-                    placeholder="אנונימי"
-                    maxLength={REVIEW_NAME_MAX}
-                    disabled={isSubmitting}
-                    {...(register as Function)("name")}
-                  />
-                  {(errors as Record<string, { message?: string }>).name && (
-                    <p className={fieldStyles.fieldError} role="alert">
-                      {
-                        (errors as Record<string, { message?: string }>).name
-                          ?.message
-                      }
-                    </p>
-                  )}
-                </label>
+            <label className={fieldStyles.field}>
+              <span className={fieldStyles.label}>שם (לא חובה)</span>
+              <input
+                className={fieldStyles.input}
+                type="text"
+                placeholder="אנונימי"
+                maxLength={REVIEW_NAME_MAX}
+                disabled={isSubmitting}
+                {...(register as Function)("name")}
+              />
+              {(errors as Record<string, { message?: string }>).name && (
+                <p className={fieldStyles.fieldError} role="alert">
+                  {
+                    (errors as Record<string, { message?: string }>).name
+                      ?.message
+                  }
+                </p>
+              )}
+            </label>
 
-                <div className={styles.honeypot} aria-hidden="true">
-                  <label>
-                    <span>Leave this empty</span>
-                    <input
-                      type="text"
-                      tabIndex={-1}
-                      autoComplete="off"
-                      {...(register as Function)("honeypot")}
-                    />
-                  </label>
-                </div>
-              </>
+            {isAnonymous && (
+              <div className={styles.honeypot} aria-hidden="true">
+                <label>
+                  <span>Leave this empty</span>
+                  <input
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    {...(register as Function)("honeypot")}
+                  />
+                </label>
+              </div>
             )}
 
             <ReviewFormFields

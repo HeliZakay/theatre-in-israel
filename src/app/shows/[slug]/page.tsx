@@ -394,6 +394,7 @@ export default async function ShowPage({
                 showSlug={show.slug}
                 showTitle={show.title}
                 isAuthenticated={!!session}
+                userName={session?.user?.name ?? ""}
                 variant={show.reviews.length === 0 ? "empty" : "after-reviews"}
               />
             ))}
