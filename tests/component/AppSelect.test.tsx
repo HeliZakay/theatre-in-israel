@@ -11,6 +11,8 @@ jest.mock("@radix-ui/react-select", () => {
     Value: () => null,
     Icon: Stub,
     Content: Stub,
+    ScrollUpButton: Stub,
+    ScrollDownButton: Stub,
     Viewport: Stub,
     Item: Stub,
     ItemText: Stub,

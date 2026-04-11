@@ -99,6 +99,17 @@ export default function AppSelect({
             position="popper"
             sideOffset={4}
           >
+            <Select.ScrollUpButton className={styles.scrollButton}>
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                aria-hidden="true"
+              >
+                <path fill="currentColor" d="M2.5 7.5L6 4l3.5 3.5" />
+              </svg>
+            </Select.ScrollUpButton>
+
             <Select.Viewport className={styles.viewport}>
               {options.map((option) => (
                 <Select.Item
@@ -111,6 +122,17 @@ export default function AppSelect({
                 </Select.Item>
               ))}
             </Select.Viewport>
+
+            <Select.ScrollDownButton className={styles.scrollButton}>
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                aria-hidden="true"
+              >
+                <path fill="currentColor" d="M2.5 4.5L6 8l3.5-3.5" />
+              </svg>
+            </Select.ScrollDownButton>
           </Select.Content>
         </Select.Root>
       </div>

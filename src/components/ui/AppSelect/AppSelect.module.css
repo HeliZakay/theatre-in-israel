@@ -49,6 +49,15 @@
   overflow-y: auto;
 }
 
+.scrollButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  cursor: default;
+  color: var(--color-text-muted);
+}
+
 .item {
   display: flex;
   align-items: center;
