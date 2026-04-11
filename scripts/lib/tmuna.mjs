@@ -23,25 +23,18 @@ import { setupRequestInterception } from "./browser.mjs";
 
 export const TMUNA_THEATRE = "תיאטרון תמונע";
 export const TMUNA_BASE = "https://www.tmu-na.org.il";
-export const SHOWS_URL = "https://www.tmu-na.org.il/?pg=show";
-
-/**
- * Categories to exclude from scraping — music concerts and
- * literature events are not theatrical productions.
- */
-const EXCLUDED_CATEGORIES = ["מוסיקה", "ספרות"];
+export const REPERTOIRE_URL =
+  "https://www.tmu-na.org.il/?CategoryID=220";
 
 // ── Shows listing page scraper ─────────────────────────────────
 
 /**
- * Fetch the list of current shows from the Tmuna schedule page.
+ * Fetch the list of shows from the Tmuna repertoire page.
  *
- * Uses Pattern A (direct link scraping) — the schedule table has
- * show names as link text inside `<a href*="ArticleID">` elements,
- * with categories in sibling `<td class="categoryTd">`.
- *
- * Filters out music and literature events, keeping only theatrical
- * productions (theatre, ensemble, dance, children's, work groups).
+ * Scrapes the gallery grid at ?CategoryID=220 which lists all
+ * current repertoire shows (not just those with upcoming dates).
+ * Each show card is a DIV.ArticlesGalleryMatrixItem containing
+ * a link with ArticleID in the href.
  *
  * @param {import('puppeteer').Browser} browser
  * @returns {Promise<Array<{title: string, url: string}>>}
@@ -50,41 +43,33 @@ export async function fetchListing(browser) {
   const page = await browser.newPage();
   await setupRequestInterception(page);
 
-  await page.goto(SHOWS_URL, {
+  await page.goto(REPERTOIRE_URL, {
     waitUntil: "domcontentloaded",
     timeout: 60_000,
   });
-  await page.waitForSelector('a[href*="ArticleID"]', { timeout: 30_000 });
+  await page.waitForSelector(".ArticlesGalleryMatrixItem", {
+    timeout: 30_000,
+  });
 
-  const shows = await page.evaluate((excludedCategories) => {
-    const map = new Map();
+  const shows = await page.evaluate(() => {
+    const results = [];
+    const cards = document.querySelectorAll(".ArticlesGalleryMatrixItem");
 
-    const rows = document.querySelectorAll("tr");
-    for (const tr of rows) {
-      const link = tr.querySelector('a[href*="ArticleID"]');
+    for (const card of cards) {
+      const link = card.querySelector('a[href*="ArticleID"]');
       if (!link) continue;
-
-      // Check category — skip music and literature
-      const categoryTd = tr.querySelector(".categoryTd");
-      const category = categoryTd ? categoryTd.textContent.trim() : "";
-      if (excludedCategories.includes(category)) continue;
 
       let title = link.textContent.trim();
       if (!title || title.length < 2) continue;
 
-      // Normalize whitespace
       title = title.replace(/\s+/g, " ").trim();
-
       const url = link.href;
 
-      // Deduplicate — same show appears on multiple dates
-      if (!map.has(title)) {
-        map.set(title, url);
-      }
+      results.push({ title, url });
     }
 
-    return [...map.entries()].map(([title, url]) => ({ title, url }));
-  }, EXCLUDED_CATEGORIES);
+    return results;
+  });
 
   await page.close();
   return shows.sort((a, b) => a.title.localeCompare(b.title, "he"));
