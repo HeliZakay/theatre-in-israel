@@ -18,7 +18,7 @@ export default function InlineSignIn({
   onBeforeGoogleRedirect,
 }: InlineSignInProps) {
   const { update } = useSession();
-  const [mode, setMode] = useState<"login" | "signup">("login");
+  const [mode, setMode] = useState<"login" | "signup">("signup");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
