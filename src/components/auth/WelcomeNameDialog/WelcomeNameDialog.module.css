@@ -77,23 +77,6 @@
   justify-content: flex-start;
 }
 
-.skipBtn {
-  border-radius: 10px;
-  padding: 10px 16px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: inherit;
-  border: 1px solid rgba(26, 26, 26, 0.2);
-  background: #ffffff;
-  color: var(--color-text-primary);
-}
-
-.skipBtn:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-}
-
 .saveBtn {
   border-radius: 10px;
   padding: 10px 16px;

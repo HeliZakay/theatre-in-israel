@@ -46,15 +46,6 @@ export default function WelcomeNameDialog() {
     }
   };
 
-  const handleSkip = async () => {
-    setIsSubmitting(true);
-    try {
-      await updateSession({ isNewUser: false });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   if (!isOpen) return null;
 
   return (
@@ -113,14 +104,6 @@ export default function WelcomeNameDialog() {
               ) : (
                 "שמירה"
               )}
-            </button>
-            <button
-              type="button"
-              className={styles.skipBtn}
-              onClick={handleSkip}
-              disabled={isSubmitting}
-            >
-              השאר.י את השם הנוכחי
             </button>
           </div>
         </Dialog.Content>
