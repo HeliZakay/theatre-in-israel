@@ -207,7 +207,7 @@ const LOADERS = {
       theatreId: "tmuna",
       theatreName: TMUNA_THEATRE,
       theatreConst: TMUNA_THEATRE,
-      theatreLabel: "Tmuna Theatre (תיאטרון תמונע)",
+      theatreLabel: "Tmuna Ensemble (אנסמבל תמונע)",
       websiteUrl: "tmu-na.org.il",
       fetchListing,
       scrapeDetails: scrapeShowDetails,

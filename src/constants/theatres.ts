@@ -22,7 +22,7 @@ export const THEATRES: TheatreInfo[] = [
   { slug: "beer-sheva", name: "תיאטרון באר שבע", image: "/images/theatres/תיאטרון-באר-שבע.webp" },
   { slug: "khan", name: "תיאטרון החאן", image: "/images/theatres/תיאטרון-החאן.webp" },
   { slug: "hebrew-theatre", name: "התיאטרון העברי", image: "/images/theatres/תיאטרון-העברי.webp" },
-  { slug: "tmuna", name: "תיאטרון תמונע", image: "/images/theatres/תיאטרון-תמונע.webp" },
+  { slug: "tmuna", name: "אנסמבל תמונע", image: "/images/theatres/אנסמבל-תמונע.webp" },
   { slug: "tzavta", name: "תיאטרון צוותא", image: "/images/theatres/תיאטרון-צוותא.webp" },
   { slug: "tomix", name: "תיאטרון toMix", image: "/images/theatres/תיאטרון-tomix.webp" },
   { slug: "meshulash", name: "תיאטרון המשולש", image: "/images/theatres/תיאטרון-המשולש.webp" },

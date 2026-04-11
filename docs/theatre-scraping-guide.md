@@ -130,7 +130,7 @@ Each theatre has a `scripts/find-missing/find-missing-{id}-shows.mjs` entry poin
 | Khan | `scripts/lib/hakahn.mjs` | תיאטרון החאן | listing-first |
 | Gesher | `scripts/lib/gesher.mjs` | תיאטרון גשר | listing-first |
 | Haifa | `scripts/lib/haifa.mjs` | תיאטרון חיפה | listing-first |
-| Tmuna | `scripts/lib/tmuna.mjs` | תיאטרון תמונע | listing-first |
+| Tmuna | `scripts/lib/tmuna.mjs` | אנסמבל תמונע | listing-first |
 | Beer Sheva | `scripts/lib/beer-sheva.mjs` | תיאטרון באר שבע | listing-first |
 | Tzavta | `scripts/lib/tzavta.mjs` | תיאטרון צוותא | listing-first |
 | Habima | `scripts/lib/habima.mjs` | תיאטרון הבימה | listing-first |

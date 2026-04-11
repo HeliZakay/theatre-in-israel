@@ -21,7 +21,8 @@ import { setupRequestInterception } from "./browser.mjs";
 
 // ── Constants ──────────────────────────────────────────────────
 
-export const TMUNA_THEATRE = "תיאטרון תמונע";
+export const TMUNA_THEATRE = "אנסמבל תמונע";
+export const TMUNA_VENUE = "תיאטרון תמונע";
 export const TMUNA_BASE = "https://www.tmu-na.org.il";
 export const REPERTOIRE_URL =
   "https://www.tmu-na.org.il/?CategoryID=220";
@@ -215,7 +216,7 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
       processed.push({
         date: dateStr,
         hour: e.hour,
-        venueName: TMUNA_THEATRE,
+        venueName: TMUNA_VENUE,
         venueCity: "תל אביב",
         ticketUrl: e.ticketUrl,
         rawText: e.rawText,
@@ -368,6 +369,7 @@ export async function scrapeShowDetails(browser, url) {
         "מן העיתונות",
         "הרשמה לניוזלטר",
         "תיאטרון תמונע",
+        "אנסמבל תמונע",
         "דלג על",
         "**גילאי",
         "**גילאים",

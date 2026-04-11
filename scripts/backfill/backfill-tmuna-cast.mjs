@@ -20,7 +20,7 @@ import {
 
 const { sql } = await runCastBackfill({
   theatreName: TMUNA_THEATRE,
-  theatreLabel: "Tmuna Theatre (תיאטרון תמונע)",
+  theatreLabel: "Tmuna Ensemble (אנסמבל תמונע)",
   websiteUrl: "tmu-na.org.il",
   fetchListing,
   scrapeCast: async (browser, url) =>
