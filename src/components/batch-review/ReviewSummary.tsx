@@ -49,12 +49,20 @@ export default function ReviewSummary({
   submitToServer,
   onBeforeGoogleRedirect,
 }: ReviewSummaryProps) {
-  const { status: sessionStatus } = useSession();
+  const { data: session, status: sessionStatus } = useSession();
   const isLoggedIn = isAuthenticated || sessionStatus === "authenticated";
 
   const [submissionState, setSubmissionState] = useState<SubmissionState>({ status: "idle" });
   const [reviewerName, setReviewerName] = useState("");
   const [expandedCards, setExpandedCards] = useState<Set<number>>(new Set());
+
+  // Pre-fill reviewer name from session when user logs in
+  useEffect(() => {
+    if (session?.user?.name && !reviewerName) {
+      setReviewerName(session.user.name);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session?.user?.name]);
   const headingRef = useRef<HTMLHeadingElement>(null);
 
   const toggleExpand = useCallback((showId: number) => {
@@ -213,24 +221,22 @@ export default function ReviewSummary({
         </div>
       )}
 
-      {/* Reviewer name (anonymous users only) */}
-      {!isLoggedIn && (
-        <div className={styles.nameSection}>
-          <label className={fieldStyles.field}>
-            <span className={fieldStyles.label}>שם (לא חובה)</span>
-            <input
-              className={`${fieldStyles.input} ${styles.nameInput}`}
-              type="text"
-              value={reviewerName}
-              onChange={(e) => setReviewerName(e.target.value)}
-              placeholder="אנונימי"
-              disabled={submissionState.status !== "idle"}
-              maxLength={50}
-              autoComplete="name"
-            />
-          </label>
-        </div>
-      )}
+      {/* Reviewer name */}
+      <div className={styles.nameSection}>
+        <label className={fieldStyles.field}>
+          <span className={fieldStyles.label}>שם (לא חובה)</span>
+          <input
+            className={`${fieldStyles.input} ${styles.nameInput}`}
+            type="text"
+            value={reviewerName}
+            onChange={(e) => setReviewerName(e.target.value)}
+            placeholder="אנונימי"
+            disabled={submissionState.status !== "idle"}
+            maxLength={50}
+            autoComplete="name"
+          />
+        </label>
+      </div>
 
       {/* Review cards grid */}
       <div className={styles.reviewGrid} role="list">

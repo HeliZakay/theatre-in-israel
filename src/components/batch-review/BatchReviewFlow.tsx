@@ -168,8 +168,8 @@ export default function BatchReviewFlow({
       formData.set("text", review.text);
       formData.set("title", "");
 
+      formData.set("name", review.name || "");
       if (!effectiveAuth) {
-        formData.set("name", review.name || "");
         formData.set("honeypot", "");
       }
 
