@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-11T03:59:27.028Z",
+  "scrapedAt": "2026-04-12T04:11:53.068Z",
   "touring": true,
   "events": [
     {
@@ -139,7 +139,7 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 179,
+      "showId": 367,
       "showSlug": "אסתר",
       "date": "2026-05-20",
       "hour": "20:30",
@@ -147,7 +147,7 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 179,
+      "showId": 367,
       "showSlug": "אסתר",
       "date": "2026-06-23",
       "hour": "20:30",
@@ -203,7 +203,7 @@
       "venueCity": "באר שבע"
     },
     {
-      "showId": 210,
+      "showId": 364,
       "showSlug": "שיר-של-אמונה-וכפירה",
       "date": "2026-04-27",
       "hour": "20:30",

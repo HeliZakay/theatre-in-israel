@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-04-11T04:02:34.869Z",
+  "scrapedAt": "2026-04-12T04:15:43.432Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון ירושלים",
     "city": "ירושלים"
   },
   "events": [
-    {
-      "showId": 50,
-      "showSlug": "בית-בובות",
-      "date": "2026-04-11",
-      "hour": "21:00"
-    },
     {
       "showId": 57,
       "showSlug": "מלאכים-בלבן",

@@ -1,0 +1,21 @@
+{
+  "scrapedAt": "2026-04-12T04:14:16.183Z",
+  "venue": {
+    "name": "תיאטרון החנות",
+    "city": "תל אביב"
+  },
+  "events": [
+    {
+      "showId": 360,
+      "showSlug": "Radio-Play",
+      "date": "2026-05-14",
+      "hour": "19:00"
+    },
+    {
+      "showId": 360,
+      "showSlug": "Radio-Play",
+      "date": "2026-04-16",
+      "hour": "19:00"
+    }
+  ]
+}
