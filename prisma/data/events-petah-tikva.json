@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-04-12T04:13:42.303Z",
+  "scrapedAt": "2026-04-13T04:17:42.955Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות פתח תקווה",
     "city": "פתח תקווה"
   },
   "events": [
-    {
-      "showId": 98,
-      "showSlug": "החטא-ועונשו",
-      "date": "2026-04-12",
-      "hour": "20:30"
-    },
     {
       "showId": 266,
       "showSlug": "מיקה-שלי",

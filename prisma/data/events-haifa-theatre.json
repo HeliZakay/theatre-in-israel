@@ -1,19 +1,11 @@
 {
-  "scrapedAt": "2026-04-12T04:09:01.240Z",
+  "scrapedAt": "2026-04-13T04:13:29.994Z",
   "touring": true,
   "events": [
     {
       "showId": 81,
       "showSlug": "הזוג-המוזר",
       "date": "2026-04-28",
-      "hour": "20:30",
-      "venueName": "בית החייל ת\"א",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 81,
-      "showSlug": "הזוג-המוזר",
-      "date": "2026-04-29",
       "hour": "20:30",
       "venueName": "בית החייל ת\"א",
       "venueCity": "תל אביב"
@@ -110,14 +102,6 @@
       "showId": 374,
       "showSlug": "כשאמא-באה-הנה-אריאל-הורוביץ-ו״האחיות-שמר-24״",
       "date": "2026-04-30",
-      "hour": "20:30",
-      "venueName": "תיאטרון חיפה",
-      "venueCity": "חיפה"
-    },
-    {
-      "showId": 80,
-      "showSlug": "לילסדה",
-      "date": "2026-05-12",
       "hour": "20:30",
       "venueName": "תיאטרון חיפה",
       "venueCity": "חיפה"

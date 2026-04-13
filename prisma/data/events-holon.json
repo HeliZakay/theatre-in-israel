@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-04-12T04:14:36.713Z",
+  "scrapedAt": "2026-04-13T04:18:51.966Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון חולון",
     "city": "חולון"
   },
   "events": [
-    {
-      "showId": 123,
-      "showSlug": "השוטר-אזולאי",
-      "date": "2026-04-16",
-      "hour": "20:30"
-    },
     {
       "showId": 9,
       "showSlug": "החולה-ההודי",
