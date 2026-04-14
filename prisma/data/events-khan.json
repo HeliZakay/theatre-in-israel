@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-13T04:13:07.226Z",
+  "scrapedAt": "2026-04-14T04:08:01.320Z",
   "touring": true,
   "events": [
     {
@@ -15,14 +15,6 @@
       "showSlug": "אבדוֹת-ומציאוּת",
       "date": "2026-05-09",
       "hour": "20:30",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 91,
-      "showSlug": "אם-זה-אדם",
-      "date": "2026-04-13",
-      "hour": "20:00",
       "venueName": "תיאטרון החאן",
       "venueCity": "ירושלים"
     },
