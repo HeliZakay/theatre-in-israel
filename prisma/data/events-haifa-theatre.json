@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-14T04:08:24.474Z",
+  "scrapedAt": "2026-04-15T04:08:42.413Z",
   "touring": true,
   "events": [
     {
@@ -13,50 +13,74 @@
     {
       "showId": 82,
       "showSlug": "היומן",
+      "date": "2026-05-15",
+      "hour": "12:00",
+      "venueName": "במה ראשית",
+      "venueCity": "לא ידוע"
+    },
+    {
+      "showId": 82,
+      "showSlug": "היומן",
       "date": "2026-05-17",
       "hour": "20:30",
-      "venueName": "תיאטרון חיפה",
-      "venueCity": "חיפה"
+      "venueName": "במה ראשית",
+      "venueCity": "לא ידוע"
     },
     {
       "showId": 82,
       "showSlug": "היומן",
       "date": "2026-05-18",
       "hour": "20:30",
-      "venueName": "תיאטרון חיפה",
-      "venueCity": "חיפה"
+      "venueName": "במה ראשית",
+      "venueCity": "לא ידוע"
     },
     {
       "showId": 82,
       "showSlug": "היומן",
       "date": "2026-05-19",
       "hour": "20:30",
-      "venueName": "תיאטרון חיפה",
-      "venueCity": "חיפה"
+      "venueName": "במה ראשית",
+      "venueCity": "לא ידוע"
     },
     {
       "showId": 82,
       "showSlug": "היומן",
       "date": "2026-05-20",
       "hour": "17:00",
-      "venueName": "תיאטרון חיפה",
-      "venueCity": "חיפה"
+      "venueName": "במה ראשית",
+      "venueCity": "לא ידוע"
     },
     {
       "showId": 82,
       "showSlug": "היומן",
       "date": "2026-05-23",
       "hour": "21:00",
-      "venueName": "תיאטרון חיפה",
-      "venueCity": "חיפה"
+      "venueName": "במה ראשית",
+      "venueCity": "לא ידוע"
+    },
+    {
+      "showId": 82,
+      "showSlug": "היומן",
+      "date": "2026-05-24",
+      "hour": "20:30",
+      "venueName": "במה ראשית",
+      "venueCity": "לא ידוע"
+    },
+    {
+      "showId": 82,
+      "showSlug": "היומן",
+      "date": "2026-05-25",
+      "hour": "20:30",
+      "venueName": "במה ראשית",
+      "venueCity": "לא ידוע"
     },
     {
       "showId": 82,
       "showSlug": "היומן",
       "date": "2026-05-26",
       "hour": "20:30",
-      "venueName": "תיאטרון חיפה",
-      "venueCity": "חיפה"
+      "venueName": "במה ראשית",
+      "venueCity": "לא ידוע"
     },
     {
       "showId": 82,
@@ -95,14 +119,6 @@
       "showSlug": "המאסטר-(אלוף-הבונים-שלי)",
       "date": "2026-06-30",
       "hour": "11:00",
-      "venueName": "תיאטרון חיפה",
-      "venueCity": "חיפה"
-    },
-    {
-      "showId": 374,
-      "showSlug": "כשאמא-באה-הנה-אריאל-הורוביץ-ו״האחיות-שמר-24״",
-      "date": "2026-04-30",
-      "hour": "20:30",
       "venueName": "תיאטרון חיפה",
       "venueCity": "חיפה"
     },

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-14T04:11:06.737Z",
+  "scrapedAt": "2026-04-15T04:10:54.000Z",
   "venue": {
     "name": "תיאטרון הקאמרי",
     "city": "תל אביב"
@@ -136,7 +136,8 @@
       "showId": 6,
       "showSlug": "הבן-של-מושיקו-הגדול",
       "date": "2026-06-10",
-      "hour": "21:00"
+      "hour": "21:00",
+      "note": "English subtitles"
     },
     {
       "showId": 8,
@@ -174,13 +175,15 @@
       "showId": 8,
       "showSlug": "החבדניקים",
       "date": "2026-06-29",
-      "hour": "19:00"
+      "hour": "19:00",
+      "note": "English subtitles"
     },
     {
       "showId": 8,
       "showSlug": "החבדניקים",
       "date": "2026-06-30",
-      "hour": "19:30"
+      "hour": "19:30",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 9,
@@ -231,7 +234,8 @@
       "showId": 16,
       "showSlug": "היי-אוון-הנסן",
       "date": "2026-06-25",
-      "hour": "19:00"
+      "hour": "19:00",
+      "note": "English subtitles"
     },
     {
       "showId": 27,
@@ -268,7 +272,8 @@
       "showId": 27,
       "showSlug": "הלוויה-חורפית",
       "date": "2026-06-13",
-      "hour": "17:00"
+      "hour": "17:00",
+      "note": "English subtitles"
     },
     {
       "showId": 27,
@@ -299,12 +304,13 @@
       "showId": 28,
       "showSlug": "הלווייתן",
       "date": "2026-06-23",
-      "hour": "19:30"
+      "hour": "19:30",
+      "note": "English subtitles"
     },
     {
       "showId": 11,
       "showSlug": "הנפש-הטובה-מסצ׳ואן",
-      "date": "2026-04-14",
+      "date": "2027-04-14",
       "hour": "19:30",
       "note": "English subtitles"
     },
@@ -338,7 +344,8 @@
       "showId": 11,
       "showSlug": "הנפש-הטובה-מסצ׳ואן",
       "date": "2026-06-25",
-      "hour": "19:30"
+      "hour": "19:30",
+      "note": "English subtitles"
     },
     {
       "showId": 21,
@@ -435,25 +442,29 @@
       "showId": 21,
       "showSlug": "הריטריט",
       "date": "2026-06-15",
-      "hour": "19:30"
+      "hour": "19:30",
+      "note": "English subtitles"
     },
     {
       "showId": 21,
       "showSlug": "הריטריט",
       "date": "2026-06-16",
-      "hour": "20:30"
+      "hour": "20:30",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 21,
       "showSlug": "הריטריט",
       "date": "2026-06-17",
-      "hour": "20:30"
+      "hour": "20:30",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 21,
       "showSlug": "הריטריט",
       "date": "2026-06-18",
-      "hour": "19:30"
+      "hour": "19:30",
+      "note": "English subtitles"
     },
     {
       "showId": 31,
@@ -507,7 +518,8 @@
       "showId": 31,
       "showSlug": "השותפה",
       "date": "2026-06-02",
-      "hour": "19:30"
+      "hour": "19:30",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 31,
@@ -519,12 +531,13 @@
       "showId": 31,
       "showSlug": "השותפה",
       "date": "2026-06-04",
-      "hour": "20:00"
+      "hour": "20:00",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 19,
       "showSlug": "זינגר",
-      "date": "2026-04-14",
+      "date": "2027-04-14",
       "hour": "19:00",
       "note": "English subtitles"
     },
@@ -604,7 +617,8 @@
       "showId": 19,
       "showSlug": "זינגר",
       "date": "2026-06-05",
-      "hour": "11:30"
+      "hour": "11:30",
+      "note": "English subtitles"
     },
     {
       "showId": 19,
@@ -616,19 +630,22 @@
       "showId": 19,
       "showSlug": "זינגר",
       "date": "2026-06-06",
-      "hour": "17:00"
+      "hour": "17:00",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 19,
       "showSlug": "זינגר",
       "date": "2026-06-07",
-      "hour": "19:00"
+      "hour": "19:00",
+      "note": "English subtitles"
     },
     {
       "showId": 19,
       "showSlug": "זינגר",
       "date": "2026-06-08",
-      "hour": "19:00"
+      "hour": "19:00",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 15,
@@ -705,13 +722,15 @@
       "showId": 15,
       "showSlug": "חשמלית-ושמה-תשוקה",
       "date": "2026-06-29",
-      "hour": "19:30"
+      "hour": "19:30",
+      "note": "English subtitles"
     },
     {
       "showId": 15,
       "showSlug": "חשמלית-ושמה-תשוקה",
       "date": "2026-06-30",
-      "hour": "19:00"
+      "hour": "19:00",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 33,
@@ -724,7 +743,8 @@
       "showId": 33,
       "showSlug": "טרטיף",
       "date": "2026-06-01",
-      "hour": "19:30"
+      "hour": "19:30",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 22,
@@ -781,7 +801,15 @@
       "showId": 25,
       "showSlug": "לא-הייתם-צריכים",
       "date": "2026-06-12",
-      "hour": "20:30"
+      "hour": "20:30",
+      "note": "כתוביות בעברית"
+    },
+    {
+      "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
+      "date": "2026-06-13",
+      "hour": "17:30",
+      "note": "English subtitles"
     },
     {
       "showId": 23,
@@ -846,7 +874,15 @@
       "showId": 3,
       "showSlug": "לנקות-את-הראש",
       "date": "2026-06-19",
-      "hour": "20:30"
+      "hour": "20:30",
+      "note": "כתוביות בעברית"
+    },
+    {
+      "showId": 3,
+      "showSlug": "לנקות-את-הראש",
+      "date": "2026-06-20",
+      "hour": "17:00",
+      "note": "English subtitles"
     },
     {
       "showId": 30,
@@ -858,7 +894,8 @@
       "showId": 30,
       "showSlug": "מדיאה",
       "date": "2026-06-27",
-      "hour": "17:00"
+      "hour": "17:00",
+      "note": "English subtitles"
     },
     {
       "showId": 30,
@@ -883,13 +920,15 @@
       "showId": 29,
       "showSlug": "מה-קרה-לעולם",
       "date": "2026-06-26",
-      "hour": "20:30"
+      "hour": "20:30",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 29,
       "showSlug": "מה-קרה-לעולם",
       "date": "2026-06-27",
-      "hour": "17:00"
+      "hour": "17:00",
+      "note": "English subtitles"
     },
     {
       "showId": 29,
@@ -946,19 +985,22 @@
       "showId": 4,
       "showSlug": "מי-בעד",
       "date": "2026-06-10",
-      "hour": "19:30"
+      "hour": "19:30",
+      "note": "English subtitles"
     },
     {
       "showId": 4,
       "showSlug": "מי-בעד",
       "date": "2026-06-22",
-      "hour": "19:30"
+      "hour": "19:30",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 4,
       "showSlug": "מי-בעד",
       "date": "2026-06-23",
-      "hour": "19:00"
+      "hour": "19:00",
+      "note": "English subtitles"
     },
     {
       "showId": 20,
@@ -970,7 +1012,8 @@
       "showId": 20,
       "showSlug": "מיקי-מציל",
       "date": "2026-06-09",
-      "hour": "21:15"
+      "hour": "21:15",
+      "note": "English subtitles"
     },
     {
       "showId": 1,
@@ -1043,7 +1086,8 @@
       "showId": 24,
       "showSlug": "נעמי-ונורמה",
       "date": "2026-06-08",
-      "hour": "19:30"
+      "hour": "19:30",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 7,
@@ -1075,7 +1119,8 @@
       "showId": 7,
       "showSlug": "סוס-אחד-נכנס-לבר",
       "date": "2026-06-23",
-      "hour": "20:00"
+      "hour": "20:00",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 10,
@@ -1107,7 +1152,8 @@
       "showId": 10,
       "showSlug": "צ׳ילבות",
       "date": "2026-06-03",
-      "hour": "11:00"
+      "hour": "11:00",
+      "note": "English subtitles"
     },
     {
       "showId": 2,
@@ -1238,7 +1284,8 @@
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-06-15",
-      "hour": "19:00"
+      "hour": "19:00",
+      "note": "English subtitles"
     },
     {
       "showId": 2,
@@ -1256,13 +1303,15 @@
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-06-18",
-      "hour": "16:30"
+      "hour": "16:30",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-06-18",
-      "hour": "21:00"
+      "hour": "21:00",
+      "note": "English subtitles"
     },
     {
       "showId": 2,
@@ -1332,7 +1381,8 @@
       "showId": 132,
       "showSlug": "רינגו",
       "date": "2026-06-06",
-      "hour": "17:00"
+      "hour": "17:00",
+      "note": "English subtitles"
     },
     {
       "showId": 132,
