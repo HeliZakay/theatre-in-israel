@@ -2,7 +2,7 @@ import prisma from "@/lib/prisma";
 import { ONE_HOUR_MS } from "@/constants/rateLimits";
 
 const RATE_LIMIT_WINDOW_MS = ONE_HOUR_MS;
-const MAX_REVIEWS_PER_WINDOW = 50;
+const MAX_REVIEWS_PER_WINDOW = 110;
 
 /**
  * Check if user has exceeded the rate limit for creating reviews.

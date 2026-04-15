@@ -1,0 +1,1 @@
+export const MAX_BATCH_REVIEW_SELECTION = 100;

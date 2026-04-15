@@ -1,3 +1,5 @@
+import { MAX_BATCH_REVIEW_SELECTION } from "./constants";
+
 export type Step = "select" | "review" | "summary" | "exit";
 
 export interface BatchFlowState {
@@ -74,7 +76,7 @@ export function reducer(
     case "TOGGLE_SHOW": {
       const ids = state.selectedShowIds;
       const exists = ids.includes(action.showId);
-      if (!exists && ids.length >= 50) return state;
+      if (!exists && ids.length >= MAX_BATCH_REVIEW_SELECTION) return state;
       return {
         ...state,
         selectedShowIds: exists

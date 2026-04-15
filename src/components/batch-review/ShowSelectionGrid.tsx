@@ -3,6 +3,7 @@
 import { useState, useMemo, useRef, useCallback } from "react";
 import SelectableShowCard from "./SelectableShowCard";
 import styles from "./ShowSelectionGrid.module.css";
+import { MAX_BATCH_REVIEW_SELECTION } from "./constants";
 import type { BatchShowItem } from "@/lib/data/batchReview";
 
 interface ShowSelectionGridProps {
@@ -66,7 +67,7 @@ export default function ShowSelectionGrid({
     });
   }, [shows, search, theatreFilter, reviewedIds, isSearching]);
 
-  const maxReached = selectedIds.size >= 50;
+  const maxReached = selectedIds.size >= MAX_BATCH_REVIEW_SELECTION;
   const hasResults = filtered.length > 0;
 
   const handleToggle = useCallback(
