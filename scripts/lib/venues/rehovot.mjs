@@ -27,7 +27,7 @@ export async function fetchListing(browser) {
   await setupRequestInterception(page);
 
   await page.goto(LISTING_URL, {
-    waitUntil: "networkidle2",
+    waitUntil: "domcontentloaded",
     timeout: 60_000,
   });
 

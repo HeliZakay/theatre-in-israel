@@ -58,14 +58,22 @@ function cleanTitle(raw) {
 
 /**
  * Normalise a URL for cache key comparison.
- * Strips trailing slashes, query params, and fragments.
+ * Strips trailing slashes, query params, fragments, and
+ * trailing numeric event IDs (_NNN) that the homepage adds
+ * but the shows page omits (e.g. _163 in "/show_name_163").
+ * Preserves _page_NN suffixes which are part of the canonical URL.
  */
 function normaliseUrl(url) {
   try {
     const u = new URL(url);
-    return (u.origin + u.pathname).replace(/\/+$/, "");
+    let p = u.pathname.replace(/\/+$/, "");
+    // Strip trailing _NNN (event ID) but not _page_NNN
+    p = p.replace(/(?<!_page)_\d+$/, "");
+    return u.origin + p;
   } catch {
-    return url.replace(/\/+$/, "");
+    let s = url.replace(/\/+$/, "");
+    s = s.replace(/(?<!_page)_\d+$/, "");
+    return s;
   }
 }
 
@@ -86,17 +94,21 @@ export async function fetchListing(browser) {
   await setupRequestInterception(homePage);
 
   await homePage.goto(HOMEPAGE_URL, {
-    waitUntil: "domcontentloaded",
+    waitUntil: "networkidle2",
     timeout: 60_000,
   });
 
-  // SmarTicket: content hidden until jQuery loads
+  // SmarTicket: wait for event content to render (jQuery SPA)
   try {
-    await homePage.waitForSelector("a", { timeout: 15_000 });
+    await homePage.waitForFunction(
+      () => [...document.querySelectorAll("a")].some(
+        (a) => a.textContent.trim() === "פרטים נוספים",
+      ),
+      { timeout: 15_000 },
+    );
   } catch {
-    // continue even if selector times out
+    // No events on homepage — continue (cache will be empty)
   }
-  await new Promise((r) => setTimeout(r, 3000));
 
   const rawEvents = await homePage.evaluate((base) => {
     // Find all "פרטים נוספים" links — these mark event cards

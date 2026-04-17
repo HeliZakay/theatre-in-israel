@@ -371,7 +371,7 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
     ? url
     : `${url}${url.includes("?") ? "&" : "?"}eventbuzz=true`;
 
-  await page.goto(showUrl, { waitUntil: "domcontentloaded", timeout: 60_000 });
+  await page.goto(showUrl, { waitUntil: "networkidle2", timeout: 60_000 });
   await page.waitForSelector("iframe.resizableFrame, #eventTable", { timeout: 30_000 }).catch(() => {});
 
   // Find the eventer iframe src
@@ -392,7 +392,7 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
     await setupRequestInterception(eventerPage);
 
     await eventerPage.goto(eventerUrl, {
-      waitUntil: "domcontentloaded",
+      waitUntil: "networkidle2",
       timeout: 60_000,
     });
     await eventerPage.waitForSelector("tr.ticketItem", { timeout: 15_000 }).catch(() => {});

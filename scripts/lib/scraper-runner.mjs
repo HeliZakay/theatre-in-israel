@@ -536,23 +536,63 @@ async function _runScraper(config) {
 
   // ── JSON output ──
   if (jsonPath) {
-    const output = { scrapedAt: new Date().toISOString() };
-    if (venueSource || isMultiTheatre) {
-      output.venueSource = true;
-      output.venue = { name: venue.name, city: venue.city };
-    } else if (touring) {
-      output.touring = true;
-    } else if (venue) {
-      output.venue = { name: venue.name, city: venue.city };
-    }
-    output.events = collectedEvents;
-
     const outPath = path.resolve(rootDir, jsonPath);
-    fs.mkdirSync(path.dirname(outPath), { recursive: true });
-    fs.writeFileSync(outPath, JSON.stringify(output, null, 2), "utf-8");
-    console.log(
-      green(`\n  Wrote ${collectedEvents.length} events to ${outPath}`),
-    );
+
+    // Guard: if we scraped 0 events but the existing file has events,
+    // preserve the existing events to avoid data loss (e.g. transient
+    // Cloudflare block or site outage).
+    if (collectedEvents.length === 0 && fs.existsSync(outPath)) {
+      try {
+        const existing = JSON.parse(fs.readFileSync(outPath, "utf-8"));
+        if (Array.isArray(existing.events) && existing.events.length > 0) {
+          existing.scrapedAt = new Date().toISOString();
+          fs.writeFileSync(outPath, JSON.stringify(existing, null, 2), "utf-8");
+          console.log(
+            yellow(
+              `\n  0 events scraped but existing file has ${existing.events.length} — preserved existing events (updated scrapedAt).`,
+            ),
+          );
+          // Skip normal write
+        } else {
+          // Existing file also has 0 events — write normally
+          const output = { scrapedAt: new Date().toISOString() };
+          if (venueSource || isMultiTheatre) {
+            output.venueSource = true;
+            output.venue = { name: venue.name, city: venue.city };
+          } else if (touring) {
+            output.touring = true;
+          } else if (venue) {
+            output.venue = { name: venue.name, city: venue.city };
+          }
+          output.events = [];
+          fs.writeFileSync(outPath, JSON.stringify(output, null, 2), "utf-8");
+          console.log(green(`\n  Wrote 0 events to ${outPath}`));
+        }
+      } catch {
+        // Existing file is corrupt — write normally
+        const output = { scrapedAt: new Date().toISOString() };
+        output.events = [];
+        fs.writeFileSync(outPath, JSON.stringify(output, null, 2), "utf-8");
+        console.log(green(`\n  Wrote 0 events to ${outPath}`));
+      }
+    } else {
+      const output = { scrapedAt: new Date().toISOString() };
+      if (venueSource || isMultiTheatre) {
+        output.venueSource = true;
+        output.venue = { name: venue.name, city: venue.city };
+      } else if (touring) {
+        output.touring = true;
+      } else if (venue) {
+        output.venue = { name: venue.name, city: venue.city };
+      }
+      output.events = collectedEvents;
+
+      fs.mkdirSync(path.dirname(outPath), { recursive: true });
+      fs.writeFileSync(outPath, JSON.stringify(output, null, 2), "utf-8");
+      console.log(
+        green(`\n  Wrote ${collectedEvents.length} events to ${outPath}`),
+      );
+    }
   }
 
   // ── Cleanup ──
