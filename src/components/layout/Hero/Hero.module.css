@@ -43,6 +43,19 @@
   opacity: 0.85;
 }
 
+.socialProof {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+  opacity: 0.6;
+  letter-spacing: 0.01em;
+}
+
+.socialProofStar {
+  color: #d4a017;
+  opacity: 1;
+}
+
 .right {
   display: flex;
   flex-direction: column;

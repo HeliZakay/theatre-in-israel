@@ -5,8 +5,13 @@ import { usePathname } from "next/navigation";
 import styles from "./Footer.module.css";
 import ROUTES from "@/constants/routes";
 import { titleFont } from "@/lib/fonts";
+import { formatReviewMilestone } from "@/utils/formatReviewCount";
 
-export default function Footer() {
+interface FooterProps {
+  totalReviewCount?: number;
+}
+
+export default function Footer({ totalReviewCount = 0 }: FooterProps) {
   const pathname = usePathname();
   if (pathname.startsWith("/reviews/batch")) return null;
 
@@ -20,6 +25,12 @@ export default function Footer() {
             ביקורות אמיתיות, המלצות חכמות, וערבים טובים יותר.
           </p>
           <div className={styles.metaRow}>
+            {totalReviewCount >= 100 ? (
+              <>
+                <span>{formatReviewMilestone(totalReviewCount)} ביקורות צופים</span>
+                <span className={styles.dot}>•</span>
+              </>
+            ) : null}
             <span>הצגות חדשות בכל שבוע</span>
             <span className={styles.dot}>•</span>
             <span>קהילה אוהבת במה</span>

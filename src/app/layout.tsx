@@ -20,6 +20,7 @@ import {
   toAbsoluteUrl,
   toJsonLd,
 } from "@/lib/seo";
+import { getTotalReviewCount } from "@/lib/data/homepage";
 
 import type { Metadata, Viewport } from "next";
 
@@ -105,11 +106,12 @@ const organizationJsonLd = {
   sameAs: ["https://www.facebook.com/groups/965299379184440"],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const totalReviewCount = await getTotalReviewCount();
   return (
     <html lang="he" dir="rtl">
       <body className={textFont.variable}>
@@ -132,7 +134,7 @@ export default function RootLayout({
             <Header />
             <SecurityBanner />
             <div className="appContent">{children}</div>
-            <Footer />
+            <Footer totalReviewCount={totalReviewCount} />
             <WelcomeNameDialog />
           </TooltipProvider>
           </RadixDirectionProvider>

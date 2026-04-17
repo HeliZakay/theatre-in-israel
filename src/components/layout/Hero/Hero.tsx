@@ -3,6 +3,7 @@ import SearchBar from "@/components/ui/SearchBar/SearchBar";
 import FeaturedShow from "@/components/shows/FeaturedShow/FeaturedShow";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import ROUTES, { showPath } from "@/constants/routes";
+import { formatReviewMilestone } from "@/utils/formatReviewCount";
 import type { ShowListItem, Suggestions } from "@/types";
 import type { FeaturedReview } from "@/lib/data/homepage";
 
@@ -10,12 +11,14 @@ interface HeroProps {
   suggestions?: Suggestions;
   featuredShow?: ShowListItem | null;
   featuredReview?: FeaturedReview | null;
+  totalReviewCount?: number;
 }
 
 export default function Hero({
   suggestions = { shows: [], theatres: [], genres: [] },
   featuredShow = null,
   featuredReview = null,
+  totalReviewCount = 0,
 }: HeroProps) {
   const featuredTags: string[] = featuredShow
     ? [
@@ -38,6 +41,12 @@ export default function Hero({
             <p className={styles.subtitle}>
               לפני שקונים כרטיס – בודקים מה הקהל חושב.
             </p>
+            {totalReviewCount >= 100 ? (
+              <p className={styles.socialProof}>
+                <span className={styles.socialProofStar}>★</span>{" "}
+                {formatReviewMilestone(totalReviewCount)} ביקורות צופים
+              </p>
+            ) : null}
           </div>
           <SearchBar suggestions={suggestions} />
         </div>

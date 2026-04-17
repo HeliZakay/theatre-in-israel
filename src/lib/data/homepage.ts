@@ -535,3 +535,17 @@ export const getLatestReviews = unstable_cache(
   ["homepage-latest-reviews"],
   { revalidate: 120, tags: ["homepage"] },
 );
+
+// ---------------------------------------------------------------------------
+// Total review count (social proof)
+// ---------------------------------------------------------------------------
+
+async function fetchTotalReviewCount(): Promise<number> {
+  return prisma.review.count();
+}
+
+export const getTotalReviewCount = unstable_cache(
+  fetchTotalReviewCount,
+  ["homepage-total-reviews"],
+  { revalidate: 120, tags: ["homepage"] },
+);
