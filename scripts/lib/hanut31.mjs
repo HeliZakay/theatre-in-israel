@@ -106,18 +106,20 @@ async function fetchEventUrlsFromSitemap() {
 
 /**
  * Fetch the repertoire show list from the רפרטואר dropdown menu
- * on the homepage, then scrape event pages from the sitemap to
- * populate the events cache.
+ * on the homepage.
  *
  * The menu is the source of truth for which shows belong to the
  * theatre — the sitemap may contain one-off events or guest shows
  * that are not part of the repertoire.
  *
+ * This function does NOT populate the events cache. Callers that need
+ * per-show events (e.g. the events scraper) must also call
+ * populateEventsCache(browser, shows).
+ *
  * @param {import('puppeteer').Browser} browser
  * @returns {Promise<Array<{title: string, url: string}>>}
  */
 export async function fetchListing(browser) {
-  // ── 1. Extract shows from the רפרטואר dropdown menu ──
   const homePage = await browser.newPage();
   await setupRequestInterception(homePage);
   await homePage.goto(HANUT31_BASE, {
@@ -150,7 +152,25 @@ export async function fetchListing(browser) {
 
   console.log(`  Found ${menuShows.length} shows in רפרטואר menu`);
 
-  // ── 2. Scrape event pages from sitemap for the events cache ──
+  return menuShows
+    .map((s) => ({ title: s.title, url: s.url }))
+    .sort((a, b) => a.title.localeCompare(b.title, "he"));
+}
+
+/**
+ * Walk the event-pages sitemap and populate the module-level
+ * _eventsCache keyed by each show's detail-page URL.
+ *
+ * Must be called after fetchListing() — it needs the show list to
+ * know which URLs to key the cache by. Only scrapers that read from
+ * the cache via scrapeShowEvents() need to call this; find-missing
+ * scripts should skip it.
+ *
+ * @param {import('puppeteer').Browser} browser
+ * @param {Array<{title: string, url: string}>} shows — result of fetchListing
+ * @returns {Promise<void>}
+ */
+export async function populateEventsCache(browser, shows) {
   const eventUrls = await fetchEventUrlsFromSitemap();
   const today = new Date().toISOString().slice(0, 10);
 
@@ -226,11 +246,8 @@ export async function fetchListing(browser) {
     }
   }
 
-  // ── 3. Build cache keyed by show detail page URL ──
   _eventsCache = new Map();
-
-  const shows = [];
-  for (const show of menuShows) {
+  for (const show of shows) {
     const key = show.title.toLowerCase();
     const eventsData = eventsByTitle.get(key);
 
@@ -239,11 +256,7 @@ export async function fetchListing(browser) {
       durationMinutes: eventsData?.durationMinutes ?? null,
       events: eventsData?.events ?? [],
     });
-
-    shows.push({ title: show.title, url: show.url });
   }
-
-  return shows.sort((a, b) => a.title.localeCompare(b.title, "he"));
 }
 
 // ── Per-show event scraper (cache reader) ─────────────────────

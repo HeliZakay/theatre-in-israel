@@ -388,7 +388,9 @@ export async function runPipeline(config) {
     }
 
     // 1. DB lookup
-    const existingTitles = await fetchExistingTitles(theatreConst);
+    const existingTitles = await fetchExistingTitles(
+      config.existingTheatres || theatreConst,
+    );
     const existingSlugs = await fetchAllExistingSlugs();
     const hasDb = existingTitles !== null;
 

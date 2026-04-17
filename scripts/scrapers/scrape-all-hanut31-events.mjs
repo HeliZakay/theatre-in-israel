@@ -17,6 +17,7 @@
 import { runScraper } from "../lib/scraper-runner.mjs";
 import {
   fetchListing,
+  populateEventsCache,
   scrapeShowEvents,
   HANUT31_THEATRE,
 } from "../lib/hanut31.mjs";
@@ -24,7 +25,11 @@ import {
 runScraper({
   label: "Hanut31 Theatre Events Scraper",
   theatre: HANUT31_THEATRE,
-  fetchListings: fetchListing,
+  fetchListings: async (browser) => {
+    const shows = await fetchListing(browser);
+    await populateEventsCache(browser, shows);
+    return shows;
+  },
   scrapeShowEvents,
   venue: { name: "תיאטרון החנות", city: "תל אביב" },
   politeDelay: 0, // scrapeShowEvents reads from cache, no network needed
