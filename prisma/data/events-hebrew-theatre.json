@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-16T04:11:07.741Z",
+  "scrapedAt": "2026-04-17T04:10:17.557Z",
   "touring": true,
   "events": [
     {
@@ -385,14 +385,6 @@
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
       "venueCity": "קריית חיים"
-    },
-    {
-      "showId": 114,
-      "showSlug": "עפרה",
-      "date": "2026-07-25",
-      "hour": "21:30",
-      "venueName": "היכל אומנויות הבמה הרצליה",
-      "venueCity": "הרצליה"
     },
     {
       "showId": 114,

@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-04-16T04:14:30.774Z",
+  "scrapedAt": "2026-04-17T04:13:45.364Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות ראשון לציון",
     "city": "ראשון לציון"
   },
   "events": [
-    {
-      "showId": 368,
-      "showSlug": "האמת",
-      "date": "2026-04-16",
-      "hour": "20:30"
-    },
     {
       "showId": 368,
       "showSlug": "האמת",
