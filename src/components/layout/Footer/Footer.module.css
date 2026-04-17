@@ -3,6 +3,14 @@
   margin-top: clamp(48px, 8vw, 96px);
   padding: clamp(32px, 6vw, 72px) clamp(20px, 6vw, 96px) 28px;
   color: #fdf6f2;
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(
+      to left,
+      transparent,
+      rgba(205, 137, 55, 0.4),
+      transparent
+    )
+    1;
   background:
     radial-gradient(
       circle at 15% 20%,
@@ -13,6 +21,11 @@
       circle at 85% 10%,
       rgba(220, 80, 80, 0.35),
       transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 50% 100%,
+      rgba(255, 200, 140, 0.15),
+      transparent 60%
     ),
     linear-gradient(135deg, #25080b, #4a141c 40%, #1a0c10 100%);
   overflow: hidden;
@@ -32,13 +45,37 @@
   pointer-events: none;
 }
 
+/* ---- Layout ---- */
+
 .inner {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(220px, 1.2fr) minmax(260px, 2fr);
+  grid-template-columns: minmax(220px, 1.4fr) minmax(260px, 2fr);
   gap: clamp(28px, 5vw, 64px);
   align-items: start;
+}
+
+/* ---- Brand section ---- */
+
+.brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.brandLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brandLogo {
+  width: 50px;
+  height: auto;
+  flex: 0 0 auto;
+  filter: brightness(1.8) saturate(0.7);
 }
 
 .brandTitle {
@@ -69,18 +106,36 @@
   opacity: 0.6;
 }
 
+/* ---- Link columns ---- */
+
 .columns {
   display: grid;
-  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  grid-template-columns: repeat(3, minmax(120px, 1fr));
   gap: 28px;
 }
 
 .columnTitle {
   font-size: 1rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   color: rgba(255, 229, 204, 0.85);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  position: relative;
+}
+
+.columnTitle::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24px;
+  height: 2px;
+  background: linear-gradient(
+    to left,
+    rgba(255, 228, 196, 0.5),
+    transparent
+  );
 }
 
 .linkList {
@@ -104,8 +159,10 @@
 
 .linkList a:hover {
   color: #ffd4a6;
-  transform: translateX(-2px);
+  transform: translateX(2px);
 }
+
+/* ---- Bottom bar ---- */
 
 .bottom {
   position: relative;
@@ -115,10 +172,48 @@
   border-top: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
   gap: 10px;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.85rem;
 }
+
+.copyright {
+  opacity: 0.85;
+}
+
+.backToTop {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.backToTop:hover {
+  color: #ffd4a6;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ---- Focus styles for dark background ---- */
+
+.footer :is(a, button):focus-visible {
+  outline: 3px solid rgba(255, 228, 196, 0.7);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---- Responsive ---- */
 
 @media (max-width: 900px) {
   .inner {
@@ -136,11 +231,49 @@
   }
 
   .columns {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+  }
+
+  .columns > :first-child {
+    grid-row: span 1;
   }
 
   .columnTitle {
     font-size: 0.9rem;
+  }
+
+  .linkList a {
+    padding-block: 4px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .bottom {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .backToTop {
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid rgba(255, 228, 196, 0.2);
+    border-radius: 8px;
+  }
+
+  .copyright {
+    text-align: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .footer {
+    padding: 24px 14px 20px;
+  }
+
+  .columns {
+    grid-template-columns: 1fr;
   }
 }

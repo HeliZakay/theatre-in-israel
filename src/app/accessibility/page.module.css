@@ -1,0 +1,70 @@
+.page {
+  padding: clamp(16px, 3vw, 24px) clamp(20px, 6vw, 96px);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 720px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.75rem;
+  color: rgba(26, 26, 26, 0.6);
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  color: rgba(26, 26, 26, 0.7);
+  font-size: 1rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  line-height: 1.8;
+  color: var(--color-text-primary);
+  font-size: 1rem;
+}
+
+.sectionTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--color-text-primary);
+}
+
+.list {
+  padding-inline-start: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.link {
+  color: var(--color-curtain-red);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.link:hover {
+  color: var(--color-curtain-red-hover);
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 16px 16px;
+  }
+}

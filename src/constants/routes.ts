@@ -15,6 +15,8 @@ export const ROUTES = {
   MY_WATCHLIST: "/me/watchlist",
   ACTORS: "/actors",
   CONTACT: "/contact",
+  ABOUT: "/about",
+  ACCESSIBILITY: "/accessibility",
   REVIEWS_BATCH: "/reviews/batch",
 } as const;
 
