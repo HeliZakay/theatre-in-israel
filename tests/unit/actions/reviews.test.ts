@@ -97,7 +97,9 @@ describe("createReview", () => {
   });
 
   it("creates review successfully", async () => {
-    const result = await createReview(createFormData(validFormData));
+    const result = await createReview(
+      createFormData({ ...validFormData, name: "Test User" }),
+    );
 
     expect(result.success).toBe(true);
     if (result.success) {
@@ -116,8 +118,10 @@ describe("createReview", () => {
     );
   });
 
-  it("uses session user name as author", async () => {
-    await createReview(createFormData(validFormData));
+  it("uses form name as author", async () => {
+    await createReview(
+      createFormData({ ...validFormData, name: "Test User" }),
+    );
 
     expect(addReview).toHaveBeenCalledWith(
       1,
