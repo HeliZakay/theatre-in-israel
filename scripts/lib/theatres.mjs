@@ -27,6 +27,7 @@ export const THEATRE_IDS = [
   "hanut31",
   "niko-nitai",
   "elad",
+  "davai",
   "independent",
 ];
 
@@ -396,6 +397,26 @@ const LOADERS = {
         (await scrapeShowDetails(browser, url)).cast || null,
       titlePreference: "detail-first",
       launchBrowser: launchStealthBrowser,
+    };
+  },
+
+  async davai() {
+    const { DAVAI_THEATRE, fetchListing, scrapeShowDetails } =
+      await import("./davai.mjs");
+    const { launchBrowser } = await import("./browser.mjs");
+
+    return {
+      theatreId: "davai",
+      theatreName: DAVAI_THEATRE,
+      theatreConst: DAVAI_THEATRE,
+      theatreLabel: "Davai Clown Theatre (תיאטרון הליצנות דוואי)",
+      websiteUrl: "davai-group.org",
+      fetchListing,
+      scrapeDetails: scrapeShowDetails,
+      scrapeCast: async (browser, url) =>
+        (await scrapeShowDetails(browser, url)).cast || null,
+      titlePreference: "listing-first",
+      launchBrowser,
     };
   },
 
