@@ -27,6 +27,7 @@ export const THEATRE_IDS = [
   "hanut31",
   "niko-nitai",
   "elad",
+  "hashaa",
   "davai",
   "independent",
 ];
@@ -396,6 +397,26 @@ const LOADERS = {
       scrapeCast: async (browser, url) =>
         (await scrapeShowDetails(browser, url)).cast || null,
       titlePreference: "detail-first",
+      launchBrowser: launchStealthBrowser,
+    };
+  },
+
+  async hashaa() {
+    const { HASHAA_THEATRE, fetchListing, scrapeShowDetails } =
+      await import("./hashaa.mjs");
+    const { launchStealthBrowser } = await import("./browser.mjs");
+
+    return {
+      theatreId: "hashaa",
+      theatreName: HASHAA_THEATRE,
+      theatreConst: HASHAA_THEATRE,
+      theatreLabel: "Israeli Hour Theatre (תיאטרון השעה הישראלי)",
+      websiteUrl: "teatron-hashaa.smarticket.co.il",
+      fetchListing,
+      scrapeDetails: scrapeShowDetails,
+      scrapeCast: async (browser, url) =>
+        (await scrapeShowDetails(browser, url)).cast || null,
+      titlePreference: "listing-first",
       launchBrowser: launchStealthBrowser,
     };
   },
