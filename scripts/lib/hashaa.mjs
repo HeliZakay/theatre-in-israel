@@ -33,7 +33,7 @@ const API_URL = "https://teatron-hashaa.smarticket.co.il/api/shows";
 // Populated by fetchListing(), consumed by scrapeShowEvents().
 // Key: normalised show URL, Value: { title, detailUrl, events[] }
 
-/** @type {Map<string, { title: string, detailUrl: string, events: Array<{ date: string, hour: string, venueName: string, rawText: string }> }>} */
+/** @type {Map<string, { title: string, detailUrl: string, durationMinutes: number|null, cast: string|null, events: Array<{ date: string, hour: string, venueName: string, rawText: string }> }>} */
 let _eventsCache = new Map();
 
 // ── Helpers ───────────────────────────────────────────────────
@@ -54,6 +54,69 @@ function parsePTDuration(pt) {
   const hours = m[1] ? parseInt(m[1], 10) : 0;
   const mins = m[2] ? parseInt(m[2], 10) : 0;
   return hours * 60 + mins || null;
+}
+
+function parseCastFromHtml(html) {
+  if (!html) return null;
+  const text = html.replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ");
+
+  const castMarkers = [
+    "שחקנים:",  "שחקנים",
+    "משתתפים:", "משתתפים",
+    "בכיכוב:",  "בכיכוב",
+    "בהשתתפות:", "בהשתתפות",
+    "משחקים:",
+    "משחק:",
+  ];
+
+  const hebrewRe = /[\u0590-\u05FF]/;
+  let castStart = -1;
+  let markerLen = 0;
+  for (const marker of castMarkers) {
+    const idx = text.indexOf(marker);
+    if (idx !== -1 && (castStart === -1 || idx < castStart)) {
+      if (idx > 0 && hebrewRe.test(text[idx - 1])) continue;
+      castStart = idx;
+      markerLen = marker.length;
+    }
+  }
+  if (castStart === -1) return null;
+
+  let raw = text.slice(castStart + markerLen);
+  raw = raw.replace(/^[\s|]+/, "");
+
+  const endMarkers = [
+    "מאת:", "מאת ",
+    "בימוי:", "בימוי ",
+    "במאי:", "במאית:",
+    "עיבוד", "ע. במאי", "ע.במאי",
+    "תפאורה:", "תלבושות:", "תאורה:",
+    "מוזיקה:", "הפקה:", "צילום:",
+    "עיצוב:", "ניהול ",
+    "משך ", "משך:",
+    "ייעוץ",
+    "מיועד לגילאי",
+    "הוראות הגעה",
+    "מן הביקורות",
+    "צפה בסרטון",
+  ];
+
+  let castEnd = raw.length;
+  for (const marker of endMarkers) {
+    const idx = raw.indexOf(marker);
+    if (idx !== -1 && idx < castEnd) castEnd = idx;
+  }
+
+  const dblNewline = raw.indexOf("\n\n");
+  if (dblNewline !== -1 && dblNewline < castEnd) castEnd = dblNewline;
+
+  raw = raw.slice(0, castEnd).trim();
+  raw = raw.replace(/\n+/g, ", ");
+  raw = raw.replace(/,\s*,/g, ",");
+  raw = raw.replace(/\s{2,}/g, " ");
+  raw = raw.replace(/,\s*$/, "").replace(/\.\s*$/, "").trim();
+
+  return raw || null;
 }
 
 /**
@@ -127,7 +190,10 @@ export async function fetchListing(browser) {
       }
     }
 
-    cache.set(key, { title: show.title, detailUrl, events });
+    const durationMinutes = show.events?.[0]?.duration || null;
+    const cast = parseCastFromHtml(show.content);
+
+    cache.set(key, { title: show.title, detailUrl, events, durationMinutes, cast });
   }
 
   _eventsCache = cache;
@@ -239,8 +305,12 @@ export async function scrapeShowDetails(browser, url) {
       "עיבוד ובימוי", "עיבוד, בימוי",
       "בימוי:", "בימוי ",
       "במאי:", "במאית:",
-      "שחקנים:", "משתתפים:", "בכיכוב:",
-      "משחקים:", "משחק:",
+      "שחקנים:", "שחקנים",
+      "משתתפים:", "משתתפים",
+      "בכיכוב:", "בכיכוב",
+      "בהשתתפות",
+      "משחקים:", "משחקים",
+      "משחק:",
       "תפאורה:", "תלבושות:", "תאורה:",
       "מוזיקה:", "הפקה:", "צילום:",
       "ע. במאי:",
@@ -276,10 +346,15 @@ export async function scrapeShowDetails(browser, url) {
     let cast = null;
     const castMarkers = [
       "שחקנים:",
+      "שחקנים",
       "משתתפים:",
+      "משתתפים",
       "בכיכוב:",
+      "בכיכוב",
       "בכיכובם של:",
+      "בהשתתפות",
       "משחקים:",
+      "משחקים",
       "משחק:",
     ];
 
@@ -361,6 +436,19 @@ export async function scrapeShowDetails(browser, url) {
     || parseLessinDuration(data.durationText);
   delete data.ptDuration;
   delete data.durationText;
+
+  // Fall back to cached API data if page didn't have duration or cast
+  if (!data.durationMinutes || !data.cast) {
+    const cached = _eventsCache.get(normaliseUrl(url));
+    if (cached) {
+      if (!data.durationMinutes && cached.durationMinutes) {
+        data.durationMinutes = cached.durationMinutes;
+      }
+      if (!data.cast && cached.cast) {
+        data.cast = cached.cast;
+      }
+    }
+  }
 
   if (data.imageUrl) {
     data.imageUrl = fixDoubleProtocol(data.imageUrl);
