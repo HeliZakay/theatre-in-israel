@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-04-18T04:09:31.356Z",
+  "scrapedAt": "2026-04-19T04:16:43.525Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון ירושלים",
     "city": "ירושלים"
   },
   "events": [
-    {
-      "showId": 57,
-      "showSlug": "מלאכים-בלבן",
-      "date": "2026-04-18",
-      "hour": "21:00"
-    },
     {
       "showId": 1,
       "showSlug": "מישהו-שר-את-זה-קודם",

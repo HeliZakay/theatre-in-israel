@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-18T04:05:02.673Z",
+  "scrapedAt": "2026-04-19T04:11:44.692Z",
   "touring": true,
   "events": [
     {
@@ -655,14 +655,6 @@
       "showSlug": "משהו-טוב",
       "date": "2026-06-20",
       "hour": "18:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 38,
-      "showSlug": "משכנתא",
-      "date": "2026-04-18",
-      "hour": "20:30",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },
