@@ -9,6 +9,8 @@
  * Usage:
  *   node scripts/assign-reviews-to-user.mjs --email user@example.com --author "יודית"
  *   node scripts/assign-reviews-to-user.mjs --email user@example.com --author "יודית" --apply
+ *   node scripts/assign-reviews-to-user.mjs --email user@example.com --ids 101,102,103
+ *   node scripts/assign-reviews-to-user.mjs --email user@example.com --ids 101,102,103 --apply
  */
 
 import dotenv from "dotenv";
@@ -47,11 +49,15 @@ function getArg(flag) {
 
 const emailArg = getArg("--email");
 const authorArg = getArg("--author");
+const idsArg = getArg("--ids");
 
-if (!emailArg || !authorArg) {
+if (!emailArg || (!authorArg && !idsArg)) {
   console.error("Usage: node scripts/assign-reviews-to-user.mjs --email <email> --author <name> [--apply]");
+  console.error("       node scripts/assign-reviews-to-user.mjs --email <email> --ids <id,id,...> [--apply]");
   process.exit(1);
 }
+
+const reviewIds = idsArg ? idsArg.split(",").map((s) => parseInt(s.trim(), 10)) : null;
 
 async function main() {
   console.log(`\nMode: ${apply ? red(bold("APPLY")) : cyan(bold("DRY-RUN"))}\n`);
@@ -102,17 +108,19 @@ async function main() {
       }
     }
 
-    // ── 3. Find all anonymous reviews by author ────────────────────
+    // ── 3. Find anonymous reviews by author or IDs ──────────────────
     console.log();
     separator();
-    console.log(bold(`Anonymous reviews by "${authorArg}"`));
+    const filterLabel = reviewIds
+      ? `Anonymous reviews by IDs: ${reviewIds.join(", ")}`
+      : `Anonymous reviews by "${authorArg}"`;
+    console.log(bold(filterLabel));
     separator();
 
     const anonReviews = await prisma.review.findMany({
-      where: {
-        userId: null,
-        author: authorArg,
-      },
+      where: reviewIds
+        ? { id: { in: reviewIds }, userId: null }
+        : { userId: null, author: authorArg },
       include: {
         show: { select: { id: true, title: true, slug: true } },
       },
