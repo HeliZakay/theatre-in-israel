@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-19T04:09:52.939Z",
+  "scrapedAt": "2026-04-20T04:13:42.976Z",
   "touring": true,
   "events": [
     {
@@ -101,26 +101,10 @@
     {
       "showId": 77,
       "showSlug": "המאסטר-(אלוף-הבונים-שלי)",
-      "date": "2026-05-09",
-      "hour": "21:00",
-      "venueName": "תיאטרון חיפה",
-      "venueCity": "חיפה"
-    },
-    {
-      "showId": 77,
-      "showSlug": "המאסטר-(אלוף-הבונים-שלי)",
-      "date": "2026-05-10",
-      "hour": "20:30",
-      "venueName": "תיאטרון חיפה",
-      "venueCity": "חיפה"
-    },
-    {
-      "showId": 77,
-      "showSlug": "המאסטר-(אלוף-הבונים-שלי)",
       "date": "2026-06-30",
       "hour": "11:00",
-      "venueName": "תיאטרון חיפה",
-      "venueCity": "חיפה"
+      "venueName": "במה ראשית",
+      "venueCity": "לא ידוע"
     },
     {
       "showId": 374,
@@ -145,6 +129,14 @@
       "hour": "21:00",
       "venueName": "בית החייל ת\"א",
       "venueCity": "תל אביב"
+    },
+    {
+      "showId": 78,
+      "showSlug": "לשחרר-את-נחמה",
+      "date": "2026-05-09",
+      "hour": "20:30",
+      "venueName": "במה ראשית",
+      "venueCity": "לא ידוע"
     },
     {
       "showId": 160,

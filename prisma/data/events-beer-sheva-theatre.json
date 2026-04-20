@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-19T04:10:44.621Z",
+  "scrapedAt": "2026-04-20T04:14:33.474Z",
   "touring": true,
   "events": [
     {
@@ -47,6 +47,38 @@
       "showSlug": "באר-שבסקיה",
       "date": "2026-05-14",
       "hour": "21:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 171,
+      "showSlug": "באר-שבסקיה",
+      "date": "2026-05-17",
+      "hour": "17:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 171,
+      "showSlug": "באר-שבסקיה",
+      "date": "2026-05-17",
+      "hour": "19:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 171,
+      "showSlug": "באר-שבסקיה",
+      "date": "2026-06-16",
+      "hour": "17:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 171,
+      "showSlug": "באר-שבסקיה",
+      "date": "2026-06-16",
+      "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
       "venueCity": "באר שבע"
     },
@@ -102,6 +134,22 @@
       "showId": 171,
       "showSlug": "באר-שבסקיה",
       "date": "2026-06-23",
+      "hour": "21:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 171,
+      "showSlug": "באר-שבסקיה",
+      "date": "2026-06-24",
+      "hour": "19:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 171,
+      "showSlug": "באר-שבסקיה",
+      "date": "2026-06-24",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
       "venueCity": "באר שבע"
@@ -190,6 +238,30 @@
       "showId": 171,
       "showSlug": "באר-שבסקיה",
       "date": "2026-07-02",
+      "hour": "21:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 171,
+      "showSlug": "באר-שבסקיה",
+      "date": "2026-07-12",
+      "hour": "19:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 171,
+      "showSlug": "באר-שבסקיה",
+      "date": "2026-07-12",
+      "hour": "21:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 171,
+      "showSlug": "באר-שבסקיה",
+      "date": "2026-08-08",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
       "venueCity": "באר שבע"
