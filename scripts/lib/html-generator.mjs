@@ -413,7 +413,7 @@ ${groupCards}`;
         if (!slugVal.trim()) {
           slugEl.classList.add("field-invalid");
           errors.push({ index: idx, cardNumber: cardNumber, field: "slug", message: "slug חסר" });
-        } else if (/\s/.test(slugVal)) {
+        } else if (/\\s/.test(slugVal)) {
           slugEl.classList.add("field-invalid");
           errors.push({ index: idx, cardNumber: cardNumber, field: "slug", message: "slug מכיל רווחים" });
         } else if (slugs[slugVal]) {
