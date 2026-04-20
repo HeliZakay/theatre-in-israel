@@ -8,23 +8,16 @@
  * Their website (malenky.co.il) is built on Wix (fully
  * client-rendered).
  *
- * Listing: the homepage is the schedule — a Wix Repeater lists
- * upcoming performances with date (DD.MM, no year), day name,
- * show title, time (HH:MM), poster image linking to the show page,
- * and a ticket button (kartisim.co.il).
+ * Listing: shows are discovered from the nav menu under "הצגות רצות".
+ * Event scraping from the homepage is disabled (incomplete/unreliable).
  *
  * Detail pages: Wix freeform pages with h1 title (in quotes),
  * description paragraphs, "יוצרים:" credits, "משתתפים:" cast,
  * duration in "משך ההצגה:" format, and og:image.
- *
- * Because ALL events are on the homepage (not per-show pages),
- * fetchListing() caches event data in a module-level Map so that
- * scrapeShowEvents() can read from cache without navigating again.
  */
 
 import { fixDoubleProtocol } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
-import { inferYear, formatDate } from "./date.mjs";
 import { parseLessinDuration } from "./duration.mjs";
 
 // ── Constants ──────────────────────────────────────────────────
@@ -33,25 +26,6 @@ export const MALENKI_THEATRE = "תיאטרון מלנקי";
 export const MALENKI_BASE = "https://www.malenky.co.il";
 export const HOMEPAGE_URL = "https://www.malenky.co.il/";
 
-// ── Module-level event cache ──────────────────────────────────
-// Populated by fetchListing(), consumed by scrapeShowEvents().
-// Key: show page URL, Value: { title, events[] }
-
-/** @type {Map<string, { title: string, events: Array<{ date: string, hour: string, ticketUrl: string|null, rawText: string }> }>} */
-let _eventsCache = new Map();
-
-// ── Title cleaning ────────────────────────────────────────────
-
-/**
- * Clean a show title extracted from the schedule.
- * Removes suffixes like "/הצגת ילדים" and trims whitespace.
- */
-function cleanTitle(raw) {
-  return raw
-    .replace(/\s*\/.*$/, "") // remove "/ suffix" like "/הצגת ילדים"
-    .replace(/\s+/g, " ")
-    .trim();
-}
 
 // ── Wix-aware image extraction ───────────────────────────────
 
@@ -99,17 +73,10 @@ function extractMalenkiImage() {
   return null;
 }
 
-// ── Shows listing + events scraper (homepage) ─────────────────
+// ── Shows listing (nav menu) ─────────────────────────────────
 
 /**
- * Fetch the list of current shows and their events from the homepage.
- *
- * The homepage uses a Wix Repeater with one row per event. Each row
- * contains rich-text elements for date (DD.MM), day name, show title,
- * time (HH:MM), a poster image linking to the show page, and a
- * ticket purchase button.
- *
- * Populates the module-level _eventsCache for scrapeShowEvents().
+ * Fetch the list of current shows from the nav menu.
  *
  * @param {import('puppeteer').Browser} browser
  * @returns {Promise<Array<{title: string, url: string}>>}
@@ -123,47 +90,13 @@ export async function fetchListing(browser) {
     timeout: 60_000,
   });
 
-  // Wait for Wix Repeater to render
-  try {
-    await page.waitForSelector('div[role="listitem"]', { timeout: 30_000 });
-  } catch {
-    // No schedule on homepage — still try nav submenu for shows
-  }
-
   // Wix client-side rendering settle delay
   await new Promise((r) => setTimeout(r, 2000));
 
-  // ── 1. Extract event rows from the homepage schedule repeater ──
-  const rawRows = await page.evaluate(() => {
-    const items = document.querySelectorAll('div[role="listitem"]');
-    return [...items].map((item) => {
-      // Collect all rich-text elements
-      const textEls = item.querySelectorAll('[data-testid="richTextElement"]');
-      const texts = [...textEls].map((el) => el.textContent.trim());
-
-      // Show page URL from the poster image link
-      const imageLink = item.querySelector(
-        ".wixui-image a[data-testid='linkElement']",
-      );
-      const showUrl = imageLink?.href || "";
-
-      // Ticket URL from the "לקנות כרטיסים" button
-      const ticketLink = item.querySelector(
-        "a[aria-label='לקנות כרטיסים']",
-      );
-      const ticketUrl = ticketLink?.href || null;
-
-      return { texts, showUrl, ticketUrl };
-    });
-  });
-
-  // ── 2. Extract all shows from the nav submenu under "הצגות רצות" ──
-  // The nav lists all active shows, including those without upcoming dates.
+  // Extract all shows from the nav submenu under "הצגות רצות"
   const navShows = await page.evaluate((base) => {
     const results = [];
-    // Find all nav links that point to show pages (not archive/festival/etc.)
     const navLinks = document.querySelectorAll("nav a[href]");
-    // Collect links under the "הצגות רצות" submenu
     let inRunningShows = false;
     for (const a of navLinks) {
       const text = a.textContent.trim();
@@ -171,7 +104,6 @@ export async function fetchListing(browser) {
         inRunningShows = true;
         continue;
       }
-      // Stop at the next top-level nav item
       if (inRunningShows && (text === "פסטיבל" || text === "ארכיון" || text === "השכרת אולם" || text === "צור קשר")) {
         break;
       }
@@ -187,114 +119,17 @@ export async function fetchListing(browser) {
 
   await page.close();
 
-  // ── 3. Parse schedule rows into structured events ──
-  const DATE_RE = /^(\d{1,2})\.(\d{1,2})$/;
-  const TIME_RE = /^(\d{1,2}:\d{2})$/;
-
-  /** @type {Map<string, { title: string, events: Array }>} */
-  const cache = new Map();
-
-  for (const row of rawRows) {
-    if (!row.showUrl) continue;
-
-    // Identify fields by content pattern
-    let day = 0;
-    let month = 0;
-    let hour = "";
-    let title = "";
-
-    for (const text of row.texts) {
-      const dateMatch = text.match(DATE_RE);
-      if (dateMatch) {
-        day = parseInt(dateMatch[1], 10);
-        month = parseInt(dateMatch[2], 10);
-        continue;
-      }
-
-      const timeMatch = text.match(TIME_RE);
-      if (timeMatch) {
-        hour = timeMatch[1];
-        continue;
-      }
-
-      // Skip Hebrew day names
-      if (/^(ראשון|שני|שלישי|רביעי|חמישי|שישי|שבת|מוצ[״"]ש)$/.test(text)) {
-        continue;
-      }
-
-      // Remaining non-empty text is the show title
-      if (text.length > 1 && !title) {
-        title = cleanTitle(text);
-      }
-    }
-
-    if (!day || !month || !title) continue;
-
-    const year = inferYear(day, month);
-    const dateStr = formatDate(day, month, year);
-    const rawText = row.texts.join(" | ");
-
-    const entry = cache.get(row.showUrl) || { title, events: [] };
-    entry.events.push({
-      date: dateStr,
-      hour,
-      ticketUrl: row.ticketUrl,
-      rawText: rawText.slice(0, 250),
-    });
-    cache.set(row.showUrl, entry);
-  }
-
-  _eventsCache = cache;
-
-  // ── 4. Merge nav shows (includes shows without upcoming dates) ──
-  const showMap = new Map(
-    [...cache.entries()].map(([url, { title }]) => [url, title]),
-  );
-  for (const ns of navShows) {
-    if (!showMap.has(ns.url)) {
-      showMap.set(ns.url, ns.title);
-      // No events cached for this show — that's fine
-    }
-  }
-
-  // Return unique shows sorted alphabetically
-  const shows = [...showMap.entries()].map(([url, title]) => ({
-    title,
-    url,
-  }));
-  return shows.sort((a, b) => a.title.localeCompare(b.title, "he"));
+  return navShows.sort((a, b) => a.title.localeCompare(b.title, "he"));
 }
 
-// ── Per-show event scraper (cache reader) ─────────────────────
+// ── Per-show event scraper (disabled) ─────────────────────────
 
 /**
- * Return cached events for a specific show URL.
- *
- * This function does NOT navigate — it reads from the module-level
- * _eventsCache populated by fetchListing(). Deduplicates by date+hour.
- *
- * @param {import('puppeteer').Browser} browser — unused (kept for API compat)
- * @param {string} url — show detail page URL
- * @param {{ debug?: boolean }} [opts]
- * @returns {Promise<{ events: Array<{ date: string, hour: string, ticketUrl: string|null, rawText: string }>, title: string, debugHtml?: string }>}
+ * Malenki's homepage schedule is incomplete and unreliable — event
+ * scraping is disabled. Returns empty events (kept for API compat).
  */
-export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
-  const cached = _eventsCache.get(url);
-  if (!cached) {
-    return { events: [], title: "" };
-  }
-
-  // Deduplicate by date+hour
-  const seen = new Set();
-  const events = [];
-  for (const ev of cached.events) {
-    const key = `${ev.date}|${ev.hour}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    events.push(ev);
-  }
-
-  return { events, title: cached.title };
+export async function scrapeShowEvents(_browser, _url) {
+  return { events: [], title: "" };
 }
 
 // ── Detail page scraper ───────────────────────────────────────
