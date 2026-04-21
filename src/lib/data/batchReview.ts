@@ -8,6 +8,9 @@ export interface BatchShowItem {
   theatre: string;
   reviewCount: number;
   avgRating: number | null;
+  nextEventDate?: string;
+  nextEventHour?: string;
+  nextEventVenue?: string;
 }
 
 /**
@@ -51,6 +54,9 @@ function interleaveNeedsReviews(shows: BatchShowItem[]): BatchShowItem[] {
 }
 
 async function fetchBatchShows(): Promise<BatchShowItem[]> {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
   const shows = await prisma.show.findMany({
     select: {
       id: true,
@@ -59,10 +65,34 @@ async function fetchBatchShows(): Promise<BatchShowItem[]> {
       theatre: true,
       reviewCount: true,
       avgRating: true,
+      events: {
+        where: { date: { gte: today } },
+        orderBy: { date: "asc" },
+        take: 1,
+        select: { date: true, hour: true, venue: { select: { name: true } } },
+      },
     },
     orderBy: [{ reviewCount: "desc" }, { id: "asc" }],
   });
-  return interleaveNeedsReviews(shows);
+
+  return interleaveNeedsReviews(
+    shows.map((s) => {
+      const nextEvent = s.events[0];
+      return {
+        id: s.id,
+        slug: s.slug,
+        title: s.title,
+        theatre: s.theatre,
+        reviewCount: s.reviewCount,
+        avgRating: s.avgRating,
+        ...(nextEvent && {
+          nextEventDate: nextEvent.date.toISOString(),
+          nextEventHour: nextEvent.hour,
+          nextEventVenue: nextEvent.venue.name,
+        }),
+      };
+    }),
+  );
 }
 
 export const getBatchShows = unstable_cache(

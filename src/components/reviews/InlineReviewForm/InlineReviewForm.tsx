@@ -123,7 +123,6 @@ export default function InlineReviewForm({
           ? result.data.reviewCount
           : null;
 
-      // Navigate with search param so the server-rendered banner survives revalidation
       const params = new URLSearchParams();
       params.set("review", "success");
       if (resultReviewCount !== null) {

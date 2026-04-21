@@ -6,6 +6,7 @@ import FallbackImage from "@/components/ui/FallbackImage/FallbackImage";
 import WatchlistToggle from "@/components/shows/WatchlistToggle/WatchlistToggle";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import { getShowImageAlt } from "@/lib/seo";
+import { formatEventDate } from "@/utils/formatDate";
 import type { ShowListItem } from "@/types";
 
 interface ShowCardProps {
@@ -14,7 +15,7 @@ interface ShowCardProps {
 }
 
 export default function ShowCard({ show, priority }: ShowCardProps) {
-  const { reviewCount, avgRating } = show;
+  const { reviewCount, avgRating, nextEvent } = show;
   const slug = show.slug ?? String(show.id);
 
   return (
@@ -45,6 +46,15 @@ export default function ShowCard({ show, priority }: ShowCardProps) {
           </div>
 
           <p className={styles.summary}>{show.summary}</p>
+
+          {nextEvent && (
+            <div className={styles.nextEvent}>
+              <span className={styles.nextEventLabel}>ההצגה הקרובה:</span>{" "}
+              {formatEventDate(nextEvent.date)}, {nextEvent.hour}
+              {" · "}
+              {nextEvent.venueName}, {nextEvent.venueCity}
+            </div>
+          )}
 
           <div className={styles.genreRow}>
             {(show.genre ?? []).slice(0, 3).map((item) => (

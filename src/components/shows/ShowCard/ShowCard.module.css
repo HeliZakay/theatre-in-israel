@@ -103,6 +103,17 @@
   overflow: hidden;
 }
 
+.nextEvent {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.nextEventLabel {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
 .genreRow {
   display: flex;
   flex-wrap: wrap;

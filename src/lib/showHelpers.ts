@@ -152,3 +152,61 @@ export async function fetchShowListItems(
     .filter((s): s is PrismaShowListRow => Boolean(s))
     .map(mapToShowListItem);
 }
+
+/**
+ * Fetch show list items with next upcoming event per show.
+ * Returns items sorted by soonest event first; shows with no events last.
+ */
+export async function fetchShowListItemsWithEvents(
+  ids: number[],
+): Promise<ShowListItem[]> {
+  if (ids.length === 0) return [];
+
+  const today = new Date(new Date().toDateString());
+
+  const rawShows = await prisma.show.findMany({
+    where: { id: { in: ids } },
+    include: {
+      ...showListInclude,
+      events: {
+        where: { date: { gte: today } },
+        orderBy: { date: "asc" },
+        take: 1,
+        include: { venue: true },
+      },
+    },
+  });
+
+  const items: ShowListItem[] = rawShows.map((show) => {
+    const { genres, events, ...rest } = show;
+    const nextEvent = events[0]
+      ? {
+          date:
+            events[0].date instanceof Date
+              ? events[0].date.toISOString()
+              : String(events[0].date),
+          hour: events[0].hour,
+          venueName: events[0].venue.name,
+          venueCity: events[0].venue.city,
+        }
+      : null;
+    return {
+      ...rest,
+      genre: genres?.map((sg) => sg.genre.name) ?? [],
+      nextEvent,
+    };
+  });
+
+  items.sort((a, b) => {
+    if (a.nextEvent && b.nextEvent)
+      return (
+        new Date(a.nextEvent.date).getTime() -
+        new Date(b.nextEvent.date).getTime()
+      );
+    if (a.nextEvent) return -1;
+    if (b.nextEvent) return 1;
+    return 0;
+  });
+
+  return items;
+}

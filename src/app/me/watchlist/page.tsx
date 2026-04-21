@@ -2,7 +2,7 @@ import ROUTES from "@/constants/routes";
 import { authOptions, type AuthenticatedSession } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { getWatchlistShowIds } from "@/lib/watchlist";
-import { fetchShowListItems } from "@/lib/showHelpers";
+import { fetchShowListItemsWithEvents } from "@/lib/showHelpers";
 import ShowCard from "@/components/shows/ShowCard/ShowCard";
 import Button from "@/components/ui/Button/Button";
 import styles from "./page.module.css";
@@ -25,7 +25,7 @@ export default async function MyWatchlistPage() {
   const session = (await getServerSession(authOptions)) as AuthenticatedSession;
 
   const showIds = await getWatchlistShowIds(session.user.id);
-  const shows = await fetchShowListItems(showIds);
+  const shows = await fetchShowListItemsWithEvents(showIds);
 
   return (
     <main className={styles.page} id="main-content">

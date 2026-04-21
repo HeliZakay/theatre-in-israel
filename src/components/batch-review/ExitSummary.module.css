@@ -265,6 +265,51 @@
 
 .recsSection {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Watchlist CTA banner */
+.watchlistBanner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--color-curtain-red-008);
+  border: 1px solid var(--color-curtain-red-012);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+.bannerIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--color-curtain-red);
+}
+
+/* Watchlist nudge */
+.watchlistNudge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.watchlistNudgeLink {
+  color: var(--color-curtain-red);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.watchlistNudgeLink:hover {
+  text-decoration: underline;
 }
 
 .recSlide {
@@ -274,6 +319,7 @@
 }
 
 .recCard {
+  position: relative;
   display: flex;
   flex-direction: column;
   background: var(--card-bg);
@@ -281,8 +327,6 @@
   border-radius: var(--radius-lg);
   box-shadow: 0 10px 22px var(--color-slate-008);
   overflow: hidden;
-  text-decoration: none;
-  color: inherit;
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
@@ -293,10 +337,24 @@
   box-shadow: 0 18px 30px var(--color-slate-012);
 }
 
-.recCard:focus-visible {
+.recCardLink {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+
+.recCardLink:focus-visible {
   box-shadow:
     0 0 0 3px var(--focus-ring-color),
     0 10px 22px var(--color-slate-008);
+}
+
+.recWatchlistToggle {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
 }
 
 @media (max-width: 1024px) {
@@ -354,6 +412,12 @@
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--color-curtain-red);
+}
+
+.recNextEvent {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: 2px;
 }
 
 /* ------------------------------------------------------------------ */

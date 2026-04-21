@@ -15,6 +15,19 @@ export function formatDate(dateValue: string | number | Date): string {
 }
 
 /**
+ * Format an event date to Hebrew short weekday + day + month (e.g. "יום ה׳ 24 באפריל").
+ */
+export function formatEventDate(dateValue: string | number | Date): string {
+  const date = new Date(dateValue);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toLocaleDateString("he-IL", {
+    weekday: "short",
+    day: "numeric",
+    month: "long",
+  });
+}
+
+/**
  * Format a date as a relative Hebrew string ("היום", "אתמול", "לפני 3 ימים").
  * Falls back to absolute DD.MM.YY for dates older than ~30 days.
  */

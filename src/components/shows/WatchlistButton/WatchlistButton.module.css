@@ -1,16 +1,23 @@
 .button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   border-radius: 12px;
-  padding: 12px 18px;
-  font-size: 1rem;
+  padding: 14px 22px;
+  font-size: 1.05rem;
   font-weight: 600;
   cursor: pointer;
-  border: 1px solid rgba(26, 26, 26, 0.2);
+  border: 2px solid rgba(26, 26, 26, 0.25);
   background: transparent;
   color: var(--color-text-primary);
   transition:
     background 0.15s,
     border-color 0.15s;
   font-family: inherit;
+}
+
+.icon {
+  flex-shrink: 0;
 }
 
 .button:hover {

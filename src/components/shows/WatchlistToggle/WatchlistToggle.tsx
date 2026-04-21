@@ -1,6 +1,7 @@
 "use client";
 
 import { useWatchlist } from "@/components/auth/WatchlistProvider/WatchlistProvider";
+import { useToast } from "@/components/ui/Toast/ToastProvider";
 import Tooltip from "@/components/ui/Tooltip/Tooltip";
 import styles from "./WatchlistToggle.module.css";
 
@@ -18,6 +19,7 @@ export default function WatchlistToggle({
   className,
 }: WatchlistToggleProps) {
   const { isInWatchlist, toggle } = useWatchlist();
+  const { showToast } = useToast();
   const active = isInWatchlist(showId);
 
   const tooltipText = active ? "הסר מרשימת צפייה" : "הוסף לרשימת צפייה";
@@ -37,7 +39,11 @@ export default function WatchlistToggle({
       onClick={(e) => {
         e.stopPropagation();
         e.preventDefault();
+        const wasActive = active;
         toggle(showId, showSlug);
+        if (!wasActive) {
+          showToast("נוסף לרשימה");
+        }
       }}
       aria-label={active ? "הסר מרשימת צפייה" : "הוסף לרשימת צפייה"}
     >

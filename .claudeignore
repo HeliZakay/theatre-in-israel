@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+.next/
+out/
+build/
+
+# Generated files
+src/generated/
+tsconfig.tsbuildinfo
+next-env.d.ts
+
+# Test artifacts
+coverage/
+playwright-report/
+test-results/
+blob-report/
+
+# Scraped event data (39 JSON files, machine-generated)
+prisma/data/
+
+# Prisma migrations (125 dirs, auto-generated SQL)
+prisma/migrations/
+
+# Package lock (large, not relevant to code changes)
+package-lock.json
+
+# Misc
+.DS_Store
+.env*
+.vercel/

@@ -9,6 +9,7 @@ import ScrollToTop from "@/components/layout/ScrollToTop/ScrollToTop";
 import SecurityBanner from "@/components/layout/SecurityBanner/SecurityBanner";
 import WelcomeNameDialog from "@/components/auth/WelcomeNameDialog/WelcomeNameDialog";
 import TooltipProvider from "@/components/ui/Tooltip/TooltipProvider";
+import ToastProvider from "@/components/ui/Toast/ToastProvider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import ROUTES from "@/constants/routes";
@@ -119,6 +120,7 @@ export default async function RootLayout({
         <AuthSessionProvider>
           <WatchlistProvider>
           <RadixDirectionProvider dir="rtl">
+          <ToastProvider>
           <TooltipProvider>
             <script
               type="application/ld+json"
@@ -137,6 +139,7 @@ export default async function RootLayout({
             <Footer totalReviewCount={totalReviewCount} />
             <WelcomeNameDialog />
           </TooltipProvider>
+          </ToastProvider>
           </RadixDirectionProvider>
           </WatchlistProvider>
         </AuthSessionProvider>

@@ -8,6 +8,8 @@ import { showPath } from "@/constants/routes";
 import { ROUTES } from "@/constants/routes";
 import ShowCarousel from "@/components/shows/ShowCarousel/ShowCarousel";
 import SectionHeader from "@/components/ui/SectionHeader/SectionHeader";
+import WatchlistToggle from "@/components/shows/WatchlistToggle/WatchlistToggle";
+import { useWatchlist } from "@/components/auth/WatchlistProvider/WatchlistProvider";
 import MiniStars from "./MiniStars";
 import styles from "./ExitSummary.module.css";
 import type { BatchShowItem } from "@/lib/data/batchReview";
@@ -189,6 +191,23 @@ function StatsRow({
 }
 
 /* ------------------------------------------------------------------ */
+/*  Next event date formatter                                          */
+/* ------------------------------------------------------------------ */
+
+const hebrewWeekday = new Intl.DateTimeFormat("he-IL", {
+  weekday: "short",
+  timeZone: "Asia/Jerusalem",
+});
+
+function formatNextEvent(dateIso: string, hour: string): string {
+  const d = new Date(dateIso);
+  const day = d.getUTCDate();
+  const month = d.getUTCMonth() + 1;
+  const dayName = hebrewWeekday.format(d);
+  return `ההצגה הקרובה: ${dayName} ${day}.${month}, ${hour}`;
+}
+
+/* ------------------------------------------------------------------ */
 /*  Theatre Recommendations                                            */
 /* ------------------------------------------------------------------ */
 
@@ -199,6 +218,8 @@ function TheatreRecommendations({
   completedReviews: { showId: number }[];
   shows: BatchShowItem[];
 }) {
+  const { isInWatchlist } = useWatchlist();
+
   const recommendations = useMemo(() => {
     const reviewedIds = new Set(completedReviews.map((r) => r.showId));
     const reviewedTheatres = new Set(
@@ -212,10 +233,25 @@ function TheatreRecommendations({
       .slice(0, 10);
   }, [completedReviews, shows]);
 
+  const [initialIds] = useState(() =>
+    new Set(recommendations.filter((s) => isInWatchlist(s.id)).map((s) => s.id)),
+  );
+
+  const hasSavedHere = recommendations.some(
+    (s) => isInWatchlist(s.id) && !initialIds.has(s.id),
+  );
+
   if (recommendations.length < 2) return null;
 
   return (
     <section className={styles.recsSection}>
+      <div className={styles.watchlistBanner}>
+        <svg className={styles.bannerIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+        </svg>
+        <span>שמרו הצגות לרשימת הצפייה שלכם וגלו מתי ההצגות הקרובות</span>
+      </div>
+
       <SectionHeader title="עוד הצגות מאותם תיאטראות" />
       <ShowCarousel label="עוד הצגות מאותם תיאטראות">
         {recommendations.map((show, index) => (
@@ -226,33 +262,52 @@ function TheatreRecommendations({
             aria-roledescription="slide"
             aria-label={`${index + 1} מתוך ${recommendations.length}`}
           >
-            <Link
-              href={showPath(show.slug)}
-              target="_blank"
-              className={styles.recCard}
-            >
-              <div className={styles.recPoster}>
-                <FallbackImage
-                  src={getShowImagePath(show.title)}
-                  alt={show.title}
-                  fill
-                  sizes="280px"
-                  className={styles.showImage}
-                />
+            <div className={styles.recCard}>
+              <Link
+                href={showPath(show.slug)}
+                target="_blank"
+                className={styles.recCardLink}
+              >
+                <div className={styles.recPoster}>
+                  <FallbackImage
+                    src={getShowImagePath(show.title)}
+                    alt={show.title}
+                    fill
+                    sizes="280px"
+                    className={styles.showImage}
+                  />
+                </div>
+                <div className={styles.recBody}>
+                  <span className={styles.recTitle}>{show.title}</span>
+                  <span className={styles.recTheatre}>{show.theatre}</span>
+                  {show.avgRating && (
+                    <span className={styles.recRating}>
+                      {show.avgRating.toFixed(1)} ★
+                    </span>
+                  )}
+                  {show.nextEventDate && show.nextEventHour && (
+                    <span className={styles.recNextEvent}>
+                      {formatNextEvent(show.nextEventDate, show.nextEventHour)}
+                    </span>
+                  )}
+                </div>
+              </Link>
+              <div className={styles.recWatchlistToggle}>
+                <WatchlistToggle showId={show.id} showSlug={show.slug} />
               </div>
-              <div className={styles.recBody}>
-                <span className={styles.recTitle}>{show.title}</span>
-                <span className={styles.recTheatre}>{show.theatre}</span>
-                {show.avgRating && (
-                  <span className={styles.recRating}>
-                    {show.avgRating.toFixed(1)} ★
-                  </span>
-                )}
-              </div>
-            </Link>
+            </div>
           </div>
         ))}
       </ShowCarousel>
+
+      {hasSavedHere && (
+        <div className={styles.watchlistNudge}>
+          <span>הרשימה שלכם שמורה ←</span>{" "}
+          <Link href={ROUTES.MY_WATCHLIST} target="_blank" className={styles.watchlistNudgeLink}>
+            לרשימת הצפייה
+          </Link>
+        </div>
+      )}
     </section>
   );
 }

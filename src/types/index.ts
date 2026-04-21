@@ -72,6 +72,12 @@ export interface ShowListItem {
   genre: string[];
   reviewCount: number;
   avgRating: number | null;
+  nextEvent?: {
+    date: string;
+    hour: string;
+    venueName: string;
+    venueCity: string;
+  } | null;
 }
 
 export interface Suggestions {
