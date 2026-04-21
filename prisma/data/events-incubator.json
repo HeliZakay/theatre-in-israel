@@ -1,23 +1,7 @@
 {
-  "scrapedAt": "2026-04-20T04:16:18.668Z",
+  "scrapedAt": "2026-04-21T04:11:55.439Z",
   "touring": true,
   "events": [
-    {
-      "showId": 295,
-      "showSlug": "Be-More-Chill",
-      "date": "2026-05-06",
-      "hour": "20:00",
-      "venueName": "בית מזיא",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 295,
-      "showSlug": "Be-More-Chill",
-      "date": "2026-05-07",
-      "hour": "20:00",
-      "venueName": "בית מזיא",
-      "venueCity": "ירושלים"
-    },
     {
       "showId": 295,
       "showSlug": "Be-More-Chill",

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-20T04:16:28.085Z",
+  "scrapedAt": "2026-04-21T04:12:02.230Z",
   "venue": {
     "name": "תיאטרון הקאמרי",
     "city": "תל אביב"
@@ -336,13 +336,6 @@
     {
       "showId": 21,
       "showSlug": "הריטריט",
-      "date": "2027-04-19",
-      "hour": "19:30",
-      "note": "English subtitles"
-    },
-    {
-      "showId": 21,
-      "showSlug": "הריטריט",
       "date": "2026-05-27",
       "hour": "20:00"
     },
@@ -487,13 +480,6 @@
       "date": "2026-06-04",
       "hour": "20:00",
       "note": "כתוביות בעברית"
-    },
-    {
-      "showId": 19,
-      "showSlug": "זינגר",
-      "date": "2027-04-19",
-      "hour": "19:00",
-      "note": "English subtitles"
     },
     {
       "showId": 19,

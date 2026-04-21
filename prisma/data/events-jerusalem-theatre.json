@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-04-20T04:21:02.696Z",
+  "scrapedAt": "2026-04-21T04:16:14.618Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון ירושלים",
     "city": "ירושלים"
   },
   "events": [
-    {
-      "showId": 1,
-      "showSlug": "מישהו-שר-את-זה-קודם",
-      "date": "2026-04-20",
-      "hour": "17:00"
-    },
     {
       "showId": 75,
       "showSlug": "שם-פרטי",
