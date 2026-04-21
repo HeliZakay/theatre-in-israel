@@ -13,7 +13,8 @@
  */
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import ROUTES, { eventsPath, showPath } from "@/constants/routes";
+import ROUTES, { eventsPath, showPath, theatrePath } from "@/constants/routes";
+import { THEATRE_BY_NAME } from "@/constants/theatres";
 import { getEvents, getRegionCounts } from "@/lib/data/eventsList";
 import type { EventListItem } from "@/lib/data/eventsList";
 import {
@@ -417,34 +418,49 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
           "@context": "https://schema.org",
           "@type": "ItemList",
           name: title,
-          itemListElement: events.slice(0, 20).map((event, index) => ({
-            "@type": "ListItem",
-            position: index + 1,
-            item: {
-              "@type": "Event",
-              name: event.showTitle,
-              startDate: `${event.date.slice(0, 10)}T${event.hour}:00+03:00`,
-              eventAttendanceMode:
-                "https://schema.org/OfflineEventAttendanceMode",
-              eventStatus: "https://schema.org/EventScheduled",
-              url: toAbsoluteUrl(showPath(event.showSlug)),
-              image: toAbsoluteUrl(getShowImagePath(event.showTitle)),
-              location: {
-                "@type": "PerformingArtsTheater",
-                name: event.venueName,
-                address: { "@type": "PostalAddress", addressLocality: event.venueCity },
-              },
-              organizer: {
-                "@type": "Organization",
-                name: event.showTheatre,
-              },
-              offers: {
-                "@type": "Offer",
+          itemListElement: events.slice(0, 20).map((event, index) => {
+            const startIso = `${event.date.slice(0, 10)}T${event.hour}:00+03:00`;
+            const endUtcMs = new Date(startIso).getTime() + event.showDurationMinutes * 60000;
+            const endLocal = new Date(endUtcMs + 3 * 3600000);
+            const endIso = endLocal.toISOString().slice(0, 19) + "+03:00";
+            const theatreInfo = THEATRE_BY_NAME.get(event.showTheatre);
+            const organizerUrl = theatreInfo
+              ? toAbsoluteUrl(theatrePath(theatreInfo.slug))
+              : undefined;
+            const performers = event.showCast
+              ? event.showCast.split(",").map((name) => ({
+                  "@type": "Person" as const,
+                  name: name.trim(),
+                }))
+              : [{ "@type": "PerformingGroup" as const, name: event.showTheatre }];
+            return {
+              "@type": "ListItem",
+              position: index + 1,
+              item: {
+                "@type": "Event",
+                name: event.showTitle,
+                description: event.showDescription || event.showSummary,
+                startDate: startIso,
+                endDate: endIso,
+                eventAttendanceMode:
+                  "https://schema.org/OfflineEventAttendanceMode",
+                eventStatus: "https://schema.org/EventScheduled",
                 url: toAbsoluteUrl(showPath(event.showSlug)),
-                availability: "https://schema.org/InStock",
+                image: toAbsoluteUrl(getShowImagePath(event.showTitle)),
+                location: {
+                  "@type": "PerformingArtsTheater",
+                  name: event.venueName,
+                  address: { "@type": "PostalAddress", addressLocality: event.venueCity },
+                },
+                organizer: {
+                  "@type": "Organization",
+                  name: event.showTheatre,
+                  ...(organizerUrl && { url: organizerUrl }),
+                },
+                performer: performers,
               },
-            },
-          })),
+            };
+          }),
         }
       : null;
 

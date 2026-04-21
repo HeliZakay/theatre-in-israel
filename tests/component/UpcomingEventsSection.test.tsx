@@ -62,6 +62,10 @@ const mockEvent = {
   venueName: "תיאטרון הקאמרי",
   venueCity: "תל אביב",
   showTheatre: "הקאמרי",
+  showSummary: "תיאור הצגת טסט",
+  showDescription: null,
+  showDurationMinutes: 90,
+  showCast: null,
   showAvgRating: 4.2,
   showReviewCount: 5,
 };

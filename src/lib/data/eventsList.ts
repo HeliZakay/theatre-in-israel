@@ -13,6 +13,10 @@ export interface EventListItem {
   showTitle: string;
   showSlug: string;
   showTheatre: string;
+  showSummary: string;
+  showDescription: string | null;
+  showDurationMinutes: number;
+  showCast: string | null;
   showAvgRating: number | null;
   showReviewCount: number;
   venueName: string;
@@ -61,6 +65,10 @@ async function fetchEvents({
           title: true,
           slug: true,
           theatre: true,
+          summary: true,
+          description: true,
+          durationMinutes: true,
+          cast: true,
           avgRating: true,
           reviewCount: true,
         },
@@ -79,6 +87,10 @@ async function fetchEvents({
     showTitle: e.show.title,
     showSlug: e.show.slug,
     showTheatre: e.show.theatre,
+    showSummary: e.show.summary,
+    showDescription: e.show.description,
+    showDurationMinutes: e.show.durationMinutes,
+    showCast: e.show.cast,
     showAvgRating: e.show.avgRating,
     showReviewCount: e.show.reviewCount,
     venueName: e.venue.name,
