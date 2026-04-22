@@ -20,7 +20,7 @@
 .formColumn {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
   width: 100%;
 }
 
@@ -92,7 +92,7 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-  padding: 4px 0;
+  padding: 0;
 }
 
 /* Validation hints */
@@ -102,12 +102,16 @@
   text-align: center;
   font-size: 0.8rem;
   color: var(--color-curtain-red);
-  margin-top: 4px;
+  margin-top: 2px;
   visibility: hidden;
+  height: 0;
+  overflow: hidden;
 }
 
 .validationHintVisible {
   visibility: visible;
+  height: auto;
+  overflow: visible;
 }
 
 .textareaError {
@@ -215,6 +219,7 @@
   .formColumn {
     flex: 1;
     min-width: 0;
+    gap: 16px;
   }
 
   .showTitle {
@@ -223,6 +228,7 @@
 
   .ratingSection {
     justify-content: flex-start;
+    padding: 4px 0;
   }
 
   .textarea {
