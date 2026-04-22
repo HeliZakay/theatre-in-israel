@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-21T04:11:05.062Z",
+  "scrapedAt": "2026-04-22T04:10:11.565Z",
   "touring": true,
   "events": [
     {
@@ -487,6 +487,14 @@
       "showSlug": "מעבר-לדלת",
       "date": "2026-05-09",
       "hour": "21:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 34,
+      "showSlug": "מעבר-לדלת",
+      "date": "2026-05-12",
+      "hour": "20:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"
     },

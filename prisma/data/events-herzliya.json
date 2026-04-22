@@ -1,11 +1,17 @@
 {
-  "scrapedAt": "2026-04-21T04:15:38.861Z",
+  "scrapedAt": "2026-04-22T04:14:33.851Z",
   "venueSource": true,
   "venue": {
     "name": "היכל אמנויות הבמה הרצליה",
     "city": "הרצליה"
   },
   "events": [
+    {
+      "showId": 267,
+      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
+      "date": "2026-05-01",
+      "hour": "21:30"
+    },
     {
       "showId": 69,
       "showSlug": "הכל-אודות-איב",
