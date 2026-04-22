@@ -29,6 +29,6 @@ describe("LotteryBanner", () => {
     mockIsLotteryActive.mockReturnValue(true);
     render(<LotteryBanner />);
     const link = screen.getByRole("link", { name: "כתב.י ביקורת" });
-    expect(link).toHaveAttribute("href", "/reviews/new");
+    expect(link).toHaveAttribute("href", "/reviews/batch");
   });
 });

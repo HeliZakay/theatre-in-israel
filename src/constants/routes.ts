@@ -6,7 +6,7 @@ export const ROUTES = {
   THEATRES: "/theatres",
   GENRES: "/genres",
   CITIES: "/cities",
-  REVIEWS_NEW: "/reviews/new",
+  REVIEWS_NEW: "/reviews/batch",
   AUTH_SIGNIN: "/auth/signin",
   AUTH_SIGNUP: "/auth/signup",
   AUTH_ERROR: "/auth/error",
