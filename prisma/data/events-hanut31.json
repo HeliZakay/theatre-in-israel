@@ -1,10 +1,22 @@
 {
-  "scrapedAt": "2026-04-22T04:14:03.020Z",
+  "scrapedAt": "2026-04-23T04:15:24.505Z",
   "venue": {
     "name": "תיאטרון החנות",
     "city": "תל אביב"
   },
   "events": [
+    {
+      "showId": 462,
+      "showSlug": "Horsing-Around",
+      "date": "2026-06-04",
+      "hour": "20:00"
+    },
+    {
+      "showId": 462,
+      "showSlug": "Horsing-Around",
+      "date": "2026-05-07",
+      "hour": "20:00"
+    },
     {
       "showId": 360,
       "showSlug": "Radio-Play",
