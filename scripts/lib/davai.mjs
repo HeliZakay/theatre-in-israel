@@ -1,7 +1,7 @@
 /**
  * Davai Clown Theatre scraping helpers — show listing and show detail extraction.
  *
- * Davai (תיאטרון הליצנות דוואי) is a physical-comedy / clown theatre
+ * Davai (תיאטרון דוואי) is a physical-comedy / clown theatre
  * company based in Tel Aviv producing wordless shows for all ages.
  * Their website is built on WordPress with the Bridge theme.
  *
@@ -16,7 +16,7 @@ import { parseLessinDuration } from "./duration.mjs";
 
 // ── Constants ──────────────────────────────────────────────────
 
-export const DAVAI_THEATRE = "תיאטרון הליצנות דוואי";
+export const DAVAI_THEATRE = "תיאטרון דוואי";
 const LISTING_URL = "https://davai-group.org/our-shows/";
 
 // ── Shows listing page scraper ─────────────────────────────────
@@ -282,4 +282,217 @@ export async function scrapeShowDetails(browser, url) {
     imageUrl,
     cast: data.cast,
   };
+}
+
+// ── Events page scraper ───────────────────────────────────────
+
+const EVENTS_URL = "https://davai-group.org/events/list/";
+
+const VENUE_CITY_MAP = {
+  "davai theatre studio": "תל אביב-יפו",
+  "סטודיו דוואי": "תל אביב-יפו",
+  "tel aviv museum of art": "תל אביב",
+  "מוזיאון תל אביב לאמנות": "תל אביב",
+};
+
+function resolveVenueCity(venueName, addressText) {
+  const lower = venueName.toLowerCase();
+  for (const [key, city] of Object.entries(VENUE_CITY_MAP)) {
+    if (lower.includes(key)) return city;
+  }
+  if (addressText) {
+    const text = addressText.toLowerCase();
+    if (/תל.?אביב|tel.?aviv/i.test(text)) return "תל אביב-יפו";
+    if (/חיפה|haifa/i.test(text)) return "חיפה";
+    if (/ירושלים|jerusalem/i.test(text)) return "ירושלים";
+    if (/הוד השרון|hod.?hasharon/i.test(text)) return "הוד השרון";
+    if (/ערד|arad/i.test(text)) return "ערד";
+    if (/ראשון|rishon/i.test(text)) return "ראשון לציון";
+    if (/באר.?שבע|beer.?sheva/i.test(text)) return "באר שבע";
+    if (/אשדוד|ashdod/i.test(text)) return "אשדוד";
+    if (/נתניה|netanya/i.test(text)) return "נתניה";
+    if (/רחובות|rehovot/i.test(text)) return "רחובות";
+    if (/פתח.?תקו|petah.?tikva/i.test(text)) return "פתח תקווה";
+    if (/כפר.?סבא|kfar.?saba/i.test(text)) return "כפר סבא";
+    if (/הרצליה|herzliya/i.test(text)) return "הרצליה";
+    if (/רמת.?גן|ramat.?gan/i.test(text)) return "רמת גן";
+    if (/ראש פינה|rosh.?pina/i.test(text)) return "ראש פינה";
+  }
+  return null;
+}
+
+function normalizeDavaiTitle(raw) {
+  return raw
+    .replace(/@.*$/, "")
+    .replace(/\|.*$/, "")
+    .replace(/\s*\(\d+\+?\)\s*/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/**
+ * Fetch all upcoming events from the central /events/list/ page.
+ * Returns a Map<normalizedTitle, Array<event>> for use in scrapeShowEvents.
+ *
+ * The page uses The Events Calendar (Tribe) WordPress plugin v2.
+ * Each event is an `article.tribe-events-calendar-list__event` inside
+ * a `.tribe-events-calendar-list__event-row` wrapper.
+ */
+export async function fetchAllEvents(browser) {
+  const page = await browser.newPage();
+  await setupRequestInterception(page);
+
+  await page.goto(EVENTS_URL, {
+    waitUntil: "domcontentloaded",
+    timeout: 60_000,
+  });
+
+  await page
+    .waitForSelector(".tribe-events-calendar-list__event-row", { timeout: 15_000 })
+    .catch(() => {});
+
+  const rawEvents = await page.evaluate(() => {
+    const results = [];
+    const rows = document.querySelectorAll(".tribe-events-calendar-list__event-row");
+
+    for (const row of rows) {
+      // Title from h4 (not the image link which has empty text)
+      const h4 = row.querySelector("h4.tribe-events-calendar-list__event-title");
+      const title = h4?.textContent?.trim() || "";
+
+      // Ticket URL from the title link
+      const titleLink = h4?.querySelector("a");
+      const ticketUrl = titleLink?.getAttribute("href") || null;
+
+      // Date from datetime attr, time from text "Month DD @ HH:MM"
+      const timeEl = row.querySelector("time.tribe-events-calendar-list__event-datetime");
+      const datetime = timeEl?.getAttribute("datetime") || "";
+      const startSpan = row.querySelector(".tribe-event-date-start");
+      const startText = startSpan?.textContent?.trim() || "";
+
+      // Venue name and address are separate spans inside <address>
+      const venueName = row.querySelector(
+        ".tribe-events-calendar-list__event-venue-title"
+      )?.textContent?.trim() || "";
+      const venueAddress = row.querySelector(
+        ".tribe-events-calendar-list__event-venue-address"
+      )?.textContent?.trim() || "";
+
+      results.push({ title, datetime, startText, venueName, venueAddress, ticketUrl });
+    }
+
+    return results;
+  });
+
+  await page.close();
+
+  // Build map by normalized title
+  const eventsByTitle = new Map();
+
+  for (const raw of rawEvents) {
+    if (!raw.title || !raw.datetime) continue;
+
+    const normalizedTitle = normalizeDavaiTitle(raw.title);
+    if (!normalizedTitle) continue;
+
+    // Date from datetime attr ("YYYY-MM-DD"), time from startText ("Month DD @ HH:MM")
+    let date = "";
+    let hour = "";
+
+    const dateMatch = raw.datetime.match(/(\d{4})-(\d{2})-(\d{2})/);
+    if (dateMatch) date = `${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}`;
+
+    // Time is in startText like "April 25 @ 11:00" or "May 9 @ 20:30"
+    if (raw.startText) {
+      const tm = raw.startText.match(/(\d{1,2}):(\d{2})/);
+      if (tm) hour = `${String(parseInt(tm[1], 10)).padStart(2, "0")}:${tm[2]}`;
+    }
+
+    if (!date) continue;
+
+    const venueName = raw.venueName || "סטודיו דוואי";
+    const venueCity = resolveVenueCity(venueName, raw.venueAddress);
+
+    const event = {
+      date,
+      hour: hour || "00:00",
+      venueName,
+      venueCity: venueCity || "תל אביב-יפו",
+      ticketUrl: raw.ticketUrl || null,
+    };
+
+    if (!eventsByTitle.has(normalizedTitle)) {
+      eventsByTitle.set(normalizedTitle, []);
+    }
+    eventsByTitle.get(normalizedTitle).push(event);
+  }
+
+  return eventsByTitle;
+}
+
+/**
+ * Look up events for a specific show from the pre-fetched events map.
+ * The eventsByUrl map (built by prepareDavaiScrape) maps show URL → events.
+ */
+export async function scrapeShowEvents(_browser, url, { debug = false, eventsByUrl = null } = {}) {
+  if (!eventsByUrl) {
+    return { events: [] };
+  }
+
+  const normalized = url.replace(/\/$/, "");
+  const events = eventsByUrl.get(normalized) || [];
+
+  return { events, debugHtml: debug ? JSON.stringify([...eventsByUrl.entries()]) : null };
+}
+
+/**
+ * Pre-fetch all events and build a URL→events map by cross-referencing
+ * the show listing (title→URL) with the events page (title→events).
+ */
+export async function prepareDavaiScrape(browser) {
+  const [listings, eventsByTitle] = await Promise.all([
+    fetchListing(browser),
+    fetchAllEvents(browser),
+  ]);
+
+  // Build lowercase title → URL map from listings
+  const titleToUrl = new Map();
+  for (const { title, url } of listings) {
+    const normalized = normalizeDavaiTitle(title).toLowerCase();
+    if (normalized) {
+      titleToUrl.set(normalized, url.replace(/\/$/, ""));
+    }
+  }
+
+  // Cross-reference: map events by URL
+  const eventsByUrl = new Map();
+
+  for (const [eventTitle, events] of eventsByTitle) {
+    const eventLower = eventTitle.toLowerCase();
+    let matchedUrl = null;
+
+    // Exact match (case-insensitive)
+    if (titleToUrl.has(eventLower)) {
+      matchedUrl = titleToUrl.get(eventLower);
+    } else {
+      // Fuzzy: check if event title is contained in a listing title or vice versa
+      for (const [listTitle, url] of titleToUrl) {
+        if (
+          listTitle.includes(eventLower) ||
+          eventLower.includes(listTitle)
+        ) {
+          matchedUrl = url;
+          break;
+        }
+      }
+    }
+
+    if (matchedUrl) {
+      const existing = eventsByUrl.get(matchedUrl) || [];
+      eventsByUrl.set(matchedUrl, [...existing, ...events]);
+    }
+  }
+
+  console.log(`  Events page: ${eventsByTitle.size} show titles, mapped ${eventsByUrl.size} to listing URLs.`);
+  return { eventsByUrl };
 }

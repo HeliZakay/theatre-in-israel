@@ -430,7 +430,7 @@ const LOADERS = {
       theatreId: "davai",
       theatreName: DAVAI_THEATRE,
       theatreConst: DAVAI_THEATRE,
-      theatreLabel: "Davai Clown Theatre (תיאטרון הליצנות דוואי)",
+      theatreLabel: "Davai Theatre (תיאטרון דוואי)",
       websiteUrl: "davai-group.org",
       fetchListing,
       scrapeDetails: scrapeShowDetails,
