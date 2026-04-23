@@ -26,54 +26,65 @@ export const TMUNA_VENUE = "תיאטרון תמונע";
 export const TMUNA_BASE = "https://www.tmu-na.org.il";
 export const REPERTOIRE_URL =
   "https://www.tmu-na.org.il/?CategoryID=220";
+export const CHILDREN_URL =
+  "https://www.tmu-na.org.il/?CategoryID=76";
 
 // ── Shows listing page scraper ─────────────────────────────────
 
 /**
- * Fetch the list of shows from the Tmuna repertoire page.
- *
- * Scrapes the gallery grid at ?CategoryID=220 which lists all
- * current repertoire shows (not just those with upcoming dates).
- * Each show card is a DIV.ArticlesGalleryMatrixItem containing
- * a link with ArticleID in the href.
+ * Fetch the list of shows from Tmuna's repertoire and children's pages.
  *
  * @param {import('puppeteer').Browser} browser
  * @returns {Promise<Array<{title: string, url: string}>>}
  */
 export async function fetchListing(browser) {
-  const page = await browser.newPage();
-  await setupRequestInterception(page);
+  const urls = [REPERTOIRE_URL, CHILDREN_URL];
+  const seen = new Set();
+  const allShows = [];
 
-  await page.goto(REPERTOIRE_URL, {
-    waitUntil: "domcontentloaded",
-    timeout: 60_000,
-  });
-  await page.waitForSelector(".ArticlesGalleryMatrixItem", {
-    timeout: 30_000,
-  });
+  for (const listingUrl of urls) {
+    const page = await browser.newPage();
+    await setupRequestInterception(page);
 
-  const shows = await page.evaluate(() => {
-    const results = [];
-    const cards = document.querySelectorAll(".ArticlesGalleryMatrixItem");
+    await page.goto(listingUrl, {
+      waitUntil: "domcontentloaded",
+      timeout: 60_000,
+    });
+    await page.waitForSelector(".ArticlesGalleryMatrixItem", {
+      timeout: 30_000,
+    }).catch(() => {});
 
-    for (const card of cards) {
-      const link = card.querySelector('a[href*="ArticleID"]');
-      if (!link) continue;
+    const shows = await page.evaluate(() => {
+      const results = [];
+      const cards = document.querySelectorAll(".ArticlesGalleryMatrixItem");
 
-      let title = link.textContent.trim();
-      if (!title || title.length < 2) continue;
+      for (const card of cards) {
+        const link = card.querySelector('a[href*="ArticleID"]');
+        if (!link) continue;
 
-      title = title.replace(/\s+/g, " ").trim();
-      const url = link.href;
+        let title = link.textContent.trim();
+        if (!title || title.length < 2) continue;
 
-      results.push({ title, url });
+        title = title.replace(/\s+/g, " ").trim();
+        const url = link.href;
+
+        results.push({ title, url });
+      }
+
+      return results;
+    });
+
+    for (const show of shows) {
+      if (!seen.has(show.url)) {
+        seen.add(show.url);
+        allShows.push(show);
+      }
     }
 
-    return results;
-  });
+    await page.close();
+  }
 
-  await page.close();
-  return shows.sort((a, b) => a.title.localeCompare(b.title, "he"));
+  return allShows.sort((a, b) => a.title.localeCompare(b.title, "he"));
 }
 
 // ── Events scraper ─────────────────────────────────────────────
