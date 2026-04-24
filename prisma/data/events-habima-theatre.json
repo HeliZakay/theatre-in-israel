@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-23T04:11:17.273Z",
+  "scrapedAt": "2026-04-24T04:13:44.651Z",
   "touring": true,
   "events": [
     {
@@ -510,14 +510,6 @@
       "showId": 34,
       "showSlug": "מעבר-לדלת",
       "date": "2026-06-10",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 56,
-      "showSlug": "מעגל-הגיר-הקווקזי",
-      "date": "2026-04-23",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב"

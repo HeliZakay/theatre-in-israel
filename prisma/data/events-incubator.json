@@ -1,15 +1,7 @@
 {
-  "scrapedAt": "2026-04-23T04:12:06.625Z",
+  "scrapedAt": "2026-04-24T04:14:31.017Z",
   "touring": true,
   "events": [
-    {
-      "showId": 295,
-      "showSlug": "Be-More-Chill",
-      "date": "2026-05-13",
-      "hour": "20:00",
-      "venueName": "בית מזיא",
-      "venueCity": "ירושלים"
-    },
     {
       "showId": 295,
       "showSlug": "Be-More-Chill",
@@ -22,6 +14,14 @@
       "showId": 295,
       "showSlug": "Be-More-Chill",
       "date": "2026-05-28",
+      "hour": "20:00",
+      "venueName": "בית מזיא",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 295,
+      "showSlug": "Be-More-Chill",
+      "date": "2026-06-02",
       "hour": "20:00",
       "venueName": "בית מזיא",
       "venueCity": "ירושלים"
@@ -81,14 +81,6 @@
       "hour": "21:00",
       "venueName": "תיאטרון הבית ת\"א",
       "venueCity": "תל אביב"
-    },
-    {
-      "showId": 101,
-      "showSlug": "אנטי-אייג׳ינג",
-      "date": "2026-04-23",
-      "hour": "20:30",
-      "venueName": "בית מזיא",
-      "venueCity": "ירושלים"
     },
     {
       "showId": 101,
@@ -157,7 +149,7 @@
     {
       "showId": 293,
       "showSlug": "מקום-טוב-הכל-רע",
-      "date": "2026-06-28",
+      "date": "2026-07-18",
       "hour": "21:00",
       "venueName": "תיאטרון הבית ת\"א",
       "venueCity": "תל אביב"
