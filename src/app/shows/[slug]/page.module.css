@@ -237,6 +237,10 @@
   .contentGrid {
     grid-template-columns: 1fr;
   }
+
+  .contentSections {
+    order: 1;
+  }
 }
 
 @media (max-width: 640px) {
