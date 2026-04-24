@@ -73,7 +73,6 @@ export default function ShowComboboxSheet({
         onClick={() => setOpen(true)}
         aria-haspopup="dialog"
         aria-expanded={open}
-        aria-invalid={invalid}
         aria-describedby={ariaDescribedBy}
       >
         <span

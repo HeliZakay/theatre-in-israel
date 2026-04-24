@@ -55,8 +55,6 @@ export default function ShowSelectionGrid({
     return [...set].filter(Boolean).sort();
   }, [shows]);
 
-  const isSearching = search.trim().length > 0 || theatreFilter.length > 0;
-
   const filtered = useMemo(() => {
     return shows.filter((show) => {
       if (theatreFilter && show.theatre !== theatreFilter) return false;
@@ -65,7 +63,7 @@ export default function ShowSelectionGrid({
       if (reviewedIds.has(show.id) && !search.trim()) return false;
       return true;
     });
-  }, [shows, search, theatreFilter, reviewedIds, isSearching]);
+  }, [shows, search, theatreFilter, reviewedIds]);
 
   const maxReached = selectedIds.size >= MAX_BATCH_REVIEW_SELECTION;
   const hasResults = filtered.length > 0;

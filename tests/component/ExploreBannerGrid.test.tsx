@@ -5,7 +5,7 @@ import ExploreBannerGrid from "@/components/shows/ExploreBanner/ExploreBannerGri
 jest.mock("@/components/ui/FallbackImage/FallbackImage", () => {
   const MockFallbackImage = (props: Record<string, unknown>) => {
     const { fill, sizes, ...rest } = props;
-    // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
+     
     return <img {...(rest as React.ImgHTMLAttributes<HTMLImageElement>)} />;
   };
   MockFallbackImage.displayName = "MockFallbackImage";
