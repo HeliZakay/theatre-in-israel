@@ -37,12 +37,17 @@ export default function WatchlistProvider({
   const { data: session } = useSession();
   const router = useRouter();
   const [ids, setIds] = useState<Set<number>>(new Set());
+  const [prevUser, setPrevUser] = useState(session?.user);
 
-  useEffect(() => {
+  if (session?.user !== prevUser) {
+    setPrevUser(session?.user);
     if (!session?.user) {
       setIds(new Set());
-      return;
     }
+  }
+
+  useEffect(() => {
+    if (!session?.user) return;
     getWatchlistIdsAction().then((arr) => setIds(new Set(arr)));
   }, [session?.user]);
 

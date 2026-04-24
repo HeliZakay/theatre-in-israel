@@ -70,6 +70,9 @@ export default function BatchReviewFlow({
     } catch { /* storage full or unavailable */ }
   }, [state.selectedShowIds, state.completedReviews]);
 
+  const [draftedShowIds, setDraftedShowIds] = useState<Set<number>>(new Set());
+  const [currentDraft, setCurrentDraft] = useState<{ rating: number | null; text: string } | undefined>();
+
   // Restore drafts from localStorage on mount (after Google OAuth redirect)
   const restoredRef = useRef(false);
   useEffect(() => {
@@ -94,6 +97,14 @@ export default function BatchReviewFlow({
   const handleDraftChange = useCallback(
     (showId: number, draft: { rating: number | null; text: string }) => {
       draftsRef.current[showId] = draft;
+      const isDrafted = draft.rating !== null && draft.text.length >= REVIEW_TEXT_MIN;
+      setDraftedShowIds((prev) => {
+        const has = prev.has(showId);
+        if (isDrafted === has) return prev;
+        const next = new Set(prev);
+        isDrafted ? next.add(showId) : next.delete(showId);
+        return next;
+      });
     },
     [],
   );
@@ -232,11 +243,13 @@ export default function BatchReviewFlow({
   const handleNext = () => {
     if (selectionCount > 0) {
       if (state.prevStep === "review") {
-        // Returning from edit selection — preserve drafts
+        const currentShowId = state.selectedShowIds[state.currentIndex];
+        setCurrentDraft(draftsRef.current[currentShowId]);
         dispatch({ type: "RESUME_REVIEWS" });
       } else {
-        // First time starting reviews — clear drafts
         draftsRef.current = {};
+        setDraftedShowIds(new Set());
+        setCurrentDraft(undefined);
         dispatch({ type: "START_REVIEWS" });
       }
     }
@@ -251,21 +264,27 @@ export default function BatchReviewFlow({
     if (isLast) {
       dispatch({ type: "GO_TO_SUMMARY", drafts: collectValidDrafts() });
     } else {
+      const nextShowId = state.selectedShowIds[state.currentIndex + 1];
+      setCurrentDraft(draftsRef.current[nextShowId]);
       dispatch({ type: "NEXT_SHOW" });
     }
-  }, [state.currentIndex, state.selectedShowIds.length, state.editingFromSummary, collectValidDrafts]);
+  }, [state.currentIndex, state.selectedShowIds, state.editingFromSummary, collectValidDrafts]);
 
   const handlePrevShow = useCallback(() => {
+    const prevShowId = state.selectedShowIds[state.currentIndex - 1];
+    setCurrentDraft(draftsRef.current[prevShowId]);
     dispatch({ type: "PREV_SHOW" });
-  }, []);
+  }, [state.selectedShowIds, state.currentIndex]);
 
   const handleJumpTo = useCallback(
     (index: number) => {
       if (index === state.currentIndex) return;
       logEvent("batch_jump_to", { from: state.currentIndex, to: index });
+      const targetShowId = state.selectedShowIds[index];
+      setCurrentDraft(draftsRef.current[targetShowId]);
       dispatch({ type: "JUMP_TO", index });
     },
-    [state.currentIndex],
+    [state.currentIndex, state.selectedShowIds],
   );
 
   const handleEditSelection = useCallback(() => {
@@ -277,6 +296,7 @@ export default function BatchReviewFlow({
     (showId: number) => {
       const index = state.selectedShowIds.indexOf(showId);
       if (index !== -1) {
+        setCurrentDraft(draftsRef.current[showId]);
         dispatch({ type: "EDIT_FROM_SUMMARY", index });
       }
     },
@@ -284,12 +304,16 @@ export default function BatchReviewFlow({
   );
 
   const handleBackFromSummary = useCallback(() => {
+    const lastIndex = state.selectedShowIds.length - 1;
+    const lastShowId = state.selectedShowIds[lastIndex];
+    setCurrentDraft(draftsRef.current[lastShowId]);
     dispatch({ type: "BACK_TO_REVIEW" });
-  }, []);
+  }, [state.selectedShowIds]);
 
   const handleBulkSubmitComplete = useCallback(
     (reviews: { showId: number; rating: number; text: string }[], reviewerName: string) => {
       draftsRef.current = {};
+      setDraftedShowIds(new Set());
       const name = reviewerName || session?.user?.name?.split(/\s+/)[0] || "";
       dispatch({ type: "BULK_SUBMIT_COMPLETE", reviews, reviewerName: name });
     },
@@ -322,13 +346,6 @@ export default function BatchReviewFlow({
     ? transitionStyleMap[transitionName] ?? ""
     : "";
 
-  // Compute draftedShowIds for ShowNavStrip (shows with rating set)
-  const draftedShowIds = new Set(
-    state.selectedShowIds.filter((id) => {
-      const draft = draftsRef.current[id];
-      return draft && draft.rating !== null && draft.text.length >= REVIEW_TEXT_MIN;
-    }),
-  );
 
   return (
     <main className={`${styles.flow} ${state.step === "exit" ? styles.flowExit : ""}`} dir="rtl">
@@ -396,7 +413,7 @@ export default function BatchReviewFlow({
                 selectedShowIds={state.selectedShowIds}
                 onJumpTo={handleJumpTo}
                 draftedShowIds={draftedShowIds}
-                initialDraft={draftsRef.current[currentShowId]}
+                initialDraft={currentDraft}
                 onDraftChange={handleDraftChange}
                 onEditSelection={handleEditSelection}
               />

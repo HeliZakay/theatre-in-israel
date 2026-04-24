@@ -4,6 +4,7 @@ import { cleanupAnonymousTestData, getShowByOffset } from "./helpers/db";
 // Use a different show (offset 3) to avoid conflicts with parallel review test files
 const test = baseTest.extend<{ firstShow: { id: number; title: string; slug: string } }>({
   firstShow: async ({}, use) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     await use(await getShowByOffset(3));
   },
 });

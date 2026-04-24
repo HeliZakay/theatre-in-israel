@@ -4,6 +4,7 @@ import { cleanupTestData, createTestReview, getShowByOffset } from "./helpers/db
 // Use a different show (offset 2) to avoid conflicts with parallel review test files
 const test = baseTest.extend<{ firstShow: { id: number; title: string; slug: string } }>({
   firstShow: async ({}, use) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     await use(await getShowByOffset(2));
   },
 });
@@ -169,6 +170,7 @@ test.describe("Review Validation", () => {
 // Use a DIFFERENT show (offset 4) for profanity tests to avoid conflict with Review Validation
 const profanityTest = baseTest.extend<{ firstShow: { id: number; title: string; slug: string } }>({
   firstShow: async ({}, use) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     await use(await getShowByOffset(4));
   },
 });

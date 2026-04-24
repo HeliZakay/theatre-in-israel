@@ -47,41 +47,47 @@ export default function ReviewStep({
   const [text, setText] = useState(initialDraft?.text ?? "");
   const [validationError, setValidationError] = useState<"rating" | "text" | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const prevShowIdRef = useRef(show.id);
+  const [prevShowId, setPrevShowId] = useState(show.id);
 
-  // Reset local state when show changes (replaces key-driven remount)
-  useEffect(() => {
-    if (prevShowIdRef.current !== show.id) {
-      prevShowIdRef.current = show.id;
-      setRating(initialDraft?.rating ?? null);
-      setText(initialDraft?.text ?? "");
-      setValidationError(null);
-    }
-  }, [show.id, initialDraft]);
+  // Reset local state when show changes (React-recommended render-time adjustment)
+  if (prevShowId !== show.id) {
+    setPrevShowId(show.id);
+    setRating(initialDraft?.rating ?? null);
+    setText(initialDraft?.text ?? "");
+    setValidationError(null);
+  }
 
   // Sync draft changes back to parent (writes to a ref, no re-renders)
   useEffect(() => {
     onDraftChange?.(show.id, { rating, text });
   }, [rating, text, show.id, onDraftChange]);
 
-  // Clear validation error when the user fills in the missing field
-  useEffect(() => {
-    if (validationError === "rating" && rating !== null) setValidationError(null);
-    if (validationError === "text" && text.trim().length >= REVIEW_TEXT_MIN) setValidationError(null);
-  }, [rating, text, validationError]);
-
   const showCharCount = text.length > 500;
 
   const handleTextChange = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      setText(e.target.value);
+      const newText = e.target.value;
+      setText(newText);
+      if (validationError === "text" && newText.trim().length >= REVIEW_TEXT_MIN) {
+        setValidationError(null);
+      }
     },
-    [],
+    [validationError],
   );
 
   const handleChipTextChange = useCallback((newText: string) => {
     setText(newText);
-  }, []);
+    if (validationError === "text" && newText.trim().length >= REVIEW_TEXT_MIN) {
+      setValidationError(null);
+    }
+  }, [validationError]);
+
+  const handleRatingChange = useCallback((newRating: number | null) => {
+    setRating(newRating);
+    if (validationError === "rating" && newRating !== null) {
+      setValidationError(null);
+    }
+  }, [validationError]);
 
   const handleNext = useCallback(() => {
     const hasRating = rating !== null;
@@ -130,7 +136,7 @@ export default function ReviewStep({
 
           {/* Star rating */}
           <div className={styles.ratingSection}>
-            <StarRating value={rating} onChange={setRating} disabled={false} />
+            <StarRating value={rating} onChange={handleRatingChange} disabled={false} />
             <span className={`${styles.validationHint} ${validationError === "rating" ? styles.validationHintVisible : ""}`}>
               חסר דירוג כוכבים
             </span>
