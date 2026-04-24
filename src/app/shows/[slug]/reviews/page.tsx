@@ -8,6 +8,7 @@ import { THEATRE_BY_NAME } from "@/constants/theatres";
 import { theatrePath } from "@/constants/routes";
 import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
 import ReviewCard from "@/components/reviews/ReviewCard/ReviewCard";
+import ReviewList from "@/components/reviews/ReviewList/ReviewList";
 import FallbackImage from "@/components/ui/FallbackImage/FallbackImage";
 import {
   SITE_NAME,
@@ -175,9 +176,7 @@ export default async function ShowReviewsPage({ params }: ReviewsPageProps) {
       </header>
 
       <section className={styles.reviewList}>
-        {show.reviews.map((review) => (
-          <ReviewCard key={review.id} review={review} />
-        ))}
+        <ReviewList reviews={show.reviews} />
       </section>
 
       <nav className={styles.linksRow}>

@@ -27,6 +27,7 @@ import { THEATRE_BY_NAME } from "@/constants/theatres";
 import { GENRE_BY_NAME } from "@/constants/genres";
 import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
 import ReviewCard from "@/components/reviews/ReviewCard/ReviewCard";
+import ReviewList from "@/components/reviews/ReviewList/ReviewList";
 import Image from "next/image";
 import FallbackImage from "@/components/ui/FallbackImage/FallbackImage";
 import WatchlistButton from "@/components/shows/WatchlistButton/WatchlistButton";
@@ -460,9 +461,7 @@ export default async function ShowPage({
 
               {otherReviews.length > 0 && (
                 <div className={styles.reviewList}>
-                  {otherReviews.map((review) => (
-                    <ReviewCard key={review.id} review={review} />
-                  ))}
+                  <ReviewList reviews={otherReviews} />
                 </div>
               )}
 

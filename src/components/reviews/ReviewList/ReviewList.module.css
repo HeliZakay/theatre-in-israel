@@ -1,0 +1,18 @@
+.showMore {
+  display: block;
+  margin: 8px auto 0;
+  padding: 10px 24px;
+  background: none;
+  border: 1.5px solid var(--color-curtain-red);
+  border-radius: var(--radius-sm);
+  color: var(--color-curtain-red);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.showMore:hover {
+  background: var(--color-curtain-red);
+  color: #fff;
+}
