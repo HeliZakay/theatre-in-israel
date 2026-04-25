@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-24T04:11:19.492Z",
+  "scrapedAt": "2026-04-25T04:04:03.793Z",
   "touring": true,
   "events": [
     {
@@ -214,14 +214,6 @@
       "showId": 94,
       "showSlug": "משרתם-של-שני-אדונים",
       "date": "2026-05-12",
-      "hour": "20:00",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 86,
-      "showSlug": "נער-האופניים",
-      "date": "2026-05-03",
       "hour": "20:00",
       "venueName": "תיאטרון החאן",
       "venueCity": "ירושלים"
