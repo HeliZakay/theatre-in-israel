@@ -43,7 +43,7 @@ test.describe("Watchlist", () => {
 
     // Button should toggle to "in watchlist" state
     await expect(
-      page.getByRole("button", { name: "ברשימת הצפייה ✓" }),
+      page.getByRole("button", { name: "ברשימת הצפייה" }),
     ).toBeVisible({ timeout: 15_000 });
   });
 
@@ -60,7 +60,7 @@ test.describe("Watchlist", () => {
     await expect(watchlistBtn).toBeVisible();
     await watchlistBtn.click();
     await expect(
-      page.getByRole("button", { name: "ברשימת הצפייה ✓" }),
+      page.getByRole("button", { name: "ברשימת הצפייה" }),
     ).toBeVisible({ timeout: 15_000 });
 
     // Navigate to watchlist page
@@ -85,7 +85,7 @@ test.describe("Watchlist", () => {
     await expect(watchlistBtn).toBeVisible();
     await watchlistBtn.click();
     await expect(
-      page.getByRole("button", { name: "ברשימת הצפייה ✓" }),
+      page.getByRole("button", { name: "ברשימת הצפייה" }),
     ).toBeVisible({ timeout: 15_000 });
 
     // Go to watchlist page

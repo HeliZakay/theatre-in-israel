@@ -122,15 +122,15 @@ test.describe("Anonymous Reviews", () => {
     await expect(page.locator('input[name="name"]')).toBeVisible();
   });
 
-  test("authenticated user does not see name field", async ({
+  test("authenticated user sees name field prefilled and no sign-in hint", async ({
     authedPage,
     firstShow,
   }) => {
     const page = authedPage;
     await page.goto(`/shows/${firstShow.slug}/review`);
 
-    // Authenticated users should NOT see the name or honeypot fields
-    await expect(page.locator('input[name="name"]')).not.toBeVisible();
+    // Authenticated users see the name field prefilled with their session name
+    await expect(page.locator('input[name="name"]')).toHaveValue("Test User");
     // Should NOT see sign-in hint
     await expect(page.getByText("יש לך חשבון?")).not.toBeVisible();
   });

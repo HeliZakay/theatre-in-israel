@@ -84,12 +84,12 @@ test.describe("Navigation", () => {
 
     const footer = page.locator("footer");
 
-    await footer.getByRole("link", { name: "כל ההצגות" }).click();
+    await footer.getByRole("link", { name: "קטלוג הצגות" }).click();
     await expect(page).toHaveURL("/shows");
 
     await page.goto("/");
 
-    await footer.getByRole("link", { name: "שלח.י לנו הודעה" }).click();
+    await footer.getByRole("link", { name: "צר.י קשר" }).click();
     await expect(page).toHaveURL("/contact");
   });
 });
