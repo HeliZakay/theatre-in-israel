@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-25T04:04:54.035Z",
+  "scrapedAt": "2026-04-26T04:16:46.314Z",
   "touring": true,
   "events": [
     {
@@ -94,14 +94,6 @@
       "showId": 241,
       "showSlug": "אנה-קרנינה",
       "date": "2026-06-13",
-      "hour": "18:00",
-      "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
-    },
-    {
-      "showId": 406,
-      "showSlug": "בית-ברנרדה-אלבה",
-      "date": "2026-04-25",
       "hour": "18:00",
       "venueName": "תיאטרון גשר",
       "venueCity": "תל אביב-יפו"

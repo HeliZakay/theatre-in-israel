@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-25T04:04:30.553Z",
+  "scrapedAt": "2026-04-26T04:16:22.586Z",
   "touring": true,
   "events": [
     {
@@ -113,14 +113,6 @@
       "hour": "11:00",
       "venueName": "תיאטרון חיפה",
       "venueCity": "חיפה"
-    },
-    {
-      "showId": 78,
-      "showSlug": "לשחרר-את-נחמה",
-      "date": "2026-04-25",
-      "hour": "21:00",
-      "venueName": "בית החייל ת\"א",
-      "venueCity": "תל אביב"
     },
     {
       "showId": 78,

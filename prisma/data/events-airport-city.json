@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-04-25T04:10:31.683Z",
+  "scrapedAt": "2026-04-26T04:22:36.799Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות איירפורט סיטי",
     "city": "איירפורט סיטי"
   },
   "events": [
-    {
-      "showId": 266,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-04-25",
-      "hour": "21:00"
-    },
     {
       "showId": 81,
       "showSlug": "הזוג-המוזר",

@@ -1,15 +1,7 @@
 {
-  "scrapedAt": "2026-04-23T20:09:56.827Z",
+  "scrapedAt": "2026-04-26T04:20:03.556Z",
   "touring": true,
   "events": [
-    {
-      "showId": 431,
-      "showSlug": "ONE-THING-SHOW",
-      "date": "2026-04-25",
-      "hour": "20:30",
-      "venueName": "DAVAI Theatre Studio",
-      "venueCity": "תל אביב-יפו"
-    },
     {
       "showId": 431,
       "showSlug": "ONE-THING-SHOW",
@@ -59,20 +51,12 @@
       "venueCity": "ראשון לציון"
     },
     {
-      "showId": 429,
-      "showSlug": "סבתא-פרידה",
-      "date": "2026-05-30",
+      "showId": 426,
+      "showSlug": "אפצ׳י",
+      "date": "2026-05-09",
       "hour": "11:00",
       "venueName": "DAVAI Theatre Studio",
       "venueCity": "תל אביב-יפו"
-    },
-    {
-      "showId": 427,
-      "showSlug": "הדבר-העגול-הזה",
-      "date": "2026-04-25",
-      "hour": "11:00",
-      "venueName": "אלומה בית מקומי לתרבות",
-      "venueCity": "הוד השרון"
     },
     {
       "showId": 427,
@@ -83,9 +67,9 @@
       "venueCity": "תל אביב"
     },
     {
-      "showId": 426,
-      "showSlug": "אפצ׳י",
-      "date": "2026-05-09",
+      "showId": 429,
+      "showSlug": "סבתא-פרידה",
+      "date": "2026-05-30",
       "hour": "11:00",
       "venueName": "DAVAI Theatre Studio",
       "venueCity": "תל אביב-יפו"
