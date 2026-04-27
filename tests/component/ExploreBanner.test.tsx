@@ -32,6 +32,7 @@ const mockShows = Array.from({ length: 12 }, (_, i) => ({
   theatre: `תיאטרון ${i % 4}`,
   genre: ["דרמה"],
   avgRating: i % 2 === 0 ? 4.5 : null,
+  reviewCount: 0,
 }));
 
 describe("ExploreBanner", () => {

@@ -279,6 +279,7 @@ export interface ExploreBannerShow {
   theatre: string;
   genre: string[];
   avgRating: number | null;
+  reviewCount: number;
 }
 
 /**
@@ -295,6 +296,7 @@ async function fetchExploreBannerShows(): Promise<ExploreBannerShow[]> {
       title: true,
       theatre: true,
       avgRating: true,
+      reviewCount: true,
       genres: { select: { genre: { select: { name: true } } } },
     },
   });
@@ -305,6 +307,7 @@ async function fetchExploreBannerShows(): Promise<ExploreBannerShow[]> {
     title: r.title,
     theatre: r.theatre,
     avgRating: r.avgRating,
+    reviewCount: r.reviewCount,
     genre: r.genres.map((g) => g.genre.name),
   }));
 

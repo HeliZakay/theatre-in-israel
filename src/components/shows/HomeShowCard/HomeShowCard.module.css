@@ -1,0 +1,95 @@
+.cardWrapper {
+  position: relative;
+  height: 100%;
+}
+
+.card {
+  box-shadow: 0 10px 22px var(--color-slate-008);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  height: 100%;
+}
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.cardLink:focus-visible .card {
+  box-shadow:
+    0 0 0 3px rgba(156, 27, 32, 0.35),
+    0 10px 22px var(--color-slate-008);
+}
+
+.thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background:
+    linear-gradient(160deg, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.35)),
+    radial-gradient(circle at 20% 30%, #f3c78a, transparent 60%),
+    radial-gradient(circle at 80% 20%, #e7996a, transparent 55%), #1b1f2a;
+}
+
+.thumbImage {
+  object-fit: cover;
+}
+
+.body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.cardTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.meta {
+  color: rgba(26, 26, 26, 0.65);
+}
+
+.genreRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.bottomRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: var(--color-curtain-red);
+}
+
+.star {
+  font-size: 1rem;
+}
+
+.noRating {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--color-text-faint);
+}
+
+.reviewCount {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgba(26, 26, 26, 0.6);
+}

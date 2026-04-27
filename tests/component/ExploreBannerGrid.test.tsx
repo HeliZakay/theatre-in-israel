@@ -1,16 +1,23 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
-import ExploreBannerGrid from "@/components/shows/ExploreBanner/ExploreBannerGrid";
+
+jest.mock("@/components/shows/WatchlistToggle/WatchlistToggle", () => {
+  const Mock = () => <button aria-label="mock-watchlist" />;
+  Mock.displayName = "MockWatchlistToggle";
+  return { __esModule: true, default: Mock };
+});
 
 // Mock FallbackImage to a plain <img>
 jest.mock("@/components/ui/FallbackImage/FallbackImage", () => {
   const MockFallbackImage = (props: Record<string, unknown>) => {
     const { fill, sizes, ...rest } = props;
-     
+
     return <img {...(rest as React.ImgHTMLAttributes<HTMLImageElement>)} />;
   };
   MockFallbackImage.displayName = "MockFallbackImage";
   return { __esModule: true, default: MockFallbackImage };
 });
+
+import ExploreBannerGrid from "@/components/shows/ExploreBanner/ExploreBannerGrid";
 
 const mockPool = Array.from({ length: 12 }, (_, i) => ({
   id: i + 1,
@@ -19,6 +26,7 @@ const mockPool = Array.from({ length: 12 }, (_, i) => ({
   theatre: `תיאטרון ${i % 3}`,
   genre: ["דרמה"],
   avgRating: i % 2 === 0 ? 4.5 : null,
+  reviewCount: i % 2 === 0 ? 5 : 0,
 }));
 
 describe("ExploreBannerGrid", () => {
