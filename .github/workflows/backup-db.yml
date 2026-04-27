@@ -1,0 +1,103 @@
+name: Backup Database
+
+on:
+  schedule:
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Install PostgreSQL 17 client
+        run: |
+          sudo install -d /usr/share/postgresql-common/pgdg
+          sudo curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc \
+            -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc
+          echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" \
+            | sudo tee /etc/apt/sources.list.d/pgdg.list
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client-17
+          pg_dump --version
+
+      - name: Set date variables
+        id: vars
+        run: |
+          DATE=$(date -u +%Y-%m-%d)
+          echo "date=$DATE" >> "$GITHUB_OUTPUT"
+          echo "tag=backup-$DATE" >> "$GITHUB_OUTPUT"
+
+      - name: Dump database
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          OUT="backup-${{ steps.vars.outputs.date }}.sql.gz"
+          pg_dump "$DATABASE_URL" \
+            --format=plain \
+            --no-owner \
+            --no-acl \
+            | gzip -9 > "$OUT"
+          ls -lh "$OUT"
+
+      - name: Export reviews JSON
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node scripts/export-reviews.mjs "reviews-${{ steps.vars.outputs.date }}.json"
+
+      - name: Upload to GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="${{ steps.vars.outputs.tag }}"
+          DATE="${{ steps.vars.outputs.date }}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists; uploading assets with --clobber."
+            gh release upload "$TAG" \
+              "backup-$DATE.sql.gz" \
+              "reviews-$DATE.json" \
+              --clobber
+          else
+            gh release create "$TAG" \
+              "backup-$DATE.sql.gz" \
+              "reviews-$DATE.json" \
+              --title "Backup $DATE" \
+              --notes "Automated production database backup."
+          fi
+
+      - name: Weekly Neon branch snapshot
+        env:
+          NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+          NEON_PROJECT_ID: ${{ secrets.NEON_PROJECT_ID }}
+        run: |
+          DOW=$(date -u +%u)
+          if [ "$DOW" = "7" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "Running Neon branch snapshot..."
+            node scripts/lib/neon-branch.mjs
+          else
+            echo "Day-of-week=$DOW (not Sunday); skipping Neon branch snapshot."
+          fi
+
+      - name: Notify on failure
+        if: failure()
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: node scripts/send-backup-failure-email.mjs
