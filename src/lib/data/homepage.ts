@@ -46,7 +46,7 @@ export interface SectionsData {
  */
 async function getTopRated(): Promise<ShowListItem[]> {
   const shows = await prisma.show.findMany({
-    where: { avgRating: { not: null }, reviewCount: { gte: 5 }, ...excludeKidsWhere },
+    where: { avgRating: { not: null }, reviewCount: { gte: 10 }, ...excludeKidsWhere },
     include: showListInclude,
     orderBy: [
       { avgRating: { sort: "desc", nulls: "last" } },
