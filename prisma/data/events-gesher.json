@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-26T04:16:46.314Z",
+  "scrapedAt": "2026-04-27T04:21:08.772Z",
   "touring": true,
   "events": [
     {
@@ -373,8 +373,24 @@
     {
       "showId": 249,
       "showSlug": "קרום",
+      "date": "2026-06-10",
+      "hour": "19:30",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
+      "showId": 249,
+      "showSlug": "קרום",
       "date": "2026-06-11",
       "hour": "19:30",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
+      "showId": 249,
+      "showSlug": "קרום",
+      "date": "2026-06-12",
+      "hour": "20:00",
       "venueName": "תיאטרון גשר",
       "venueCity": "תל אביב-יפו"
     },

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-26T04:15:59.656Z",
+  "scrapedAt": "2026-04-27T04:20:21.583Z",
   "touring": true,
   "events": [
     {
@@ -65,14 +65,6 @@
       "hour": "20:00",
       "venueName": "תיאטרון החאן",
       "venueCity": "ירושלים"
-    },
-    {
-      "showId": 85,
-      "showSlug": "יעקובי-ולידנטל",
-      "date": "2026-04-26",
-      "hour": "20:00",
-      "venueName": "בית ציוני אמריקה",
-      "venueCity": "תל אביב"
     },
     {
       "showId": 85,

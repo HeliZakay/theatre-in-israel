@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-04-26T04:18:29.429Z",
+  "scrapedAt": "2026-04-27T04:22:33.974Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון תמונע",
     "city": "תל אביב"
   },
   "events": [
-    {
-      "showId": 362,
-      "showSlug": "Can-you-beat-the-KGB",
-      "date": "2026-04-26",
-      "hour": "21:00"
-    },
     {
       "showId": 362,
       "showSlug": "Can-you-beat-the-KGB",
@@ -197,12 +191,6 @@
       "showSlug": "בת-של-אבא",
       "date": "2026-06-04",
       "hour": "20:00"
-    },
-    {
-      "showId": 106,
-      "showSlug": "דיק-פיק",
-      "date": "2026-04-26",
-      "hour": "19:00"
     },
     {
       "showId": 106,
@@ -405,6 +393,12 @@
     {
       "showId": 410,
       "showSlug": "מהפכניות",
+      "date": "2026-05-10",
+      "hour": "20:00"
+    },
+    {
+      "showId": 410,
+      "showSlug": "מהפכניות",
       "date": "2026-05-11",
       "hour": "20:00"
     },
@@ -466,12 +460,6 @@
       "showId": 421,
       "showSlug": "שייקספיר-בחווה-הסינית",
       "date": "2026-06-14",
-      "hour": "19:00"
-    },
-    {
-      "showId": 280,
-      "showSlug": "תיאטרון-רפרטוארי",
-      "date": "2026-04-26",
       "hour": "19:00"
     },
     {

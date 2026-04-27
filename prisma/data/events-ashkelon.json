@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-04-26T04:22:24.080Z",
+  "scrapedAt": "2026-04-27T04:26:28.492Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות אשקלון",
     "city": "אשקלון"
   },
   "events": [
-    {
-      "showId": 78,
-      "showSlug": "לשחרר-את-נחמה",
-      "date": "2026-04-26",
-      "hour": "20:30"
-    },
     {
       "showId": 78,
       "showSlug": "לשחרר-את-נחמה",

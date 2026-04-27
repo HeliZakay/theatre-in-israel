@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-26T04:19:19.725Z",
+  "scrapedAt": "2026-04-27T04:23:24.631Z",
   "touring": true,
   "events": [
     {
@@ -126,14 +126,6 @@
       "showId": 367,
       "showSlug": "אסתר",
       "date": "2026-06-23",
-      "hour": "20:30",
-      "venueName": "צוותא",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 182,
-      "showSlug": "בוז׳ולה",
-      "date": "2026-04-26",
       "hour": "20:30",
       "venueName": "צוותא",
       "venueCity": "תל אביב"

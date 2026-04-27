@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-26T04:16:22.586Z",
+  "scrapedAt": "2026-04-27T04:20:36.810Z",
   "touring": true,
   "events": [
     {
@@ -121,14 +121,6 @@
       "hour": "21:00",
       "venueName": "במה ראשית",
       "venueCity": "לא ידוע"
-    },
-    {
-      "showId": 160,
-      "showSlug": "ערב-שקופיות",
-      "date": "2026-05-07",
-      "hour": "20:30",
-      "venueName": "תיאטרון חיפה",
-      "venueCity": "חיפה"
     }
   ]
 }
