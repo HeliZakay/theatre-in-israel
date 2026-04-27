@@ -36,6 +36,7 @@ function makeShow(overrides: Partial<ShowListItem> = {}): ShowListItem {
     genre: ["דרמה"],
     reviewCount: 5,
     avgRating: 4.5,
+    isNew: false,
     ...overrides,
   };
 }
@@ -74,6 +75,16 @@ describe("ShowCard", () => {
   it("renders no tags when genre array is empty", () => {
     render(<ShowCard show={makeShow({ genre: [] })} />);
     expect(screen.queryAllByTestId("tag")).toHaveLength(0);
+  });
+
+  it("shows the new badge when isNew is true", () => {
+    render(<ShowCard show={makeShow({ isNew: true })} />);
+    expect(screen.getByText("חדש")).toBeInTheDocument();
+  });
+
+  it("hides the new badge when isNew is false", () => {
+    render(<ShowCard show={makeShow({ isNew: false })} />);
+    expect(screen.queryByText("חדש")).not.toBeInTheDocument();
   });
 
   it("slices genre array to max 3 tags", () => {

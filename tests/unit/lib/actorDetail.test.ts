@@ -26,6 +26,7 @@ function makeRawShow(id: number, avgRating: number | null, reviewCount: number) 
     description: null,
     avgRating,
     reviewCount,
+    createdAt: new Date("2020-01-01T00:00:00Z"),
     genres: [{ genre: { id: 1, name: "דרמה" } }],
   };
 }

@@ -35,6 +35,7 @@ const makeShow = (overrides: Partial<ShowListItem> = {}): ShowListItem => ({
   genre: ["דרמה"],
   avgRating: 4.5,
   reviewCount: 10,
+  isNew: false,
   durationMinutes: 120,
   summary: "",
   description: null,

@@ -44,6 +44,7 @@ const makeShow = (id: number, title: string) => ({
   durationMinutes: 90,
   summary: "",
   description: null,
+  isNew: false,
 });
 
 const emptySections = {
@@ -53,6 +54,7 @@ const emptySections = {
   musicals: [],
   israeli: [],
   kids: [],
+  newShows: [],
   featuredShowId: null,
 };
 

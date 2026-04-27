@@ -2,6 +2,7 @@ import { Prisma } from "@prisma/client";
 import prisma from "./prisma";
 import { ACTOR_BY_SLUG } from "@/constants/actors";
 import { enrichShow } from "@/utils/showStats";
+import { isShowNew } from "@/lib/shows/isNew";
 import type { Show, EnrichedShow, ShowListItem } from "@/types";
 
 /** Hebrew name of the kids genre in the database. */
@@ -40,10 +41,11 @@ export type PrismaShowListRow = Prisma.ShowGetPayload<{
  * Map a Prisma show (with genres relation via showListInclude) to ShowListItem.
  */
 export function mapToShowListItem(show: PrismaShowListRow): ShowListItem {
-  const { genres, ...rest } = show;
+  const { genres, createdAt, ...rest } = show;
   return {
     ...rest,
     genre: genres?.map((sg) => sg.genre.name) ?? [],
+    isNew: isShowNew({ createdAt, reviewCount: show.reviewCount }),
   } satisfies ShowListItem;
 }
 
@@ -178,7 +180,7 @@ export async function fetchShowListItemsWithEvents(
   });
 
   const items: ShowListItem[] = rawShows.map((show) => {
-    const { genres, events, ...rest } = show;
+    const { genres, events, createdAt, ...rest } = show;
     const nextEvent = events[0]
       ? {
           date:
@@ -193,6 +195,7 @@ export async function fetchShowListItemsWithEvents(
     return {
       ...rest,
       genre: genres?.map((sg) => sg.genre.name) ?? [],
+      isNew: isShowNew({ createdAt, reviewCount: show.reviewCount }),
       nextEvent,
     };
   });

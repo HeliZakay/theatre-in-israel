@@ -4,6 +4,7 @@ import Tag from "@/components/ui/Tag/Tag";
 import Card from "@/components/ui/Card/Card";
 import FallbackImage from "@/components/ui/FallbackImage/FallbackImage";
 import WatchlistToggle from "@/components/shows/WatchlistToggle/WatchlistToggle";
+import NewBadge from "@/components/shows/NewBadge/NewBadge";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import { getShowImageAlt } from "@/lib/seo";
 import { formatEventDate } from "@/utils/formatDate";
@@ -23,6 +24,7 @@ export default function ShowCard({ show, priority }: ShowCardProps) {
       <Link href={`/shows/${slug}`} className={styles.cardLink}>
         <Card as="article" className={styles.card} aria-label={show.title}>
           <div className={styles.imageWrapper}>
+            {show.isNew && <NewBadge />}
             <FallbackImage
               src={getShowImagePath(show.title)}
               alt={getShowImageAlt(show.title)}

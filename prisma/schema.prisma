@@ -24,6 +24,7 @@ model Show {
   webReviewSummary String?
   avgRating       Float?
   reviewCount     Int         @default(0)
+  createdAt       DateTime    @default(now())
   genres          ShowGenre[]
   reviews         Review[]
   watchlist       Watchlist[]

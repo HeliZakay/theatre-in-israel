@@ -72,6 +72,7 @@ export interface ShowListItem {
   genre: string[];
   reviewCount: number;
   avgRating: number | null;
+  isNew: boolean;
   nextEvent?: {
     date: string;
     hour: string;

@@ -10,6 +10,8 @@ import type { ShowListItem, Suggestions, LatestReviewItem } from "@/types";
 import type { EventListItem } from "./eventsList";
 import { GENRE_SECTIONS } from "@/constants/genreGroups";
 import { FEATURED_SHOW_SLUG } from "@/constants/featuredShow";
+import { NEW_SHOW_MAX_REVIEWS } from "@/constants/newShows";
+import { getNewShowCutoffDate } from "@/lib/shows/isNew";
 import { getSuggestions } from "./suggestions";
 
 const DISPLAY_LIMIT = 10;
@@ -35,8 +37,11 @@ export interface SectionsData {
   musicals: ShowListItem[];
   israeli: ShowListItem[];
   kids: ShowListItem[];
+  newShows: ShowListItem[];
   featuredShowId: number | null;
 }
+
+const NEW_SHOWS_DISPLAY_LIMIT = 12;
 
 /**
  * Top shows by review count (most-reviewed first).
@@ -87,6 +92,27 @@ async function getShowsByGenres(
 /**
  * Fetch kids shows — deliberately omits excludeKidsWhere since we *want* kids.
  */
+/**
+ * Recently added shows that haven't yet earned their first reviews.
+ * Mirrors the isShowNew() rule used by the per-card badge.
+ */
+async function getNewShows(
+  limit = NEW_SHOWS_DISPLAY_LIMIT,
+): Promise<ShowListItem[]> {
+  const shows = await prisma.show.findMany({
+    where: {
+      createdAt: { gte: getNewShowCutoffDate() },
+      reviewCount: { lt: NEW_SHOW_MAX_REVIEWS },
+      ...excludeKidsWhere,
+    },
+    include: showListInclude,
+    orderBy: [{ createdAt: "desc" }, { id: "desc" }],
+    take: limit,
+  });
+
+  return shows.map(mapToShowListItem);
+}
+
 async function getKidsShows(limit = 5): Promise<ShowListItem[]> {
   const shows = await prisma.show.findMany({
     where: {
@@ -222,6 +248,7 @@ async function fetchSectionsData(): Promise<SectionsData> {
     musicalsResult,
     israeliResult,
     kidsResult,
+    newShowsResult,
   ] = await Promise.allSettled([
     getTopRated(),
     getShowsByGenres([...GENRE_SECTIONS.dramas.genres], FETCH_LIMIT),
@@ -229,6 +256,7 @@ async function fetchSectionsData(): Promise<SectionsData> {
     getShowsByGenres([...GENRE_SECTIONS.musicals.genres], FETCH_LIMIT),
     getShowsByGenres([...GENRE_SECTIONS.israeli.genres], FETCH_LIMIT),
     getKidsShows(FETCH_LIMIT),
+    getNewShows(),
   ]);
 
   const topRated = settled(topRatedResult, [] as ShowListItem[]);
@@ -237,6 +265,7 @@ async function fetchSectionsData(): Promise<SectionsData> {
   const musicals = settled(musicalsResult, [] as ShowListItem[]);
   const israeli = settled(israeliResult, [] as ShowListItem[]);
   const kids = settled(kidsResult, [] as ShowListItem[]);
+  const newShows = settled(newShowsResult, [] as ShowListItem[]);
 
   const manualFeatured = await getManualFeaturedShow();
   const featuredShow = manualFeatured ?? topRated[0] ?? null;
@@ -262,6 +291,7 @@ async function fetchSectionsData(): Promise<SectionsData> {
     musicals: deduped.musicals,
     israeli: deduped.israeli,
     kids: deduped.kids,
+    newShows,
     featuredShowId,
   };
 }

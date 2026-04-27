@@ -33,6 +33,7 @@ function makePrismaShow(
     description: "A description",
     avgRating: null as number | null,
     reviewCount: 0,
+    createdAt: new Date("2020-01-01T00:00:00Z"),
     genres: genres.map((name) => ({ genre: { name } })),
     reviews,
     ...overrides,
@@ -254,6 +255,7 @@ describe("fetchShowListItems", () => {
       description: null,
       avgRating: 4.5,
       reviewCount: 10,
+      createdAt: new Date("2020-01-01T00:00:00Z"),
       genres: [{ genre: { name: "musical" } }],
     };
 
@@ -277,6 +279,7 @@ describe("fetchShowListItems", () => {
       avgRating: 4.5,
       reviewCount: 10,
       genre: ["musical"],
+      isNew: false,
     });
   });
 
@@ -292,6 +295,7 @@ describe("fetchShowListItems", () => {
       description: null,
       avgRating: null,
       reviewCount: 0,
+      createdAt: new Date("2020-01-01T00:00:00Z"),
       genres: [{ genre: { name: "comedy" } }, { genre: { name: "satire" } }],
     };
 
@@ -314,6 +318,7 @@ describe("fetchShowListItems", () => {
       description: null,
       avgRating: null,
       reviewCount: 0,
+      createdAt: new Date("2020-01-01T00:00:00Z"),
       genres: [],
     };
     const showY = {
@@ -326,6 +331,7 @@ describe("fetchShowListItems", () => {
       description: null,
       avgRating: null,
       reviewCount: 0,
+      createdAt: new Date("2020-01-01T00:00:00Z"),
       genres: [],
     };
 
@@ -348,6 +354,7 @@ describe("fetchShowListItems", () => {
       description: null,
       avgRating: null,
       reviewCount: 0,
+      createdAt: new Date("2020-01-01T00:00:00Z"),
       genres: [],
     };
     (mockPrisma.show.findMany as jest.Mock).mockResolvedValue([show]);

@@ -68,6 +68,7 @@ describe("mapToShowListItem", () => {
       description: null,
       reviewCount: 0,
       avgRating: null,
+      createdAt: new Date("2020-01-01T00:00:00Z"),
       genres: [
         { genre: { name: "דרמה" } },
         { genre: { name: "קומדיה" } },
@@ -93,6 +94,7 @@ describe("mapToShowListItem", () => {
       description: null,
       reviewCount: 0,
       avgRating: null,
+      createdAt: new Date("2020-01-01T00:00:00Z"),
       genres: null,
     };
 

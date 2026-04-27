@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default async function ShowsSectionsContent({ banner }: Props) {
-  const { topRated, dramas, comedies, musicals, israeli, kids } =
+  const { topRated, dramas, comedies, musicals, israeli, kids, newShows } =
     await getSectionsData();
 
   const itemListJsonLd =
@@ -37,6 +37,14 @@ export default async function ShowsSectionsContent({ banner }: Props) {
           dangerouslySetInnerHTML={{ __html: toJsonLd(itemListJsonLd) }}
         />
       )}
+      {newShows.length > 0 && (
+        <ShowsSection
+          kicker="טריים על הבמה"
+          title="נוספו לאחרונה"
+          shows={newShows}
+        />
+      )}
+
       <ShowsSection
         kicker="המובילים"
         title="דירוגים גבוהים"

@@ -74,6 +74,7 @@ function makeShow(id: number): ShowListItem {
     genre: [],
     reviewCount: 0,
     avgRating: null,
+    isNew: false,
   };
 }
 

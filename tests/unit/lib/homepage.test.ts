@@ -27,6 +27,7 @@ function makeShow(
     genre: [],
     reviewCount: 0,
     avgRating: null,
+    isNew: false,
     ...overrides,
   };
 }

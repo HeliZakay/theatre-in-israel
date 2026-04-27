@@ -3,6 +3,7 @@ import Card from "@/components/ui/Card/Card";
 import FallbackImage from "@/components/ui/FallbackImage/FallbackImage";
 import Tag from "@/components/ui/Tag/Tag";
 import WatchlistToggle from "@/components/shows/WatchlistToggle/WatchlistToggle";
+import NewBadge from "@/components/shows/NewBadge/NewBadge";
 import { showPath } from "@/constants/routes";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import styles from "./HomeShowCard.module.css";
@@ -15,6 +16,7 @@ export interface HomeShowCardData {
   genre: string[];
   avgRating: number | null;
   reviewCount: number;
+  isNew?: boolean;
 }
 
 interface HomeShowCardProps {
@@ -42,6 +44,7 @@ export default function HomeShowCard({
       <Link className={styles.cardLink} href={showPath(slug)}>
         <Card as="article" className={styles.card}>
           <div className={styles.thumb}>
+            {show.isNew && <NewBadge />}
             <FallbackImage
               src={getShowImagePath(show.title)}
               alt={show.title}

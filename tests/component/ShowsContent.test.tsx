@@ -61,6 +61,7 @@ function makeShow(id: number, title = `Show ${id}`): ShowListItem {
     genre: ["drama"],
     reviewCount: 5,
     avgRating: 4.2,
+    isNew: false,
   };
 }
 
