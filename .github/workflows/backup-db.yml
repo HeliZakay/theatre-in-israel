@@ -48,7 +48,9 @@ jobs:
       - name: Dump database
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          PGSSLROOTCERT: system
         run: |
+          set -o pipefail
           OUT="backup-${{ steps.vars.outputs.date }}.sql.gz"
           pg_dump "$DATABASE_URL" \
             --format=plain \
@@ -56,6 +58,11 @@ jobs:
             --no-acl \
             | gzip -9 > "$OUT"
           ls -lh "$OUT"
+          SIZE=$(stat -c%s "$OUT")
+          if [ "$SIZE" -lt 1024 ]; then
+            echo "ERROR: dump is suspiciously small ($SIZE bytes); aborting."
+            exit 1
+          fi
 
       - name: Export reviews JSON
         env:
