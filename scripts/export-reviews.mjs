@@ -8,7 +8,7 @@
  */
 
 import { writeFileSync } from "node:fs";
-import { PrismaClient } from "@prisma/client";
+import { createPrismaClient } from "./lib/db.mjs";
 
 const outPath = process.argv[2];
 if (!outPath) {
@@ -16,10 +16,14 @@ if (!outPath) {
   process.exit(1);
 }
 
-const prisma = new PrismaClient();
+const db = await createPrismaClient();
+if (!db) {
+  console.error("DATABASE_URL not set");
+  process.exit(1);
+}
 
 try {
-  const reviews = await prisma.review.findMany({
+  const reviews = await db.prisma.review.findMany({
     include: {
       show: { select: { slug: true, title: true } },
       user: { select: { email: true } },
@@ -36,5 +40,6 @@ try {
   writeFileSync(outPath, JSON.stringify(payload, null, 2));
   console.log(`Exported ${reviews.length} reviews -> ${outPath}`);
 } finally {
-  await prisma.$disconnect();
+  await db.prisma.$disconnect();
+  await db.pool.end();
 }
