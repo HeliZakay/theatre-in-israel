@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-27T04:24:17.062Z",
+  "scrapedAt": "2026-04-28T04:26:12.747Z",
   "touring": true,
   "events": [
     {
@@ -65,6 +65,14 @@
       "hour": "11:00",
       "venueName": "Tel Aviv Museum of Art",
       "venueCity": "תל אביב"
+    },
+    {
+      "showId": 429,
+      "showSlug": "סבתא-פרידה",
+      "date": "2026-05-14",
+      "hour": "16:30",
+      "venueName": "מתנ\"ס ראש פינה",
+      "venueCity": "ראש פינה"
     },
     {
       "showId": 429,

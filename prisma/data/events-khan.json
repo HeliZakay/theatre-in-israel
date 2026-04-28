@@ -1,7 +1,15 @@
 {
-  "scrapedAt": "2026-04-27T04:20:21.583Z",
+  "scrapedAt": "2026-04-28T04:22:21.368Z",
   "touring": true,
   "events": [
+    {
+      "showId": 161,
+      "showSlug": "אבדוֹת-ומציאוּת",
+      "date": "2026-05-07",
+      "hour": "18:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
     {
       "showId": 161,
       "showSlug": "אבדוֹת-ומציאוּת",
@@ -65,14 +73,6 @@
       "hour": "20:00",
       "venueName": "תיאטרון החאן",
       "venueCity": "ירושלים"
-    },
-    {
-      "showId": 85,
-      "showSlug": "יעקובי-ולידנטל",
-      "date": "2026-04-27",
-      "hour": "18:00",
-      "venueName": "בית ציוני אמריקה",
-      "venueCity": "תל אביב"
     },
     {
       "showId": 85,
