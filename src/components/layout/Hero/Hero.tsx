@@ -48,26 +48,26 @@ export default function Hero({
               לפני שקונים כרטיס – בודקים מה הקהל חושב.
             </p>
             {platformStats && platformStats.upcomingEvents > 0 ? (
-              <p className={styles.statsStrip}>
-                <span className={styles.statItem}>
-                  <span className={styles.statLabel}>מעל </span>
-                  <bdi className={styles.statNumber} dir="ltr">{roundDownToHundred(platformStats.upcomingEvents).toLocaleString("en-US")}</bdi>
-                  <span className={styles.statLabel}> מועדי הצגות קרובים</span>
-                </span>
-                <span className={styles.statSeparator} aria-hidden="true">·</span>
-                <span className={styles.statItem}>
+              <div className={styles.statsStrip} role="list">
+                <div className={styles.statBlock} role="listitem">
+                  <bdi className={styles.statNumber} dir="ltr">
+                    {roundDownToHundred(platformStats.upcomingEvents).toLocaleString("en-US")}+
+                  </bdi>
+                  <span className={styles.statLabel}>מועדי הצגות קרובים</span>
+                </div>
+                <div className={styles.statBlock} role="listitem">
                   <bdi className={styles.statNumber} dir="ltr">{platformStats.theatres}</bdi>
-                  <span className={styles.statLabel}> תיאטראות ב-</span>
-                  <bdi className={styles.statNumber} dir="ltr">{platformStats.cities}</bdi>
-                  <span className={styles.statLabel}> ערים</span>
-                </span>
-                <span className={styles.statSeparator} aria-hidden="true">·</span>
-                <span className={styles.statItem}>
-                  <span className={styles.statLabel}>מעל </span>
-                  <bdi className={styles.statNumber} dir="ltr">{roundDownToHundred(platformStats.reviews).toLocaleString("en-US")}</bdi>
-                  <span className={styles.statLabel}> ביקורות צופים</span>
-                </span>
-              </p>
+                  <span className={styles.statLabel}>
+                    תיאטראות ב-{platformStats.cities} ערים
+                  </span>
+                </div>
+                <div className={styles.statBlock} role="listitem">
+                  <bdi className={styles.statNumber} dir="ltr">
+                    {roundDownToHundred(platformStats.reviews).toLocaleString("en-US")}+
+                  </bdi>
+                  <span className={styles.statLabel}>ביקורות צופים</span>
+                </div>
+              </div>
             ) : totalReviewCount >= 100 ? (
               <p className={styles.socialProof}>
                 <span className={styles.socialProofStar}>★</span>{" "}
