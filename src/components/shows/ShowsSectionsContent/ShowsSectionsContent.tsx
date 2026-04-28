@@ -39,7 +39,7 @@ export default async function ShowsSectionsContent({ banner }: Props) {
       )}
       {newShows.length > 0 && (
         <ShowsSection
-          kicker="טריים על הבמה"
+          kicker="חדשים באתר"
           title="נוספו לאחרונה"
           shows={newShows}
         />

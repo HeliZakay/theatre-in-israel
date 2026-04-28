@@ -79,12 +79,12 @@ describe("ShowCard", () => {
 
   it("shows the new badge when isNew is true", () => {
     render(<ShowCard show={makeShow({ isNew: true })} />);
-    expect(screen.getByText("חדש")).toBeInTheDocument();
+    expect(screen.getByText("חדש באתר")).toBeInTheDocument();
   });
 
   it("hides the new badge when isNew is false", () => {
     render(<ShowCard show={makeShow({ isNew: false })} />);
-    expect(screen.queryByText("חדש")).not.toBeInTheDocument();
+    expect(screen.queryByText("חדש באתר")).not.toBeInTheDocument();
   });
 
   it("slices genre array to max 3 tags", () => {
