@@ -3,8 +3,11 @@
 import { usePathname } from "next/navigation";
 import styles from "./SecurityBanner.module.css";
 
+const ENABLED = false;
+
 export default function SecurityBanner() {
   const pathname = usePathname();
+  if (!ENABLED) return null;
   if (pathname.startsWith("/reviews/batch")) return null;
 
   return (
