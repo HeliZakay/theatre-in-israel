@@ -13,6 +13,7 @@ import {
   getExploreBannerShows,
   getLatestReviews,
   getTotalReviewCount,
+  getPlatformStats,
 } from "@/lib/data/homepage";
 import LatestReviewsSection from "@/components/reviews/LatestReviewsSection/LatestReviewsSection";
 import { SITE_NAME } from "@/lib/seo";
@@ -52,8 +53,19 @@ export async function generateMetadata(): Promise<Metadata> {
 export const revalidate = 120;
 
 export default async function Home() {
-  const [{ suggestions, featuredShow, featuredReview }, exploreShows, latestReviews, totalReviewCount] =
-    await Promise.all([getHeroData(), getExploreBannerShows(), getLatestReviews(), getTotalReviewCount()]);
+  const [
+    { suggestions, featuredShow, featuredReview },
+    exploreShows,
+    latestReviews,
+    totalReviewCount,
+    platformStats,
+  ] = await Promise.all([
+    getHeroData(),
+    getExploreBannerShows(),
+    getLatestReviews(),
+    getTotalReviewCount(),
+    getPlatformStats(),
+  ]);
 
   return (
     <main className={styles.page} id="main-content">
@@ -62,6 +74,7 @@ export default async function Home() {
         featuredShow={featuredShow}
         featuredReview={featuredReview}
         totalReviewCount={totalReviewCount}
+        platformStats={platformStats}
       />
 
       <Suspense fallback={null}>

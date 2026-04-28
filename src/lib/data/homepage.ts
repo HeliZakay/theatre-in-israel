@@ -594,3 +594,42 @@ export const getTotalReviewCount = unstable_cache(
   ["homepage-total-reviews"],
   { revalidate: 120, tags: ["homepage"] },
 );
+
+// ---------------------------------------------------------------------------
+// Platform stats (hero strip)
+// ---------------------------------------------------------------------------
+
+export interface PlatformStats {
+  upcomingEvents: number;
+  theatres: number;
+  venues: number;
+  cities: number;
+  reviews: number;
+}
+
+async function fetchPlatformStats(): Promise<PlatformStats> {
+  const [upcomingEvents, theatreRows, venueRows, reviews] = await Promise.all([
+    prisma.event.count({ where: { date: { gte: new Date() } } }),
+    prisma.show.findMany({ distinct: ["theatre"], select: { theatre: true } }),
+    prisma.venue.findMany({ select: { city: true } }),
+    prisma.review.count(),
+  ]);
+
+  const cities = new Set(
+    venueRows.map((v) => v.city).filter((c): c is string => Boolean(c)),
+  ).size;
+
+  return {
+    upcomingEvents,
+    theatres: theatreRows.length,
+    venues: venueRows.length,
+    cities,
+    reviews,
+  };
+}
+
+export const getPlatformStats = unstable_cache(
+  fetchPlatformStats,
+  ["homepage-platform-stats"],
+  { revalidate: 600, tags: ["homepage"] },
+);

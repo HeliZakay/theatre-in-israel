@@ -5,13 +5,18 @@ import { getShowImagePath } from "@/utils/getShowImagePath";
 import ROUTES, { showPath } from "@/constants/routes";
 import { formatReviewMilestone } from "@/utils/formatReviewCount";
 import type { ShowListItem, Suggestions } from "@/types";
-import type { FeaturedReview } from "@/lib/data/homepage";
+import type { FeaturedReview, PlatformStats } from "@/lib/data/homepage";
+
+function roundDownToHundred(n: number): number {
+  return Math.floor(n / 100) * 100;
+}
 
 interface HeroProps {
   suggestions?: Suggestions;
   featuredShow?: ShowListItem | null;
   featuredReview?: FeaturedReview | null;
   totalReviewCount?: number;
+  platformStats?: PlatformStats | null;
 }
 
 export default function Hero({
@@ -19,6 +24,7 @@ export default function Hero({
   featuredShow = null,
   featuredReview = null,
   totalReviewCount = 0,
+  platformStats = null,
 }: HeroProps) {
   const featuredTags: string[] = featuredShow
     ? [
@@ -41,7 +47,28 @@ export default function Hero({
             <p className={styles.subtitle}>
               לפני שקונים כרטיס – בודקים מה הקהל חושב.
             </p>
-            {totalReviewCount >= 100 ? (
+            {platformStats && platformStats.upcomingEvents > 0 ? (
+              <p className={styles.statsStrip}>
+                <span className={styles.statItem}>
+                  <span className={styles.statLabel}>מעל </span>
+                  <bdi className={styles.statNumber} dir="ltr">{roundDownToHundred(platformStats.upcomingEvents).toLocaleString("en-US")}</bdi>
+                  <span className={styles.statLabel}> מועדי הצגות קרובים</span>
+                </span>
+                <span className={styles.statSeparator} aria-hidden="true">·</span>
+                <span className={styles.statItem}>
+                  <bdi className={styles.statNumber} dir="ltr">{platformStats.theatres}</bdi>
+                  <span className={styles.statLabel}> תיאטראות ב-</span>
+                  <bdi className={styles.statNumber} dir="ltr">{platformStats.cities}</bdi>
+                  <span className={styles.statLabel}> ערים</span>
+                </span>
+                <span className={styles.statSeparator} aria-hidden="true">·</span>
+                <span className={styles.statItem}>
+                  <span className={styles.statLabel}>מעל </span>
+                  <bdi className={styles.statNumber} dir="ltr">{roundDownToHundred(platformStats.reviews).toLocaleString("en-US")}</bdi>
+                  <span className={styles.statLabel}> ביקורות צופים</span>
+                </span>
+              </p>
+            ) : totalReviewCount >= 100 ? (
               <p className={styles.socialProof}>
                 <span className={styles.socialProofStar}>★</span>{" "}
                 {formatReviewMilestone(totalReviewCount)} ביקורות צופים
