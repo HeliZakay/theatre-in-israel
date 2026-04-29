@@ -119,25 +119,39 @@ export function useInfiniteShows({
   const mountedRef = useRef(true);
   const pageRef = useRef(restoredState?.page ?? 2);
 
-  // Restore scroll position from session.
-  // Uses a retry loop because Next.js's InnerScrollAndFocusHandler may
-  // reset scroll asynchronously after our first attempt.
+  // Restore scroll position from session. Loops via rAF for up to ~2s
+  // because images and lazy content can grow document height after the
+  // initial commit. Bails early on the first user-driven input so we
+  // don't fight someone who started scrolling/clicking mid-restore.
   useEffect(() => {
     if (restoredState?.scrollY == null) return;
     const targetY = restoredState.scrollY;
     let attempts = 0;
     let stopped = false;
 
+    const stop = () => {
+      stopped = true;
+    };
+
     function tryScroll() {
       if (stopped) return;
       window.scrollTo(0, targetY);
-      if (Math.abs(window.scrollY - targetY) < 10 || ++attempts >= 20) return;
+      if (Math.abs(window.scrollY - targetY) < 10 || ++attempts >= 120) {
+        stopped = true;
+        return;
+      }
       requestAnimationFrame(tryScroll);
     }
 
+    window.addEventListener("wheel", stop, { passive: true, once: true });
+    window.addEventListener("touchstart", stop, { passive: true, once: true });
+    window.addEventListener("keydown", stop, { once: true });
     requestAnimationFrame(tryScroll);
     return () => {
       stopped = true;
+      window.removeEventListener("wheel", stop);
+      window.removeEventListener("touchstart", stop);
+      window.removeEventListener("keydown", stop);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -300,25 +314,79 @@ export function useInfiniteShows({
     hasMoreRef.current = hasMore;
   }, [hasMore]);
 
-  // Save scroll position on navigation away + cleanup on unmount
+  // Persist scroll position continuously, with a freeze on user input.
+  //
+  // Why not save on unmount: when a user clicks a show, React commits the
+  // new route by removing the long shows list (~30000px) and rendering the
+  // shorter detail page (~1000px). The browser auto-clamps window.scrollY
+  // to the new max, so by the time the unmount cleanup runs, scrollY is
+  // already a small bogus value (≈ detail-page max scroll), not the user's
+  // real position. Saving at unmount captures the wrong number.
+  //
+  // Instead we save eagerly: scroll events update a ref (throttled writes
+  // to sessionStorage); pointerdown/keydown freeze the tracking and persist
+  // immediately. Subsequent layout-induced scroll events during the route
+  // commit are ignored thanks to the freeze, so the persisted scrollY is
+  // the position the user actually had right before they clicked.
   useEffect(() => {
-    const saveScroll = () => {
+    let frozen = false;
+    let unfreezeTimer: ReturnType<typeof setTimeout> | null = null;
+    let lastWriteAt = 0;
+    let pendingFrame: number | null = null;
+
+    const persist = (scrollY: number) => {
       saveToSession({
         shows: showsRef.current,
         page: pageRef.current,
         hasMore: hasMoreRef.current,
         filterKey: filterKeyRef.current,
-        scrollY: window.scrollY,
+        scrollY,
       });
     };
 
-    window.addEventListener("beforeunload", saveScroll);
+    const onScroll = () => {
+      if (frozen) return;
+      const now = performance.now();
+      if (now - lastWriteAt < 150) {
+        if (pendingFrame != null) return;
+        pendingFrame = requestAnimationFrame(() => {
+          pendingFrame = null;
+          if (frozen) return;
+          lastWriteAt = performance.now();
+          persist(window.scrollY);
+        });
+        return;
+      }
+      lastWriteAt = now;
+      persist(window.scrollY);
+    };
+
+    const onUserInput = () => {
+      // Freeze first so any synchronous layout-collapse scroll events that
+      // follow this click can't overwrite the persisted value.
+      frozen = true;
+      persist(window.scrollY);
+      if (unfreezeTimer) clearTimeout(unfreezeTimer);
+      unfreezeTimer = setTimeout(() => {
+        frozen = false;
+      }, 2000);
+    };
+
+    const onBeforeUnload = () => persist(window.scrollY);
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("pointerdown", onUserInput, { passive: true });
+    window.addEventListener("keydown", onUserInput);
+    window.addEventListener("beforeunload", onBeforeUnload);
+
     return () => {
-      window.removeEventListener("beforeunload", saveScroll);
-      // Block any pending rAFs from overwriting the session data
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("pointerdown", onUserInput);
+      window.removeEventListener("keydown", onUserInput);
+      window.removeEventListener("beforeunload", onBeforeUnload);
+      if (unfreezeTimer) clearTimeout(unfreezeTimer);
+      if (pendingFrame != null) cancelAnimationFrame(pendingFrame);
       mountedRef.current = false;
-      // Also save when component unmounts (SPA navigation)
-      saveScroll();
       abortRef.current?.abort();
       observerRef.current?.disconnect();
     };
