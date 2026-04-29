@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-28T04:23:48.359Z",
+  "scrapedAt": "2026-04-29T04:21:24.918Z",
   "touring": true,
   "events": [
     {
@@ -273,14 +273,6 @@
       "hour": "20:30",
       "venueName": "היכל התרבות פתח תקווה",
       "venueCity": "פתח תקווה"
-    },
-    {
-      "showId": 114,
-      "showSlug": "עפרה",
-      "date": "2026-04-28",
-      "hour": "20:30",
-      "venueName": "היכל התרבות אור עקיבא",
-      "venueCity": "אור עקיבא"
     },
     {
       "showId": 114,

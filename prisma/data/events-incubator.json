@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-28T04:25:31.667Z",
+  "scrapedAt": "2026-04-29T04:23:19.045Z",
   "touring": true,
   "events": [
     {
@@ -78,14 +78,6 @@
       "showId": 291,
       "showSlug": "איפה-הילד",
       "date": "2026-06-21",
-      "hour": "21:00",
-      "venueName": "תיאטרון הבית ת\"א",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 101,
-      "showSlug": "אנטי-אייג׳ינג",
-      "date": "2026-04-28",
       "hour": "21:00",
       "venueName": "תיאטרון הבית ת\"א",
       "venueCity": "תל אביב"

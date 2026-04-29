@@ -1,23 +1,11 @@
 {
-  "scrapedAt": "2026-04-28T04:28:48.211Z",
+  "scrapedAt": "2026-04-29T04:26:44.139Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון חולון",
     "city": "חולון"
   },
   "events": [
-    {
-      "showId": 9,
-      "showSlug": "החולה-ההודי",
-      "date": "2026-04-28",
-      "hour": "17:00"
-    },
-    {
-      "showId": 9,
-      "showSlug": "החולה-ההודי",
-      "date": "2026-04-28",
-      "hour": "20:30"
-    },
     {
       "showId": 269,
       "showSlug": "דרושה-עוזרת",

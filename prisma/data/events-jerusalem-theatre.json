@@ -1,23 +1,11 @@
 {
-  "scrapedAt": "2026-04-28T04:30:10.211Z",
+  "scrapedAt": "2026-04-29T04:27:56.485Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון ירושלים",
     "city": "ירושלים"
   },
   "events": [
-    {
-      "showId": 75,
-      "showSlug": "שם-פרטי",
-      "date": "2026-04-28",
-      "hour": "17:00"
-    },
-    {
-      "showId": 75,
-      "showSlug": "שם-פרטי",
-      "date": "2026-04-28",
-      "hour": "20:30"
-    },
     {
       "showId": 3,
       "showSlug": "לנקות-את-הראש",

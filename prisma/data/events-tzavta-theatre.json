@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-04-28T04:27:02.346Z",
+  "scrapedAt": "2026-04-29T04:24:52.051Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון צוותא",
     "city": "תל אביב"
   },
   "events": [
-    {
-      "showId": 450,
-      "showSlug": "אורות-קטנות",
-      "date": "2026-04-28",
-      "hour": "20:30"
-    },
     {
       "showId": 450,
       "showSlug": "אורות-קטנות",
