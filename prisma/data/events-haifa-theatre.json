@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-29T04:20:17.017Z",
+  "scrapedAt": "2026-04-30T04:22:36.088Z",
   "touring": true,
   "events": [
     {
@@ -67,6 +67,22 @@
       "venueCity": "לא ידוע"
     },
     {
+      "showId": 82,
+      "showSlug": "היומן",
+      "date": "2026-07-27",
+      "hour": "20:30",
+      "venueName": "היכל אומנוית הבמה - הרצליה",
+      "venueCity": "הרצליה"
+    },
+    {
+      "showId": 82,
+      "showSlug": "היומן",
+      "date": "2026-07-28",
+      "hour": "17:00",
+      "venueName": "היכל אומנוית הבמה - הרצליה",
+      "venueCity": "הרצליה"
+    },
+    {
       "showId": 77,
       "showSlug": "המאסטר-(אלוף-הבונים-שלי)",
       "date": "2026-06-30",
@@ -77,10 +93,18 @@
     {
       "showId": 80,
       "showSlug": "לילסדה",
+      "date": "2026-06-01",
+      "hour": "20:30",
+      "venueName": "היכל אומנוית הבמה - הרצליה",
+      "venueCity": "הרצליה"
+    },
+    {
+      "showId": 80,
+      "showSlug": "לילסדה",
       "date": "2026-07-21",
       "hour": "11:00",
-      "venueName": "תיאטרון חיפה",
-      "venueCity": "חיפה"
+      "venueName": "במה ראשית",
+      "venueCity": "לא ידוע"
     },
     {
       "showId": 78,

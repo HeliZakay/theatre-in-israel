@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-29T04:20:49.032Z",
+  "scrapedAt": "2026-04-30T04:22:31.977Z",
   "touring": true,
   "events": [
     {
@@ -55,6 +55,22 @@
       "showSlug": "אמא-קוראז׳-וילדיה",
       "date": "2026-06-27",
       "hour": "18:00",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
+      "showId": 240,
+      "showSlug": "אמא-קוראז׳-וילדיה",
+      "date": "2026-07-14",
+      "hour": "19:30",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
+      "showId": 240,
+      "showSlug": "אמא-קוראז׳-וילדיה",
+      "date": "2026-07-15",
+      "hour": "19:30",
       "venueName": "תיאטרון גשר",
       "venueCity": "תל אביב-יפו"
     },
@@ -163,9 +179,25 @@
       "venueCity": "תל אביב-יפו"
     },
     {
+      "showId": 406,
+      "showSlug": "בית-ברנרדה-אלבה",
+      "date": "2026-07-01",
+      "hour": "19:30",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
       "showId": 243,
       "showSlug": "הדיבוק",
       "date": "2026-07-20",
+      "hour": "19:30",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
+      "showId": 243,
+      "showSlug": "הדיבוק",
+      "date": "2026-07-21",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
       "venueCity": "תל אביב-יפו"
@@ -277,14 +309,6 @@
     {
       "showId": 246,
       "showSlug": "מי-כמוני",
-      "date": "2026-05-13",
-      "hour": "20:00",
-      "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
-    },
-    {
-      "showId": 246,
-      "showSlug": "מי-כמוני",
       "date": "2026-05-14",
       "hour": "20:00",
       "venueName": "תיאטרון גשר",
@@ -357,14 +381,6 @@
     {
       "showId": 96,
       "showSlug": "נשמות",
-      "date": "2026-04-29",
-      "hour": "19:30",
-      "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
-    },
-    {
-      "showId": 96,
-      "showSlug": "נשמות",
       "date": "2026-04-30",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
@@ -391,6 +407,54 @@
       "showSlug": "נשמות",
       "date": "2026-05-02",
       "hour": "18:00",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
+      "showId": 96,
+      "showSlug": "נשמות",
+      "date": "2026-07-08",
+      "hour": "19:30",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
+      "showId": 96,
+      "showSlug": "נשמות",
+      "date": "2026-07-09",
+      "hour": "19:30",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
+      "showId": 96,
+      "showSlug": "נשמות",
+      "date": "2026-07-10",
+      "hour": "12:00",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
+      "showId": 96,
+      "showSlug": "נשמות",
+      "date": "2026-07-10",
+      "hour": "20:00",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
+      "showId": 96,
+      "showSlug": "נשמות",
+      "date": "2026-07-11",
+      "hour": "18:00",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
+      "showId": 96,
+      "showSlug": "נשמות",
+      "date": "2026-07-12",
+      "hour": "19:30",
       "venueName": "תיאטרון גשר",
       "venueCity": "תל אביב-יפו"
     },

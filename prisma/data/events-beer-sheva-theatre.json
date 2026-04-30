@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-29T04:21:23.194Z",
+  "scrapedAt": "2026-04-30T04:23:03.333Z",
   "touring": true,
   "events": [
     {
@@ -431,62 +431,6 @@
       "showSlug": "באר-שבסקיה",
       "date": "2026-08-03",
       "hour": "21:00",
-      "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
-    },
-    {
-      "showId": 171,
-      "showSlug": "באר-שבסקיה",
-      "date": "2026-08-05",
-      "hour": "17:00",
-      "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
-    },
-    {
-      "showId": 171,
-      "showSlug": "באר-שבסקיה",
-      "date": "2026-08-05",
-      "hour": "19:00",
-      "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
-    },
-    {
-      "showId": 171,
-      "showSlug": "באר-שבסקיה",
-      "date": "2026-08-06",
-      "hour": "19:00",
-      "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
-    },
-    {
-      "showId": 171,
-      "showSlug": "באר-שבסקיה",
-      "date": "2026-08-06",
-      "hour": "21:00",
-      "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
-    },
-    {
-      "showId": 171,
-      "showSlug": "באר-שבסקיה",
-      "date": "2026-08-08",
-      "hour": "21:00",
-      "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
-    },
-    {
-      "showId": 84,
-      "showSlug": "העלמה-והמוות",
-      "date": "2026-04-29",
-      "hour": "17:00",
-      "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
-    },
-    {
-      "showId": 84,
-      "showSlug": "העלמה-והמוות",
-      "date": "2026-04-29",
-      "hour": "20:30",
       "venueName": "תיאטרון באר שבע",
       "venueCity": "באר שבע"
     },

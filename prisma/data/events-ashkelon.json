@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-04-29T04:26:05.004Z",
+  "scrapedAt": "2026-04-30T04:28:07.729Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות אשקלון",
     "city": "אשקלון"
   },
   "events": [
-    {
-      "showId": 78,
-      "showSlug": "לשחרר-את-נחמה",
-      "date": "2026-04-29",
-      "hour": "20:30"
-    },
     {
       "showId": 15,
       "showSlug": "חשמלית-ושמה-תשוקה",

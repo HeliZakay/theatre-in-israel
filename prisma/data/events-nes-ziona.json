@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-04-29T04:25:38.569Z",
+  "scrapedAt": "2026-04-30T04:27:31.170Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות נס ציונה",
     "city": "נס ציונה"
   },
   "events": [
-    {
-      "showId": 28,
-      "showSlug": "הלווייתן",
-      "date": "2026-04-29",
-      "hour": "20:30"
-    },
     {
       "showId": 28,
       "showSlug": "הלווייתן",
