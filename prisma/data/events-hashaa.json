@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-04-30T04:25:29.407Z",
+  "scrapedAt": "2026-05-01T04:33:46.098Z",
   "touring": true,
   "events": [
     {
@@ -209,14 +209,6 @@
       "hour": "17:30",
       "venueName": "מרכז קהילתי חוף אשקלון",
       "venueCity": "אשקלון"
-    },
-    {
-      "showId": 442,
-      "showSlug": "הענק-וגנו",
-      "date": "2026-04-30",
-      "hour": "17:30",
-      "venueName": "היכל התרבות כרמיאל",
-      "venueCity": "כרמיאל"
     },
     {
       "showId": 442,

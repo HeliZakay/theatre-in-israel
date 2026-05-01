@@ -1,19 +1,11 @@
 {
-  "scrapedAt": "2026-04-30T04:25:53.838Z",
+  "scrapedAt": "2026-05-01T04:34:03.577Z",
   "touring": true,
   "events": [
     {
       "showId": 431,
       "showSlug": "ONE-THING-SHOW",
       "date": "2026-05-23",
-      "hour": "20:30",
-      "venueName": "DAVAI Theatre Studio",
-      "venueCity": "תל אביב-יפו"
-    },
-    {
-      "showId": 432,
-      "showSlug": "UNDER-CONSTRUCTION",
-      "date": "2026-04-30",
       "hour": "20:30",
       "venueName": "DAVAI Theatre Studio",
       "venueCity": "תל אביב-יפו"
