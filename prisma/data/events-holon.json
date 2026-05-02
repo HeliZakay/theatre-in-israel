@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-05-01T04:37:02.297Z",
+  "scrapedAt": "2026-05-02T04:19:06.903Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון חולון",
     "city": "חולון"
   },
   "events": [
-    {
-      "showId": 269,
-      "showSlug": "דרושה-עוזרת",
-      "date": "2026-05-01",
-      "hour": "21:00"
-    },
     {
       "showId": 270,
       "showSlug": "שעה-של-שקט",
