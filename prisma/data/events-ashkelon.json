@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-05-02T04:18:32.303Z",
+  "scrapedAt": "2026-05-03T04:31:27.321Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות אשקלון",
     "city": "אשקלון"
   },
   "events": [
-    {
-      "showId": 15,
-      "showSlug": "חשמלית-ושמה-תשוקה",
-      "date": "2026-05-02",
-      "hour": "21:30"
-    },
     {
       "showId": 68,
       "showSlug": "אור-לגויים",

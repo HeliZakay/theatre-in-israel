@@ -1,19 +1,11 @@
 {
-  "scrapedAt": "2026-05-02T04:16:18.284Z",
+  "scrapedAt": "2026-05-03T04:29:14.797Z",
   "touring": true,
   "events": [
     {
       "showId": 431,
       "showSlug": "ONE-THING-SHOW",
       "date": "2026-05-23",
-      "hour": "20:30",
-      "venueName": "DAVAI Theatre Studio",
-      "venueCity": "תל אביב-יפו"
-    },
-    {
-      "showId": 432,
-      "showSlug": "UNDER-CONSTRUCTION",
-      "date": "2026-05-01",
       "hour": "20:30",
       "venueName": "DAVAI Theatre Studio",
       "venueCity": "תל אביב-יפו"
@@ -30,9 +22,25 @@
       "showId": 432,
       "showSlug": "UNDER-CONSTRUCTION",
       "date": "2026-06-11",
-      "hour": "19:00",
-      "venueName": "מתנ\"ס",
-      "venueCity": "ערד"
+      "hour": "20:30",
+      "venueName": "DAVAI Theatre Studio",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
+      "showId": 432,
+      "showSlug": "UNDER-CONSTRUCTION",
+      "date": "2026-06-12",
+      "hour": "20:30",
+      "venueName": "DAVAI Theatre Studio",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
+      "showId": 432,
+      "showSlug": "UNDER-CONSTRUCTION",
+      "date": "2026-06-13",
+      "hour": "20:30",
+      "venueName": "DAVAI Theatre Studio",
+      "venueCity": "תל אביב-יפו"
     },
     {
       "showId": 432,
@@ -43,20 +51,28 @@
       "venueCity": "ראשון לציון"
     },
     {
+      "showId": 424,
+      "showSlug": "אור",
+      "date": "2026-06-26",
+      "hour": "20:30",
+      "venueName": "DAVAI Theatre Studio",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
+      "showId": 424,
+      "showSlug": "אור",
+      "date": "2026-06-27",
+      "hour": "20:30",
+      "venueName": "DAVAI Theatre Studio",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
       "showId": 426,
       "showSlug": "אפצ׳י",
       "date": "2026-05-09",
       "hour": "11:00",
       "venueName": "DAVAI Theatre Studio",
       "venueCity": "תל אביב-יפו"
-    },
-    {
-      "showId": 427,
-      "showSlug": "הדבר-העגול-הזה",
-      "date": "2026-05-02",
-      "hour": "11:00",
-      "venueName": "Tel Aviv Museum of Art",
-      "venueCity": "תל אביב"
     },
     {
       "showId": 429,

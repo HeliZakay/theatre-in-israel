@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-02T04:13:38.094Z",
+  "scrapedAt": "2026-05-03T04:26:30.347Z",
   "touring": true,
   "events": [
     {
@@ -439,6 +439,22 @@
       "showSlug": "באר-שבסקיה",
       "date": "2026-08-05",
       "hour": "17:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 171,
+      "showSlug": "באר-שבסקיה",
+      "date": "2026-08-05",
+      "hour": "19:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע"
+    },
+    {
+      "showId": 171,
+      "showSlug": "באר-שבסקיה",
+      "date": "2026-08-06",
+      "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
       "venueCity": "באר שבע"
     },
