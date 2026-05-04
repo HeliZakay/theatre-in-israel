@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-05-03T04:31:03.592Z",
+  "scrapedAt": "2026-05-04T04:30:35.522Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון הצפון",
     "city": "קריית חיים"
   },
   "events": [
-    {
-      "showId": 75,
-      "showSlug": "שם-פרטי",
-      "date": "2026-05-03",
-      "hour": "20:30"
-    },
     {
       "showId": 75,
       "showSlug": "שם-פרטי",

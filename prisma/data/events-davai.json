@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-03T04:29:14.797Z",
+  "scrapedAt": "2026-05-04T04:29:19.175Z",
   "touring": true,
   "events": [
     {
@@ -8,6 +8,14 @@
       "date": "2026-05-23",
       "hour": "20:30",
       "venueName": "DAVAI Theatre Studio",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
+      "showId": 431,
+      "showSlug": "ONE-THING-SHOW",
+      "date": "2026-06-10",
+      "hour": "20:30",
+      "venueName": "שמבוקיה",
       "venueCity": "תל אביב-יפו"
     },
     {
@@ -21,23 +29,7 @@
     {
       "showId": 432,
       "showSlug": "UNDER-CONSTRUCTION",
-      "date": "2026-06-11",
-      "hour": "20:30",
-      "venueName": "DAVAI Theatre Studio",
-      "venueCity": "תל אביב-יפו"
-    },
-    {
-      "showId": 432,
-      "showSlug": "UNDER-CONSTRUCTION",
       "date": "2026-06-12",
-      "hour": "20:30",
-      "venueName": "DAVAI Theatre Studio",
-      "venueCity": "תל אביב-יפו"
-    },
-    {
-      "showId": 432,
-      "showSlug": "UNDER-CONSTRUCTION",
-      "date": "2026-06-13",
       "hour": "20:30",
       "venueName": "DAVAI Theatre Studio",
       "venueCity": "תל אביב-יפו"
@@ -49,6 +41,14 @@
       "hour": "20:30",
       "venueName": "Mofet Cultural Center",
       "venueCity": "ראשון לציון"
+    },
+    {
+      "showId": 432,
+      "showSlug": "UNDER-CONSTRUCTION",
+      "date": "2026-09-03",
+      "hour": "20:30",
+      "venueName": "סטודיו דוואי",
+      "venueCity": "תל אביב-יפו"
     },
     {
       "showId": 424,
