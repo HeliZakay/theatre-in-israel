@@ -1,23 +1,11 @@
 {
-  "scrapedAt": "2026-05-04T04:30:28.519Z",
+  "scrapedAt": "2026-05-05T04:15:56.551Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות אור עקיבא",
     "city": "אור עקיבא"
   },
   "events": [
-    {
-      "showId": 114,
-      "showSlug": "עפרה",
-      "date": "2026-04-28",
-      "hour": "20:30"
-    },
-    {
-      "showId": 125,
-      "showSlug": "שוקו-וניל",
-      "date": "2026-05-02",
-      "hour": "21:00"
-    },
     {
       "showId": 123,
       "showSlug": "השוטר-אזולאי",
