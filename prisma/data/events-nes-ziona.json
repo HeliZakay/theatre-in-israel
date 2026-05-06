@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-05-05T04:15:48.962Z",
+  "scrapedAt": "2026-05-06T04:28:26.702Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות נס ציונה",
     "city": "נס ציונה"
   },
   "events": [
-    {
-      "showId": 256,
-      "showSlug": "מותרת-לכל-אדם",
-      "date": "2026-05-05",
-      "hour": "20:30"
-    },
     {
       "showId": 269,
       "showSlug": "דרושה-עוזרת",

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-05T04:10:13.447Z",
+  "scrapedAt": "2026-05-06T04:22:34.702Z",
   "touring": true,
   "events": [
     {
@@ -29,24 +29,8 @@
     {
       "showId": 93,
       "showSlug": "הורים-יקרים",
-      "date": "2026-05-05",
-      "hour": "20:00",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 93,
-      "showSlug": "הורים-יקרים",
       "date": "2026-05-06",
       "hour": "20:00",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 89,
-      "showSlug": "הכי-בבית-בעולם",
-      "date": "2026-05-05",
-      "hour": "21:00",
       "venueName": "תיאטרון החאן",
       "venueCity": "ירושלים"
     },

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-05T04:14:03.899Z",
+  "scrapedAt": "2026-05-06T04:26:40.728Z",
   "touring": true,
   "events": [
     {
@@ -8,6 +8,14 @@
       "date": "2026-05-23",
       "hour": "20:30",
       "venueName": "DAVAI Theatre Studio",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
+      "showId": 431,
+      "showSlug": "ONE-THING-SHOW",
+      "date": "2026-06-24",
+      "hour": "20:30",
+      "venueName": "Shambukia",
       "venueCity": "תל אביב-יפו"
     },
     {
@@ -22,6 +30,14 @@
       "showId": 432,
       "showSlug": "UNDER-CONSTRUCTION",
       "date": "2026-06-12",
+      "hour": "20:30",
+      "venueName": "DAVAI Theatre Studio",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
+      "showId": 432,
+      "showSlug": "UNDER-CONSTRUCTION",
+      "date": "2026-06-13",
       "hour": "20:30",
       "venueName": "DAVAI Theatre Studio",
       "venueCity": "תל אביב-יפו"
