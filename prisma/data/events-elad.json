@@ -1,15 +1,7 @@
 {
-  "scrapedAt": "2026-05-06T04:27:31.468Z",
+  "scrapedAt": "2026-05-07T04:26:57.376Z",
   "touring": true,
   "events": [
-    {
-      "showId": 342,
-      "showSlug": "חדר-201",
-      "date": "2026-05-06",
-      "hour": "20:30",
-      "venueName": "התומשיה",
-      "venueCity": "תל אביב"
-    },
     {
       "showId": 342,
       "showSlug": "חדר-201",

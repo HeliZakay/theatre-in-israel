@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-06T04:25:39.901Z",
+  "scrapedAt": "2026-05-07T04:25:19.844Z",
   "touring": true,
   "events": [
     {
@@ -80,14 +80,6 @@
       "date": "2026-06-21",
       "hour": "21:00",
       "venueName": "תיאטרון הבית ת\"א",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 101,
-      "showSlug": "אנטי-אייג׳ינג",
-      "date": "2026-05-06",
-      "hour": "20:30",
-      "venueName": "צוותא",
       "venueCity": "תל אביב"
     },
     {
