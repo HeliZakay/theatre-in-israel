@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-07T04:23:44.466Z",
+  "scrapedAt": "2026-05-08T04:12:15.838Z",
   "touring": true,
   "events": [
     {
@@ -329,14 +329,6 @@
       "hour": "20:30",
       "venueName": "תיאטרון חולון",
       "venueCity": "חולון"
-    },
-    {
-      "showId": 115,
-      "showSlug": "התשמע-קולי",
-      "date": "2026-05-07",
-      "hour": "20:30",
-      "venueName": "מרכז הבמה גני תקווה",
-      "venueCity": "גני תקווה"
     },
     {
       "showId": 115,

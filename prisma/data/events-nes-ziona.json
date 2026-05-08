@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-05-07T04:27:43.477Z",
+  "scrapedAt": "2026-05-08T04:16:04.359Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות נס ציונה",
     "city": "נס ציונה"
   },
   "events": [
-    {
-      "showId": 269,
-      "showSlug": "דרושה-עוזרת",
-      "date": "2026-05-07",
-      "hour": "20:30"
-    },
     {
       "showId": 121,
       "showSlug": "מראה-מעל-הגשר",

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-07T04:23:07.632Z",
+  "scrapedAt": "2026-05-08T04:11:34.820Z",
   "touring": true,
   "events": [
     {
@@ -283,6 +283,30 @@
       "venueCity": "תל אביב-יפו"
     },
     {
+      "showId": 245,
+      "showSlug": "להתעורר",
+      "date": "2026-08-06",
+      "hour": "19:30",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
+      "showId": 245,
+      "showSlug": "להתעורר",
+      "date": "2026-08-07",
+      "hour": "20:00",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
+      "showId": 245,
+      "showSlug": "להתעורר",
+      "date": "2026-08-08",
+      "hour": "18:00",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו"
+    },
+    {
       "showId": 246,
       "showSlug": "מי-כמוני",
       "date": "2026-05-13",
@@ -398,14 +422,6 @@
       "showId": 96,
       "showSlug": "נשמות",
       "date": "2026-07-12",
-      "hour": "19:30",
-      "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
-    },
-    {
-      "showId": 97,
-      "showSlug": "סלומה",
-      "date": "2026-05-07",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
       "venueCity": "תל אביב-יפו"

@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-05-07T04:29:34.368Z",
+  "scrapedAt": "2026-05-08T04:17:59.277Z",
   "venueSource": true,
   "venue": {
     "name": "מרכז הבמה גני תקווה",
     "city": "גני תקווה"
   },
   "events": [
-    {
-      "showId": 115,
-      "showSlug": "התשמע-קולי",
-      "date": "2026-05-07",
-      "hour": "20:30"
-    },
     {
       "showId": 115,
       "showSlug": "התשמע-קולי",

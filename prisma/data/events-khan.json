@@ -1,30 +1,38 @@
 {
-  "scrapedAt": "2026-05-07T04:22:16.432Z",
+  "scrapedAt": "2026-05-08T04:10:48.200Z",
   "touring": true,
   "events": [
     {
       "showId": 161,
       "showSlug": "אבדוֹת-ומציאוּת",
-      "date": "2026-05-07",
-      "hour": "18:00",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 161,
-      "showSlug": "אבדוֹת-ומציאוּת",
-      "date": "2026-05-07",
-      "hour": "20:30",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 161,
-      "showSlug": "אבדוֹת-ומציאוּת",
       "date": "2026-05-09",
       "hour": "21:00",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueName": "חצר החאן לא מסומן",
+      "venueCity": "לא ידוע"
+    },
+    {
+      "showId": 161,
+      "showSlug": "אבדוֹת-ומציאוּת",
+      "date": "2026-06-06",
+      "hour": "21:30",
+      "venueName": "חצר החאן לא מסומן",
+      "venueCity": "לא ידוע"
+    },
+    {
+      "showId": 161,
+      "showSlug": "אבדוֹת-ומציאוּת",
+      "date": "2026-07-16",
+      "hour": "20:00",
+      "venueName": "חצר החאן לא מסומן",
+      "venueCity": "לא ידוע"
+    },
+    {
+      "showId": 161,
+      "showSlug": "אבדוֹת-ומציאוּת",
+      "date": "2026-07-18",
+      "hour": "21:30",
+      "venueName": "חצר החאן לא מסומן",
+      "venueCity": "לא ידוע"
     },
     {
       "showId": 87,
@@ -185,6 +193,14 @@
       "hour": "20:00",
       "venueName": "תיאטרון החאן",
       "venueCity": "ירושלים"
+    },
+    {
+      "showId": 166,
+      "showSlug": "סיפור-פשוט",
+      "date": "2026-06-03",
+      "hour": "20:00",
+      "venueName": "מרכז דוהל",
+      "venueCity": "לא ידוע"
     }
   ]
 }

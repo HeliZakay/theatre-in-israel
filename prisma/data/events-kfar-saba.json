@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-05-07T04:28:46.652Z",
+  "scrapedAt": "2026-05-08T04:17:01.533Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות כפר סבא",
     "city": "כפר סבא"
   },
   "events": [
-    {
-      "showId": 256,
-      "showSlug": "מותרת-לכל-אדם",
-      "date": "2026-05-07",
-      "hour": "20:30"
-    },
     {
       "showId": 256,
       "showSlug": "מותרת-לכל-אדם",
