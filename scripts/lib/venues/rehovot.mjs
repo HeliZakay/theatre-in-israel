@@ -31,9 +31,12 @@ export async function fetchListing(browser) {
     timeout: 60_000,
   });
 
-  // Wait for event cards to appear
+  // Wait for event cards to appear. Generous timeout so Cloudflare's JS
+  // challenge has time to resolve in CI before we query — using
+  // `domcontentloaded` returns immediately (before CF JS runs), so the
+  // 15s default was too tight for slower CI runners.
   await page.waitForSelector("a[href*='smarticket.co.il']", {
-    timeout: 15_000,
+    timeout: 45_000,
   });
 
   const listings = await page.evaluate(() => {
