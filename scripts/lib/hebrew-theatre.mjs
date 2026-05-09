@@ -493,6 +493,13 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
 
   await page.close();
 
+  // Drop events where the page lists the theatre group's own name as the venue.
+  // התיאטרון העברי is a touring group with no fixed home, so this means the real
+  // venue couldn't be extracted — better to skip than to create a fake venue row.
+  result.events = result.events.filter(
+    (ev) => ev.venueName && ev.venueName.trim() !== HEBREW_THEATRE,
+  );
+
   // Resolve venue cities in Node context (has access to resolveVenueCity)
   for (const ev of result.events) {
     ev.venueCity = resolveVenueCity(ev.venueName);
