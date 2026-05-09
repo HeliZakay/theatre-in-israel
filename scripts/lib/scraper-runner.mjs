@@ -217,12 +217,20 @@ async function _runScraper(config) {
   const skippedOwnTheatre = [];
 
   if (venueSource) {
+    // Some venue listings have the same show under multiple URLs (regular
+    // listing + subscription series, etc.). Dedupe by showId after matching:
+    // first match wins, subsequent listings for the same show are skipped.
+    const matchedShowIds = new Set();
+    const duplicateListings = [];
     for (const item of listings) {
       const result = matchVenueTitle(item.title, allDbShows);
       if (result) {
         if (skipTheatre && result.theatre === skipTheatre) {
           skippedOwnTheatre.push(item.title);
+        } else if (matchedShowIds.has(result.showId)) {
+          duplicateListings.push(item.title);
         } else {
+          matchedShowIds.add(result.showId);
           matched.push({
             showId: result.showId,
             showSlug: result.showSlug,
@@ -235,6 +243,17 @@ async function _runScraper(config) {
       } else {
         unmatched.push(item.title);
       }
+    }
+    if (duplicateListings.length > 0) {
+      console.log(
+        dim(
+          `  Skipped ${duplicateListings.length} duplicate listing(s) (same show under multiple URLs):`,
+        ),
+      );
+      for (const t of duplicateListings) {
+        console.log(dim(`    - ${bidi(t)}`));
+      }
+      console.log("");
     }
   } else if (isMultiTheatre) {
     // Multi-theatre: for each listing, look up in DB shows.
@@ -383,6 +402,14 @@ async function _runScraper(config) {
         events = show.events || [];
       }
 
+      // Filter past-dated events centrally so individual scrapers don't each
+      // need their own date-cutoff logic. Uses Israel-local date for the
+      // boundary (matches the user-visible "today" on the site).
+      const today = new Date().toLocaleDateString("en-CA", {
+        timeZone: "Asia/Jerusalem",
+      });
+      events = events.filter((e) => !e.date || e.date >= today);
+
       totals.shows++;
       totals.events += events.length;
 
@@ -450,6 +477,12 @@ async function _runScraper(config) {
           if (!touring && !venueSource && !isMultiTheatre && ev.note) {
             entry.note = ev.note;
           }
+          // sourceUrl: page the scraper read to extract this event (show detail
+          // page for detail-mode scrapers, listing detail URL for flat-listing
+          // venue scrapers). ticketUrl: per-event ticket link if extracted.
+          const sourceUrl = ev.sourceUrl || show.url || null;
+          if (sourceUrl) entry.sourceUrl = sourceUrl;
+          if (ev.ticketUrl) entry.ticketUrl = ev.ticketUrl;
           collectedEvents.push(entry);
         }
       }

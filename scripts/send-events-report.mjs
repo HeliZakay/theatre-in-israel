@@ -33,12 +33,95 @@ function readPreviousFile(filePath) {
   }
 }
 
-function readReport() {
+// ── Sanity checks (run on the current JSON snapshot, no DB) ─────────────────
+
+const COUNT_DROP_THRESHOLD = 0.3; // file dropped >30% vs yesterday → flag
+
+function todayInJerusalem() {
+  return new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Jerusalem" });
+}
+
+function isValidHour(h) {
+  if (!h || typeof h !== "string") return false;
+  const m = /^(\d{2}):(\d{2})$/.exec(h);
+  if (!m) return false;
+  const hh = +m[1];
+  const mm = +m[2];
+  return hh >= 8 && hh <= 23 && mm < 60;
+}
+
+function checkFileAnomalies(label, events, prevEventCount) {
+  const today = todayInJerusalem();
+  const issues = [];
+
+  const past = events.filter((e) => e.date && e.date < today);
+  if (past.length) issues.push(`${past.length} past-dated event(s)`);
+
+  const badHours = events.filter((e) => !isValidHour(e.hour));
+  if (badHours.length) {
+    const zeros = badHours.filter((e) => e.hour === "00:00").length;
+    const detail = zeros
+      ? `${badHours.length} bad hour(s) — ${zeros} are 00:00 (likely extraction failure)`
+      : `${badHours.length} bad hour(s)`;
+    issues.push(detail);
+  }
+
+  const seen = new Map();
+  let dupes = 0;
+  for (const e of events) {
+    const k = `${e.showSlug ?? e.showId}|${e.date}|${e.hour}`;
+    seen.set(k, (seen.get(k) ?? 0) + 1);
+  }
+  for (const c of seen.values()) if (c > 1) dupes += c - 1;
+  if (dupes) issues.push(`${dupes} duplicate event row(s)`);
+
+  if (
+    prevEventCount != null &&
+    prevEventCount >= 5 &&
+    events.length < prevEventCount * (1 - COUNT_DROP_THRESHOLD)
+  ) {
+    const pct = Math.round(
+      ((prevEventCount - events.length) / prevEventCount) * 100,
+    );
+    issues.push(
+      `event count dropped ${pct}% (${prevEventCount} → ${events.length}) — possible scraper failure`,
+    );
+  }
+
+  return issues.length ? { label, issues } : null;
+}
+
+// Cross-reference: events that appear in ≥2 different source files are a
+// positive confidence signal (e.g. a touring show scraped both by the theatre
+// company and by the venue's site).
+function buildCrossRef(allFileEvents) {
+  const today = todayInJerusalem();
+  const keyToFiles = new Map();
+  for (const { file, events } of allFileEvents) {
+    for (const e of events) {
+      if (!e.showSlug || !e.date || e.date < today) continue;
+      const k = `${e.showSlug}|${e.date}|${e.hour}`;
+      if (!keyToFiles.has(k)) keyToFiles.set(k, new Set());
+      keyToFiles.get(k).add(file);
+    }
+  }
+  let confirmed = 0;
+  let totalFuture = 0;
+  for (const files of keyToFiles.values()) {
+    totalFuture++;
+    if (files.size >= 2) confirmed++;
+  }
+  return { confirmed, totalFuture };
+}
+
+export function readReport() {
   const rows = [];
   let totalEvents = 0;
   let totalShows = 0;
   let totalNew = 0;
   let totalRemoved = 0;
+  const anomalies = [];
+  const allFileEvents = [];
 
   for (const { file, label } of FILES) {
     const relPath = `prisma/data/${file}`;
@@ -50,12 +133,18 @@ function readReport() {
       // Compare with previous version
       let added = [];
       let removed = [];
+      let prevEventCount = null;
       const prevRaw = readPreviousFile(relPath);
       if (prevRaw) {
         const prev = parseEvents(prevRaw);
         added = current.events.filter((e) => !prev.map.has(eventKey(e)));
         removed = prev.events.filter((e) => !current.map.has(eventKey(e)));
+        prevEventCount = prev.events.length;
       }
+
+      const anomaly = checkFileAnomalies(label, current.events, prevEventCount);
+      if (anomaly) anomalies.push(anomaly);
+      allFileEvents.push({ file, events: current.events });
 
       rows.push({
         label,
@@ -78,10 +167,21 @@ function readReport() {
         removed: [],
         ok: false,
       });
+      anomalies.push({ label, issues: ["file unreadable"] });
     }
   }
 
-  return { rows, totalEvents, totalShows, totalNew, totalRemoved };
+  const crossRef = buildCrossRef(allFileEvents);
+
+  return {
+    rows,
+    totalEvents,
+    totalShows,
+    totalNew,
+    totalRemoved,
+    anomalies,
+    crossRef,
+  };
 }
 
 function showName(slug) {
@@ -125,7 +225,33 @@ function buildDiffHtml(added, removed) {
   return `<div style="font-size: 0.85em; margin: 2px 0 8px 16px;">${lines.join("<br>")}</div>`;
 }
 
-function buildHtml({ rows, totalEvents, totalShows, totalNew, totalRemoved }) {
+function buildAnomaliesHtml(anomalies) {
+  if (!anomalies.length) return "";
+  const items = anomalies
+    .map(
+      ({ label, issues }) =>
+        `<li><strong>${label}:</strong> ${issues.join("; ")}</li>`,
+    )
+    .join("\n");
+  return `
+    <div style="margin-top: 24px; padding: 12px 16px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 6px;">
+      <h3 style="margin: 0 0 8px; color: #b91c1c;">⚠️ אנומליות (${anomalies.length})</h3>
+      <ul style="margin: 0; padding-right: 20px; color: #7f1d1d;">${items}</ul>
+    </div>
+  `;
+}
+
+function buildCrossRefHtml({ confirmed, totalFuture }) {
+  if (totalFuture === 0) return "";
+  const pct = Math.round((confirmed / totalFuture) * 100);
+  return `
+    <p style="margin-top: 16px; color: #6b7280; font-size: 0.9em;">
+      צולב בין מקורות: ${confirmed}/${totalFuture} אירועים עתידיים (${pct}%) מאומתים ב-2+ מקורות שונים
+    </p>
+  `;
+}
+
+function buildHtml({ rows, totalEvents, totalShows, totalNew, totalRemoved, anomalies, crossRef }) {
   const date = new Date().toLocaleDateString("he-IL", {
     timeZone: "Asia/Jerusalem",
     year: "numeric",
@@ -183,6 +309,8 @@ function buildHtml({ rows, totalEvents, totalShows, totalNew, totalRemoved }) {
           </tr>
         </tfoot>
       </table>
+      ${buildCrossRefHtml(crossRef)}
+      ${buildAnomaliesHtml(anomalies)}
     </div>
   `;
 }
@@ -196,11 +324,14 @@ async function main() {
   const report = readReport();
   const html = buildHtml(report);
 
+  const anomalyTag = report.anomalies.length
+    ? ` ⚠️ ${report.anomalies.length}`
+    : "";
   const resend = new Resend(process.env.RESEND_API_KEY);
   const { error } = await resend.emails.send({
     from: FROM,
     to: RECIPIENT,
-    subject: `דו״ח אירועים יומי — ${report.totalEvents} אירועים${report.totalNew ? ` (+${report.totalNew} חדשים)` : ""}`,
+    subject: `דו״ח אירועים יומי — ${report.totalEvents} אירועים${report.totalNew ? ` (+${report.totalNew} חדשים)` : ""}${anomalyTag}`,
     html,
   });
 
@@ -210,7 +341,7 @@ async function main() {
   }
 
   console.log(
-    `[report] Email sent — ${report.totalEvents} events, +${report.totalNew}/-${report.totalRemoved} vs yesterday`
+    `[report] Email sent — ${report.totalEvents} events, +${report.totalNew}/-${report.totalRemoved} vs yesterday, ${report.anomalies.length} anomalies, cross-ref ${report.crossRef.confirmed}/${report.crossRef.totalFuture}`
   );
 }
 

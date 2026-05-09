@@ -95,8 +95,8 @@ async function batchInsertEvents(prisma, rows, batchSize = 200) {
     try {
       const values = batch
         .map((_, idx) => {
-          const off = idx * 4;
-          return `($${off + 1}, $${off + 2}, $${off + 3}::date, $${off + 4})`;
+          const off = idx * 6;
+          return `($${off + 1}, $${off + 2}, $${off + 3}::date, $${off + 4}, $${off + 5}, $${off + 6})`;
         })
         .join(", ");
 
@@ -105,11 +105,18 @@ async function batchInsertEvents(prisma, rows, batchSize = 200) {
         r.venueId,
         r.date,
         r.hour,
+        r.sourceUrl ?? null,
+        r.ticketUrl ?? null,
       ]);
 
-      const sql = `INSERT INTO "Event" ("showId", "venueId", "date", "hour")
+      // ON CONFLICT DO UPDATE refreshes URL fields when re-scraped, but uses
+      // COALESCE(EXCLUDED, existing) so a NULL from a scraper that doesn't
+      // (yet) supply a URL won't wipe a previously-populated value.
+      const sql = `INSERT INTO "Event" ("showId", "venueId", "date", "hour", "sourceUrl", "ticketUrl")
         VALUES ${values}
-        ON CONFLICT ("showId", "venueId", "date", "hour") DO NOTHING`;
+        ON CONFLICT ("showId", "venueId", "date", "hour") DO UPDATE SET
+          "sourceUrl" = COALESCE(EXCLUDED."sourceUrl", "Event"."sourceUrl"),
+          "ticketUrl" = COALESCE(EXCLUDED."ticketUrl", "Event"."ticketUrl")`;
 
       const result = await prisma.$executeRawUnsafe(sql, ...params);
       inserted += result;
@@ -134,8 +141,13 @@ async function batchInsertEvents(prisma, rows, batchSize = 200) {
               venueId: row.venueId,
               date: row.date,
               hour: row.hour,
+              sourceUrl: row.sourceUrl ?? null,
+              ticketUrl: row.ticketUrl ?? null,
             },
-            update: {},
+            update: {
+              ...(row.sourceUrl ? { sourceUrl: row.sourceUrl } : {}),
+              ...(row.ticketUrl ? { ticketUrl: row.ticketUrl } : {}),
+            },
           });
           inserted++;
         } catch (innerErr) {
@@ -314,6 +326,8 @@ async function syncEvents(prisma, filePath) {
       venueId: venue.id,
       date: new Date(ev.date).toISOString().slice(0, 10),
       hour: ev.hour,
+      sourceUrl: ev.sourceUrl ?? null,
+      ticketUrl: ev.ticketUrl ?? null,
     };
   });
 

@@ -183,13 +183,15 @@ model Venue {
 }
 
 model Event {
-  id      Int      @id @default(autoincrement())
-  show    Show     @relation(fields: [showId], references: [id], onDelete: Cascade)
-  showId  Int
-  venue   Venue    @relation(fields: [venueId], references: [id], onDelete: Cascade)
-  venueId Int
-  date    DateTime @db.Date
-  hour    String
+  id        Int      @id @default(autoincrement())
+  show      Show     @relation(fields: [showId], references: [id], onDelete: Cascade)
+  showId    Int
+  venue     Venue    @relation(fields: [venueId], references: [id], onDelete: Cascade)
+  venueId   Int
+  date      DateTime @db.Date
+  hour      String
+  sourceUrl String?
+  ticketUrl String?
 
   @@unique([showId, venueId, date, hour])
   @@index([showId])
