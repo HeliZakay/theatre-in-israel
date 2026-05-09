@@ -132,3 +132,102 @@ export async function verifyEvent(aiClient, { event, pageText }) {
     return { verdict: "uncertain", reason: "model returned malformed JSON" };
   }
 }
+
+/**
+ * Verify multiple events that share a single source page in one LLM call.
+ *
+ * Drops the per-event call cost dramatically: a show with 10 performance
+ * dates lives on one detail page, so one fetch + one model call covers
+ * all 10 events instead of 10 round trips.
+ *
+ * Returns an array of verdicts in the same order as `events`.
+ *   [{ verdict: "agree"|"disagree"|"uncertain", reason: string }, ...]
+ *
+ * If the model returns malformed output or fewer entries than expected,
+ * missing slots are filled with { verdict: "uncertain", reason: "..." }
+ * so the caller never sees a length mismatch.
+ */
+export async function verifyEventsBatch(aiClient, { events, pageText }) {
+  if (events.length === 0) return [];
+  if (!pageText) {
+    return events.map(() => ({
+      verdict: "uncertain",
+      reason: "page fetch failed or empty",
+    }));
+  }
+
+  const numbered = events
+    .map((e, i) => {
+      const parts = [
+        `${i + 1}. תאריך: ${e.date}`,
+        `שעה: ${e.hour}`,
+        `הצגה: ${e.showSlug ?? `show-${e.showId}`}`,
+      ];
+      if (e.venueName) parts.push(`אולם: ${e.venueName}`);
+      return parts.join(" | ");
+    })
+    .join("\n");
+
+  const response = await aiClient.chat.completions.create({
+    model: VERIFY_MODEL,
+    temperature: 0,
+    max_tokens: Math.min(2000, 80 * events.length + 200),
+    response_format: { type: "json_object" },
+    messages: [
+      {
+        role: "system",
+        content: [
+          "אתה מאמת נתוני הצגות תיאטרון. קיבלת טקסט שנשלף מדף אינטרנט עברי",
+          "ורשימה ממוספרת של אירועים שנגרדו ממנו.",
+          "עבור כל אירוע, השווה אותו לטקסט הדף וקבע אם הדף מאשר אותו.",
+          "",
+          "אותו דף משותף לכל האירועים — בדרך כלל זה דף הצגה אחת עם מספר תאריכים.",
+          "אם הדף לא מציג את אותה הצגה כלל, סמן את כולם כ-disagree.",
+          "",
+          'החזר JSON: { "verdicts": [{ "index": 1, "verdict": "agree"|"disagree"|"uncertain", "reason": "הסבר קצר" }, ...] }',
+          "החזר תוצאה לכל אירוע ברשימה, באותו סדר.",
+          "",
+          'agree — הדף מציין באופן חד-משמעי שההצגה מתקיימת בתאריך ובשעה האלה.',
+          'disagree — הדף מציין תאריך/שעה אחרים, או שההצגה בוטלה/נדחתה, או שהיא לא מופיעה כלל.',
+          'uncertain — הטקסט לא ברור מספיק כדי להחליט.',
+        ].join("\n"),
+      },
+      {
+        role: "user",
+        content: `${events.length} אירועים לאימות:\n${numbered}\n\nטקסט הדף:\n${pageText}`,
+      },
+    ],
+  });
+
+  const raw = response.choices[0]?.message?.content?.trim() ?? "";
+  const out = events.map(() => ({
+    verdict: "uncertain",
+    reason: "no verdict returned",
+  }));
+
+  try {
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed.verdicts)) return out;
+    for (const v of parsed.verdicts) {
+      const i = (Number(v.index) || 0) - 1;
+      if (i < 0 || i >= events.length) continue;
+      const verdict =
+        v.verdict === "agree" ||
+        v.verdict === "disagree" ||
+        v.verdict === "uncertain"
+          ? v.verdict
+          : "uncertain";
+      out[i] = {
+        verdict,
+        reason: typeof v.reason === "string" ? v.reason : "",
+      };
+    }
+  } catch {
+    return events.map(() => ({
+      verdict: "uncertain",
+      reason: "model returned malformed JSON",
+    }));
+  }
+
+  return out;
+}

@@ -1,28 +1,25 @@
 #!/usr/bin/env node
 /**
- * verify-flagged-events.mjs — run LLM verification on flagged events.
+ * verify-flagged-events.mjs — LLM verification of every event with a sourceUrl.
  *
- * Reads anomalies from event-anomalies.mjs, picks events that have a
- * sourceUrl in any flagged issue, fetches each page, asks the model
- * whether the claim is corroborated, and writes the verdicts to
- * prisma/data/llm-verifications.json. The anomaly checker reads that
- * file and surfaces "disagree" verdicts as a new issue kind, so the
- * email and the /admin/flagged page pick them up automatically.
+ * Strategy: group events by sourceUrl (a "page"). Fetch each page once
+ * and ask the model to verify every event claimed for that page in a
+ * single call. A show with 10 performance dates → 1 page fetch + 1 LLM
+ * call instead of 10 of each. This makes 100% coverage cheap enough to
+ * run nightly without sampling.
  *
- * Runs in two passes:
- *   1. FLAGGED — every event in any anomaly issue that has sourceUrl,
- *      capped at --max-flagged (default 30). High-priority triage.
- *   2. SAMPLED — random events per file that did NOT trigger an anomaly,
- *      with sourceUrl, --sample-per-file (default 3) per scraper. This
- *      catches silent-wrong events that pass structural checks but are
- *      actually wrong (wrong date parsing, wrong title binding, etc.).
+ * Pages are processed in priority order: pages whose events are flagged
+ * by another anomaly check go first, so even if a budget cap kicks in
+ * the highest-risk pages always get verified.
+ *
+ * Output: prisma/data/llm-verifications.json. The anomaly checker reads
+ * it and surfaces "disagree" verdicts via the llm-disagreement issue
+ * kind, which the email and /admin/flagged page render automatically.
  *
  * Usage:
- *   node scripts/verify-flagged-events.mjs                       # default
- *   node scripts/verify-flagged-events.mjs --max-flagged=50      # cap A
- *   node scripts/verify-flagged-events.mjs --sample-per-file=5   # cap B
- *   node scripts/verify-flagged-events.mjs --no-sample           # flagged only
- *   node scripts/verify-flagged-events.mjs --dry-run             # don't write
+ *   node scripts/verify-flagged-events.mjs                  # default: all pages
+ *   node scripts/verify-flagged-events.mjs --max-pages=200  # cap for safety
+ *   node scripts/verify-flagged-events.mjs --dry-run        # don't write file
  */
 
 import { join } from "path";
@@ -30,87 +27,68 @@ import { writeFileSync } from "fs";
 import { readReport } from "../src/lib/event-anomalies.mjs";
 import { THEATRES } from "./lib/theatres-config.mjs";
 import { createAIClient } from "./lib/ai.mjs";
-import { fetchPageText, verifyEvent } from "./lib/verify-llm.mjs";
-
-const DEFAULT_MAX_FLAGGED = 30;
-const DEFAULT_SAMPLE_PER_FILE = 3;
+import { fetchPageText, verifyEventsBatch } from "./lib/verify-llm.mjs";
 
 function parseCli() {
   const args = process.argv.slice(2);
-  let maxFlagged = DEFAULT_MAX_FLAGGED;
-  let samplePerFile = DEFAULT_SAMPLE_PER_FILE;
-  let noSample = false;
+  let maxPages = Infinity;
   let dryRun = false;
   for (const a of args) {
     if (a === "--dry-run") dryRun = true;
-    else if (a === "--no-sample") noSample = true;
-    else if (a.startsWith("--max-flagged=")) {
-      maxFlagged = parseInt(a.slice(14), 10) || maxFlagged;
-    } else if (a.startsWith("--sample-per-file=")) {
-      samplePerFile = parseInt(a.slice(18), 10) || samplePerFile;
+    else if (a.startsWith("--max-pages=")) {
+      maxPages = parseInt(a.slice(12), 10) || maxPages;
     }
   }
-  return { maxFlagged, samplePerFile, noSample, dryRun };
+  return { maxPages, dryRun };
 }
 
-// Pick events to verify from anomalies. Dedupe by (sourceUrl + showSlug +
-// date + hour) so we don't hit the same page twice. Cap at `max`.
-function selectFlagged(anomalies, max) {
-  const seen = new Map();
-  for (const { label, file, issues } of anomalies) {
+// Build a Set of "showSlug|date|hour" for every event mentioned in any
+// anomaly issue, so we can mark pages as "high priority" downstream.
+function flaggedEventKeys(anomalies) {
+  const keys = new Set();
+  for (const { issues } of anomalies) {
     for (const issue of issues) {
       for (const e of issue.events) {
-        if (!e.sourceUrl) continue;
-        const k = `${e.sourceUrl}|${e.showSlug ?? e.showId}|${e.date}|${e.hour}`;
-        if (seen.has(k)) continue;
-        seen.set(k, {
-          kind: "flagged",
-          theatre: label,
-          file,
-          issueKind: issue.kind,
-          event: e,
-        });
-        if (seen.size >= max) return [...seen.values()];
+        keys.add(`${e.showSlug ?? e.showId}|${e.date}|${e.hour}`);
       }
     }
   }
-  return [...seen.values()];
+  return keys;
 }
 
-// Random sample of unflagged events with sourceUrl, perFile per file.
-// Skips events already in `excludeKeys` (the flagged set). Uses
-// Math.random — over time every event eventually gets sampled.
-function selectSampled(allFileEvents, perFile, excludeKeys) {
-  const out = [];
+// Group events by sourceUrl. Each page's entry contains the file label,
+// the events claimed for that page, and a flag indicating whether at
+// least one event on the page was already flagged by another check.
+function groupByPage(allFileEvents, flaggedKeys) {
+  const pages = new Map();
   for (const { file, label, events } of allFileEvents) {
-    const candidates = events.filter((e) => {
-      if (!e.sourceUrl) return false;
-      const k = `${e.sourceUrl}|${e.showSlug ?? e.showId}|${e.date}|${e.hour}`;
-      return !excludeKeys.has(k);
-    });
-    if (candidates.length === 0) continue;
-    // Fisher-Yates shuffle until we have perFile picks
-    const pool = [...candidates];
-    const picks = [];
-    while (picks.length < perFile && pool.length > 0) {
-      const idx = Math.floor(Math.random() * pool.length);
-      picks.push(pool.splice(idx, 1)[0]);
-    }
-    for (const e of picks) {
-      out.push({
-        kind: "sampled",
-        theatre: label,
-        file,
-        issueKind: null,
-        event: e,
-      });
+    for (const e of events) {
+      if (!e.sourceUrl) continue;
+      let page = pages.get(e.sourceUrl);
+      if (!page) {
+        page = {
+          sourceUrl: e.sourceUrl,
+          file,
+          theatre: label,
+          events: [],
+          hasFlagged: false,
+        };
+        pages.set(e.sourceUrl, page);
+      }
+      page.events.push(e);
+      const k = `${e.showSlug ?? e.showId}|${e.date}|${e.hour}`;
+      if (flaggedKeys.has(k)) page.hasFlagged = true;
     }
   }
-  return out;
+  // Sort: flagged pages first, then by URL for stable ordering.
+  return [...pages.values()].sort((a, b) => {
+    if (a.hasFlagged !== b.hasFlagged) return a.hasFlagged ? -1 : 1;
+    return a.sourceUrl.localeCompare(b.sourceUrl);
+  });
 }
 
 async function main() {
-  const { maxFlagged, samplePerFile, noSample, dryRun } = parseCli();
+  const { maxPages, dryRun } = parseCli();
   const dataDir = join(process.cwd(), "prisma", "data");
 
   const aiClient = createAIClient();
@@ -122,96 +100,101 @@ async function main() {
   }
 
   const report = readReport({ dataDir, theatres: THEATRES });
-  const flaggedTargets = selectFlagged(report.anomalies, maxFlagged);
-  const flaggedKeys = new Set(
-    flaggedTargets.map(
-      (t) =>
-        `${t.event.sourceUrl}|${t.event.showSlug ?? t.event.showId}|${t.event.date}|${t.event.hour}`,
-    ),
-  );
-  const sampledTargets = noSample
-    ? []
-    : selectSampled(report.allFileEvents, samplePerFile, flaggedKeys);
-  const targets = [...flaggedTargets, ...sampledTargets];
+  const flaggedKeys = flaggedEventKeys(report.anomalies);
+  const allPages = groupByPage(report.allFileEvents, flaggedKeys);
+  const pages = Number.isFinite(maxPages) ? allPages.slice(0, maxPages) : allPages;
+  const skipped = allPages.length - pages.length;
 
+  const totalEvents = pages.reduce((n, p) => n + p.events.length, 0);
+  const flaggedPages = pages.filter((p) => p.hasFlagged).length;
   console.log(
-    `[verify] ${report.anomalies.length} flagged file(s); ` +
-      `${flaggedTargets.length} flagged event(s) (cap ${maxFlagged}), ` +
-      `${sampledTargets.length} sampled event(s) (${samplePerFile}/file)`,
+    `[verify] ${allPages.length} unique source pages covering ${report.allFileEvents.reduce((n, f) => n + f.events.filter((e) => e.sourceUrl).length, 0)} events with sourceUrl. ` +
+      `Verifying ${pages.length} page(s) (${flaggedPages} flagged, ${pages.length - flaggedPages} unflagged), ${totalEvents} event(s)${skipped ? `; skipping ${skipped} over budget` : ""}.`,
   );
-  if (targets.length === 0) {
-    if (!dryRun) {
-      writeFileSync(
-        join(dataDir, "llm-verifications.json"),
-        JSON.stringify({ checkedAt: new Date().toISOString(), results: [] }, null, 2),
-        "utf-8",
-      );
-    }
-    return;
-  }
 
   const results = [];
-  // Cache by sourceUrl to avoid refetching the same page when multiple
-  // events share it (common: many events per show detail page).
-  const pageCache = new Map();
-  for (let i = 0; i < targets.length; i++) {
-    const { kind, theatre, file, issueKind, event } = targets[i];
-    const lbl = `[${i + 1}/${targets.length}]`;
-    const tag = kind === "sampled" ? "S" : "F";
+  for (let i = 0; i < pages.length; i++) {
+    const page = pages[i];
+    const lbl = `[${i + 1}/${pages.length}]`;
+    const tag = page.hasFlagged ? "F" : " ";
     process.stdout.write(
-      `${lbl}[${tag}] ${event.showSlug ?? event.showId} ${event.date} ${event.hour} — `,
+      `${lbl}[${tag}] ${page.theatre} (${page.events.length} ev) — `,
     );
 
-    let fetched = pageCache.get(event.sourceUrl);
-    if (!fetched) {
-      fetched = await fetchPageText(event.sourceUrl);
-      pageCache.set(event.sourceUrl, fetched);
-    }
+    const fetched = await fetchPageText(page.sourceUrl);
     if (!fetched.ok) {
       console.log(`fetch failed (${fetched.status || fetched.error})`);
-      results.push({
-        kind,
-        theatre,
-        file,
-        issueKind,
-        event,
-        verdict: "uncertain",
-        reason: `fetch failed: ${fetched.status || fetched.error}`,
-      });
+      for (const event of page.events) {
+        results.push({
+          theatre: page.theatre,
+          file: page.file,
+          wasFlagged: flaggedKeys.has(
+            `${event.showSlug ?? event.showId}|${event.date}|${event.hour}`,
+          ),
+          event,
+          verdict: "uncertain",
+          reason: `fetch failed: ${fetched.status || fetched.error}`,
+        });
+      }
       continue;
     }
 
+    let verdicts;
     try {
-      const v = await verifyEvent(aiClient, { event, pageText: fetched.text });
-      console.log(`${v.verdict}${v.reason ? ` — ${v.reason}` : ""}`);
-      results.push({ kind, theatre, file, issueKind, event, ...v });
+      verdicts = await verifyEventsBatch(aiClient, {
+        events: page.events,
+        pageText: fetched.text,
+      });
     } catch (err) {
       console.log(`error — ${err.message}`);
+      for (const event of page.events) {
+        results.push({
+          theatre: page.theatre,
+          file: page.file,
+          wasFlagged: flaggedKeys.has(
+            `${event.showSlug ?? event.showId}|${event.date}|${event.hour}`,
+          ),
+          event,
+          verdict: "uncertain",
+          reason: `verifier error: ${err.message}`,
+        });
+      }
+      continue;
+    }
+
+    const counts = { agree: 0, disagree: 0, uncertain: 0 };
+    for (let j = 0; j < page.events.length; j++) {
+      const event = page.events[j];
+      const v = verdicts[j] ?? { verdict: "uncertain", reason: "" };
+      counts[v.verdict] = (counts[v.verdict] ?? 0) + 1;
       results.push({
-        kind,
-        theatre,
-        file,
-        issueKind,
+        theatre: page.theatre,
+        file: page.file,
+        wasFlagged: flaggedKeys.has(
+          `${event.showSlug ?? event.showId}|${event.date}|${event.hour}`,
+        ),
         event,
-        verdict: "uncertain",
-        reason: `verifier error: ${err.message}`,
+        verdict: v.verdict,
+        reason: v.reason,
       });
     }
+    console.log(
+      `agree=${counts.agree} disagree=${counts.disagree} uncertain=${counts.uncertain}`,
+    );
   }
 
-  const tally = (filter) => ({
-    agree: results.filter((r) => filter(r) && r.verdict === "agree").length,
-    disagree: results.filter((r) => filter(r) && r.verdict === "disagree").length,
-    uncertain: results.filter((r) => filter(r) && r.verdict === "uncertain").length,
-  });
   const summary = {
-    flagged: tally((r) => r.kind === "flagged"),
-    sampled: tally((r) => r.kind === "sampled"),
-    overall: tally(() => true),
+    pagesVerified: pages.length,
+    pagesSkipped: skipped,
+    eventsVerified: results.length,
+    agree: results.filter((r) => r.verdict === "agree").length,
+    disagree: results.filter((r) => r.verdict === "disagree").length,
+    uncertain: results.filter((r) => r.verdict === "uncertain").length,
   };
   console.log(
-    `[verify] done — flagged: agree=${summary.flagged.agree} disagree=${summary.flagged.disagree} uncertain=${summary.flagged.uncertain}; ` +
-      `sampled: agree=${summary.sampled.agree} disagree=${summary.sampled.disagree} uncertain=${summary.sampled.uncertain}`,
+    `[verify] done — agree=${summary.agree} disagree=${summary.disagree} uncertain=${summary.uncertain} ` +
+      `across ${summary.eventsVerified} events on ${summary.pagesVerified} pages` +
+      (summary.pagesSkipped ? ` (${summary.pagesSkipped} pages skipped)` : ""),
   );
 
   if (!dryRun) {
