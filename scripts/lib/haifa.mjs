@@ -425,6 +425,11 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
       if (venueName.startsWith(HAIFA_THEATRE)) {
         venueName = HAIFA_THEATRE;
       }
+      // Some events show only the bare hall name (e.g. "במה ראשית", "במה 3")
+      // without the "תיאטרון חיפה -" prefix — these are still home halls.
+      if (/^במה\s/.test(venueName) || venueName === "במה ראשית") {
+        venueName = HAIFA_THEATRE;
+      }
       const venueCity = resolveVenueCity(venueName);
       processed.push({
         date: dateStr,
