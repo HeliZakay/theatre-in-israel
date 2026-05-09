@@ -169,6 +169,25 @@ export function buildCrossRef(allFileEvents) {
   return { confirmed, totalFuture };
 }
 
+// Read llm-verifications.json (if present) and group disagree verdicts
+// by source file. Returns Map<filename, Array<{event, reason}>>.
+function readLlmDisagreements(dataDir) {
+  const byFile = new Map();
+  try {
+    const raw = readFileSync(join(dataDir, "llm-verifications.json"), "utf-8");
+    const data = JSON.parse(raw);
+    if (!Array.isArray(data.results)) return byFile;
+    for (const r of data.results) {
+      if (r.verdict !== "disagree") continue;
+      if (!byFile.has(r.file)) byFile.set(r.file, []);
+      byFile.get(r.file).push({ event: r.event, reason: r.reason });
+    }
+  } catch {
+    // No verification file or unreadable — skip silently.
+  }
+  return byFile;
+}
+
 /**
  * @param {object} opts
  * @param {string} opts.dataDir — absolute path to the directory of events-*.json files
@@ -176,6 +195,7 @@ export function buildCrossRef(allFileEvents) {
  * @param {boolean} [opts.includePrevious=true] — read HEAD~1 for diff/count-drop
  */
 export function readReport({ dataDir, theatres, includePrevious = true }) {
+  const llmDisagreements = readLlmDisagreements(dataDir);
   const rows = [];
   let totalEvents = 0;
   let totalShows = 0;
@@ -209,6 +229,20 @@ export function readReport({ dataDir, theatres, includePrevious = true }) {
         prevEventCount,
         current.scrapedAt,
       );
+
+      // Fold in LLM disagreements (if a verification ran for this file).
+      const fileDisagreements = llmDisagreements.get(file);
+      if (fileDisagreements && fileDisagreements.length) {
+        issues.push({
+          kind: "llm-disagreement",
+          summary: `${fileDisagreements.length} event(s) the LLM verifier disagrees with — page does not corroborate the scraped date/time/show`,
+          events: fileDisagreements.map((d) => ({
+            ...d.event,
+            llmReason: d.reason,
+          })),
+        });
+      }
+
       if (issues.length) anomalies.push({ label, file, issues });
       allFileEvents.push({ file, events: current.events });
 

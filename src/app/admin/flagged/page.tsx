@@ -16,6 +16,7 @@ type AnomalyEvent = {
   ticketUrl?: string;
   venueName?: string;
   venueCity?: string;
+  llmReason?: string;
 };
 
 type Issue = {
@@ -100,6 +101,11 @@ export default async function FlaggedEventsPage() {
                           {e.venueName && (
                             <span className={styles.eventMeta}>
                               @ {e.venueName}
+                            </span>
+                          )}
+                          {e.llmReason && (
+                            <span className={styles.llmReason}>
+                              {e.llmReason}
                             </span>
                           )}
                           {e.sourceUrl && (

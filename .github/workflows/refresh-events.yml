@@ -49,6 +49,26 @@ jobs:
       - name: Check scraper freshness
         run: node scripts/check-scraper-freshness.mjs
 
+      - name: Verify flagged events with LLM
+        if: always()
+        continue-on-error: true
+        run: node scripts/verify-flagged-events.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit LLM verifications
+        if: always()
+        continue-on-error: true
+        run: |
+          git add prisma/data/llm-verifications.json || true
+          if git diff --staged --quiet; then
+            echo "No verification changes to commit"
+          else
+            git commit -m "chore: refresh LLM verifications [$(date -u +%Y-%m-%d)]"
+            git pull --rebase
+            git push
+          fi
+
       - name: Send events report email
         if: always()
         continue-on-error: true

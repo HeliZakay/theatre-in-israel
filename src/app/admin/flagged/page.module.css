@@ -103,6 +103,14 @@
   color: #4b5563;
 }
 
+.llmReason {
+  color: #7c2d12;
+  font-style: italic;
+  font-size: 0.85rem;
+  flex-basis: 100%;
+  padding-top: 0.2rem;
+}
+
 .link {
   color: var(--color-curtain-red, #b91c1c);
   text-decoration: underline;
