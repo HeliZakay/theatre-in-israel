@@ -244,7 +244,7 @@ export function readReport({ dataDir, theatres, includePrevious = true }) {
       }
 
       if (issues.length) anomalies.push({ label, file, issues });
-      allFileEvents.push({ file, events: current.events });
+      allFileEvents.push({ file, label, events: current.events });
 
       rows.push({
         label,
@@ -286,5 +286,6 @@ export function readReport({ dataDir, theatres, includePrevious = true }) {
     totalRemoved,
     anomalies,
     crossRef,
+    allFileEvents,
   };
 }
