@@ -14,6 +14,7 @@ import { execSync } from "child_process";
 import { join } from "path";
 
 const COUNT_DROP_THRESHOLD = 0.3;
+const STALE_HOURS = 48; // matches scripts/lib/scraper-freshness.js threshold
 
 export function todayInJerusalem() {
   return new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Jerusalem" });
@@ -35,7 +36,11 @@ function eventKey(e) {
 function parseEvents(raw) {
   const data = JSON.parse(raw);
   const events = data.events ?? [];
-  return { events, map: new Map(events.map((e) => [eventKey(e), e])) };
+  return {
+    events,
+    scrapedAt: data.scrapedAt,
+    map: new Map(events.map((e) => [eventKey(e), e])),
+  };
 }
 
 // Returns previous version of a tracked file from one commit ago, or null
@@ -52,9 +57,39 @@ function readPreviousFile(relPath) {
   }
 }
 
-export function checkFileAnomalies(events, prevEventCount) {
+export function checkFileAnomalies(events, prevEventCount, scrapedAt) {
   const today = todayInJerusalem();
   const issues = [];
+
+  if (scrapedAt) {
+    const ageMs = Date.now() - new Date(scrapedAt).getTime();
+    const ageHours = ageMs / (1000 * 60 * 60);
+    if (Number.isFinite(ageHours) && ageHours > STALE_HOURS) {
+      issues.push({
+        kind: "stale-data",
+        summary: `last scraped ${Math.round(ageHours)}h ago — workflow may not be running`,
+        events: [],
+      });
+    }
+  }
+
+  const unknownCity = events.filter((e) => e.venueCity === "לא ידוע");
+  if (unknownCity.length) {
+    issues.push({
+      kind: "unknown-venue",
+      summary: `${unknownCity.length} event(s) with venueCity="לא ידוע" — touring fallback fired, venue not resolved`,
+      events: unknownCity,
+    });
+  }
+
+  const suspectHour = events.filter((e) => e.suspectHour === true);
+  if (suspectHour.length) {
+    issues.push({
+      kind: "suspect-hour",
+      summary: `${suspectHour.length} event(s) with hour likely confused with duration ("דקות" near hour value)`,
+      events: suspectHour,
+    });
+  }
 
   const past = events.filter((e) => e.date && e.date < today);
   if (past.length) {
@@ -169,7 +204,11 @@ export function readReport({ dataDir, theatres, includePrevious = true }) {
         }
       }
 
-      const issues = checkFileAnomalies(current.events, prevEventCount);
+      const issues = checkFileAnomalies(
+        current.events,
+        prevEventCount,
+        current.scrapedAt,
+      );
       if (issues.length) anomalies.push({ label, file, issues });
       allFileEvents.push({ file, events: current.events });
 

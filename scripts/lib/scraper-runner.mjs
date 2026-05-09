@@ -410,6 +410,26 @@ async function _runScraper(config) {
       });
       events = events.filter((e) => !e.date || e.date >= today);
 
+      // Drop events whose rawText explicitly marks them cancelled or
+      // postponed. Only effective when the scraper populates rawText —
+      // scrapers that don't will silently let these through (no regression).
+      const CANCEL_RE = /(נדחה|בוטל|מבוטל|הצגה בוטלה)/;
+      events = events.filter((e) => !e.rawText || !CANCEL_RE.test(e.rawText));
+
+      // Tag events whose rawText contains "דקות" (minutes) near the hour
+      // value — a strong signal the scraper picked up the duration instead
+      // of the start time. Anomaly checker reads `suspectHour` per-event.
+      for (const e of events) {
+        if (!e.rawText || !e.hour) continue;
+        const hourIdx = e.rawText.indexOf(e.hour);
+        if (hourIdx === -1) continue;
+        const window = e.rawText.slice(
+          Math.max(0, hourIdx - 30),
+          hourIdx + e.hour.length + 30,
+        );
+        if (/דקות/.test(window)) e.suspectHour = true;
+      }
+
       totals.shows++;
       totals.events += events.length;
 
@@ -483,6 +503,7 @@ async function _runScraper(config) {
           const sourceUrl = ev.sourceUrl || show.url || null;
           if (sourceUrl) entry.sourceUrl = sourceUrl;
           if (ev.ticketUrl) entry.ticketUrl = ev.ticketUrl;
+          if (ev.suspectHour) entry.suspectHour = true;
           collectedEvents.push(entry);
         }
       }
