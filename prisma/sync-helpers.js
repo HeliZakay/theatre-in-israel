@@ -80,6 +80,12 @@ const VENUE_ALIASES = new Map([
   // Beit Tzioni America — full-name variant with wrong city (תל אביב-יפו)
   ["בית ציוני אמריקה ת״א|תל אביב-יפו", { name: "בית ציוני אמריקה ת״א", city: "תל אביב" }],
 
+  // DAVAI — home studio name variants → canonical Hebrew
+  ["DAVAI Theatre Studio|תל אביב-יפו", { name: "סטודיו דוואי", city: "תל אביב-יפו" }],
+
+  // הטחנה — actually in שער העמקים, not Tel Aviv (Davai scraper default)
+  ["הטחנה - The mill|תל אביב-יפו", { name: "הטחנה - The mill", city: "שער העמקים" }],
+
   // Heichal HaTarbut Hevel Modi'in — canonical name is איירפורט סיטי
   ["היכל התרבות חבל מודיעין|אייפורט סיטי", { name: "היכל התרבות איירפורט סיטי", city: "איירפורט סיטי" }],
   ["היכל התרבות חבל מודיעין|איירפורט סיטי", { name: "היכל התרבות איירפורט סיטי", city: "איירפורט סיטי" }],

@@ -288,12 +288,29 @@ export async function scrapeShowDetails(browser, url) {
 
 const EVENTS_URL = "https://davai-group.org/events/list/";
 
+const HOME_STUDIO = "סטודיו דוואי";
+
+// Variants of the home studio name as they appear on the page (lowercased)
+const HOME_STUDIO_ALIASES = ["davai theatre studio", "סטודיו דוואי"];
+
 const VENUE_CITY_MAP = {
   "davai theatre studio": "תל אביב-יפו",
   "סטודיו דוואי": "תל אביב-יפו",
   "tel aviv museum of art": "תל אביב",
   "מוזיאון תל אביב לאמנות": "תל אביב",
+  shambukia: "תל אביב-יפו",
+  "הטחנה": "שער העמקים",
+  "the mill": "שער העמקים",
 };
+
+function canonicaliseVenueName(rawVenueName) {
+  if (!rawVenueName) return HOME_STUDIO;
+  const lower = rawVenueName.toLowerCase();
+  for (const alias of HOME_STUDIO_ALIASES) {
+    if (lower.includes(alias)) return HOME_STUDIO;
+  }
+  return rawVenueName;
+}
 
 function resolveVenueCity(venueName, addressText) {
   const lower = venueName.toLowerCase();
@@ -410,7 +427,7 @@ export async function fetchAllEvents(browser) {
 
     if (!date) continue;
 
-    const venueName = raw.venueName || "סטודיו דוואי";
+    const venueName = canonicaliseVenueName(raw.venueName);
     const venueCity = resolveVenueCity(venueName, raw.venueAddress);
 
     const event = {
