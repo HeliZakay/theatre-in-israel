@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-08T04:10:48.200Z",
+  "scrapedAt": "2026-05-09T04:15:27.748Z",
   "touring": true,
   "events": [
     {
@@ -89,6 +89,94 @@
       "hour": "20:00",
       "venueName": "תיאטרון החאן",
       "venueCity": "ירושלים"
+    },
+    {
+      "showId": 473,
+      "showSlug": "כוכבים-תועים",
+      "date": "2026-06-27",
+      "hour": "21:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 473,
+      "showSlug": "כוכבים-תועים",
+      "date": "2026-06-28",
+      "hour": "20:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 473,
+      "showSlug": "כוכבים-תועים",
+      "date": "2026-06-29",
+      "hour": "20:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 473,
+      "showSlug": "כוכבים-תועים",
+      "date": "2026-06-30",
+      "hour": "17:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 473,
+      "showSlug": "כוכבים-תועים",
+      "date": "2026-06-30",
+      "hour": "20:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 473,
+      "showSlug": "כוכבים-תועים",
+      "date": "2026-07-01",
+      "hour": "20:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 473,
+      "showSlug": "כוכבים-תועים",
+      "date": "2026-07-02",
+      "hour": "20:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 473,
+      "showSlug": "כוכבים-תועים",
+      "date": "2026-07-04",
+      "hour": "21:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים"
+    },
+    {
+      "showId": 473,
+      "showSlug": "כוכבים-תועים",
+      "date": "2026-09-15",
+      "hour": "18:00",
+      "venueName": "בית ציוני אמריקה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 473,
+      "showSlug": "כוכבים-תועים",
+      "date": "2026-09-15",
+      "hour": "21:00",
+      "venueName": "בית ציוני אמריקה",
+      "venueCity": "תל אביב"
+    },
+    {
+      "showId": 473,
+      "showSlug": "כוכבים-תועים",
+      "date": "2026-09-16",
+      "hour": "18:00",
+      "venueName": "בית ציוני אמריקה",
+      "venueCity": "תל אביב"
     },
     {
       "showId": 88,

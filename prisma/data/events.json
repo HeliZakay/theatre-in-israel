@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-08T04:13:58.378Z",
+  "scrapedAt": "2026-05-09T04:18:56.685Z",
   "venue": {
     "name": "תיאטרון הקאמרי",
     "city": "תל אביב"
@@ -15,7 +15,38 @@
       "showId": 32,
       "showSlug": "איש-הגשם",
       "date": "2026-07-14",
+      "hour": "20:00",
+      "note": "English subtitles"
+    },
+    {
+      "showId": 470,
+      "showSlug": "ד-ר-סטריינג׳לאב",
+      "date": "2026-07-24",
+      "hour": "20:30"
+    },
+    {
+      "showId": 470,
+      "showSlug": "ד-ר-סטריינג׳לאב",
+      "date": "2026-07-25",
+      "hour": "17:30"
+    },
+    {
+      "showId": 470,
+      "showSlug": "ד-ר-סטריינג׳לאב",
+      "date": "2026-07-25",
+      "hour": "20:30"
+    },
+    {
+      "showId": 470,
+      "showSlug": "ד-ר-סטריינג׳לאב",
+      "date": "2026-07-26",
       "hour": "20:00"
+    },
+    {
+      "showId": 470,
+      "showSlug": "ד-ר-סטריינג׳לאב",
+      "date": "2026-07-27",
+      "hour": "19:00"
     },
     {
       "showId": 26,
@@ -123,7 +154,8 @@
       "showId": 318,
       "showSlug": "האשליה",
       "date": "2026-07-24",
-      "hour": "12:00"
+      "hour": "12:00",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 318,
@@ -135,7 +167,8 @@
       "showId": 318,
       "showSlug": "האשליה",
       "date": "2026-07-25",
-      "hour": "17:00"
+      "hour": "17:00",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 318,
@@ -147,7 +180,8 @@
       "showId": 318,
       "showSlug": "האשליה",
       "date": "2026-07-26",
-      "hour": "20:30"
+      "hour": "20:30",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 6,
@@ -165,14 +199,7 @@
     {
       "showId": 8,
       "showSlug": "החבדניקים",
-      "date": "2027-05-07",
-      "hour": "19:00",
-      "note": "English subtitles"
-    },
-    {
-      "showId": 8,
-      "showSlug": "החבדניקים",
-      "date": "2026-05-08",
+      "date": "2027-05-08",
       "hour": "20:30"
     },
     {
@@ -212,7 +239,8 @@
       "showId": 8,
       "showSlug": "החבדניקים",
       "date": "2026-07-24",
-      "hour": "20:30"
+      "hour": "20:30",
+      "note": "English subtitles"
     },
     {
       "showId": 9,
@@ -250,7 +278,8 @@
       "showId": 9,
       "showSlug": "החולה-ההודי",
       "date": "2026-07-31",
-      "hour": "20:30"
+      "hour": "20:30",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 9,
@@ -414,7 +443,8 @@
       "showId": 11,
       "showSlug": "הנפש-הטובה-מסצ׳ואן",
       "date": "2026-07-30",
-      "hour": "19:30"
+      "hour": "19:30",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 21,
@@ -506,7 +536,8 @@
       "showId": 21,
       "showSlug": "הריטריט",
       "date": "2026-07-16",
-      "hour": "18:00"
+      "hour": "18:00",
+      "note": "English subtitles"
     },
     {
       "showId": 21,
@@ -518,7 +549,8 @@
       "showId": 21,
       "showSlug": "הריטריט",
       "date": "2026-07-17",
-      "hour": "12:00"
+      "hour": "12:00",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 21,
@@ -530,7 +562,8 @@
       "showId": 21,
       "showSlug": "הריטריט",
       "date": "2026-07-18",
-      "hour": "17:00"
+      "hour": "17:00",
+      "note": "English subtitles"
     },
     {
       "showId": 21,
@@ -678,19 +711,22 @@
       "showId": 19,
       "showSlug": "זינגר",
       "date": "2026-07-29",
-      "hour": "19:00"
+      "hour": "19:00",
+      "note": "English subtitles"
     },
     {
       "showId": 19,
       "showSlug": "זינגר",
       "date": "2026-07-30",
-      "hour": "19:00"
+      "hour": "19:00",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 19,
       "showSlug": "זינגר",
       "date": "2026-07-31",
-      "hour": "11:30"
+      "hour": "11:30",
+      "note": "English subtitles"
     },
     {
       "showId": 19,
@@ -707,20 +743,14 @@
     {
       "showId": 15,
       "showSlug": "חשמלית-ושמה-תשוקה",
-      "date": "2027-05-07",
-      "hour": "19:30"
-    },
-    {
-      "showId": 15,
-      "showSlug": "חשמלית-ושמה-תשוקה",
-      "date": "2026-05-08",
+      "date": "2027-05-08",
       "hour": "12:00",
       "note": "English subtitles"
     },
     {
       "showId": 15,
       "showSlug": "חשמלית-ושמה-תשוקה",
-      "date": "2026-05-08",
+      "date": "2027-05-08",
       "hour": "20:00",
       "note": "כתוביות בעברית"
     },
@@ -1101,7 +1131,7 @@
     {
       "showId": 1,
       "showSlug": "מישהו-שר-את-זה-קודם",
-      "date": "2026-05-08",
+      "date": "2027-05-08",
       "hour": "11:30"
     },
     {
@@ -1370,13 +1400,15 @@
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-07-15",
-      "hour": "19:00"
+      "hour": "19:00",
+      "note": "English subtitles"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-07-17",
-      "hour": "11:30"
+      "hour": "11:30",
+      "note": "English subtitles"
     },
     {
       "showId": 2,
@@ -1388,13 +1420,15 @@
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-07-18",
-      "hour": "16:30"
+      "hour": "16:30",
+      "note": "English subtitles"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-07-18",
-      "hour": "21:00"
+      "hour": "21:00",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 2,
@@ -1406,13 +1440,15 @@
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-07-20",
-      "hour": "19:00"
+      "hour": "19:00",
+      "note": "English subtitles"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
       "date": "2026-07-21",
-      "hour": "19:00"
+      "hour": "19:00",
+      "note": "כתוביות בעברית"
     },
     {
       "showId": 132,
@@ -1471,6 +1507,12 @@
       "date": "2026-07-09",
       "hour": "20:30",
       "note": "English subtitles"
+    },
+    {
+      "showId": 471,
+      "showSlug": "שיכורינגו",
+      "date": "2026-05-17",
+      "hour": "21:00"
     }
   ]
 }

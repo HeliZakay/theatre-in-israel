@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-08T04:11:34.820Z",
+  "scrapedAt": "2026-05-09T04:16:15.752Z",
   "touring": true,
   "events": [
     {
@@ -423,22 +423,6 @@
       "showSlug": "נשמות",
       "date": "2026-07-12",
       "hour": "19:30",
-      "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
-    },
-    {
-      "showId": 97,
-      "showSlug": "סלומה",
-      "date": "2026-05-08",
-      "hour": "12:00",
-      "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
-    },
-    {
-      "showId": 97,
-      "showSlug": "סלומה",
-      "date": "2026-05-08",
-      "hour": "20:00",
       "venueName": "תיאטרון גשר",
       "venueCity": "תל אביב-יפו"
     },
