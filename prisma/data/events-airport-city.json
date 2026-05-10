@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:22:14.788Z",
+  "scrapedAt": "2026-05-10T04:35:39.705Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות איירפורט סיטי",
@@ -10,145 +10,169 @@
       "showId": 81,
       "showSlug": "הזוג-המוזר",
       "date": "2026-05-14",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1596"
     },
     {
       "showId": 81,
       "showSlug": "הזוג-המוזר",
       "date": "2026-05-16",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1596"
     },
     {
       "showId": 268,
       "showSlug": "סימה-מכשפה",
       "date": "2026-05-17",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1642"
     },
     {
       "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-05-19",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1666"
     },
     {
       "showId": 68,
       "showSlug": "אור-לגויים",
       "date": "2026-05-25",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1448"
     },
     {
       "showId": 68,
       "showSlug": "אור-לגויים",
       "date": "2026-05-26",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1448"
     },
     {
       "showId": 68,
       "showSlug": "אור-לגויים",
       "date": "2026-05-28",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1448"
     },
     {
       "showId": 68,
       "showSlug": "אור-לגויים",
       "date": "2026-05-29",
-      "hour": "11:00"
+      "hour": "11:00",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1448"
     },
     {
       "showId": 68,
       "showSlug": "אור-לגויים",
       "date": "2026-05-30",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1448"
     },
     {
       "showId": 445,
       "showSlug": "כובע-קסמים",
       "date": "2026-05-31",
-      "hour": "17:30"
+      "hour": "17:30",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1576"
     },
     {
       "showId": 4,
       "showSlug": "מי-בעד",
       "date": "2026-06-07",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1460"
     },
     {
       "showId": 4,
       "showSlug": "מי-בעד",
       "date": "2026-06-08",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1460"
     },
     {
       "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-06-11",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1624"
     },
     {
       "showId": 271,
       "showSlug": "שקרים-קטנים",
       "date": "2026-06-20",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1622"
     },
     {
       "showId": 114,
       "showSlug": "עפרה",
       "date": "2026-06-22",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1626"
     },
     {
       "showId": 71,
       "showSlug": "אף-מילה-לאמא",
       "date": "2026-06-25",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1608"
     },
     {
       "showId": 71,
       "showSlug": "אף-מילה-לאמא",
       "date": "2026-06-27",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1608"
     },
     {
       "showId": 159,
       "showSlug": "מישהו-לרוץ-איתו",
       "date": "2026-07-06",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1462"
     },
     {
       "showId": 159,
       "showSlug": "מישהו-לרוץ-איתו",
       "date": "2026-07-07",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1462"
     },
     {
       "showId": 266,
       "showSlug": "מיקה-שלי",
       "date": "2026-07-12",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1652"
     },
     {
       "showId": 38,
       "showSlug": "משכנתא",
       "date": "2026-07-23",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1658"
     },
     {
       "showId": 38,
       "showSlug": "משכנתא",
       "date": "2026-07-25",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1658"
     },
     {
       "showId": 256,
       "showSlug": "מותרת-לכל-אדם",
       "date": "2026-09-03",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1454"
     },
     {
       "showId": 256,
       "showSlug": "מותרת-לכל-אדם",
       "date": "2026-09-04",
-      "hour": "11:00"
+      "hour": "11:00",
+      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1454"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:20:55.377Z",
+  "scrapedAt": "2026-05-10T04:38:20.764Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון באר שבע",
@@ -10,37 +10,43 @@
       "showId": 61,
       "showSlug": "בחורים-טובים",
       "date": "2026-06-03",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%97%d7%95%d7%a8%d7%99%d7%9d-%d7%98%d7%95%d7%91%d7%99%d7%9d/"
     },
     {
       "showId": 61,
       "showSlug": "בחורים-טובים",
       "date": "2026-06-04",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%97%d7%95%d7%a8%d7%99%d7%9d-%d7%98%d7%95%d7%91%d7%99%d7%9d/"
     },
     {
       "showId": 98,
       "showSlug": "החטא-ועונשו",
       "date": "2026-06-14",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%94%d7%97%d7%98%d7%90-%d7%95%d7%a2%d7%95%d7%a0%d7%a9%d7%95/"
     },
     {
       "showId": 98,
       "showSlug": "החטא-ועונשו",
       "date": "2026-06-15",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%94%d7%97%d7%98%d7%90-%d7%95%d7%a2%d7%95%d7%a0%d7%a9%d7%95/"
     },
     {
       "showId": 75,
       "showSlug": "שם-פרטי",
       "date": "2026-05-10",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%a9%d7%9d-%d7%a4%d7%a8%d7%98%d7%99/"
     },
     {
       "showId": 75,
       "showSlug": "שם-פרטי",
       "date": "2026-05-11",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%a9%d7%9d-%d7%a4%d7%a8%d7%98%d7%99/"
     }
   ]
 }

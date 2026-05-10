@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-05-09T04:22:46.541Z",
+  "scrapedAt": "2026-05-10T04:36:33.188Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות אור יהודה",
     "city": "אור יהודה"
   },
   "events": [
-    {
-      "showId": 75,
-      "showSlug": "שם-פרטי",
-      "date": "2026-05-09",
-      "hour": "21:00"
-    },
     {
       "showId": 121,
       "showSlug": "מראה-מעל-הגשר",

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:20:17.695Z",
+  "scrapedAt": "2026-05-10T04:33:23.465Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון צוותא",
@@ -10,163 +10,183 @@
       "showId": 450,
       "showSlug": "אורות-קטנות",
       "date": "2026-05-15",
-      "hour": "14:00"
+      "hour": "14:00",
+      "sourceUrl": "https://www.tzavta.co.il/event/4977"
     },
     {
       "showId": 451,
       "showSlug": "איפה-גוגו",
       "date": "2026-05-30",
-      "hour": "11:00"
+      "hour": "11:00",
+      "sourceUrl": "https://www.tzavta.co.il/event/2219"
     },
     {
       "showId": 176,
       "showSlug": "אירלנד",
       "date": "2026-05-19",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/3716"
     },
     {
       "showId": 452,
       "showSlug": "אמא-שלי-קראה-לי-רוטוויילר",
       "date": "2026-05-14",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tzavta.co.il/event/4943"
     },
     {
       "showId": 454,
       "showSlug": "אקורד-סיום-למלחמה",
       "date": "2026-05-13",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/5071"
     },
     {
       "showId": 377,
       "showSlug": "ארטיסט",
       "date": "2026-05-27",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tzavta.co.il/event/3874"
     },
     {
       "showId": 183,
       "showSlug": "גידול-ושמו-בועז-קומדיה-רומנטית-בקטע-דפוק",
       "date": "2026-06-02",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/7"
     },
     {
       "showId": 369,
       "showSlug": "הסוף",
       "date": "2026-05-19",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tzavta.co.il/event/5"
     },
     {
       "showId": 369,
       "showSlug": "הסוף",
       "date": "2026-06-18",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tzavta.co.il/event/5"
     },
     {
       "showId": 369,
       "showSlug": "הסוף",
       "date": "2026-06-28",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tzavta.co.il/event/5"
     },
     {
       "showId": 455,
       "showSlug": "התחנה-האחרונה",
       "date": "2026-05-25",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/3904"
     },
     {
       "showId": 456,
       "showSlug": "זה-בסדר.",
       "date": "2026-05-10",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/5048"
     },
     {
       "showId": 457,
       "showSlug": "טובעים-השניים",
       "date": "2026-05-18",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/3917"
     },
     {
       "showId": 458,
       "showSlug": "ככה-יצאתי",
       "date": "2026-05-31",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/2288"
     },
     {
       "showId": 373,
       "showSlug": "לדפוק",
       "date": "2026-05-12",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/4946"
     },
     {
       "showId": 194,
       "showSlug": "מה-שקרה-לנו",
       "date": "2026-05-18",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/5081"
     },
     {
       "showId": 194,
       "showSlug": "מה-שקרה-לנו",
       "date": "2026-06-20",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/5081"
     },
     {
       "showId": 194,
       "showSlug": "מה-שקרה-לנו",
       "date": "2026-07-02",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/5081"
     },
     {
       "showId": 195,
       "showSlug": "מכתב-הקסם",
       "date": "2026-05-16",
-      "hour": "12:00"
+      "hour": "12:00",
+      "sourceUrl": "https://www.tzavta.co.il/event/4938"
     },
     {
       "showId": 274,
       "showSlug": "ממלכת-קקופוניה",
       "date": "2026-06-13",
-      "hour": "11:30"
+      "hour": "11:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/5034"
     },
     {
       "showId": 376,
       "showSlug": "מצבים-בפוטנציה",
       "date": "2026-05-29",
-      "hour": "12:00"
+      "hour": "12:00",
+      "sourceUrl": "https://www.tzavta.co.il/event/5013"
     },
     {
       "showId": 198,
       "showSlug": "מקליד-ה...",
       "date": "2026-06-08",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/3544"
     },
     {
       "showId": 200,
       "showSlug": "סונטת-קרויצר",
       "date": "2026-07-25",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/5059"
     },
     {
       "showId": 206,
       "showSlug": "פצעים",
       "date": "2026-05-18",
-      "hour": "20:30"
-    },
-    {
-      "showId": 207,
-      "showSlug": "קצר-לילדים",
-      "date": "2026-05-09",
-      "hour": "11:00"
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/5064"
     },
     {
       "showId": 208,
       "showSlug": "שותפים-לנצח",
       "date": "2026-05-17",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/5085"
     },
     {
       "showId": 208,
       "showSlug": "שותפים-לנצח",
       "date": "2026-06-09",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/5085"
     }
   ]
 }

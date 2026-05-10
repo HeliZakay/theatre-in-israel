@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:21:35.925Z",
+  "scrapedAt": "2026-05-10T04:34:24.912Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות ראשון לציון",
@@ -10,259 +10,274 @@
       "showId": 61,
       "showSlug": "בחורים-טובים",
       "date": "2026-05-25",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%91%d7%97%d7%95%d7%a8%d7%99%d7%9d-%d7%98%d7%95%d7%91%d7%99%d7%9d/"
     },
     {
       "showId": 61,
       "showSlug": "בחורים-טובים",
       "date": "2026-05-26",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%91%d7%97%d7%95%d7%a8%d7%99%d7%9d-%d7%98%d7%95%d7%91%d7%99%d7%9d/"
     },
     {
       "showId": 119,
       "showSlug": "זוגיות-AI",
       "date": "2026-05-29",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%96%d7%95%d7%92%d7%99%d7%95%d7%aa-ai/"
     },
     {
       "showId": 271,
       "showSlug": "שקרים-קטנים",
       "date": "2026-05-30",
-      "hour": "18:00"
+      "hour": "18:00",
+      "sourceUrl": "https://htrl.co.il/show/%d7%a9%d7%a7%d7%a8%d7%99%d7%9d-%d7%a7%d7%98%d7%a0%d7%99%d7%9d/"
     },
     {
       "showId": 271,
       "showSlug": "שקרים-קטנים",
       "date": "2026-07-18",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://htrl.co.il/show/%d7%a9%d7%a7%d7%a8%d7%99%d7%9d-%d7%a7%d7%98%d7%a0%d7%99%d7%9d/"
     },
     {
       "showId": 116,
       "showSlug": "אהבה-בהפתעה",
       "date": "2026-06-05",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%90%d7%94%d7%91%d7%94-%d7%91%d7%94%d7%a4%d7%aa%d7%a2%d7%94/"
     },
     {
       "showId": 114,
       "showSlug": "עפרה",
       "date": "2026-06-06",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://htrl.co.il/show/4380/"
     },
     {
       "showId": 114,
       "showSlug": "עפרה",
       "date": "2026-08-01",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://htrl.co.il/show/4380/"
     },
     {
       "showId": 114,
       "showSlug": "עפרה",
       "date": "2026-06-20",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://htrl.co.il/show/4380/"
     },
     {
       "showId": 172,
       "showSlug": "פינק-ליידי",
       "date": "2026-06-07",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%a4%d7%99%d7%a0%d7%a7-%d7%9c%d7%99%d7%99%d7%93%d7%99/"
     },
     {
       "showId": 172,
       "showSlug": "פינק-ליידי",
       "date": "2026-06-08",
-      "hour": "17:00"
+      "hour": "17:00",
+      "sourceUrl": "https://htrl.co.il/show/%d7%a4%d7%99%d7%a0%d7%a7-%d7%9c%d7%99%d7%99%d7%93%d7%99/"
     },
     {
       "showId": 172,
       "showSlug": "פינק-ליידי",
       "date": "2026-06-09",
-      "hour": "17:00"
-    },
-    {
-      "showId": 172,
-      "showSlug": "פינק-ליידי",
-      "date": "2026-06-08",
-      "hour": "17:00"
-    },
-    {
-      "showId": 172,
-      "showSlug": "פינק-ליידי",
-      "date": "2026-06-09",
-      "hour": "17:00"
+      "hour": "17:00",
+      "sourceUrl": "https://htrl.co.il/show/%d7%a4%d7%99%d7%a0%d7%a7-%d7%9c%d7%99%d7%99%d7%93%d7%99/"
     },
     {
       "showId": 124,
       "showSlug": "כנר-על-הגג-–-המחזמר",
       "date": "2026-06-11",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%9b%d7%a0%d7%a8-%d7%a2%d7%9c-%d7%94%d7%92%d7%92-2/"
     },
     {
       "showId": 122,
       "showSlug": "צלילי-המוסיקה",
       "date": "2026-06-13",
-      "hour": "18:00"
+      "hour": "18:00",
+      "sourceUrl": "https://htrl.co.il/show/%d7%a6%d7%9c%d7%99%d7%9c%d7%99-%d7%94%d7%9e%d7%95%d7%a1%d7%99%d7%a7%d7%94-2/"
     },
     {
       "showId": 267,
       "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
       "date": "2026-06-19",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://htrl.co.il/show/%d7%a0%d7%99%d7%a9%d7%95%d7%90%d7%99%d7%9d-%d7%92%d7%a8%d7%a2%d7%99%d7%a0%d7%99%d7%99%d7%9d/"
     },
     {
       "showId": 267,
       "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
       "date": "2026-08-07",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%a0%d7%99%d7%a9%d7%95%d7%90%d7%99%d7%9d-%d7%92%d7%a8%d7%a2%d7%99%d7%a0%d7%99%d7%99%d7%9d/"
     },
     {
       "showId": 3,
       "showSlug": "לנקות-את-הראש",
       "date": "2026-06-24",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa-%d7%90%d7%aa-%d7%94%d7%a8%d7%90%d7%a9/"
     },
     {
       "showId": 3,
       "showSlug": "לנקות-את-הראש",
       "date": "2026-06-25",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa-%d7%90%d7%aa-%d7%94%d7%a8%d7%90%d7%a9/"
     },
     {
       "showId": 3,
       "showSlug": "לנקות-את-הראש",
       "date": "2026-06-27",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://htrl.co.il/show/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa-%d7%90%d7%aa-%d7%94%d7%a8%d7%90%d7%a9/"
     },
     {
       "showId": 80,
       "showSlug": "לילסדה",
       "date": "2026-07-09",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%9c%d7%99%d7%9c%d7%a1%d7%93%d7%94/"
     },
     {
       "showId": 80,
       "showSlug": "לילסדה",
       "date": "2026-07-11",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://htrl.co.il/show/%d7%9c%d7%99%d7%9c%d7%a1%d7%93%d7%94/"
     },
     {
       "showId": 80,
       "showSlug": "לילסדה",
       "date": "2026-07-12",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%9c%d7%99%d7%9c%d7%a1%d7%93%d7%94/"
     },
     {
       "showId": 31,
       "showSlug": "השותפה",
       "date": "2026-07-26",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
     },
     {
       "showId": 31,
       "showSlug": "השותפה",
       "date": "2026-07-27",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
     },
     {
       "showId": 31,
       "showSlug": "השותפה",
       "date": "2026-07-28",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
     },
     {
       "showId": 38,
       "showSlug": "משכנתא",
       "date": "2026-08-02",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%9e%d7%a9%d7%9b%d7%a0%d7%aa%d7%90/"
     },
     {
       "showId": 38,
       "showSlug": "משכנתא",
       "date": "2026-08-03",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%9e%d7%a9%d7%9b%d7%a0%d7%aa%d7%90/"
     },
     {
       "showId": 38,
       "showSlug": "משכנתא",
       "date": "2026-08-04",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%9e%d7%a9%d7%9b%d7%a0%d7%aa%d7%90/"
     },
     {
       "showId": 57,
       "showSlug": "מלאכים-בלבן",
       "date": "2026-08-19",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%93%d7%a8-%d7%a7%d7%9c%d7%99%d7%99%d7%9f/"
     },
     {
       "showId": 57,
       "showSlug": "מלאכים-בלבן",
       "date": "2026-08-20",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%93%d7%a8-%d7%a7%d7%9c%d7%99%d7%99%d7%9f/"
     },
     {
       "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-08-21",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://htrl.co.il/show/%d7%93%d7%a8%d7%95%d7%a9%d7%94-%d7%a2%d7%95%d7%96%d7%a8%d7%aa-%d7%9e%d7%95%d7%a4%d7%a2-%d7%90%d7%9e%d7%a8%d7%92%d7%9f/"
     },
     {
       "showId": 78,
       "showSlug": "לשחרר-את-נחמה",
       "date": "2026-08-31",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%9c%d7%a9%d7%97%d7%a8%d7%a8-%d7%90%d7%aa-%d7%a0%d7%97%d7%9e%d7%94-2/"
     },
     {
       "showId": 78,
       "showSlug": "לשחרר-את-נחמה",
       "date": "2026-09-01",
-      "hour": "17:00"
+      "hour": "17:00",
+      "sourceUrl": "https://htrl.co.il/show/%d7%9c%d7%a9%d7%97%d7%a8%d7%a8-%d7%90%d7%aa-%d7%a0%d7%97%d7%9e%d7%94-2/"
     },
     {
       "showId": 78,
       "showSlug": "לשחרר-את-נחמה",
       "date": "2026-09-02",
-      "hour": "17:00"
-    },
-    {
-      "showId": 78,
-      "showSlug": "לשחרר-את-נחמה",
-      "date": "2026-09-01",
-      "hour": "17:00"
-    },
-    {
-      "showId": 78,
-      "showSlug": "לשחרר-את-נחמה",
-      "date": "2026-09-02",
-      "hour": "17:00"
+      "hour": "17:00",
+      "sourceUrl": "https://htrl.co.il/show/%d7%9c%d7%a9%d7%97%d7%a8%d7%a8-%d7%90%d7%aa-%d7%a0%d7%97%d7%9e%d7%94-2/"
     },
     {
       "showId": 19,
       "showSlug": "זינגר",
       "date": "2026-09-04",
-      "hour": "22:00"
+      "hour": "22:00",
+      "sourceUrl": "https://htrl.co.il/show/%d7%92%d7%99%d7%95%d7%a8%d7%90-%d7%96%d7%99%d7%a0%d7%92%d7%a8-2/"
     },
     {
       "showId": 112,
       "showSlug": "גבירתי-הנאווה",
       "date": "2027-01-31",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://htrl.co.il/show/%d7%92%d7%91%d7%99%d7%a8%d7%aa%d7%99-%d7%94%d7%a0%d7%90%d7%95%d7%94/"
     },
     {
       "showId": 112,
       "showSlug": "גבירתי-הנאווה",
       "date": "2027-02-01",
-      "hour": "17:30"
+      "hour": "17:30",
+      "sourceUrl": "https://htrl.co.il/show/%d7%92%d7%91%d7%99%d7%a8%d7%aa%d7%99-%d7%94%d7%a0%d7%90%d7%95%d7%94/"
     },
     {
       "showId": 112,
       "showSlug": "גבירתי-הנאווה",
       "date": "2027-02-02",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://htrl.co.il/show/%d7%92%d7%91%d7%99%d7%a8%d7%aa%d7%99-%d7%94%d7%a0%d7%90%d7%95%d7%94/"
     },
     {
       "showId": 112,
       "showSlug": "גבירתי-הנאווה",
       "date": "2027-02-03",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://htrl.co.il/show/%d7%92%d7%91%d7%99%d7%a8%d7%aa%d7%99-%d7%94%d7%a0%d7%90%d7%95%d7%94/"
     }
   ]
 }

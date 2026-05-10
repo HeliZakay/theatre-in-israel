@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:18:43.503Z",
+  "scrapedAt": "2026-05-10T04:31:50.939Z",
   "touring": true,
   "events": [
     {
@@ -8,7 +8,9 @@
       "date": "2026-05-27",
       "hour": "20:00",
       "venueName": "בית מזיא",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://incubator.org.il/repertoire/be-more-chill/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/133"
     },
     {
       "showId": 295,
@@ -16,7 +18,9 @@
       "date": "2026-05-28",
       "hour": "20:00",
       "venueName": "בית מזיא",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://incubator.org.il/repertoire/be-more-chill/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/217"
     },
     {
       "showId": 295,
@@ -24,7 +28,9 @@
       "date": "2026-06-02",
       "hour": "20:00",
       "venueName": "בית מזיא",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://incubator.org.il/repertoire/be-more-chill/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/221"
     },
     {
       "showId": 295,
@@ -32,7 +38,9 @@
       "date": "2026-06-03",
       "hour": "20:00",
       "venueName": "בית מזיא",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://incubator.org.il/repertoire/be-more-chill/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/218"
     },
     {
       "showId": 295,
@@ -40,7 +48,9 @@
       "date": "2026-06-04",
       "hour": "20:00",
       "venueName": "בית מזיא",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://incubator.org.il/repertoire/be-more-chill/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/223"
     },
     {
       "showId": 290,
@@ -48,7 +58,9 @@
       "date": "2026-05-28",
       "hour": "20:30",
       "venueName": "צוותא",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://incubator.org.il/repertoire/akhinoam-and-i/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/169"
     },
     {
       "showId": 290,
@@ -56,7 +68,9 @@
       "date": "2026-06-09",
       "hour": "20:30",
       "venueName": "צוותא",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://incubator.org.il/repertoire/akhinoam-and-i/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/170"
     },
     {
       "showId": 290,
@@ -64,7 +78,9 @@
       "date": "2026-06-29",
       "hour": "20:30",
       "venueName": "צוותא",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://incubator.org.il/repertoire/akhinoam-and-i/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/171"
     },
     {
       "showId": 291,
@@ -72,7 +88,9 @@
       "date": "2026-06-07",
       "hour": "21:00",
       "venueName": "תיאטרון הבית ת\"א",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://incubator.org.il/repertoire/child/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/199"
     },
     {
       "showId": 291,
@@ -80,7 +98,9 @@
       "date": "2026-06-21",
       "hour": "21:00",
       "venueName": "תיאטרון הבית ת\"א",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://incubator.org.il/repertoire/child/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/207"
     },
     {
       "showId": 101,
@@ -88,7 +108,9 @@
       "date": "2026-06-16",
       "hour": "20:30",
       "venueName": "בית מזיא",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://incubator.org.il/repertoire/anti-aging/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/166"
     },
     {
       "showId": 101,
@@ -96,7 +118,9 @@
       "date": "2026-06-18",
       "hour": "21:00",
       "venueName": "תיאטרון הבית ת\"א",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://incubator.org.il/repertoire/anti-aging/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/202"
     },
     {
       "showId": 367,
@@ -104,7 +128,9 @@
       "date": "2026-05-20",
       "hour": "20:30",
       "venueName": "צוותא",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://incubator.org.il/repertoire/ester/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/172"
     },
     {
       "showId": 367,
@@ -112,7 +138,9 @@
       "date": "2026-06-23",
       "hour": "20:30",
       "venueName": "צוותא",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://incubator.org.il/repertoire/ester/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/173"
     },
     {
       "showId": 182,
@@ -120,7 +148,9 @@
       "date": "2026-05-27",
       "hour": "21:00",
       "venueName": "צוותא",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://incubator.org.il/repertoire/beaujolais/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/178"
     },
     {
       "showId": 293,
@@ -128,7 +158,9 @@
       "date": "2026-07-18",
       "hour": "21:00",
       "venueName": "תיאטרון הבית ת\"א",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://incubator.org.il/repertoire/makom-tov-hacol-ra/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/%D7%9E%D7%A7%D7%95%D7%9D_%D7%98%D7%95%D7%91_%D7%94%D7%9B%D7%9C_%D7%A8%D7%A2_%7C_%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F_%D7%94%D7%90%D7%99%D7%A0%D7%A7%D7%95%D7%91%D7%98%D7%95%D7%A8?id=250"
     },
     {
       "showId": 294,
@@ -136,7 +168,9 @@
       "date": "2026-05-24",
       "hour": "17:00",
       "venueName": "אולם קימרון",
-      "venueCity": "עמק המעיינות"
+      "venueCity": "עמק המעיינות",
+      "sourceUrl": "https://incubator.org.il/repertoire/circus-comeback/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/216"
     },
     {
       "showId": 294,
@@ -144,7 +178,9 @@
       "date": "2026-05-25",
       "hour": "17:30",
       "venueName": "תיאטרון גבעתיים",
-      "venueCity": "גבעתיים"
+      "venueCity": "לא ידוע",
+      "sourceUrl": "https://incubator.org.il/repertoire/circus-comeback/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/156"
     },
     {
       "showId": 294,
@@ -152,7 +188,9 @@
       "date": "2026-07-04",
       "hour": "11:00",
       "venueName": "המשכן לאומנויות הבמה",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://incubator.org.il/repertoire/circus-comeback/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/238"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:16:15.752Z",
+  "scrapedAt": "2026-05-10T04:28:31.288Z",
   "touring": true,
   "events": [
     {
@@ -8,7 +8,9 @@
       "date": "2026-05-13",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2868",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2868&DateID=7191"
     },
     {
       "showId": 240,
@@ -16,7 +18,9 @@
       "date": "2026-05-14",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2868",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2868&DateID=7192"
     },
     {
       "showId": 240,
@@ -24,7 +28,9 @@
       "date": "2026-06-24",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2868",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2868&DateID=7128"
     },
     {
       "showId": 240,
@@ -32,7 +38,9 @@
       "date": "2026-06-25",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2868",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2868&DateID=7129"
     },
     {
       "showId": 240,
@@ -40,7 +48,9 @@
       "date": "2026-06-26",
       "hour": "12:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2868",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2868&DateID=7147"
     },
     {
       "showId": 240,
@@ -48,7 +58,9 @@
       "date": "2026-06-26",
       "hour": "20:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2868",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2868&DateID=7130"
     },
     {
       "showId": 240,
@@ -56,7 +68,9 @@
       "date": "2026-06-27",
       "hour": "18:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2868",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2868&DateID=7131"
     },
     {
       "showId": 240,
@@ -64,7 +78,9 @@
       "date": "2026-07-16",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2868",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2868&DateID=7154"
     },
     {
       "showId": 240,
@@ -72,7 +88,9 @@
       "date": "2026-07-17",
       "hour": "20:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2868",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2868&DateID=7155"
     },
     {
       "showId": 240,
@@ -80,7 +98,9 @@
       "date": "2026-07-18",
       "hour": "18:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2868",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2868&DateID=7156"
     },
     {
       "showId": 241,
@@ -88,7 +108,9 @@
       "date": "2026-05-25",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2659",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2659&DateID=6900"
     },
     {
       "showId": 241,
@@ -96,7 +118,9 @@
       "date": "2026-06-12",
       "hour": "20:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2659",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2659&DateID=7221"
     },
     {
       "showId": 241,
@@ -104,7 +128,9 @@
       "date": "2026-06-13",
       "hour": "18:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2659",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2659&DateID=7113"
     },
     {
       "showId": 406,
@@ -112,7 +138,9 @@
       "date": "2026-05-27",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2886",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2886&DateID=7212"
     },
     {
       "showId": 406,
@@ -120,7 +148,9 @@
       "date": "2026-05-28",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2886",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2886&DateID=7181"
     },
     {
       "showId": 406,
@@ -128,7 +158,9 @@
       "date": "2026-05-29",
       "hour": "20:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2886",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2886&DateID=7213"
     },
     {
       "showId": 406,
@@ -136,7 +168,9 @@
       "date": "2026-05-30",
       "hour": "18:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2886",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2886&DateID=7214"
     },
     {
       "showId": 406,
@@ -144,7 +178,9 @@
       "date": "2026-05-31",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2886",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2886&DateID=7218"
     },
     {
       "showId": 406,
@@ -152,7 +188,9 @@
       "date": "2026-06-29",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2886",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2886&DateID=7216"
     },
     {
       "showId": 406,
@@ -160,7 +198,9 @@
       "date": "2026-06-30",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2886",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2886&DateID=7217"
     },
     {
       "showId": 406,
@@ -168,7 +208,9 @@
       "date": "2026-07-01",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2886",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2886&DateID=7228"
     },
     {
       "showId": 406,
@@ -176,7 +218,9 @@
       "date": "2026-07-20",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2886",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2886&DateID=7232"
     },
     {
       "showId": 406,
@@ -184,7 +228,9 @@
       "date": "2026-07-21",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2886",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2886&DateID=7233"
     },
     {
       "showId": 243,
@@ -192,7 +238,9 @@
       "date": "2026-07-15",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=196",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=196&DateID=7153"
     },
     {
       "showId": 98,
@@ -200,7 +248,9 @@
       "date": "2026-05-15",
       "hour": "20:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2822",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2822&DateID=7189"
     },
     {
       "showId": 98,
@@ -208,7 +258,9 @@
       "date": "2026-05-16",
       "hour": "17:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2822",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2822&DateID=7109"
     },
     {
       "showId": 98,
@@ -216,7 +268,9 @@
       "date": "2026-05-16",
       "hour": "20:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2822",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2822&DateID=7110"
     },
     {
       "showId": 98,
@@ -224,7 +278,9 @@
       "date": "2026-06-03",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2822",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2822&DateID=7133"
     },
     {
       "showId": 98,
@@ -232,7 +288,9 @@
       "date": "2026-06-04",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2822",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2822&DateID=7190"
     },
     {
       "showId": 98,
@@ -240,7 +298,9 @@
       "date": "2026-07-02",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2822",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2822&DateID=7205"
     },
     {
       "showId": 98,
@@ -248,7 +308,9 @@
       "date": "2026-07-03",
       "hour": "12:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2822",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2822&DateID=7206"
     },
     {
       "showId": 98,
@@ -256,7 +318,9 @@
       "date": "2026-07-03",
       "hour": "20:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2822",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2822&DateID=7207"
     },
     {
       "showId": 244,
@@ -264,7 +328,9 @@
       "date": "2026-06-08",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=127",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=127&DateID=7215"
     },
     {
       "showId": 253,
@@ -272,7 +338,9 @@
       "date": "2026-05-20",
       "hour": "20:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=192",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=192&DateID=7171"
     },
     {
       "showId": 253,
@@ -280,7 +348,9 @@
       "date": "2026-05-23",
       "hour": "17:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=192",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=192&DateID=7193"
     },
     {
       "showId": 245,
@@ -288,7 +358,9 @@
       "date": "2026-08-06",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2834",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2834&DateID=7119"
     },
     {
       "showId": 245,
@@ -296,7 +368,9 @@
       "date": "2026-08-07",
       "hour": "20:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2834",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2834&DateID=7122"
     },
     {
       "showId": 245,
@@ -304,7 +378,9 @@
       "date": "2026-08-08",
       "hour": "18:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2834",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2834&DateID=7120"
     },
     {
       "showId": 246,
@@ -312,7 +388,9 @@
       "date": "2026-05-13",
       "hour": "20:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=306",
+      "ticketUrl": "javascript:void(0)"
     },
     {
       "showId": 159,
@@ -320,7 +398,9 @@
       "date": "2026-05-11",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2857",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2857&DateID=7178"
     },
     {
       "showId": 159,
@@ -328,7 +408,9 @@
       "date": "2026-05-12",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2857",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2857&DateID=7179"
     },
     {
       "showId": 159,
@@ -336,7 +418,9 @@
       "date": "2026-05-17",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2857",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2857&DateID=7186"
     },
     {
       "showId": 159,
@@ -344,7 +428,9 @@
       "date": "2026-06-05",
       "hour": "20:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2857",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2857&DateID=7211"
     },
     {
       "showId": 159,
@@ -352,7 +438,9 @@
       "date": "2026-06-06",
       "hour": "16:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2857",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2857&DateID=7201"
     },
     {
       "showId": 159,
@@ -360,7 +448,9 @@
       "date": "2026-06-06",
       "hour": "20:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2857",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2857&DateID=7134"
     },
     {
       "showId": 159,
@@ -368,7 +458,9 @@
       "date": "2026-07-04",
       "hour": "18:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2857",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2857&DateID=7208"
     },
     {
       "showId": 159,
@@ -376,7 +468,9 @@
       "date": "2026-07-05",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2857",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2857&DateID=7209"
     },
     {
       "showId": 96,
@@ -384,7 +478,9 @@
       "date": "2026-07-08",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2839",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2839&DateID=7222"
     },
     {
       "showId": 96,
@@ -392,7 +488,9 @@
       "date": "2026-07-09",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2839",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2839&DateID=7223"
     },
     {
       "showId": 96,
@@ -400,7 +498,9 @@
       "date": "2026-07-10",
       "hour": "12:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2839",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2839&DateID=7224"
     },
     {
       "showId": 96,
@@ -408,7 +508,9 @@
       "date": "2026-07-10",
       "hour": "20:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2839",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2839&DateID=7225"
     },
     {
       "showId": 96,
@@ -416,7 +518,9 @@
       "date": "2026-07-11",
       "hour": "18:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2839",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2839&DateID=7226"
     },
     {
       "showId": 96,
@@ -424,7 +528,9 @@
       "date": "2026-07-12",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2839",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2839&DateID=7227"
     },
     {
       "showId": 249,
@@ -432,7 +538,9 @@
       "date": "2026-06-10",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2862",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2862&DateID=7219"
     },
     {
       "showId": 249,
@@ -440,7 +548,9 @@
       "date": "2026-06-11",
       "hour": "19:30",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2862",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2862&DateID=7127"
     },
     {
       "showId": 250,
@@ -448,7 +558,9 @@
       "date": "2026-07-02",
       "hour": "19:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2622",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2622&DateID=7202"
     },
     {
       "showId": 250,
@@ -456,7 +568,9 @@
       "date": "2026-07-03",
       "hour": "12:00",
       "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2622",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2622&DateID=7203"
     }
   ]
 }

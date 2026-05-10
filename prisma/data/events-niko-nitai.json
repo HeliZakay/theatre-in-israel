@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:19:08.514Z",
+  "scrapedAt": "2026-05-10T04:32:01.107Z",
   "venue": {
     "name": "תיאטרון ניקו ניתאי",
     "city": "תל אביב"
@@ -9,133 +9,155 @@
       "showId": 329,
       "showSlug": "אומץ-פסטיבל-האזרח-כאן",
       "date": "2026-05-14",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%90%D7%95%D7%9E%D7%A5_-_%D7%A4%D7%A1%D7%98%D7%99%D7%91%D7%9C_%D7%94%D7%90%D7%96%D7%A8%D7%97_%D7%9B%D7%90%D7%9F/?id=472"
     },
     {
       "showId": 329,
       "showSlug": "אומץ-פסטיבל-האזרח-כאן",
       "date": "2026-06-06",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%90%D7%95%D7%9E%D7%A5_-_%D7%A4%D7%A1%D7%98%D7%99%D7%91%D7%9C_%D7%94%D7%90%D7%96%D7%A8%D7%97_%D7%9B%D7%90%D7%9F/?id=472"
     },
     {
       "showId": 330,
       "showSlug": "ארץ-יחפה-הצגה-חדשה",
       "date": "2026-05-19",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%90%D7%A8%D7%A5_%D7%99%D7%97%D7%A4%D7%94_-_%D7%94%D7%A6%D7%92%D7%94_%D7%97%D7%93%D7%A9%D7%94/?id=491"
     },
     {
       "showId": 330,
       "showSlug": "ארץ-יחפה-הצגה-חדשה",
       "date": "2026-05-20",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%90%D7%A8%D7%A5_%D7%99%D7%97%D7%A4%D7%94_-_%D7%94%D7%A6%D7%92%D7%94_%D7%97%D7%93%D7%A9%D7%94/?id=491"
     },
     {
       "showId": 330,
       "showSlug": "ארץ-יחפה-הצגה-חדשה",
       "date": "2026-06-17",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%90%D7%A8%D7%A5_%D7%99%D7%97%D7%A4%D7%94_-_%D7%94%D7%A6%D7%92%D7%94_%D7%97%D7%93%D7%A9%D7%94/?id=491"
     },
     {
       "showId": 330,
       "showSlug": "ארץ-יחפה-הצגה-חדשה",
       "date": "2026-06-18",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%90%D7%A8%D7%A5_%D7%99%D7%97%D7%A4%D7%94_-_%D7%94%D7%A6%D7%92%D7%94_%D7%97%D7%93%D7%A9%D7%94/?id=491"
     },
     {
       "showId": 331,
       "showSlug": "אשתי-הנצחית-לשעבר",
       "date": "2026-05-26",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%90%D7%A9%D7%AA%D7%99_%D7%94%D7%A0%D7%A6%D7%97%D7%99%D7%AA_%D7%9C%D7%A9%D7%A2%D7%91%D7%A8/?id=493"
     },
     {
       "showId": 331,
       "showSlug": "אשתי-הנצחית-לשעבר",
       "date": "2026-06-19",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%90%D7%A9%D7%AA%D7%99_%D7%94%D7%A0%D7%A6%D7%97%D7%99%D7%AA_%D7%9C%D7%A9%D7%A2%D7%91%D7%A8/?id=493"
     },
     {
       "showId": 332,
       "showSlug": "הייתי-והנני-אלכסנדר-פן",
       "date": "2026-06-12",
-      "hour": "13:00"
+      "hour": "13:00",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%94%D7%99%D7%99%D7%AA%D7%99_%D7%95%D7%94%D7%A0%D7%A0%D7%99_-_%D7%90%D7%9C%D7%9B%D7%A1%D7%A0%D7%93%D7%A8_%D7%A4%D7%9F_30/?id=504"
     },
     {
       "showId": 333,
       "showSlug": "המבול",
       "date": "2026-05-13",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%94%D7%9E%D7%91%D7%95%D7%9C/?id=486"
     },
     {
       "showId": 333,
       "showSlug": "המבול",
       "date": "2026-06-30",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%94%D7%9E%D7%91%D7%95%D7%9C/?id=486"
     },
     {
       "showId": 334,
       "showSlug": "חדשות-אחרונות",
       "date": "2026-05-12",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%97%D7%93%D7%A9%D7%95%D7%AA_%D7%90%D7%97%D7%A8%D7%95%D7%A0%D7%95%D7%AA/?id=488"
     },
     {
       "showId": 334,
       "showSlug": "חדשות-אחרונות",
       "date": "2026-06-23",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%97%D7%93%D7%A9%D7%95%D7%AA_%D7%90%D7%97%D7%A8%D7%95%D7%A0%D7%95%D7%AA/?id=488"
     },
     {
       "showId": 335,
       "showSlug": "חמישה-ערבים.-ערב-ערב",
       "date": "2026-06-25",
-      "hour": "19:30"
+      "hour": "19:30",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%97%D7%9E%D7%99%D7%A9%D7%94_%D7%A2%D7%A8%D7%91%D7%99%D7%9D._%D7%A2%D7%A8%D7%91-%D7%A2%D7%A8%D7%91/?id=516"
     },
     {
       "showId": 336,
       "showSlug": "להיות-ג׳ובאני",
       "date": "2026-06-10",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%9C%D7%94%D7%99%D7%95%D7%AA_%D7%92_%D7%95%D7%91%D7%90%D7%A0%D7%99/?id=514"
     },
     {
       "showId": 337,
       "showSlug": "לעוף-אל-החופש",
       "date": "2026-05-16",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%9C%D7%A2%D7%95%D7%A3_%D7%90%D7%9C_%D7%94%D7%97%D7%95%D7%A4%D7%A9/?id=490"
     },
     {
       "showId": 337,
       "showSlug": "לעוף-אל-החופש",
       "date": "2026-06-24",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%9C%D7%A2%D7%95%D7%A3_%D7%90%D7%9C_%D7%94%D7%97%D7%95%D7%A4%D7%A9/?id=490"
     },
     {
       "showId": 338,
       "showSlug": "מי-רצח-את-אלמה",
       "date": "2026-05-15",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%9E%D7%99_%D7%A8%D7%A6%D7%97_%D7%90%D7%AA_%D7%90%D7%9C%D7%9E%D7%94_/?id=489"
     },
     {
       "showId": 338,
       "showSlug": "מי-רצח-את-אלמה",
       "date": "2026-06-13",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%9E%D7%99_%D7%A8%D7%A6%D7%97_%D7%90%D7%AA_%D7%90%D7%9C%D7%9E%D7%94_/?id=489"
     },
     {
       "showId": 339,
       "showSlug": "מכתב-אבוד",
       "date": "2026-05-29",
-      "hour": "13:00"
+      "hour": "13:00",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%9E%D7%9B%D7%AA%D7%91_%D7%90%D7%91%D7%95%D7%93/?id=494"
     },
     {
       "showId": 339,
       "showSlug": "מכתב-אבוד",
       "date": "2026-06-11",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%9E%D7%9B%D7%AA%D7%91_%D7%90%D7%91%D7%95%D7%93/?id=494"
     },
     {
       "showId": 340,
       "showSlug": "סיפור-אהבה-שלישייה-במי-במול",
       "date": "2026-06-27",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%A1%D7%99%D7%A4%D7%95%D7%A8_%D7%90%D7%94%D7%91%D7%94_-_%D7%A9%D7%9C%D7%99%D7%A9%D7%99%D7%99%D7%94_%D7%91%D7%9E%D7%99_%D7%91%D7%9E%D7%95%D7%9C/?id=502"
     }
   ]
 }

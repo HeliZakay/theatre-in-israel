@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:16:56.452Z",
+  "scrapedAt": "2026-05-10T04:29:25.100Z",
   "touring": true,
   "events": [
     {
@@ -8,7 +8,9 @@
       "date": "2026-05-14",
       "hour": "20:30",
       "venueName": "מזכרת בתיה - היכל התרבות ע\"ש אריה כספי",
-      "venueCity": "מזכרת בתיה"
+      "venueCity": "מזכרת בתיה",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%90%d7%94%d7%91%d7%94-%d7%91%d7%94%d7%a4%d7%aa%d7%a2%d7%94/",
+      "ticketUrl": "https://mifgashim-mb.smarticket.co.il/%D7%90%D7%94%D7%91%D7%94_%D7%91%D7%94%D7%A4%D7%AA%D7%A2%D7%94/?id=435"
     },
     {
       "showId": 116,
@@ -16,7 +18,9 @@
       "date": "2026-05-15",
       "hour": "21:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%90%d7%94%d7%91%d7%94-%d7%91%d7%94%d7%a4%d7%aa%d7%a2%d7%94/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10761&ty=st"
     },
     {
       "showId": 116,
@@ -24,7 +28,9 @@
       "date": "2026-05-31",
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%90%d7%94%d7%91%d7%94-%d7%91%d7%94%d7%a4%d7%aa%d7%a2%d7%94/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10598&ty=st"
     },
     {
       "showId": 116,
@@ -32,7 +38,9 @@
       "date": "2026-06-01",
       "hour": "11:00",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%90%d7%94%d7%91%d7%94-%d7%91%d7%94%d7%a4%d7%aa%d7%a2%d7%94/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10765&ty=st"
     },
     {
       "showId": 116,
@@ -40,7 +48,9 @@
       "date": "2026-06-05",
       "hour": "21:30",
       "venueName": "היכל התרבות ראשון לציון",
-      "venueCity": "ראשון לציון"
+      "venueCity": "ראשון לציון",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%90%d7%94%d7%91%d7%94-%d7%91%d7%94%d7%a4%d7%aa%d7%a2%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10935"
     },
     {
       "showId": 116,
@@ -48,7 +58,9 @@
       "date": "2026-06-26",
       "hour": "21:30",
       "venueName": "מוזיאון ארץ ישראל - תל אביב",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%90%d7%94%d7%91%d7%94-%d7%91%d7%94%d7%a4%d7%aa%d7%a2%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10938"
     },
     {
       "showId": 116,
@@ -56,7 +68,9 @@
       "date": "2026-07-24",
       "hour": "21:30",
       "venueName": "מוזיאון ארץ ישראל - תל אביב",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%90%d7%94%d7%91%d7%94-%d7%91%d7%94%d7%a4%d7%aa%d7%a2%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10939"
     },
     {
       "showId": 116,
@@ -64,7 +78,9 @@
       "date": "2026-08-13",
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%90%d7%94%d7%91%d7%94-%d7%91%d7%94%d7%a4%d7%aa%d7%a2%d7%94/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10770&ty=st"
     },
     {
       "showId": 116,
@@ -72,7 +88,9 @@
       "date": "2026-08-20",
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%90%d7%94%d7%91%d7%94-%d7%91%d7%94%d7%a4%d7%aa%d7%a2%d7%94/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10764&ty=st"
     },
     {
       "showId": 116,
@@ -80,7 +98,9 @@
       "date": "2026-08-21",
       "hour": "21:30",
       "venueName": "מוזיאון ארץ ישראל - תל אביב",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%90%d7%94%d7%91%d7%94-%d7%91%d7%94%d7%a4%d7%aa%d7%a2%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10940"
     },
     {
       "showId": 116,
@@ -88,7 +108,9 @@
       "date": "2026-09-01",
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%90%d7%94%d7%91%d7%94-%d7%91%d7%94%d7%a4%d7%aa%d7%a2%d7%94/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10760&ty=st"
     },
     {
       "showId": 116,
@@ -96,7 +118,9 @@
       "date": "2026-10-30",
       "hour": "21:30",
       "venueName": "מוזיאון ארץ ישראל - תל אביב",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%90%d7%94%d7%91%d7%94-%d7%91%d7%94%d7%a4%d7%aa%d7%a2%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10937"
     },
     {
       "showId": 118,
@@ -104,7 +128,9 @@
       "date": "2026-05-13",
       "hour": "20:30",
       "venueName": "היכל התרבות קצרין",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%90%d7%a0%d7%99-%d7%a4%d7%94-%d7%91%d7%92%d7%9c%d7%9c-%d7%90%d7%a9%d7%aa%d7%99/",
+      "ticketUrl": "https://matnaskazrin.smarticket.co.il/iframe/%D7%90%D7%A0%D7%99_%D7%A4%D7%94_%D7%91%D7%92%D7%9C%D7%9C_%D7%90%D7%99%D7%A9%D7%AA%D7%99_/?id=146"
     },
     {
       "showId": 118,
@@ -112,7 +138,9 @@
       "date": "2026-06-28",
       "hour": "11:00",
       "venueName": "היכל התרבות אור עקיבא",
-      "venueCity": "אור עקיבא"
+      "venueCity": "אור עקיבא",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%90%d7%a0%d7%99-%d7%a4%d7%94-%d7%91%d7%92%d7%9c%d7%9c-%d7%90%d7%a9%d7%aa%d7%99/",
+      "ticketUrl": "https://htorakiva.smarticket.co.il/event/2592"
     },
     {
       "showId": 113,
@@ -120,7 +148,9 @@
       "date": "2026-05-27",
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%91%d7%92%d7%9c%d7%9c-%d7%94%d7%a8%d7%95%d7%97/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10963&ty=st"
     },
     {
       "showId": 112,
@@ -128,7 +158,9 @@
       "date": "2026-06-21",
       "hour": "20:00",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%92%d7%91%d7%99%d7%a8%d7%aa%d7%99-%d7%94%d7%a0%d7%90%d7%95%d7%95%d7%94/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10892&ty=st"
     },
     {
       "showId": 112,
@@ -136,7 +168,9 @@
       "date": "2026-06-22",
       "hour": "20:00",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%92%d7%91%d7%99%d7%a8%d7%aa%d7%99-%d7%94%d7%a0%d7%90%d7%95%d7%95%d7%94/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10893&ty=st"
     },
     {
       "showId": 112,
@@ -144,7 +178,9 @@
       "date": "2026-07-30",
       "hour": "20:30",
       "venueName": "היכל התרבות פתח תקווה",
-      "venueCity": "פתח תקווה"
+      "venueCity": "פתח תקווה",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%92%d7%91%d7%99%d7%a8%d7%aa%d7%99-%d7%94%d7%a0%d7%90%d7%95%d7%95%d7%94/",
+      "ticketUrl": "https://petah-tikva.smarticket.co.il/%D7%92%D7%91%D7%99%D7%A8%D7%AA%D7%99_%D7%94%D7%A0%D7%90%D7%95%D7%95%D7%94_4624/?id=10188"
     },
     {
       "showId": 112,
@@ -152,7 +188,9 @@
       "date": "2026-08-01",
       "hour": "21:30",
       "venueName": "היכל התרבות פתח תקווה",
-      "venueCity": "פתח תקווה"
+      "venueCity": "פתח תקווה",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%92%d7%91%d7%99%d7%a8%d7%aa%d7%99-%d7%94%d7%a0%d7%90%d7%95%d7%95%d7%94/",
+      "ticketUrl": "https://petah-tikva.smarticket.co.il/%D7%92%D7%91%D7%99%D7%A8%D7%AA%D7%99_%D7%94%D7%A0%D7%90%D7%95%D7%95%D7%94_4624/?id=10041"
     },
     {
       "showId": 112,
@@ -160,7 +198,9 @@
       "date": "2026-08-21",
       "hour": "21:00",
       "venueName": "היכל התרבות תל אביב",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%92%d7%91%d7%99%d7%a8%d7%aa%d7%99-%d7%94%d7%a0%d7%90%d7%95%d7%95%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/11018"
     },
     {
       "showId": 112,
@@ -168,7 +208,9 @@
       "date": "2026-08-22",
       "hour": "21:00",
       "venueName": "היכל התרבות תל אביב",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%92%d7%91%d7%99%d7%a8%d7%aa%d7%99-%d7%94%d7%a0%d7%90%d7%95%d7%95%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/11029"
     },
     {
       "showId": 120,
@@ -176,7 +218,9 @@
       "date": "2026-06-04",
       "hour": "20:30",
       "venueName": "מזכרת בתיה - היכל התרבות ע\"ש אריה כספי",
-      "venueCity": "מזכרת בתיה"
+      "venueCity": "מזכרת בתיה",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%91%d7%a8%d7%95%d7%a0%d7%99%d7%aa-%d7%a8%d7%95%d7%98%d7%a9%d7%99%d7%9c%d7%93/",
+      "ticketUrl": "https://mifgashim-mb.smarticket.co.il/%D7%94%D7%91%D7%A8%D7%95%D7%A0%D7%99%D7%AA_%D7%A8%D7%95%D7%98%D7%A9%D7%99%D7%9C%D7%93/?id=433"
     },
     {
       "showId": 120,
@@ -184,7 +228,9 @@
       "date": "2026-06-17",
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%91%d7%a8%d7%95%d7%a0%d7%99%d7%aa-%d7%a8%d7%95%d7%98%d7%a9%d7%99%d7%9c%d7%93/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10782&ty=st"
     },
     {
       "showId": 120,
@@ -192,7 +238,9 @@
       "date": "2026-06-23",
       "hour": "20:30",
       "venueName": "היכל התרבות נהריה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%91%d7%a8%d7%95%d7%a0%d7%99%d7%aa-%d7%a8%d7%95%d7%98%d7%a9%d7%99%d7%9c%d7%93/",
+      "ticketUrl": "https://hhn.smarticket.co.il/%D7%94%D7%91%D7%A8%D7%95%D7%A0%D7%99%D7%AA_%D7%A8%D7%95%D7%98%D7%A9%D7%99%D7%9C%D7%93_-_%D7%94%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F_%D7%94%D7%A2%D7%91%D7%A8%D7%99/?id=1974"
     },
     {
       "showId": 120,
@@ -200,7 +248,9 @@
       "date": "2026-06-24",
       "hour": "20:30",
       "venueName": "היכל התרבות נהריה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%91%d7%a8%d7%95%d7%a0%d7%99%d7%aa-%d7%a8%d7%95%d7%98%d7%a9%d7%99%d7%9c%d7%93/",
+      "ticketUrl": "https://hhn.smarticket.co.il/%D7%94%D7%91%D7%A8%D7%95%D7%A0%D7%99%D7%AA_%D7%A8%D7%95%D7%98%D7%A9%D7%99%D7%9C%D7%93_-_%D7%94%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F_%D7%94%D7%A2%D7%91%D7%A8%D7%99/?id=1975"
     },
     {
       "showId": 120,
@@ -208,7 +258,9 @@
       "date": "2026-06-25",
       "hour": "20:30",
       "venueName": "היכל התרבות נהריה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%91%d7%a8%d7%95%d7%a0%d7%99%d7%aa-%d7%a8%d7%95%d7%98%d7%a9%d7%99%d7%9c%d7%93/",
+      "ticketUrl": "https://hhn.smarticket.co.il/%D7%94%D7%91%D7%A8%D7%95%D7%A0%D7%99%D7%AA_%D7%A8%D7%95%D7%98%D7%A9%D7%99%D7%9C%D7%93_-_%D7%94%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F_%D7%94%D7%A2%D7%91%D7%A8%D7%99/?id=1976"
     },
     {
       "showId": 120,
@@ -216,7 +268,9 @@
       "date": "2026-07-09",
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%91%d7%a8%d7%95%d7%a0%d7%99%d7%aa-%d7%a8%d7%95%d7%98%d7%a9%d7%99%d7%9c%d7%93/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10784&ty=st"
     },
     {
       "showId": 120,
@@ -224,7 +278,9 @@
       "date": "2026-07-11",
       "hour": "21:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%91%d7%a8%d7%95%d7%a0%d7%99%d7%aa-%d7%a8%d7%95%d7%98%d7%a9%d7%99%d7%9c%d7%93/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10786&ty=st"
     },
     {
       "showId": 120,
@@ -232,7 +288,9 @@
       "date": "2026-07-12",
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%91%d7%a8%d7%95%d7%a0%d7%99%d7%aa-%d7%a8%d7%95%d7%98%d7%a9%d7%99%d7%9c%d7%93/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10778&ty=st"
     },
     {
       "showId": 120,
@@ -240,7 +298,9 @@
       "date": "2026-07-13",
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%91%d7%a8%d7%95%d7%a0%d7%99%d7%aa-%d7%a8%d7%95%d7%98%d7%a9%d7%99%d7%9c%d7%93/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10780&ty=st"
     },
     {
       "showId": 120,
@@ -248,7 +308,9 @@
       "date": "2026-08-02",
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%91%d7%a8%d7%95%d7%a0%d7%99%d7%aa-%d7%a8%d7%95%d7%98%d7%a9%d7%99%d7%9c%d7%93/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10777&ty=st"
     },
     {
       "showId": 120,
@@ -256,7 +318,9 @@
       "date": "2026-08-03",
       "hour": "11:00",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%91%d7%a8%d7%95%d7%a0%d7%99%d7%aa-%d7%a8%d7%95%d7%98%d7%a9%d7%99%d7%9c%d7%93/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10787&ty=st"
     },
     {
       "showId": 120,
@@ -264,7 +328,9 @@
       "date": "2026-08-03",
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%91%d7%a8%d7%95%d7%a0%d7%99%d7%aa-%d7%a8%d7%95%d7%98%d7%a9%d7%99%d7%9c%d7%93/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10779&ty=st"
     },
     {
       "showId": 120,
@@ -272,7 +338,9 @@
       "date": "2026-08-04",
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%91%d7%a8%d7%95%d7%a0%d7%99%d7%aa-%d7%a8%d7%95%d7%98%d7%a9%d7%99%d7%9c%d7%93/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10781&ty=st"
     },
     {
       "showId": 120,
@@ -280,7 +348,9 @@
       "date": "2026-09-17",
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%91%d7%a8%d7%95%d7%a0%d7%99%d7%aa-%d7%a8%d7%95%d7%98%d7%a9%d7%99%d7%9c%d7%93/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10783&ty=st"
     },
     {
       "showId": 117,
@@ -288,7 +358,9 @@
       "date": "2026-05-14",
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%9c%d7%91-%d7%a9%d7%9c%d7%99-%d7%91%d7%97%d7%a8/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10768&ty=st"
     },
     {
       "showId": 117,
@@ -296,7 +368,9 @@
       "date": "2026-07-29",
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%9c%d7%91-%d7%a9%d7%9c%d7%99-%d7%91%d7%97%d7%a8/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10793&ty=st"
     },
     {
       "showId": 126,
@@ -304,7 +378,9 @@
       "date": "2026-10-15",
       "hour": "20:30",
       "venueName": "היכל התרבות נשר",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%a4%d7%a8%d7%97-%d7%91%d7%92%d7%a0%d7%99/",
+      "ticketUrl": "https://nesher-matnasim.smarticket.co.il/%D7%94%D7%A4%D7%A8%D7%97_%D7%91%D7%92%D7%A0%D7%99_%D7%9E%D7%97%D7%96%D7%9E%D7%A8/?id=1210"
     },
     {
       "showId": 123,
@@ -312,7 +388,9 @@
       "date": "2026-05-28",
       "hour": "20:30",
       "venueName": "היכל התרבות אור עקיבא",
-      "venueCity": "אור עקיבא"
+      "venueCity": "אור עקיבא",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%a9%d7%95%d7%98%d7%a8-%d7%90%d7%96%d7%95%d7%9c%d7%90%d7%99/",
+      "ticketUrl": "https://htorakiva.smarticket.co.il/%D7%94%D7%A9%D7%95%D7%98%D7%A8_%D7%90%D7%96%D7%95%D7%9C%D7%90%D7%99_-_%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F_%D7%A2%D7%91%D7%A8%D7%99?id=2559"
     },
     {
       "showId": 123,
@@ -320,7 +398,9 @@
       "date": "2026-06-03",
       "hour": "20:30",
       "venueName": "אודיטוריום פסגת זאב",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%a9%d7%95%d7%98%d7%a8-%d7%90%d7%96%d7%95%d7%9c%d7%90%d7%99/",
+      "ticketUrl": "https://htjer.smarticket.co.il/%D7%94%D7%A9%D7%95%D7%98%D7%A8_%D7%90%D7%96%D7%95%D7%9C%D7%90%D7%99/?id=1389"
     },
     {
       "showId": 123,
@@ -328,23 +408,9 @@
       "date": "2026-09-03",
       "hour": "20:30",
       "venueName": "תיאטרון חולון",
-      "venueCity": "חולון"
-    },
-    {
-      "showId": 115,
-      "showSlug": "התשמע-קולי",
-      "date": "2026-05-09",
-      "hour": "18:30",
-      "venueName": "מרכז הבמה גני תקווה",
-      "venueCity": "גני תקווה"
-    },
-    {
-      "showId": 115,
-      "showSlug": "התשמע-קולי",
-      "date": "2026-05-09",
-      "hour": "21:00",
-      "venueName": "מרכז הבמה גני תקווה",
-      "venueCity": "גני תקווה"
+      "venueCity": "חולון",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%a9%d7%95%d7%98%d7%a8-%d7%90%d7%96%d7%95%d7%9c%d7%90%d7%99/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10903"
     },
     {
       "showId": 115,
@@ -352,7 +418,9 @@
       "date": "2026-05-10",
       "hour": "20:30",
       "venueName": "מרכז הבמה גני תקווה",
-      "venueCity": "גני תקווה"
+      "venueCity": "גני תקווה",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%aa%d7%a9%d7%9e%d7%a2-%d7%a7%d7%95%d7%9c%d7%99/",
+      "ticketUrl": "https://habama.smarticket.co.il/%D7%94%D7%AA%D7%A9%D7%9E%D7%A2_%D7%A7%D7%95%D7%9C%D7%99_%7C_%D7%94%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F_%D7%94%D7%A2%D7%91%D7%A8%D7%99/?id=22175"
     },
     {
       "showId": 115,
@@ -360,7 +428,9 @@
       "date": "2026-06-25",
       "hour": "20:30",
       "venueName": "תיאטרון חולון",
-      "venueCity": "חולון"
+      "venueCity": "חולון",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%aa%d7%a9%d7%9e%d7%a2-%d7%a7%d7%95%d7%9c%d7%99/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10904"
     },
     {
       "showId": 115,
@@ -368,7 +438,9 @@
       "date": "2026-07-09",
       "hour": "19:00",
       "venueName": "התיאטרון העברי",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%aa%d7%a9%d7%9e%d7%a2-%d7%a7%d7%95%d7%9c%d7%99/",
+      "ticketUrl": "https://matnasgan.smarticket.co.il/%D7%9E%D7%97%D7%96%D7%9E%D7%A8___%D7%94%D7%AA%D7%A9%D7%9E%D7%A2_%D7%A7%D7%95%D7%9C%D7%99_?id=3215"
     },
     {
       "showId": 119,
@@ -376,7 +448,9 @@
       "date": "2026-05-15",
       "hour": "21:30",
       "venueName": "מוזיאון ארץ ישראל - תל אביב",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%96%d7%95%d7%92%d7%99%d7%95%d7%aa-ai/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10944"
     },
     {
       "showId": 119,
@@ -384,7 +458,9 @@
       "date": "2026-05-20",
       "hour": "10:30",
       "venueName": "היכל התרבות \"ספי ריבלין\" מרכז קהילתי קריית השרון",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%96%d7%95%d7%92%d7%99%d7%95%d7%aa-ai/",
+      "ticketUrl": "https://matnasgan.smarticket.co.il/%D7%94%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F_%D7%94%D7%A2%D7%91%D7%A8%D7%99_%D7%9E%D7%A6%D7%99%D7%92___%D7%96%D7%95%D7%92%D7%99%D7%95%D7%AA_AI_/?id=3213"
     },
     {
       "showId": 119,
@@ -392,7 +468,9 @@
       "date": "2026-05-29",
       "hour": "21:30",
       "venueName": "היכל התרבות ראשון לציון",
-      "venueCity": "ראשון לציון"
+      "venueCity": "ראשון לציון",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%96%d7%95%d7%92%d7%99%d7%95%d7%aa-ai/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10941"
     },
     {
       "showId": 119,
@@ -400,7 +478,9 @@
       "date": "2026-06-19",
       "hour": "21:30",
       "venueName": "מוזיאון ארץ ישראל - תל אביב",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%96%d7%95%d7%92%d7%99%d7%95%d7%aa-ai/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10945"
     },
     {
       "showId": 119,
@@ -408,7 +488,9 @@
       "date": "2026-06-27",
       "hour": "21:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%96%d7%95%d7%92%d7%99%d7%95%d7%aa-ai/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10994&ty=st"
     },
     {
       "showId": 119,
@@ -416,7 +498,9 @@
       "date": "2026-07-24",
       "hour": "21:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%96%d7%95%d7%92%d7%99%d7%95%d7%aa-ai/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10995&ty=st"
     },
     {
       "showId": 119,
@@ -424,7 +508,9 @@
       "date": "2026-07-25",
       "hour": "21:30",
       "venueName": "היכל התרבות אור עקיבא",
-      "venueCity": "אור עקיבא"
+      "venueCity": "אור עקיבא",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%96%d7%95%d7%92%d7%99%d7%95%d7%aa-ai/",
+      "ticketUrl": "https://htorakiva.smarticket.co.il/event/2643"
     },
     {
       "showId": 119,
@@ -432,7 +518,9 @@
       "date": "2026-07-28",
       "hour": "20:30",
       "venueName": "היכל התרבות נהריה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%96%d7%95%d7%92%d7%99%d7%95%d7%aa-ai/",
+      "ticketUrl": "https://hhn.smarticket.co.il/%D7%96%D7%95%D7%92%D7%99%D7%95%D7%AA_AI/?id=2090"
     },
     {
       "showId": 119,
@@ -440,7 +528,9 @@
       "date": "2026-09-14",
       "hour": "11:00",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%96%d7%95%d7%92%d7%99%d7%95%d7%aa-ai/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10984&ty=st"
     },
     {
       "showId": 124,
@@ -448,7 +538,9 @@
       "date": "2026-06-11",
       "hour": "20:30",
       "venueName": "היכל התרבות ראשון לציון",
-      "venueCity": "ראשון לציון"
+      "venueCity": "ראשון לציון",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9b%d7%a0%d7%a8-%d7%a2%d7%9c-%d7%94%d7%92%d7%92-%d7%94%d7%9e%d7%97%d7%96%d7%9e%d7%a8/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/11025"
     },
     {
       "showId": 124,
@@ -456,7 +548,9 @@
       "date": "2026-07-27",
       "hour": "20:00",
       "venueName": "היכל התרבות תל אביב",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9b%d7%a0%d7%a8-%d7%a2%d7%9c-%d7%94%d7%92%d7%92-%d7%94%d7%9e%d7%97%d7%96%d7%9e%d7%a8/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/11028"
     },
     {
       "showId": 124,
@@ -464,7 +558,9 @@
       "date": "2026-08-05",
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9b%d7%a0%d7%a8-%d7%a2%d7%9c-%d7%94%d7%92%d7%92-%d7%94%d7%9e%d7%97%d7%96%d7%9e%d7%a8/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10817&ty=st"
     },
     {
       "showId": 124,
@@ -472,7 +568,9 @@
       "date": "2026-08-20",
       "hour": "20:30",
       "venueName": "בית העם רחובות",
-      "venueCity": "רחובות"
+      "venueCity": "רחובות",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9b%d7%a0%d7%a8-%d7%a2%d7%9c-%d7%94%d7%92%d7%92-%d7%94%d7%9e%d7%97%d7%96%d7%9e%d7%a8/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/11021"
     },
     {
       "showId": 124,
@@ -480,7 +578,9 @@
       "date": "2026-08-26",
       "hour": "20:30",
       "venueName": "המשכן לאומנויות הבמה -אשדוד",
-      "venueCity": "אשדוד"
+      "venueCity": "אשדוד",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9b%d7%a0%d7%a8-%d7%a2%d7%9c-%d7%94%d7%92%d7%92-%d7%94%d7%9e%d7%97%d7%96%d7%9e%d7%a8/",
+      "ticketUrl": "https://mishkan-ashdod.co.il/tickets.asp?showURL=8062"
     },
     {
       "showId": 124,
@@ -488,7 +588,9 @@
       "date": "2026-08-29",
       "hour": "20:00",
       "venueName": "היכל התרבות תל אביב",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9b%d7%a0%d7%a8-%d7%a2%d7%9c-%d7%94%d7%92%d7%92-%d7%94%d7%9e%d7%97%d7%96%d7%9e%d7%a8/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10922"
     },
     {
       "showId": 124,
@@ -496,7 +598,9 @@
       "date": "2026-10-29",
       "hour": "20:30",
       "venueName": "היכל התרבות פתח תקווה",
-      "venueCity": "פתח תקווה"
+      "venueCity": "פתח תקווה",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9b%d7%a0%d7%a8-%d7%a2%d7%9c-%d7%94%d7%92%d7%92-%d7%94%d7%9e%d7%97%d7%96%d7%9e%d7%a8/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10918"
     },
     {
       "showId": 121,
@@ -504,7 +608,9 @@
       "date": "2026-05-17",
       "hour": "20:30",
       "venueName": "היכל התרבות ראש העין",
-      "venueCity": "ראש העין"
+      "venueCity": "ראש העין",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9e%d7%a8%d7%90%d7%94-%d7%9e%d7%a2%d7%9c-%d7%94%d7%92%d7%a9%d7%a8/",
+      "ticketUrl": "https://makombalev.smarticket.co.il/iframe/%D7%9E%D7%A8%D7%90%D7%94_%D7%9E%D7%A2%D7%9C_%D7%94%D7%92%D7%A9%D7%A8/?id=3112"
     },
     {
       "showId": 121,
@@ -512,7 +618,9 @@
       "date": "2026-05-18",
       "hour": "20:30",
       "venueName": "מרכז אמנויות הבמה פרדס חנה",
-      "venueCity": "פרדס חנה-כרכור"
+      "venueCity": "פרדס חנה-כרכור",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9e%d7%a8%d7%90%d7%94-%d7%9e%d7%a2%d7%9c-%d7%94%d7%92%d7%a9%d7%a8/",
+      "ticketUrl": "https://phk.smarticket.co.il/%D7%9E%D7%A8%D7%90%D7%94_%D7%9E%D7%A2%D7%9C_%D7%94%D7%92%D7%A9%D7%A8_2663/?id=3709"
     },
     {
       "showId": 121,
@@ -520,7 +628,9 @@
       "date": "2026-05-20",
       "hour": "20:30",
       "venueName": "היכל התרבות עפולה",
-      "venueCity": "עפולה"
+      "venueCity": "עפולה",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9e%d7%a8%d7%90%d7%94-%d7%9e%d7%a2%d7%9c-%d7%94%d7%92%d7%a9%d7%a8/",
+      "ticketUrl": "https://afula.smarticket.co.il/%D7%9E%D7%A8%D7%90%D7%94_%D7%9E%D7%A2%D7%9C_%D7%94%D7%92%D7%A9%D7%A8/?id=6127"
     },
     {
       "showId": 121,
@@ -528,7 +638,9 @@
       "date": "2026-05-28",
       "hour": "20:30",
       "venueName": "היכל התרבות אור יהודה",
-      "venueCity": "אור יהודה"
+      "venueCity": "אור יהודה",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9e%d7%a8%d7%90%d7%94-%d7%9e%d7%a2%d7%9c-%d7%94%d7%92%d7%a9%d7%a8/",
+      "ticketUrl": "https://oryehuda.smarticket.co.il/%D7%9E%D7%A8%D7%90%D7%94_%D7%9E%D7%A2%D7%9C_%D7%94%D7%92%D7%A9%D7%A8_-_%D7%94%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F_%D7%94%D7%A2%D7%91%D7%A8%D7%99/?id=3969"
     },
     {
       "showId": 121,
@@ -536,7 +648,9 @@
       "date": "2026-06-03",
       "hour": "20:30",
       "venueName": "היכל התרבות קרית גת",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9e%d7%a8%d7%90%d7%94-%d7%9e%d7%a2%d7%9c-%d7%94%d7%92%d7%a9%d7%a8/",
+      "ticketUrl": "https://matnaskg.smarticket.co.il/%D7%9E%D7%A8%D7%90%D7%94_%D7%9E%D7%A2%D7%9C_%D7%94%D7%92%D7%A9%D7%A8/?id=2437"
     },
     {
       "showId": 121,
@@ -544,7 +658,9 @@
       "date": "2026-06-18",
       "hour": "20:30",
       "venueName": "אולם \"הרעות\" פרדסיה",
-      "venueCity": "פרדסיה"
+      "venueCity": "פרדסיה",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9e%d7%a8%d7%90%d7%94-%d7%9e%d7%a2%d7%9c-%d7%94%d7%92%d7%a9%d7%a8/",
+      "ticketUrl": "https://pardesia.smarticket.co.il/%D7%9E%D7%A8%D7%90%D7%94_%D7%9E%D7%A2%D7%9C_%D7%94%D7%92%D7%A9%D7%A8/?id=1638"
     },
     {
       "showId": 121,
@@ -552,7 +668,9 @@
       "date": "2026-06-24",
       "hour": "20:30",
       "venueName": "היכל התרבות מעלה אדומים",
-      "venueCity": "מעלה אדומים"
+      "venueCity": "מעלה אדומים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9e%d7%a8%d7%90%d7%94-%d7%9e%d7%a2%d7%9c-%d7%94%d7%92%d7%a9%d7%a8/",
+      "ticketUrl": "https://htma.smarticket.co.il/%D7%9E%D7%A8%D7%90%D7%94_%D7%9E%D7%A2%D7%9C_%D7%94%D7%92%D7%A9%D7%A8-_%D7%94%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F_%D7%94%D7%A2%D7%91%D7%A8%D7%99/?id=2697"
     },
     {
       "showId": 121,
@@ -560,7 +678,9 @@
       "date": "2026-06-28",
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9e%d7%a8%d7%90%d7%94-%d7%9e%d7%a2%d7%9c-%d7%94%d7%92%d7%a9%d7%a8/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10812&ty=st"
     },
     {
       "showId": 121,
@@ -568,7 +688,9 @@
       "date": "2026-07-12",
       "hour": "11:00",
       "venueName": "היכל התרבות אור עקיבא",
-      "venueCity": "אור עקיבא"
+      "venueCity": "אור עקיבא",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9e%d7%a8%d7%90%d7%94-%d7%9e%d7%a2%d7%9c-%d7%94%d7%92%d7%a9%d7%a8/",
+      "ticketUrl": "https://htorakiva.smarticket.co.il/event/2597"
     },
     {
       "showId": 121,
@@ -576,7 +698,9 @@
       "date": "2026-09-16",
       "hour": "20:30",
       "venueName": "היכל התרבות פתח תקווה",
-      "venueCity": "פתח תקווה"
+      "venueCity": "פתח תקווה",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9e%d7%a8%d7%90%d7%94-%d7%9e%d7%a2%d7%9c-%d7%94%d7%92%d7%a9%d7%a8/",
+      "ticketUrl": "https://petah-tikva.smarticket.co.il/%D7%9E%D7%A8%D7%90%D7%94_%D7%9E%D7%A2%D7%9C_%D7%94%D7%92%D7%A9%D7%A8_%7C_%D7%94%D7%AA%D7%90%D7%98%D7%A8%D7%95%D7%9F_%D7%94%D7%A2%D7%91%D7%A8%D7%99/?id=9792"
     },
     {
       "showId": 121,
@@ -584,7 +708,9 @@
       "date": "2026-09-17",
       "hour": "20:30",
       "venueName": "היכל התרבות פתח תקווה",
-      "venueCity": "פתח תקווה"
+      "venueCity": "פתח תקווה",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9e%d7%a8%d7%90%d7%94-%d7%9e%d7%a2%d7%9c-%d7%94%d7%92%d7%a9%d7%a8/",
+      "ticketUrl": "https://petah-tikva.smarticket.co.il/%D7%9E%D7%A8%D7%90%D7%94_%D7%9E%D7%A2%D7%9C_%D7%94%D7%92%D7%A9%D7%A8_%7C_%D7%94%D7%AA%D7%90%D7%98%D7%A8%D7%95%D7%9F_%D7%94%D7%A2%D7%91%D7%A8%D7%99/?id=9793"
     },
     {
       "showId": 121,
@@ -592,7 +718,9 @@
       "date": "2026-09-19",
       "hour": "21:30",
       "venueName": "היכל התרבות פתח תקווה",
-      "venueCity": "פתח תקווה"
+      "venueCity": "פתח תקווה",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9e%d7%a8%d7%90%d7%94-%d7%9e%d7%a2%d7%9c-%d7%94%d7%92%d7%a9%d7%a8/",
+      "ticketUrl": "https://petah-tikva.smarticket.co.il/%D7%9E%D7%A8%D7%90%D7%94_%D7%9E%D7%A2%D7%9C_%D7%94%D7%92%D7%A9%D7%A8_%7C_%D7%94%D7%AA%D7%90%D7%98%D7%A8%D7%95%D7%9F_%D7%94%D7%A2%D7%91%D7%A8%D7%99/?id=9794"
     },
     {
       "showId": 121,
@@ -600,7 +728,9 @@
       "date": "2026-10-15",
       "hour": "20:30",
       "venueName": "היכל התרבות אור עקיבא",
-      "venueCity": "אור עקיבא"
+      "venueCity": "אור עקיבא",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9e%d7%a8%d7%90%d7%94-%d7%9e%d7%a2%d7%9c-%d7%94%d7%92%d7%a9%d7%a8/",
+      "ticketUrl": "https://htorakiva.smarticket.co.il/event/2550"
     },
     {
       "showId": 121,
@@ -608,15 +738,9 @@
       "date": "2026-10-17",
       "hour": "21:00",
       "venueName": "היכל התרבות אור עקיבא",
-      "venueCity": "אור עקיבא"
-    },
-    {
-      "showId": 114,
-      "showSlug": "עפרה",
-      "date": "2026-05-09",
-      "hour": "21:00",
-      "venueName": "בית החייל תל אביב",
-      "venueCity": "תל אביב"
+      "venueCity": "אור עקיבא",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9e%d7%a8%d7%90%d7%94-%d7%9e%d7%a2%d7%9c-%d7%94%d7%92%d7%a9%d7%a8/",
+      "ticketUrl": "https://htorakiva.smarticket.co.il/event/2551"
     },
     {
       "showId": 114,
@@ -624,7 +748,9 @@
       "date": "2026-05-16",
       "hour": "21:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a2%d7%95%d7%a4%d7%a8%d7%94/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10776&ty=st"
     },
     {
       "showId": 114,
@@ -632,7 +758,9 @@
       "date": "2026-05-30",
       "hour": "21:30",
       "venueName": "היכל התרבות כפר סבא",
-      "venueCity": "כפר סבא"
+      "venueCity": "כפר סבא",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a2%d7%95%d7%a4%d7%a8%d7%94/",
+      "ticketUrl": "https://ksaba.smarticket.co.il/%D7%A2%D7%A4%D7%A8%D7%94_-_%D7%9E%D7%97%D7%96%D7%9E%D7%A8_6240/?id=7474"
     },
     {
       "showId": 114,
@@ -640,7 +768,9 @@
       "date": "2026-06-06",
       "hour": "21:30",
       "venueName": "היכל התרבות ראשון לציון",
-      "venueCity": "ראשון לציון"
+      "venueCity": "ראשון לציון",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a2%d7%95%d7%a4%d7%a8%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10933"
     },
     {
       "showId": 114,
@@ -648,7 +778,9 @@
       "date": "2026-06-20",
       "hour": "21:30",
       "venueName": "היכל התרבות ראשון לציון",
-      "venueCity": "ראשון לציון"
+      "venueCity": "ראשון לציון",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a2%d7%95%d7%a4%d7%a8%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/11013"
     },
     {
       "showId": 114,
@@ -656,7 +788,9 @@
       "date": "2026-06-22",
       "hour": "20:30",
       "venueName": "היכל התרבות איירפורט סיטי",
-      "venueCity": "קריית שדה התעופה"
+      "venueCity": "קריית שדה התעופה",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a2%d7%95%d7%a4%d7%a8%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10982"
     },
     {
       "showId": 114,
@@ -664,7 +798,9 @@
       "date": "2026-06-30",
       "hour": "20:30",
       "venueName": "היכל התרבות אשקלון",
-      "venueCity": "אשקלון"
+      "venueCity": "אשקלון",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a2%d7%95%d7%a4%d7%a8%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10951"
     },
     {
       "showId": 114,
@@ -672,7 +808,9 @@
       "date": "2026-07-05",
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a2%d7%95%d7%a4%d7%a8%d7%94/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10773&ty=st"
     },
     {
       "showId": 114,
@@ -680,7 +818,9 @@
       "date": "2026-07-06",
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a2%d7%95%d7%a4%d7%a8%d7%94/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10774&ty=st"
     },
     {
       "showId": 114,
@@ -688,7 +828,9 @@
       "date": "2026-07-07",
       "hour": "17:00",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a2%d7%95%d7%a4%d7%a8%d7%94/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10983&ty=st"
     },
     {
       "showId": 114,
@@ -696,7 +838,9 @@
       "date": "2026-07-08",
       "hour": "20:30",
       "venueName": "תיאטרון חולון",
-      "venueCity": "חולון"
+      "venueCity": "חולון",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a2%d7%95%d7%a4%d7%a8%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10975"
     },
     {
       "showId": 114,
@@ -704,7 +848,9 @@
       "date": "2026-07-11",
       "hour": "21:30",
       "venueName": "היכל התרבות נתניה",
-      "venueCity": "נתניה"
+      "venueCity": "נתניה",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a2%d7%95%d7%a4%d7%a8%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/11007"
     },
     {
       "showId": 114,
@@ -712,7 +858,9 @@
       "date": "2026-07-13",
       "hour": "20:00",
       "venueName": "היכל התרבות תל אביב",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a2%d7%95%d7%a4%d7%a8%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10987"
     },
     {
       "showId": 114,
@@ -720,7 +868,9 @@
       "date": "2026-07-16",
       "hour": "20:30",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a2%d7%95%d7%a4%d7%a8%d7%94/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10775&ty=st"
     },
     {
       "showId": 114,
@@ -728,7 +878,9 @@
       "date": "2026-07-28",
       "hour": "20:30",
       "venueName": "בית העם רחובות",
-      "venueCity": "רחובות"
+      "venueCity": "רחובות",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a2%d7%95%d7%a4%d7%a8%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/11020"
     },
     {
       "showId": 114,
@@ -736,7 +888,9 @@
       "date": "2026-08-01",
       "hour": "21:30",
       "venueName": "היכל התרבות ראשון לציון",
-      "venueCity": "ראשון לציון"
+      "venueCity": "ראשון לציון",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a2%d7%95%d7%a4%d7%a8%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10934"
     },
     {
       "showId": 114,
@@ -744,7 +898,9 @@
       "date": "2026-08-08",
       "hour": "21:30",
       "venueName": "המשכן לאומנויות הבמה -אשדוד",
-      "venueCity": "אשדוד"
+      "venueCity": "אשדוד",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a2%d7%95%d7%a4%d7%a8%d7%94/",
+      "ticketUrl": "https://mishkan-ashdod.co.il/tickets.asp?showURL=8061"
     },
     {
       "showId": 114,
@@ -752,7 +908,9 @@
       "date": "2026-08-15",
       "hour": "21:30",
       "venueName": "היכל התרבות כפר סבא",
-      "venueCity": "כפר סבא"
+      "venueCity": "כפר סבא",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a2%d7%95%d7%a4%d7%a8%d7%94/",
+      "ticketUrl": "https://ksaba.smarticket.co.il/%D7%A2%D7%A4%D7%A8%D7%94_-_%D7%9E%D7%97%D7%96%D7%9E%D7%A8/?id=7387"
     },
     {
       "showId": 114,
@@ -760,7 +918,9 @@
       "date": "2026-08-31",
       "hour": "20:00",
       "venueName": "היכל התרבות תל אביב",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a2%d7%95%d7%a4%d7%a8%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/11019"
     },
     {
       "showId": 114,
@@ -768,7 +928,9 @@
       "date": "2026-09-28",
       "hour": "20:00",
       "venueName": "היכל התרבות תל אביב",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a2%d7%95%d7%a4%d7%a8%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/11030"
     },
     {
       "showId": 122,
@@ -776,7 +938,9 @@
       "date": "2026-06-06",
       "hour": "17:00",
       "venueName": "בית החייל תל אביב",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a6%d7%9c%d7%99%d7%9c%d7%99-%d7%94%d7%9e%d7%95%d7%96%d7%99%d7%a7%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10870"
     },
     {
       "showId": 122,
@@ -784,7 +948,9 @@
       "date": "2026-06-13",
       "hour": "18:00",
       "venueName": "היכל התרבות ראשון לציון",
-      "venueCity": "ראשון לציון"
+      "venueCity": "ראשון לציון",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a6%d7%9c%d7%99%d7%9c%d7%99-%d7%94%d7%9e%d7%95%d7%96%d7%99%d7%a7%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/11026"
     },
     {
       "showId": 122,
@@ -792,7 +958,9 @@
       "date": "2026-07-02",
       "hour": "18:00",
       "venueName": "בית העם רחובות",
-      "venueCity": "רחובות"
+      "venueCity": "רחובות",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a6%d7%9c%d7%99%d7%9c%d7%99-%d7%94%d7%9e%d7%95%d7%96%d7%99%d7%a7%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10885"
     },
     {
       "showId": 122,
@@ -800,7 +968,9 @@
       "date": "2026-07-04",
       "hour": "17:00",
       "venueName": "בית החייל תל אביב",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a6%d7%9c%d7%99%d7%9c%d7%99-%d7%94%d7%9e%d7%95%d7%96%d7%99%d7%a7%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10871"
     },
     {
       "showId": 122,
@@ -808,7 +978,9 @@
       "date": "2026-07-14",
       "hour": "18:00",
       "venueName": "תיאטרון חולון",
-      "venueCity": "חולון"
+      "venueCity": "חולון",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a6%d7%9c%d7%99%d7%9c%d7%99-%d7%94%d7%9e%d7%95%d7%96%d7%99%d7%a7%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10905"
     },
     {
       "showId": 122,
@@ -816,7 +988,9 @@
       "date": "2026-07-28",
       "hour": "17:30",
       "venueName": "היכל התרבות אור עקיבא",
-      "venueCity": "אור עקיבא"
+      "venueCity": "אור עקיבא",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a6%d7%9c%d7%99%d7%9c%d7%99-%d7%94%d7%9e%d7%95%d7%96%d7%99%d7%a7%d7%94/",
+      "ticketUrl": "https://htorakiva.smarticket.co.il/event/2627"
     },
     {
       "showId": 122,
@@ -824,7 +998,9 @@
       "date": "2026-08-19",
       "hour": "17:00",
       "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים"
+      "venueCity": "קריית חיים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a6%d7%9c%d7%99%d7%9c%d7%99-%d7%94%d7%9e%d7%95%d7%96%d7%99%d7%a7%d7%94/",
+      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10815&ty=st"
     },
     {
       "showId": 122,
@@ -832,7 +1008,9 @@
       "date": "2026-08-30",
       "hour": "17:00",
       "venueName": "היכל התרבות תל אביב",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a6%d7%9c%d7%99%d7%9c%d7%99-%d7%94%d7%9e%d7%95%d7%96%d7%99%d7%a7%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10920"
     },
     {
       "showId": 122,
@@ -840,7 +1018,9 @@
       "date": "2026-09-26",
       "hour": "17:00",
       "venueName": "היכל התרבות תל אביב",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a6%d7%9c%d7%99%d7%9c%d7%99-%d7%94%d7%9e%d7%95%d7%96%d7%99%d7%a7%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/11031"
     },
     {
       "showId": 122,
@@ -848,7 +1028,9 @@
       "date": "2026-10-31",
       "hour": "18:00",
       "venueName": "היכל התרבות פתח תקווה",
-      "venueCity": "פתח תקווה"
+      "venueCity": "פתח תקווה",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a6%d7%9c%d7%99%d7%9c%d7%99-%d7%94%d7%9e%d7%95%d7%96%d7%99%d7%a7%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10919"
     },
     {
       "showId": 127,
@@ -856,7 +1038,9 @@
       "date": "2026-09-06",
       "hour": "11:00",
       "venueName": "היכל התרבות אור עקיבא",
-      "venueCity": "אור עקיבא"
+      "venueCity": "אור עקיבא",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a8%d7%95%d7%97%d7%9c%d7%94-%d7%9e%d7%aa%d7%97%d7%aa%d7%a0%d7%aa/",
+      "ticketUrl": "https://htorakiva.smarticket.co.il/event/2598"
     },
     {
       "showId": 128,
@@ -864,7 +1048,9 @@
       "date": "2026-05-30",
       "hour": "21:00",
       "venueName": "אולם בית שמואל ירושלים",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a9%d7%99%d7%a2%d7%95%d7%a8-%d7%91%d7%90%d7%94%d7%91%d7%94/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10723"
     },
     {
       "showId": 128,
@@ -872,7 +1058,9 @@
       "date": "2026-06-07",
       "hour": "11:00",
       "venueName": "היכל התרבות אור עקיבא",
-      "venueCity": "אור עקיבא"
+      "venueCity": "אור עקיבא",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a9%d7%99%d7%a2%d7%95%d7%a8-%d7%91%d7%90%d7%94%d7%91%d7%94/",
+      "ticketUrl": "https://htorakiva.smarticket.co.il/event/2594"
     }
   ]
 }

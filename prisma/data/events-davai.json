@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:19:31.746Z",
+  "scrapedAt": "2026-05-10T04:32:26.239Z",
   "touring": true,
   "events": [
     {
@@ -8,7 +8,9 @@
       "date": "2026-05-23",
       "hour": "20:30",
       "venueName": "DAVAI Theatre Studio",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://davai-group.org/portfolio_page/one-thing-show-heb/",
+      "ticketUrl": "https://davai-group.org/event/1thing-23-may/"
     },
     {
       "showId": 431,
@@ -16,7 +18,9 @@
       "date": "2026-06-24",
       "hour": "20:30",
       "venueName": "Shambukia",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://davai-group.org/portfolio_page/one-thing-show-heb/",
+      "ticketUrl": "https://davai-group.org/event/1thing-24-june-shambukiya/"
     },
     {
       "showId": 432,
@@ -24,7 +28,9 @@
       "date": "2026-06-04",
       "hour": "20:30",
       "venueName": "בית הגפן",
-      "venueCity": "חיפה"
+      "venueCity": "חיפה",
+      "sourceUrl": "https://davai-group.org/portfolio_page/under-construction-heb/",
+      "ticketUrl": "https://www.goshow.co.il/show/18609/53857"
     },
     {
       "showId": 432,
@@ -32,7 +38,9 @@
       "date": "2026-06-05",
       "hour": "20:30",
       "venueName": "הטחנה - The mill",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://davai-group.org/portfolio_page/under-construction-heb/",
+      "ticketUrl": "https://davai-group.org/event/under-5-june-the-mill/"
     },
     {
       "showId": 432,
@@ -40,7 +48,9 @@
       "date": "2026-06-12",
       "hour": "20:30",
       "venueName": "DAVAI Theatre Studio",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://davai-group.org/portfolio_page/under-construction-heb/",
+      "ticketUrl": "https://davai-group.org/event/under-12-june-26/"
     },
     {
       "showId": 432,
@@ -48,7 +58,9 @@
       "date": "2026-06-13",
       "hour": "20:30",
       "venueName": "DAVAI Theatre Studio",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://davai-group.org/portfolio_page/under-construction-heb/",
+      "ticketUrl": "https://davai-group.org/event/under-13-june-26/"
     },
     {
       "showId": 432,
@@ -56,7 +68,9 @@
       "date": "2026-06-23",
       "hour": "20:30",
       "venueName": "Mofet Cultural Center",
-      "venueCity": "ראשון לציון"
+      "venueCity": "ראשון לציון",
+      "sourceUrl": "https://davai-group.org/portfolio_page/under-construction-heb/",
+      "ticketUrl": "https://www.goshow.co.il/show/18609/53810"
     },
     {
       "showId": 432,
@@ -64,7 +78,9 @@
       "date": "2026-09-03",
       "hour": "20:30",
       "venueName": "סטודיו דוואי",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://davai-group.org/portfolio_page/under-construction-heb/",
+      "ticketUrl": "https://davai-group.org/event/under-roshpina-3-9/"
     },
     {
       "showId": 424,
@@ -72,7 +88,9 @@
       "date": "2026-08-07",
       "hour": "20:30",
       "venueName": "DAVAI Theatre Studio",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://davai-group.org/portfolio_page/light/",
+      "ticketUrl": "https://davai-group.org/event/light-august-7/"
     },
     {
       "showId": 424,
@@ -80,15 +98,9 @@
       "date": "2026-08-08",
       "hour": "20:30",
       "venueName": "DAVAI Theatre Studio",
-      "venueCity": "תל אביב-יפו"
-    },
-    {
-      "showId": 426,
-      "showSlug": "אפצ׳י",
-      "date": "2026-05-09",
-      "hour": "11:00",
-      "venueName": "DAVAI Theatre Studio",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://davai-group.org/portfolio_page/light/",
+      "ticketUrl": "https://davai-group.org/event/light-august-8/"
     },
     {
       "showId": 429,
@@ -96,7 +108,9 @@
       "date": "2026-05-14",
       "hour": "16:30",
       "venueName": "מתנ\"ס ראש פינה",
-      "venueCity": "ראש פינה"
+      "venueCity": "ראש פינה",
+      "sourceUrl": "https://davai-group.org/portfolio_page/grandma-frida/",
+      "ticketUrl": "https://www.hugim.org.il/HugimWeb.dll/-9KnnNoQKxjWKcblQKImzTXrmeW/?Tickets=1&KodMatnas=585"
     },
     {
       "showId": 429,
@@ -104,7 +118,9 @@
       "date": "2026-05-30",
       "hour": "11:00",
       "venueName": "DAVAI Theatre Studio",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://davai-group.org/portfolio_page/grandma-frida/",
+      "ticketUrl": "https://davai-group.org/event/frida-30-may/"
     }
   ]
 }

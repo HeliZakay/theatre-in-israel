@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-08T04:17:50.004Z",
+  "scrapedAt": "2026-05-10T04:36:26.127Z",
   "venueSource": true,
   "venue": {
     "name": "היכל אמנויות הבמה הרצליה",
@@ -10,127 +10,148 @@
       "showId": 81,
       "showSlug": "הזוג-המוזר",
       "date": "2026-05-25",
-      "hour": "18:00"
+      "hour": "18:00",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/2025-%D7%94%D7%96%D7%95%D7%92-%D7%94%D7%9E%D7%95%D7%96%D7%A8-%D7%AA-%D7%97%D7%99%D7%A4%D7%94"
     },
     {
       "showId": 80,
       "showSlug": "לילסדה",
       "date": "2026-06-01",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/2155-%D7%9C%D7%99%D7%9C%D7%A1%D7%93%D7%94"
     },
     {
       "showId": 9,
       "showSlug": "החולה-ההודי",
       "date": "2026-06-07",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/1948-%D7%94%D7%97%D7%95%D7%9C%D7%94-%D7%94%D7%94%D7%95%D7%93%D7%99-%D7%AA-%D7%94%D7%A7%D7%90%D7%9E%D7%A8%D7%99"
     },
     {
       "showId": 271,
       "showSlug": "שקרים-קטנים",
       "date": "2026-06-10",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/2140-%D7%A9%D7%A7%D7%A8%D7%99%D7%9D-%D7%A7%D7%98%D7%A0%D7%99%D7%9D-%D7%A7%D7%95%D7%9E%D7%93%D7%99%D7%94-%D7%9E%D7%A9%D7%A4%D7%97%D7%AA%D7%99%D7%AA-%D7%9E%D7%95%D7%A4%D7%A8%D7%A2%D7%AA-3"
     },
     {
       "showId": 68,
       "showSlug": "אור-לגויים",
       "date": "2026-06-18",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/1940-%D7%90%D7%95%D7%A8-%D7%9C%D7%92%D7%95%D7%99%D7%99%D7%9D-%D7%AA-%D7%91%D7%99%D7%AA-%D7%9C%D7%99%D7%A1%D7%99%D7%9F"
     },
     {
       "showId": 68,
       "showSlug": "אור-לגויים",
       "date": "2026-06-20",
-      "hour": "18:00"
+      "hour": "18:00",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/1940-%D7%90%D7%95%D7%A8-%D7%9C%D7%92%D7%95%D7%99%D7%99%D7%9D-%D7%AA-%D7%91%D7%99%D7%AA-%D7%9C%D7%99%D7%A1%D7%99%D7%9F"
     },
     {
       "showId": 68,
       "showSlug": "אור-לגויים",
       "date": "2026-06-20",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/1940-%D7%90%D7%95%D7%A8-%D7%9C%D7%92%D7%95%D7%99%D7%99%D7%9D-%D7%AA-%D7%91%D7%99%D7%AA-%D7%9C%D7%99%D7%A1%D7%99%D7%9F"
     },
     {
       "showId": 159,
       "showSlug": "מישהו-לרוץ-איתו",
       "date": "2026-07-13",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/2059-%D7%9E%D7%99%D7%A9%D7%94%D7%95-%D7%9C%D7%A8%D7%95%D7%A5-%D7%90%D7%99%D7%AA%D7%95-%D7%AA-%D7%92%D7%A9%D7%A8"
     },
     {
       "showId": 159,
       "showSlug": "מישהו-לרוץ-איתו",
       "date": "2026-07-14",
-      "hour": "18:00"
+      "hour": "18:00",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/2059-%D7%9E%D7%99%D7%A9%D7%94%D7%95-%D7%9C%D7%A8%D7%95%D7%A5-%D7%90%D7%99%D7%AA%D7%95-%D7%AA-%D7%92%D7%A9%D7%A8"
     },
     {
       "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-07-18",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/2138-%D7%90%D7%94%D7%91%D7%94-%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99%D7%AA-%D7%A7%D7%95%D7%9E%D7%93%D7%99%D7%94-%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99%D7%AA-%D7%97%D7%93%D7%A9%D7%94-3"
     },
     {
       "showId": 146,
       "showSlug": "אמא",
       "date": "2026-07-20",
-      "hour": "18:00"
+      "hour": "18:00",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/1949-%D7%90%D7%9E%D7%90-%D7%AA-%D7%91%D7%99%D7%AA-%D7%9C%D7%99%D7%A1%D7%99%D7%9F"
     },
     {
       "showId": 146,
       "showSlug": "אמא",
       "date": "2026-07-20",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/1949-%D7%90%D7%9E%D7%90-%D7%AA-%D7%91%D7%99%D7%AA-%D7%9C%D7%99%D7%A1%D7%99%D7%9F"
     },
     {
       "showId": 114,
       "showSlug": "עפרה",
       "date": "2026-07-25",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/2146-%D7%A2%D7%A4%D7%A8%D7%94-%D7%9E%D7%97%D7%96%D7%9E%D7%A8-%D7%94%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F-%D7%94%D7%A2%D7%91%D7%A8%D7%99"
     },
     {
       "showId": 82,
       "showSlug": "היומן",
       "date": "2026-07-27",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/2100-%D7%94%D7%99%D7%95%D7%9E%D7%9F-%D7%9E%D7%97%D7%96%D7%9E%D7%A8-%D7%97%D7%93%D7%A9"
     },
     {
       "showId": 82,
       "showSlug": "היומן",
       "date": "2026-07-28",
-      "hour": "17:00"
+      "hour": "17:00",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/2100-%D7%94%D7%99%D7%95%D7%9E%D7%9F-%D7%9E%D7%97%D7%96%D7%9E%D7%A8-%D7%97%D7%93%D7%A9"
     },
     {
       "showId": 266,
       "showSlug": "מיקה-שלי",
       "date": "2026-08-21",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/2099-%D7%9E%D7%99%D7%A7%D7%94-%D7%A9%D7%9C%D7%99-%D7%9E%D7%97%D7%96%D7%9E%D7%A8-%D7%9E%D7%A9%D7%99%D7%A8%D7%99%D7%95-%D7%A9%D7%9C-%D7%99%D7%90%D7%99%D7%A8-%D7%A8%D7%95%D7%96%D7%A0%D7%91%D7%9C%D7%95%D7%9D"
     },
     {
       "showId": 266,
       "showSlug": "מיקה-שלי",
       "date": "2026-08-22",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/2099-%D7%9E%D7%99%D7%A7%D7%94-%D7%A9%D7%9C%D7%99-%D7%9E%D7%97%D7%96%D7%9E%D7%A8-%D7%9E%D7%A9%D7%99%D7%A8%D7%99%D7%95-%D7%A9%D7%9C-%D7%99%D7%90%D7%99%D7%A8-%D7%A8%D7%95%D7%96%D7%A0%D7%91%D7%9C%D7%95%D7%9D"
     },
     {
       "showId": 84,
       "showSlug": "העלמה-והמוות",
       "date": "2026-09-09",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/2156-%D7%94%D7%A2%D7%9C%D7%9E%D7%94-%D7%95%D7%94%D7%9E%D7%95%D7%95%D7%AA-%D7%AA-%D7%91%D7%90%D7%A8-%D7%A9%D7%91%D7%A2"
     },
     {
       "showId": 264,
       "showSlug": "אנני",
       "date": "2026-10-01",
-      "hour": "10:30"
+      "hour": "10:30",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/2048-%D7%90%D7%A0%D7%A0%D7%99-%D7%94%D7%9E%D7%97%D7%96%D7%9E%D7%A8-%D7%A4%D7%95%D7%A8%D7%99%D7%9D"
     },
     {
       "showId": 264,
       "showSlug": "אנני",
       "date": "2026-10-01",
-      "hour": "14:30"
+      "hour": "14:30",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/2048-%D7%90%D7%A0%D7%A0%D7%99-%D7%94%D7%9E%D7%97%D7%96%D7%9E%D7%A8-%D7%A4%D7%95%D7%A8%D7%99%D7%9D"
     },
     {
       "showId": 264,
       "showSlug": "אנני",
       "date": "2026-10-01",
-      "hour": "18:00"
+      "hour": "18:00",
+      "sourceUrl": "https://www.hoh-herzliya.co.il/%D7%9E%D7%95%D7%A4%D7%A2%D7%99%D7%9D/%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F/2048-%D7%90%D7%A0%D7%A0%D7%99-%D7%94%D7%9E%D7%97%D7%96%D7%9E%D7%A8-%D7%A4%D7%95%D7%A8%D7%99%D7%9D"
     }
   ]
 }
