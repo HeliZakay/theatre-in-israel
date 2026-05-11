@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-10T04:35:56.721Z",
+  "scrapedAt": "2026-05-11T04:39:57.140Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון חולון",
@@ -12,6 +12,20 @@
       "date": "2026-05-11",
       "hour": "11:30",
       "sourceUrl": "https://www.hth.co.il/events/%d7%a9%d7%a2%d7%94-%d7%a9%d7%9c-%d7%a9%d7%a7%d7%98-2/"
+    },
+    {
+      "showId": 50,
+      "showSlug": "בית-בובות",
+      "date": "2026-05-12",
+      "hour": "20:30",
+      "sourceUrl": "https://www.hth.co.il/events/%d7%91%d7%99%d7%aa-%d7%94%d7%91%d7%95%d7%91%d7%95%d7%aa-%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%91%d7%99%d7%9e%d7%94/"
+    },
+    {
+      "showId": 50,
+      "showSlug": "בית-בובות",
+      "date": "2026-05-14",
+      "hour": "20:30",
+      "sourceUrl": "https://www.hth.co.il/events/%d7%91%d7%99%d7%aa-%d7%94%d7%91%d7%95%d7%91%d7%95%d7%aa-%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%91%d7%99%d7%9e%d7%94/"
     },
     {
       "showId": 61,
@@ -103,6 +117,13 @@
       "date": "2026-09-03",
       "hour": "20:30",
       "sourceUrl": "https://www.hth.co.il/events/%d7%94%d7%a9%d7%95%d7%98%d7%a8-%d7%90%d7%96%d7%95%d7%9c%d7%90%d7%99-%d7%94%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%a2%d7%91%d7%a8%d7%99/"
+    },
+    {
+      "showId": 117,
+      "showSlug": "הלב-שלי-בחר",
+      "date": "2026-10-27",
+      "hour": "20:30",
+      "sourceUrl": "https://www.hth.co.il/events/%d7%94%d7%9c%d7%91-%d7%a9%d7%9c%d7%99-%d7%91%d7%97%d7%a8-%d7%94%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%a2%d7%91%d7%a8%d7%99/"
     }
   ]
 }

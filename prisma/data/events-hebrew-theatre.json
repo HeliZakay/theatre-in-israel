@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-10T04:29:25.100Z",
+  "scrapedAt": "2026-05-11T04:34:38.774Z",
   "touring": true,
   "events": [
     {
@@ -373,6 +373,16 @@
       "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10793&ty=st"
     },
     {
+      "showId": 117,
+      "showSlug": "הלב-שלי-בחר",
+      "date": "2026-10-27",
+      "hour": "20:30",
+      "venueName": "תיאטרון חולון",
+      "venueCity": "חולון",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%9c%d7%91-%d7%a9%d7%9c%d7%99-%d7%91%d7%97%d7%a8/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10902"
+    },
+    {
       "showId": 126,
       "showSlug": "הפרח-בגני",
       "date": "2026-10-15",
@@ -411,16 +421,6 @@
       "venueCity": "חולון",
       "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%a9%d7%95%d7%98%d7%a8-%d7%90%d7%96%d7%95%d7%9c%d7%90%d7%99/",
       "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10903"
-    },
-    {
-      "showId": 115,
-      "showSlug": "התשמע-קולי",
-      "date": "2026-05-10",
-      "hour": "20:30",
-      "venueName": "מרכז הבמה גני תקווה",
-      "venueCity": "גני תקווה",
-      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%aa%d7%a9%d7%9e%d7%a2-%d7%a7%d7%95%d7%9c%d7%99/",
-      "ticketUrl": "https://habama.smarticket.co.il/%D7%94%D7%AA%D7%A9%D7%9E%D7%A2_%D7%A7%D7%95%D7%9C%D7%99_%7C_%D7%94%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F_%D7%94%D7%A2%D7%91%D7%A8%D7%99/?id=22175"
     },
     {
       "showId": 115,

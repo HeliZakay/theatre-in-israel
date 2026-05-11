@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-10T04:34:51.034Z",
+  "scrapedAt": "2026-05-11T04:38:49.851Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון הצפון",
@@ -336,25 +336,18 @@
       "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4074"
     },
     {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-10-08",
+      "showId": 38,
+      "showSlug": "משכנתא",
+      "date": "2026-10-14",
       "hour": "20:30",
-      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4385"
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=5384"
     },
     {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-10-09",
-      "hour": "21:30",
-      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4385"
-    },
-    {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-10-10",
-      "hour": "21:00",
-      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4385"
+      "showId": 38,
+      "showSlug": "משכנתא",
+      "date": "2026-10-15",
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=5384"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-10T04:27:52.324Z",
+  "scrapedAt": "2026-05-11T04:33:18.764Z",
   "touring": true,
   "events": [
     {
@@ -313,6 +313,26 @@
       "ticketUrl": "https://khan.pres.global/order/8654"
     },
     {
+      "showId": 90,
+      "showSlug": "מי-שסוכתו-נופלת",
+      "date": "2026-07-19",
+      "hour": "20:00",
+      "venueName": "בית ציוני אמריקה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
+      "ticketUrl": "https://khan.pres.global/order/8676"
+    },
+    {
+      "showId": 90,
+      "showSlug": "מי-שסוכתו-נופלת",
+      "date": "2026-07-20",
+      "hour": "18:00",
+      "venueName": "בית ציוני אמריקה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
+      "ticketUrl": "https://khan.pres.global/order/8677"
+    },
+    {
       "showId": 95,
       "showSlug": "מיתה-טובה",
       "date": "2026-05-16",
@@ -321,16 +341,6 @@
       "venueCity": "ירושלים",
       "sourceUrl": "https://www.khan.co.il/shows/492/mita-tova",
       "ticketUrl": "https://khan.pres.global/order/8610"
-    },
-    {
-      "showId": 94,
-      "showSlug": "משרתם-של-שני-אדונים",
-      "date": "2026-05-10",
-      "hour": "20:00",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים",
-      "sourceUrl": "https://www.khan.co.il/shows/544/the-servant-of-two-masters",
-      "ticketUrl": "https://khan.pres.global/order/8604"
     },
     {
       "showId": 94,

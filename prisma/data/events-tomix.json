@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-10T04:31:37.036Z",
+  "scrapedAt": "2026-05-11T04:36:37.482Z",
   "touring": true,
   "events": [
     {
@@ -145,6 +145,15 @@
       "venueName": "היכל התרבות פתח תקווה",
       "venueCity": "פתח תקווה",
       "sourceUrl": "https://www.to-mix.co.il/product/modernlovecomedy-show25/"
+    },
+    {
+      "showId": 264,
+      "showSlug": "אנני",
+      "date": "2026-08-20",
+      "hour": "18:00",
+      "venueName": "בנייני האומה",
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.to-mix.co.il/product/annieisr-bitan2-sum25/"
     },
     {
       "showId": 264,
@@ -379,15 +388,6 @@
       "venueName": "היכל התרבות פתח תקווה",
       "venueCity": "פתח תקווה",
       "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
-    },
-    {
-      "showId": 266,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-05-10",
-      "hour": "20:30",
-      "venueName": "היכל התרבות פתח תקווה",
-      "venueCity": "פתח תקווה",
-      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -954,6 +954,15 @@
       "hour": "20:30",
       "venueName": "היכל התרבות ראש העין",
       "venueCity": "ראש העין",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-10-04",
+      "hour": "20:30",
+      "venueName": "תיאטרון ירושלים",
+      "venueCity": "ירושלים",
       "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-10T04:38:01.278Z",
+  "scrapedAt": "2026-05-11T04:41:39.176Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון הבימה",
@@ -313,10 +313,10 @@
     {
       "showId": 306,
       "showSlug": "רוורס",
-      "date": "2026-05-10",
+      "date": "2026-06-24",
       "hour": "20:00",
       "sourceUrl": "https://www.habima.co.il/shows/%d7%a8%d7%95%d7%95%d7%a8%d7%a1/",
-      "ticketUrl": "https://tickets.habima.co.il/order/50271"
+      "ticketUrl": "https://tickets.habima.co.il/order/50466"
     },
     {
       "showId": 307,

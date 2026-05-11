@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-10T04:31:50.939Z",
+  "scrapedAt": "2026-05-11T04:36:21.223Z",
   "touring": true,
   "events": [
     {
@@ -185,12 +185,42 @@
     {
       "showId": 294,
       "showSlug": "שובו-של-הקרקס",
+      "date": "2026-06-27",
+      "hour": "10:30",
+      "venueName": "אודיטוריום רוזין",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://incubator.org.il/repertoire/circus-comeback/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/236"
+    },
+    {
+      "showId": 294,
+      "showSlug": "שובו-של-הקרקס",
+      "date": "2026-06-27",
+      "hour": "12:30",
+      "venueName": "אודיטוריום רוזין",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://incubator.org.il/repertoire/circus-comeback/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/237"
+    },
+    {
+      "showId": 294,
+      "showSlug": "שובו-של-הקרקס",
       "date": "2026-07-04",
       "hour": "11:00",
       "venueName": "המשכן לאומנויות הבמה",
       "venueCity": "באר שבע",
       "sourceUrl": "https://incubator.org.il/repertoire/circus-comeback/",
       "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/238"
+    },
+    {
+      "showId": 294,
+      "showSlug": "שובו-של-הקרקס",
+      "date": "2026-07-11",
+      "hour": "11:00",
+      "venueName": "בית בן ציון קיבוץ כנרת",
+      "venueCity": "לא ידוע",
+      "sourceUrl": "https://incubator.org.il/repertoire/circus-comeback/",
+      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/239"
     }
   ]
 }

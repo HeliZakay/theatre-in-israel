@@ -1,18 +1,11 @@
 {
-  "scrapedAt": "2026-05-10T04:37:00.780Z",
+  "scrapedAt": "2026-05-11T04:41:04.627Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התיאטרון קריית מוצקין",
     "city": "קריית מוצקין"
   },
   "events": [
-    {
-      "showId": 69,
-      "showSlug": "הכל-אודות-איב",
-      "date": "2026-05-10",
-      "hour": "20:30",
-      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2600/%D7%94%D7%9B%D7%9C-%D7%90%D7%95%D7%93%D7%95%D7%AA-%D7%90%D7%99%D7%91"
-    },
     {
       "showId": 69,
       "showSlug": "הכל-אודות-איב",
