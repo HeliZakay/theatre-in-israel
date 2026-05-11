@@ -1,12 +1,12 @@
 {
-  "checkedAt": "2026-05-10T04:42:49.870Z",
+  "checkedAt": "2026-05-11T04:44:20.895Z",
   "summary": {
-    "pagesVerified": 378,
+    "pagesVerified": 379,
     "pagesSkipped": 0,
-    "eventsVerified": 1371,
+    "eventsVerified": 1361,
     "agree": 0,
     "disagree": 0,
-    "uncertain": 1371
+    "uncertain": 1361
   },
   "results": [
     {
@@ -50,12 +50,63 @@
       "event": {
         "showId": 294,
         "showSlug": "שובו-של-הקרקס",
+        "date": "2026-06-27",
+        "hour": "10:30",
+        "venueName": "אודיטוריום רוזין",
+        "venueCity": "תל אביב",
+        "sourceUrl": "https://incubator.org.il/repertoire/circus-comeback/",
+        "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/236"
+      },
+      "verdict": "uncertain",
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
+    },
+    {
+      "theatre": "Incubator",
+      "file": "events-incubator.json",
+      "wasFlagged": false,
+      "event": {
+        "showId": 294,
+        "showSlug": "שובו-של-הקרקס",
+        "date": "2026-06-27",
+        "hour": "12:30",
+        "venueName": "אודיטוריום רוזין",
+        "venueCity": "תל אביב",
+        "sourceUrl": "https://incubator.org.il/repertoire/circus-comeback/",
+        "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/237"
+      },
+      "verdict": "uncertain",
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
+    },
+    {
+      "theatre": "Incubator",
+      "file": "events-incubator.json",
+      "wasFlagged": false,
+      "event": {
+        "showId": 294,
+        "showSlug": "שובו-של-הקרקס",
         "date": "2026-07-04",
         "hour": "11:00",
         "venueName": "המשכן לאומנויות הבמה",
         "venueCity": "באר שבע",
         "sourceUrl": "https://incubator.org.il/repertoire/circus-comeback/",
         "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/238"
+      },
+      "verdict": "uncertain",
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
+    },
+    {
+      "theatre": "Incubator",
+      "file": "events-incubator.json",
+      "wasFlagged": true,
+      "event": {
+        "showId": 294,
+        "showSlug": "שובו-של-הקרקס",
+        "date": "2026-07-11",
+        "hour": "11:00",
+        "venueName": "בית בן ציון קיבוץ כנרת",
+        "venueCity": "לא ידוע",
+        "sourceUrl": "https://incubator.org.il/repertoire/circus-comeback/",
+        "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/239"
       },
       "verdict": "uncertain",
       "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
@@ -75,7 +126,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9073"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -92,7 +143,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9064"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -109,7 +160,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9065"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -126,7 +177,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9071"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -143,7 +194,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9066"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -160,7 +211,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9072"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -177,7 +228,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9115"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -194,7 +245,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9116"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -211,7 +262,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9117"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -228,7 +279,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9118"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -245,7 +296,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9081"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -262,7 +313,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9082"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -279,7 +330,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9085"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -296,7 +347,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9083"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -313,7 +364,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9086"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -330,7 +381,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9084"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -347,7 +398,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9087"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -364,7 +415,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9119"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -381,7 +432,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9121"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -398,7 +449,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9089"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -415,7 +466,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9093"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -432,7 +483,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9091"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -449,7 +500,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9092"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -466,7 +517,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9090"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -483,7 +534,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9094"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -500,7 +551,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9095"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -517,7 +568,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9096"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -534,7 +585,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9097"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -551,7 +602,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9098"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -568,7 +619,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9099"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -585,7 +636,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9128"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -602,7 +653,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9138"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -619,7 +670,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9129"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -636,7 +687,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9149"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -653,7 +704,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9139"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -670,7 +721,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9130"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -687,7 +738,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9120"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -704,7 +755,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9122"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -721,7 +772,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9150"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -738,7 +789,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9140"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -755,7 +806,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9131"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -772,7 +823,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9141"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -789,7 +840,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9132"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -806,7 +857,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9151"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -823,7 +874,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9142"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -840,7 +891,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9152"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -857,7 +908,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9143"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -874,7 +925,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9144"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -891,7 +942,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9133"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -908,7 +959,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9134"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -925,7 +976,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9145"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -942,7 +993,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9135"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -959,7 +1010,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9146"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -976,7 +1027,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9136"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -993,7 +1044,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9153"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1010,7 +1061,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9147"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1027,7 +1078,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9148"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1044,7 +1095,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9137"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1061,7 +1112,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9123"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva Venue",
@@ -1075,7 +1126,7 @@
         "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%97%d7%95%d7%a8%d7%99%d7%9d-%d7%98%d7%95%d7%91%d7%99%d7%9d/"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva Venue",
@@ -1089,7 +1140,7 @@
         "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%97%d7%95%d7%a8%d7%99%d7%9d-%d7%98%d7%95%d7%91%d7%99%d7%9d/"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva Venue",
@@ -1103,7 +1154,7 @@
         "sourceUrl": "https://b7t.co.il/shows/%d7%94%d7%97%d7%98%d7%90-%d7%95%d7%a2%d7%95%d7%a0%d7%a9%d7%95/"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva Venue",
@@ -1117,7 +1168,7 @@
         "sourceUrl": "https://b7t.co.il/shows/%d7%94%d7%97%d7%98%d7%90-%d7%95%d7%a2%d7%95%d7%a0%d7%a9%d7%95/"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1134,7 +1185,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9106"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1151,7 +1202,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9108"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1168,7 +1219,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8824"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1185,7 +1236,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8836"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1202,7 +1253,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8839"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1219,7 +1270,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8826"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1236,7 +1287,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8840"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1253,7 +1304,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8829"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1270,7 +1321,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8842"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1287,7 +1338,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8832"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1304,7 +1355,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9166"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1321,7 +1372,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9126"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1338,7 +1389,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9125"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1355,7 +1406,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8828"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1372,7 +1423,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8841"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1389,7 +1440,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8831"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1406,7 +1457,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8843"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1423,7 +1474,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8833"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1440,7 +1491,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8837"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva",
@@ -1457,21 +1508,7 @@
         "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9127"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
-    },
-    {
-      "theatre": "Beer Sheva Venue",
-      "file": "events-beer-sheva-venue.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 75,
-        "showSlug": "שם-פרטי",
-        "date": "2026-05-10",
-        "hour": "20:30",
-        "sourceUrl": "https://b7t.co.il/shows/%d7%a9%d7%9d-%d7%a4%d7%a8%d7%98%d7%99/"
-      },
-      "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Beer Sheva Venue",
@@ -1485,7 +1522,7 @@
         "sourceUrl": "https://b7t.co.il/shows/%d7%a9%d7%9d-%d7%a4%d7%a8%d7%98%d7%99/"
       },
       "verdict": "uncertain",
-      "reason": "fetch failed: This operation was aborted"
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
     },
     {
       "theatre": "Davai",
@@ -3422,20 +3459,6 @@
       "event": {
         "showId": 121,
         "showSlug": "מראה-מעל-הגשר",
-        "date": "2026-05-10",
-        "hour": "20:30",
-        "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%9e%d7%a8%d7%90%d7%94-%d7%9e%d7%a2%d7%9c-%d7%94%d7%92%d7%a9%d7%a8-%d7%94%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%a2%d7%91%d7%a8%d7%99/"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Nes Ziona",
-      "file": "events-nes-ziona.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 121,
-        "showSlug": "מראה-מעל-הגשר",
         "date": "2026-05-11",
         "hour": "18:00",
         "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%9e%d7%a8%d7%90%d7%94-%d7%9e%d7%a2%d7%9c-%d7%94%d7%92%d7%a9%d7%a8-%d7%94%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%a2%d7%91%d7%a8%d7%99/"
@@ -4797,7 +4820,7 @@
       "event": {
         "showId": 8,
         "showSlug": "החבדניקים",
-        "date": "2026-05-10",
+        "date": "2027-05-10",
         "hour": "19:00",
         "note": "כתוביות בעברית",
         "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%91%d7%93%d7%a0%d7%99%d7%a7%d7%99%d7%9d/"
@@ -5999,35 +6022,6 @@
       "event": {
         "showId": 15,
         "showSlug": "חשמלית-ושמה-תשוקה",
-        "date": "2027-05-09",
-        "hour": "17:30",
-        "note": "English subtitles",
-        "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%97%d7%a9%d7%9e%d7%9c%d7%99%d7%aa_%d7%95%d7%a9%d7%9e%d7%94_%d7%aa%d7%a9%d7%95%d7%a7%d7%94/"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Cameri",
-      "file": "events.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 15,
-        "showSlug": "חשמלית-ושמה-תשוקה",
-        "date": "2027-05-09",
-        "hour": "20:30",
-        "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%97%d7%a9%d7%9e%d7%9c%d7%99%d7%aa_%d7%95%d7%a9%d7%9e%d7%94_%d7%aa%d7%a9%d7%95%d7%a7%d7%94/"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Cameri",
-      "file": "events.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 15,
-        "showSlug": "חשמלית-ושמה-תשוקה",
         "date": "2026-06-28",
         "hour": "20:00",
         "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%97%d7%a9%d7%9e%d7%9c%d7%99%d7%aa_%d7%95%d7%a9%d7%9e%d7%94_%d7%aa%d7%a9%d7%95%d7%a7%d7%94/"
@@ -6131,7 +6125,7 @@
       "event": {
         "showId": 25,
         "showSlug": "לא-הייתם-צריכים",
-        "date": "2026-05-10",
+        "date": "2027-05-10",
         "hour": "19:00",
         "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%90_%d7%94%d7%99%d7%99%d7%aa%d7%9d_%d7%a6%d7%a8%d7%99%d7%9b%d7%99%d7%9d/"
       },
@@ -6818,20 +6812,6 @@
         "hour": "21:15",
         "note": "English subtitles",
         "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%99%d7%a7%d7%99_%d7%9e%d7%a6%d7%99%d7%9c/"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Cameri",
-      "file": "events.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 1,
-        "showSlug": "מישהו-שר-את-זה-קודם",
-        "date": "2027-05-09",
-        "hour": "17:00",
-        "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%99%d7%a9%d7%94%d7%95_%d7%a9%d7%a8_%d7%90%d7%aa_%d7%96%d7%94_%d7%a7%d7%95%d7%93%d7%9d/"
       },
       "verdict": "uncertain",
       "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
@@ -10522,6 +10502,40 @@
       "event": {
         "showId": 38,
         "showSlug": "משכנתא",
+        "date": "2026-05-24",
+        "hour": "20:00",
+        "venueName": "תיאטרון הבימה",
+        "venueCity": "תל אביב",
+        "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%9b%d7%a0%d7%aa%d7%90/",
+        "ticketUrl": "https://tickets.habima.co.il/order/50318"
+      },
+      "verdict": "uncertain",
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
+    },
+    {
+      "theatre": "Habima",
+      "file": "events-habima-theatre.json",
+      "wasFlagged": false,
+      "event": {
+        "showId": 38,
+        "showSlug": "משכנתא",
+        "date": "2026-06-17",
+        "hour": "20:00",
+        "venueName": "תיאטרון הבימה",
+        "venueCity": "תל אביב",
+        "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%9b%d7%a0%d7%aa%d7%90/",
+        "ticketUrl": "https://tickets.habima.co.il/order/50351"
+      },
+      "verdict": "uncertain",
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
+    },
+    {
+      "theatre": "Habima",
+      "file": "events-habima-theatre.json",
+      "wasFlagged": false,
+      "event": {
+        "showId": 38,
+        "showSlug": "משכנתא",
         "date": "2026-06-18",
         "hour": "20:00",
         "venueName": "תיאטרון הבימה",
@@ -10711,40 +10725,6 @@
         "hour": "20:00",
         "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a6%d7%99%d7%a2%d7%95%d7%aa-%d7%a7%d7%98%d7%a0%d7%95%d7%aa/",
         "ticketUrl": "https://tickets.habima.co.il/order/50453"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Habima",
-      "file": "events-habima-theatre.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 35,
-        "showSlug": "פריסילה-מלכת-המדבר",
-        "date": "2026-05-10",
-        "hour": "17:00",
-        "venueName": "תיאטרון הבימה",
-        "venueCity": "תל אביב",
-        "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
-        "ticketUrl": "https://tickets.habima.co.il/order/50261"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Habima",
-      "file": "events-habima-theatre.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 35,
-        "showSlug": "פריסילה-מלכת-המדבר",
-        "date": "2026-05-10",
-        "hour": "21:00",
-        "venueName": "תיאטרון הבימה",
-        "venueCity": "תל אביב",
-        "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
-        "ticketUrl": "https://tickets.habima.co.il/order/50262"
       },
       "verdict": "uncertain",
       "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
@@ -11130,10 +11110,10 @@
       "event": {
         "showId": 306,
         "showSlug": "רוורס",
-        "date": "2026-05-10",
+        "date": "2026-06-24",
         "hour": "20:00",
         "sourceUrl": "https://www.habima.co.il/shows/%d7%a8%d7%95%d7%95%d7%a8%d7%a1/",
-        "ticketUrl": "https://tickets.habima.co.il/order/50271"
+        "ticketUrl": "https://tickets.habima.co.il/order/50466"
       },
       "verdict": "uncertain",
       "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
@@ -11251,6 +11231,23 @@
         "venueCity": "תל אביב",
         "sourceUrl": "https://www.habima.co.il/shows/%d7%aa%d7%a8%d7%a7%d7%93%d7%99-%d7%90%d7%99%d7%aa%d7%99/",
         "ticketUrl": "https://tickets.habima.co.il/order/50362"
+      },
+      "verdict": "uncertain",
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
+    },
+    {
+      "theatre": "Habima",
+      "file": "events-habima-theatre.json",
+      "wasFlagged": false,
+      "event": {
+        "showId": 145,
+        "showSlug": "תרקדי-איתי",
+        "date": "2026-06-30",
+        "hour": "20:00",
+        "venueName": "תיאטרון הבימה",
+        "venueCity": "תל אביב",
+        "sourceUrl": "https://www.habima.co.il/shows/%d7%aa%d7%a8%d7%a7%d7%93%d7%99-%d7%90%d7%99%d7%aa%d7%99/",
+        "ticketUrl": "https://tickets.habima.co.il/order/50363"
       },
       "verdict": "uncertain",
       "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
@@ -11502,10 +11499,10 @@
       "event": {
         "showId": 360,
         "showSlug": "Radio-Play",
-        "date": "2026-06-11",
-        "hour": "20:00",
+        "date": "2026-05-14",
+        "hour": "19:00",
         "sourceUrl": "https://www.hanut31.co.il/radio-play",
-        "ticketUrl": "https://www.hanut31.co.il/events/radio-play-1-38"
+        "ticketUrl": "https://www.hanut31.co.il/events/radio-play-2026-05-14-19-00"
       },
       "verdict": "uncertain",
       "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
@@ -11517,10 +11514,10 @@
       "event": {
         "showId": 360,
         "showSlug": "Radio-Play",
-        "date": "2026-05-14",
-        "hour": "19:00",
+        "date": "2026-06-11",
+        "hour": "20:00",
         "sourceUrl": "https://www.hanut31.co.il/radio-play",
-        "ticketUrl": "https://www.hanut31.co.il/events/radio-play-2026-05-14-19-00"
+        "ticketUrl": "https://www.hanut31.co.il/events/radio-play-1-38"
       },
       "verdict": "uncertain",
       "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
@@ -12240,11 +12237,53 @@
       "file": "events-holon.json",
       "wasFlagged": false,
       "event": {
+        "showId": 50,
+        "showSlug": "בית-בובות",
+        "date": "2026-05-12",
+        "hour": "20:30",
+        "sourceUrl": "https://www.hth.co.il/events/%d7%91%d7%99%d7%aa-%d7%94%d7%91%d7%95%d7%91%d7%95%d7%aa-%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%91%d7%99%d7%9e%d7%94/"
+      },
+      "verdict": "uncertain",
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
+    },
+    {
+      "theatre": "Holon",
+      "file": "events-holon.json",
+      "wasFlagged": false,
+      "event": {
+        "showId": 50,
+        "showSlug": "בית-בובות",
+        "date": "2026-05-14",
+        "hour": "20:30",
+        "sourceUrl": "https://www.hth.co.il/events/%d7%91%d7%99%d7%aa-%d7%94%d7%91%d7%95%d7%91%d7%95%d7%aa-%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%91%d7%99%d7%9e%d7%94/"
+      },
+      "verdict": "uncertain",
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
+    },
+    {
+      "theatre": "Holon",
+      "file": "events-holon.json",
+      "wasFlagged": false,
+      "event": {
         "showId": 269,
         "showSlug": "דרושה-עוזרת",
         "date": "2026-07-13",
         "hour": "11:00",
         "sourceUrl": "https://www.hth.co.il/events/%d7%93%d7%a8%d7%95%d7%a9%d7%94-%d7%a2%d7%95%d7%96%d7%a8%d7%aa-%d7%a7%d7%95%d7%9e%d7%93%d7%99%d7%94-%d7%9e%d7%98%d7%95%d7%a8%d7%a4%d7%aa-2/"
+      },
+      "verdict": "uncertain",
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
+    },
+    {
+      "theatre": "Holon",
+      "file": "events-holon.json",
+      "wasFlagged": false,
+      "event": {
+        "showId": 117,
+        "showSlug": "הלב-שלי-בחר",
+        "date": "2026-10-27",
+        "hour": "20:30",
+        "sourceUrl": "https://www.hth.co.il/events/%d7%94%d7%9c%d7%91-%d7%a9%d7%9c%d7%99-%d7%91%d7%97%d7%a8-%d7%94%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%a2%d7%91%d7%a8%d7%99/"
       },
       "verdict": "uncertain",
       "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
@@ -12921,23 +12960,6 @@
       "event": {
         "showId": 94,
         "showSlug": "משרתם-של-שני-אדונים",
-        "date": "2026-05-10",
-        "hour": "20:00",
-        "venueName": "תיאטרון החאן",
-        "venueCity": "ירושלים",
-        "sourceUrl": "https://www.khan.co.il/shows/544/the-servant-of-two-masters",
-        "ticketUrl": "https://khan.pres.global/order/8604"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Khan",
-      "file": "events-khan.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 94,
-        "showSlug": "משרתם-של-שני-אדונים",
         "date": "2026-05-12",
         "hour": "20:00",
         "venueName": "תיאטרון החאן",
@@ -13199,6 +13221,40 @@
         "venueCity": "ירושלים",
         "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
         "ticketUrl": "https://khan.pres.global/order/8654"
+      },
+      "verdict": "uncertain",
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
+    },
+    {
+      "theatre": "Khan",
+      "file": "events-khan.json",
+      "wasFlagged": false,
+      "event": {
+        "showId": 90,
+        "showSlug": "מי-שסוכתו-נופלת",
+        "date": "2026-07-19",
+        "hour": "20:00",
+        "venueName": "בית ציוני אמריקה",
+        "venueCity": "תל אביב",
+        "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
+        "ticketUrl": "https://khan.pres.global/order/8676"
+      },
+      "verdict": "uncertain",
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
+    },
+    {
+      "theatre": "Khan",
+      "file": "events-khan.json",
+      "wasFlagged": false,
+      "event": {
+        "showId": 90,
+        "showSlug": "מי-שסוכתו-נופלת",
+        "date": "2026-07-20",
+        "hour": "18:00",
+        "venueName": "בית ציוני אמריקה",
+        "venueCity": "תל אביב",
+        "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
+        "ticketUrl": "https://khan.pres.global/order/8677"
       },
       "verdict": "uncertain",
       "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
@@ -13476,51 +13532,6 @@
         "hour": "21:00",
         "note": "אולם 1",
         "sourceUrl": "https://www.lessin.co.il/shows/%d7%90%d7%95%d7%a8-%d7%9c%d7%92%d7%95%d7%99%d7%99%d7%9d/"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Lessin",
-      "file": "events-lessin.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 64,
-        "showSlug": "אמדאוס",
-        "date": "2027-05-06",
-        "hour": "20:00",
-        "note": "אולם 1",
-        "sourceUrl": "https://www.lessin.co.il/shows/%d7%90%d7%9e%d7%93%d7%90%d7%95%d7%a1/"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Lessin",
-      "file": "events-lessin.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 64,
-        "showSlug": "אמדאוס",
-        "date": "2027-05-07",
-        "hour": "17:00",
-        "note": "אולם 1",
-        "sourceUrl": "https://www.lessin.co.il/shows/%d7%90%d7%9e%d7%93%d7%90%d7%95%d7%a1/"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Lessin",
-      "file": "events-lessin.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 64,
-        "showSlug": "אמדאוס",
-        "date": "2027-05-07",
-        "hour": "20:00",
-        "note": "אולם 1",
-        "sourceUrl": "https://www.lessin.co.il/shows/%d7%90%d7%9e%d7%93%d7%90%d7%95%d7%a1/"
       },
       "verdict": "uncertain",
       "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
@@ -13982,96 +13993,6 @@
       "event": {
         "showId": 72,
         "showSlug": "חנאל-ומכבית",
-        "date": "2027-05-06",
-        "hour": "17:30",
-        "note": "אולם 2",
-        "sourceUrl": "https://www.lessin.co.il/shows/%d7%97%d7%a0%d7%90%d7%9c-%d7%95%d7%9e%d7%9b%d7%91%d7%99%d7%aa/"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Lessin",
-      "file": "events-lessin.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 72,
-        "showSlug": "חנאל-ומכבית",
-        "date": "2027-05-06",
-        "hour": "20:30",
-        "note": "אולם 2",
-        "sourceUrl": "https://www.lessin.co.il/shows/%d7%97%d7%a0%d7%90%d7%9c-%d7%95%d7%9e%d7%9b%d7%91%d7%99%d7%aa/"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Lessin",
-      "file": "events-lessin.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 72,
-        "showSlug": "חנאל-ומכבית",
-        "date": "2027-05-07",
-        "hour": "18:00",
-        "note": "אולם 2",
-        "sourceUrl": "https://www.lessin.co.il/shows/%d7%97%d7%a0%d7%90%d7%9c-%d7%95%d7%9e%d7%9b%d7%91%d7%99%d7%aa/"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Lessin",
-      "file": "events-lessin.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 72,
-        "showSlug": "חנאל-ומכבית",
-        "date": "2027-05-07",
-        "hour": "21:00",
-        "note": "אולם 2",
-        "sourceUrl": "https://www.lessin.co.il/shows/%d7%97%d7%a0%d7%90%d7%9c-%d7%95%d7%9e%d7%9b%d7%91%d7%99%d7%aa/"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Lessin",
-      "file": "events-lessin.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 72,
-        "showSlug": "חנאל-ומכבית",
-        "date": "2027-05-08",
-        "hour": "12:00",
-        "note": "אולם 2",
-        "sourceUrl": "https://www.lessin.co.il/shows/%d7%97%d7%a0%d7%90%d7%9c-%d7%95%d7%9e%d7%9b%d7%91%d7%99%d7%aa/"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Lessin",
-      "file": "events-lessin.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 72,
-        "showSlug": "חנאל-ומכבית",
-        "date": "2027-05-09",
-        "hour": "21:30",
-        "note": "אולם 2",
-        "sourceUrl": "https://www.lessin.co.il/shows/%d7%97%d7%a0%d7%90%d7%9c-%d7%95%d7%9e%d7%9b%d7%91%d7%99%d7%aa/"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Lessin",
-      "file": "events-lessin.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 72,
-        "showSlug": "חנאל-ומכבית",
         "date": "2026-06-01",
         "hour": "20:30",
         "note": "אולם 2",
@@ -14166,36 +14087,6 @@
         "hour": "20:30",
         "note": "אולם 2",
         "sourceUrl": "https://www.lessin.co.il/shows/%d7%97%d7%a0%d7%90%d7%9c-%d7%95%d7%9e%d7%9b%d7%91%d7%99%d7%aa/"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Lessin",
-      "file": "events-lessin.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 62,
-        "showSlug": "לילה-ברומא",
-        "date": "2027-05-08",
-        "hour": "21:30",
-        "note": "אולם 1",
-        "sourceUrl": "https://www.lessin.co.il/shows/%d7%9c%d7%99%d7%9c%d7%94-%d7%91%d7%a8%d7%95%d7%9e%d7%90/"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Lessin",
-      "file": "events-lessin.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 62,
-        "showSlug": "לילה-ברומא",
-        "date": "2027-05-09",
-        "hour": "18:00",
-        "note": "אולם 1",
-        "sourceUrl": "https://www.lessin.co.il/shows/%d7%9c%d7%99%d7%9c%d7%94-%d7%91%d7%a8%d7%95%d7%9e%d7%90/"
       },
       "verdict": "uncertain",
       "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
@@ -14342,7 +14233,7 @@
       "event": {
         "showId": 74,
         "showSlug": "משחקים-בחצר-האחורית",
-        "date": "2026-05-10",
+        "date": "2027-05-10",
         "hour": "12:00",
         "note": "אולם 2",
         "sourceUrl": "https://www.lessin.co.il/shows/%d7%9e%d7%a9%d7%97%d7%a7%d7%99%d7%9d-%d7%91%d7%97%d7%a6%d7%a8-%d7%94%d7%90%d7%97%d7%95%d7%a8%d7%99%d7%aa/"
@@ -14357,7 +14248,7 @@
       "event": {
         "showId": 74,
         "showSlug": "משחקים-בחצר-האחורית",
-        "date": "2026-05-10",
+        "date": "2027-05-10",
         "hour": "16:00",
         "note": "אולם 2",
         "sourceUrl": "https://www.lessin.co.il/shows/%d7%9e%d7%a9%d7%97%d7%a7%d7%99%d7%9d-%d7%91%d7%97%d7%a6%d7%a8-%d7%94%d7%90%d7%97%d7%95%d7%a8%d7%99%d7%aa/"
@@ -14372,7 +14263,7 @@
       "event": {
         "showId": 74,
         "showSlug": "משחקים-בחצר-האחורית",
-        "date": "2026-05-10",
+        "date": "2027-05-10",
         "hour": "20:00",
         "note": "אולם 2",
         "sourceUrl": "https://www.lessin.co.il/shows/%d7%9e%d7%a9%d7%97%d7%a7%d7%99%d7%9d-%d7%91%d7%97%d7%a6%d7%a8-%d7%94%d7%90%d7%97%d7%95%d7%a8%d7%99%d7%aa/"
@@ -15325,20 +15216,6 @@
       "event": {
         "showId": 69,
         "showSlug": "הכל-אודות-איב",
-        "date": "2026-05-10",
-        "hour": "20:30",
-        "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2600/%D7%94%D7%9B%D7%9C-%D7%90%D7%95%D7%93%D7%95%D7%AA-%D7%90%D7%99%D7%91"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Kiryat Motzkin",
-      "file": "events-kiryat-motzkin.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 69,
-        "showSlug": "הכל-אודות-איב",
         "date": "2026-05-11",
         "hour": "20:30",
         "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2600/%D7%94%D7%9B%D7%9C-%D7%90%D7%95%D7%93%D7%95%D7%AA-%D7%90%D7%99%D7%91"
@@ -16260,6 +16137,23 @@
       "file": "events-hebrew-theatre.json",
       "wasFlagged": false,
       "event": {
+        "showId": 117,
+        "showSlug": "הלב-שלי-בחר",
+        "date": "2026-10-27",
+        "hour": "20:30",
+        "venueName": "תיאטרון חולון",
+        "venueCity": "חולון",
+        "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%9c%d7%91-%d7%a9%d7%9c%d7%99-%d7%91%d7%97%d7%a8/",
+        "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10902"
+      },
+      "verdict": "uncertain",
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
+    },
+    {
+      "theatre": "Hebrew Theatre",
+      "file": "events-hebrew-theatre.json",
+      "wasFlagged": false,
+      "event": {
         "showId": 126,
         "showSlug": "הפרח-בגני",
         "date": "2026-10-15",
@@ -16319,23 +16213,6 @@
         "venueCity": "חולון",
         "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%a9%d7%95%d7%98%d7%a8-%d7%90%d7%96%d7%95%d7%9c%d7%90%d7%99/",
         "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10903"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Hebrew Theatre",
-      "file": "events-hebrew-theatre.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 115,
-        "showSlug": "התשמע-קולי",
-        "date": "2026-05-10",
-        "hour": "20:30",
-        "venueName": "מרכז הבמה גני תקווה",
-        "venueCity": "גני תקווה",
-        "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%aa%d7%a9%d7%9e%d7%a2-%d7%a7%d7%95%d7%9c%d7%99/",
-        "ticketUrl": "https://habama.smarticket.co.il/%D7%94%D7%AA%D7%A9%D7%9E%D7%A2_%D7%A7%D7%95%D7%9C%D7%99_%7C_%D7%94%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F_%D7%94%D7%A2%D7%91%D7%A8%D7%99/?id=22175"
       },
       "verdict": "uncertain",
       "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
@@ -18091,11 +17968,11 @@
       "file": "events-theatron-hazafon.json",
       "wasFlagged": false,
       "event": {
-        "showId": 3,
-        "showSlug": "לנקות-את-הראש",
-        "date": "2026-10-08",
+        "showId": 38,
+        "showSlug": "משכנתא",
+        "date": "2026-10-14",
         "hour": "20:30",
-        "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4385"
+        "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=5384"
       },
       "verdict": "uncertain",
       "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
@@ -18105,40 +17982,11 @@
       "file": "events-theatron-hazafon.json",
       "wasFlagged": false,
       "event": {
-        "showId": 3,
-        "showSlug": "לנקות-את-הראש",
-        "date": "2026-10-09",
-        "hour": "21:30",
-        "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4385"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Theatron HaZafon",
-      "file": "events-theatron-hazafon.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 3,
-        "showSlug": "לנקות-את-הראש",
-        "date": "2026-10-10",
-        "hour": "21:00",
-        "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4385"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Tmuna",
-      "file": "events-tmuna-theatre.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 410,
-        "showSlug": "מהפכניות",
-        "date": "2026-05-10",
-        "hour": "20:00",
-        "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=4546",
-        "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25832"
+        "showId": 38,
+        "showSlug": "משכנתא",
+        "date": "2026-10-15",
+        "hour": "20:30",
+        "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=5384"
       },
       "verdict": "uncertain",
       "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
@@ -18570,21 +18418,6 @@
       "event": {
         "showId": 103,
         "showSlug": "בת-של-אבא",
-        "date": "2026-05-10",
-        "hour": "20:00",
-        "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6208",
-        "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25748"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Tmuna",
-      "file": "events-tmuna-theatre.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 103,
-        "showSlug": "בת-של-אבא",
         "date": "2026-05-11",
         "hour": "20:00",
         "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6208",
@@ -18634,6 +18467,36 @@
         "hour": "20:00",
         "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6215",
         "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25793"
+      },
+      "verdict": "uncertain",
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
+    },
+    {
+      "theatre": "Tmuna",
+      "file": "events-tmuna-theatre.json",
+      "wasFlagged": false,
+      "event": {
+        "showId": 235,
+        "showSlug": "שלא-יגמר-לי",
+        "date": "2026-05-13",
+        "hour": "20:00",
+        "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6229",
+        "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25777"
+      },
+      "verdict": "uncertain",
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
+    },
+    {
+      "theatre": "Tmuna",
+      "file": "events-tmuna-theatre.json",
+      "wasFlagged": false,
+      "event": {
+        "showId": 235,
+        "showSlug": "שלא-יגמר-לי",
+        "date": "2026-06-02",
+        "hour": "20:00",
+        "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6229",
+        "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25778"
       },
       "verdict": "uncertain",
       "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
@@ -19117,6 +18980,22 @@
       "event": {
         "showId": 264,
         "showSlug": "אנני",
+        "date": "2026-08-20",
+        "hour": "18:00",
+        "venueName": "בנייני האומה",
+        "venueCity": "ירושלים",
+        "sourceUrl": "https://www.to-mix.co.il/product/annieisr-bitan2-sum25/"
+      },
+      "verdict": "uncertain",
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
+    },
+    {
+      "theatre": "toMix",
+      "file": "events-tomix.json",
+      "wasFlagged": false,
+      "event": {
+        "showId": 264,
+        "showSlug": "אנני",
         "date": "2026-08-26",
         "hour": "16:00",
         "venueName": "היכל התרבות ע\"ש צ'רלס ברונפמן",
@@ -19522,22 +19401,6 @@
         "venueName": "היכל התרבות פתח תקווה",
         "venueCity": "פתח תקווה",
         "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "toMix",
-      "file": "events-tomix.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 266,
-        "showSlug": "מיקה-שלי",
-        "date": "2026-05-10",
-        "hour": "20:30",
-        "venueName": "היכל התרבות פתח תקווה",
-        "venueCity": "פתח תקווה",
-        "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
       },
       "verdict": "uncertain",
       "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
@@ -20813,6 +20676,22 @@
       "event": {
         "showId": 271,
         "showSlug": "שקרים-קטנים",
+        "date": "2026-10-04",
+        "hour": "20:30",
+        "venueName": "תיאטרון ירושלים",
+        "venueCity": "ירושלים",
+        "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
+      },
+      "verdict": "uncertain",
+      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
+    },
+    {
+      "theatre": "toMix",
+      "file": "events-tomix.json",
+      "wasFlagged": false,
+      "event": {
+        "showId": 271,
+        "showSlug": "שקרים-קטנים",
         "date": "2026-10-10",
         "hour": "21:00",
         "venueName": "סינמה סיטי גלילות",
@@ -21042,20 +20921,6 @@
         "date": "2026-06-13",
         "hour": "11:30",
         "sourceUrl": "https://www.tzavta.co.il/event/5034"
-      },
-      "verdict": "uncertain",
-      "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
-    },
-    {
-      "theatre": "Tzavta",
-      "file": "events-tzavta-theatre.json",
-      "wasFlagged": false,
-      "event": {
-        "showId": 456,
-        "showSlug": "זה-בסדר.",
-        "date": "2026-05-10",
-        "hour": "20:30",
-        "sourceUrl": "https://www.tzavta.co.il/event/5048"
       },
       "verdict": "uncertain",
       "reason": "verifier error: 401 The `models` permission is required to access this endpoint"
