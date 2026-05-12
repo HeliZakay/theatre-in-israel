@@ -1,25 +1,11 @@
 {
-  "scrapedAt": "2026-05-11T04:39:57.140Z",
+  "scrapedAt": "2026-05-12T21:55:44.317Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון חולון",
     "city": "חולון"
   },
   "events": [
-    {
-      "showId": 270,
-      "showSlug": "שעה-של-שקט",
-      "date": "2026-05-11",
-      "hour": "11:30",
-      "sourceUrl": "https://www.hth.co.il/events/%d7%a9%d7%a2%d7%94-%d7%a9%d7%9c-%d7%a9%d7%a7%d7%98-2/"
-    },
-    {
-      "showId": 50,
-      "showSlug": "בית-בובות",
-      "date": "2026-05-12",
-      "hour": "20:30",
-      "sourceUrl": "https://www.hth.co.il/events/%d7%91%d7%99%d7%aa-%d7%94%d7%91%d7%95%d7%91%d7%95%d7%aa-%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%91%d7%99%d7%9e%d7%94/"
-    },
     {
       "showId": 50,
       "showSlug": "בית-בובות",
@@ -58,7 +44,7 @@
     {
       "showId": 266,
       "showSlug": "מיקה-שלי",
-      "date": "2026-06-27",
+      "date": "2026-06-28",
       "hour": "21:30",
       "sourceUrl": "https://www.hth.co.il/events/%d7%9e%d7%99%d7%a7%d7%94-%d7%a9%d7%9c%d7%99-%d7%9e%d7%97%d7%96%d7%9e%d7%a8/"
     },
