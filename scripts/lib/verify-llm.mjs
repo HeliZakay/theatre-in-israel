@@ -34,6 +34,12 @@ export function htmlToText(html) {
   return text;
 }
 
+// Statuses that consistently indicate a site is blocking automated clients
+// regardless of what headers we send (Cloudflare bot challenges, Akamai WAFs,
+// servers that reject any non-form Accept). When we see these we tag the
+// reason distinctly so they don't pollute the generic "uncertain" pile.
+const HARD_BLOCK_STATUSES = new Set([403, 415, 429, 503]);
+
 export async function fetchPageText(url, { timeoutMs = 15_000 } = {}) {
   const controller = new AbortController();
   const t = setTimeout(() => controller.abort(), timeoutMs);
@@ -42,15 +48,28 @@ export async function fetchPageText(url, { timeoutMs = 15_000 } = {}) {
       signal: controller.signal,
       redirect: "follow",
       headers: {
-        // Mimic a normal browser — some sites return different markup or
-        // block plain Node user-agents.
+        // Mimic a normal browser. Several sites (cameri, lessin, b7t, heichal-hm,
+        // hth, hasimta) returned 415 when we only sent UA + Accept-Language —
+        // they require an explicit Accept header. Sec-Fetch-* headers reduce
+        // false-positive bot detection on Cloudflare-fronted sites.
         "User-Agent":
           "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        Accept:
+          "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
         "Accept-Language": "he,en;q=0.9",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Cache-Control": "no-cache",
+        Pragma: "no-cache",
+        "Upgrade-Insecure-Requests": "1",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none",
+        "Sec-Fetch-User": "?1",
       },
     });
     if (!res.ok) {
-      return { ok: false, status: res.status, text: "" };
+      const hardBlock = HARD_BLOCK_STATUSES.has(res.status);
+      return { ok: false, status: res.status, text: "", hardBlock };
     }
     const html = await res.text();
     return { ok: true, status: res.status, text: htmlToText(html) };

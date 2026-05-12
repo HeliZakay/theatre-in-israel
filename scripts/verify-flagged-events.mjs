@@ -123,7 +123,11 @@ async function main() {
 
     const fetched = await fetchPageText(page.sourceUrl);
     if (!fetched.ok) {
-      console.log(`fetch failed (${fetched.status || fetched.error})`);
+      const detail = fetched.status || fetched.error;
+      const reason = fetched.hardBlock
+        ? `site blocks our verifier (${fetched.status})`
+        : `fetch failed: ${detail}`;
+      console.log(reason);
       for (const event of page.events) {
         results.push({
           theatre: page.theatre,
@@ -133,7 +137,7 @@ async function main() {
           ),
           event,
           verdict: "uncertain",
-          reason: `fetch failed: ${fetched.status || fetched.error}`,
+          reason,
         });
       }
       continue;
