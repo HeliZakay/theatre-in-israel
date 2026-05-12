@@ -43,12 +43,23 @@ function parseEvents(raw) {
   };
 }
 
-// Returns previous version of a tracked file from one commit ago, or null
-// if git isn't available (e.g. on Vercel runtime where the repo isn't a
-// working tree). The count-drop check silently no-ops in that case.
+// Returns the previous tracked version of a file, or null if git isn't
+// available (e.g. on Vercel runtime where the repo isn't a working tree).
+//
+// We can't just use HEAD~1 — the nightly workflow now makes multiple
+// commits per run (scrape commit + verifier commit), so HEAD~1 could be
+// today's scrape itself and the diff would be 0. Instead, ask git for
+// the second-most-recent commit that actually touched this file. That's
+// always the previous nightly's scrape regardless of intervening
+// commits that didn't change the events JSON.
 function readPreviousFile(relPath) {
   try {
-    return execSync(`git show HEAD~1:${relPath}`, {
+    const commit = execSync(
+      `git log --skip 1 -1 --format=%H -- "${relPath}"`,
+      { encoding: "utf-8", stdio: ["pipe", "pipe", "pipe"] },
+    ).trim();
+    if (!commit) return null;
+    return execSync(`git show ${commit}:${relPath}`, {
       encoding: "utf-8",
       stdio: ["pipe", "pipe", "pipe"],
     });
