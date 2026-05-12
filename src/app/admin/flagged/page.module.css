@@ -19,6 +19,17 @@
   color: var(--color-muted-fg, #6b7280);
 }
 
+.llmStatus {
+  margin: 0 0 1.5rem;
+  font-size: 0.95rem;
+  color: #15803d;
+}
+
+.llmStatusBroken {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
 .empty {
   padding: 2rem;
   background: #f0fdf4;

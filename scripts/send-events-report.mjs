@@ -64,6 +64,27 @@ function buildAnomaliesHtml(anomalies) {
   `;
 }
 
+function buildLlmStatusHtml(summary) {
+  if (!summary) return "";
+  const agree = Number(summary.agree) || 0;
+  const disagree = Number(summary.disagree) || 0;
+  const uncertain = Number(summary.uncertain) || 0;
+  const total = agree + disagree + uncertain;
+  if (total === 0) return "";
+  const broken = agree + disagree === 0 && uncertain > 10;
+  const pct = (n) => Math.round((n / total) * 100);
+  const color = broken ? "#b91c1c" : "#15803d";
+  const icon = broken ? "⚠️" : "✓";
+  const label = broken
+    ? `LLM verifier produced 0 valid verdicts across ${uncertain} events — check workflow logs`
+    : `LLM verified ${total} events on ${summary.pagesVerified ?? "?"} pages (${pct(agree)}% agree, ${pct(disagree)}% disagree, ${pct(uncertain)}% uncertain)`;
+  return `
+    <p style="margin-top: 8px; color: ${color}; font-size: 0.9em;">
+      ${icon} ${label}
+    </p>
+  `;
+}
+
 function buildCrossRefHtml({ confirmed, totalFuture }) {
   if (totalFuture === 0) return "";
   const pct = Math.round((confirmed / totalFuture) * 100);
@@ -74,7 +95,7 @@ function buildCrossRefHtml({ confirmed, totalFuture }) {
   `;
 }
 
-function buildHtml({ rows, totalEvents, totalShows, totalNew, totalRemoved, anomalies, crossRef }) {
+function buildHtml({ rows, totalEvents, totalShows, totalNew, totalRemoved, anomalies, crossRef, llmSummary }) {
   const date = new Date().toLocaleDateString("he-IL", {
     timeZone: "Asia/Jerusalem",
     year: "numeric",
@@ -133,6 +154,7 @@ function buildHtml({ rows, totalEvents, totalShows, totalNew, totalRemoved, anom
         </tfoot>
       </table>
       ${buildCrossRefHtml(crossRef)}
+      ${buildLlmStatusHtml(llmSummary)}
       ${buildAnomaliesHtml(anomalies)}
     </div>
   `;

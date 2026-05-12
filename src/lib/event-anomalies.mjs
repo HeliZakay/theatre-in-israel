@@ -180,23 +180,46 @@ export function buildCrossRef(allFileEvents) {
   return { confirmed, totalFuture };
 }
 
-// Read llm-verifications.json (if present) and group disagree verdicts
-// by source file. Returns Map<filename, Array<{event, reason}>>.
-function readLlmDisagreements(dataDir) {
+// Read llm-verifications.json (if present). Returns the parsed summary
+// plus disagree verdicts grouped by source file.
+//   { summary: {...} | null, byFile: Map<filename, Array<{event, reason}>> }
+function readLlmVerifications(dataDir) {
   const byFile = new Map();
+  let summary = null;
   try {
     const raw = readFileSync(join(dataDir, "llm-verifications.json"), "utf-8");
     const data = JSON.parse(raw);
-    if (!Array.isArray(data.results)) return byFile;
-    for (const r of data.results) {
-      if (r.verdict !== "disagree") continue;
-      if (!byFile.has(r.file)) byFile.set(r.file, []);
-      byFile.get(r.file).push({ event: r.event, reason: r.reason });
+    if (data && typeof data.summary === "object") summary = data.summary;
+    if (Array.isArray(data.results)) {
+      for (const r of data.results) {
+        if (r.verdict !== "disagree") continue;
+        if (!byFile.has(r.file)) byFile.set(r.file, []);
+        byFile.get(r.file).push({ event: r.event, reason: r.reason });
+      }
     }
   } catch {
     // No verification file or unreadable — skip silently.
   }
-  return byFile;
+  return { summary, byFile };
+}
+
+// Detect the silent-failure shape: the verifier ran but produced zero
+// valid verdicts. That means LLM calls and/or page fetches all failed and
+// nothing useful made it into the file. Surface this as a top-level
+// anomaly so the email and admin page render it loudly.
+export function checkVerifierBroken(summary) {
+  if (!summary) return null;
+  const agree = Number(summary.agree) || 0;
+  const disagree = Number(summary.disagree) || 0;
+  const uncertain = Number(summary.uncertain) || 0;
+  if (agree + disagree === 0 && uncertain > 10) {
+    return {
+      kind: "verifier-broken",
+      summary: `LLM verifier produced 0 valid verdicts across ${uncertain} events — check workflow logs for permission errors (e.g. missing models scope)`,
+      events: [],
+    };
+  }
+  return null;
 }
 
 /**
@@ -206,7 +229,8 @@ function readLlmDisagreements(dataDir) {
  * @param {boolean} [opts.includePrevious=true] — read HEAD~1 for diff/count-drop
  */
 export function readReport({ dataDir, theatres, includePrevious = true }) {
-  const llmDisagreements = readLlmDisagreements(dataDir);
+  const { summary: llmSummary, byFile: llmDisagreements } =
+    readLlmVerifications(dataDir);
   const rows = [];
   let totalEvents = 0;
   let totalShows = 0;
@@ -289,6 +313,16 @@ export function readReport({ dataDir, theatres, includePrevious = true }) {
   }
 
   const crossRef = buildCrossRef(allFileEvents);
+
+  const verifierBroken = checkVerifierBroken(llmSummary);
+  if (verifierBroken) {
+    anomalies.unshift({
+      label: "LLM verifier",
+      file: "llm-verifications.json",
+      issues: [verifierBroken],
+    });
+  }
+
   return {
     rows,
     totalEvents,
@@ -298,5 +332,6 @@ export function readReport({ dataDir, theatres, includePrevious = true }) {
     anomalies,
     crossRef,
     allFileEvents,
+    llmSummary,
   };
 }

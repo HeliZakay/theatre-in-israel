@@ -31,12 +31,21 @@ type FileAnomaly = {
   issues: Issue[];
 };
 
+type LlmSummary = {
+  pagesVerified?: number;
+  eventsVerified?: number;
+  agree?: number;
+  disagree?: number;
+  uncertain?: number;
+};
+
 type Report = {
   totalEvents: number;
   totalShows: number;
   anomalies: FileAnomaly[];
   crossRef: { confirmed: number; totalFuture: number };
   rows: { label: string; events: number; ok: boolean }[];
+  llmSummary: LlmSummary | null;
 };
 
 export const dynamic = "force-dynamic";
@@ -50,11 +59,20 @@ export default async function FlaggedEventsPage() {
   const dataDir = join(process.cwd(), "prisma", "data");
   const report = readReport({ dataDir, theatres: THEATRES }) as Report;
 
-  const { totalEvents, totalShows, anomalies, crossRef } = report;
+  const { totalEvents, totalShows, anomalies, crossRef, llmSummary } = report;
   const crossRefPct =
     crossRef.totalFuture > 0
       ? Math.round((crossRef.confirmed / crossRef.totalFuture) * 100)
       : 0;
+
+  const llmAgree = Number(llmSummary?.agree) || 0;
+  const llmDisagree = Number(llmSummary?.disagree) || 0;
+  const llmUncertain = Number(llmSummary?.uncertain) || 0;
+  const llmTotal = llmAgree + llmDisagree + llmUncertain;
+  const llmBroken =
+    llmTotal > 0 && llmAgree + llmDisagree === 0 && llmUncertain > 10;
+  const llmPct = (n: number) =>
+    llmTotal > 0 ? Math.round((n / llmTotal) * 100) : 0;
 
   return (
     <main className={styles.page} dir="rtl">
@@ -67,6 +85,15 @@ export default async function FlaggedEventsPage() {
             {crossRefPct}%)
           </span>
         </p>
+        {llmTotal > 0 && (
+          <p
+            className={`${styles.llmStatus} ${llmBroken ? styles.llmStatusBroken : ""}`}
+          >
+            {llmBroken
+              ? `⚠️ LLM verifier produced 0 valid verdicts across ${llmUncertain} events — check workflow logs`
+              : `✓ LLM verified ${llmTotal} events on ${llmSummary?.pagesVerified ?? "?"} pages (${llmPct(llmAgree)}% agree, ${llmPct(llmDisagree)}% disagree, ${llmPct(llmUncertain)}% uncertain)`}
+          </p>
+        )}
       </header>
 
       {anomalies.length === 0 ? (
