@@ -21,6 +21,7 @@ import { fixDoubleProtocol } from "./image.mjs";
 import { setupRequestInterception } from "./browser.mjs";
 import { parseLessinDuration } from "./duration.mjs";
 import { inferYear, formatDate } from "./date.mjs";
+import { resolveVenueCity as resolveSharedVenueCity } from "./venues.mjs";
 
 // ── Constants ──────────────────────────────────────────────────
 
@@ -393,7 +394,7 @@ function resolveCityFromVenue(name) {
       return full;
     }
   }
-  return "לא ידוע";
+  return resolveSharedVenueCity(name);
 }
 
 /**
