@@ -1,25 +1,10 @@
 {
-  "scrapedAt": "2026-05-11T04:36:45.670Z",
+  "scrapedAt": "2026-05-12T22:01:13.362Z",
   "venue": {
     "name": "תיאטרון הקאמרי",
     "city": "תל אביב"
   },
   "events": [
-    {
-      "showId": 32,
-      "showSlug": "איש-הגשם",
-      "date": "2026-06-21",
-      "hour": "19:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%90%d7%99%d7%a9_%d7%94%d7%92%d7%a9%d7%9d/"
-    },
-    {
-      "showId": 32,
-      "showSlug": "איש-הגשם",
-      "date": "2026-07-14",
-      "hour": "20:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%90%d7%99%d7%a9_%d7%94%d7%92%d7%a9%d7%9d/"
-    },
     {
       "showId": 470,
       "showSlug": "ד-ר-סטריינג׳לאב",
@@ -56,871 +41,160 @@
       "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%93%d7%a8-%d7%a1%d7%98%d7%a8%d7%99%d7%99%d7%a0%d7%92%d7%9c%d7%90%d7%91/"
     },
     {
-      "showId": 26,
-      "showSlug": "האבא",
-      "date": "2026-05-29",
-      "hour": "12:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%91%d7%90/"
-    },
-    {
-      "showId": 26,
-      "showSlug": "האבא",
-      "date": "2026-05-29",
-      "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%91%d7%90/"
-    },
-    {
-      "showId": 26,
-      "showSlug": "האבא",
-      "date": "2026-05-30",
-      "hour": "17:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%91%d7%90/"
-    },
-    {
-      "showId": 26,
-      "showSlug": "האבא",
-      "date": "2026-05-30",
+      "showId": 10,
+      "showSlug": "צ׳ילבות",
+      "date": "2026-05-25",
       "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%91%d7%90/"
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a6%d7%99%d7%9c%d7%91%d7%95%d7%aa/"
     },
     {
-      "showId": 26,
-      "showSlug": "האבא",
-      "date": "2026-05-31",
-      "hour": "19:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%91%d7%90/"
-    },
-    {
-      "showId": 26,
-      "showSlug": "האבא",
-      "date": "2026-06-09",
-      "hour": "18:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%91%d7%90/"
-    },
-    {
-      "showId": 26,
-      "showSlug": "האבא",
-      "date": "2026-06-09",
-      "hour": "21:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%91%d7%90/"
-    },
-    {
-      "showId": 26,
-      "showSlug": "האבא",
-      "date": "2026-07-03",
-      "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%91%d7%90/"
-    },
-    {
-      "showId": 26,
-      "showSlug": "האבא",
-      "date": "2026-07-04",
-      "hour": "17:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%91%d7%90/"
-    },
-    {
-      "showId": 26,
-      "showSlug": "האבא",
-      "date": "2026-07-04",
-      "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%91%d7%90/"
-    },
-    {
-      "showId": 318,
-      "showSlug": "האשליה",
-      "date": "2026-06-17",
-      "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
-    },
-    {
-      "showId": 318,
-      "showSlug": "האשליה",
-      "date": "2026-06-18",
-      "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
-    },
-    {
-      "showId": 318,
-      "showSlug": "האשליה",
-      "date": "2026-06-19",
-      "hour": "12:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
-    },
-    {
-      "showId": 318,
-      "showSlug": "האשליה",
-      "date": "2026-06-19",
-      "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
-    },
-    {
-      "showId": 318,
-      "showSlug": "האשליה",
-      "date": "2026-06-20",
-      "hour": "17:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
-    },
-    {
-      "showId": 318,
-      "showSlug": "האשליה",
-      "date": "2026-06-20",
-      "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
-    },
-    {
-      "showId": 318,
-      "showSlug": "האשליה",
-      "date": "2026-07-23",
-      "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
-    },
-    {
-      "showId": 318,
-      "showSlug": "האשליה",
-      "date": "2026-07-24",
-      "hour": "12:00",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
-    },
-    {
-      "showId": 318,
-      "showSlug": "האשליה",
-      "date": "2026-07-24",
-      "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
-    },
-    {
-      "showId": 318,
-      "showSlug": "האשליה",
-      "date": "2026-07-25",
-      "hour": "17:00",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
-    },
-    {
-      "showId": 318,
-      "showSlug": "האשליה",
-      "date": "2026-07-25",
-      "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
-    },
-    {
-      "showId": 318,
-      "showSlug": "האשליה",
-      "date": "2026-07-26",
-      "hour": "20:30",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
-    },
-    {
-      "showId": 6,
-      "showSlug": "הבן-של-מושיקו-הגדול",
-      "date": "2026-06-10",
-      "hour": "18:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%91%d7%9f_%d7%a9%d7%9c_%d7%9e%d7%95%d7%a9%d7%99%d7%a7%d7%95_%d7%94%d7%92%d7%93%d7%95%d7%9c/"
-    },
-    {
-      "showId": 6,
-      "showSlug": "הבן-של-מושיקו-הגדול",
-      "date": "2026-06-10",
-      "hour": "21:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%91%d7%9f_%d7%a9%d7%9c_%d7%9e%d7%95%d7%a9%d7%99%d7%a7%d7%95_%d7%94%d7%92%d7%93%d7%95%d7%9c/"
-    },
-    {
-      "showId": 8,
-      "showSlug": "החבדניקים",
-      "date": "2027-05-10",
-      "hour": "19:00",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%91%d7%93%d7%a0%d7%99%d7%a7%d7%99%d7%9d/"
-    },
-    {
-      "showId": 8,
-      "showSlug": "החבדניקים",
-      "date": "2026-06-28",
-      "hour": "19:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%91%d7%93%d7%a0%d7%99%d7%a7%d7%99%d7%9d/"
-    },
-    {
-      "showId": 8,
-      "showSlug": "החבדניקים",
-      "date": "2026-06-29",
+      "showId": 10,
+      "showSlug": "צ׳ילבות",
+      "date": "2026-05-26",
       "hour": "19:00",
       "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%91%d7%93%d7%a0%d7%99%d7%a7%d7%99%d7%9d/"
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a6%d7%99%d7%9c%d7%91%d7%95%d7%aa/"
     },
     {
-      "showId": 8,
-      "showSlug": "החבדניקים",
-      "date": "2026-06-30",
-      "hour": "19:30",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%91%d7%93%d7%a0%d7%99%d7%a7%d7%99%d7%9d/"
-    },
-    {
-      "showId": 8,
-      "showSlug": "החבדניקים",
-      "date": "2026-07-23",
-      "hour": "19:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%91%d7%93%d7%a0%d7%99%d7%a7%d7%99%d7%9d/"
-    },
-    {
-      "showId": 8,
-      "showSlug": "החבדניקים",
-      "date": "2026-07-24",
-      "hour": "20:30",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%91%d7%93%d7%a0%d7%99%d7%a7%d7%99%d7%9d/"
-    },
-    {
-      "showId": 9,
-      "showSlug": "החולה-ההודי",
-      "date": "2026-06-05",
-      "hour": "12:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%95%d7%9c%d7%94_%d7%94%d7%94%d7%95%d7%93%d7%99/"
-    },
-    {
-      "showId": 9,
-      "showSlug": "החולה-ההודי",
-      "date": "2026-06-05",
-      "hour": "20:30",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%95%d7%9c%d7%94_%d7%94%d7%94%d7%95%d7%93%d7%99/"
-    },
-    {
-      "showId": 9,
-      "showSlug": "החולה-ההודי",
-      "date": "2026-06-06",
-      "hour": "17:30",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%95%d7%9c%d7%94_%d7%94%d7%94%d7%95%d7%93%d7%99/"
-    },
-    {
-      "showId": 9,
-      "showSlug": "החולה-ההודי",
-      "date": "2026-06-06",
-      "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%95%d7%9c%d7%94_%d7%94%d7%94%d7%95%d7%93%d7%99/"
-    },
-    {
-      "showId": 9,
-      "showSlug": "החולה-ההודי",
-      "date": "2026-07-31",
-      "hour": "12:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%95%d7%9c%d7%94_%d7%94%d7%94%d7%95%d7%93%d7%99/"
-    },
-    {
-      "showId": 9,
-      "showSlug": "החולה-ההודי",
-      "date": "2026-07-31",
-      "hour": "20:30",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%95%d7%9c%d7%94_%d7%94%d7%94%d7%95%d7%93%d7%99/"
-    },
-    {
-      "showId": 9,
-      "showSlug": "החולה-ההודי",
-      "date": "2026-08-01",
-      "hour": "17:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%95%d7%9c%d7%94_%d7%94%d7%94%d7%95%d7%93%d7%99/"
-    },
-    {
-      "showId": 9,
-      "showSlug": "החולה-ההודי",
-      "date": "2026-08-01",
-      "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%95%d7%9c%d7%94_%d7%94%d7%94%d7%95%d7%93%d7%99/"
-    },
-    {
-      "showId": 16,
-      "showSlug": "היי-אוון-הנסן",
-      "date": "2026-06-24",
-      "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%99%d7%99_%d7%90%d7%95%d7%95%d7%9f_%d7%94%d7%a0%d7%a1%d7%9f/"
-    },
-    {
-      "showId": 16,
-      "showSlug": "היי-אוון-הנסן",
-      "date": "2026-06-25",
-      "hour": "19:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%99%d7%99_%d7%90%d7%95%d7%95%d7%9f_%d7%94%d7%a0%d7%a1%d7%9f/"
-    },
-    {
-      "showId": 27,
-      "showSlug": "הלוויה-חורפית",
-      "date": "2026-05-23",
-      "hour": "17:00",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%94_%d7%97%d7%95%d7%a8%d7%a4%d7%99%d7%aa/"
-    },
-    {
-      "showId": 27,
-      "showSlug": "הלוויה-חורפית",
-      "date": "2026-05-23",
-      "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%94_%d7%97%d7%95%d7%a8%d7%a4%d7%99%d7%aa/"
-    },
-    {
-      "showId": 27,
-      "showSlug": "הלוויה-חורפית",
-      "date": "2026-05-24",
-      "hour": "19:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%94_%d7%97%d7%95%d7%a8%d7%a4%d7%99%d7%aa/"
-    },
-    {
-      "showId": 27,
-      "showSlug": "הלוויה-חורפית",
-      "date": "2026-06-12",
-      "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%94_%d7%97%d7%95%d7%a8%d7%a4%d7%99%d7%aa/"
-    },
-    {
-      "showId": 27,
-      "showSlug": "הלוויה-חורפית",
-      "date": "2026-06-13",
-      "hour": "17:00",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%94_%d7%97%d7%95%d7%a8%d7%a4%d7%99%d7%aa/"
-    },
-    {
-      "showId": 27,
-      "showSlug": "הלוויה-חורפית",
-      "date": "2026-06-13",
-      "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%94_%d7%97%d7%95%d7%a8%d7%a4%d7%99%d7%aa/"
-    },
-    {
-      "showId": 27,
-      "showSlug": "הלוויה-חורפית",
-      "date": "2026-07-10",
-      "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%94_%d7%97%d7%95%d7%a8%d7%a4%d7%99%d7%aa/"
-    },
-    {
-      "showId": 27,
-      "showSlug": "הלוויה-חורפית",
-      "date": "2026-07-11",
-      "hour": "17:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%94_%d7%97%d7%95%d7%a8%d7%a4%d7%99%d7%aa/"
-    },
-    {
-      "showId": 27,
-      "showSlug": "הלוויה-חורפית",
-      "date": "2026-07-12",
-      "hour": "19:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%94_%d7%97%d7%95%d7%a8%d7%a4%d7%99%d7%aa/"
-    },
-    {
-      "showId": 28,
-      "showSlug": "הלווייתן",
-      "date": "2026-05-19",
-      "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%99%d7%aa%d7%9f/"
-    },
-    {
-      "showId": 28,
-      "showSlug": "הלווייתן",
-      "date": "2026-05-20",
-      "hour": "19:30",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%99%d7%aa%d7%9f/"
-    },
-    {
-      "showId": 28,
-      "showSlug": "הלווייתן",
-      "date": "2026-06-22",
-      "hour": "19:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%99%d7%aa%d7%9f/"
-    },
-    {
-      "showId": 28,
-      "showSlug": "הלווייתן",
-      "date": "2026-06-23",
-      "hour": "19:30",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%99%d7%aa%d7%9f/"
-    },
-    {
-      "showId": 28,
-      "showSlug": "הלווייתן",
-      "date": "2026-07-10",
-      "hour": "12:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%99%d7%aa%d7%9f/"
-    },
-    {
-      "showId": 28,
-      "showSlug": "הלווייתן",
-      "date": "2026-07-10",
-      "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%99%d7%aa%d7%9f/"
-    },
-    {
-      "showId": 28,
-      "showSlug": "הלווייתן",
-      "date": "2026-07-11",
-      "hour": "17:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%99%d7%aa%d7%9f/"
-    },
-    {
-      "showId": 11,
-      "showSlug": "הנפש-הטובה-מסצ׳ואן",
-      "date": "2026-05-23",
-      "hour": "17:30",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a0%d7%a4%d7%a9_%d7%94%d7%98%d7%95%d7%91%d7%94_%d7%9e%d7%a1%d7%a6%d7%95%d7%90%d7%9f/"
-    },
-    {
-      "showId": 11,
-      "showSlug": "הנפש-הטובה-מסצ׳ואן",
-      "date": "2026-05-23",
-      "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a0%d7%a4%d7%a9_%d7%94%d7%98%d7%95%d7%91%d7%94_%d7%9e%d7%a1%d7%a6%d7%95%d7%90%d7%9f/"
-    },
-    {
-      "showId": 11,
-      "showSlug": "הנפש-הטובה-מסצ׳ואן",
-      "date": "2026-06-24",
-      "hour": "19:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a0%d7%a4%d7%a9_%d7%94%d7%98%d7%95%d7%91%d7%94_%d7%9e%d7%a1%d7%a6%d7%95%d7%90%d7%9f/"
-    },
-    {
-      "showId": 11,
-      "showSlug": "הנפש-הטובה-מסצ׳ואן",
-      "date": "2026-06-25",
-      "hour": "19:30",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a0%d7%a4%d7%a9_%d7%94%d7%98%d7%95%d7%91%d7%94_%d7%9e%d7%a1%d7%a6%d7%95%d7%90%d7%9f/"
-    },
-    {
-      "showId": 11,
-      "showSlug": "הנפש-הטובה-מסצ׳ואן",
-      "date": "2026-07-29",
-      "hour": "19:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a0%d7%a4%d7%a9_%d7%94%d7%98%d7%95%d7%91%d7%94_%d7%9e%d7%a1%d7%a6%d7%95%d7%90%d7%9f/"
-    },
-    {
-      "showId": 11,
-      "showSlug": "הנפש-הטובה-מסצ׳ואן",
-      "date": "2026-07-30",
-      "hour": "19:30",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a0%d7%a4%d7%a9_%d7%94%d7%98%d7%95%d7%91%d7%94_%d7%9e%d7%a1%d7%a6%d7%95%d7%90%d7%9f/"
-    },
-    {
-      "showId": 21,
-      "showSlug": "הריטריט",
+      "showId": 10,
+      "showSlug": "צ׳ילבות",
       "date": "2026-05-27",
-      "hour": "21:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
-    },
-    {
-      "showId": 21,
-      "showSlug": "הריטריט",
-      "date": "2026-05-28",
-      "hour": "19:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
-    },
-    {
-      "showId": 21,
-      "showSlug": "הריטריט",
-      "date": "2026-05-29",
-      "hour": "12:00",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
-    },
-    {
-      "showId": 21,
-      "showSlug": "הריטריט",
-      "date": "2026-05-29",
-      "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
-    },
-    {
-      "showId": 21,
-      "showSlug": "הריטריט",
-      "date": "2026-05-30",
-      "hour": "17:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
-    },
-    {
-      "showId": 21,
-      "showSlug": "הריטריט",
-      "date": "2026-05-30",
-      "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
-    },
-    {
-      "showId": 21,
-      "showSlug": "הריטריט",
-      "date": "2026-05-31",
       "hour": "19:00",
       "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a6%d7%99%d7%9c%d7%91%d7%95%d7%aa/"
     },
     {
-      "showId": 21,
-      "showSlug": "הריטריט",
-      "date": "2026-06-14",
-      "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
-    },
-    {
-      "showId": 21,
-      "showSlug": "הריטריט",
-      "date": "2026-06-15",
-      "hour": "19:30",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
-    },
-    {
-      "showId": 21,
-      "showSlug": "הריטריט",
-      "date": "2026-06-16",
-      "hour": "20:30",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
-    },
-    {
-      "showId": 21,
-      "showSlug": "הריטריט",
-      "date": "2026-06-17",
-      "hour": "20:30",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
-    },
-    {
-      "showId": 21,
-      "showSlug": "הריטריט",
-      "date": "2026-06-18",
-      "hour": "19:30",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
-    },
-    {
-      "showId": 21,
-      "showSlug": "הריטריט",
-      "date": "2026-07-15",
-      "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
-    },
-    {
-      "showId": 21,
-      "showSlug": "הריטריט",
-      "date": "2026-07-16",
-      "hour": "18:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
-    },
-    {
-      "showId": 21,
-      "showSlug": "הריטריט",
-      "date": "2026-07-16",
-      "hour": "21:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
-    },
-    {
-      "showId": 21,
-      "showSlug": "הריטריט",
-      "date": "2026-07-17",
-      "hour": "12:00",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
-    },
-    {
-      "showId": 21,
-      "showSlug": "הריטריט",
-      "date": "2026-07-17",
-      "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
-    },
-    {
-      "showId": 21,
-      "showSlug": "הריטריט",
-      "date": "2026-07-18",
-      "hour": "17:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
-    },
-    {
-      "showId": 21,
-      "showSlug": "הריטריט",
-      "date": "2026-07-18",
-      "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
-    },
-    {
-      "showId": 31,
-      "showSlug": "השותפה",
-      "date": "2026-06-01",
-      "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
-    },
-    {
-      "showId": 31,
-      "showSlug": "השותפה",
+      "showId": 10,
+      "showSlug": "צ׳ילבות",
       "date": "2026-06-02",
-      "hour": "19:30",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
+      "hour": "20:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a6%d7%99%d7%9c%d7%91%d7%95%d7%aa/"
     },
     {
-      "showId": 31,
-      "showSlug": "השותפה",
+      "showId": 10,
+      "showSlug": "צ׳ילבות",
       "date": "2026-06-03",
       "hour": "11:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a6%d7%99%d7%9c%d7%91%d7%95%d7%aa/"
     },
     {
-      "showId": 31,
-      "showSlug": "השותפה",
-      "date": "2026-06-03",
-      "hour": "19:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
-    },
-    {
-      "showId": 31,
-      "showSlug": "השותפה",
-      "date": "2026-06-04",
+      "showId": 10,
+      "showSlug": "צ׳ילבות",
+      "date": "2026-07-05",
       "hour": "20:00",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a6%d7%99%d7%9c%d7%91%d7%95%d7%aa/"
     },
     {
-      "showId": 31,
-      "showSlug": "השותפה",
+      "showId": 10,
+      "showSlug": "צ׳ילבות",
       "date": "2026-07-06",
-      "hour": "19:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
+      "hour": "19:00",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a6%d7%99%d7%9c%d7%91%d7%95%d7%aa/"
     },
     {
-      "showId": 31,
-      "showSlug": "השותפה",
+      "showId": 10,
+      "showSlug": "צ׳ילבות",
       "date": "2026-07-07",
-      "hour": "17:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
+      "hour": "19:00",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a6%d7%99%d7%9c%d7%91%d7%95%d7%aa/"
     },
     {
-      "showId": 31,
-      "showSlug": "השותפה",
+      "showId": 4,
+      "showSlug": "מי-בעד",
+      "date": "2026-06-09",
+      "hour": "20:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%99_%d7%91%d7%a2%d7%93/"
+    },
+    {
+      "showId": 4,
+      "showSlug": "מי-בעד",
+      "date": "2026-06-10",
+      "hour": "19:30",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%99_%d7%91%d7%a2%d7%93/"
+    },
+    {
+      "showId": 4,
+      "showSlug": "מי-בעד",
+      "date": "2026-06-22",
+      "hour": "19:30",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%99_%d7%91%d7%a2%d7%93/"
+    },
+    {
+      "showId": 4,
+      "showSlug": "מי-בעד",
+      "date": "2026-06-23",
+      "hour": "19:00",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%99_%d7%91%d7%a2%d7%93/"
+    },
+    {
+      "showId": 4,
+      "showSlug": "מי-בעד",
       "date": "2026-07-08",
-      "hour": "20:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
-    },
-    {
-      "showId": 31,
-      "showSlug": "השותפה",
-      "date": "2026-07-09",
-      "hour": "18:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
-    },
-    {
-      "showId": 31,
-      "showSlug": "השותפה",
-      "date": "2026-07-09",
-      "hour": "21:00",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
-    },
-    {
-      "showId": 19,
-      "showSlug": "זינגר",
-      "date": "2026-05-28",
-      "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
-    },
-    {
-      "showId": 19,
-      "showSlug": "זינגר",
-      "date": "2026-05-29",
-      "hour": "11:30",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
-    },
-    {
-      "showId": 19,
-      "showSlug": "זינגר",
-      "date": "2026-05-29",
-      "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
-    },
-    {
-      "showId": 19,
-      "showSlug": "זינגר",
-      "date": "2026-05-30",
-      "hour": "16:00",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
-    },
-    {
-      "showId": 19,
-      "showSlug": "זינגר",
-      "date": "2026-06-04",
-      "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
-    },
-    {
-      "showId": 19,
-      "showSlug": "זינגר",
-      "date": "2026-06-05",
-      "hour": "11:30",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
-    },
-    {
-      "showId": 19,
-      "showSlug": "זינגר",
-      "date": "2026-06-05",
-      "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
-    },
-    {
-      "showId": 19,
-      "showSlug": "זינגר",
-      "date": "2026-06-06",
-      "hour": "17:00",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
-    },
-    {
-      "showId": 19,
-      "showSlug": "זינגר",
-      "date": "2026-06-07",
-      "hour": "19:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
-    },
-    {
-      "showId": 19,
-      "showSlug": "זינגר",
-      "date": "2026-06-08",
-      "hour": "19:00",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
-    },
-    {
-      "showId": 19,
-      "showSlug": "זינגר",
-      "date": "2026-07-28",
-      "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
-    },
-    {
-      "showId": 19,
-      "showSlug": "זינגר",
-      "date": "2026-07-29",
-      "hour": "19:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
-    },
-    {
-      "showId": 19,
-      "showSlug": "זינגר",
-      "date": "2026-07-30",
-      "hour": "19:00",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
-    },
-    {
-      "showId": 19,
-      "showSlug": "זינגר",
-      "date": "2026-07-31",
-      "hour": "11:30",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
-    },
-    {
-      "showId": 19,
-      "showSlug": "זינגר",
-      "date": "2026-07-31",
-      "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
-    },
-    {
-      "showId": 19,
-      "showSlug": "זינגר",
-      "date": "2026-08-01",
-      "hour": "17:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
-    },
-    {
-      "showId": 15,
-      "showSlug": "חשמלית-ושמה-תשוקה",
-      "date": "2026-06-28",
-      "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%97%d7%a9%d7%9e%d7%9c%d7%99%d7%aa_%d7%95%d7%a9%d7%9e%d7%94_%d7%aa%d7%a9%d7%95%d7%a7%d7%94/"
-    },
-    {
-      "showId": 15,
-      "showSlug": "חשמלית-ושמה-תשוקה",
-      "date": "2026-06-29",
       "hour": "19:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%99_%d7%91%d7%a2%d7%93/"
+    },
+    {
+      "showId": 29,
+      "showSlug": "מה-קרה-לעולם",
+      "date": "2026-05-24",
+      "hour": "20:30",
       "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%97%d7%a9%d7%9e%d7%9c%d7%99%d7%aa_%d7%95%d7%a9%d7%9e%d7%94_%d7%aa%d7%a9%d7%95%d7%a7%d7%94/"
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%94_%d7%a7%d7%a8%d7%94_%d7%9c%d7%a2%d7%95%d7%9c%d7%9d/"
     },
     {
-      "showId": 15,
-      "showSlug": "חשמלית-ושמה-תשוקה",
-      "date": "2026-06-30",
-      "hour": "19:00",
+      "showId": 29,
+      "showSlug": "מה-קרה-לעולם",
+      "date": "2026-06-26",
+      "hour": "11:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%94_%d7%a7%d7%a8%d7%94_%d7%9c%d7%a2%d7%95%d7%9c%d7%9d/"
+    },
+    {
+      "showId": 29,
+      "showSlug": "מה-קרה-לעולם",
+      "date": "2026-06-26",
+      "hour": "20:30",
       "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%97%d7%a9%d7%9e%d7%9c%d7%99%d7%aa_%d7%95%d7%a9%d7%9e%d7%94_%d7%aa%d7%a9%d7%95%d7%a7%d7%94/"
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%94_%d7%a7%d7%a8%d7%94_%d7%9c%d7%a2%d7%95%d7%9c%d7%9d/"
     },
     {
-      "showId": 15,
-      "showSlug": "חשמלית-ושמה-תשוקה",
-      "date": "2026-07-01",
-      "hour": "19:00",
+      "showId": 29,
+      "showSlug": "מה-קרה-לעולם",
+      "date": "2026-06-27",
+      "hour": "17:00",
       "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%97%d7%a9%d7%9e%d7%9c%d7%99%d7%aa_%d7%95%d7%a9%d7%9e%d7%94_%d7%aa%d7%a9%d7%95%d7%a7%d7%94/"
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%94_%d7%a7%d7%a8%d7%94_%d7%9c%d7%a2%d7%95%d7%9c%d7%9d/"
     },
     {
-      "showId": 33,
-      "showSlug": "טרטיף",
-      "date": "2026-05-31",
-      "hour": "20:00",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%98%d7%a8%d7%98%d7%99%d7%a3/"
-    },
-    {
-      "showId": 33,
-      "showSlug": "טרטיף",
-      "date": "2026-06-01",
+      "showId": 29,
+      "showSlug": "מה-קרה-לעולם",
+      "date": "2026-06-27",
       "hour": "19:30",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%98%d7%a8%d7%98%d7%99%d7%a3/"
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%94_%d7%a7%d7%a8%d7%94_%d7%9c%d7%a2%d7%95%d7%9c%d7%9d/"
     },
     {
-      "showId": 22,
-      "showSlug": "כל-הדברים-הטובים",
-      "date": "2026-05-23",
-      "hour": "18:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9b%d7%9c_%d7%94%d7%93%d7%91%d7%a8%d7%99%d7%9d_%d7%94%d7%98%d7%95%d7%91%d7%99%d7%9d/"
+      "showId": 29,
+      "showSlug": "מה-קרה-לעולם",
+      "date": "2026-07-12",
+      "hour": "19:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%94_%d7%a7%d7%a8%d7%94_%d7%9c%d7%a2%d7%95%d7%9c%d7%9d/"
     },
     {
-      "showId": 25,
-      "showSlug": "לא-הייתם-צריכים",
-      "date": "2027-05-10",
-      "hour": "19:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%90_%d7%94%d7%99%d7%99%d7%aa%d7%9d_%d7%a6%d7%a8%d7%99%d7%9b%d7%99%d7%9d/"
-    },
-    {
-      "showId": 25,
-      "showSlug": "לא-הייתם-צריכים",
-      "date": "2026-05-11",
-      "hour": "19:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%90_%d7%94%d7%99%d7%99%d7%aa%d7%9d_%d7%a6%d7%a8%d7%99%d7%9b%d7%99%d7%9d/"
+      "showId": 29,
+      "showSlug": "מה-קרה-לעולם",
+      "date": "2026-07-13",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%94_%d7%a7%d7%a8%d7%94_%d7%9c%d7%a2%d7%95%d7%9c%d7%9d/"
     },
     {
       "showId": 25,
       "showSlug": "לא-הייתם-צריכים",
-      "date": "2026-05-12",
+      "date": "2027-05-12",
       "hour": "19:00",
       "note": "כתוביות בעברית",
       "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%90_%d7%94%d7%99%d7%99%d7%aa%d7%9d_%d7%a6%d7%a8%d7%99%d7%9b%d7%99%d7%9d/"
@@ -1009,304 +283,26 @@
       "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%90_%d7%94%d7%99%d7%99%d7%aa%d7%9d_%d7%a6%d7%a8%d7%99%d7%9b%d7%99%d7%9d/"
     },
     {
-      "showId": 23,
-      "showSlug": "לילה-טוב-אמא",
-      "date": "2026-05-11",
-      "hour": "19:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%99%d7%9c%d7%94_%d7%98%d7%95%d7%91_%d7%90%d7%9e%d7%90/"
+      "showId": 22,
+      "showSlug": "כל-הדברים-הטובים",
+      "date": "2026-05-23",
+      "hour": "18:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9b%d7%9c_%d7%94%d7%93%d7%91%d7%a8%d7%99%d7%9d_%d7%94%d7%98%d7%95%d7%91%d7%99%d7%9d/"
     },
     {
-      "showId": 23,
-      "showSlug": "לילה-טוב-אמא",
-      "date": "2026-05-13",
-      "hour": "20:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%99%d7%9c%d7%94_%d7%98%d7%95%d7%91_%d7%90%d7%9e%d7%90/"
-    },
-    {
-      "showId": 23,
-      "showSlug": "לילה-טוב-אמא",
-      "date": "2026-07-01",
-      "hour": "19:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%99%d7%9c%d7%94_%d7%98%d7%95%d7%91_%d7%90%d7%9e%d7%90/"
-    },
-    {
-      "showId": 23,
-      "showSlug": "לילה-טוב-אמא",
-      "date": "2026-07-02",
-      "hour": "19:30",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%99%d7%9c%d7%94_%d7%98%d7%95%d7%91_%d7%90%d7%9e%d7%90/"
-    },
-    {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-05-15",
-      "hour": "12:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
-    },
-    {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-05-15",
-      "hour": "20:30",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
-    },
-    {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-05-16",
-      "hour": "17:30",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
-    },
-    {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-05-16",
-      "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
-    },
-    {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-05-17",
-      "hour": "19:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
-    },
-    {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-05-18",
-      "hour": "20:00",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
-    },
-    {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-06-19",
-      "hour": "12:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
-    },
-    {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-06-19",
-      "hour": "20:30",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
-    },
-    {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-06-20",
-      "hour": "17:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
-    },
-    {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-07-02",
-      "hour": "19:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
-    },
-    {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-07-03",
-      "hour": "12:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
-    },
-    {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-07-03",
-      "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
-    },
-    {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-07-04",
-      "hour": "17:00",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
-    },
-    {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-07-04",
-      "hour": "19:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
-    },
-    {
-      "showId": 30,
-      "showSlug": "מדיאה",
-      "date": "2026-06-26",
-      "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%93%d7%99%d7%90%d7%94/"
-    },
-    {
-      "showId": 30,
-      "showSlug": "מדיאה",
-      "date": "2026-06-27",
-      "hour": "17:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%93%d7%99%d7%90%d7%94/"
-    },
-    {
-      "showId": 30,
-      "showSlug": "מדיאה",
-      "date": "2026-06-27",
-      "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%93%d7%99%d7%90%d7%94/"
-    },
-    {
-      "showId": 29,
-      "showSlug": "מה-קרה-לעולם",
-      "date": "2026-05-24",
-      "hour": "20:30",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%94_%d7%a7%d7%a8%d7%94_%d7%9c%d7%a2%d7%95%d7%9c%d7%9d/"
-    },
-    {
-      "showId": 29,
-      "showSlug": "מה-קרה-לעולם",
-      "date": "2026-06-26",
-      "hour": "11:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%94_%d7%a7%d7%a8%d7%94_%d7%9c%d7%a2%d7%95%d7%9c%d7%9d/"
-    },
-    {
-      "showId": 29,
-      "showSlug": "מה-קרה-לעולם",
-      "date": "2026-06-26",
-      "hour": "20:30",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%94_%d7%a7%d7%a8%d7%94_%d7%9c%d7%a2%d7%95%d7%9c%d7%9d/"
-    },
-    {
-      "showId": 29,
-      "showSlug": "מה-קרה-לעולם",
-      "date": "2026-06-27",
-      "hour": "17:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%94_%d7%a7%d7%a8%d7%94_%d7%9c%d7%a2%d7%95%d7%9c%d7%9d/"
-    },
-    {
-      "showId": 29,
-      "showSlug": "מה-קרה-לעולם",
-      "date": "2026-06-27",
-      "hour": "19:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%94_%d7%a7%d7%a8%d7%94_%d7%9c%d7%a2%d7%95%d7%9c%d7%9d/"
-    },
-    {
-      "showId": 29,
-      "showSlug": "מה-קרה-לעולם",
-      "date": "2026-07-12",
-      "hour": "19:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%94_%d7%a7%d7%a8%d7%94_%d7%9c%d7%a2%d7%95%d7%9c%d7%9d/"
-    },
-    {
-      "showId": 4,
-      "showSlug": "מי-בעד",
-      "date": "2026-06-09",
-      "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%99_%d7%91%d7%a2%d7%93/"
-    },
-    {
-      "showId": 4,
-      "showSlug": "מי-בעד",
+      "showId": 6,
+      "showSlug": "הבן-של-מושיקו-הגדול",
       "date": "2026-06-10",
-      "hour": "19:30",
+      "hour": "18:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%91%d7%9f_%d7%a9%d7%9c_%d7%9e%d7%95%d7%a9%d7%99%d7%a7%d7%95_%d7%94%d7%92%d7%93%d7%95%d7%9c/"
+    },
+    {
+      "showId": 6,
+      "showSlug": "הבן-של-מושיקו-הגדול",
+      "date": "2026-06-10",
+      "hour": "21:00",
       "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%99_%d7%91%d7%a2%d7%93/"
-    },
-    {
-      "showId": 4,
-      "showSlug": "מי-בעד",
-      "date": "2026-06-22",
-      "hour": "19:30",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%99_%d7%91%d7%a2%d7%93/"
-    },
-    {
-      "showId": 4,
-      "showSlug": "מי-בעד",
-      "date": "2026-06-23",
-      "hour": "19:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%99_%d7%91%d7%a2%d7%93/"
-    },
-    {
-      "showId": 4,
-      "showSlug": "מי-בעד",
-      "date": "2026-07-08",
-      "hour": "19:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%99_%d7%91%d7%a2%d7%93/"
-    },
-    {
-      "showId": 20,
-      "showSlug": "מיקי-מציל",
-      "date": "2026-06-09",
-      "hour": "19:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%99%d7%a7%d7%99_%d7%9e%d7%a6%d7%99%d7%9c/"
-    },
-    {
-      "showId": 20,
-      "showSlug": "מיקי-מציל",
-      "date": "2026-06-09",
-      "hour": "21:15",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%99%d7%a7%d7%99_%d7%9e%d7%a6%d7%99%d7%9c/"
-    },
-    {
-      "showId": 1,
-      "showSlug": "מישהו-שר-את-זה-קודם",
-      "date": "2026-07-05",
-      "hour": "19:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%99%d7%a9%d7%94%d7%95_%d7%a9%d7%a8_%d7%90%d7%aa_%d7%96%d7%94_%d7%a7%d7%95%d7%93%d7%9d/"
-    },
-    {
-      "showId": 24,
-      "showSlug": "נעמי-ונורמה",
-      "date": "2026-05-25",
-      "hour": "19:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a0%d7%a2%d7%9e%d7%99_%d7%95%d7%a0%d7%95%d7%a8%d7%9e%d7%94/"
-    },
-    {
-      "showId": 24,
-      "showSlug": "נעמי-ונורמה",
-      "date": "2026-05-26",
-      "hour": "20:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a0%d7%a2%d7%9e%d7%99_%d7%95%d7%a0%d7%95%d7%a8%d7%9e%d7%94/"
-    },
-    {
-      "showId": 24,
-      "showSlug": "נעמי-ונורמה",
-      "date": "2026-06-07",
-      "hour": "19:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a0%d7%a2%d7%9e%d7%99_%d7%95%d7%a0%d7%95%d7%a8%d7%9e%d7%94/"
-    },
-    {
-      "showId": 24,
-      "showSlug": "נעמי-ונורמה",
-      "date": "2026-06-08",
-      "hour": "19:30",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a0%d7%a2%d7%9e%d7%99_%d7%95%d7%a0%d7%95%d7%a8%d7%9e%d7%94/"
-    },
-    {
-      "showId": 24,
-      "showSlug": "נעמי-ונורמה",
-      "date": "2026-07-28",
-      "hour": "19:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a0%d7%a2%d7%9e%d7%99_%d7%95%d7%a0%d7%95%d7%a8%d7%9e%d7%94/"
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%91%d7%9f_%d7%a9%d7%9c_%d7%9e%d7%95%d7%a9%d7%99%d7%a7%d7%95_%d7%94%d7%92%d7%93%d7%95%d7%9c/"
     },
     {
       "showId": 7,
@@ -1339,70 +335,109 @@
       "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a1%d7%95%d7%a1_%d7%90%d7%97%d7%93_%d7%a0%d7%9b%d7%a0%d7%a1_%d7%9c%d7%91%d7%a8/"
     },
     {
-      "showId": 10,
-      "showSlug": "צ׳ילבות",
-      "date": "2026-05-25",
+      "showId": 32,
+      "showSlug": "איש-הגשם",
+      "date": "2026-06-21",
+      "hour": "19:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%90%d7%99%d7%a9_%d7%94%d7%92%d7%a9%d7%9d/"
+    },
+    {
+      "showId": 32,
+      "showSlug": "איש-הגשם",
+      "date": "2026-07-14",
+      "hour": "20:00",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%90%d7%99%d7%a9_%d7%94%d7%92%d7%a9%d7%9d/"
+    },
+    {
+      "showId": 16,
+      "showSlug": "היי-אוון-הנסן",
+      "date": "2026-06-24",
+      "hour": "20:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%99%d7%99_%d7%90%d7%95%d7%95%d7%9f_%d7%94%d7%a0%d7%a1%d7%9f/"
+    },
+    {
+      "showId": 16,
+      "showSlug": "היי-אוון-הנסן",
+      "date": "2026-06-25",
+      "hour": "19:00",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%99%d7%99_%d7%90%d7%95%d7%95%d7%9f_%d7%94%d7%a0%d7%a1%d7%9f/"
+    },
+    {
+      "showId": 26,
+      "showSlug": "האבא",
+      "date": "2026-05-29",
+      "hour": "12:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%91%d7%90/"
+    },
+    {
+      "showId": 26,
+      "showSlug": "האבא",
+      "date": "2026-05-29",
+      "hour": "20:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%91%d7%90/"
+    },
+    {
+      "showId": 26,
+      "showSlug": "האבא",
+      "date": "2026-05-30",
+      "hour": "17:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%91%d7%90/"
+    },
+    {
+      "showId": 26,
+      "showSlug": "האבא",
+      "date": "2026-05-30",
       "hour": "20:30",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a6%d7%99%d7%9c%d7%91%d7%95%d7%aa/"
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%91%d7%90/"
     },
     {
-      "showId": 10,
-      "showSlug": "צ׳ילבות",
-      "date": "2026-05-26",
-      "hour": "19:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a6%d7%99%d7%9c%d7%91%d7%95%d7%aa/"
+      "showId": 26,
+      "showSlug": "האבא",
+      "date": "2026-05-31",
+      "hour": "19:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%91%d7%90/"
     },
     {
-      "showId": 10,
-      "showSlug": "צ׳ילבות",
-      "date": "2026-05-27",
-      "hour": "19:00",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a6%d7%99%d7%9c%d7%91%d7%95%d7%aa/"
+      "showId": 26,
+      "showSlug": "האבא",
+      "date": "2026-06-09",
+      "hour": "18:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%91%d7%90/"
     },
     {
-      "showId": 10,
-      "showSlug": "צ׳ילבות",
-      "date": "2026-06-02",
+      "showId": 26,
+      "showSlug": "האבא",
+      "date": "2026-06-09",
+      "hour": "21:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%91%d7%90/"
+    },
+    {
+      "showId": 26,
+      "showSlug": "האבא",
+      "date": "2026-07-03",
       "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a6%d7%99%d7%9c%d7%91%d7%95%d7%aa/"
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%91%d7%90/"
     },
     {
-      "showId": 10,
-      "showSlug": "צ׳ילבות",
-      "date": "2026-06-03",
-      "hour": "11:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a6%d7%99%d7%9c%d7%91%d7%95%d7%aa/"
+      "showId": 26,
+      "showSlug": "האבא",
+      "date": "2026-07-04",
+      "hour": "17:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%91%d7%90/"
     },
     {
-      "showId": 10,
-      "showSlug": "צ׳ילבות",
-      "date": "2026-07-05",
+      "showId": 26,
+      "showSlug": "האבא",
+      "date": "2026-07-04",
       "hour": "20:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a6%d7%99%d7%9c%d7%91%d7%95%d7%aa/"
-    },
-    {
-      "showId": 10,
-      "showSlug": "צ׳ילבות",
-      "date": "2026-07-06",
-      "hour": "19:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a6%d7%99%d7%9c%d7%91%d7%95%d7%aa/"
-    },
-    {
-      "showId": 10,
-      "showSlug": "צ׳ילבות",
-      "date": "2026-07-07",
-      "hour": "19:00",
-      "note": "כתוביות בעברית",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a6%d7%99%d7%9c%d7%91%d7%95%d7%aa/"
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%91%d7%90/"
     },
     {
       "showId": 2,
       "showSlug": "קברט",
-      "date": "2026-05-12",
+      "date": "2027-05-12",
       "hour": "20:00",
       "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a7%d7%91%d7%a8%d7%98/"
     },
@@ -1563,9 +598,23 @@
     {
       "showId": 2,
       "showSlug": "קברט",
+      "date": "2026-07-14",
+      "hour": "19:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a7%d7%91%d7%a8%d7%98/"
+    },
+    {
+      "showId": 2,
+      "showSlug": "קברט",
       "date": "2026-07-15",
       "hour": "19:00",
       "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a7%d7%91%d7%a8%d7%98/"
+    },
+    {
+      "showId": 2,
+      "showSlug": "קברט",
+      "date": "2026-07-16",
+      "hour": "19:00",
       "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a7%d7%91%d7%a8%d7%98/"
     },
     {
@@ -1621,6 +670,285 @@
       "hour": "19:00",
       "note": "כתוביות בעברית",
       "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a7%d7%91%d7%a8%d7%98/"
+    },
+    {
+      "showId": 23,
+      "showSlug": "לילה-טוב-אמא",
+      "date": "2026-05-13",
+      "hour": "20:00",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%99%d7%9c%d7%94_%d7%98%d7%95%d7%91_%d7%90%d7%9e%d7%90/"
+    },
+    {
+      "showId": 23,
+      "showSlug": "לילה-טוב-אמא",
+      "date": "2026-07-01",
+      "hour": "19:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%99%d7%9c%d7%94_%d7%98%d7%95%d7%91_%d7%90%d7%9e%d7%90/"
+    },
+    {
+      "showId": 23,
+      "showSlug": "לילה-טוב-אמא",
+      "date": "2026-07-02",
+      "hour": "19:30",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%99%d7%9c%d7%94_%d7%98%d7%95%d7%91_%d7%90%d7%9e%d7%90/"
+    },
+    {
+      "showId": 20,
+      "showSlug": "מיקי-מציל",
+      "date": "2026-06-09",
+      "hour": "19:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%99%d7%a7%d7%99_%d7%9e%d7%a6%d7%99%d7%9c/"
+    },
+    {
+      "showId": 20,
+      "showSlug": "מיקי-מציל",
+      "date": "2026-06-09",
+      "hour": "21:15",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%99%d7%a7%d7%99_%d7%9e%d7%a6%d7%99%d7%9c/"
+    },
+    {
+      "showId": 11,
+      "showSlug": "הנפש-הטובה-מסצ׳ואן",
+      "date": "2026-05-23",
+      "hour": "17:30",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a0%d7%a4%d7%a9_%d7%94%d7%98%d7%95%d7%91%d7%94_%d7%9e%d7%a1%d7%a6%d7%95%d7%90%d7%9f/"
+    },
+    {
+      "showId": 11,
+      "showSlug": "הנפש-הטובה-מסצ׳ואן",
+      "date": "2026-05-23",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a0%d7%a4%d7%a9_%d7%94%d7%98%d7%95%d7%91%d7%94_%d7%9e%d7%a1%d7%a6%d7%95%d7%90%d7%9f/"
+    },
+    {
+      "showId": 11,
+      "showSlug": "הנפש-הטובה-מסצ׳ואן",
+      "date": "2026-06-24",
+      "hour": "19:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a0%d7%a4%d7%a9_%d7%94%d7%98%d7%95%d7%91%d7%94_%d7%9e%d7%a1%d7%a6%d7%95%d7%90%d7%9f/"
+    },
+    {
+      "showId": 11,
+      "showSlug": "הנפש-הטובה-מסצ׳ואן",
+      "date": "2026-06-25",
+      "hour": "19:30",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a0%d7%a4%d7%a9_%d7%94%d7%98%d7%95%d7%91%d7%94_%d7%9e%d7%a1%d7%a6%d7%95%d7%90%d7%9f/"
+    },
+    {
+      "showId": 11,
+      "showSlug": "הנפש-הטובה-מסצ׳ואן",
+      "date": "2026-07-29",
+      "hour": "19:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a0%d7%a4%d7%a9_%d7%94%d7%98%d7%95%d7%91%d7%94_%d7%9e%d7%a1%d7%a6%d7%95%d7%90%d7%9f/"
+    },
+    {
+      "showId": 11,
+      "showSlug": "הנפש-הטובה-מסצ׳ואן",
+      "date": "2026-07-30",
+      "hour": "19:30",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a0%d7%a4%d7%a9_%d7%94%d7%98%d7%95%d7%91%d7%94_%d7%9e%d7%a1%d7%a6%d7%95%d7%90%d7%9f/"
+    },
+    {
+      "showId": 24,
+      "showSlug": "נעמי-ונורמה",
+      "date": "2026-05-25",
+      "hour": "19:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a0%d7%a2%d7%9e%d7%99_%d7%95%d7%a0%d7%95%d7%a8%d7%9e%d7%94/"
+    },
+    {
+      "showId": 24,
+      "showSlug": "נעמי-ונורמה",
+      "date": "2026-05-26",
+      "hour": "20:00",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a0%d7%a2%d7%9e%d7%99_%d7%95%d7%a0%d7%95%d7%a8%d7%9e%d7%94/"
+    },
+    {
+      "showId": 24,
+      "showSlug": "נעמי-ונורמה",
+      "date": "2026-06-07",
+      "hour": "19:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a0%d7%a2%d7%9e%d7%99_%d7%95%d7%a0%d7%95%d7%a8%d7%9e%d7%94/"
+    },
+    {
+      "showId": 24,
+      "showSlug": "נעמי-ונורמה",
+      "date": "2026-06-08",
+      "hour": "19:30",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a0%d7%a2%d7%9e%d7%99_%d7%95%d7%a0%d7%95%d7%a8%d7%9e%d7%94/"
+    },
+    {
+      "showId": 24,
+      "showSlug": "נעמי-ונורמה",
+      "date": "2026-07-28",
+      "hour": "19:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a0%d7%a2%d7%9e%d7%99_%d7%95%d7%a0%d7%95%d7%a8%d7%9e%d7%94/"
+    },
+    {
+      "showId": 19,
+      "showSlug": "זינגר",
+      "date": "2026-05-28",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
+    },
+    {
+      "showId": 19,
+      "showSlug": "זינגר",
+      "date": "2026-05-29",
+      "hour": "11:30",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
+    },
+    {
+      "showId": 19,
+      "showSlug": "זינגר",
+      "date": "2026-05-29",
+      "hour": "20:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
+    },
+    {
+      "showId": 19,
+      "showSlug": "זינגר",
+      "date": "2026-05-30",
+      "hour": "16:00",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
+    },
+    {
+      "showId": 19,
+      "showSlug": "זינגר",
+      "date": "2026-06-04",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
+    },
+    {
+      "showId": 19,
+      "showSlug": "זינגר",
+      "date": "2026-06-05",
+      "hour": "11:30",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
+    },
+    {
+      "showId": 19,
+      "showSlug": "זינגר",
+      "date": "2026-06-05",
+      "hour": "20:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
+    },
+    {
+      "showId": 19,
+      "showSlug": "זינגר",
+      "date": "2026-06-06",
+      "hour": "17:00",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
+    },
+    {
+      "showId": 19,
+      "showSlug": "זינגר",
+      "date": "2026-06-07",
+      "hour": "19:00",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
+    },
+    {
+      "showId": 19,
+      "showSlug": "זינגר",
+      "date": "2026-06-08",
+      "hour": "19:00",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
+    },
+    {
+      "showId": 19,
+      "showSlug": "זינגר",
+      "date": "2026-07-28",
+      "hour": "20:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
+    },
+    {
+      "showId": 19,
+      "showSlug": "זינגר",
+      "date": "2026-07-29",
+      "hour": "19:00",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
+    },
+    {
+      "showId": 19,
+      "showSlug": "זינגר",
+      "date": "2026-07-30",
+      "hour": "19:00",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
+    },
+    {
+      "showId": 19,
+      "showSlug": "זינגר",
+      "date": "2026-07-31",
+      "hour": "11:30",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
+    },
+    {
+      "showId": 19,
+      "showSlug": "זינגר",
+      "date": "2026-07-31",
+      "hour": "20:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
+    },
+    {
+      "showId": 19,
+      "showSlug": "זינגר",
+      "date": "2026-08-01",
+      "hour": "17:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%96%d7%99%d7%a0%d7%92%d7%a8/"
+    },
+    {
+      "showId": 33,
+      "showSlug": "טרטיף",
+      "date": "2026-05-31",
+      "hour": "20:00",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%98%d7%a8%d7%98%d7%99%d7%a3/"
+    },
+    {
+      "showId": 33,
+      "showSlug": "טרטיף",
+      "date": "2026-06-01",
+      "hour": "19:30",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%98%d7%a8%d7%98%d7%99%d7%a3/"
+    },
+    {
+      "showId": 30,
+      "showSlug": "מדיאה",
+      "date": "2026-06-26",
+      "hour": "20:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%93%d7%99%d7%90%d7%94/"
+    },
+    {
+      "showId": 30,
+      "showSlug": "מדיאה",
+      "date": "2026-06-27",
+      "hour": "17:00",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%93%d7%99%d7%90%d7%94/"
+    },
+    {
+      "showId": 30,
+      "showSlug": "מדיאה",
+      "date": "2026-06-27",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%93%d7%99%d7%90%d7%94/"
     },
     {
       "showId": 132,
@@ -1688,6 +1016,676 @@
       "hour": "20:30",
       "note": "English subtitles",
       "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a8%d7%99%d7%a0%d7%92%d7%95/"
+    },
+    {
+      "showId": 1,
+      "showSlug": "מישהו-שר-את-זה-קודם",
+      "date": "2026-07-05",
+      "hour": "19:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9e%d7%99%d7%a9%d7%94%d7%95_%d7%a9%d7%a8_%d7%90%d7%aa_%d7%96%d7%94_%d7%a7%d7%95%d7%93%d7%9d/"
+    },
+    {
+      "showId": 3,
+      "showSlug": "לנקות-את-הראש",
+      "date": "2026-05-15",
+      "hour": "12:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
+    },
+    {
+      "showId": 3,
+      "showSlug": "לנקות-את-הראש",
+      "date": "2026-05-15",
+      "hour": "20:30",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
+    },
+    {
+      "showId": 3,
+      "showSlug": "לנקות-את-הראש",
+      "date": "2026-05-16",
+      "hour": "17:30",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
+    },
+    {
+      "showId": 3,
+      "showSlug": "לנקות-את-הראש",
+      "date": "2026-05-16",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
+    },
+    {
+      "showId": 3,
+      "showSlug": "לנקות-את-הראש",
+      "date": "2026-05-17",
+      "hour": "19:00",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
+    },
+    {
+      "showId": 3,
+      "showSlug": "לנקות-את-הראש",
+      "date": "2026-05-18",
+      "hour": "20:00",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
+    },
+    {
+      "showId": 3,
+      "showSlug": "לנקות-את-הראש",
+      "date": "2026-06-19",
+      "hour": "12:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
+    },
+    {
+      "showId": 3,
+      "showSlug": "לנקות-את-הראש",
+      "date": "2026-06-19",
+      "hour": "20:30",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
+    },
+    {
+      "showId": 3,
+      "showSlug": "לנקות-את-הראש",
+      "date": "2026-06-20",
+      "hour": "17:00",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
+    },
+    {
+      "showId": 3,
+      "showSlug": "לנקות-את-הראש",
+      "date": "2026-07-02",
+      "hour": "19:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
+    },
+    {
+      "showId": 3,
+      "showSlug": "לנקות-את-הראש",
+      "date": "2026-07-03",
+      "hour": "12:00",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
+    },
+    {
+      "showId": 3,
+      "showSlug": "לנקות-את-הראש",
+      "date": "2026-07-03",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
+    },
+    {
+      "showId": 3,
+      "showSlug": "לנקות-את-הראש",
+      "date": "2026-07-04",
+      "hour": "17:00",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
+    },
+    {
+      "showId": 3,
+      "showSlug": "לנקות-את-הראש",
+      "date": "2026-07-04",
+      "hour": "19:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
+    },
+    {
+      "showId": 9,
+      "showSlug": "החולה-ההודי",
+      "date": "2026-06-05",
+      "hour": "12:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%95%d7%9c%d7%94_%d7%94%d7%94%d7%95%d7%93%d7%99/"
+    },
+    {
+      "showId": 9,
+      "showSlug": "החולה-ההודי",
+      "date": "2026-06-05",
+      "hour": "20:30",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%95%d7%9c%d7%94_%d7%94%d7%94%d7%95%d7%93%d7%99/"
+    },
+    {
+      "showId": 9,
+      "showSlug": "החולה-ההודי",
+      "date": "2026-06-06",
+      "hour": "17:30",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%95%d7%9c%d7%94_%d7%94%d7%94%d7%95%d7%93%d7%99/"
+    },
+    {
+      "showId": 9,
+      "showSlug": "החולה-ההודי",
+      "date": "2026-06-06",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%95%d7%9c%d7%94_%d7%94%d7%94%d7%95%d7%93%d7%99/"
+    },
+    {
+      "showId": 9,
+      "showSlug": "החולה-ההודי",
+      "date": "2026-07-31",
+      "hour": "12:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%95%d7%9c%d7%94_%d7%94%d7%94%d7%95%d7%93%d7%99/"
+    },
+    {
+      "showId": 9,
+      "showSlug": "החולה-ההודי",
+      "date": "2026-07-31",
+      "hour": "20:30",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%95%d7%9c%d7%94_%d7%94%d7%94%d7%95%d7%93%d7%99/"
+    },
+    {
+      "showId": 9,
+      "showSlug": "החולה-ההודי",
+      "date": "2026-08-01",
+      "hour": "17:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%95%d7%9c%d7%94_%d7%94%d7%94%d7%95%d7%93%d7%99/"
+    },
+    {
+      "showId": 9,
+      "showSlug": "החולה-ההודי",
+      "date": "2026-08-01",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%95%d7%9c%d7%94_%d7%94%d7%94%d7%95%d7%93%d7%99/"
+    },
+    {
+      "showId": 318,
+      "showSlug": "האשליה",
+      "date": "2026-06-17",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
+    },
+    {
+      "showId": 318,
+      "showSlug": "האשליה",
+      "date": "2026-06-18",
+      "hour": "20:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
+    },
+    {
+      "showId": 318,
+      "showSlug": "האשליה",
+      "date": "2026-06-19",
+      "hour": "12:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
+    },
+    {
+      "showId": 318,
+      "showSlug": "האשליה",
+      "date": "2026-06-19",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
+    },
+    {
+      "showId": 318,
+      "showSlug": "האשליה",
+      "date": "2026-06-20",
+      "hour": "17:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
+    },
+    {
+      "showId": 318,
+      "showSlug": "האשליה",
+      "date": "2026-06-20",
+      "hour": "20:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
+    },
+    {
+      "showId": 318,
+      "showSlug": "האשליה",
+      "date": "2026-07-23",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
+    },
+    {
+      "showId": 318,
+      "showSlug": "האשליה",
+      "date": "2026-07-24",
+      "hour": "12:00",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
+    },
+    {
+      "showId": 318,
+      "showSlug": "האשליה",
+      "date": "2026-07-24",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
+    },
+    {
+      "showId": 318,
+      "showSlug": "האשליה",
+      "date": "2026-07-25",
+      "hour": "17:00",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
+    },
+    {
+      "showId": 318,
+      "showSlug": "האשליה",
+      "date": "2026-07-25",
+      "hour": "20:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
+    },
+    {
+      "showId": 318,
+      "showSlug": "האשליה",
+      "date": "2026-07-26",
+      "hour": "20:30",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%90%d7%a9%d7%9c%d7%99%d7%94/"
+    },
+    {
+      "showId": 31,
+      "showSlug": "השותפה",
+      "date": "2026-06-01",
+      "hour": "20:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
+    },
+    {
+      "showId": 31,
+      "showSlug": "השותפה",
+      "date": "2026-06-02",
+      "hour": "19:30",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
+    },
+    {
+      "showId": 31,
+      "showSlug": "השותפה",
+      "date": "2026-06-03",
+      "hour": "11:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
+    },
+    {
+      "showId": 31,
+      "showSlug": "השותפה",
+      "date": "2026-06-03",
+      "hour": "19:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
+    },
+    {
+      "showId": 31,
+      "showSlug": "השותפה",
+      "date": "2026-06-04",
+      "hour": "20:00",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
+    },
+    {
+      "showId": 31,
+      "showSlug": "השותפה",
+      "date": "2026-07-06",
+      "hour": "19:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
+    },
+    {
+      "showId": 31,
+      "showSlug": "השותפה",
+      "date": "2026-07-07",
+      "hour": "17:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
+    },
+    {
+      "showId": 31,
+      "showSlug": "השותפה",
+      "date": "2026-07-08",
+      "hour": "20:00",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
+    },
+    {
+      "showId": 31,
+      "showSlug": "השותפה",
+      "date": "2026-07-09",
+      "hour": "18:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
+    },
+    {
+      "showId": 31,
+      "showSlug": "השותפה",
+      "date": "2026-07-09",
+      "hour": "21:00",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94/"
+    },
+    {
+      "showId": 15,
+      "showSlug": "חשמלית-ושמה-תשוקה",
+      "date": "2026-06-28",
+      "hour": "20:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%97%d7%a9%d7%9e%d7%9c%d7%99%d7%aa_%d7%95%d7%a9%d7%9e%d7%94_%d7%aa%d7%a9%d7%95%d7%a7%d7%94/"
+    },
+    {
+      "showId": 15,
+      "showSlug": "חשמלית-ושמה-תשוקה",
+      "date": "2026-06-29",
+      "hour": "19:30",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%97%d7%a9%d7%9e%d7%9c%d7%99%d7%aa_%d7%95%d7%a9%d7%9e%d7%94_%d7%aa%d7%a9%d7%95%d7%a7%d7%94/"
+    },
+    {
+      "showId": 15,
+      "showSlug": "חשמלית-ושמה-תשוקה",
+      "date": "2026-06-30",
+      "hour": "19:00",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%97%d7%a9%d7%9e%d7%9c%d7%99%d7%aa_%d7%95%d7%a9%d7%9e%d7%94_%d7%aa%d7%a9%d7%95%d7%a7%d7%94/"
+    },
+    {
+      "showId": 15,
+      "showSlug": "חשמלית-ושמה-תשוקה",
+      "date": "2026-07-01",
+      "hour": "19:00",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%97%d7%a9%d7%9e%d7%9c%d7%99%d7%aa_%d7%95%d7%a9%d7%9e%d7%94_%d7%aa%d7%a9%d7%95%d7%a7%d7%94/"
+    },
+    {
+      "showId": 27,
+      "showSlug": "הלוויה-חורפית",
+      "date": "2026-05-23",
+      "hour": "17:00",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%94_%d7%97%d7%95%d7%a8%d7%a4%d7%99%d7%aa/"
+    },
+    {
+      "showId": 27,
+      "showSlug": "הלוויה-חורפית",
+      "date": "2026-05-23",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%94_%d7%97%d7%95%d7%a8%d7%a4%d7%99%d7%aa/"
+    },
+    {
+      "showId": 27,
+      "showSlug": "הלוויה-חורפית",
+      "date": "2026-05-24",
+      "hour": "19:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%94_%d7%97%d7%95%d7%a8%d7%a4%d7%99%d7%aa/"
+    },
+    {
+      "showId": 27,
+      "showSlug": "הלוויה-חורפית",
+      "date": "2026-06-12",
+      "hour": "20:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%94_%d7%97%d7%95%d7%a8%d7%a4%d7%99%d7%aa/"
+    },
+    {
+      "showId": 27,
+      "showSlug": "הלוויה-חורפית",
+      "date": "2026-06-13",
+      "hour": "17:00",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%94_%d7%97%d7%95%d7%a8%d7%a4%d7%99%d7%aa/"
+    },
+    {
+      "showId": 27,
+      "showSlug": "הלוויה-חורפית",
+      "date": "2026-06-13",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%94_%d7%97%d7%95%d7%a8%d7%a4%d7%99%d7%aa/"
+    },
+    {
+      "showId": 27,
+      "showSlug": "הלוויה-חורפית",
+      "date": "2026-07-10",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%94_%d7%97%d7%95%d7%a8%d7%a4%d7%99%d7%aa/"
+    },
+    {
+      "showId": 27,
+      "showSlug": "הלוויה-חורפית",
+      "date": "2026-07-11",
+      "hour": "17:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%94_%d7%97%d7%95%d7%a8%d7%a4%d7%99%d7%aa/"
+    },
+    {
+      "showId": 27,
+      "showSlug": "הלוויה-חורפית",
+      "date": "2026-07-11",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%94_%d7%97%d7%95%d7%a8%d7%a4%d7%99%d7%aa/"
+    },
+    {
+      "showId": 27,
+      "showSlug": "הלוויה-חורפית",
+      "date": "2026-07-12",
+      "hour": "19:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%94_%d7%97%d7%95%d7%a8%d7%a4%d7%99%d7%aa/"
+    },
+    {
+      "showId": 21,
+      "showSlug": "הריטריט",
+      "date": "2026-05-27",
+      "hour": "21:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
+    },
+    {
+      "showId": 21,
+      "showSlug": "הריטריט",
+      "date": "2026-05-28",
+      "hour": "19:00",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
+    },
+    {
+      "showId": 21,
+      "showSlug": "הריטריט",
+      "date": "2026-05-29",
+      "hour": "12:00",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
+    },
+    {
+      "showId": 21,
+      "showSlug": "הריטריט",
+      "date": "2026-05-29",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
+    },
+    {
+      "showId": 21,
+      "showSlug": "הריטריט",
+      "date": "2026-05-30",
+      "hour": "17:00",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
+    },
+    {
+      "showId": 21,
+      "showSlug": "הריטריט",
+      "date": "2026-05-30",
+      "hour": "20:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
+    },
+    {
+      "showId": 21,
+      "showSlug": "הריטריט",
+      "date": "2026-05-31",
+      "hour": "19:00",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
+    },
+    {
+      "showId": 21,
+      "showSlug": "הריטריט",
+      "date": "2026-06-14",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
+    },
+    {
+      "showId": 21,
+      "showSlug": "הריטריט",
+      "date": "2026-06-15",
+      "hour": "19:30",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
+    },
+    {
+      "showId": 21,
+      "showSlug": "הריטריט",
+      "date": "2026-06-16",
+      "hour": "20:30",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
+    },
+    {
+      "showId": 21,
+      "showSlug": "הריטריט",
+      "date": "2026-06-17",
+      "hour": "20:30",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
+    },
+    {
+      "showId": 21,
+      "showSlug": "הריטריט",
+      "date": "2026-06-18",
+      "hour": "19:30",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
+    },
+    {
+      "showId": 21,
+      "showSlug": "הריטריט",
+      "date": "2026-07-15",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
+    },
+    {
+      "showId": 21,
+      "showSlug": "הריטריט",
+      "date": "2026-07-16",
+      "hour": "18:00",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
+    },
+    {
+      "showId": 21,
+      "showSlug": "הריטריט",
+      "date": "2026-07-16",
+      "hour": "21:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
+    },
+    {
+      "showId": 21,
+      "showSlug": "הריטריט",
+      "date": "2026-07-17",
+      "hour": "12:00",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
+    },
+    {
+      "showId": 21,
+      "showSlug": "הריטריט",
+      "date": "2026-07-17",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
+    },
+    {
+      "showId": 21,
+      "showSlug": "הריטריט",
+      "date": "2026-07-18",
+      "hour": "17:00",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
+    },
+    {
+      "showId": 21,
+      "showSlug": "הריטריט",
+      "date": "2026-07-18",
+      "hour": "20:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a8%d7%99%d7%98%d7%a8%d7%99%d7%98/"
+    },
+    {
+      "showId": 28,
+      "showSlug": "הלווייתן",
+      "date": "2026-05-19",
+      "hour": "20:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%99%d7%aa%d7%9f/"
+    },
+    {
+      "showId": 28,
+      "showSlug": "הלווייתן",
+      "date": "2026-05-20",
+      "hour": "19:30",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%99%d7%aa%d7%9f/"
+    },
+    {
+      "showId": 28,
+      "showSlug": "הלווייתן",
+      "date": "2026-06-22",
+      "hour": "19:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%99%d7%aa%d7%9f/"
+    },
+    {
+      "showId": 28,
+      "showSlug": "הלווייתן",
+      "date": "2026-06-23",
+      "hour": "19:30",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%99%d7%aa%d7%9f/"
+    },
+    {
+      "showId": 28,
+      "showSlug": "הלווייתן",
+      "date": "2026-07-10",
+      "hour": "12:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%99%d7%aa%d7%9f/"
+    },
+    {
+      "showId": 28,
+      "showSlug": "הלווייתן",
+      "date": "2026-07-10",
+      "hour": "20:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%99%d7%aa%d7%9f/"
+    },
+    {
+      "showId": 28,
+      "showSlug": "הלווייתן",
+      "date": "2026-07-11",
+      "hour": "17:00",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%99%d7%aa%d7%9f/"
+    },
+    {
+      "showId": 8,
+      "showSlug": "החבדניקים",
+      "date": "2026-06-28",
+      "hour": "19:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%91%d7%93%d7%a0%d7%99%d7%a7%d7%99%d7%9d/"
+    },
+    {
+      "showId": 8,
+      "showSlug": "החבדניקים",
+      "date": "2026-06-29",
+      "hour": "19:00",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%91%d7%93%d7%a0%d7%99%d7%a7%d7%99%d7%9d/"
+    },
+    {
+      "showId": 8,
+      "showSlug": "החבדניקים",
+      "date": "2026-06-30",
+      "hour": "19:30",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%91%d7%93%d7%a0%d7%99%d7%a7%d7%99%d7%9d/"
+    },
+    {
+      "showId": 8,
+      "showSlug": "החבדניקים",
+      "date": "2026-07-23",
+      "hour": "19:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%91%d7%93%d7%a0%d7%99%d7%a7%d7%99%d7%9d/"
+    },
+    {
+      "showId": 8,
+      "showSlug": "החבדניקים",
+      "date": "2026-07-24",
+      "hour": "20:30",
+      "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%97%d7%91%d7%93%d7%a0%d7%99%d7%a7%d7%99%d7%9d/"
     },
     {
       "showId": 471,
