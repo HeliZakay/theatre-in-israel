@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:23:25.928Z",
+  "scrapedAt": "2026-05-12T04:28:21.407Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התיאטרון קריית מוצקין",
@@ -7,274 +7,291 @@
   },
   "events": [
     {
-      "showId": 69,
-      "showSlug": "הכל-אודות-איב",
-      "date": "2026-05-07",
-      "hour": "20:30"
-    },
-    {
-      "showId": 69,
-      "showSlug": "הכל-אודות-איב",
-      "date": "2026-05-09",
-      "hour": "21:30"
-    },
-    {
-      "showId": 69,
-      "showSlug": "הכל-אודות-איב",
-      "date": "2026-05-10",
-      "hour": "20:30"
-    },
-    {
-      "showId": 69,
-      "showSlug": "הכל-אודות-איב",
-      "date": "2026-05-11",
-      "hour": "20:30"
-    },
-    {
       "showId": 172,
       "showSlug": "פינק-ליידי",
       "date": "2026-05-18",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2601/%D7%A4%D7%99%D7%A0%D7%A7-%D7%9C%D7%99%D7%99%D7%93%D7%99"
     },
     {
       "showId": 172,
       "showSlug": "פינק-ליידי",
       "date": "2026-05-19",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2601/%D7%A4%D7%99%D7%A0%D7%A7-%D7%9C%D7%99%D7%99%D7%93%D7%99"
     },
     {
       "showId": 172,
       "showSlug": "פינק-ליידי",
       "date": "2026-05-20",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2601/%D7%A4%D7%99%D7%A0%D7%A7-%D7%9C%D7%99%D7%99%D7%93%D7%99"
     },
     {
       "showId": 3,
       "showSlug": "לנקות-את-הראש",
       "date": "2026-05-28",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2602/%D7%9C%D7%A0%D7%A7%D7%95%D7%AA-%D7%90%D7%AA-%D7%94%D7%A8%D7%90%D7%A9"
     },
     {
       "showId": 3,
       "showSlug": "לנקות-את-הראש",
       "date": "2026-05-30",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2602/%D7%9C%D7%A0%D7%A7%D7%95%D7%AA-%D7%90%D7%AA-%D7%94%D7%A8%D7%90%D7%A9"
     },
     {
       "showId": 3,
       "showSlug": "לנקות-את-הראש",
       "date": "2026-07-26",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2602/%D7%9C%D7%A0%D7%A7%D7%95%D7%AA-%D7%90%D7%AA-%D7%94%D7%A8%D7%90%D7%A9"
     },
     {
       "showId": 3,
       "showSlug": "לנקות-את-הראש",
       "date": "2026-07-27",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2602/%D7%9C%D7%A0%D7%A7%D7%95%D7%AA-%D7%90%D7%AA-%D7%94%D7%A8%D7%90%D7%A9"
     },
     {
       "showId": 25,
       "showSlug": "לא-הייתם-צריכים",
       "date": "2026-05-31",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2603/%D7%9C%D7%90-%D7%94%D7%99%D7%99%D7%AA%D7%9D-%D7%A6%D7%A8%D7%99%D7%9B%D7%99%D7%9D"
     },
     {
       "showId": 25,
       "showSlug": "לא-הייתם-צריכים",
       "date": "2026-06-01",
-      "hour": "11:30"
+      "hour": "11:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2603/%D7%9C%D7%90-%D7%94%D7%99%D7%99%D7%AA%D7%9D-%D7%A6%D7%A8%D7%99%D7%9B%D7%99%D7%9D"
     },
     {
       "showId": 267,
       "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
       "date": "2026-06-06",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2448/%D7%A0%D7%99%D7%A9%D7%95%D7%90%D7%99%D7%9D-%D7%92%D7%A8%D7%A2%D7%99%D7%A0%D7%99%D7%99%D7%9D"
     },
     {
       "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-06-10",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2644/%D7%90%D7%94%D7%91%D7%94-%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99%D7%AA"
     },
     {
       "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-06-11",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2644/%D7%90%D7%94%D7%91%D7%94-%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99%D7%AA"
     },
     {
       "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-06-13",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2644/%D7%90%D7%94%D7%91%D7%94-%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99%D7%AA"
     },
     {
       "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-06-19",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2625/%D7%93%D7%A8%D7%95%D7%A9%D7%94-%D7%A2%D7%95%D7%96%D7%A8%D7%AA"
     },
     {
       "showId": 256,
       "showSlug": "מותרת-לכל-אדם",
       "date": "2026-06-21",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2306/%D7%9E%D7%95%D7%AA%D7%A8%D7%AA-%D7%9C%D7%9B%D7%9C-%D7%90%D7%93%D7%9D"
     },
     {
       "showId": 256,
       "showSlug": "מותרת-לכל-אדם",
       "date": "2026-06-22",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2306/%D7%9E%D7%95%D7%AA%D7%A8%D7%AA-%D7%9C%D7%9B%D7%9C-%D7%90%D7%93%D7%9D"
     },
     {
       "showId": 38,
       "showSlug": "משכנתא",
       "date": "2026-06-25",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2604/%D7%9E%D7%A9%D7%9B%D7%A0%D7%AA%D7%90"
     },
     {
       "showId": 38,
       "showSlug": "משכנתא",
       "date": "2026-06-27",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2604/%D7%9E%D7%A9%D7%9B%D7%A0%D7%AA%D7%90"
     },
     {
       "showId": 38,
       "showSlug": "משכנתא",
       "date": "2026-06-28",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2604/%D7%9E%D7%A9%D7%9B%D7%A0%D7%AA%D7%90"
     },
     {
       "showId": 68,
       "showSlug": "אור-לגויים",
       "date": "2026-07-06",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2590/%D7%90%D7%95%D7%A8-%D7%9C%D7%92%D7%95%D7%99%D7%99%D7%9D"
     },
     {
       "showId": 68,
       "showSlug": "אור-לגויים",
       "date": "2026-07-07",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2590/%D7%90%D7%95%D7%A8-%D7%9C%D7%92%D7%95%D7%99%D7%99%D7%9D"
     },
     {
       "showId": 70,
       "showSlug": "קיר-זכוכית",
       "date": "2026-07-09",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2645/%D7%A7%D7%99%D7%A8-%D7%96%D7%9B%D7%95%D7%9B%D7%99%D7%AA"
     },
     {
       "showId": 70,
       "showSlug": "קיר-זכוכית",
       "date": "2026-07-11",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2645/%D7%A7%D7%99%D7%A8-%D7%96%D7%9B%D7%95%D7%9B%D7%99%D7%AA"
     },
     {
       "showId": 42,
       "showSlug": "הערת-שוליים",
       "date": "2026-07-19",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2596/%D7%94%D7%A2%D7%A8%D7%AA-%D7%A9%D7%95%D7%9C%D7%99%D7%99%D7%9D"
     },
     {
       "showId": 42,
       "showSlug": "הערת-שוליים",
       "date": "2026-07-20",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2596/%D7%94%D7%A2%D7%A8%D7%AA-%D7%A9%D7%95%D7%9C%D7%99%D7%99%D7%9D"
     },
     {
       "showId": 42,
       "showSlug": "הערת-שוליים",
       "date": "2026-07-21",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2596/%D7%94%D7%A2%D7%A8%D7%AA-%D7%A9%D7%95%D7%9C%D7%99%D7%99%D7%9D"
     },
     {
       "showId": 78,
       "showSlug": "לשחרר-את-נחמה",
       "date": "2026-08-02",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2438/%D7%9C%D7%A9%D7%97%D7%A8%D7%A8-%D7%90%D7%AA-%D7%A0%D7%97%D7%9E%D7%94"
     },
     {
       "showId": 78,
       "showSlug": "לשחרר-את-נחמה",
       "date": "2026-08-03",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2438/%D7%9C%D7%A9%D7%97%D7%A8%D7%A8-%D7%90%D7%AA-%D7%A0%D7%97%D7%9E%D7%94"
     },
     {
       "showId": 78,
       "showSlug": "לשחרר-את-נחמה",
       "date": "2026-08-09",
-      "hour": "11:30"
+      "hour": "11:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2438/%D7%9C%D7%A9%D7%97%D7%A8%D7%A8-%D7%90%D7%AA-%D7%A0%D7%97%D7%9E%D7%94"
     },
     {
       "showId": 81,
       "showSlug": "הזוג-המוזר",
       "date": "2026-08-05",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2588/%D7%94%D7%96%D7%95%D7%92-%D7%94%D7%9E%D7%95%D7%96%D7%A8"
     },
     {
       "showId": 81,
       "showSlug": "הזוג-המוזר",
       "date": "2026-08-06",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2588/%D7%94%D7%96%D7%95%D7%92-%D7%94%D7%9E%D7%95%D7%96%D7%A8"
     },
     {
       "showId": 81,
       "showSlug": "הזוג-המוזר",
       "date": "2026-08-08",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2588/%D7%94%D7%96%D7%95%D7%92-%D7%94%D7%9E%D7%95%D7%96%D7%A8"
     },
     {
       "showId": 266,
       "showSlug": "מיקה-שלי",
       "date": "2026-08-13",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2690/%D7%9E%D7%99%D7%A7%D7%94-%D7%A9%D7%9C%D7%99"
     },
     {
       "showId": 266,
       "showSlug": "מיקה-שלי",
       "date": "2026-08-14",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2690/%D7%9E%D7%99%D7%A7%D7%94-%D7%A9%D7%9C%D7%99"
     },
     {
       "showId": 271,
       "showSlug": "שקרים-קטנים",
       "date": "2026-08-20",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2589/%D7%A9%D7%A7%D7%A8%D7%99%D7%9D-%D7%A7%D7%98%D7%A0%D7%99%D7%9D"
     },
     {
       "showId": 271,
       "showSlug": "שקרים-קטנים",
       "date": "2026-08-22",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2589/%D7%A9%D7%A7%D7%A8%D7%99%D7%9D-%D7%A7%D7%98%D7%A0%D7%99%D7%9D"
     },
     {
       "showId": 28,
       "showSlug": "הלווייתן",
       "date": "2026-10-08",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2451/%D7%94%D7%9C%D7%95%D7%95%D7%99%D7%AA%D7%9F"
     },
     {
       "showId": 28,
       "showSlug": "הלווייתן",
       "date": "2026-10-10",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2451/%D7%94%D7%9C%D7%95%D7%95%D7%99%D7%AA%D7%9F"
     },
     {
       "showId": 146,
       "showSlug": "אמא",
       "date": "2026-10-15",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2394/%D7%90%D7%9E%D7%90"
     },
     {
       "showId": 146,
       "showSlug": "אמא",
       "date": "2026-10-17",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2394/%D7%90%D7%9E%D7%90"
     },
     {
       "showId": 146,
       "showSlug": "אמא",
       "date": "2026-10-18",
-      "hour": "11:30"
+      "hour": "11:30",
+      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2394/%D7%90%D7%9E%D7%90"
     }
   ]
 }

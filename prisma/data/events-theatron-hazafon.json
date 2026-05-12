@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:21:12.429Z",
+  "scrapedAt": "2026-05-12T04:26:33.937Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון הצפון",
@@ -10,301 +10,344 @@
       "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-05-13",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4370"
     },
     {
       "showId": 117,
       "showSlug": "הלב-שלי-בחר",
       "date": "2026-05-14",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4290"
     },
     {
       "showId": 117,
       "showSlug": "הלב-שלי-בחר",
       "date": "2026-07-29",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4290"
     },
     {
       "showId": 116,
       "showSlug": "אהבה-בהפתעה",
       "date": "2026-05-15",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
     },
     {
       "showId": 116,
       "showSlug": "אהבה-בהפתעה",
       "date": "2026-05-31",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
     },
     {
       "showId": 116,
       "showSlug": "אהבה-בהפתעה",
       "date": "2026-06-01",
-      "hour": "11:00"
+      "hour": "11:00",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
     },
     {
       "showId": 116,
       "showSlug": "אהבה-בהפתעה",
       "date": "2026-08-13",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
     },
     {
       "showId": 116,
       "showSlug": "אהבה-בהפתעה",
       "date": "2026-08-15",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
     },
     {
       "showId": 116,
       "showSlug": "אהבה-בהפתעה",
       "date": "2026-08-20",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
     },
     {
       "showId": 116,
       "showSlug": "אהבה-בהפתעה",
       "date": "2026-09-01",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
     },
     {
       "showId": 116,
       "showSlug": "אהבה-בהפתעה",
       "date": "2026-09-02",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
     },
     {
       "showId": 114,
       "showSlug": "עפרה",
       "date": "2026-05-16",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4294"
     },
     {
       "showId": 114,
       "showSlug": "עפרה",
       "date": "2026-07-05",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4294"
     },
     {
       "showId": 114,
       "showSlug": "עפרה",
       "date": "2026-07-06",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4294"
     },
     {
       "showId": 114,
       "showSlug": "עפרה",
       "date": "2026-07-07",
-      "hour": "17:00"
+      "hour": "17:00",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4294"
     },
     {
       "showId": 114,
       "showSlug": "עפרה",
       "date": "2026-07-16",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4294"
     },
     {
       "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-05-25",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4383"
     },
     {
       "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-07-03",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4383"
     },
     {
       "showId": 113,
       "showSlug": "בגלל-הרוח",
       "date": "2026-05-27",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4295"
     },
     {
       "showId": 119,
       "showSlug": "זוגיות-AI",
       "date": "2026-06-02",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4373"
     },
     {
       "showId": 119,
       "showSlug": "זוגיות-AI",
       "date": "2026-06-27",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4373"
     },
     {
       "showId": 119,
       "showSlug": "זוגיות-AI",
       "date": "2026-07-24",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4373"
     },
     {
       "showId": 119,
       "showSlug": "זוגיות-AI",
       "date": "2026-08-24",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4373"
     },
     {
       "showId": 119,
       "showSlug": "זוגיות-AI",
       "date": "2026-09-14",
-      "hour": "11:00"
+      "hour": "11:00",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4373"
     },
     {
       "showId": 15,
       "showSlug": "חשמלית-ושמה-תשוקה",
       "date": "2026-06-04",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4343"
     },
     {
       "showId": 15,
       "showSlug": "חשמלית-ושמה-תשוקה",
       "date": "2026-06-05",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4343"
     },
     {
       "showId": 15,
       "showSlug": "חשמלית-ושמה-תשוקה",
       "date": "2026-06-06",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4343"
     },
     {
       "showId": 120,
       "showSlug": "הברונית-רוטשילד",
       "date": "2026-06-17",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4344"
     },
     {
       "showId": 120,
       "showSlug": "הברונית-רוטשילד",
       "date": "2026-07-09",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4344"
     },
     {
       "showId": 120,
       "showSlug": "הברונית-רוטשילד",
       "date": "2026-07-11",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4344"
     },
     {
       "showId": 120,
       "showSlug": "הברונית-רוטשילד",
       "date": "2026-07-12",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4344"
     },
     {
       "showId": 120,
       "showSlug": "הברונית-רוטשילד",
       "date": "2026-07-13",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4344"
     },
     {
       "showId": 120,
       "showSlug": "הברונית-רוטשילד",
       "date": "2026-08-02",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4344"
     },
     {
       "showId": 120,
       "showSlug": "הברונית-רוטשילד",
       "date": "2026-08-03",
-      "hour": "11:00"
+      "hour": "11:00",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4344"
     },
     {
       "showId": 120,
       "showSlug": "הברונית-רוטשילד",
       "date": "2026-08-03",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4344"
     },
     {
       "showId": 120,
       "showSlug": "הברונית-רוטשילד",
       "date": "2026-08-04",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4344"
     },
     {
       "showId": 120,
       "showSlug": "הברונית-רוטשילד",
       "date": "2026-09-17",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4344"
     },
     {
       "showId": 266,
       "showSlug": "מיקה-שלי",
       "date": "2026-06-18",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4376"
     },
     {
       "showId": 266,
       "showSlug": "מיקה-שלי",
       "date": "2026-06-19",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4376"
     },
     {
       "showId": 266,
       "showSlug": "מיקה-שלי",
       "date": "2026-09-06",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4376"
     },
     {
       "showId": 266,
       "showSlug": "מיקה-שלי",
       "date": "2026-09-07",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4376"
     },
     {
       "showId": 112,
       "showSlug": "גבירתי-הנאווה",
       "date": "2026-06-21",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4296"
     },
     {
       "showId": 112,
       "showSlug": "גבירתי-הנאווה",
       "date": "2026-06-22",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4296"
     },
     {
       "showId": 121,
       "showSlug": "מראה-מעל-הגשר",
       "date": "2026-06-28",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4231"
     },
     {
       "showId": 124,
       "showSlug": "כנר-על-הגג-–-המחזמר",
       "date": "2026-08-05",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4012"
     },
     {
       "showId": 271,
       "showSlug": "שקרים-קטנים",
       "date": "2026-08-07",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4339"
     },
     {
       "showId": 122,
       "showSlug": "צלילי-המוסיקה",
       "date": "2026-08-19",
-      "hour": "17:30"
+      "hour": "17:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4074"
     },
     {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-10-08",
-      "hour": "20:30"
+      "showId": 38,
+      "showSlug": "משכנתא",
+      "date": "2026-10-14",
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=5384"
     },
     {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-10-09",
-      "hour": "21:30"
-    },
-    {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-10-10",
-      "hour": "21:00"
+      "showId": 38,
+      "showSlug": "משכנתא",
+      "date": "2026-10-15",
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=5384"
     }
   ]
 }

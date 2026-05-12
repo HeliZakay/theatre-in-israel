@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:19:15.351Z",
+  "scrapedAt": "2026-05-12T04:24:27.454Z",
   "touring": true,
   "events": [
     {
@@ -8,7 +8,8 @@
       "date": "2027-02-03",
       "hour": "17:30",
       "venueName": "היכל התרבות מרכז הבמה גני תקווה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/אחרי_החגים_afd630ed0f"
     },
     {
       "showId": 436,
@@ -16,7 +17,8 @@
       "date": "2026-05-25",
       "hour": "17:00",
       "venueName": "בית ניר (בית התותחן) זכרון יעקב",
-      "venueCity": "זכרון יעקב"
+      "venueCity": "זכרון יעקב",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/בגדי_המלך_החדשים_125"
     },
     {
       "showId": 436,
@@ -24,7 +26,8 @@
       "date": "2026-07-27",
       "hour": "17:00",
       "venueName": "תיאטרון ירושלים",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/בגדי_המלך_החדשים_125"
     },
     {
       "showId": 436,
@@ -32,15 +35,8 @@
       "date": "2026-08-17",
       "hour": "17:30",
       "venueName": "היכל התרבות אשקלון",
-      "venueCity": "אשקלון"
-    },
-    {
-      "showId": 437,
-      "showSlug": "גִּ׳ינְגִּ׳י",
-      "date": "2026-05-11",
-      "hour": "17:30",
-      "venueName": "היכל הפיס לתרבות בית שמש",
-      "venueCity": "בית שמש"
+      "venueCity": "אשקלון",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/בגדי_המלך_החדשים_125"
     },
     {
       "showId": 437,
@@ -48,7 +44,8 @@
       "date": "2026-05-27",
       "hour": "17:00",
       "venueName": "היכל התרבות פרדס חנה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/ג___ינ_ג___י_"
     },
     {
       "showId": 437,
@@ -56,7 +53,8 @@
       "date": "2026-06-10",
       "hour": "17:30",
       "venueName": "מוזה היכל התרבות חוף הכרמל",
-      "venueCity": "חוף הכרמל"
+      "venueCity": "חוף הכרמל",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/ג___ינ_ג___י_"
     },
     {
       "showId": 437,
@@ -64,7 +62,8 @@
       "date": "2026-06-18",
       "hour": "16:30",
       "venueName": "היכל התרבות חריש",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/ג___ינ_ג___י_"
     },
     {
       "showId": 437,
@@ -72,7 +71,8 @@
       "date": "2026-06-28",
       "hour": "17:30",
       "venueName": "מועצה אזורית תמר",
-      "venueCity": "מועצה אזורית תמר"
+      "venueCity": "מועצה אזורית תמר",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/ג___ינ_ג___י_"
     },
     {
       "showId": 437,
@@ -80,7 +80,8 @@
       "date": "2026-11-23",
       "hour": "17:30",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/ג___ינ_ג___י_"
     },
     {
       "showId": 437,
@@ -88,7 +89,8 @@
       "date": "2026-12-02",
       "hour": "17:30",
       "venueName": "היכל התרבות מרכז הבמה גני תקווה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/ג___ינ_ג___י_"
     },
     {
       "showId": 437,
@@ -96,7 +98,8 @@
       "date": "2026-12-22",
       "hour": "17:30",
       "venueName": "היכל פיס לתרבות פסגת זאב",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/ג___ינ_ג___י_"
     },
     {
       "showId": 437,
@@ -104,7 +107,8 @@
       "date": "2027-01-20",
       "hour": "17:30",
       "venueName": "מרכז אומנויות הבמה שוהם",
-      "venueCity": "שוהם"
+      "venueCity": "שוהם",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/ג___ינ_ג___י_"
     },
     {
       "showId": 437,
@@ -112,7 +116,8 @@
       "date": "2027-04-07",
       "hour": "17:30",
       "venueName": "היכל התרבות כפר יונה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/ג___ינ_ג___י_"
     },
     {
       "showId": 438,
@@ -120,7 +125,8 @@
       "date": "2026-08-03",
       "hour": "17:30",
       "venueName": "היכל התרבות אייפורט סיטי חבל מודיעין",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/הדודה_שלי_מרחוב_הנביאים"
     },
     {
       "showId": 438,
@@ -128,7 +134,8 @@
       "date": "2026-09-06",
       "hour": "17:00",
       "venueName": "היכל התרבות לוד",
-      "venueCity": "לוד"
+      "venueCity": "לוד",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/הדודה_שלי_מרחוב_הנביאים"
     },
     {
       "showId": 438,
@@ -136,7 +143,8 @@
       "date": "2026-11-25",
       "hour": "17:30",
       "venueName": "מרכז אומנויות הבמה שוהם",
-      "venueCity": "שוהם"
+      "venueCity": "שוהם",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/הדודה_שלי_מרחוב_הנביאים"
     },
     {
       "showId": 438,
@@ -144,7 +152,8 @@
       "date": "2027-01-11",
       "hour": "17:30",
       "venueName": "בית ניר (בית התותחן) זכרון יעקב",
-      "venueCity": "זכרון יעקב"
+      "venueCity": "זכרון יעקב",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/הדודה_שלי_מרחוב_הנביאים"
     },
     {
       "showId": 438,
@@ -152,7 +161,8 @@
       "date": "2027-07-05",
       "hour": "17:30",
       "venueName": "תיאטרון ירושלים",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/הדודה_שלי_מרחוב_הנביאים"
     },
     {
       "showId": 439,
@@ -160,7 +170,8 @@
       "date": "2026-07-14",
       "hour": "17:00",
       "venueName": "תיאטרון ירושלים",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/הדייג_ודג_הזהב"
     },
     {
       "showId": 440,
@@ -168,7 +179,8 @@
       "date": "2026-06-09",
       "hour": "17:30",
       "venueName": "היכל התרבות באר טוביה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/הכוכבים_של_סבא"
     },
     {
       "showId": 440,
@@ -176,15 +188,8 @@
       "date": "2026-07-26",
       "hour": "17:30",
       "venueName": "המשכן לאומנויות הבמה באר שבע",
-      "venueCity": "באר שבע"
-    },
-    {
-      "showId": 441,
-      "showSlug": "הנסיך",
-      "date": "2026-05-11",
-      "hour": "17:00",
-      "venueName": "בית ניר (בית התותחן) זכרון יעקב",
-      "venueCity": "זכרון יעקב"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/הכוכבים_של_סבא"
     },
     {
       "showId": 441,
@@ -192,7 +197,8 @@
       "date": "2026-05-12",
       "hour": "17:00",
       "venueName": "תיאטרון ירושלים",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/הנסיך_97"
     },
     {
       "showId": 441,
@@ -200,7 +206,8 @@
       "date": "2026-05-27",
       "hour": "17:30",
       "venueName": "היכל התרבות מרכז הבמה גני תקווה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/הנסיך_97"
     },
     {
       "showId": 441,
@@ -208,7 +215,8 @@
       "date": "2026-07-05",
       "hour": "17:30",
       "venueName": "מרכז קהילתי חוף אשקלון",
-      "venueCity": "אשקלון"
+      "venueCity": "אשקלון",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/הנסיך_97"
     },
     {
       "showId": 442,
@@ -216,7 +224,8 @@
       "date": "2026-08-11",
       "hour": "17:30",
       "venueName": "היכל התרבות אייפורט סיטי חבל מודיעין",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/הענק_וגנו_72"
     },
     {
       "showId": 443,
@@ -224,7 +233,8 @@
       "date": "2027-01-06",
       "hour": "17:30",
       "venueName": "היכל התרבות באר טוביה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/הקוסם_מארץ_עוץ_|_המחזמר"
     },
     {
       "showId": 443,
@@ -232,7 +242,8 @@
       "date": "2027-03-23",
       "hour": "17:30",
       "venueName": "רנה שני | חדרה",
-      "venueCity": "חדרה"
+      "venueCity": "חדרה",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/הקוסם_מארץ_עוץ_|_המחזמר"
     },
     {
       "showId": 443,
@@ -240,7 +251,8 @@
       "date": "2027-05-31",
       "hour": "17:30",
       "venueName": "בית ניר (בית התותחן) זכרון יעקב",
-      "venueCity": "זכרון יעקב"
+      "venueCity": "זכרון יעקב",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/הקוסם_מארץ_עוץ_|_המחזמר"
     },
     {
       "showId": 444,
@@ -248,7 +260,8 @@
       "date": "2027-03-10",
       "hour": "17:30",
       "venueName": "היכל התרבות מרכז הבמה גני תקווה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/יותר_מסיפור_אחד_140"
     },
     {
       "showId": 445,
@@ -256,7 +269,8 @@
       "date": "2026-05-18",
       "hour": "17:00",
       "venueName": "היכל התרבות חריש",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/כובע_קסמים_103"
     },
     {
       "showId": 445,
@@ -264,7 +278,8 @@
       "date": "2026-05-27",
       "hour": "17:30",
       "venueName": "היכל התרבות נתניה",
-      "venueCity": "נתניה"
+      "venueCity": "נתניה",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/כובע_קסמים_103"
     },
     {
       "showId": 445,
@@ -272,7 +287,8 @@
       "date": "2026-05-31",
       "hour": "17:30",
       "venueName": "היכל התרבות חבל מודיעין - איירפורט סיטי",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/כובע_קסמים_103"
     },
     {
       "showId": 445,
@@ -280,7 +296,8 @@
       "date": "2026-07-21",
       "hour": "17:30",
       "venueName": "היכל התרבות עכו",
-      "venueCity": "עכו"
+      "venueCity": "עכו",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/כובע_קסמים_103"
     },
     {
       "showId": 445,
@@ -288,7 +305,8 @@
       "date": "2026-11-18",
       "hour": "17:30",
       "venueName": "היכל התרבות מעלה אדומים",
-      "venueCity": "מעלה אדומים"
+      "venueCity": "מעלה אדומים",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/כובע_קסמים_103"
     },
     {
       "showId": 445,
@@ -296,15 +314,8 @@
       "date": "2027-01-07",
       "hour": "17:30",
       "venueName": "היכל התרבות כרמיאל",
-      "venueCity": "כרמיאל"
-    },
-    {
-      "showId": 446,
-      "showSlug": "מעשה-בשלושה-אגוזים",
-      "date": "2026-05-11",
-      "hour": "17:00",
-      "venueName": "היכל התרבות מעלה אדומים",
-      "venueCity": "מעלה אדומים"
+      "venueCity": "כרמיאל",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/כובע_קסמים_103"
     },
     {
       "showId": 446,
@@ -312,7 +323,8 @@
       "date": "2026-05-13",
       "hour": "17:30",
       "venueName": "היכל התרבות באר טוביה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/מעשה_בשלושה_אגוזים_"
     },
     {
       "showId": 446,
@@ -320,7 +332,8 @@
       "date": "2026-07-06",
       "hour": "17:00",
       "venueName": "תיאטרון ירושלים",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/מעשה_בשלושה_אגוזים_"
     },
     {
       "showId": 446,
@@ -328,7 +341,8 @@
       "date": "2026-07-07",
       "hour": "17:30",
       "venueName": "מתנ\"ס שדרות",
-      "venueCity": "שדרות"
+      "venueCity": "שדרות",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/מעשה_בשלושה_אגוזים_"
     },
     {
       "showId": 446,
@@ -336,7 +350,8 @@
       "date": "2026-08-18",
       "hour": "17:30",
       "venueName": "היכל התרבות אריאל",
-      "venueCity": "אריאל"
+      "venueCity": "אריאל",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/מעשה_בשלושה_אגוזים_"
     },
     {
       "showId": 446,
@@ -344,7 +359,8 @@
       "date": "2026-11-16",
       "hour": "20:30",
       "venueName": "בית ניר (בית התותחן) זכרון יעקב",
-      "venueCity": "זכרון יעקב"
+      "venueCity": "זכרון יעקב",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/מעשה_בשלושה_אגוזים_"
     },
     {
       "showId": 446,
@@ -352,7 +368,8 @@
       "date": "2026-11-24",
       "hour": "17:30",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/מעשה_בשלושה_אגוזים_"
     },
     {
       "showId": 447,
@@ -360,7 +377,8 @@
       "date": "2026-05-18",
       "hour": "17:30",
       "venueName": "תיאטרון ירושלים",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/פצפונת_ואנטון"
     },
     {
       "showId": 448,
@@ -368,7 +386,8 @@
       "date": "2027-05-18",
       "hour": "20:30",
       "venueName": "היכל התרבות נס ציונה",
-      "venueCity": "נס ציונה"
+      "venueCity": "נס ציונה",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/פרידות_בע_מ"
     },
     {
       "showId": 448,
@@ -376,7 +395,8 @@
       "date": "2027-05-19",
       "hour": "20:30",
       "venueName": "היכל התרבות נס ציונה",
-      "venueCity": "נס ציונה"
+      "venueCity": "נס ציונה",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/פרידות_בע_מ"
     },
     {
       "showId": 449,
@@ -384,7 +404,8 @@
       "date": "2026-07-13",
       "hour": "17:30",
       "venueName": "היכל תרבות יהוד",
-      "venueCity": "יהוד"
+      "venueCity": "יהוד",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/שכונת_חיים_150"
     },
     {
       "showId": 449,
@@ -392,7 +413,8 @@
       "date": "2026-07-15",
       "hour": "17:30",
       "venueName": "תיאטרון ראסל,מתתיהו מנדל 11 ר״ג",
-      "venueCity": "רמת גן"
+      "venueCity": "רמת גן",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/שכונת_חיים_150"
     },
     {
       "showId": 449,
@@ -400,7 +422,8 @@
       "date": "2026-09-30",
       "hour": "17:00",
       "venueName": "תיאטרון ירושלים",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/שכונת_חיים_150"
     },
     {
       "showId": 449,
@@ -408,7 +431,8 @@
       "date": "2026-10-20",
       "hour": "17:30",
       "venueName": "קריית התרבות נס ציונה",
-      "venueCity": "נס ציונה"
+      "venueCity": "נס ציונה",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/שכונת_חיים_150"
     },
     {
       "showId": 449,
@@ -416,7 +440,8 @@
       "date": "2026-10-28",
       "hour": "17:30",
       "venueName": "היכל התרבות מרכז הבמה גני תקווה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/שכונת_חיים_150"
     },
     {
       "showId": 449,
@@ -424,7 +449,8 @@
       "date": "2026-11-16",
       "hour": "17:30",
       "venueName": "בית ניר (בית התותחן) זכרון יעקב",
-      "venueCity": "זכרון יעקב"
+      "venueCity": "זכרון יעקב",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/שכונת_חיים_150"
     },
     {
       "showId": 449,
@@ -432,7 +458,8 @@
       "date": "2027-02-03",
       "hour": "17:30",
       "venueName": "היכל התרבות מעלה אדומים",
-      "venueCity": "מעלה אדומים"
+      "venueCity": "מעלה אדומים",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/שכונת_חיים_150"
     },
     {
       "showId": 449,
@@ -440,7 +467,8 @@
       "date": "2027-05-19",
       "hour": "17:30",
       "venueName": "מרכז אומנויות הבמה שוהם",
-      "venueCity": "שוהם"
+      "venueCity": "שוהם",
+      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/שכונת_חיים_150"
     }
   ]
 }

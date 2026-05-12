@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:17:40.620Z",
+  "scrapedAt": "2026-05-12T04:22:58.554Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון תמונע",
@@ -10,397 +10,504 @@
       "showId": 362,
       "showSlug": "Can-you-beat-the-KGB",
       "date": "2026-06-14",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6104",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25746"
     },
     {
       "showId": 108,
       "showSlug": "אבא-יצא-מהקבוצה",
       "date": "2026-06-16",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5591",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25784"
     },
     {
       "showId": 214,
       "showSlug": "אבהות",
       "date": "2026-06-13",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6146",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25819"
     },
     {
       "showId": 411,
       "showSlug": "אדום",
       "date": "2026-05-15",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5690",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25785"
     },
     {
       "showId": 412,
       "showSlug": "איך-לא-חשבתי-על-זה-קודם",
       "date": "2026-06-22",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5870",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25787"
     },
     {
       "showId": 413,
       "showSlug": "אם16-תמונת-ניצחון!",
       "date": "2026-05-12",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5599"
     },
     {
       "showId": 413,
       "showSlug": "אם16-תמונת-ניצחון!",
       "date": "2026-05-13",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5599",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25817"
     },
     {
       "showId": 407,
       "showSlug": "אנטיגונה",
       "date": "2026-06-01",
-      "hour": "19:00"
+      "hour": "19:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5640",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25747"
     },
     {
       "showId": 414,
       "showSlug": "אקספוז׳ר",
       "date": "2026-06-23",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5906",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25789"
     },
     {
       "showId": 464,
       "showSlug": "ארבעה-משלים-ומלכה",
       "date": "2026-06-13",
-      "hour": "11:00"
+      "hour": "11:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=76&ArticleID=6231",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25762"
     },
     {
       "showId": 257,
       "showSlug": "אש-בארזים",
       "date": "2026-06-14",
-      "hour": "19:00"
+      "hour": "19:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6137",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25820"
     },
     {
       "showId": 415,
       "showSlug": "את-מדברת.-אני-מדברת",
       "date": "2026-05-14",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5452",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25790"
     },
     {
       "showId": 260,
       "showSlug": "בדיחה",
       "date": "2026-06-30",
-      "hour": "19:00"
+      "hour": "19:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5814",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25700"
     },
     {
       "showId": 372,
       "showSlug": "בילבי",
       "date": "2026-05-30",
-      "hour": "10:00"
+      "hour": "10:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=76&ArticleID=5641"
     },
     {
       "showId": 372,
       "showSlug": "בילבי",
       "date": "2026-05-30",
-      "hour": "11:30"
+      "hour": "11:30",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=76&ArticleID=5641"
     },
     {
       "showId": 372,
       "showSlug": "בילבי",
       "date": "2026-06-27",
-      "hour": "10:00"
+      "hour": "10:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=76&ArticleID=5641"
     },
     {
       "showId": 372,
       "showSlug": "בילבי",
       "date": "2026-06-27",
-      "hour": "11:30"
+      "hour": "11:30",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=76&ArticleID=5641"
     },
     {
       "showId": 372,
       "showSlug": "בילבי",
       "date": "2026-07-18",
-      "hour": "10:00"
+      "hour": "10:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=76&ArticleID=5641"
     },
     {
       "showId": 372,
       "showSlug": "בילבי",
       "date": "2026-07-18",
-      "hour": "11:30"
+      "hour": "11:30",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=76&ArticleID=5641"
     },
     {
       "showId": 372,
       "showSlug": "בילבי",
       "date": "2026-08-20",
-      "hour": "10:00"
+      "hour": "10:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=76&ArticleID=5641"
     },
     {
       "showId": 372,
       "showSlug": "בילבי",
       "date": "2026-08-20",
-      "hour": "11:30"
+      "hour": "11:30",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=76&ArticleID=5641"
     },
     {
       "showId": 416,
       "showSlug": "בית-בעזה",
       "date": "2026-05-18",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6245",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25791"
     },
     {
       "showId": 416,
       "showSlug": "בית-בעזה",
       "date": "2026-06-21",
-      "hour": "19:00"
-    },
-    {
-      "showId": 103,
-      "showSlug": "בת-של-אבא",
-      "date": "2026-05-10",
-      "hour": "20:00"
-    },
-    {
-      "showId": 103,
-      "showSlug": "בת-של-אבא",
-      "date": "2026-05-11",
-      "hour": "20:00"
+      "hour": "19:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6245",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25792"
     },
     {
       "showId": 103,
       "showSlug": "בת-של-אבא",
       "date": "2026-06-03",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6208",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25750"
     },
     {
       "showId": 103,
       "showSlug": "בת-של-אבא",
       "date": "2026-06-04",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6208",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25751"
     },
     {
       "showId": 106,
       "showSlug": "דיק-פיק",
       "date": "2026-06-23",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6215",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25793"
     },
     {
       "showId": 408,
       "showSlug": "דירה-לא-להשכיר",
       "date": "2026-06-29",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6369",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25739"
     },
     {
       "showId": 277,
       "showSlug": "האוגרת",
       "date": "2026-06-24",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6247",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25794"
     },
     {
       "showId": 109,
       "showSlug": "האוויר-הוא-של-כולם",
       "date": "2026-06-27",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6300",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25796"
     },
     {
       "showId": 379,
       "showSlug": "הגבירה-מאבו-דיס",
       "date": "2026-05-14",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6004",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25679"
     },
     {
       "showId": 465,
       "showSlug": "החולד-הקטן",
       "date": "2026-05-23",
-      "hour": "11:00"
+      "hour": "11:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=76&ArticleID=5929",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25826"
     },
     {
       "showId": 365,
       "showSlug": "הכל-נשאר-חי",
       "date": "2026-05-17",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6158",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25662"
     },
     {
       "showId": 365,
       "showSlug": "הכל-נשאר-חי",
       "date": "2026-06-12",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6158",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25798"
     },
     {
       "showId": 417,
       "showSlug": "המדריך-לגידול-המת",
       "date": "2026-05-20",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5956",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25799"
     },
     {
       "showId": 417,
       "showSlug": "המדריך-לגידול-המת",
       "date": "2026-06-15",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5956",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25800"
     },
     {
       "showId": 221,
       "showSlug": "המורה",
       "date": "2026-05-18",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6333",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25752"
     },
     {
       "showId": 221,
       "showSlug": "המורה",
       "date": "2026-05-19",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6333",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25754"
     },
     {
       "showId": 221,
       "showSlug": "המורה",
       "date": "2026-06-15",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6333",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25755"
     },
     {
       "showId": 221,
       "showSlug": "המורה",
       "date": "2026-06-16",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6333",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25756"
     },
     {
       "showId": 221,
       "showSlug": "המורה",
       "date": "2026-06-17",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6333",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25757"
     },
     {
       "showId": 418,
       "showSlug": "הפצוע-הישראלי",
       "date": "2026-05-12",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6112",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25810"
     },
     {
       "showId": 418,
       "showSlug": "הפצוע-הישראלי",
       "date": "2026-06-18",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6112",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25811"
     },
     {
       "showId": 409,
       "showSlug": "השתקפויות",
       "date": "2026-06-26",
-      "hour": "13:00"
+      "hour": "13:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6321",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25740"
     },
     {
       "showId": 409,
       "showSlug": "השתקפויות",
       "date": "2026-06-26",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6321",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25741"
     },
     {
       "showId": 419,
       "showSlug": "לא-שקט",
       "date": "2026-06-08",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6324",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25804"
     },
     {
       "showId": 378,
       "showSlug": "לאונרד",
       "date": "2026-05-31",
-      "hour": "19:00"
+      "hour": "19:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6200",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25734"
     },
     {
       "showId": 378,
       "showSlug": "לאונרד",
       "date": "2026-06-05",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6200",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25735"
     },
     {
       "showId": 378,
       "showSlug": "לאונרד",
       "date": "2026-06-06",
-      "hour": "17:00"
+      "hour": "17:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6200",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25736"
     },
     {
       "showId": 283,
       "showSlug": "מדעי-הוודאות",
       "date": "2026-06-10",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6141",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25805"
     },
     {
       "showId": 278,
       "showSlug": "מה-פה-מופע-פה",
       "date": "2026-06-27",
-      "hour": "11:00"
-    },
-    {
-      "showId": 410,
-      "showSlug": "מהפכניות",
-      "date": "2026-05-10",
-      "hour": "20:00"
-    },
-    {
-      "showId": 410,
-      "showSlug": "מהפכניות",
-      "date": "2026-05-11",
-      "hour": "20:00"
+      "hour": "11:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=76&ArticleID=6368",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25763"
     },
     {
       "showId": 420,
       "showSlug": "מסכת-גאולה",
       "date": "2026-06-20",
-      "hour": "19:00"
+      "hour": "19:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6036",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25806"
     },
     {
       "showId": 469,
       "showSlug": "נעולים",
       "date": "2026-06-06",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6399",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25821"
     },
     {
       "showId": 469,
       "showSlug": "נעולים",
       "date": "2026-06-07",
-      "hour": "19:00"
+      "hour": "19:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6399",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25822"
     },
     {
       "showId": 375,
       "showSlug": "קסמים-בשחקים",
       "date": "2026-06-06",
-      "hour": "11:00"
+      "hour": "11:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=76&ArticleID=5924",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25765"
     },
     {
       "showId": 104,
       "showSlug": "רצח-במועדון-הטרנספר",
       "date": "2026-06-22",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5743",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25797"
     },
     {
       "showId": 234,
       "showSlug": "שחף-עודד-קוטלר",
       "date": "2026-05-16",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6270",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25807"
     },
     {
       "showId": 234,
       "showSlug": "שחף-עודד-קוטלר",
       "date": "2026-06-20",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6270",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25808"
     },
     {
       "showId": 421,
       "showSlug": "שייקספיר-בחווה-הסינית",
       "date": "2026-06-14",
-      "hour": "19:00"
+      "hour": "19:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5376",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25809"
+    },
+    {
+      "showId": 235,
+      "showSlug": "שלא-יגמר-לי",
+      "date": "2026-05-13",
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6229",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25777"
+    },
+    {
+      "showId": 235,
+      "showSlug": "שלא-יגמר-לי",
+      "date": "2026-06-02",
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6229",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25778"
     },
     {
       "showId": 261,
       "showSlug": "Die-Blumen",
       "date": "2026-06-28",
-      "hour": "22:00"
+      "hour": "22:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5597",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25701"
     },
     {
       "showId": 275,
       "showSlug": "Frau-Marlene",
       "date": "2026-06-07",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6239",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25624"
     },
     {
       "showId": 422,
       "showSlug": "HANNAH",
       "date": "2026-06-02",
-      "hour": "19:00"
+      "hour": "19:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6237",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25782"
     },
     {
       "showId": 422,
       "showSlug": "HANNAH",
       "date": "2026-06-03",
-      "hour": "19:00"
+      "hour": "19:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6237",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25783"
     }
   ]
 }

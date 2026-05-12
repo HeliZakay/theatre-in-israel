@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:18:49.229Z",
+  "scrapedAt": "2026-05-12T04:24:09.284Z",
   "venue": {
     "name": "תיאטרון המשולש",
     "city": "תל אביב"
@@ -9,85 +9,137 @@
       "showId": 284,
       "showSlug": "גבע-לא-יכול-להתאהב",
       "date": "2026-05-27",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/geva",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/303"
     },
     {
       "showId": 284,
       "showSlug": "גבע-לא-יכול-להתאהב",
       "date": "2026-05-28",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/geva",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/304"
     },
     {
       "showId": 284,
       "showSlug": "גבע-לא-יכול-להתאהב",
       "date": "2026-06-15",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/geva",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/319"
     },
     {
       "showId": 284,
       "showSlug": "גבע-לא-יכול-להתאהב",
       "date": "2026-06-16",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/geva",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/320"
+    },
+    {
+      "showId": 284,
+      "showSlug": "גבע-לא-יכול-להתאהב",
+      "date": "2026-07-01",
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/geva",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/355"
+    },
+    {
+      "showId": 284,
+      "showSlug": "גבע-לא-יכול-להתאהב",
+      "date": "2026-07-02",
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/geva",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/356"
+    },
+    {
+      "showId": 284,
+      "showSlug": "גבע-לא-יכול-להתאהב",
+      "date": "2026-07-04",
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/geva",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/357"
     },
     {
       "showId": 285,
       "showSlug": "געגוע-SAUDADE",
       "date": "2026-06-17",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/saudade",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/321"
     },
     {
       "showId": 287,
       "showSlug": "הקשב-הרס״פ",
       "date": "2026-05-20",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/hakshevharasap",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/308"
     },
     {
       "showId": 287,
       "showSlug": "הקשב-הרס״פ",
       "date": "2026-05-23",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/hakshevharasap",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/309"
     },
     {
       "showId": 287,
       "showSlug": "הקשב-הרס״פ",
       "date": "2026-06-20",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/hakshevharasap",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/327"
     },
     {
       "showId": 287,
       "showSlug": "הקשב-הרס״פ",
       "date": "2026-06-21",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/hakshevharasap",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/328"
     },
     {
       "showId": 288,
       "showSlug": "פאקינג-מן",
       "date": "2026-05-17",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/fuckingman",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/306"
     },
     {
       "showId": 288,
       "showSlug": "פאקינג-מן",
       "date": "2026-05-18",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/fuckingman",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/307"
     },
     {
       "showId": 288,
       "showSlug": "פאקינג-מן",
       "date": "2026-06-23",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/fuckingman",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/324"
     },
     {
       "showId": 288,
       "showSlug": "פאקינג-מן",
       "date": "2026-06-24",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/fuckingman",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/325"
     },
     {
       "showId": 289,
       "showSlug": "פותחות",
       "date": "2026-05-30",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/potchot",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/310"
     }
   ]
 }

@@ -1,22 +1,16 @@
 {
-  "scrapedAt": "2026-05-09T04:15:27.748Z",
+  "scrapedAt": "2026-05-12T04:23:02.680Z",
   "touring": true,
   "events": [
-    {
-      "showId": 161,
-      "showSlug": "אבדוֹת-ומציאוּת",
-      "date": "2026-05-09",
-      "hour": "21:00",
-      "venueName": "חצר החאן לא מסומן",
-      "venueCity": "ירושלים"
-    },
     {
       "showId": 161,
       "showSlug": "אבדוֹת-ומציאוּת",
       "date": "2026-06-06",
       "hour": "21:30",
       "venueName": "חצר החאן לא מסומן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/489/avedot",
+      "ticketUrl": "https://khan.pres.global/order/8673"
     },
     {
       "showId": 161,
@@ -24,7 +18,9 @@
       "date": "2026-07-16",
       "hour": "20:00",
       "venueName": "חצר החאן לא מסומן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/489/avedot",
+      "ticketUrl": "https://khan.pres.global/order/8674"
     },
     {
       "showId": 161,
@@ -32,7 +28,9 @@
       "date": "2026-07-18",
       "hour": "21:30",
       "venueName": "חצר החאן לא מסומן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/489/avedot",
+      "ticketUrl": "https://khan.pres.global/order/8675"
     },
     {
       "showId": 87,
@@ -40,7 +38,9 @@
       "date": "2026-05-25",
       "hour": "20:00",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/264/hasavtot",
+      "ticketUrl": "https://khan.pres.global/order/8608"
     },
     {
       "showId": 165,
@@ -48,7 +48,9 @@
       "date": "2026-06-11",
       "hour": "20:00",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/534/bad-jews",
+      "ticketUrl": "https://khan.pres.global/order/8633"
     },
     {
       "showId": 165,
@@ -56,7 +58,9 @@
       "date": "2026-06-13",
       "hour": "21:30",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/534/bad-jews",
+      "ticketUrl": "https://khan.pres.global/order/8658"
     },
     {
       "showId": 85,
@@ -64,7 +68,9 @@
       "date": "2026-05-28",
       "hour": "20:00",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/567/yaacobi-leidental",
+      "ticketUrl": "https://khan.pres.global/order/8620"
     },
     {
       "showId": 85,
@@ -72,7 +78,9 @@
       "date": "2026-05-30",
       "hour": "21:30",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/567/yaacobi-leidental",
+      "ticketUrl": "https://khan.pres.global/order/8621"
     },
     {
       "showId": 85,
@@ -80,7 +88,9 @@
       "date": "2026-06-14",
       "hour": "20:00",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/567/yaacobi-leidental",
+      "ticketUrl": "https://khan.pres.global/order/8659"
     },
     {
       "showId": 85,
@@ -88,7 +98,9 @@
       "date": "2026-06-15",
       "hour": "20:00",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/567/yaacobi-leidental",
+      "ticketUrl": "https://khan.pres.global/order/8660"
     },
     {
       "showId": 473,
@@ -96,7 +108,9 @@
       "date": "2026-06-27",
       "hour": "21:30",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/618/wandering-stars",
+      "ticketUrl": "https://khan.pres.global/order/8661"
     },
     {
       "showId": 473,
@@ -104,7 +118,9 @@
       "date": "2026-06-28",
       "hour": "20:30",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/618/wandering-stars",
+      "ticketUrl": "https://khan.pres.global/order/8662"
     },
     {
       "showId": 473,
@@ -112,7 +128,9 @@
       "date": "2026-06-29",
       "hour": "20:30",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/618/wandering-stars",
+      "ticketUrl": "https://khan.pres.global/order/8663"
     },
     {
       "showId": 473,
@@ -120,7 +138,9 @@
       "date": "2026-06-30",
       "hour": "17:30",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/618/wandering-stars",
+      "ticketUrl": "https://khan.pres.global/order/8664"
     },
     {
       "showId": 473,
@@ -128,7 +148,9 @@
       "date": "2026-06-30",
       "hour": "20:30",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/618/wandering-stars",
+      "ticketUrl": "https://khan.pres.global/order/8665"
     },
     {
       "showId": 473,
@@ -136,7 +158,9 @@
       "date": "2026-07-01",
       "hour": "20:30",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/618/wandering-stars",
+      "ticketUrl": "https://khan.pres.global/order/8667"
     },
     {
       "showId": 473,
@@ -144,7 +168,9 @@
       "date": "2026-07-02",
       "hour": "20:30",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/618/wandering-stars",
+      "ticketUrl": "https://khan.pres.global/order/8668"
     },
     {
       "showId": 473,
@@ -152,7 +178,9 @@
       "date": "2026-07-04",
       "hour": "21:30",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/618/wandering-stars",
+      "ticketUrl": "https://khan.pres.global/order/8669"
     },
     {
       "showId": 473,
@@ -160,7 +188,9 @@
       "date": "2026-09-15",
       "hour": "18:00",
       "venueName": "בית ציוני אמריקה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.khan.co.il/shows/618/wandering-stars",
+      "ticketUrl": "https://khan.pres.global/order/8655"
     },
     {
       "showId": 473,
@@ -168,7 +198,9 @@
       "date": "2026-09-15",
       "hour": "21:00",
       "venueName": "בית ציוני אמריקה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.khan.co.il/shows/618/wandering-stars",
+      "ticketUrl": "https://khan.pres.global/order/8656"
     },
     {
       "showId": 473,
@@ -176,7 +208,9 @@
       "date": "2026-09-16",
       "hour": "18:00",
       "venueName": "בית ציוני אמריקה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.khan.co.il/shows/618/wandering-stars",
+      "ticketUrl": "https://khan.pres.global/order/8657"
     },
     {
       "showId": 88,
@@ -184,7 +218,9 @@
       "date": "2026-05-20",
       "hour": "20:00",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/568/waiting-for-godot",
+      "ticketUrl": "https://khan.pres.global/order/8606"
     },
     {
       "showId": 88,
@@ -192,7 +228,9 @@
       "date": "2026-05-23",
       "hour": "21:30",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/568/waiting-for-godot",
+      "ticketUrl": "https://khan.pres.global/order/8622"
     },
     {
       "showId": 90,
@@ -200,7 +238,9 @@
       "date": "2026-05-18",
       "hour": "18:00",
       "venueName": "בית ציוני אמריקה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
+      "ticketUrl": "https://khan.pres.global/order/8566"
     },
     {
       "showId": 90,
@@ -208,7 +248,9 @@
       "date": "2026-05-18",
       "hour": "21:00",
       "venueName": "בית ציוני אמריקה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
+      "ticketUrl": "https://khan.pres.global/order/8567"
     },
     {
       "showId": 90,
@@ -216,7 +258,9 @@
       "date": "2026-05-19",
       "hour": "18:00",
       "venueName": "בית ציוני אמריקה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
+      "ticketUrl": "https://khan.pres.global/order/8568"
     },
     {
       "showId": 90,
@@ -224,7 +268,9 @@
       "date": "2026-05-19",
       "hour": "21:00",
       "venueName": "בית ציוני אמריקה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
+      "ticketUrl": "https://khan.pres.global/order/8652"
     },
     {
       "showId": 90,
@@ -232,7 +278,9 @@
       "date": "2026-05-31",
       "hour": "17:30",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
+      "ticketUrl": "https://khan.pres.global/order/8651"
     },
     {
       "showId": 90,
@@ -240,7 +288,9 @@
       "date": "2026-05-31",
       "hour": "20:00",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
+      "ticketUrl": "https://khan.pres.global/order/8611"
     },
     {
       "showId": 90,
@@ -248,7 +298,9 @@
       "date": "2026-06-01",
       "hour": "20:00",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
+      "ticketUrl": "https://khan.pres.global/order/8653"
     },
     {
       "showId": 90,
@@ -256,7 +308,29 @@
       "date": "2026-06-02",
       "hour": "20:00",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
+      "ticketUrl": "https://khan.pres.global/order/8654"
+    },
+    {
+      "showId": 90,
+      "showSlug": "מי-שסוכתו-נופלת",
+      "date": "2026-07-19",
+      "hour": "20:00",
+      "venueName": "בית ציוני אמריקה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
+      "ticketUrl": "https://khan.pres.global/order/8676"
+    },
+    {
+      "showId": 90,
+      "showSlug": "מי-שסוכתו-נופלת",
+      "date": "2026-07-20",
+      "hour": "18:00",
+      "venueName": "בית ציוני אמריקה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
+      "ticketUrl": "https://khan.pres.global/order/8677"
     },
     {
       "showId": 95,
@@ -264,15 +338,9 @@
       "date": "2026-05-16",
       "hour": "21:30",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
-    },
-    {
-      "showId": 94,
-      "showSlug": "משרתם-של-שני-אדונים",
-      "date": "2026-05-10",
-      "hour": "20:00",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/492/mita-tova",
+      "ticketUrl": "https://khan.pres.global/order/8610"
     },
     {
       "showId": 94,
@@ -280,7 +348,9 @@
       "date": "2026-05-12",
       "hour": "20:00",
       "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/544/the-servant-of-two-masters",
+      "ticketUrl": "https://khan.pres.global/order/8605"
     },
     {
       "showId": 166,
@@ -288,7 +358,9 @@
       "date": "2026-06-03",
       "hour": "20:00",
       "venueName": "מרכז דוהל",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.khan.co.il/shows/551/a-simple-tale",
+      "ticketUrl": "https://khan.pres.global/order/8671"
     }
   ]
 }

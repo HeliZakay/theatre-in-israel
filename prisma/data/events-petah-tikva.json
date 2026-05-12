@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-05-09T04:21:36.112Z",
+  "scrapedAt": "2026-05-12T04:26:41.445Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות פתח תקווה",
     "city": "פתח תקווה"
   },
   "events": [
-    {
-      "showId": 266,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-05-10",
-      "hour": "20:30"
-    },
     {
       "showId": 256,
       "showSlug": "מותרת-לכל-אדם",

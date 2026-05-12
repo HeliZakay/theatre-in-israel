@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:16:48.341Z",
+  "scrapedAt": "2026-05-11T04:34:29.987Z",
   "touring": true,
   "events": [
     {
@@ -8,7 +8,9 @@
       "date": "2026-05-12",
       "hour": "17:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9073"
     },
     {
       "showId": 171,
@@ -16,7 +18,9 @@
       "date": "2026-05-12",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9064"
     },
     {
       "showId": 171,
@@ -24,7 +28,9 @@
       "date": "2026-05-13",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9065"
     },
     {
       "showId": 171,
@@ -32,7 +38,9 @@
       "date": "2026-05-13",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9071"
     },
     {
       "showId": 171,
@@ -40,7 +48,9 @@
       "date": "2026-05-14",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9066"
     },
     {
       "showId": 171,
@@ -48,7 +58,9 @@
       "date": "2026-05-14",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9072"
     },
     {
       "showId": 171,
@@ -56,7 +68,9 @@
       "date": "2026-05-17",
       "hour": "17:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9115"
     },
     {
       "showId": 171,
@@ -64,7 +78,9 @@
       "date": "2026-05-17",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9116"
     },
     {
       "showId": 171,
@@ -72,7 +88,9 @@
       "date": "2026-06-16",
       "hour": "17:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9117"
     },
     {
       "showId": 171,
@@ -80,7 +98,9 @@
       "date": "2026-06-16",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9118"
     },
     {
       "showId": 171,
@@ -88,7 +108,9 @@
       "date": "2026-06-17",
       "hour": "17:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9081"
     },
     {
       "showId": 171,
@@ -96,7 +118,9 @@
       "date": "2026-06-17",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9082"
     },
     {
       "showId": 171,
@@ -104,7 +128,9 @@
       "date": "2026-06-20",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9085"
     },
     {
       "showId": 171,
@@ -112,7 +138,9 @@
       "date": "2026-06-21",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9083"
     },
     {
       "showId": 171,
@@ -120,7 +148,9 @@
       "date": "2026-06-21",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9086"
     },
     {
       "showId": 171,
@@ -128,7 +158,9 @@
       "date": "2026-06-23",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9084"
     },
     {
       "showId": 171,
@@ -136,7 +168,9 @@
       "date": "2026-06-23",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9087"
     },
     {
       "showId": 171,
@@ -144,7 +178,9 @@
       "date": "2026-06-24",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9119"
     },
     {
       "showId": 171,
@@ -152,7 +188,9 @@
       "date": "2026-06-24",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9121"
     },
     {
       "showId": 171,
@@ -160,7 +198,9 @@
       "date": "2026-06-27",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9089"
     },
     {
       "showId": 171,
@@ -168,7 +208,9 @@
       "date": "2026-06-28",
       "hour": "17:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9093"
     },
     {
       "showId": 171,
@@ -176,7 +218,9 @@
       "date": "2026-06-28",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9091"
     },
     {
       "showId": 171,
@@ -184,7 +228,9 @@
       "date": "2026-06-29",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9092"
     },
     {
       "showId": 171,
@@ -192,7 +238,9 @@
       "date": "2026-06-29",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9090"
     },
     {
       "showId": 171,
@@ -200,7 +248,9 @@
       "date": "2026-06-30",
       "hour": "17:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9094"
     },
     {
       "showId": 171,
@@ -208,7 +258,9 @@
       "date": "2026-06-30",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9095"
     },
     {
       "showId": 171,
@@ -216,7 +268,9 @@
       "date": "2026-07-01",
       "hour": "17:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9096"
     },
     {
       "showId": 171,
@@ -224,7 +278,9 @@
       "date": "2026-07-01",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9097"
     },
     {
       "showId": 171,
@@ -232,7 +288,9 @@
       "date": "2026-07-02",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9098"
     },
     {
       "showId": 171,
@@ -240,7 +298,9 @@
       "date": "2026-07-02",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9099"
     },
     {
       "showId": 171,
@@ -248,7 +308,9 @@
       "date": "2026-07-04",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9128"
     },
     {
       "showId": 171,
@@ -256,7 +318,9 @@
       "date": "2026-07-05",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9138"
     },
     {
       "showId": 171,
@@ -264,7 +328,9 @@
       "date": "2026-07-05",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9129"
     },
     {
       "showId": 171,
@@ -272,7 +338,9 @@
       "date": "2026-07-06",
       "hour": "17:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9149"
     },
     {
       "showId": 171,
@@ -280,7 +348,9 @@
       "date": "2026-07-06",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9139"
     },
     {
       "showId": 171,
@@ -288,7 +358,9 @@
       "date": "2026-07-11",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9130"
     },
     {
       "showId": 171,
@@ -296,7 +368,9 @@
       "date": "2026-07-12",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9120"
     },
     {
       "showId": 171,
@@ -304,7 +378,9 @@
       "date": "2026-07-12",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9122"
     },
     {
       "showId": 171,
@@ -312,7 +388,9 @@
       "date": "2026-07-13",
       "hour": "17:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9150"
     },
     {
       "showId": 171,
@@ -320,7 +398,9 @@
       "date": "2026-07-13",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9140"
     },
     {
       "showId": 171,
@@ -328,7 +408,9 @@
       "date": "2026-07-25",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9131"
     },
     {
       "showId": 171,
@@ -336,7 +418,9 @@
       "date": "2026-07-26",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9141"
     },
     {
       "showId": 171,
@@ -344,7 +428,9 @@
       "date": "2026-07-26",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9132"
     },
     {
       "showId": 171,
@@ -352,7 +438,9 @@
       "date": "2026-07-28",
       "hour": "17:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9151"
     },
     {
       "showId": 171,
@@ -360,7 +448,9 @@
       "date": "2026-07-28",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9142"
     },
     {
       "showId": 171,
@@ -368,7 +458,9 @@
       "date": "2026-07-29",
       "hour": "17:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9152"
     },
     {
       "showId": 171,
@@ -376,7 +468,9 @@
       "date": "2026-07-29",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9143"
     },
     {
       "showId": 171,
@@ -384,7 +478,9 @@
       "date": "2026-07-30",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9144"
     },
     {
       "showId": 171,
@@ -392,7 +488,9 @@
       "date": "2026-07-30",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9133"
     },
     {
       "showId": 171,
@@ -400,7 +498,9 @@
       "date": "2026-08-01",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9134"
     },
     {
       "showId": 171,
@@ -408,7 +508,9 @@
       "date": "2026-08-02",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9145"
     },
     {
       "showId": 171,
@@ -416,7 +518,9 @@
       "date": "2026-08-02",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9135"
     },
     {
       "showId": 171,
@@ -424,7 +528,9 @@
       "date": "2026-08-03",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9146"
     },
     {
       "showId": 171,
@@ -432,7 +538,9 @@
       "date": "2026-08-03",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9136"
     },
     {
       "showId": 171,
@@ -440,7 +548,9 @@
       "date": "2026-08-05",
       "hour": "17:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9153"
     },
     {
       "showId": 171,
@@ -448,7 +558,9 @@
       "date": "2026-08-05",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9147"
     },
     {
       "showId": 171,
@@ -456,7 +568,9 @@
       "date": "2026-08-06",
       "hour": "19:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9148"
     },
     {
       "showId": 171,
@@ -464,7 +578,19 @@
       "date": "2026-08-06",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9137"
+    },
+    {
+      "showId": 171,
+      "showSlug": "באר-שבסקיה",
+      "date": "2026-08-08",
+      "hour": "21:00",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9123"
     },
     {
       "showId": 84,
@@ -472,7 +598,9 @@
       "date": "2026-07-29",
       "hour": "20:30",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%94%d7%a2%d7%9c%d7%9e%d7%94-%d7%95%d7%94%d7%9e%d7%95%d7%95%d7%aa/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9106"
     },
     {
       "showId": 84,
@@ -480,7 +608,9 @@
       "date": "2026-08-01",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%94%d7%a2%d7%9c%d7%9e%d7%94-%d7%95%d7%94%d7%9e%d7%95%d7%95%d7%aa/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9108"
     },
     {
       "showId": 83,
@@ -488,7 +618,9 @@
       "date": "2026-05-13",
       "hour": "20:30",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8824"
     },
     {
       "showId": 83,
@@ -496,7 +628,9 @@
       "date": "2026-05-14",
       "hour": "20:30",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8836"
     },
     {
       "showId": 83,
@@ -504,7 +638,9 @@
       "date": "2026-05-16",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8839"
     },
     {
       "showId": 83,
@@ -512,7 +648,9 @@
       "date": "2026-05-17",
       "hour": "20:30",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8826"
     },
     {
       "showId": 83,
@@ -520,7 +658,9 @@
       "date": "2026-05-18",
       "hour": "17:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8840"
     },
     {
       "showId": 83,
@@ -528,7 +668,9 @@
       "date": "2026-05-18",
       "hour": "20:30",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8829"
     },
     {
       "showId": 83,
@@ -536,7 +678,9 @@
       "date": "2026-05-19",
       "hour": "17:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8842"
     },
     {
       "showId": 83,
@@ -544,7 +688,9 @@
       "date": "2026-05-19",
       "hour": "20:30",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8832"
     },
     {
       "showId": 83,
@@ -552,7 +698,9 @@
       "date": "2026-05-27",
       "hour": "20:00",
       "venueName": "בית ציוני אמריקה ת״א",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9166"
     },
     {
       "showId": 83,
@@ -560,7 +708,9 @@
       "date": "2026-06-15",
       "hour": "20:30",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9126"
     },
     {
       "showId": 83,
@@ -568,7 +718,9 @@
       "date": "2026-06-21",
       "hour": "20:30",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9125"
     },
     {
       "showId": 83,
@@ -576,7 +728,9 @@
       "date": "2026-06-22",
       "hour": "20:30",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8828"
     },
     {
       "showId": 83,
@@ -584,7 +738,9 @@
       "date": "2026-06-23",
       "hour": "17:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8841"
     },
     {
       "showId": 83,
@@ -592,7 +748,9 @@
       "date": "2026-06-23",
       "hour": "20:30",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8831"
     },
     {
       "showId": 83,
@@ -600,7 +758,9 @@
       "date": "2026-06-24",
       "hour": "17:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8843"
     },
     {
       "showId": 83,
@@ -608,7 +768,9 @@
       "date": "2026-06-24",
       "hour": "20:30",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8833"
     },
     {
       "showId": 83,
@@ -616,7 +778,9 @@
       "date": "2026-06-25",
       "hour": "20:30",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8837"
     },
     {
       "showId": 83,
@@ -624,7 +788,9 @@
       "date": "2026-06-27",
       "hour": "21:00",
       "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9127"
     }
   ]
 }

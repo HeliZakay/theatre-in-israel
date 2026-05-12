@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:24:00.801Z",
+  "scrapedAt": "2026-05-12T04:29:38.213Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון ירושלים",
@@ -10,175 +10,204 @@
       "showId": 3,
       "showSlug": "לנקות-את-הראש",
       "date": "2026-05-12",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4232/%D7%9C%D7%A0%D7%A7%D7%95%D7%AA_%D7%90%D7%AA_%D7%94%D7%A8%D7%90%D7%A9_%E2%80%93_%D7%90%D7%92%D7%93%D7%94_%D7%90%D7%95%D7%A8%D7%91%D7%A0%D7%99%D7%AA"
     },
     {
       "showId": 3,
       "showSlug": "לנקות-את-הראש",
       "date": "2026-05-13",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4232/%D7%9C%D7%A0%D7%A7%D7%95%D7%AA_%D7%90%D7%AA_%D7%94%D7%A8%D7%90%D7%A9_%E2%80%93_%D7%90%D7%92%D7%93%D7%94_%D7%90%D7%95%D7%A8%D7%91%D7%A0%D7%99%D7%AA"
     },
     {
       "showId": 240,
       "showSlug": "אמא-קוראז׳-וילדיה",
       "date": "2026-05-17",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4233/%D7%90%D7%9E%D7%90_%D7%A7%D7%95%D7%A8%D7%90%D7%96%27_%D7%95%D7%99%D7%9C%D7%93%D7%99%D7%94"
     },
     {
       "showId": 240,
       "showSlug": "אמא-קוראז׳-וילדיה",
       "date": "2026-05-18",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4233/%D7%90%D7%9E%D7%90_%D7%A7%D7%95%D7%A8%D7%90%D7%96%27_%D7%95%D7%99%D7%9C%D7%93%D7%99%D7%94"
     },
     {
       "showId": 172,
       "showSlug": "פינק-ליידי",
       "date": "2026-05-26",
-      "hour": "17:00"
+      "hour": "17:00",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4234/%D7%A4%D7%99%D7%A0%D7%A7_%D7%9C%D7%99%D7%99%D7%93%D7%99"
     },
     {
       "showId": 172,
       "showSlug": "פינק-ליידי",
       "date": "2026-05-26",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4234/%D7%A4%D7%99%D7%A0%D7%A7_%D7%9C%D7%99%D7%99%D7%93%D7%99"
     },
     {
       "showId": 25,
       "showSlug": "לא-הייתם-צריכים",
       "date": "2026-05-30",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4235/%D7%9C%D7%90_%D7%94%D7%99%D7%99%D7%AA%D7%9D_%D7%A6%D7%A8%D7%99%D7%9B%D7%99%D7%9D"
     },
     {
       "showId": 25,
       "showSlug": "לא-הייתם-צריכים",
       "date": "2026-07-25",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4235/%D7%9C%D7%90_%D7%94%D7%99%D7%99%D7%AA%D7%9D_%D7%A6%D7%A8%D7%99%D7%9B%D7%99%D7%9D"
     },
     {
       "showId": 81,
       "showSlug": "הזוג-המוזר",
       "date": "2026-06-07",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4130/%D7%94%D7%96%D7%95%D7%92_%D7%94%D7%9E%D7%95%D7%96%D7%A8"
     },
     {
       "showId": 81,
       "showSlug": "הזוג-המוזר",
       "date": "2026-06-08",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4130/%D7%94%D7%96%D7%95%D7%92_%D7%94%D7%9E%D7%95%D7%96%D7%A8"
     },
     {
       "showId": 61,
       "showSlug": "בחורים-טובים",
       "date": "2026-06-18",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4129/%D7%91%D7%97%D7%95%D7%A8%D7%99%D7%9D_%D7%98%D7%95%D7%91%D7%99%D7%9D"
     },
     {
       "showId": 61,
       "showSlug": "בחורים-טובים",
       "date": "2026-06-20",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4129/%D7%91%D7%97%D7%95%D7%A8%D7%99%D7%9D_%D7%98%D7%95%D7%91%D7%99%D7%9D"
     },
     {
       "showId": 266,
       "showSlug": "מיקה-שלי",
       "date": "2026-06-30",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4239/%D7%9E%D7%99%D7%A7%D7%94_%D7%A9%D7%9C%D7%99"
     },
     {
       "showId": 114,
       "showSlug": "עפרה",
       "date": "2026-07-01",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4138/%D7%A2%D7%A4%D7%A8%D7%94"
     },
     {
       "showId": 11,
       "showSlug": "הנפש-הטובה-מסצ׳ואן",
       "date": "2026-07-02",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4133/%D7%94%D7%A0%D7%A4%D7%A9_%D7%94%D7%98%D7%95%D7%91%D7%94_%D7%9E%D7%A1%D7%A6%27%D7%95%D7%90%D7%9F"
     },
     {
       "showId": 11,
       "showSlug": "הנפש-הטובה-מסצ׳ואן",
       "date": "2026-07-04",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4133/%D7%94%D7%A0%D7%A4%D7%A9_%D7%94%D7%98%D7%95%D7%91%D7%94_%D7%9E%D7%A1%D7%A6%27%D7%95%D7%90%D7%9F"
     },
     {
       "showId": 122,
       "showSlug": "צלילי-המוסיקה",
       "date": "2026-07-07",
-      "hour": "18:00"
+      "hour": "18:00",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2600/%D7%A6%D7%9C%D7%99%D7%9C%D7%99_%D7%94%D7%9E%D7%95%D7%A1%D7%99%D7%A7%D7%94"
     },
     {
       "showId": 249,
       "showSlug": "קרום",
       "date": "2026-07-09",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4319/%D7%A7%D7%A8%D7%95%D7%9D"
     },
     {
       "showId": 249,
       "showSlug": "קרום",
       "date": "2026-07-11",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4319/%D7%A7%D7%A8%D7%95%D7%9D"
     },
     {
       "showId": 263,
       "showSlug": "אהבה-מודרנית",
       "date": "2026-07-26",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4238/%D7%90%D7%94%D7%91%D7%94_%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99%D7%AA"
     },
     {
       "showId": 124,
       "showSlug": "כנר-על-הגג-–-המחזמר",
       "date": "2026-07-29",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2263/%D7%9B%D7%A0%D7%A8_%D7%A2%D7%9C_%D7%94%D7%92%D7%92"
     },
     {
       "showId": 78,
       "showSlug": "לשחרר-את-נחמה",
       "date": "2026-08-04",
-      "hour": "17:00"
+      "hour": "17:00",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/3935/%D7%9C%D7%A9%D7%97%D7%A8%D7%A8_%D7%90%D7%AA_%D7%A0%D7%97%D7%9E%D7%94"
     },
     {
       "showId": 78,
       "showSlug": "לשחרר-את-נחמה",
       "date": "2026-08-04",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/3935/%D7%9C%D7%A9%D7%97%D7%A8%D7%A8_%D7%90%D7%AA_%D7%A0%D7%97%D7%9E%D7%94"
     },
     {
       "showId": 112,
       "showSlug": "גבירתי-הנאווה",
       "date": "2026-08-10",
-      "hour": "17:00"
+      "hour": "17:00",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4186/%D7%92%D7%91%D7%99%D7%A8%D7%AA%D7%99_%D7%94%D7%A0%D7%90%D7%95%D7%95%D7%94"
     },
     {
       "showId": 112,
       "showSlug": "גבירתי-הנאווה",
       "date": "2026-08-10",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4186/%D7%92%D7%91%D7%99%D7%A8%D7%AA%D7%99_%D7%94%D7%A0%D7%90%D7%95%D7%95%D7%94"
     },
     {
       "showId": 38,
       "showSlug": "משכנתא",
       "date": "2026-08-20",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4227/%D7%9E%D7%A9%D7%9B%D7%A0%D7%AA%D7%90"
     },
     {
       "showId": 38,
       "showSlug": "משכנתא",
       "date": "2026-08-22",
-      "hour": "21:00"
+      "hour": "21:00",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4227/%D7%9E%D7%A9%D7%9B%D7%A0%D7%AA%D7%90"
     },
     {
       "showId": 159,
       "showSlug": "מישהו-לרוץ-איתו",
       "date": "2026-09-14",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4228/%D7%9E%D7%99%D7%A9%D7%94%D7%95_%D7%9C%D7%A8%D7%95%D7%A5_%D7%90%D7%99%D7%AA%D7%95"
     },
     {
       "showId": 159,
       "showSlug": "מישהו-לרוץ-איתו",
       "date": "2026-09-15",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4228/%D7%9E%D7%99%D7%A9%D7%94%D7%95_%D7%9C%D7%A8%D7%95%D7%A5_%D7%90%D7%99%D7%AA%D7%95"
     }
   ]
 }

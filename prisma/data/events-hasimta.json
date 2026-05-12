@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:19:11.937Z",
+  "scrapedAt": "2026-05-11T04:36:55.422Z",
   "venue": {
     "name": "תיאטרון הסימטה",
     "city": "תל אביב-יפו"
@@ -9,61 +9,81 @@
       "showId": 475,
       "showSlug": "הילדה-והים-–-הצגה-ילדים",
       "date": "2026-06-13",
-      "hour": "11:00"
+      "hour": "11:00",
+      "sourceUrl": "https://hasimta.com/shows/%d7%94%d7%99%d7%9c%d7%93%d7%94-%d7%95%d7%94%d7%99%d7%9d-%d7%94%d7%a6%d7%92%d7%94-%d7%99%d7%9c%d7%93%d7%99%d7%9d/",
+      "ticketUrl": "https://eventbuzz.co.il/4uf0m"
     },
     {
       "showId": 353,
       "showSlug": "חפץ-לב",
       "date": "2026-05-14",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://hasimta.com/shows/%d7%97%d7%a4%d7%a5-%d7%9c%d7%91/",
+      "ticketUrl": "https://eventbuzz.co.il/vxqpg"
     },
     {
       "showId": 353,
       "showSlug": "חפץ-לב",
       "date": "2026-05-15",
-      "hour": "14:00"
+      "hour": "14:00",
+      "sourceUrl": "https://hasimta.com/shows/%d7%97%d7%a4%d7%a5-%d7%9c%d7%91/",
+      "ticketUrl": "https://eventbuzz.co.il/znj6o"
     },
     {
       "showId": 423,
       "showSlug": "סודות-בוערים",
       "date": "2026-05-26",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://hasimta.com/shows/%d7%a1%d7%95%d7%93%d7%95%d7%aa-%d7%91%d7%95%d7%a2%d7%a8%d7%99%d7%9d/",
+      "ticketUrl": "https://eventbuzz.co.il/l41wg"
     },
     {
       "showId": 476,
       "showSlug": "פרדוקס",
       "date": "2026-05-24",
-      "hour": "20:00"
+      "hour": "20:00",
+      "sourceUrl": "https://hasimta.com/shows/%d7%a4%d7%a8%d7%93%d7%95%d7%a7%d7%a1/",
+      "ticketUrl": "https://eventbuzz.co.il/gm6ib"
     },
     {
       "showId": 355,
       "showSlug": "רק-בשמחות",
       "date": "2026-05-31",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://hasimta.com/shows/%d7%a8%d7%a7-%d7%91%d7%a9%d7%9e%d7%97%d7%95%d7%aa/",
+      "ticketUrl": "https://eventbuzz.co.il/6icvj"
     },
     {
       "showId": 355,
       "showSlug": "רק-בשמחות",
       "date": "2026-06-26",
-      "hour": "13:30"
+      "hour": "13:30",
+      "sourceUrl": "https://hasimta.com/shows/%d7%a8%d7%a7-%d7%91%d7%a9%d7%9e%d7%97%d7%95%d7%aa/",
+      "ticketUrl": "https://eventbuzz.co.il/dgou9"
     },
     {
       "showId": 355,
       "showSlug": "רק-בשמחות",
       "date": "2026-06-27",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://hasimta.com/shows/%d7%a8%d7%a7-%d7%91%d7%a9%d7%9e%d7%97%d7%95%d7%aa/",
+      "ticketUrl": "https://eventbuzz.co.il/a0e2c"
     },
     {
       "showId": 355,
       "showSlug": "רק-בשמחות",
       "date": "2026-07-30",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://hasimta.com/shows/%d7%a8%d7%a7-%d7%91%d7%a9%d7%9e%d7%97%d7%95%d7%aa/",
+      "ticketUrl": "https://eventbuzz.co.il/iall8"
     },
     {
       "showId": 355,
       "showSlug": "רק-בשמחות",
       "date": "2026-07-31",
-      "hour": "13:30"
+      "hour": "13:30",
+      "sourceUrl": "https://hasimta.com/shows/%d7%a8%d7%a7-%d7%91%d7%a9%d7%9e%d7%97%d7%95%d7%aa/",
+      "ticketUrl": "https://eventbuzz.co.il/a1icv"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:22:18.983Z",
+  "scrapedAt": "2026-05-11T04:39:57.140Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון חולון",
@@ -10,85 +10,120 @@
       "showId": 270,
       "showSlug": "שעה-של-שקט",
       "date": "2026-05-11",
-      "hour": "11:30"
+      "hour": "11:30",
+      "sourceUrl": "https://www.hth.co.il/events/%d7%a9%d7%a2%d7%94-%d7%a9%d7%9c-%d7%a9%d7%a7%d7%98-2/"
+    },
+    {
+      "showId": 50,
+      "showSlug": "בית-בובות",
+      "date": "2026-05-12",
+      "hour": "20:30",
+      "sourceUrl": "https://www.hth.co.il/events/%d7%91%d7%99%d7%aa-%d7%94%d7%91%d7%95%d7%91%d7%95%d7%aa-%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%91%d7%99%d7%9e%d7%94/"
+    },
+    {
+      "showId": 50,
+      "showSlug": "בית-בובות",
+      "date": "2026-05-14",
+      "hour": "20:30",
+      "sourceUrl": "https://www.hth.co.il/events/%d7%91%d7%99%d7%aa-%d7%94%d7%91%d7%95%d7%91%d7%95%d7%aa-%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%91%d7%99%d7%9e%d7%94/"
     },
     {
       "showId": 61,
       "showSlug": "בחורים-טובים",
       "date": "2026-06-21",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.hth.co.il/events/%d7%91%d7%97%d7%95%d7%a8%d7%99%d7%9d-%d7%98%d7%95%d7%91%d7%99%d7%9d-%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%91%d7%99%d7%aa-%d7%9c%d7%99%d7%a1%d7%99%d7%9f/"
     },
     {
       "showId": 61,
       "showSlug": "בחורים-טובים",
       "date": "2026-06-22",
-      "hour": "17:00"
+      "hour": "17:00",
+      "sourceUrl": "https://www.hth.co.il/events/%d7%91%d7%97%d7%95%d7%a8%d7%99%d7%9d-%d7%98%d7%95%d7%91%d7%99%d7%9d-%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%91%d7%99%d7%aa-%d7%9c%d7%99%d7%a1%d7%99%d7%9f/"
     },
     {
       "showId": 61,
       "showSlug": "בחורים-טובים",
       "date": "2026-06-22",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.hth.co.il/events/%d7%91%d7%97%d7%95%d7%a8%d7%99%d7%9d-%d7%98%d7%95%d7%91%d7%99%d7%9d-%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%91%d7%99%d7%aa-%d7%9c%d7%99%d7%a1%d7%99%d7%9f/"
     },
     {
       "showId": 115,
       "showSlug": "התשמע-קולי",
       "date": "2026-06-25",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.hth.co.il/events/%d7%94%d7%aa%d7%a9%d7%9e%d7%a2-%d7%a7%d7%95%d7%9c%d7%99-%d7%94%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%a2%d7%91%d7%a8%d7%99/"
     },
     {
       "showId": 266,
       "showSlug": "מיקה-שלי",
       "date": "2026-06-27",
-      "hour": "21:30"
+      "hour": "21:30",
+      "sourceUrl": "https://www.hth.co.il/events/%d7%9e%d7%99%d7%a7%d7%94-%d7%a9%d7%9c%d7%99-%d7%9e%d7%97%d7%96%d7%9e%d7%a8/"
     },
     {
       "showId": 4,
       "showSlug": "מי-בעד",
       "date": "2026-07-01",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.hth.co.il/events/%d7%9e%d7%99-%d7%91%d7%a2%d7%93-%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%a7%d7%90%d7%9e%d7%a8%d7%99/"
     },
     {
       "showId": 4,
       "showSlug": "מי-בעד",
       "date": "2026-07-02",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.hth.co.il/events/%d7%9e%d7%99-%d7%91%d7%a2%d7%93-%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%a7%d7%90%d7%9e%d7%a8%d7%99/"
     },
     {
       "showId": 114,
       "showSlug": "עפרה",
       "date": "2026-07-08",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.hth.co.il/events/%d7%a2%d7%95%d7%a4%d7%a8%d7%94-%d7%94%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%a2%d7%91%d7%a8%d7%99/"
     },
     {
       "showId": 269,
       "showSlug": "דרושה-עוזרת",
       "date": "2026-07-13",
-      "hour": "11:00"
+      "hour": "11:00",
+      "sourceUrl": "https://www.hth.co.il/events/%d7%93%d7%a8%d7%95%d7%a9%d7%94-%d7%a2%d7%95%d7%96%d7%a8%d7%aa-%d7%a7%d7%95%d7%9e%d7%93%d7%99%d7%94-%d7%9e%d7%98%d7%95%d7%a8%d7%a4%d7%aa-2/"
     },
     {
       "showId": 122,
       "showSlug": "צלילי-המוסיקה",
       "date": "2026-07-14",
-      "hour": "18:00"
+      "hour": "18:00",
+      "sourceUrl": "https://www.hth.co.il/events/%d7%a6%d7%9c%d7%99%d7%9c%d7%99-%d7%94%d7%9e%d7%95%d7%a1%d7%99%d7%a7%d7%94-%d7%94%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%a2%d7%91%d7%a8%d7%99/"
     },
     {
       "showId": 94,
       "showSlug": "משרתם-של-שני-אדונים",
       "date": "2026-07-26",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.hth.co.il/events/%d7%9e%d7%a9%d7%a8%d7%aa%d7%9d-%d7%a9%d7%9c-%d7%a9%d7%a0%d7%99-%d7%90%d7%93%d7%95%d7%a0%d7%99%d7%9d-%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%97%d7%90%d7%9f/"
     },
     {
       "showId": 94,
       "showSlug": "משרתם-של-שני-אדונים",
       "date": "2026-07-27",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.hth.co.il/events/%d7%9e%d7%a9%d7%a8%d7%aa%d7%9d-%d7%a9%d7%9c-%d7%a9%d7%a0%d7%99-%d7%90%d7%93%d7%95%d7%a0%d7%99%d7%9d-%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%97%d7%90%d7%9f/"
     },
     {
       "showId": 123,
       "showSlug": "השוטר-אזולאי",
       "date": "2026-09-03",
-      "hour": "20:30"
+      "hour": "20:30",
+      "sourceUrl": "https://www.hth.co.il/events/%d7%94%d7%a9%d7%95%d7%98%d7%a8-%d7%90%d7%96%d7%95%d7%9c%d7%90%d7%99-%d7%94%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%a2%d7%91%d7%a8%d7%99/"
+    },
+    {
+      "showId": 117,
+      "showSlug": "הלב-שלי-בחר",
+      "date": "2026-10-27",
+      "hour": "20:30",
+      "sourceUrl": "https://www.hth.co.il/events/%d7%94%d7%9c%d7%91-%d7%a9%d7%9c%d7%99-%d7%91%d7%97%d7%a8-%d7%94%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%9f-%d7%94%d7%a2%d7%91%d7%a8%d7%99/"
     }
   ]
 }

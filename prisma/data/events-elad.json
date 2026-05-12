@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:20:24.856Z",
+  "scrapedAt": "2026-05-12T04:26:15.487Z",
   "touring": true,
   "events": [
     {
@@ -8,7 +8,8 @@
       "date": "2026-05-18",
       "hour": "20:30",
       "venueName": "התומשיה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.elad-theater.co.il/room-201"
     },
     {
       "showId": 342,
@@ -16,7 +17,8 @@
       "date": "2026-05-19",
       "hour": "20:30",
       "venueName": "התומשיה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.elad-theater.co.il/room-201"
     },
     {
       "showId": 342,
@@ -24,7 +26,8 @@
       "date": "2026-05-26",
       "hour": "20:30",
       "venueName": "התומשיה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.elad-theater.co.il/room-201"
     },
     {
       "showId": 342,
@@ -32,7 +35,8 @@
       "date": "2026-06-08",
       "hour": "20:30",
       "venueName": "התומשיה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.elad-theater.co.il/room-201"
     },
     {
       "showId": 342,
@@ -40,7 +44,8 @@
       "date": "2026-06-09",
       "hour": "20:30",
       "venueName": "התומשיה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.elad-theater.co.il/room-201"
     },
     {
       "showId": 342,
@@ -48,7 +53,8 @@
       "date": "2026-06-17",
       "hour": "20:30",
       "venueName": "התומשיה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.elad-theater.co.il/room-201"
     },
     {
       "showId": 342,
@@ -56,7 +62,8 @@
       "date": "2026-06-18",
       "hour": "20:30",
       "venueName": "התומשיה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.elad-theater.co.il/room-201"
     },
     {
       "showId": 342,
@@ -64,7 +71,8 @@
       "date": "2026-06-20",
       "hour": "19:00",
       "venueName": "התומשיה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.elad-theater.co.il/room-201"
     },
     {
       "showId": 342,
@@ -72,7 +80,8 @@
       "date": "2026-06-20",
       "hour": "21:00",
       "venueName": "התומשיה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.elad-theater.co.il/room-201"
     },
     {
       "showId": 341,
@@ -80,7 +89,8 @@
       "date": "2026-06-04",
       "hour": "18:30",
       "venueName": "תיאטרון הקאמרי",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.elad-theater.co.il/not-easy-to-be-happy"
     },
     {
       "showId": 341,
@@ -88,7 +98,8 @@
       "date": "2026-06-04",
       "hour": "21:00",
       "venueName": "תיאטרון הקאמרי",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.elad-theater.co.il/not-easy-to-be-happy"
     }
   ]
 }

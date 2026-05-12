@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:17:57.037Z",
+  "scrapedAt": "2026-05-12T04:23:03.881Z",
   "touring": true,
   "events": [
     {
@@ -8,7 +8,9 @@
       "date": "2026-05-15",
       "hour": "11:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%90%d7%95%d7%99-%d7%90%d7%9c%d7%95%d7%94%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50107"
     },
     {
       "showId": 134,
@@ -16,7 +18,9 @@
       "date": "2026-05-16",
       "hour": "21:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%90%d7%95%d7%99-%d7%90%d7%9c%d7%95%d7%94%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50108"
     },
     {
       "showId": 134,
@@ -24,7 +28,9 @@
       "date": "2026-05-17",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%90%d7%95%d7%99-%d7%90%d7%9c%d7%95%d7%94%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50109"
     },
     {
       "showId": 134,
@@ -32,7 +38,9 @@
       "date": "2026-05-18",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%90%d7%95%d7%99-%d7%90%d7%9c%d7%95%d7%94%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50323"
     },
     {
       "showId": 134,
@@ -40,7 +48,9 @@
       "date": "2026-05-19",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%90%d7%95%d7%99-%d7%90%d7%9c%d7%95%d7%94%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50106"
     },
     {
       "showId": 134,
@@ -48,7 +58,9 @@
       "date": "2026-05-20",
       "hour": "21:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%90%d7%95%d7%99-%d7%90%d7%9c%d7%95%d7%94%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50110"
     },
     {
       "showId": 134,
@@ -56,7 +68,9 @@
       "date": "2026-06-28",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%90%d7%95%d7%99-%d7%90%d7%9c%d7%95%d7%94%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50380"
     },
     {
       "showId": 134,
@@ -64,7 +78,9 @@
       "date": "2026-06-29",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%90%d7%95%d7%99-%d7%90%d7%9c%d7%95%d7%94%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50379"
     },
     {
       "showId": 134,
@@ -72,7 +88,39 @@
       "date": "2026-06-30",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%90%d7%95%d7%99-%d7%90%d7%9c%d7%95%d7%94%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50378"
+    },
+    {
+      "showId": 134,
+      "showSlug": "אוי-אלוהים",
+      "date": "2026-07-01",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%90%d7%95%d7%99-%d7%90%d7%9c%d7%95%d7%94%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50474"
+    },
+    {
+      "showId": 134,
+      "showSlug": "אוי-אלוהים",
+      "date": "2026-07-02",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%90%d7%95%d7%99-%d7%90%d7%9c%d7%95%d7%94%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50475"
+    },
+    {
+      "showId": 134,
+      "showSlug": "אוי-אלוהים",
+      "date": "2026-07-04",
+      "hour": "21:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%90%d7%95%d7%99-%d7%90%d7%9c%d7%95%d7%94%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50476"
     },
     {
       "showId": 135,
@@ -80,7 +128,9 @@
       "date": "2026-06-15",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%91%d7%95%d7%a1%d7%aa%d7%9f-%d7%a1%d7%a4%d7%a8%d7%93%d7%99-2021/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50349"
     },
     {
       "showId": 135,
@@ -88,7 +138,9 @@
       "date": "2026-06-16",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%91%d7%95%d7%a1%d7%aa%d7%9f-%d7%a1%d7%a4%d7%a8%d7%93%d7%99-2021/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50350"
     },
     {
       "showId": 50,
@@ -96,7 +148,9 @@
       "date": "2026-05-28",
       "hour": "20:30",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%91%d7%99%d7%aa-%d7%91%d7%95%d7%91%d7%95%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50320"
     },
     {
       "showId": 50,
@@ -104,7 +158,9 @@
       "date": "2026-05-29",
       "hour": "12:30",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%91%d7%99%d7%aa-%d7%91%d7%95%d7%91%d7%95%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50321"
     },
     {
       "showId": 50,
@@ -112,7 +168,9 @@
       "date": "2026-05-30",
       "hour": "21:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%91%d7%99%d7%aa-%d7%91%d7%95%d7%91%d7%95%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50322"
     },
     {
       "showId": 54,
@@ -120,7 +178,9 @@
       "date": "2026-06-23",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%9c%d7%99%d7%9c%d7%94-%d7%94%d7%a9%d7%a0%d7%99%d7%9d-%d7%a2%d7%a9%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50357"
     },
     {
       "showId": 54,
@@ -128,7 +188,9 @@
       "date": "2026-06-24",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%9c%d7%99%d7%9c%d7%94-%d7%94%d7%a9%d7%a0%d7%99%d7%9d-%d7%a2%d7%a9%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50358"
     },
     {
       "showId": 54,
@@ -136,7 +198,9 @@
       "date": "2026-06-25",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%9c%d7%99%d7%9c%d7%94-%d7%94%d7%a9%d7%a0%d7%99%d7%9d-%d7%a2%d7%a9%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50359"
     },
     {
       "showId": 54,
@@ -144,7 +208,9 @@
       "date": "2026-06-26",
       "hour": "11:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%9c%d7%99%d7%9c%d7%94-%d7%94%d7%a9%d7%a0%d7%99%d7%9d-%d7%a2%d7%a9%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50399"
     },
     {
       "showId": 54,
@@ -152,7 +218,39 @@
       "date": "2026-06-27",
       "hour": "19:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%9c%d7%99%d7%9c%d7%94-%d7%94%d7%a9%d7%a0%d7%99%d7%9d-%d7%a2%d7%a9%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50360"
+    },
+    {
+      "showId": 54,
+      "showSlug": "הלילה-השנים-עשר",
+      "date": "2026-07-20",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%9c%d7%99%d7%9c%d7%94-%d7%94%d7%a9%d7%a0%d7%99%d7%9d-%d7%a2%d7%a9%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50497"
+    },
+    {
+      "showId": 54,
+      "showSlug": "הלילה-השנים-עשר",
+      "date": "2026-07-21",
+      "hour": "18:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%9c%d7%99%d7%9c%d7%94-%d7%94%d7%a9%d7%a0%d7%99%d7%9d-%d7%a2%d7%a9%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50498"
+    },
+    {
+      "showId": 54,
+      "showSlug": "הלילה-השנים-עשר",
+      "date": "2026-07-21",
+      "hour": "21:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%9c%d7%99%d7%9c%d7%94-%d7%94%d7%a9%d7%a0%d7%99%d7%9d-%d7%a2%d7%a9%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50499"
     },
     {
       "showId": 36,
@@ -160,7 +258,9 @@
       "date": "2026-06-07",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%a0%d7%a2%d7%a8%d7%94-%d7%9e%d7%94%d7%93%d7%95%d7%90%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50386"
     },
     {
       "showId": 36,
@@ -168,7 +268,9 @@
       "date": "2026-06-08",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%a0%d7%a2%d7%a8%d7%94-%d7%9e%d7%94%d7%93%d7%95%d7%90%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50387"
     },
     {
       "showId": 36,
@@ -176,7 +278,9 @@
       "date": "2026-06-09",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%a0%d7%a2%d7%a8%d7%94-%d7%9e%d7%94%d7%93%d7%95%d7%90%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50388"
     },
     {
       "showId": 36,
@@ -184,7 +288,9 @@
       "date": "2026-07-23",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%a0%d7%a2%d7%a8%d7%94-%d7%9e%d7%94%d7%93%d7%95%d7%90%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50442"
     },
     {
       "showId": 36,
@@ -192,7 +298,19 @@
       "date": "2026-07-24",
       "hour": "11:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%a0%d7%a2%d7%a8%d7%94-%d7%9e%d7%94%d7%93%d7%95%d7%90%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50443"
+    },
+    {
+      "showId": 36,
+      "showSlug": "הנערה-מהדואר",
+      "date": "2026-07-25",
+      "hour": "21:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%a0%d7%a2%d7%a8%d7%94-%d7%9e%d7%94%d7%93%d7%95%d7%90%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50485"
     },
     {
       "showId": 42,
@@ -200,7 +318,9 @@
       "date": "2026-06-21",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%a2%d7%a8%d7%aa-%d7%a9%d7%95%d7%9c%d7%99%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50355"
     },
     {
       "showId": 42,
@@ -208,7 +328,9 @@
       "date": "2026-06-22",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%a2%d7%a8%d7%aa-%d7%a9%d7%95%d7%9c%d7%99%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50356"
     },
     {
       "showId": 139,
@@ -216,7 +338,9 @@
       "date": "2026-06-19",
       "hour": "12:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9c%d7%94%d7%aa%d7%a8%d7%90%d7%95%d7%aa-%d7%95%d7%aa%d7%95%d7%93%d7%94-%d7%a2%d7%9c-%d7%94%d7%a7%d7%a8%d7%9e%d7%a9%d7%a0%d7%99%d7%98/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50402"
     },
     {
       "showId": 139,
@@ -224,7 +348,9 @@
       "date": "2026-06-20",
       "hour": "17:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9c%d7%94%d7%aa%d7%a8%d7%90%d7%95%d7%aa-%d7%95%d7%aa%d7%95%d7%93%d7%94-%d7%a2%d7%9c-%d7%94%d7%a7%d7%a8%d7%9e%d7%a9%d7%a0%d7%99%d7%98/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50403"
     },
     {
       "showId": 139,
@@ -232,7 +358,9 @@
       "date": "2026-06-21",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9c%d7%94%d7%aa%d7%a8%d7%90%d7%95%d7%aa-%d7%95%d7%aa%d7%95%d7%93%d7%94-%d7%a2%d7%9c-%d7%94%d7%a7%d7%a8%d7%9e%d7%a9%d7%a0%d7%99%d7%98/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50404"
     },
     {
       "showId": 139,
@@ -240,7 +368,9 @@
       "date": "2026-06-22",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9c%d7%94%d7%aa%d7%a8%d7%90%d7%95%d7%aa-%d7%95%d7%aa%d7%95%d7%93%d7%94-%d7%a2%d7%9c-%d7%94%d7%a7%d7%a8%d7%9e%d7%a9%d7%a0%d7%99%d7%98/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50405"
     },
     {
       "showId": 139,
@@ -248,7 +378,9 @@
       "date": "2026-06-25",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9c%d7%94%d7%aa%d7%a8%d7%90%d7%95%d7%aa-%d7%95%d7%aa%d7%95%d7%93%d7%94-%d7%a2%d7%9c-%d7%94%d7%a7%d7%a8%d7%9e%d7%a9%d7%a0%d7%99%d7%98/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50410"
     },
     {
       "showId": 139,
@@ -256,7 +388,9 @@
       "date": "2026-06-26",
       "hour": "11:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9c%d7%94%d7%aa%d7%a8%d7%90%d7%95%d7%aa-%d7%95%d7%aa%d7%95%d7%93%d7%94-%d7%a2%d7%9c-%d7%94%d7%a7%d7%a8%d7%9e%d7%a9%d7%a0%d7%99%d7%98/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50411"
     },
     {
       "showId": 139,
@@ -264,7 +398,39 @@
       "date": "2026-06-27",
       "hour": "19:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9c%d7%94%d7%aa%d7%a8%d7%90%d7%95%d7%aa-%d7%95%d7%aa%d7%95%d7%93%d7%94-%d7%a2%d7%9c-%d7%94%d7%a7%d7%a8%d7%9e%d7%a9%d7%a0%d7%99%d7%98/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50409"
+    },
+    {
+      "showId": 139,
+      "showSlug": "להתראות-ותודה-על-הקרמשניט",
+      "date": "2026-07-23",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9c%d7%94%d7%aa%d7%a8%d7%90%d7%95%d7%aa-%d7%95%d7%aa%d7%95%d7%93%d7%94-%d7%a2%d7%9c-%d7%94%d7%a7%d7%a8%d7%9e%d7%a9%d7%a0%d7%99%d7%98/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50500"
+    },
+    {
+      "showId": 139,
+      "showSlug": "להתראות-ותודה-על-הקרמשניט",
+      "date": "2026-07-24",
+      "hour": "11:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9c%d7%94%d7%aa%d7%a8%d7%90%d7%95%d7%aa-%d7%95%d7%aa%d7%95%d7%93%d7%94-%d7%a2%d7%9c-%d7%94%d7%a7%d7%a8%d7%9e%d7%a9%d7%a0%d7%99%d7%98/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50501"
+    },
+    {
+      "showId": 139,
+      "showSlug": "להתראות-ותודה-על-הקרמשניט",
+      "date": "2026-07-25",
+      "hour": "21:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9c%d7%94%d7%aa%d7%a8%d7%90%d7%95%d7%aa-%d7%95%d7%aa%d7%95%d7%93%d7%94-%d7%a2%d7%9c-%d7%94%d7%a7%d7%a8%d7%9e%d7%a9%d7%a0%d7%99%d7%98/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50502"
     },
     {
       "showId": 140,
@@ -272,7 +438,9 @@
       "date": "2026-05-29",
       "hour": "11:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%97%d7%95%d7%95%d7%94-%d7%9c%d7%93%d7%99%d7%95%d7%95%d7%aa-%d7%94%d7%92%d7%93%d7%95%d7%9c%d7%95%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50066"
     },
     {
       "showId": 140,
@@ -280,7 +448,9 @@
       "date": "2026-05-29",
       "hour": "13:30",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%97%d7%95%d7%95%d7%94-%d7%9c%d7%93%d7%99%d7%95%d7%95%d7%aa-%d7%94%d7%92%d7%93%d7%95%d7%9c%d7%95%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50065"
     },
     {
       "showId": 140,
@@ -288,7 +458,9 @@
       "date": "2026-05-30",
       "hour": "18:30",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%97%d7%95%d7%95%d7%94-%d7%9c%d7%93%d7%99%d7%95%d7%95%d7%aa-%d7%94%d7%92%d7%93%d7%95%d7%9c%d7%95%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/49780"
     },
     {
       "showId": 52,
@@ -296,7 +468,9 @@
       "date": "2026-05-23",
       "hour": "21:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%99-%d7%90%d7%aa-%d7%97%d7%95%d7%a9%d7%91%d7%aa-%d7%a9%d7%90%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50319"
     },
     {
       "showId": 52,
@@ -304,7 +478,9 @@
       "date": "2026-05-24",
       "hour": "18:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%99-%d7%90%d7%aa-%d7%97%d7%95%d7%a9%d7%91%d7%aa-%d7%a9%d7%90%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50229"
     },
     {
       "showId": 52,
@@ -312,7 +488,9 @@
       "date": "2026-05-25",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%99-%d7%90%d7%aa-%d7%97%d7%95%d7%a9%d7%91%d7%aa-%d7%a9%d7%90%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50230"
     },
     {
       "showId": 52,
@@ -320,7 +498,9 @@
       "date": "2026-05-26",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%99-%d7%90%d7%aa-%d7%97%d7%95%d7%a9%d7%91%d7%aa-%d7%a9%d7%90%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50231"
     },
     {
       "showId": 52,
@@ -328,7 +508,9 @@
       "date": "2026-06-04",
       "hour": "21:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%99-%d7%90%d7%aa-%d7%97%d7%95%d7%a9%d7%91%d7%aa-%d7%a9%d7%90%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50392"
     },
     {
       "showId": 52,
@@ -336,7 +518,9 @@
       "date": "2026-06-05",
       "hour": "11:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%99-%d7%90%d7%aa-%d7%97%d7%95%d7%a9%d7%91%d7%aa-%d7%a9%d7%90%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50389"
     },
     {
       "showId": 52,
@@ -344,7 +528,29 @@
       "date": "2026-06-06",
       "hour": "18:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%99-%d7%90%d7%aa-%d7%97%d7%95%d7%a9%d7%91%d7%aa-%d7%a9%d7%90%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50390"
+    },
+    {
+      "showId": 52,
+      "showSlug": "מי-את-חושבת-שאת",
+      "date": "2026-07-06",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%99-%d7%90%d7%aa-%d7%97%d7%95%d7%a9%d7%91%d7%aa-%d7%a9%d7%90%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50477"
+    },
+    {
+      "showId": 52,
+      "showSlug": "מי-את-חושבת-שאת",
+      "date": "2026-07-07",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%99-%d7%90%d7%aa-%d7%97%d7%95%d7%a9%d7%91%d7%aa-%d7%a9%d7%90%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50478"
     },
     {
       "showId": 57,
@@ -352,7 +558,9 @@
       "date": "2026-05-31",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%9c%d7%90%d7%9b%d7%99%d7%9d-%d7%91%d7%9c%d7%91%d7%9f/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50232"
     },
     {
       "showId": 57,
@@ -360,7 +568,9 @@
       "date": "2026-06-01",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%9c%d7%90%d7%9b%d7%99%d7%9d-%d7%91%d7%9c%d7%91%d7%9f/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50374"
     },
     {
       "showId": 57,
@@ -368,7 +578,9 @@
       "date": "2026-06-02",
       "hour": "19:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%9c%d7%90%d7%9b%d7%99%d7%9d-%d7%91%d7%9c%d7%91%d7%9f/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50375"
     },
     {
       "showId": 57,
@@ -376,7 +588,9 @@
       "date": "2026-06-03",
       "hour": "18:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%9c%d7%90%d7%9b%d7%99%d7%9d-%d7%91%d7%9c%d7%91%d7%9f/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50376"
     },
     {
       "showId": 57,
@@ -384,15 +598,39 @@
       "date": "2026-06-03",
       "hour": "20:30",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%9c%d7%90%d7%9b%d7%99%d7%9d-%d7%91%d7%9c%d7%91%d7%9f/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50377"
     },
     {
-      "showId": 34,
-      "showSlug": "מעבר-לדלת",
-      "date": "2026-05-09",
-      "hour": "21:00",
+      "showId": 57,
+      "showSlug": "מלאכים-בלבן",
+      "date": "2026-07-08",
+      "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%9c%d7%90%d7%9b%d7%99%d7%9d-%d7%91%d7%9c%d7%91%d7%9f/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50479"
+    },
+    {
+      "showId": 57,
+      "showSlug": "מלאכים-בלבן",
+      "date": "2026-07-10",
+      "hour": "11:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%9c%d7%90%d7%9b%d7%99%d7%9d-%d7%91%d7%9c%d7%91%d7%9f/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50480"
+    },
+    {
+      "showId": 57,
+      "showSlug": "מלאכים-בלבן",
+      "date": "2026-07-12",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%9c%d7%90%d7%9b%d7%99%d7%9d-%d7%91%d7%9c%d7%91%d7%9f/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50481"
     },
     {
       "showId": 34,
@@ -400,7 +638,9 @@
       "date": "2026-05-12",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a2%d7%91%d7%a8-%d7%9c%d7%93%d7%9c%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50428"
     },
     {
       "showId": 34,
@@ -408,7 +648,9 @@
       "date": "2026-06-09",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a2%d7%91%d7%a8-%d7%9c%d7%93%d7%9c%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50367"
     },
     {
       "showId": 34,
@@ -416,7 +658,29 @@
       "date": "2026-06-10",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a2%d7%91%d7%a8-%d7%9c%d7%93%d7%9c%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50368"
+    },
+    {
+      "showId": 34,
+      "showSlug": "מעבר-לדלת",
+      "date": "2026-07-26",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a2%d7%91%d7%a8-%d7%9c%d7%93%d7%9c%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50472"
+    },
+    {
+      "showId": 34,
+      "showSlug": "מעבר-לדלת",
+      "date": "2026-07-27",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a2%d7%91%d7%a8-%d7%9c%d7%93%d7%9c%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50473"
     },
     {
       "showId": 56,
@@ -424,7 +688,9 @@
       "date": "2026-05-31",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a2%d7%92%d7%9c-%d7%94%d7%92%d7%99%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50245"
     },
     {
       "showId": 56,
@@ -432,7 +698,9 @@
       "date": "2026-06-01",
       "hour": "17:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a2%d7%92%d7%9c-%d7%94%d7%92%d7%99%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50335"
     },
     {
       "showId": 56,
@@ -440,7 +708,29 @@
       "date": "2026-06-01",
       "hour": "20:30",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a2%d7%92%d7%9c-%d7%94%d7%92%d7%99%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50336"
+    },
+    {
+      "showId": 56,
+      "showSlug": "מעגל-הגיר-הקווקזי",
+      "date": "2026-07-28",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a2%d7%92%d7%9c-%d7%94%d7%92%d7%99%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50503"
+    },
+    {
+      "showId": 56,
+      "showSlug": "מעגל-הגיר-הקווקזי",
+      "date": "2026-07-29",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a2%d7%92%d7%9c-%d7%94%d7%92%d7%99%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50504"
     },
     {
       "showId": 47,
@@ -448,7 +738,9 @@
       "date": "2026-05-19",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a8%d7%a6%d7%99%d7%a4%d7%a0%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50326"
     },
     {
       "showId": 47,
@@ -456,7 +748,9 @@
       "date": "2026-05-23",
       "hour": "18:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a8%d7%a6%d7%99%d7%a4%d7%a0%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50415"
     },
     {
       "showId": 47,
@@ -464,7 +758,9 @@
       "date": "2026-06-01",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a8%d7%a6%d7%99%d7%a4%d7%a0%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50364"
     },
     {
       "showId": 47,
@@ -472,7 +768,9 @@
       "date": "2026-06-02",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a8%d7%a6%d7%99%d7%a4%d7%a0%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50365"
     },
     {
       "showId": 47,
@@ -480,7 +778,9 @@
       "date": "2026-06-03",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a8%d7%a6%d7%99%d7%a4%d7%a0%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50366"
     },
     {
       "showId": 47,
@@ -488,7 +788,29 @@
       "date": "2026-06-15",
       "hour": "11:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a8%d7%a6%d7%99%d7%a4%d7%a0%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50459"
+    },
+    {
+      "showId": 47,
+      "showSlug": "מרציפנים",
+      "date": "2026-07-17",
+      "hour": "11:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a8%d7%a6%d7%99%d7%a4%d7%a0%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50467"
+    },
+    {
+      "showId": 47,
+      "showSlug": "מרציפנים",
+      "date": "2026-07-18",
+      "hour": "18:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a8%d7%a6%d7%99%d7%a4%d7%a0%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50468"
     },
     {
       "showId": 41,
@@ -496,7 +818,9 @@
       "date": "2026-05-14",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%94%d7%95-%d7%98%d7%95%d7%91/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50236"
     },
     {
       "showId": 41,
@@ -504,7 +828,9 @@
       "date": "2026-05-17",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%94%d7%95-%d7%98%d7%95%d7%91/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50237"
     },
     {
       "showId": 41,
@@ -512,7 +838,9 @@
       "date": "2026-05-18",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%94%d7%95-%d7%98%d7%95%d7%91/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50238"
     },
     {
       "showId": 41,
@@ -520,7 +848,9 @@
       "date": "2026-06-18",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%94%d7%95-%d7%98%d7%95%d7%91/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50369"
     },
     {
       "showId": 41,
@@ -528,7 +858,9 @@
       "date": "2026-06-19",
       "hour": "11:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%94%d7%95-%d7%98%d7%95%d7%91/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50370"
     },
     {
       "showId": 41,
@@ -536,7 +868,39 @@
       "date": "2026-06-20",
       "hour": "18:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%94%d7%95-%d7%98%d7%95%d7%91/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50371"
+    },
+    {
+      "showId": 41,
+      "showSlug": "משהו-טוב",
+      "date": "2026-07-23",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%94%d7%95-%d7%98%d7%95%d7%91/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50469"
+    },
+    {
+      "showId": 41,
+      "showSlug": "משהו-טוב",
+      "date": "2026-07-24",
+      "hour": "11:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%94%d7%95-%d7%98%d7%95%d7%91/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50470"
+    },
+    {
+      "showId": 41,
+      "showSlug": "משהו-טוב",
+      "date": "2026-07-25",
+      "hour": "21:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%94%d7%95-%d7%98%d7%95%d7%91/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50471"
     },
     {
       "showId": 38,
@@ -544,7 +908,9 @@
       "date": "2026-05-20",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%9b%d7%a0%d7%aa%d7%90/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50316"
     },
     {
       "showId": 38,
@@ -552,7 +918,29 @@
       "date": "2026-05-23",
       "hour": "18:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%9b%d7%a0%d7%aa%d7%90/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50317"
+    },
+    {
+      "showId": 38,
+      "showSlug": "משכנתא",
+      "date": "2026-05-24",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%9b%d7%a0%d7%aa%d7%90/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50318"
+    },
+    {
+      "showId": 38,
+      "showSlug": "משכנתא",
+      "date": "2026-06-17",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%9b%d7%a0%d7%aa%d7%90/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50351"
     },
     {
       "showId": 38,
@@ -560,7 +948,9 @@
       "date": "2026-06-18",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%9b%d7%a0%d7%aa%d7%90/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50352"
     },
     {
       "showId": 38,
@@ -568,7 +958,9 @@
       "date": "2026-06-19",
       "hour": "11:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%9b%d7%a0%d7%aa%d7%90/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50353"
     },
     {
       "showId": 38,
@@ -576,7 +968,49 @@
       "date": "2026-06-20",
       "hour": "18:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%9b%d7%a0%d7%aa%d7%90/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50354"
+    },
+    {
+      "showId": 38,
+      "showSlug": "משכנתא",
+      "date": "2026-07-01",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%9b%d7%a0%d7%aa%d7%90/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50490"
+    },
+    {
+      "showId": 38,
+      "showSlug": "משכנתא",
+      "date": "2026-07-02",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%9b%d7%a0%d7%aa%d7%90/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50491"
+    },
+    {
+      "showId": 38,
+      "showSlug": "משכנתא",
+      "date": "2026-07-03",
+      "hour": "11:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%9b%d7%a0%d7%aa%d7%90/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50492"
+    },
+    {
+      "showId": 38,
+      "showSlug": "משכנתא",
+      "date": "2026-07-04",
+      "hour": "18:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%9b%d7%a0%d7%aa%d7%90/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50493"
     },
     {
       "showId": 141,
@@ -584,7 +1018,9 @@
       "date": "2026-06-04",
       "hour": "17:30",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a1%d7%99%d7%95%d7%a8-%d7%9e%d7%90%d7%97%d7%95%d7%a8%d7%99-%d7%94%d7%a7%d7%9c%d7%a2%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50435"
     },
     {
       "showId": 141,
@@ -592,7 +1028,9 @@
       "date": "2026-06-05",
       "hour": "10:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a1%d7%99%d7%95%d7%a8-%d7%9e%d7%90%d7%97%d7%95%d7%a8%d7%99-%d7%94%d7%a7%d7%9c%d7%a2%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50434"
     },
     {
       "showId": 141,
@@ -600,23 +1038,49 @@
       "date": "2026-06-19",
       "hour": "09:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a1%d7%99%d7%95%d7%a8-%d7%9e%d7%90%d7%97%d7%95%d7%a8%d7%99-%d7%94%d7%a7%d7%9c%d7%a2%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50454"
     },
     {
-      "showId": 48,
-      "showSlug": "פעולות-פשוטות",
-      "date": "2026-05-09",
+      "showId": 142,
+      "showSlug": "פינוקיו",
+      "date": "2026-07-29",
+      "hour": "16:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%99%d7%a0%d7%95%d7%a7%d7%99%d7%95/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50486"
+    },
+    {
+      "showId": 142,
+      "showSlug": "פינוקיו",
+      "date": "2026-07-29",
       "hour": "18:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%99%d7%a0%d7%95%d7%a7%d7%99%d7%95/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50487"
     },
     {
-      "showId": 48,
-      "showSlug": "פעולות-פשוטות",
-      "date": "2026-05-09",
-      "hour": "21:00",
+      "showId": 142,
+      "showSlug": "פינוקיו",
+      "date": "2026-07-30",
+      "hour": "16:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%99%d7%a0%d7%95%d7%a7%d7%99%d7%95/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50488"
+    },
+    {
+      "showId": 142,
+      "showSlug": "פינוקיו",
+      "date": "2026-07-30",
+      "hour": "18:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%99%d7%a0%d7%95%d7%a7%d7%99%d7%95/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50489"
     },
     {
       "showId": 48,
@@ -624,7 +1088,9 @@
       "date": "2026-06-10",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a2%d7%95%d7%9c%d7%95%d7%aa-%d7%a4%d7%a9%d7%95%d7%98%d7%95%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50382"
     },
     {
       "showId": 48,
@@ -632,7 +1098,9 @@
       "date": "2026-06-11",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a2%d7%95%d7%9c%d7%95%d7%aa-%d7%a4%d7%a9%d7%95%d7%98%d7%95%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50383"
     },
     {
       "showId": 48,
@@ -640,7 +1108,9 @@
       "date": "2026-06-12",
       "hour": "11:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a2%d7%95%d7%9c%d7%95%d7%aa-%d7%a4%d7%a9%d7%95%d7%98%d7%95%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50384"
     },
     {
       "showId": 48,
@@ -648,39 +1118,39 @@
       "date": "2026-06-13",
       "hour": "18:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a2%d7%95%d7%9c%d7%95%d7%aa-%d7%a4%d7%a9%d7%95%d7%98%d7%95%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50385"
     },
     {
-      "showId": 35,
-      "showSlug": "פריסילה-מלכת-המדבר",
-      "date": "2026-05-09",
-      "hour": "21:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 35,
-      "showSlug": "פריסילה-מלכת-המדבר",
-      "date": "2026-05-10",
-      "hour": "17:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 35,
-      "showSlug": "פריסילה-מלכת-המדבר",
-      "date": "2026-05-10",
-      "hour": "21:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 35,
-      "showSlug": "פריסילה-מלכת-המדבר",
-      "date": "2026-05-11",
+      "showId": 48,
+      "showSlug": "פעולות-פשוטות",
+      "date": "2026-07-14",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a2%d7%95%d7%9c%d7%95%d7%aa-%d7%a4%d7%a9%d7%95%d7%98%d7%95%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50482"
+    },
+    {
+      "showId": 48,
+      "showSlug": "פעולות-פשוטות",
+      "date": "2026-07-15",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a2%d7%95%d7%9c%d7%95%d7%aa-%d7%a4%d7%a9%d7%95%d7%98%d7%95%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50483"
+    },
+    {
+      "showId": 48,
+      "showSlug": "פעולות-פשוטות",
+      "date": "2026-07-16",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a2%d7%95%d7%9c%d7%95%d7%aa-%d7%a4%d7%a9%d7%95%d7%98%d7%95%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50484"
     },
     {
       "showId": 35,
@@ -688,7 +1158,9 @@
       "date": "2026-05-12",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50264"
     },
     {
       "showId": 35,
@@ -696,7 +1168,9 @@
       "date": "2026-05-14",
       "hour": "17:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50265"
     },
     {
       "showId": 35,
@@ -704,7 +1178,9 @@
       "date": "2026-05-16",
       "hour": "21:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50266"
     },
     {
       "showId": 35,
@@ -712,7 +1188,9 @@
       "date": "2026-05-17",
       "hour": "17:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50267"
     },
     {
       "showId": 35,
@@ -720,7 +1198,9 @@
       "date": "2026-05-17",
       "hour": "21:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50268"
     },
     {
       "showId": 35,
@@ -728,7 +1208,9 @@
       "date": "2026-05-18",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50269"
     },
     {
       "showId": 35,
@@ -736,7 +1218,9 @@
       "date": "2026-06-03",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50337"
     },
     {
       "showId": 35,
@@ -744,7 +1228,9 @@
       "date": "2026-06-04",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50338"
     },
     {
       "showId": 35,
@@ -752,7 +1238,9 @@
       "date": "2026-06-05",
       "hour": "12:30",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50339"
     },
     {
       "showId": 35,
@@ -760,7 +1248,9 @@
       "date": "2026-06-06",
       "hour": "21:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50340"
     },
     {
       "showId": 35,
@@ -768,7 +1258,9 @@
       "date": "2026-06-07",
       "hour": "17:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50341"
     },
     {
       "showId": 35,
@@ -776,7 +1268,9 @@
       "date": "2026-06-07",
       "hour": "21:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50342"
     },
     {
       "showId": 35,
@@ -784,7 +1278,9 @@
       "date": "2026-06-10",
       "hour": "17:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50344"
     },
     {
       "showId": 35,
@@ -792,7 +1288,9 @@
       "date": "2026-06-10",
       "hour": "21:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50345"
     },
     {
       "showId": 35,
@@ -800,7 +1298,9 @@
       "date": "2026-06-11",
       "hour": "21:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50346"
     },
     {
       "showId": 35,
@@ -808,7 +1308,9 @@
       "date": "2026-06-12",
       "hour": "11:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50347"
     },
     {
       "showId": 35,
@@ -816,7 +1318,59 @@
       "date": "2026-06-13",
       "hour": "21:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50348"
+    },
+    {
+      "showId": 35,
+      "showSlug": "פריסילה-מלכת-המדבר",
+      "date": "2026-07-06",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50494"
+    },
+    {
+      "showId": 35,
+      "showSlug": "פריסילה-מלכת-המדבר",
+      "date": "2026-07-07",
+      "hour": "17:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50495"
+    },
+    {
+      "showId": 35,
+      "showSlug": "פריסילה-מלכת-המדבר",
+      "date": "2026-07-07",
+      "hour": "21:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50496"
+    },
+    {
+      "showId": 35,
+      "showSlug": "פריסילה-מלכת-המדבר",
+      "date": "2026-07-10",
+      "hour": "12:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50507"
+    },
+    {
+      "showId": 35,
+      "showSlug": "פריסילה-מלכת-המדבר",
+      "date": "2026-07-11",
+      "hour": "21:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50509"
     },
     {
       "showId": 55,
@@ -824,7 +1378,9 @@
       "date": "2026-05-25",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a7%d7%96%d7%91%d7%9c%d7%9f/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50203"
     },
     {
       "showId": 55,
@@ -832,7 +1388,9 @@
       "date": "2026-05-26",
       "hour": "19:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a7%d7%96%d7%91%d7%9c%d7%9f/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50204"
     },
     {
       "showId": 55,
@@ -840,7 +1398,9 @@
       "date": "2026-05-27",
       "hour": "11:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a7%d7%96%d7%91%d7%9c%d7%9f/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50205"
     },
     {
       "showId": 55,
@@ -848,7 +1408,9 @@
       "date": "2026-05-28",
       "hour": "11:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a7%d7%96%d7%91%d7%9c%d7%9f/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50206"
     },
     {
       "showId": 59,
@@ -856,7 +1418,9 @@
       "date": "2026-05-24",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a8%d7%95%d7%9e%d7%99%d7%90%d7%95-%d7%95%d7%96%d7%95%d7%9c%d7%99%d7%99%d7%98/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50240"
     },
     {
       "showId": 59,
@@ -864,7 +1428,9 @@
       "date": "2026-05-25",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a8%d7%95%d7%9e%d7%99%d7%90%d7%95-%d7%95%d7%96%d7%95%d7%9c%d7%99%d7%99%d7%98/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50241"
     },
     {
       "showId": 59,
@@ -872,7 +1438,9 @@
       "date": "2026-06-28",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a8%d7%95%d7%9e%d7%99%d7%90%d7%95-%d7%95%d7%96%d7%95%d7%9c%d7%99%d7%99%d7%98/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50372"
     },
     {
       "showId": 59,
@@ -880,7 +1448,9 @@
       "date": "2026-06-29",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a8%d7%95%d7%9e%d7%99%d7%90%d7%95-%d7%95%d7%96%d7%95%d7%9c%d7%99%d7%99%d7%98/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50373"
     },
     {
       "showId": 145,
@@ -888,7 +1458,9 @@
       "date": "2026-06-28",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%aa%d7%a8%d7%a7%d7%93%d7%99-%d7%90%d7%99%d7%aa%d7%99/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50361"
     },
     {
       "showId": 145,
@@ -896,7 +1468,39 @@
       "date": "2026-06-29",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%aa%d7%a8%d7%a7%d7%93%d7%99-%d7%90%d7%99%d7%aa%d7%99/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50362"
+    },
+    {
+      "showId": 145,
+      "showSlug": "תרקדי-איתי",
+      "date": "2026-06-30",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%aa%d7%a8%d7%a7%d7%93%d7%99-%d7%90%d7%99%d7%aa%d7%99/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50363"
+    },
+    {
+      "showId": 145,
+      "showSlug": "תרקדי-איתי",
+      "date": "2026-07-30",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%aa%d7%a8%d7%a7%d7%93%d7%99-%d7%90%d7%99%d7%aa%d7%99/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50505"
+    },
+    {
+      "showId": 145,
+      "showSlug": "תרקדי-איתי",
+      "date": "2026-07-31",
+      "hour": "11:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%aa%d7%a8%d7%a7%d7%93%d7%99-%d7%90%d7%99%d7%aa%d7%99/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50506"
     }
   ]
 }

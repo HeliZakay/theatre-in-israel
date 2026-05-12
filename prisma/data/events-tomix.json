@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-09T04:19:02.032Z",
+  "scrapedAt": "2026-05-12T04:24:56.397Z",
   "touring": true,
   "events": [
     {
@@ -8,7 +8,8 @@
       "date": "2026-05-12",
       "hour": "20:30",
       "venueName": "בית ציוני אמריקה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/modernlovecomedy-show25/"
     },
     {
       "showId": 263,
@@ -16,7 +17,8 @@
       "date": "2026-05-16",
       "hour": "21:00",
       "venueName": "היכל התרבות כפר סבא",
-      "venueCity": "כפר סבא"
+      "venueCity": "כפר סבא",
+      "sourceUrl": "https://www.to-mix.co.il/product/modernlovecomedy-show25/"
     },
     {
       "showId": 263,
@@ -24,7 +26,8 @@
       "date": "2026-05-19",
       "hour": "20:30",
       "venueName": "היכל התרבות חבל מודיעין",
-      "venueCity": "איירפורט סיטי"
+      "venueCity": "איירפורט סיטי",
+      "sourceUrl": "https://www.to-mix.co.il/product/modernlovecomedy-show25/"
     },
     {
       "showId": 263,
@@ -32,7 +35,8 @@
       "date": "2026-05-23",
       "hour": "21:00",
       "venueName": "בית ציוני אמריקה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/modernlovecomedy-show25/"
     },
     {
       "showId": 263,
@@ -40,7 +44,8 @@
       "date": "2026-05-30",
       "hour": "21:00",
       "venueName": "מוזה היכל התרבות חוף הכרמל",
-      "venueCity": "חוף הכרמל"
+      "venueCity": "חוף הכרמל",
+      "sourceUrl": "https://www.to-mix.co.il/product/modernlovecomedy-show25/"
     },
     {
       "showId": 263,
@@ -48,7 +53,8 @@
       "date": "2026-06-19",
       "hour": "21:00",
       "venueName": "תיאטרון גבעתיים",
-      "venueCity": "גבעתיים"
+      "venueCity": "גבעתיים",
+      "sourceUrl": "https://www.to-mix.co.il/product/modernlovecomedy-show25/"
     },
     {
       "showId": 263,
@@ -56,7 +62,8 @@
       "date": "2026-06-27",
       "hour": "21:00",
       "venueName": "משכן אמנויות הבמה באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://www.to-mix.co.il/product/modernlovecomedy-show25/"
     },
     {
       "showId": 263,
@@ -64,7 +71,8 @@
       "date": "2026-07-02",
       "hour": "20:30",
       "venueName": "אודיטוריום חיפה",
-      "venueCity": "חיפה"
+      "venueCity": "חיפה",
+      "sourceUrl": "https://www.to-mix.co.il/product/modernlovecomedy-show25/"
     },
     {
       "showId": 263,
@@ -72,7 +80,8 @@
       "date": "2026-07-11",
       "hour": "21:00",
       "venueName": "אודיטוריום ע\"ש קלצ'קין",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/modernlovecomedy-show25/"
     },
     {
       "showId": 263,
@@ -80,7 +89,8 @@
       "date": "2026-07-18",
       "hour": "21:00",
       "venueName": "היכל אומנויות הבמה הרצליה",
-      "venueCity": "הרצליה"
+      "venueCity": "הרצליה",
+      "sourceUrl": "https://www.to-mix.co.il/product/modernlovecomedy-show25/"
     },
     {
       "showId": 263,
@@ -88,7 +98,8 @@
       "date": "2026-07-21",
       "hour": "20:30",
       "venueName": "היכל התרבות מודיעין",
-      "venueCity": "מודיעין"
+      "venueCity": "מודיעין",
+      "sourceUrl": "https://www.to-mix.co.il/product/modernlovecomedy-show25/"
     },
     {
       "showId": 263,
@@ -96,7 +107,8 @@
       "date": "2026-07-26",
       "hour": "20:30",
       "venueName": "תיאטרון ירושלים",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.to-mix.co.il/product/modernlovecomedy-show25/"
     },
     {
       "showId": 263,
@@ -104,7 +116,8 @@
       "date": "2026-07-31",
       "hour": "21:30",
       "venueName": "היכל התרבות דרום השרון",
-      "venueCity": "נווה ירק"
+      "venueCity": "נווה ירק",
+      "sourceUrl": "https://www.to-mix.co.il/product/modernlovecomedy-show25/"
     },
     {
       "showId": 263,
@@ -112,7 +125,8 @@
       "date": "2026-08-06",
       "hour": "20:30",
       "venueName": "הכיל התרבות - בית העם רחובות",
-      "venueCity": "רחובות"
+      "venueCity": "רחובות",
+      "sourceUrl": "https://www.to-mix.co.il/product/modernlovecomedy-show25/"
     },
     {
       "showId": 263,
@@ -120,7 +134,8 @@
       "date": "2026-08-21",
       "hour": "21:00",
       "venueName": "תיאטרון היהלום",
-      "venueCity": "רמת גן"
+      "venueCity": "רמת גן",
+      "sourceUrl": "https://www.to-mix.co.il/product/modernlovecomedy-show25/"
     },
     {
       "showId": 263,
@@ -128,7 +143,17 @@
       "date": "2026-11-03",
       "hour": "20:30",
       "venueName": "היכל התרבות פתח תקווה",
-      "venueCity": "פתח תקווה"
+      "venueCity": "פתח תקווה",
+      "sourceUrl": "https://www.to-mix.co.il/product/modernlovecomedy-show25/"
+    },
+    {
+      "showId": 264,
+      "showSlug": "אנני",
+      "date": "2026-08-20",
+      "hour": "18:00",
+      "venueName": "בנייני האומה",
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.to-mix.co.il/product/annieisr-bitan2-sum25/"
     },
     {
       "showId": 264,
@@ -136,7 +161,8 @@
       "date": "2026-08-26",
       "hour": "16:00",
       "venueName": "היכל התרבות ע\"ש צ'רלס ברונפמן",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/annieisr-bitan2-sum25/"
     },
     {
       "showId": 264,
@@ -144,7 +170,8 @@
       "date": "2026-08-27",
       "hour": "16:00",
       "venueName": "היכל התרבות ע\"ש צ'רלס ברונפמן",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/annieisr-bitan2-sum25/"
     },
     {
       "showId": 264,
@@ -152,23 +179,8 @@
       "date": "2026-08-28",
       "hour": "14:00",
       "venueName": "היכל התרבות ע\"ש צ'רלס ברונפמן",
-      "venueCity": "תל אביב"
-    },
-    {
-      "showId": 269,
-      "showSlug": "דרושה-עוזרת",
-      "date": "2026-05-08",
-      "hour": "21:00",
-      "venueName": "היכל אומנויות הבמה הרצליה",
-      "venueCity": "הרצליה"
-    },
-    {
-      "showId": 269,
-      "showSlug": "דרושה-עוזרת",
-      "date": "2026-05-09",
-      "hour": "21:00",
-      "venueName": "אודיטוריום ע\"ש קלצ'קין",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/annieisr-bitan2-sum25/"
     },
     {
       "showId": 269,
@@ -176,7 +188,8 @@
       "date": "2026-05-14",
       "hour": "20:30",
       "venueName": "היכל התרבות",
-      "venueCity": "בת ים"
+      "venueCity": "בת ים",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -184,7 +197,8 @@
       "date": "2026-05-16",
       "hour": "21:00",
       "venueName": "בית יד לבנים",
-      "venueCity": "רעננה"
+      "venueCity": "רעננה",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -192,7 +206,8 @@
       "date": "2026-05-23",
       "hour": "21:00",
       "venueName": "היכל התרבות נתניה",
-      "venueCity": "נתניה"
+      "venueCity": "נתניה",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -200,7 +215,8 @@
       "date": "2026-05-28",
       "hour": "20:30",
       "venueName": "היכל התרבות מעלה אדומים",
-      "venueCity": "מעלה אדומים"
+      "venueCity": "מעלה אדומים",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -208,7 +224,8 @@
       "date": "2026-05-29",
       "hour": "21:30",
       "venueName": "היכל התרבות כפר סבא",
-      "venueCity": "כפר סבא"
+      "venueCity": "כפר סבא",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -216,7 +233,8 @@
       "date": "2026-06-03",
       "hour": "20:30",
       "venueName": "היכל התרבות יבנה",
-      "venueCity": "יבנה"
+      "venueCity": "יבנה",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -224,7 +242,8 @@
       "date": "2026-06-04",
       "hour": "20:30",
       "venueName": "היכל התרבות עפולה",
-      "venueCity": "עפולה"
+      "venueCity": "עפולה",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -232,7 +251,8 @@
       "date": "2026-06-06",
       "hour": "21:00",
       "venueName": "אודיטוריום ע\"ש קלצ'קין",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -240,7 +260,8 @@
       "date": "2026-06-11",
       "hour": "20:30",
       "venueName": "היכל התרבות חבל מודיעין",
-      "venueCity": "איירפורט סיטי"
+      "venueCity": "איירפורט סיטי",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -248,7 +269,8 @@
       "date": "2026-06-12",
       "hour": "21:00",
       "venueName": "תיאטרון גבעתיים",
-      "venueCity": "גבעתיים"
+      "venueCity": "גבעתיים",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -256,7 +278,8 @@
       "date": "2026-06-17",
       "hour": "20:30",
       "venueName": "תיאטרון היהלום",
-      "venueCity": "רמת גן"
+      "venueCity": "רמת גן",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -264,7 +287,8 @@
       "date": "2026-06-18",
       "hour": "20:30",
       "venueName": "יד שטרית",
-      "venueCity": "טבריה"
+      "venueCity": "טבריה",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -272,7 +296,8 @@
       "date": "2026-06-19",
       "hour": "21:00",
       "venueName": "היכל התיאטרון",
-      "venueCity": "קרית מוצקין"
+      "venueCity": "קרית מוצקין",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -280,7 +305,8 @@
       "date": "2026-06-20",
       "hour": "21:00",
       "venueName": "היכל התרבות כרמיאל",
-      "venueCity": "כרמיאל"
+      "venueCity": "כרמיאל",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -288,7 +314,8 @@
       "date": "2026-06-24",
       "hour": "20:30",
       "venueName": "משכן אמנויות הבמה באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -296,7 +323,8 @@
       "date": "2026-07-04",
       "hour": "21:00",
       "venueName": "אודיטוריום ע\"ש קלצ'קין",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -304,7 +332,8 @@
       "date": "2026-07-10",
       "hour": "21:30",
       "venueName": "היכל התרבות כפר סבא",
-      "venueCity": "כפר סבא"
+      "venueCity": "כפר סבא",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -312,7 +341,8 @@
       "date": "2026-07-25",
       "hour": "21:30",
       "venueName": "היכל התרבות נס ציונה",
-      "venueCity": "נס ציונה"
+      "venueCity": "נס ציונה",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -320,7 +350,8 @@
       "date": "2026-07-30",
       "hour": "20:30",
       "venueName": "מתנ\"ס תל מונד",
-      "venueCity": "תל מונד"
+      "venueCity": "תל מונד",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -328,7 +359,8 @@
       "date": "2026-09-03",
       "hour": "20:30",
       "venueName": "היכל התרבות עכו",
-      "venueCity": "עכו"
+      "venueCity": "עכו",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -336,7 +368,8 @@
       "date": "2026-10-08",
       "hour": "20:30",
       "venueName": "היכל התרבות אור עקיבא",
-      "venueCity": "אור עקיבא"
+      "venueCity": "אור עקיבא",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -344,7 +377,8 @@
       "date": "2026-10-29",
       "hour": "20:30",
       "venueName": "היכל התרבות חוף הכרמל",
-      "venueCity": "חוף הכרמל"
+      "venueCity": "חוף הכרמל",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 269,
@@ -352,15 +386,8 @@
       "date": "2026-11-10",
       "hour": "20:30",
       "venueName": "היכל התרבות פתח תקווה",
-      "venueCity": "פתח תקווה"
-    },
-    {
-      "showId": 266,
-      "showSlug": "מיקה-שלי",
-      "date": "2026-05-10",
-      "hour": "20:30",
-      "venueName": "היכל התרבות פתח תקווה",
-      "venueCity": "פתח תקווה"
+      "venueCity": "פתח תקווה",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
       "showId": 266,
@@ -368,7 +395,8 @@
       "date": "2026-05-30",
       "hour": "21:30",
       "venueName": "המשכן לאומנויות הבמה אשדוד",
-      "venueCity": "אשדוד"
+      "venueCity": "אשדוד",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -376,7 +404,8 @@
       "date": "2026-06-11",
       "hour": "20:30",
       "venueName": "היכל התרבות כפר סבא",
-      "venueCity": "כפר סבא"
+      "venueCity": "כפר סבא",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -384,7 +413,8 @@
       "date": "2026-06-12",
       "hour": "21:00",
       "venueName": "היכל התרבות כפר סבא",
-      "venueCity": "כפר סבא"
+      "venueCity": "כפר סבא",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -392,7 +422,8 @@
       "date": "2026-06-13",
       "hour": "21:30",
       "venueName": "היכל התרבות יבנה",
-      "venueCity": "יבנה"
+      "venueCity": "יבנה",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -400,7 +431,8 @@
       "date": "2026-06-24",
       "hour": "20:00",
       "venueName": "אודיטוריום חיפה",
-      "venueCity": "חיפה"
+      "venueCity": "חיפה",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -408,7 +440,8 @@
       "date": "2026-06-25",
       "hour": "20:00",
       "venueName": "אודיטוריום חיפה",
-      "venueCity": "חיפה"
+      "venueCity": "חיפה",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -416,7 +449,8 @@
       "date": "2026-06-27",
       "hour": "21:30",
       "venueName": "תיאטרון חולון - בית יד לבנים",
-      "venueCity": "חולון"
+      "venueCity": "חולון",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -424,7 +458,17 @@
       "date": "2026-06-30",
       "hour": "20:30",
       "venueName": "תיאטרון ירושלים",
-      "venueCity": "ירושלים"
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-07-01",
+      "hour": "20:00",
+      "venueName": "המשכן לאמנויות הבמה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -432,7 +476,8 @@
       "date": "2026-07-11",
       "hour": "17:30",
       "venueName": "אודיטוריום סמולרש",
-      "venueCity": "אוניברסיטת תל אביב"
+      "venueCity": "אוניברסיטת תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -440,7 +485,8 @@
       "date": "2026-07-11",
       "hour": "21:00",
       "venueName": "אודיטוריום סמולרש",
-      "venueCity": "אוניברסיטת תל אביב"
+      "venueCity": "אוניברסיטת תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -448,7 +494,8 @@
       "date": "2026-07-12",
       "hour": "20:30",
       "venueName": "היכל התרבות חבל מודיעין",
-      "venueCity": "איירפורט סיטי"
+      "venueCity": "איירפורט סיטי",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -456,7 +503,8 @@
       "date": "2026-07-29",
       "hour": "20:30",
       "venueName": "אולם מופעים גבעת ברנר",
-      "venueCity": "גבעת ברנר"
+      "venueCity": "גבעת ברנר",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -464,7 +512,17 @@
       "date": "2026-08-01",
       "hour": "21:00",
       "venueName": "היכל התרבות נס ציונה",
-      "venueCity": "נס ציונה"
+      "venueCity": "נס ציונה",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-08-08",
+      "hour": "21:30",
+      "venueName": "היכל התרבות פתח תקווה",
+      "venueCity": "פתח תקווה",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -472,7 +530,8 @@
       "date": "2026-08-13",
       "hour": "20:30",
       "venueName": "היכל התיאטרון",
-      "venueCity": "קרית מוצקין"
+      "venueCity": "קרית מוצקין",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -480,7 +539,8 @@
       "date": "2026-08-14",
       "hour": "21:00",
       "venueName": "היכל התיאטרון",
-      "venueCity": "קרית מוצקין"
+      "venueCity": "קרית מוצקין",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -488,7 +548,8 @@
       "date": "2026-08-21",
       "hour": "21:00",
       "venueName": "היכל אומנויות הבמה הרצליה",
-      "venueCity": "הרצליה"
+      "venueCity": "הרצליה",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -496,7 +557,8 @@
       "date": "2026-08-22",
       "hour": "21:00",
       "venueName": "היכל אומנויות הבמה הרצליה",
-      "venueCity": "הרצליה"
+      "venueCity": "הרצליה",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -504,7 +566,8 @@
       "date": "2026-09-03",
       "hour": "20:30",
       "venueName": "היכל התרבות ראש העין",
-      "venueCity": "ראש העין"
+      "venueCity": "ראש העין",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -512,7 +575,8 @@
       "date": "2026-09-19",
       "hour": "21:00",
       "venueName": "אודיטוריום סמולרש",
-      "venueCity": "אוניברסיטת תל אביב"
+      "venueCity": "אוניברסיטת תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -520,7 +584,8 @@
       "date": "2026-10-17",
       "hour": "21:00",
       "venueName": "היכל התרבות יבנה",
-      "venueCity": "יבנה"
+      "venueCity": "יבנה",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -528,7 +593,8 @@
       "date": "2026-10-29",
       "hour": "20:30",
       "venueName": "בית העם רחובות",
-      "venueCity": "רחובות"
+      "venueCity": "רחובות",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 266,
@@ -536,15 +602,8 @@
       "date": "2026-11-12",
       "hour": "20:30",
       "venueName": "היכל התרבות כפר סבא",
-      "venueCity": "כפר סבא"
-    },
-    {
-      "showId": 267,
-      "showSlug": "נישואים-גרעיניים-תיאטרון-toMix",
-      "date": "2026-05-09",
-      "hour": "21:00",
-      "venueName": "תיאטרון גבעתיים",
-      "venueCity": "גבעתיים"
+      "venueCity": "כפר סבא",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
       "showId": 267,
@@ -552,7 +611,8 @@
       "date": "2026-05-16",
       "hour": "21:30",
       "venueName": "מתנ\"ס תל מונד",
-      "venueCity": "תל מונד"
+      "venueCity": "תל מונד",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -560,7 +620,8 @@
       "date": "2026-05-28",
       "hour": "20:30",
       "venueName": "היכל התרבות עפולה",
-      "venueCity": "עפולה"
+      "venueCity": "עפולה",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -568,7 +629,8 @@
       "date": "2026-06-04",
       "hour": "20:30",
       "venueName": "מתנ\"ס",
-      "venueCity": "גבעת שמואל"
+      "venueCity": "גבעת שמואל",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -576,7 +638,8 @@
       "date": "2026-06-05",
       "hour": "21:00",
       "venueName": "היכל התרבות כפר סבא",
-      "venueCity": "כפר סבא"
+      "venueCity": "כפר סבא",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -584,7 +647,8 @@
       "date": "2026-06-06",
       "hour": "21:00",
       "venueName": "היכל התיאטרון",
-      "venueCity": "קרית מוצקין"
+      "venueCity": "קרית מוצקין",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -592,7 +656,8 @@
       "date": "2026-06-18",
       "hour": "20:30",
       "venueName": "בית יד לבנים",
-      "venueCity": "רעננה"
+      "venueCity": "רעננה",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -600,7 +665,8 @@
       "date": "2026-06-19",
       "hour": "21:00",
       "venueName": "היכל התרבות ראשון לציון",
-      "venueCity": "ראשון לציון"
+      "venueCity": "ראשון לציון",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -608,7 +674,8 @@
       "date": "2026-06-20",
       "hour": "21:00",
       "venueName": "אודיטוריום ע\"ש קלצ'קין",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -616,7 +683,8 @@
       "date": "2026-07-02",
       "hour": "20:30",
       "venueName": "הוט סינמה כפר סבא",
-      "venueCity": "כפר סבא"
+      "venueCity": "כפר סבא",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -624,7 +692,8 @@
       "date": "2026-07-04",
       "hour": "21:00",
       "venueName": "צוותא",
-      "venueCity": "תל אביב-יפו"
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -632,7 +701,8 @@
       "date": "2026-07-09",
       "hour": "20:30",
       "venueName": "היכל התרבות",
-      "venueCity": "בת ים"
+      "venueCity": "בת ים",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -640,7 +710,8 @@
       "date": "2026-07-11",
       "hour": "21:30",
       "venueName": "סינמה סיטי גלילות",
-      "venueCity": "גלילות"
+      "venueCity": "גלילות",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -648,7 +719,8 @@
       "date": "2026-07-16",
       "hour": "20:30",
       "venueName": "היכל התרבות אור עקיבא",
-      "venueCity": "אור עקיבא"
+      "venueCity": "אור עקיבא",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -656,7 +728,8 @@
       "date": "2026-07-17",
       "hour": "21:00",
       "venueName": "אודיטוריום ע\"ש קלצ'קין",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -664,7 +737,8 @@
       "date": "2026-07-23",
       "hour": "21:00",
       "venueName": "בית ציוני אמריקה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -672,7 +746,8 @@
       "date": "2026-07-25",
       "hour": "21:00",
       "venueName": "היכל התרבות מודיעין",
-      "venueCity": "מודיעין"
+      "venueCity": "מודיעין",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -680,7 +755,8 @@
       "date": "2026-08-07",
       "hour": "21:30",
       "venueName": "היכל התרבות ראשון לציון",
-      "venueCity": "ראשון לציון"
+      "venueCity": "ראשון לציון",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -688,7 +764,8 @@
       "date": "2026-08-08",
       "hour": "21:00",
       "venueName": "בית ציוני אמריקה",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -696,7 +773,8 @@
       "date": "2026-08-12",
       "hour": "20:30",
       "venueName": "היכל התרבות דרום השרון",
-      "venueCity": "נווה ירק"
+      "venueCity": "נווה ירק",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -704,7 +782,8 @@
       "date": "2026-08-19",
       "hour": "20:30",
       "venueName": "אולם מופעים גבעת ברנר",
-      "venueCity": "גבעת ברנר"
+      "venueCity": "גבעת ברנר",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -712,7 +791,8 @@
       "date": "2026-09-24",
       "hour": "20:30",
       "venueName": "מלון אלמא",
-      "venueCity": "זכרון יעקב"
+      "venueCity": "זכרון יעקב",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 267,
@@ -720,7 +800,8 @@
       "date": "2026-12-05",
       "hour": "21:00",
       "venueName": "תיאטרון היהלום",
-      "venueCity": "רמת גן"
+      "venueCity": "רמת גן",
+      "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
       "showId": 271,
@@ -728,7 +809,8 @@
       "date": "2026-05-23",
       "hour": "21:30",
       "venueName": "היכל התרבות פתח תקווה",
-      "venueCity": "פתח תקווה"
+      "venueCity": "פתח תקווה",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {
       "showId": 271,
@@ -736,7 +818,8 @@
       "date": "2026-05-29",
       "hour": "21:00",
       "venueName": "אודיטוריום ע\"ש קלצ'קין",
-      "venueCity": "תל אביב"
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {
       "showId": 271,
@@ -744,7 +827,8 @@
       "date": "2026-05-30",
       "hour": "18:00",
       "venueName": "היכל התרבות ראשון לציון",
-      "venueCity": "ראשון לציון"
+      "venueCity": "ראשון לציון",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {
       "showId": 271,
@@ -752,7 +836,8 @@
       "date": "2026-06-06",
       "hour": "21:30",
       "venueName": "היכל התרבות יבנה",
-      "venueCity": "יבנה"
+      "venueCity": "יבנה",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {
       "showId": 271,
@@ -760,7 +845,8 @@
       "date": "2026-06-10",
       "hour": "20:30",
       "venueName": "היכל אומנויות הבמה הרצליה",
-      "venueCity": "הרצליה"
+      "venueCity": "הרצליה",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {
       "showId": 271,
@@ -768,7 +854,8 @@
       "date": "2026-06-12",
       "hour": "21:30",
       "venueName": "תיאטרון היהלום",
-      "venueCity": "רמת גן"
+      "venueCity": "רמת גן",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {
       "showId": 271,
@@ -776,7 +863,8 @@
       "date": "2026-06-20",
       "hour": "21:30",
       "venueName": "היכל התרבות חבל מודיעין",
-      "venueCity": "איירפורט סיטי"
+      "venueCity": "איירפורט סיטי",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {
       "showId": 271,
@@ -784,7 +872,8 @@
       "date": "2026-06-26",
       "hour": "21:00",
       "venueName": "תיאטרון גבעתיים",
-      "venueCity": "גבעתיים"
+      "venueCity": "גבעתיים",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {
       "showId": 271,
@@ -792,7 +881,8 @@
       "date": "2026-06-27",
       "hour": "21:00",
       "venueName": "היכל התרבות נס ציונה",
-      "venueCity": "נס ציונה"
+      "venueCity": "נס ציונה",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {
       "showId": 271,
@@ -800,7 +890,8 @@
       "date": "2026-07-02",
       "hour": "20:30",
       "venueName": "מרכז אומנויות הבמה",
-      "venueCity": "פרדס חנה כרכור"
+      "venueCity": "פרדס חנה כרכור",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {
       "showId": 271,
@@ -808,7 +899,8 @@
       "date": "2026-07-04",
       "hour": "21:00",
       "venueName": "היכל התרבות כפר סבא",
-      "venueCity": "כפר סבא"
+      "venueCity": "כפר סבא",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {
       "showId": 271,
@@ -816,7 +908,8 @@
       "date": "2026-07-08",
       "hour": "20:30",
       "venueName": "תיאטרון היהלום",
-      "venueCity": "רמת גן"
+      "venueCity": "רמת גן",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {
       "showId": 271,
@@ -824,7 +917,8 @@
       "date": "2026-07-18",
       "hour": "21:00",
       "venueName": "היכל התרבות ראשון לציון",
-      "venueCity": "ראשון לציון"
+      "venueCity": "ראשון לציון",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {
       "showId": 271,
@@ -832,7 +926,17 @@
       "date": "2026-07-30",
       "hour": "20:30",
       "venueName": "מרכז אומנויות הבמה",
-      "venueCity": "פרדס חנה כרכור"
+      "venueCity": "פרדס חנה כרכור",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-08-06",
+      "hour": "20:30",
+      "venueName": "היכל התרבות פתח תקווה",
+      "venueCity": "פתח תקווה",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {
       "showId": 271,
@@ -840,7 +944,8 @@
       "date": "2026-08-14",
       "hour": "21:00",
       "venueName": "היכל התרבות דרום השרון",
-      "venueCity": "נווה ירק"
+      "venueCity": "נווה ירק",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {
       "showId": 271,
@@ -848,7 +953,8 @@
       "date": "2026-08-24",
       "hour": "20:30",
       "venueName": "היכל התרבות בת ים",
-      "venueCity": "בת ים"
+      "venueCity": "בת ים",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {
       "showId": 271,
@@ -856,7 +962,8 @@
       "date": "2026-08-27",
       "hour": "20:30",
       "venueName": "בית יד לבנים",
-      "venueCity": "רעננה"
+      "venueCity": "רעננה",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {
       "showId": 271,
@@ -864,7 +971,8 @@
       "date": "2026-08-31",
       "hour": "20:30",
       "venueName": "משכן אמנויות הבמה באר שבע",
-      "venueCity": "באר שבע"
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {
       "showId": 271,
@@ -872,7 +980,17 @@
       "date": "2026-09-16",
       "hour": "20:30",
       "venueName": "היכל התרבות ראש העין",
-      "venueCity": "ראש העין"
+      "venueCity": "ראש העין",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-10-04",
+      "hour": "20:30",
+      "venueName": "תיאטרון ירושלים",
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {
       "showId": 271,
@@ -880,7 +998,8 @@
       "date": "2026-10-10",
       "hour": "21:00",
       "venueName": "סינמה סיטי גלילות",
-      "venueCity": "גלילות"
+      "venueCity": "גלילות",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     }
   ]
 }
