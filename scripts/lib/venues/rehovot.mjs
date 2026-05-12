@@ -26,18 +26,25 @@ export async function fetchListing(browser) {
   const page = await browser.newPage();
   await setupRequestInterception(page);
 
-  await page.goto(LISTING_URL, {
-    waitUntil: "domcontentloaded",
-    timeout: 60_000,
-  });
-
-  // Wait for event cards to appear. Generous timeout so Cloudflare's JS
-  // challenge has time to resolve in CI before we query — using
-  // `domcontentloaded` returns immediately (before CF JS runs), so the
-  // 15s default was too tight for slower CI runners.
-  await page.waitForSelector("a[href*='smarticket.co.il']", {
-    timeout: 45_000,
-  });
+  // Cloudflare in CI sometimes serves an interstitial challenge that
+  // suppresses the real DOM on the first hit. Retry the navigation once
+  // with the challenge cookies already set if the listing selector never
+  // appears.
+  const LISTING_SELECTOR = "a[href*='smarticket.co.il']";
+  let attempt = 0;
+  while (true) {
+    attempt++;
+    await page.goto(LISTING_URL, {
+      waitUntil: "networkidle2",
+      timeout: 60_000,
+    });
+    try {
+      await page.waitForSelector(LISTING_SELECTOR, { timeout: 30_000 });
+      break;
+    } catch (err) {
+      if (attempt >= 2) throw err;
+    }
+  }
 
   const listings = await page.evaluate(() => {
     const DATE_TIME_RE = /(\d{2})\/(\d{2})\/(\d{4})\s+בשעה\s+(\d{1,2}:\d{2})/;
