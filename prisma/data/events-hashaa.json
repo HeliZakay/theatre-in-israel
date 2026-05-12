@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-11T04:36:55.717Z",
+  "scrapedAt": "2026-05-12T04:24:27.454Z",
   "touring": true,
   "events": [
     {
@@ -37,15 +37,6 @@
       "venueName": "היכל התרבות אשקלון",
       "venueCity": "אשקלון",
       "sourceUrl": "https://teatron-hashaa.smarticket.co.il/בגדי_המלך_החדשים_125"
-    },
-    {
-      "showId": 437,
-      "showSlug": "גִּ׳ינְגִּ׳י",
-      "date": "2026-05-11",
-      "hour": "17:30",
-      "venueName": "היכל הפיס לתרבות בית שמש",
-      "venueCity": "בית שמש",
-      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/ג___ינ_ג___י_"
     },
     {
       "showId": 437,
@@ -203,15 +194,6 @@
     {
       "showId": 441,
       "showSlug": "הנסיך",
-      "date": "2026-05-11",
-      "hour": "17:00",
-      "venueName": "בית ניר (בית התותחן) זכרון יעקב",
-      "venueCity": "זכרון יעקב",
-      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/הנסיך_97"
-    },
-    {
-      "showId": 441,
-      "showSlug": "הנסיך",
       "date": "2026-05-12",
       "hour": "17:00",
       "venueName": "תיאטרון ירושלים",
@@ -334,15 +316,6 @@
       "venueName": "היכל התרבות כרמיאל",
       "venueCity": "כרמיאל",
       "sourceUrl": "https://teatron-hashaa.smarticket.co.il/כובע_קסמים_103"
-    },
-    {
-      "showId": 446,
-      "showSlug": "מעשה-בשלושה-אגוזים",
-      "date": "2026-05-11",
-      "hour": "17:00",
-      "venueName": "היכל התרבות מעלה אדומים",
-      "venueCity": "מעלה אדומים",
-      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/מעשה_בשלושה_אגוזים_"
     },
     {
       "showId": 446,

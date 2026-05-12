@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-11T04:41:39.176Z",
+  "scrapedAt": "2026-05-12T04:29:30.537Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון הבימה",
@@ -317,14 +317,6 @@
       "hour": "20:00",
       "sourceUrl": "https://www.habima.co.il/shows/%d7%a8%d7%95%d7%95%d7%a8%d7%a1/",
       "ticketUrl": "https://tickets.habima.co.il/order/50466"
-    },
-    {
-      "showId": 307,
-      "showSlug": "שלופתא",
-      "date": "2026-05-11",
-      "hour": "20:00",
-      "sourceUrl": "https://www.habima.co.il/shows/%d7%a9%d7%9c%d7%95%d7%a4%d7%aa%d7%90/",
-      "ticketUrl": "https://tickets.habima.co.il/order/50412"
     },
     {
       "showId": 308,

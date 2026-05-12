@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-11T04:36:33.048Z",
+  "scrapedAt": "2026-05-12T04:24:09.284Z",
   "venue": {
     "name": "תיאטרון המשולש",
     "city": "תל אביב"
@@ -36,6 +36,30 @@
       "hour": "20:00",
       "sourceUrl": "https://www.hameshulash.com/geva",
       "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/320"
+    },
+    {
+      "showId": 284,
+      "showSlug": "גבע-לא-יכול-להתאהב",
+      "date": "2026-07-01",
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/geva",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/355"
+    },
+    {
+      "showId": 284,
+      "showSlug": "גבע-לא-יכול-להתאהב",
+      "date": "2026-07-02",
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/geva",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/356"
+    },
+    {
+      "showId": 284,
+      "showSlug": "גבע-לא-יכול-להתאהב",
+      "date": "2026-07-04",
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/geva",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/357"
     },
     {
       "showId": 285,

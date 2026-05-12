@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-11T04:35:26.574Z",
+  "scrapedAt": "2026-05-12T04:22:58.554Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון תמונע",
@@ -51,8 +51,7 @@
       "showSlug": "אם16-תמונת-ניצחון!",
       "date": "2026-05-12",
       "hour": "21:00",
-      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5599",
-      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25816"
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5599"
     },
     {
       "showId": 413,
@@ -181,14 +180,6 @@
       "hour": "19:00",
       "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6245",
       "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25792"
-    },
-    {
-      "showId": 103,
-      "showSlug": "בת-של-אבא",
-      "date": "2026-05-11",
-      "hour": "20:00",
-      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6208",
-      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25749"
     },
     {
       "showId": 103,
@@ -405,14 +396,6 @@
       "hour": "11:00",
       "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=76&ArticleID=6368",
       "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25763"
-    },
-    {
-      "showId": 410,
-      "showSlug": "מהפכניות",
-      "date": "2026-05-11",
-      "hour": "20:00",
-      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=4546",
-      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25744"
     },
     {
       "showId": 420,

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-11T04:36:37.482Z",
+  "scrapedAt": "2026-05-12T04:24:56.397Z",
   "touring": true,
   "events": [
     {
@@ -464,6 +464,15 @@
     {
       "showId": 266,
       "showSlug": "מיקה-שלי",
+      "date": "2026-07-01",
+      "hour": "20:00",
+      "venueName": "המשכן לאמנויות הבמה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
       "date": "2026-07-11",
       "hour": "17:30",
       "venueName": "אודיטוריום סמולרש",
@@ -504,6 +513,15 @@
       "hour": "21:00",
       "venueName": "היכל התרבות נס ציונה",
       "venueCity": "נס ציונה",
+      "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-08-08",
+      "hour": "21:30",
+      "venueName": "היכל התרבות פתח תקווה",
+      "venueCity": "פתח תקווה",
       "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
@@ -909,6 +927,15 @@
       "hour": "20:30",
       "venueName": "מרכז אומנויות הבמה",
       "venueCity": "פרדס חנה כרכור",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-08-06",
+      "hour": "20:30",
+      "venueName": "היכל התרבות פתח תקווה",
+      "venueCity": "פתח תקווה",
       "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {

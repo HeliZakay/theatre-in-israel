@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-11T04:34:01.940Z",
+  "scrapedAt": "2026-05-12T04:21:30.591Z",
   "touring": true,
   "events": [
     {
@@ -393,14 +393,14 @@
       "ticketUrl": "javascript:void(0)"
     },
     {
-      "showId": 159,
-      "showSlug": "מישהו-לרוץ-איתו",
-      "date": "2026-05-11",
-      "hour": "19:30",
+      "showId": 246,
+      "showSlug": "מי-כמוני",
+      "date": "2026-05-14",
+      "hour": "20:00",
       "venueName": "תיאטרון גשר",
       "venueCity": "תל אביב-יפו",
-      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2857",
-      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2857&DateID=7178"
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=306",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=306&DateID=7198"
     },
     {
       "showId": 159,

@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-05-11T04:39:40.970Z",
+  "scrapedAt": "2026-05-12T04:27:21.675Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות כפר סבא",
     "city": "כפר סבא"
   },
   "events": [
-    {
-      "showId": 256,
-      "showSlug": "מותרת-לכל-אדם",
-      "date": "2026-05-11",
-      "hour": "20:30"
-    },
     {
       "showId": 263,
       "showSlug": "אהבה-מודרנית",
