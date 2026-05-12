@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-12T04:23:02.680Z",
+  "scrapedAt": "2026-05-12T22:35:09.624Z",
   "touring": true,
   "events": [
     {
@@ -33,6 +33,26 @@
       "ticketUrl": "https://khan.pres.global/order/8675"
     },
     {
+      "showId": 93,
+      "showSlug": "הורים-יקרים",
+      "date": "2026-07-05",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/527/horim-yekarim",
+      "ticketUrl": "https://khan.pres.global/order/8678"
+    },
+    {
+      "showId": 93,
+      "showSlug": "הורים-יקרים",
+      "date": "2026-07-06",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/527/horim-yekarim",
+      "ticketUrl": "https://khan.pres.global/order/8679"
+    },
+    {
       "showId": 87,
       "showSlug": "הסבתות",
       "date": "2026-05-25",
@@ -41,6 +61,26 @@
       "venueCity": "ירושלים",
       "sourceUrl": "https://www.khan.co.il/shows/264/hasavtot",
       "ticketUrl": "https://khan.pres.global/order/8608"
+    },
+    {
+      "showId": 87,
+      "showSlug": "הסבתות",
+      "date": "2026-07-07",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/264/hasavtot",
+      "ticketUrl": "https://khan.pres.global/order/8680"
+    },
+    {
+      "showId": 87,
+      "showSlug": "הסבתות",
+      "date": "2026-07-08",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/264/hasavtot",
+      "ticketUrl": "https://khan.pres.global/order/8681"
     },
     {
       "showId": 165,
@@ -101,6 +141,26 @@
       "venueCity": "ירושלים",
       "sourceUrl": "https://www.khan.co.il/shows/567/yaacobi-leidental",
       "ticketUrl": "https://khan.pres.global/order/8660"
+    },
+    {
+      "showId": 85,
+      "showSlug": "יעקובי-ולידנטל",
+      "date": "2026-07-09",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/567/yaacobi-leidental",
+      "ticketUrl": "https://khan.pres.global/order/8682"
+    },
+    {
+      "showId": 85,
+      "showSlug": "יעקובי-ולידנטל",
+      "date": "2026-07-12",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/567/yaacobi-leidental",
+      "ticketUrl": "https://khan.pres.global/order/8683"
     },
     {
       "showId": 473,
@@ -233,6 +293,36 @@
       "ticketUrl": "https://khan.pres.global/order/8622"
     },
     {
+      "showId": 88,
+      "showSlug": "מחכים-לגודו",
+      "date": "2026-07-28",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/568/waiting-for-godot",
+      "ticketUrl": "https://khan.pres.global/order/8689"
+    },
+    {
+      "showId": 88,
+      "showSlug": "מחכים-לגודו",
+      "date": "2026-07-29",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/568/waiting-for-godot",
+      "ticketUrl": "https://khan.pres.global/order/8690"
+    },
+    {
+      "showId": 88,
+      "showSlug": "מחכים-לגודו",
+      "date": "2026-07-30",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/568/waiting-for-godot",
+      "ticketUrl": "https://khan.pres.global/order/8691"
+    },
+    {
       "showId": 90,
       "showSlug": "מי-שסוכתו-נופלת",
       "date": "2026-05-18",
@@ -333,6 +423,26 @@
       "ticketUrl": "https://khan.pres.global/order/8677"
     },
     {
+      "showId": 90,
+      "showSlug": "מי-שסוכתו-נופלת",
+      "date": "2026-07-21",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
+      "ticketUrl": "https://khan.pres.global/order/8687"
+    },
+    {
+      "showId": 90,
+      "showSlug": "מי-שסוכתו-נופלת",
+      "date": "2026-07-25",
+      "hour": "21:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
+      "ticketUrl": "https://khan.pres.global/order/8688"
+    },
+    {
       "showId": 95,
       "showSlug": "מיתה-טובה",
       "date": "2026-05-16",
@@ -341,16 +451,6 @@
       "venueCity": "ירושלים",
       "sourceUrl": "https://www.khan.co.il/shows/492/mita-tova",
       "ticketUrl": "https://khan.pres.global/order/8610"
-    },
-    {
-      "showId": 94,
-      "showSlug": "משרתם-של-שני-אדונים",
-      "date": "2026-05-12",
-      "hour": "20:00",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים",
-      "sourceUrl": "https://www.khan.co.il/shows/544/the-servant-of-two-masters",
-      "ticketUrl": "https://khan.pres.global/order/8605"
     },
     {
       "showId": 166,

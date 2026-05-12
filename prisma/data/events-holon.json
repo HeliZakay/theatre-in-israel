@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-12T21:55:44.317Z",
+  "scrapedAt": "2026-05-12T22:41:41.635Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון חולון",
@@ -44,7 +44,7 @@
     {
       "showId": 266,
       "showSlug": "מיקה-שלי",
-      "date": "2026-06-28",
+      "date": "2026-06-27",
       "hour": "21:30",
       "sourceUrl": "https://www.hth.co.il/events/%d7%9e%d7%99%d7%a7%d7%94-%d7%a9%d7%9c%d7%99-%d7%9e%d7%97%d7%96%d7%9e%d7%a8/"
     },

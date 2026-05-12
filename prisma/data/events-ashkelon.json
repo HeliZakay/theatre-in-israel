@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-05-12T04:26:53.664Z",
+  "scrapedAt": "2026-05-12T22:41:05.268Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות אשקלון",
     "city": "אשקלון"
   },
   "events": [
-    {
-      "showId": 68,
-      "showSlug": "אור-לגויים",
-      "date": "2026-05-12",
-      "hour": "20:30"
-    },
     {
       "showId": 68,
       "showSlug": "אור-לגויים",

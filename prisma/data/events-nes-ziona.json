@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-12T21:55:32.083Z",
+  "scrapedAt": "2026-05-12T22:40:20.200Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות נס ציונה",
@@ -12,6 +12,62 @@
       "date": "2026-05-15",
       "hour": "22:00",
       "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%92%d7%99%d7%95%d7%a8%d7%90-%d7%96%d7%99%d7%a0%d7%92%d7%a8-3/"
+    },
+    {
+      "showId": 4,
+      "showSlug": "מי-בעד",
+      "date": "2026-05-30",
+      "hour": "21:00",
+      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%9e%d7%99-%d7%91%d7%a2%d7%93-%d7%94%d7%a7%d7%90%d7%9e%d7%a8%d7%99/"
+    },
+    {
+      "showId": 4,
+      "showSlug": "מי-בעד",
+      "date": "2026-05-31",
+      "hour": "20:30",
+      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%9e%d7%99-%d7%91%d7%a2%d7%93-%d7%94%d7%a7%d7%90%d7%9e%d7%a8%d7%99/"
+    },
+    {
+      "showId": 146,
+      "showSlug": "אמא",
+      "date": "2026-06-23",
+      "hour": "20:30",
+      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%90%d7%9e%d7%90-%d7%91%d7%99%d7%aa-%d7%9c%d7%99%d7%a1%d7%99%d7%9f/"
+    },
+    {
+      "showId": 146,
+      "showSlug": "אמא",
+      "date": "2026-06-24",
+      "hour": "20:30",
+      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%90%d7%9e%d7%90-%d7%91%d7%99%d7%aa-%d7%9c%d7%99%d7%a1%d7%99%d7%9f/"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-06-27",
+      "hour": "21:00",
+      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%a9%d7%a7%d7%a8%d7%99%d7%9d-%d7%a7%d7%98%d7%a0%d7%99%d7%9d-2/"
+    },
+    {
+      "showId": 81,
+      "showSlug": "הזוג-המוזר",
+      "date": "2026-07-06",
+      "hour": "20:30",
+      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%94%d7%96%d7%95%d7%92-%d7%94%d7%9e%d7%95%d7%96%d7%a8-%d7%97%d7%99%d7%a4%d7%94/"
+    },
+    {
+      "showId": 81,
+      "showSlug": "הזוג-המוזר",
+      "date": "2026-07-07",
+      "hour": "20:30",
+      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%94%d7%96%d7%95%d7%92-%d7%94%d7%9e%d7%95%d7%96%d7%a8-%d7%97%d7%99%d7%a4%d7%94/"
+    },
+    {
+      "showId": 266,
+      "showSlug": "מיקה-שלי",
+      "date": "2026-08-01",
+      "hour": "21:00",
+      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%9e%d7%99%d7%a7%d7%94-%d7%a9%d7%9c%d7%99/"
     }
   ]
 }

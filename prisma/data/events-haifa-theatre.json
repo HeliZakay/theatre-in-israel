@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-12T04:21:12.244Z",
+  "scrapedAt": "2026-05-12T22:35:23.378Z",
   "touring": true,
   "events": [
     {
@@ -7,7 +7,7 @@
       "showSlug": "היומן",
       "date": "2026-05-15",
       "hour": "12:00",
-      "venueName": "במה ראשית",
+      "venueName": "תיאטרון חיפה",
       "venueCity": "חיפה",
       "sourceUrl": "https://www.ht1.co.il/Event/Index/43815",
       "ticketUrl": "https://ht1.smarticket.co.il/event/8956"
@@ -17,7 +17,7 @@
       "showSlug": "היומן",
       "date": "2026-05-17",
       "hour": "20:30",
-      "venueName": "במה ראשית",
+      "venueName": "תיאטרון חיפה",
       "venueCity": "חיפה",
       "sourceUrl": "https://www.ht1.co.il/Event/Index/43815",
       "ticketUrl": "https://ht1.smarticket.co.il/event/8847"
@@ -27,7 +27,7 @@
       "showSlug": "היומן",
       "date": "2026-05-18",
       "hour": "20:30",
-      "venueName": "במה ראשית",
+      "venueName": "תיאטרון חיפה",
       "venueCity": "חיפה",
       "sourceUrl": "https://www.ht1.co.il/Event/Index/43815",
       "ticketUrl": "https://ht1.smarticket.co.il/event/8848"
@@ -37,7 +37,7 @@
       "showSlug": "היומן",
       "date": "2026-05-19",
       "hour": "20:30",
-      "venueName": "במה ראשית",
+      "venueName": "תיאטרון חיפה",
       "venueCity": "חיפה",
       "sourceUrl": "https://www.ht1.co.il/Event/Index/43815",
       "ticketUrl": "https://ht1.smarticket.co.il/event/8849"
@@ -47,7 +47,7 @@
       "showSlug": "היומן",
       "date": "2026-05-20",
       "hour": "17:00",
-      "venueName": "במה ראשית",
+      "venueName": "תיאטרון חיפה",
       "venueCity": "חיפה",
       "sourceUrl": "https://www.ht1.co.il/Event/Index/43815",
       "ticketUrl": "https://ht1.smarticket.co.il/event/8484"
@@ -57,7 +57,7 @@
       "showSlug": "היומן",
       "date": "2026-05-24",
       "hour": "20:30",
-      "venueName": "במה ראשית",
+      "venueName": "תיאטרון חיפה",
       "venueCity": "חיפה",
       "sourceUrl": "https://www.ht1.co.il/Event/Index/43815",
       "ticketUrl": "https://ht1.smarticket.co.il/event/8958"
@@ -67,7 +67,7 @@
       "showSlug": "היומן",
       "date": "2026-05-25",
       "hour": "20:30",
-      "venueName": "במה ראשית",
+      "venueName": "תיאטרון חיפה",
       "venueCity": "חיפה",
       "sourceUrl": "https://www.ht1.co.il/Event/Index/43815",
       "ticketUrl": "https://ht1.smarticket.co.il/event/8846"
@@ -77,10 +77,50 @@
       "showSlug": "היומן",
       "date": "2026-05-26",
       "hour": "20:30",
-      "venueName": "במה ראשית",
+      "venueName": "תיאטרון חיפה",
       "venueCity": "חיפה",
       "sourceUrl": "https://www.ht1.co.il/Event/Index/43815",
       "ticketUrl": "https://ht1.smarticket.co.il/event/8850"
+    },
+    {
+      "showId": 82,
+      "showSlug": "היומן",
+      "date": "2026-06-22",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה",
+      "sourceUrl": "https://www.ht1.co.il/Event/Index/43815",
+      "ticketUrl": "https://ht1.smarticket.co.il/event/8965"
+    },
+    {
+      "showId": 82,
+      "showSlug": "היומן",
+      "date": "2026-06-23",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה",
+      "sourceUrl": "https://www.ht1.co.il/Event/Index/43815",
+      "ticketUrl": "https://ht1.smarticket.co.il/event/8966"
+    },
+    {
+      "showId": 82,
+      "showSlug": "היומן",
+      "date": "2026-06-25",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה",
+      "sourceUrl": "https://www.ht1.co.il/Event/Index/43815",
+      "ticketUrl": "https://ht1.smarticket.co.il/event/8967"
+    },
+    {
+      "showId": 82,
+      "showSlug": "היומן",
+      "date": "2026-06-28",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה",
+      "sourceUrl": "https://www.ht1.co.il/Event/Index/43815",
+      "ticketUrl": "https://ht1.smarticket.co.il/event/8969"
     },
     {
       "showId": 82,
@@ -107,7 +147,7 @@
       "showSlug": "המאסטר-(אלוף-הבונים-שלי)",
       "date": "2026-06-14",
       "hour": "20:30",
-      "venueName": "במה ראשית",
+      "venueName": "תיאטרון חיפה",
       "venueCity": "חיפה",
       "sourceUrl": "https://www.ht1.co.il/Event/Index/43813",
       "ticketUrl": "https://ht1.smarticket.co.il/event/8826"
@@ -117,7 +157,7 @@
       "showSlug": "המאסטר-(אלוף-הבונים-שלי)",
       "date": "2026-06-15",
       "hour": "20:30",
-      "venueName": "במה ראשית",
+      "venueName": "תיאטרון חיפה",
       "venueCity": "חיפה",
       "sourceUrl": "https://www.ht1.co.il/Event/Index/43813",
       "ticketUrl": "https://ht1.smarticket.co.il/event/8827"
@@ -147,7 +187,7 @@
       "showSlug": "המאסטר-(אלוף-הבונים-שלי)",
       "date": "2026-08-08",
       "hour": "21:00",
-      "venueName": "במה ראשית",
+      "venueName": "תיאטרון חיפה",
       "venueCity": "חיפה",
       "sourceUrl": "https://www.ht1.co.il/Event/Index/43813",
       "ticketUrl": "https://ht1.smarticket.co.il/event/8834"
@@ -167,7 +207,7 @@
       "showSlug": "לילסדה",
       "date": "2026-07-21",
       "hour": "11:00",
-      "venueName": "במה ראשית",
+      "venueName": "תיאטרון חיפה",
       "venueCity": "חיפה",
       "sourceUrl": "https://www.ht1.co.il/Event/Index/43812",
       "ticketUrl": "https://ht1.smarticket.co.il/event/8820"
@@ -177,7 +217,7 @@
       "showSlug": "משתגעים-מאהבה",
       "date": "2026-05-29",
       "hour": "21:30",
-      "venueName": "במה 3",
+      "venueName": "תיאטרון חיפה",
       "venueCity": "חיפה",
       "sourceUrl": "https://www.ht1.co.il/Event/Index/43814",
       "ticketUrl": "https://ht1.smarticket.co.il/event/8946"
@@ -187,7 +227,7 @@
       "showSlug": "משתגעים-מאהבה",
       "date": "2026-06-03",
       "hour": "20:30",
-      "venueName": "במה 3",
+      "venueName": "תיאטרון חיפה",
       "venueCity": "חיפה",
       "sourceUrl": "https://www.ht1.co.il/Event/Index/43814",
       "ticketUrl": "https://ht1.smarticket.co.il/event/8959"
@@ -197,7 +237,7 @@
       "showSlug": "משתגעים-מאהבה",
       "date": "2026-06-04",
       "hour": "20:30",
-      "venueName": "במה 3",
+      "venueName": "תיאטרון חיפה",
       "venueCity": "חיפה",
       "sourceUrl": "https://www.ht1.co.il/Event/Index/43814",
       "ticketUrl": "https://ht1.smarticket.co.il/event/8945"

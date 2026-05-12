@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-12T04:24:23.292Z",
+  "scrapedAt": "2026-05-12T22:38:35.403Z",
   "venue": {
     "name": "תיאטרון ניקו ניתאי",
     "city": "תל אביב"
@@ -85,16 +85,9 @@
     {
       "showId": 334,
       "showSlug": "חדשות-אחרונות",
-      "date": "2026-05-12",
-      "hour": "20:30",
-      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%97%D7%93%D7%A9%D7%95%D7%AA_%D7%90%D7%97%D7%A8%D7%95%D7%A0%D7%95%D7%AA/?id=488"
-    },
-    {
-      "showId": 334,
-      "showSlug": "חדשות-אחרונות",
       "date": "2026-06-23",
       "hour": "20:30",
-      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%97%D7%93%D7%A9%D7%95%D7%AA_%D7%90%D7%97%D7%A8%D7%95%D7%A0%D7%95%D7%AA/?id=488"
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%97%D7%93%D7%A9%D7%95%D7%AA_%D7%90%D7%97%D7%A8%D7%95%D7%A0%D7%95%D7%AA/?id=500"
     },
     {
       "showId": 335,

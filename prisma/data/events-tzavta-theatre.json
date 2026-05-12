@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-12T04:25:45.322Z",
+  "scrapedAt": "2026-05-12T22:39:55.507Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון צוותא",
@@ -35,6 +35,20 @@
       "sourceUrl": "https://www.tzavta.co.il/event/4943"
     },
     {
+      "showId": 452,
+      "showSlug": "אמא-שלי-קראה-לי-רוטוויילר",
+      "date": "2026-06-14",
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/4943"
+    },
+    {
+      "showId": 453,
+      "showSlug": "אני-מכיר-רק-אחד-שמתנהג-ככה",
+      "date": "2026-06-10",
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/4944"
+    },
+    {
       "showId": 454,
       "showSlug": "אקורד-סיום-למלחמה",
       "date": "2026-05-13",
@@ -46,6 +60,13 @@
       "showSlug": "ארטיסט",
       "date": "2026-05-27",
       "hour": "20:00",
+      "sourceUrl": "https://www.tzavta.co.il/event/3874"
+    },
+    {
+      "showId": 377,
+      "showSlug": "ארטיסט",
+      "date": "2026-06-28",
+      "hour": "20:30",
       "sourceUrl": "https://www.tzavta.co.il/event/3874"
     },
     {
@@ -98,9 +119,16 @@
       "sourceUrl": "https://www.tzavta.co.il/event/2288"
     },
     {
+      "showId": 458,
+      "showSlug": "ככה-יצאתי",
+      "date": "2026-06-21",
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/2288"
+    },
+    {
       "showId": 373,
       "showSlug": "לדפוק",
-      "date": "2026-05-12",
+      "date": "2026-06-07",
       "hour": "20:30",
       "sourceUrl": "https://www.tzavta.co.il/event/4946"
     },
@@ -124,6 +152,13 @@
       "date": "2026-07-02",
       "hour": "20:30",
       "sourceUrl": "https://www.tzavta.co.il/event/5081"
+    },
+    {
+      "showId": 381,
+      "showSlug": "מיינדפאק",
+      "date": "2026-06-03",
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/3453"
     },
     {
       "showId": 195,
@@ -161,11 +196,60 @@
       "sourceUrl": "https://www.tzavta.co.il/event/5059"
     },
     {
+      "showId": 201,
+      "showSlug": "עוברת-בירושה",
+      "date": "2026-06-26",
+      "hour": "12:00",
+      "sourceUrl": "https://www.tzavta.co.il/event/4985"
+    },
+    {
+      "showId": 459,
+      "showSlug": "עצבים",
+      "date": "2026-06-25",
+      "hour": "20:00",
+      "sourceUrl": "https://www.tzavta.co.il/event/3878"
+    },
+    {
+      "showId": 460,
+      "showSlug": "פאק-בסיסטם",
+      "date": "2026-06-05",
+      "hour": "22:00",
+      "sourceUrl": "https://www.tzavta.co.il/event/3914"
+    },
+    {
+      "showId": 371,
+      "showSlug": "פימה-ג׳קסון-ולהקתו",
+      "date": "2026-06-27",
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/5043"
+    },
+    {
       "showId": 206,
       "showSlug": "פצעים",
       "date": "2026-05-18",
       "hour": "20:30",
       "sourceUrl": "https://www.tzavta.co.il/event/5064"
+    },
+    {
+      "showId": 206,
+      "showSlug": "פצעים",
+      "date": "2026-06-12",
+      "hour": "12:00",
+      "sourceUrl": "https://www.tzavta.co.il/event/5064"
+    },
+    {
+      "showId": 207,
+      "showSlug": "קצר-לילדים",
+      "date": "2026-06-13",
+      "hour": "11:00",
+      "sourceUrl": "https://www.tzavta.co.il/event/2238"
+    },
+    {
+      "showId": 100,
+      "showSlug": "שושי-בחלל",
+      "date": "2026-06-22",
+      "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/5042"
     },
     {
       "showId": 208,

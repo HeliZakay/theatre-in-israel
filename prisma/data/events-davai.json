@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-12T04:24:47.049Z",
+  "scrapedAt": "2026-05-12T22:38:59.357Z",
   "touring": true,
   "events": [
     {
@@ -7,7 +7,7 @@
       "showSlug": "ONE-THING-SHOW",
       "date": "2026-05-23",
       "hour": "20:30",
-      "venueName": "DAVAI Theatre Studio",
+      "venueName": "סטודיו דוואי",
       "venueCity": "תל אביב-יפו",
       "sourceUrl": "https://davai-group.org/portfolio_page/one-thing-show-heb/",
       "ticketUrl": "https://davai-group.org/event/1thing-23-may/"
@@ -21,6 +21,16 @@
       "venueCity": "תל אביב-יפו",
       "sourceUrl": "https://davai-group.org/portfolio_page/one-thing-show-heb/",
       "ticketUrl": "https://davai-group.org/event/1thing-24-june-shambukiya/"
+    },
+    {
+      "showId": 431,
+      "showSlug": "ONE-THING-SHOW",
+      "date": "2026-06-26",
+      "hour": "20:30",
+      "venueName": "סטודיו דוואי",
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://davai-group.org/portfolio_page/one-thing-show-heb/",
+      "ticketUrl": "https://davai-group.org/event/1thing-26-june/"
     },
     {
       "showId": 432,
@@ -38,7 +48,7 @@
       "date": "2026-06-05",
       "hour": "20:30",
       "venueName": "הטחנה - The mill",
-      "venueCity": "תל אביב-יפו",
+      "venueCity": "שער העמקים",
       "sourceUrl": "https://davai-group.org/portfolio_page/under-construction-heb/",
       "ticketUrl": "https://davai-group.org/event/under-5-june-the-mill/"
     },
@@ -47,7 +57,7 @@
       "showSlug": "UNDER-CONSTRUCTION",
       "date": "2026-06-12",
       "hour": "20:30",
-      "venueName": "DAVAI Theatre Studio",
+      "venueName": "סטודיו דוואי",
       "venueCity": "תל אביב-יפו",
       "sourceUrl": "https://davai-group.org/portfolio_page/under-construction-heb/",
       "ticketUrl": "https://davai-group.org/event/under-12-june-26/"
@@ -57,7 +67,7 @@
       "showSlug": "UNDER-CONSTRUCTION",
       "date": "2026-06-13",
       "hour": "20:30",
-      "venueName": "DAVAI Theatre Studio",
+      "venueName": "סטודיו דוואי",
       "venueCity": "תל אביב-יפו",
       "sourceUrl": "https://davai-group.org/portfolio_page/under-construction-heb/",
       "ticketUrl": "https://davai-group.org/event/under-13-june-26/"
@@ -87,7 +97,7 @@
       "showSlug": "אור",
       "date": "2026-08-07",
       "hour": "20:30",
-      "venueName": "DAVAI Theatre Studio",
+      "venueName": "סטודיו דוואי",
       "venueCity": "תל אביב-יפו",
       "sourceUrl": "https://davai-group.org/portfolio_page/light/",
       "ticketUrl": "https://davai-group.org/event/light-august-7/"
@@ -97,7 +107,7 @@
       "showSlug": "אור",
       "date": "2026-08-08",
       "hour": "20:30",
-      "venueName": "DAVAI Theatre Studio",
+      "venueName": "סטודיו דוואי",
       "venueCity": "תל אביב-יפו",
       "sourceUrl": "https://davai-group.org/portfolio_page/light/",
       "ticketUrl": "https://davai-group.org/event/light-august-8/"
@@ -117,10 +127,20 @@
       "showSlug": "סבתא-פרידה",
       "date": "2026-05-30",
       "hour": "11:00",
-      "venueName": "DAVAI Theatre Studio",
+      "venueName": "סטודיו דוואי",
       "venueCity": "תל אביב-יפו",
       "sourceUrl": "https://davai-group.org/portfolio_page/grandma-frida/",
       "ticketUrl": "https://davai-group.org/event/frida-30-may/"
+    },
+    {
+      "showId": 430,
+      "showSlug": "עומאר-טריו",
+      "date": "2026-08-21",
+      "hour": "20:30",
+      "venueName": "סטודיו דוואי",
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://davai-group.org/portfolio_page/omar-trio-heb/",
+      "ticketUrl": "https://davai-group.org/event/omar-trio-21-august/"
     }
   ]
 }

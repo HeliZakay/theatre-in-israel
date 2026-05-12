@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-12T04:22:58.554Z",
+  "scrapedAt": "2026-05-12T22:37:11.479Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון תמונע",
@@ -45,21 +45,6 @@
       "hour": "20:00",
       "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5870",
       "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25787"
-    },
-    {
-      "showId": 413,
-      "showSlug": "אם16-תמונת-ניצחון!",
-      "date": "2026-05-12",
-      "hour": "21:00",
-      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5599"
-    },
-    {
-      "showId": 413,
-      "showSlug": "אם16-תמונת-ניצחון!",
-      "date": "2026-05-13",
-      "hour": "21:00",
-      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5599",
-      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25817"
     },
     {
       "showId": 407,
@@ -316,14 +301,6 @@
       "hour": "20:00",
       "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6333",
       "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25757"
-    },
-    {
-      "showId": 418,
-      "showSlug": "הפצוע-הישראלי",
-      "date": "2026-05-12",
-      "hour": "20:00",
-      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6112",
-      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25810"
     },
     {
       "showId": 418,

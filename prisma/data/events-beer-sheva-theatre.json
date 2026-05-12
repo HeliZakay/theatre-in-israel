@@ -1,27 +1,7 @@
 {
-  "scrapedAt": "2026-05-11T04:34:29.987Z",
+  "scrapedAt": "2026-05-12T22:36:13.238Z",
   "touring": true,
   "events": [
-    {
-      "showId": 171,
-      "showSlug": "באר-שבסקיה",
-      "date": "2026-05-12",
-      "hour": "17:00",
-      "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע",
-      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
-      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9073"
-    },
-    {
-      "showId": 171,
-      "showSlug": "באר-שבסקיה",
-      "date": "2026-05-12",
-      "hour": "19:00",
-      "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע",
-      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
-      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9064"
-    },
     {
       "showId": 171,
       "showSlug": "באר-שבסקיה",
@@ -281,26 +261,6 @@
       "venueCity": "באר שבע",
       "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
       "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9097"
-    },
-    {
-      "showId": 171,
-      "showSlug": "באר-שבסקיה",
-      "date": "2026-07-02",
-      "hour": "19:00",
-      "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע",
-      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
-      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9098"
-    },
-    {
-      "showId": 171,
-      "showSlug": "באר-שבסקיה",
-      "date": "2026-07-02",
-      "hour": "21:00",
-      "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע",
-      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
-      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9099"
     },
     {
       "showId": 171,

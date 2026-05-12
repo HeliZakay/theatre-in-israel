@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-12T04:24:16.344Z",
+  "scrapedAt": "2026-05-12T22:36:26.768Z",
   "touring": true,
   "events": [
     {
@@ -128,7 +128,7 @@
       "date": "2026-05-13",
       "hour": "20:30",
       "venueName": "היכל התרבות קצרין",
-      "venueCity": "תל אביב",
+      "venueCity": "קצרין",
       "sourceUrl": "https://www.teatron.org.il/shows/%d7%90%d7%a0%d7%99-%d7%a4%d7%94-%d7%91%d7%92%d7%9c%d7%9c-%d7%90%d7%a9%d7%aa%d7%99/",
       "ticketUrl": "https://matnaskazrin.smarticket.co.il/iframe/%D7%90%D7%A0%D7%99_%D7%A4%D7%94_%D7%91%D7%92%D7%9C%D7%9C_%D7%90%D7%99%D7%A9%D7%AA%D7%99_/?id=146"
     },
@@ -238,7 +238,7 @@
       "date": "2026-06-23",
       "hour": "20:30",
       "venueName": "היכל התרבות נהריה",
-      "venueCity": "תל אביב",
+      "venueCity": "נהריה",
       "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%91%d7%a8%d7%95%d7%a0%d7%99%d7%aa-%d7%a8%d7%95%d7%98%d7%a9%d7%99%d7%9c%d7%93/",
       "ticketUrl": "https://hhn.smarticket.co.il/%D7%94%D7%91%D7%A8%D7%95%D7%A0%D7%99%D7%AA_%D7%A8%D7%95%D7%98%D7%A9%D7%99%D7%9C%D7%93_-_%D7%94%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F_%D7%94%D7%A2%D7%91%D7%A8%D7%99/?id=1974"
     },
@@ -248,7 +248,7 @@
       "date": "2026-06-24",
       "hour": "20:30",
       "venueName": "היכל התרבות נהריה",
-      "venueCity": "תל אביב",
+      "venueCity": "נהריה",
       "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%91%d7%a8%d7%95%d7%a0%d7%99%d7%aa-%d7%a8%d7%95%d7%98%d7%a9%d7%99%d7%9c%d7%93/",
       "ticketUrl": "https://hhn.smarticket.co.il/%D7%94%D7%91%D7%A8%D7%95%D7%A0%D7%99%D7%AA_%D7%A8%D7%95%D7%98%D7%A9%D7%99%D7%9C%D7%93_-_%D7%94%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F_%D7%94%D7%A2%D7%91%D7%A8%D7%99/?id=1975"
     },
@@ -258,7 +258,7 @@
       "date": "2026-06-25",
       "hour": "20:30",
       "venueName": "היכל התרבות נהריה",
-      "venueCity": "תל אביב",
+      "venueCity": "נהריה",
       "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%91%d7%a8%d7%95%d7%a0%d7%99%d7%aa-%d7%a8%d7%95%d7%98%d7%a9%d7%99%d7%9c%d7%93/",
       "ticketUrl": "https://hhn.smarticket.co.il/%D7%94%D7%91%D7%A8%D7%95%D7%A0%D7%99%D7%AA_%D7%A8%D7%95%D7%98%D7%A9%D7%99%D7%9C%D7%93_-_%D7%94%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F_%D7%94%D7%A2%D7%91%D7%A8%D7%99/?id=1976"
     },
@@ -388,7 +388,7 @@
       "date": "2026-10-15",
       "hour": "20:30",
       "venueName": "היכל התרבות נשר",
-      "venueCity": "תל אביב",
+      "venueCity": "נשר",
       "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%a4%d7%a8%d7%97-%d7%91%d7%92%d7%a0%d7%99/",
       "ticketUrl": "https://nesher-matnasim.smarticket.co.il/%D7%94%D7%A4%D7%A8%D7%97_%D7%91%D7%92%D7%A0%D7%99_%D7%9E%D7%97%D7%96%D7%9E%D7%A8/?id=1210"
     },
@@ -433,16 +433,6 @@
       "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10904"
     },
     {
-      "showId": 115,
-      "showSlug": "התשמע-קולי",
-      "date": "2026-07-09",
-      "hour": "19:00",
-      "venueName": "התיאטרון העברי",
-      "venueCity": "תל אביב",
-      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%aa%d7%a9%d7%9e%d7%a2-%d7%a7%d7%95%d7%9c%d7%99/",
-      "ticketUrl": "https://matnasgan.smarticket.co.il/%D7%9E%D7%97%D7%96%D7%9E%D7%A8___%D7%94%D7%AA%D7%A9%D7%9E%D7%A2_%D7%A7%D7%95%D7%9C%D7%99_?id=3215"
-    },
-    {
       "showId": 119,
       "showSlug": "זוגיות-AI",
       "date": "2026-05-15",
@@ -458,7 +448,7 @@
       "date": "2026-05-20",
       "hour": "10:30",
       "venueName": "היכל התרבות \"ספי ריבלין\" מרכז קהילתי קריית השרון",
-      "venueCity": "תל אביב",
+      "venueCity": "לא ידוע",
       "sourceUrl": "https://www.teatron.org.il/shows/%d7%96%d7%95%d7%92%d7%99%d7%95%d7%aa-ai/",
       "ticketUrl": "https://matnasgan.smarticket.co.il/%D7%94%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F_%D7%94%D7%A2%D7%91%D7%A8%D7%99_%D7%9E%D7%A6%D7%99%D7%92___%D7%96%D7%95%D7%92%D7%99%D7%95%D7%AA_AI_/?id=3213"
     },
@@ -518,9 +508,19 @@
       "date": "2026-07-28",
       "hour": "20:30",
       "venueName": "היכל התרבות נהריה",
-      "venueCity": "תל אביב",
+      "venueCity": "נהריה",
       "sourceUrl": "https://www.teatron.org.il/shows/%d7%96%d7%95%d7%92%d7%99%d7%95%d7%aa-ai/",
       "ticketUrl": "https://hhn.smarticket.co.il/%D7%96%D7%95%D7%92%D7%99%D7%95%D7%AA_AI/?id=2090"
+    },
+    {
+      "showId": 119,
+      "showSlug": "זוגיות-AI",
+      "date": "2026-08-17",
+      "hour": "20:30",
+      "venueName": "בית העם רחובות",
+      "venueCity": "רחובות",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%96%d7%95%d7%92%d7%99%d7%95%d7%aa-ai/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/11037"
     },
     {
       "showId": 119,
@@ -645,10 +645,20 @@
     {
       "showId": 121,
       "showSlug": "מראה-מעל-הגשר",
+      "date": "2026-05-30",
+      "hour": "21:30",
+      "venueName": "היכל התרבות אור יהודה",
+      "venueCity": "אור יהודה",
+      "sourceUrl": "https://www.teatron.org.il/shows/%d7%9e%d7%a8%d7%90%d7%94-%d7%9e%d7%a2%d7%9c-%d7%94%d7%92%d7%a9%d7%a8/",
+      "ticketUrl": "https://oryehuda.smarticket.co.il/%D7%9E%D7%A8%D7%90%D7%94_%D7%9E%D7%A2%D7%9C_%D7%94%D7%92%D7%A9%D7%A8_-_%D7%94%D7%AA%D7%99%D7%90%D7%98%D7%A8%D7%95%D7%9F_%D7%94%D7%A2%D7%91%D7%A8%D7%99/?id=3970"
+    },
+    {
+      "showId": 121,
+      "showSlug": "מראה-מעל-הגשר",
       "date": "2026-06-03",
       "hour": "20:30",
       "venueName": "היכל התרבות קרית גת",
-      "venueCity": "תל אביב",
+      "venueCity": "קרית גת",
       "sourceUrl": "https://www.teatron.org.il/shows/%d7%9e%d7%a8%d7%90%d7%94-%d7%9e%d7%a2%d7%9c-%d7%94%d7%92%d7%a9%d7%a8/",
       "ticketUrl": "https://matnaskg.smarticket.co.il/%D7%9E%D7%A8%D7%90%D7%94_%D7%9E%D7%A2%D7%9C_%D7%94%D7%92%D7%A9%D7%A8/?id=2437"
     },
