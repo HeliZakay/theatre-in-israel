@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-12T22:38:45.905Z",
+  "scrapedAt": "2026-05-13T04:29:50.224Z",
   "venue": {
     "name": "תיאטרון הקאמרי",
     "city": "תל אביב"
@@ -904,6 +904,14 @@
     {
       "showId": 25,
       "showSlug": "לא-הייתם-צריכים",
+      "date": "2027-05-12",
+      "hour": "19:00",
+      "note": "כתוביות בעברית",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%90_%d7%94%d7%99%d7%99%d7%aa%d7%9d_%d7%a6%d7%a8%d7%99%d7%9b%d7%99%d7%9d/"
+    },
+    {
+      "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-05-13",
       "hour": "19:30",
       "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%90_%d7%94%d7%99%d7%99%d7%aa%d7%9d_%d7%a6%d7%a8%d7%99%d7%9b%d7%99%d7%9d/"
@@ -1374,6 +1382,13 @@
       "hour": "19:00",
       "note": "כתוביות בעברית",
       "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a6%d7%99%d7%9c%d7%91%d7%95%d7%aa/"
+    },
+    {
+      "showId": 2,
+      "showSlug": "קברט",
+      "date": "2027-05-12",
+      "hour": "20:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a7%d7%91%d7%a8%d7%98/"
     },
     {
       "showId": 2,
