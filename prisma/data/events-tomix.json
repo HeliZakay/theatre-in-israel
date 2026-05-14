@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-13T04:29:33.362Z",
+  "scrapedAt": "2026-05-14T04:29:16.787Z",
   "touring": true,
   "events": [
     {
@@ -846,6 +846,15 @@
       "hour": "21:30",
       "venueName": "תיאטרון היהלום",
       "venueCity": "רמת גן",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-06-13",
+      "hour": "21:30",
+      "venueName": "היכל התרבות אריאל",
+      "venueCity": "אריאל",
       "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {

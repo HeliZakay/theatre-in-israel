@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-13T04:28:20.679Z",
+  "scrapedAt": "2026-05-14T04:28:14.407Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון תמונע",
@@ -437,14 +437,6 @@
       "hour": "19:00",
       "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5376",
       "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25809"
-    },
-    {
-      "showId": 235,
-      "showSlug": "שלא-יגמר-לי",
-      "date": "2026-05-13",
-      "hour": "20:00",
-      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6229",
-      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25777"
     },
     {
       "showId": 235,

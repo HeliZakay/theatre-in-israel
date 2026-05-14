@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-13T04:29:16.038Z",
+  "scrapedAt": "2026-05-14T04:28:39.597Z",
   "venue": {
     "name": "תיאטרון המשולש",
     "city": "תל אביב"
@@ -68,6 +68,46 @@
       "hour": "20:00",
       "sourceUrl": "https://www.hameshulash.com/saudade",
       "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/321"
+    },
+    {
+      "showId": 286,
+      "showSlug": "האחד-המחזמר",
+      "date": "2026-07-07",
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/theone",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/358"
+    },
+    {
+      "showId": 286,
+      "showSlug": "האחד-המחזמר",
+      "date": "2026-07-11",
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/theone",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/359"
+    },
+    {
+      "showId": 286,
+      "showSlug": "האחד-המחזמר",
+      "date": "2026-08-06",
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/theone",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/360"
+    },
+    {
+      "showId": 286,
+      "showSlug": "האחד-המחזמר",
+      "date": "2026-08-08",
+      "hour": "18:00",
+      "sourceUrl": "https://www.hameshulash.com/theone",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/361"
+    },
+    {
+      "showId": 286,
+      "showSlug": "האחד-המחזמר",
+      "date": "2026-08-08",
+      "hour": "21:00",
+      "sourceUrl": "https://www.hameshulash.com/theone",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/362"
     },
     {
       "showId": 287,

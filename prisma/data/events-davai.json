@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-13T04:30:04.388Z",
+  "scrapedAt": "2026-05-14T04:29:46.423Z",
   "touring": true,
   "events": [
     {
@@ -51,6 +51,16 @@
       "venueCity": "שער העמקים",
       "sourceUrl": "https://davai-group.org/portfolio_page/under-construction-heb/",
       "ticketUrl": "https://davai-group.org/event/under-5-june-the-mill/"
+    },
+    {
+      "showId": 432,
+      "showSlug": "UNDER-CONSTRUCTION",
+      "date": "2026-06-07",
+      "hour": "20:30",
+      "venueName": "בית הראשונים מרכז ל פרדס חנה",
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://davai-group.org/portfolio_page/under-construction-heb/",
+      "ticketUrl": "https://www.goshow.co.il/show/18609/55409"
     },
     {
       "showId": 432,
@@ -111,6 +121,16 @@
       "venueCity": "תל אביב-יפו",
       "sourceUrl": "https://davai-group.org/portfolio_page/light/",
       "ticketUrl": "https://davai-group.org/event/light-august-8/"
+    },
+    {
+      "showId": 427,
+      "showSlug": "הדבר-העגול-הזה",
+      "date": "2026-06-14",
+      "hour": "17:00",
+      "venueName": "בית הגפן",
+      "venueCity": "חיפה",
+      "sourceUrl": "https://davai-group.org/portfolio_page/that-round-thing-heb/",
+      "ticketUrl": "https://www.beit-hagefen.com/EventDetalis.aspx?EventItemId=1647&CategoryItemId=2&lang=1"
     },
     {
       "showId": 429,

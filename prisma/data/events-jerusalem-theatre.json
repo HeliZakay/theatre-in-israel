@@ -1,18 +1,11 @@
 {
-  "scrapedAt": "2026-05-13T04:34:38.750Z",
+  "scrapedAt": "2026-05-14T04:34:12.665Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון ירושלים",
     "city": "ירושלים"
   },
   "events": [
-    {
-      "showId": 3,
-      "showSlug": "לנקות-את-הראש",
-      "date": "2026-05-13",
-      "hour": "20:30",
-      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4232/%D7%9C%D7%A0%D7%A7%D7%95%D7%AA_%D7%90%D7%AA_%D7%94%D7%A8%D7%90%D7%A9_%E2%80%93_%D7%90%D7%92%D7%93%D7%94_%D7%90%D7%95%D7%A8%D7%91%D7%A0%D7%99%D7%AA"
-    },
     {
       "showId": 240,
       "showSlug": "אמא-קוראז׳-וילדיה",

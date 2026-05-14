@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-13T04:30:59.090Z",
+  "scrapedAt": "2026-05-14T04:30:36.473Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון צוותא",
@@ -30,13 +30,6 @@
     {
       "showId": 452,
       "showSlug": "אמא-שלי-קראה-לי-רוטוויילר",
-      "date": "2026-05-14",
-      "hour": "20:00",
-      "sourceUrl": "https://www.tzavta.co.il/event/4943"
-    },
-    {
-      "showId": 452,
-      "showSlug": "אמא-שלי-קראה-לי-רוטוויילר",
       "date": "2026-06-14",
       "hour": "20:30",
       "sourceUrl": "https://www.tzavta.co.il/event/4943"
@@ -47,13 +40,6 @@
       "date": "2026-06-10",
       "hour": "20:30",
       "sourceUrl": "https://www.tzavta.co.il/event/4944"
-    },
-    {
-      "showId": 454,
-      "showSlug": "אקורד-סיום-למלחמה",
-      "date": "2026-05-13",
-      "hour": "20:30",
-      "sourceUrl": "https://www.tzavta.co.il/event/5071"
     },
     {
       "showId": 377,
@@ -187,13 +173,6 @@
       "date": "2026-06-08",
       "hour": "20:30",
       "sourceUrl": "https://www.tzavta.co.il/event/3544"
-    },
-    {
-      "showId": 200,
-      "showSlug": "סונטת-קרויצר",
-      "date": "2026-07-25",
-      "hour": "20:30",
-      "sourceUrl": "https://www.tzavta.co.il/event/5059"
     },
     {
       "showId": 201,

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-13T04:29:48.257Z",
+  "scrapedAt": "2026-05-14T04:29:26.490Z",
   "touring": true,
   "events": [
     {
@@ -307,15 +307,6 @@
       "venueName": "היכל התרבות כרמיאל",
       "venueCity": "כרמיאל",
       "sourceUrl": "https://teatron-hashaa.smarticket.co.il/כובע_קסמים_103"
-    },
-    {
-      "showId": 446,
-      "showSlug": "מעשה-בשלושה-אגוזים",
-      "date": "2026-05-13",
-      "hour": "17:30",
-      "venueName": "היכל התרבות באר טוביה",
-      "venueCity": "באר טוביה",
-      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/מעשה_בשלושה_אגוזים_"
     },
     {
       "showId": 446,

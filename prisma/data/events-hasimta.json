@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-13T04:29:39.217Z",
+  "scrapedAt": "2026-05-14T04:29:21.153Z",
   "venue": {
     "name": "תיאטרון הסימטה",
     "city": "תל אביב-יפו"
@@ -24,7 +24,7 @@
     {
       "showId": 353,
       "showSlug": "חפץ-לב",
-      "date": "2026-05-15",
+      "date": "2026-06-12",
       "hour": "14:00",
       "sourceUrl": "https://hasimta.com/shows/%d7%97%d7%a4%d7%a5-%d7%9c%d7%91/",
       "ticketUrl": "https://eventbuzz.co.il/znj6o"

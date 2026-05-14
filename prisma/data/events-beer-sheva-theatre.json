@@ -1,27 +1,7 @@
 {
-  "scrapedAt": "2026-05-13T04:27:26.155Z",
+  "scrapedAt": "2026-05-14T04:26:57.814Z",
   "touring": true,
   "events": [
-    {
-      "showId": 171,
-      "showSlug": "באר-שבסקיה",
-      "date": "2026-05-13",
-      "hour": "19:00",
-      "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע",
-      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
-      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9065"
-    },
-    {
-      "showId": 171,
-      "showSlug": "באר-שבסקיה",
-      "date": "2026-05-13",
-      "hour": "21:00",
-      "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע",
-      "sourceUrl": "https://b7t.co.il/shows/%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a1%d7%a7%d7%99%d7%94/",
-      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9071"
-    },
     {
       "showId": 171,
       "showSlug": "באר-שבסקיה",
@@ -575,16 +555,6 @@
     {
       "showId": 83,
       "showSlug": "מקומות-שמורים",
-      "date": "2026-05-13",
-      "hour": "20:30",
-      "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע",
-      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
-      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8824"
-    },
-    {
-      "showId": 83,
-      "showSlug": "מקומות-שמורים",
       "date": "2026-05-14",
       "hour": "20:30",
       "venueName": "תיאטרון באר שבע",
@@ -751,6 +721,16 @@
       "venueCity": "באר שבע",
       "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
       "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9127"
+    },
+    {
+      "showId": 172,
+      "showSlug": "פינק-ליידי",
+      "date": "2026-06-11",
+      "hour": "20:30",
+      "venueName": "תיאטרון באר שבע",
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://b7t.co.il/shows/%d7%a4%d7%99%d7%a0%d7%a7-%d7%9c%d7%99%d7%99%d7%93%d7%99/",
+      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9169"
     }
   ]
 }

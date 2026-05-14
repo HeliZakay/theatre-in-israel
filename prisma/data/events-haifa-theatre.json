@@ -1,7 +1,27 @@
 {
-  "scrapedAt": "2026-05-13T04:26:32.075Z",
+  "scrapedAt": "2026-05-14T04:26:22.498Z",
   "touring": true,
   "events": [
+    {
+      "showId": 81,
+      "showSlug": "הזוג-המוזר",
+      "date": "2026-06-29",
+      "hour": "20:30",
+      "venueName": "בית החייל ת\"א",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.ht1.co.il/Event/Index/43551",
+      "ticketUrl": "https://ht1.smarticket.co.il/event/8971"
+    },
+    {
+      "showId": 81,
+      "showSlug": "הזוג-המוזר",
+      "date": "2026-06-30",
+      "hour": "20:30",
+      "venueName": "בית החייל ת\"א",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.ht1.co.il/Event/Index/43551",
+      "ticketUrl": "https://ht1.smarticket.co.il/event/8972"
+    },
     {
       "showId": 82,
       "showSlug": "היומן",
@@ -211,6 +231,46 @@
       "venueCity": "חיפה",
       "sourceUrl": "https://www.ht1.co.il/Event/Index/43812",
       "ticketUrl": "https://ht1.smarticket.co.il/event/8820"
+    },
+    {
+      "showId": 78,
+      "showSlug": "לשחרר-את-נחמה",
+      "date": "2026-07-14",
+      "hour": "21:00",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה",
+      "sourceUrl": "https://www.ht1.co.il/Event/Index/43545",
+      "ticketUrl": "https://ht1.smarticket.co.il/event/8975"
+    },
+    {
+      "showId": 78,
+      "showSlug": "לשחרר-את-נחמה",
+      "date": "2026-07-30",
+      "hour": "20:30",
+      "venueName": "בית החייל ת\"א",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.ht1.co.il/Event/Index/43545",
+      "ticketUrl": "https://ht1.smarticket.co.il/event/8973"
+    },
+    {
+      "showId": 78,
+      "showSlug": "לשחרר-את-נחמה",
+      "date": "2026-07-31",
+      "hour": "20:30",
+      "venueName": "בית החייל ת\"א",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.ht1.co.il/Event/Index/43545",
+      "ticketUrl": "https://ht1.smarticket.co.il/event/8974"
+    },
+    {
+      "showId": 78,
+      "showSlug": "לשחרר-את-נחמה",
+      "date": "2026-08-01",
+      "hour": "21:00",
+      "venueName": "בית החייל ת\"א",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.ht1.co.il/Event/Index/43545",
+      "ticketUrl": "https://ht1.smarticket.co.il/event/8976"
     },
     {
       "showId": 468,

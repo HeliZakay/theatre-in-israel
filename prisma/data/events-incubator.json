@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-13T04:29:13.024Z",
+  "scrapedAt": "2026-05-14T04:28:59.314Z",
   "touring": true,
   "events": [
     {
@@ -71,16 +71,6 @@
       "venueCity": "תל אביב",
       "sourceUrl": "https://incubator.org.il/repertoire/akhinoam-and-i/",
       "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/170"
-    },
-    {
-      "showId": 290,
-      "showSlug": "אחינועם-ואני-תיאטרון-האינקובטור",
-      "date": "2026-06-29",
-      "hour": "20:30",
-      "venueName": "צוותא",
-      "venueCity": "תל אביב",
-      "sourceUrl": "https://incubator.org.il/repertoire/akhinoam-and-i/",
-      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/171"
     },
     {
       "showId": 291,

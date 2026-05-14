@@ -1,18 +1,11 @@
 {
-  "scrapedAt": "2026-05-13T04:31:47.919Z",
+  "scrapedAt": "2026-05-14T04:31:45.653Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון הצפון",
     "city": "קריית חיים"
   },
   "events": [
-    {
-      "showId": 269,
-      "showSlug": "דרושה-עוזרת",
-      "date": "2026-05-13",
-      "hour": "20:30",
-      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4370"
-    },
     {
       "showId": 117,
       "showSlug": "הלב-שלי-בחר",
