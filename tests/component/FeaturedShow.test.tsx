@@ -19,9 +19,20 @@ describe("FeaturedShow", () => {
   });
 
   it("shows rating row when avgRating is a valid number", () => {
-    renderFeatured({ avgRating: 4.3, reviewCount: 12 });
+    renderFeatured({ avgRating: 4.3, reviewCount: 20 });
     expect(screen.getByText("4.3")).toBeInTheDocument();
-    expect(screen.getByText("12 ביקורות")).toBeInTheDocument();
+    expect(screen.getByText("20 ביקורות")).toBeInTheDocument();
+  });
+
+  it("hides the review count below the 15-review threshold but keeps the rating", () => {
+    renderFeatured({ avgRating: 4.3, reviewCount: 14 });
+    expect(screen.getByText("4.3")).toBeInTheDocument();
+    expect(screen.queryByText(/ביקורות/)).not.toBeInTheDocument();
+  });
+
+  it("shows the review count at exactly 15 reviews", () => {
+    renderFeatured({ avgRating: 4.3, reviewCount: 15 });
+    expect(screen.getByText("15 ביקורות")).toBeInTheDocument();
   });
 
   it("hides rating row when avgRating is null", () => {

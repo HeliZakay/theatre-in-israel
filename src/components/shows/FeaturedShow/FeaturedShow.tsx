@@ -31,6 +31,11 @@ export default function FeaturedShow({
 }: FeaturedShowProps) {
   const hasRating = typeof avgRating === "number" && !Number.isNaN(avgRating);
   const formattedRating = hasRating ? avgRating.toFixed(1) : null;
+  // Hide the review count for shows with few reviews — the rating is still
+  // shown, but a low count reads as weak social proof.
+  const MIN_REVIEWS_FOR_COUNT = 15;
+  const showReviewCount =
+    typeof reviewCount === "number" && reviewCount >= MIN_REVIEWS_FOR_COUNT;
   return (
     <article className={styles.card} aria-label="כרטיס הצגה מומלצת">
       {href && (
@@ -82,7 +87,9 @@ export default function FeaturedShow({
           <div className={styles.ratingRow}>
             <span className={styles.ratingValue}>{formattedRating}</span>
             <span className={styles.stars}>★</span>
-            <span className={styles.reviewCount}>{reviewCount} ביקורות</span>
+            {showReviewCount && (
+              <span className={styles.reviewCount}>{reviewCount} ביקורות</span>
+            )}
           </div>
         )}
         {quote && (
