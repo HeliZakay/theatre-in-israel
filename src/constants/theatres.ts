@@ -36,6 +36,7 @@ export const THEATRES: TheatreInfo[] = [
   { slug: "davai", name: "תיאטרון דוואי", image: "/images/theatres/תיאטרון-דוואי.webp" },
   { slug: "hashaa", name: "תיאטרון השעה הישראלי", image: "/images/theatres/תיאטרון-השעה-הישראלי.webp" },
   { slug: "independent", name: "הפקות עצמאיות", image: "/images/theatres/הפקות-עצמאיות.webp" },
+  { slug: "panteon", name: "פנתאון", image: "/images/theatres/פנתאון.webp" },
 ];
 
 /** Map from URL slug → theatre info */
