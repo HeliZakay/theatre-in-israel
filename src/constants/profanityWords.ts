@@ -1,6 +1,5 @@
 /** Single Hebrew profanity words. */
 export const HEBREW_PROFANITY_WORDS: string[] = [
-  "זין",
   "זיון",
   "זיין",
   "כוס",
@@ -11,7 +10,6 @@ export const HEBREW_PROFANITY_WORDS: string[] = [
   "מזדיינת",
   "תזדיין",
   "תזדייני",
-  "זונה",
   "זונות",
   "שרמוטה",
   "שרמוטות",
