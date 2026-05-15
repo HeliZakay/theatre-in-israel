@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-14T04:29:21.153Z",
+  "scrapedAt": "2026-05-15T04:32:25.580Z",
   "venue": {
     "name": "תיאטרון הסימטה",
     "city": "תל אביב-יפו"
@@ -16,18 +16,18 @@
     {
       "showId": 353,
       "showSlug": "חפץ-לב",
-      "date": "2026-05-14",
-      "hour": "20:30",
-      "sourceUrl": "https://hasimta.com/shows/%d7%97%d7%a4%d7%a5-%d7%9c%d7%91/",
-      "ticketUrl": "https://eventbuzz.co.il/vxqpg"
-    },
-    {
-      "showId": 353,
-      "showSlug": "חפץ-לב",
       "date": "2026-06-12",
-      "hour": "14:00",
+      "hour": "13:30",
       "sourceUrl": "https://hasimta.com/shows/%d7%97%d7%a4%d7%a5-%d7%9c%d7%91/",
       "ticketUrl": "https://eventbuzz.co.il/znj6o"
+    },
+    {
+      "showId": 354,
+      "showSlug": "נקודת-האל-חזור",
+      "date": "2026-06-01",
+      "hour": "20:30",
+      "sourceUrl": "https://hasimta.com/shows/%d7%a0%d7%a7%d7%95%d7%93%d7%aa-%d7%94%d7%90%d7%9c-%d7%97%d7%96%d7%95%d7%a8/",
+      "ticketUrl": "https://eventbuzz.co.il/l13al"
     },
     {
       "showId": 423,
@@ -40,7 +40,7 @@
     {
       "showId": 476,
       "showSlug": "פרדוקס",
-      "date": "2026-05-24",
+      "date": "2026-07-07",
       "hour": "20:00",
       "sourceUrl": "https://hasimta.com/shows/%d7%a4%d7%a8%d7%93%d7%95%d7%a7%d7%a1/",
       "ticketUrl": "https://eventbuzz.co.il/gm6ib"

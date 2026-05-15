@@ -1,18 +1,11 @@
 {
-  "scrapedAt": "2026-05-14T04:32:21.250Z",
+  "scrapedAt": "2026-05-15T04:35:08.185Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות איירפורט סיטי",
     "city": "איירפורט סיטי"
   },
   "events": [
-    {
-      "showId": 81,
-      "showSlug": "הזוג-המוזר",
-      "date": "2026-05-14",
-      "hour": "20:30",
-      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1596"
-    },
     {
       "showId": 81,
       "showSlug": "הזוג-המוזר",

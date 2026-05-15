@@ -1,25 +1,11 @@
 {
-  "scrapedAt": "2026-05-14T04:31:45.653Z",
+  "scrapedAt": "2026-05-15T04:34:31.427Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון הצפון",
     "city": "קריית חיים"
   },
   "events": [
-    {
-      "showId": 117,
-      "showSlug": "הלב-שלי-בחר",
-      "date": "2026-05-14",
-      "hour": "21:00",
-      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4290"
-    },
-    {
-      "showId": 117,
-      "showSlug": "הלב-שלי-בחר",
-      "date": "2026-07-29",
-      "hour": "20:30",
-      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4290"
-    },
     {
       "showId": 116,
       "showSlug": "אהבה-בהפתעה",
@@ -306,6 +292,13 @@
       "date": "2026-06-28",
       "hour": "20:30",
       "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4231"
+    },
+    {
+      "showId": 117,
+      "showSlug": "הלב-שלי-בחר",
+      "date": "2026-07-29",
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4290"
     },
     {
       "showId": 124,

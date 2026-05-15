@@ -1,17 +1,7 @@
 {
-  "scrapedAt": "2026-05-14T04:27:18.540Z",
+  "scrapedAt": "2026-05-15T04:30:19.962Z",
   "touring": true,
   "events": [
-    {
-      "showId": 116,
-      "showSlug": "אהבה-בהפתעה",
-      "date": "2026-05-14",
-      "hour": "20:30",
-      "venueName": "מזכרת בתיה - היכל התרבות ע\"ש אריה כספי",
-      "venueCity": "מזכרת בתיה",
-      "sourceUrl": "https://www.teatron.org.il/shows/%d7%90%d7%94%d7%91%d7%94-%d7%91%d7%94%d7%a4%d7%aa%d7%a2%d7%94/",
-      "ticketUrl": "https://mifgashim-mb.smarticket.co.il/%D7%90%D7%94%D7%91%D7%94_%D7%91%D7%94%D7%A4%D7%AA%D7%A2%D7%94/?id=435"
-    },
     {
       "showId": 116,
       "showSlug": "אהבה-בהפתעה",
@@ -341,16 +331,6 @@
       "venueCity": "קריית חיים",
       "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%91%d7%a8%d7%95%d7%a0%d7%99%d7%aa-%d7%a8%d7%95%d7%98%d7%a9%d7%99%d7%9c%d7%93/",
       "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10783&ty=st"
-    },
-    {
-      "showId": 117,
-      "showSlug": "הלב-שלי-בחר",
-      "date": "2026-05-14",
-      "hour": "20:30",
-      "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים",
-      "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%9c%d7%91-%d7%a9%d7%9c%d7%99-%d7%91%d7%97%d7%a8/",
-      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10768&ty=st"
     },
     {
       "showId": 117,

@@ -1,17 +1,7 @@
 {
-  "scrapedAt": "2026-05-14T04:26:34.285Z",
+  "scrapedAt": "2026-05-15T04:29:39.506Z",
   "touring": true,
   "events": [
-    {
-      "showId": 240,
-      "showSlug": "אמא-קוראז׳-וילדיה",
-      "date": "2026-05-14",
-      "hour": "19:30",
-      "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו",
-      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2868",
-      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2868&DateID=7192"
-    },
     {
       "showId": 240,
       "showSlug": "אמא-קוראז׳-וילדיה",
@@ -371,16 +361,6 @@
       "venueCity": "תל אביב-יפו",
       "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2834",
       "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2834&DateID=7120"
-    },
-    {
-      "showId": 246,
-      "showSlug": "מי-כמוני",
-      "date": "2026-05-14",
-      "hour": "20:00",
-      "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו",
-      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=306",
-      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=306&DateID=7198"
     },
     {
       "showId": 159,

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-14T04:28:03.824Z",
+  "scrapedAt": "2026-05-15T04:31:09.787Z",
   "touring": true,
   "events": [
     {
@@ -795,16 +795,6 @@
     {
       "showId": 41,
       "showSlug": "משהו-טוב",
-      "date": "2026-05-14",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב",
-      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%94%d7%95-%d7%98%d7%95%d7%91/",
-      "ticketUrl": "https://tickets.habima.co.il/order/50236"
-    },
-    {
-      "showId": 41,
-      "showSlug": "משהו-טוב",
       "date": "2026-05-17",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
@@ -1131,16 +1121,6 @@
       "venueCity": "תל אביב",
       "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a2%d7%95%d7%9c%d7%95%d7%aa-%d7%a4%d7%a9%d7%95%d7%98%d7%95%d7%aa/",
       "ticketUrl": "https://tickets.habima.co.il/order/50484"
-    },
-    {
-      "showId": 35,
-      "showSlug": "פריסילה-מלכת-המדבר",
-      "date": "2026-05-14",
-      "hour": "17:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב",
-      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
-      "ticketUrl": "https://tickets.habima.co.il/order/50265"
     },
     {
       "showId": 35,

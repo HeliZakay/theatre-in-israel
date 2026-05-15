@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-14T04:29:32.920Z",
+  "scrapedAt": "2026-05-15T04:32:15.624Z",
   "venue": {
     "name": "תיאטרון הקאמרי",
     "city": "תל אביב"
@@ -904,14 +904,6 @@
     {
       "showId": 25,
       "showSlug": "לא-הייתם-צריכים",
-      "date": "2026-05-14",
-      "hour": "19:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%90_%d7%94%d7%99%d7%99%d7%aa%d7%9d_%d7%a6%d7%a8%d7%99%d7%9b%d7%99%d7%9d/"
-    },
-    {
-      "showId": 25,
-      "showSlug": "לא-הייתם-צריכים",
       "date": "2026-06-11",
       "hour": "20:00",
       "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%90_%d7%94%d7%99%d7%99%d7%aa%d7%9d_%d7%a6%d7%a8%d7%99%d7%9b%d7%99%d7%9d/"
@@ -930,6 +922,13 @@
       "date": "2026-06-13",
       "hour": "17:30",
       "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%90_%d7%94%d7%99%d7%99%d7%aa%d7%9d_%d7%a6%d7%a8%d7%99%d7%9b%d7%99%d7%9d/"
+    },
+    {
+      "showId": 25,
+      "showSlug": "לא-הייתם-צריכים",
+      "date": "2026-06-13",
+      "hour": "20:00",
       "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%90_%d7%94%d7%99%d7%99%d7%aa%d7%9d_%d7%a6%d7%a8%d7%99%d7%9b%d7%99%d7%9d/"
     },
     {
@@ -976,14 +975,6 @@
       "hour": "19:30",
       "note": "English subtitles",
       "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%90_%d7%94%d7%99%d7%99%d7%aa%d7%9d_%d7%a6%d7%a8%d7%99%d7%9b%d7%99%d7%9d/"
-    },
-    {
-      "showId": 23,
-      "showSlug": "לילה-טוב-אמא",
-      "date": "2027-05-13",
-      "hour": "20:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%99%d7%9c%d7%94_%d7%98%d7%95%d7%91_%d7%90%d7%9e%d7%90/"
     },
     {
       "showId": 23,
@@ -1067,6 +1058,13 @@
       "date": "2026-06-20",
       "hour": "17:00",
       "note": "English subtitles",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
+    },
+    {
+      "showId": 3,
+      "showSlug": "לנקות-את-הראש",
+      "date": "2026-06-20",
+      "hour": "19:30",
       "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa_%d7%90%d7%aa_%d7%94%d7%a8%d7%90%d7%a9/"
     },
     {
@@ -1371,21 +1369,6 @@
     {
       "showId": 2,
       "showSlug": "קברט",
-      "date": "2027-05-13",
-      "hour": "19:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a7%d7%91%d7%a8%d7%98/"
-    },
-    {
-      "showId": 2,
-      "showSlug": "קברט",
-      "date": "2026-05-14",
-      "hour": "19:00",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a7%d7%91%d7%a8%d7%98/"
-    },
-    {
-      "showId": 2,
-      "showSlug": "קברט",
       "date": "2026-05-15",
       "hour": "11:30",
       "note": "כתוביות בעברית",
@@ -1597,13 +1580,6 @@
       "hour": "19:00",
       "note": "כתוביות בעברית",
       "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a7%d7%91%d7%a8%d7%98/"
-    },
-    {
-      "showId": 132,
-      "showSlug": "רינגו",
-      "date": "2026-05-14",
-      "hour": "21:00",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a8%d7%99%d7%a0%d7%92%d7%95/"
     },
     {
       "showId": 132,

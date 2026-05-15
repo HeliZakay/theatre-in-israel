@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-14T04:25:47.492Z",
+  "scrapedAt": "2026-05-15T04:28:51.935Z",
   "venue": {
     "name": "תיאטרון בית ליסין",
     "city": "תל אביב"
@@ -640,23 +640,7 @@
     {
       "showId": 60,
       "showSlug": "סיפור-הפרברים-–-המחזמר",
-      "date": "2027-05-13",
-      "hour": "20:00",
-      "note": "אולם 1",
-      "sourceUrl": "https://www.lessin.co.il/shows/%d7%a1%d7%99%d7%a4%d7%95%d7%a8-%d7%94%d7%a4%d7%a8%d7%91%d7%a8%d7%99%d7%9d-%d7%94%d7%9e%d7%97%d7%96%d7%9e%d7%a8/"
-    },
-    {
-      "showId": 60,
-      "showSlug": "סיפור-הפרברים-–-המחזמר",
-      "date": "2026-05-14",
-      "hour": "12:00",
-      "note": "אולם 1",
-      "sourceUrl": "https://www.lessin.co.il/shows/%d7%a1%d7%99%d7%a4%d7%95%d7%a8-%d7%94%d7%a4%d7%a8%d7%91%d7%a8%d7%99%d7%9d-%d7%94%d7%9e%d7%97%d7%96%d7%9e%d7%a8/"
-    },
-    {
-      "showId": 60,
-      "showSlug": "סיפור-הפרברים-–-המחזמר",
-      "date": "2026-05-14",
+      "date": "2027-05-14",
       "hour": "20:00",
       "note": "אולם 1",
       "sourceUrl": "https://www.lessin.co.il/shows/%d7%a1%d7%99%d7%a4%d7%95%d7%a8-%d7%94%d7%a4%d7%a8%d7%91%d7%a8%d7%99%d7%9d-%d7%94%d7%9e%d7%97%d7%96%d7%9e%d7%a8/"

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-14T04:28:14.407Z",
+  "scrapedAt": "2026-05-15T04:31:02.706Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון תמונע",
@@ -77,14 +77,6 @@
       "hour": "19:00",
       "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6137",
       "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25820"
-    },
-    {
-      "showId": 415,
-      "showSlug": "את-מדברת.-אני-מדברת",
-      "date": "2026-05-14",
-      "hour": "20:00",
-      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5452",
-      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25790"
     },
     {
       "showId": 260,
@@ -215,28 +207,12 @@
       "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25796"
     },
     {
-      "showId": 379,
-      "showSlug": "הגבירה-מאבו-דיס",
-      "date": "2026-05-14",
-      "hour": "20:00",
-      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6004",
-      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25679"
-    },
-    {
       "showId": 465,
       "showSlug": "החולד-הקטן",
       "date": "2026-05-23",
       "hour": "11:00",
       "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=76&ArticleID=5929",
       "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25826"
-    },
-    {
-      "showId": 365,
-      "showSlug": "הכל-נשאר-חי",
-      "date": "2026-05-17",
-      "hour": "20:00",
-      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6158",
-      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25662"
     },
     {
       "showId": 365,

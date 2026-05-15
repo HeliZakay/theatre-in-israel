@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-14T04:29:16.787Z",
+  "scrapedAt": "2026-05-15T04:32:16.780Z",
   "touring": true,
   "events": [
     {
@@ -176,15 +176,6 @@
     {
       "showId": 269,
       "showSlug": "דרושה-עוזרת",
-      "date": "2026-05-14",
-      "hour": "20:30",
-      "venueName": "היכל התרבות",
-      "venueCity": "בת ים",
-      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
-    },
-    {
-      "showId": 269,
-      "showSlug": "דרושה-עוזרת",
       "date": "2026-05-16",
       "hour": "21:00",
       "venueName": "בית יד לבנים",
@@ -347,10 +338,91 @@
     {
       "showId": 269,
       "showSlug": "דרושה-עוזרת",
+      "date": "2026-08-01",
+      "hour": "21:30",
+      "venueName": "היכל התרבות נתניה",
+      "venueCity": "נתניה",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
+    },
+    {
+      "showId": 269,
+      "showSlug": "דרושה-עוזרת",
+      "date": "2026-08-13",
+      "hour": "20:30",
+      "venueName": "היכל אומנויות הבמה הרצליה",
+      "venueCity": "הרצליה",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
+    },
+    {
+      "showId": 269,
+      "showSlug": "דרושה-עוזרת",
+      "date": "2026-08-15",
+      "hour": "21:00",
+      "venueName": "אודיטוריום ע\"ש קלצ'קין",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
+    },
+    {
+      "showId": 269,
+      "showSlug": "דרושה-עוזרת",
+      "date": "2026-08-19",
+      "hour": "20:30",
+      "venueName": "היכל התרבות מודיעין",
+      "venueCity": "מודיעין",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
+    },
+    {
+      "showId": 269,
+      "showSlug": "דרושה-עוזרת",
+      "date": "2026-08-20",
+      "hour": "20:30",
+      "venueName": "תיאטרון יוקנעם",
+      "venueCity": "לא ידוע",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
+    },
+    {
+      "showId": 269,
+      "showSlug": "דרושה-עוזרת",
+      "date": "2026-08-21",
+      "hour": "21:00",
+      "venueName": "היכל התרבות ראשון לציון",
+      "venueCity": "ראשון לציון",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
+    },
+    {
+      "showId": 269,
+      "showSlug": "דרושה-עוזרת",
+      "date": "2026-08-22",
+      "hour": "21:00",
+      "venueName": "מרכז הבמה",
+      "venueCity": "גני תקווה",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
+    },
+    {
+      "showId": 269,
+      "showSlug": "דרושה-עוזרת",
+      "date": "2026-08-28",
+      "hour": "21:30",
+      "venueName": "היכל התיאטרון",
+      "venueCity": "קרית מוצקין",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
+    },
+    {
+      "showId": 269,
+      "showSlug": "דרושה-עוזרת",
       "date": "2026-09-03",
       "hour": "20:30",
       "venueName": "היכל התרבות עכו",
       "venueCity": "עכו",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
+    },
+    {
+      "showId": 269,
+      "showSlug": "דרושה-עוזרת",
+      "date": "2026-09-10",
+      "hour": "20:30",
+      "venueName": "בית העם",
+      "venueCity": "רחובות",
       "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
@@ -374,7 +446,7 @@
     {
       "showId": 269,
       "showSlug": "דרושה-עוזרת",
-      "date": "2026-11-10",
+      "date": "2026-11-12",
       "hour": "20:30",
       "venueName": "היכל התרבות פתח תקווה",
       "venueCity": "פתח תקווה",
@@ -959,15 +1031,6 @@
     {
       "showId": 271,
       "showSlug": "שקרים-קטנים",
-      "date": "2026-08-27",
-      "hour": "20:30",
-      "venueName": "בית יד לבנים",
-      "venueCity": "רעננה",
-      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
-    },
-    {
-      "showId": 271,
-      "showSlug": "שקרים-קטנים",
       "date": "2026-08-31",
       "hour": "20:30",
       "venueName": "משכן אמנויות הבמה באר שבע",
@@ -999,6 +1062,15 @@
       "hour": "21:00",
       "venueName": "סינמה סיטי גלילות",
       "venueCity": "גלילות",
+      "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2027-01-14",
+      "hour": "20:30",
+      "venueName": "בית יד לבנים",
+      "venueCity": "רעננה",
       "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     }
   ]

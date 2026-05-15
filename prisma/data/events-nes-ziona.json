@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-14T04:31:01.033Z",
+  "scrapedAt": "2026-05-15T04:33:40.351Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות נס ציונה",
@@ -61,6 +61,13 @@
       "date": "2026-07-07",
       "hour": "20:30",
       "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%94%d7%96%d7%95%d7%92-%d7%94%d7%9e%d7%95%d7%96%d7%a8-%d7%97%d7%99%d7%a4%d7%94/"
+    },
+    {
+      "showId": 269,
+      "showSlug": "דרושה-עוזרת",
+      "date": "2026-07-25",
+      "hour": "21:30",
+      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%93%d7%a8%d7%95%d7%a9%d7%94-%d7%a2%d7%95%d7%96%d7%a8%d7%aa-2/"
     },
     {
       "showId": 266,

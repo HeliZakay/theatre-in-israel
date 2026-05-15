@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-14T04:29:46.423Z",
+  "scrapedAt": "2026-05-15T04:32:41.135Z",
   "touring": true,
   "events": [
     {
@@ -133,14 +133,14 @@
       "ticketUrl": "https://www.beit-hagefen.com/EventDetalis.aspx?EventItemId=1647&CategoryItemId=2&lang=1"
     },
     {
-      "showId": 429,
-      "showSlug": "סבתא-פרידה",
-      "date": "2026-05-14",
-      "hour": "16:30",
-      "venueName": "מתנ\"ס ראש פינה",
-      "venueCity": "ראש פינה",
-      "sourceUrl": "https://davai-group.org/portfolio_page/grandma-frida/",
-      "ticketUrl": "https://www.hugim.org.il/HugimWeb.dll/-9KnnNoQKxjWKcblQKImzTXrmeW/?Tickets=1&KodMatnas=585"
+      "showId": 427,
+      "showSlug": "הדבר-העגול-הזה",
+      "date": "2026-08-29",
+      "hour": "11:00",
+      "venueName": "מוזיאון תל אביב לאמנות",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://davai-group.org/portfolio_page/that-round-thing-heb/",
+      "ticketUrl": "https://www.goshow.co.il/show/15082/50075"
     },
     {
       "showId": 429,
