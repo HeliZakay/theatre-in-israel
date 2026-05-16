@@ -1,18 +1,11 @@
 {
-  "scrapedAt": "2026-05-15T04:33:32.408Z",
+  "scrapedAt": "2026-05-16T04:23:55.173Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון צוותא",
     "city": "תל אביב"
   },
   "events": [
-    {
-      "showId": 450,
-      "showSlug": "אורות-קטנות",
-      "date": "2026-05-15",
-      "hour": "14:00",
-      "sourceUrl": "https://www.tzavta.co.il/event/4977"
-    },
     {
       "showId": 451,
       "showSlug": "איפה-גוגו",

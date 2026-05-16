@@ -1,67 +1,11 @@
 {
-  "scrapedAt": "2026-05-15T04:34:31.427Z",
+  "scrapedAt": "2026-05-16T04:24:55.300Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון הצפון",
     "city": "קריית חיים"
   },
   "events": [
-    {
-      "showId": 116,
-      "showSlug": "אהבה-בהפתעה",
-      "date": "2026-05-15",
-      "hour": "21:30",
-      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
-    },
-    {
-      "showId": 116,
-      "showSlug": "אהבה-בהפתעה",
-      "date": "2026-05-31",
-      "hour": "20:30",
-      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
-    },
-    {
-      "showId": 116,
-      "showSlug": "אהבה-בהפתעה",
-      "date": "2026-06-01",
-      "hour": "11:00",
-      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
-    },
-    {
-      "showId": 116,
-      "showSlug": "אהבה-בהפתעה",
-      "date": "2026-08-13",
-      "hour": "20:30",
-      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
-    },
-    {
-      "showId": 116,
-      "showSlug": "אהבה-בהפתעה",
-      "date": "2026-08-15",
-      "hour": "21:30",
-      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
-    },
-    {
-      "showId": 116,
-      "showSlug": "אהבה-בהפתעה",
-      "date": "2026-08-20",
-      "hour": "20:30",
-      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
-    },
-    {
-      "showId": 116,
-      "showSlug": "אהבה-בהפתעה",
-      "date": "2026-09-01",
-      "hour": "20:30",
-      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
-    },
-    {
-      "showId": 116,
-      "showSlug": "אהבה-בהפתעה",
-      "date": "2026-09-02",
-      "hour": "20:30",
-      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
-    },
     {
       "showId": 114,
       "showSlug": "עפרה",
@@ -117,6 +61,55 @@
       "date": "2026-05-27",
       "hour": "20:30",
       "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4295"
+    },
+    {
+      "showId": 116,
+      "showSlug": "אהבה-בהפתעה",
+      "date": "2026-05-31",
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
+    },
+    {
+      "showId": 116,
+      "showSlug": "אהבה-בהפתעה",
+      "date": "2026-06-01",
+      "hour": "11:00",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
+    },
+    {
+      "showId": 116,
+      "showSlug": "אהבה-בהפתעה",
+      "date": "2026-08-13",
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
+    },
+    {
+      "showId": 116,
+      "showSlug": "אהבה-בהפתעה",
+      "date": "2026-08-15",
+      "hour": "21:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
+    },
+    {
+      "showId": 116,
+      "showSlug": "אהבה-בהפתעה",
+      "date": "2026-08-20",
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
+    },
+    {
+      "showId": 116,
+      "showSlug": "אהבה-בהפתעה",
+      "date": "2026-09-01",
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
+    },
+    {
+      "showId": 116,
+      "showSlug": "אהבה-בהפתעה",
+      "date": "2026-09-02",
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4335"
     },
     {
       "showId": 119,

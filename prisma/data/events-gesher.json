@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-15T04:29:39.506Z",
+  "scrapedAt": "2026-05-16T04:20:15.886Z",
   "touring": true,
   "events": [
     {
@@ -221,16 +221,6 @@
       "venueCity": "תל אביב-יפו",
       "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=196",
       "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=196&DateID=7153"
-    },
-    {
-      "showId": 98,
-      "showSlug": "החטא-ועונשו",
-      "date": "2026-05-15",
-      "hour": "20:00",
-      "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו",
-      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2822",
-      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2822&DateID=7189"
     },
     {
       "showId": 98,

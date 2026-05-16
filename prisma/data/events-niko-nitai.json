@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-15T04:32:21.667Z",
+  "scrapedAt": "2026-05-16T04:22:52.017Z",
   "venue": {
     "name": "תיאטרון ניקו ניתאי",
     "city": "תל אביב"
@@ -106,16 +106,9 @@
     {
       "showId": 338,
       "showSlug": "מי-רצח-את-אלמה",
-      "date": "2026-05-15",
-      "hour": "21:00",
-      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%9E%D7%99_%D7%A8%D7%A6%D7%97_%D7%90%D7%AA_%D7%90%D7%9C%D7%9E%D7%94_/?id=489"
-    },
-    {
-      "showId": 338,
-      "showSlug": "מי-רצח-את-אלמה",
       "date": "2026-06-13",
       "hour": "20:30",
-      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%9E%D7%99_%D7%A8%D7%A6%D7%97_%D7%90%D7%AA_%D7%90%D7%9C%D7%9E%D7%94_/?id=489"
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%9E%D7%99_%D7%A8%D7%A6%D7%97_%D7%90%D7%AA_%D7%90%D7%9C%D7%9E%D7%94_/?id=496"
     },
     {
       "showId": 339,

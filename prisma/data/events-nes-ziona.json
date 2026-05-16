@@ -1,18 +1,11 @@
 {
-  "scrapedAt": "2026-05-15T04:33:40.351Z",
+  "scrapedAt": "2026-05-16T04:24:07.038Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות נס ציונה",
     "city": "נס ציונה"
   },
   "events": [
-    {
-      "showId": 19,
-      "showSlug": "זינגר",
-      "date": "2026-05-15",
-      "hour": "22:00",
-      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%92%d7%99%d7%95%d7%a8%d7%90-%d7%96%d7%99%d7%a0%d7%92%d7%a8-3/"
-    },
     {
       "showId": 4,
       "showSlug": "מי-בעד",

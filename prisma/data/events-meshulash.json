@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-15T04:31:37.867Z",
+  "scrapedAt": "2026-05-16T04:21:56.369Z",
   "venue": {
     "name": "תיאטרון המשולש",
     "city": "תל אביב"
@@ -68,6 +68,14 @@
       "hour": "20:00",
       "sourceUrl": "https://www.hameshulash.com/saudade",
       "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/321"
+    },
+    {
+      "showId": 285,
+      "showSlug": "געגוע-SAUDADE",
+      "date": "2026-07-13",
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/saudade",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/363"
     },
     {
       "showId": 286,
@@ -174,12 +182,36 @@
       "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/325"
     },
     {
+      "showId": 288,
+      "showSlug": "פאקינג-מן",
+      "date": "2026-07-16",
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/fuckingman",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/364"
+    },
+    {
+      "showId": 288,
+      "showSlug": "פאקינג-מן",
+      "date": "2026-07-18",
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/fuckingman",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/365"
+    },
+    {
       "showId": 289,
       "showSlug": "פותחות",
       "date": "2026-05-30",
       "hour": "20:00",
       "sourceUrl": "https://www.hameshulash.com/potchot",
       "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/310"
+    },
+    {
+      "showId": 289,
+      "showSlug": "פותחות",
+      "date": "2026-07-26",
+      "hour": "20:00",
+      "sourceUrl": "https://www.hameshulash.com/potchot",
+      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/366"
     }
   ]
 }

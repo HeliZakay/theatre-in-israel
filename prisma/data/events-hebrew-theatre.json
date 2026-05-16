@@ -1,17 +1,7 @@
 {
-  "scrapedAt": "2026-05-15T04:30:19.962Z",
+  "scrapedAt": "2026-05-16T04:20:55.984Z",
   "touring": true,
   "events": [
-    {
-      "showId": 116,
-      "showSlug": "אהבה-בהפתעה",
-      "date": "2026-05-15",
-      "hour": "21:30",
-      "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים",
-      "sourceUrl": "https://www.teatron.org.il/shows/%d7%90%d7%94%d7%91%d7%94-%d7%91%d7%94%d7%a4%d7%aa%d7%a2%d7%94/",
-      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10761&ty=st"
-    },
     {
       "showId": 116,
       "showSlug": "אהבה-בהפתעה",
@@ -401,16 +391,6 @@
       "venueCity": "חולון",
       "sourceUrl": "https://www.teatron.org.il/shows/%d7%94%d7%aa%d7%a9%d7%9e%d7%a2-%d7%a7%d7%95%d7%9c%d7%99/",
       "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10904"
-    },
-    {
-      "showId": 119,
-      "showSlug": "זוגיות-AI",
-      "date": "2026-05-15",
-      "hour": "21:30",
-      "venueName": "מוזיאון ארץ ישראל - תל אביב",
-      "venueCity": "תל אביב",
-      "sourceUrl": "https://www.teatron.org.il/shows/%d7%96%d7%95%d7%92%d7%99%d7%95%d7%aa-ai/",
-      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/10944"
     },
     {
       "showId": 119,
