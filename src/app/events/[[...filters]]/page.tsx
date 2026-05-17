@@ -17,6 +17,12 @@ import ROUTES, { eventsPath, showPath, theatrePath } from "@/constants/routes";
 import { THEATRE_BY_NAME } from "@/constants/theatres";
 import { getEvents, getRegionCounts } from "@/lib/data/eventsList";
 import type { EventListItem } from "@/lib/data/eventsList";
+import { getAllCities } from "@/lib/data/cityDetail";
+import {
+  CANONICAL_NAME_BY_ALIAS,
+  cityNameToSlug,
+  citySlugToName,
+} from "@/constants/cities";
 import {
   DATE_SLUGS,
   REGION_SLUGS,
@@ -33,6 +39,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
 import { getShowImagePath } from "@/utils/getShowImagePath";
 import DateChips from "@/components/events/DateChips";
 import RegionChips from "@/components/events/RegionChips";
+import CityFilter from "@/components/events/CityFilter";
 import EventsClientView from "@/components/events/EventsClientView";
 import EventsEmptyState from "@/components/events/EventsEmptyState";
 import EventsFAQ from "@/components/events/EventsFAQ";
@@ -55,12 +62,21 @@ interface ParsedFilters {
   city?: string;
 }
 
-export function parseFilters(filters: string[] = []): ParsedFilters {
+export function parseFilters(
+  filters: string[] = [],
+  hebrewCitySlugs?: Set<string>,
+): ParsedFilters {
   let datePreset: string | undefined;
   let region: string | undefined;
   let city: string | undefined;
 
-  for (const segment of filters) {
+  for (const rawSegment of filters) {
+    let segment = rawSegment;
+    try {
+      segment = decodeURIComponent(rawSegment);
+    } catch {
+      // ignore — malformed encoding, fall back to raw
+    }
     if (segment in DATE_SLUGS) {
       if (datePreset !== undefined) notFound();
       datePreset = segment;
@@ -68,6 +84,9 @@ export function parseFilters(filters: string[] = []): ParsedFilters {
       if (region !== undefined || city !== undefined) notFound();
       region = segment;
     } else if (segment in CITY_SLUGS) {
+      if (region !== undefined || city !== undefined) notFound();
+      city = segment;
+    } else if (hebrewCitySlugs?.has(segment)) {
       if (region !== undefined || city !== undefined) notFound();
       city = segment;
     } else {
@@ -119,6 +138,26 @@ const CITY_DISPLAY: Record<string, string> = {
   "beer-sheva": "באר שבע",
 };
 
+/** Resolve a city URL segment (Latin or Hebrew slug) to its display name + DB aliases. */
+function resolveCitySegment(
+  slug: string,
+  allCities: { slug: string; name: string; aliases: string[] }[],
+): { name: string; aliases: string[] } | null {
+  if (slug in CITY_SLUGS) {
+    return {
+      name: CITY_DISPLAY[slug] ?? slug,
+      aliases: CITY_SLUGS[slug],
+    };
+  }
+  const entry = allCities.find((c) => c.slug === slug);
+  if (entry) return { name: entry.name, aliases: entry.aliases };
+
+  // Fallback for unrecognized Hebrew slug — derive from slug itself.
+  const name = citySlugToName(slug);
+  const canonical = CANONICAL_NAME_BY_ALIAS.get(name) ?? name;
+  return { name: canonical, aliases: [canonical] };
+}
+
 /** How each date preset appears in the page title (with correct ב/no-ב). */
 const DATE_TITLE_FORM: Record<string, string> = {
   today: "היום",
@@ -133,9 +172,10 @@ export function buildPageTitle(
   datePreset: string,
   region?: string,
   city?: string,
+  cityName?: string,
 ): string {
   if (city) {
-    return `הצגות תיאטרון ב${CITY_DISPLAY[city] ?? city}`;
+    return `הצגות תיאטרון ב${cityName ?? CITY_DISPLAY[city] ?? citySlugToName(city)}`;
   }
 
   const isDefaultDate = datePreset === DEFAULT_DATE_PRESET;
@@ -208,9 +248,10 @@ function buildDescription(
   datePreset: string,
   region?: string,
   city?: string,
+  cityName?: string,
 ): string {
   if (city) {
-    return `לוח הצגות תיאטרון ב${CITY_DISPLAY[city] ?? city} — מועדים קרובים, דירוגים וביקורות צופים.`;
+    return `לוח הצגות תיאטרון ב${cityName ?? CITY_DISPLAY[city] ?? citySlugToName(city)} — מועדים קרובים, דירוגים וביקורות צופים.`;
   }
   if (region) {
     return `הופעות תיאטרון ב${REGION_SLUGS[region]} — לוח מועדים, דירוגים וביקורות צופים.`;
@@ -231,13 +272,18 @@ export async function generateMetadata({
 }: EventsPageProps): Promise<Metadata> {
   const { filters } = await params;
   const { theatre } = await searchParams;
-  const { datePreset, region, city } = parseFilters(filters);
+  const allCities = await getAllCities();
+  const hebrewCitySlugs = new Set(allCities.map((c) => c.slug));
+  const { datePreset, region, city } = parseFilters(filters, hebrewCitySlugs);
+  const cityName = city
+    ? resolveCitySegment(city, allCities)?.name
+    : undefined;
   const title = theatre
     ? `לוח הופעות ${theatre}`
-    : buildPageTitle(datePreset, region, city);
+    : buildPageTitle(datePreset, region, city, cityName);
   const description = theatre
     ? `כל ההופעות הקרובות של ${theatre} — מועדים, מיקומים וקישורי רכישה.`
-    : buildDescription(datePreset, region, city);
+    : buildDescription(datePreset, region, city, cityName);
   const canonical = eventsPath(filters ?? []);
   const indexed = shouldIndex(datePreset, region, city);
 
@@ -360,17 +406,21 @@ function getTodayTomorrowKeys(): { todayKey: string; tomorrowKey: string } {
 export default async function EventsPage({ params, searchParams }: EventsPageProps) {
   const { filters } = await params;
   const { theatre } = await searchParams;
-  const { datePreset, region, city } = parseFilters(filters);
+  const allCities = await getAllCities();
+  const hebrewCitySlugs = new Set(allCities.map((c) => c.slug));
+  const { datePreset, region, city } = parseFilters(filters, hebrewCitySlugs);
   const locationSlug = region ?? city;
+  const cityResolved = city ? resolveCitySegment(city, allCities) : null;
+  const cityName = cityResolved?.name;
 
   const [events, regionCounts] = await Promise.all([
-    getEvents({ region, city, theatre }),
+    getEvents({ region, cityAliases: cityResolved?.aliases, theatre }),
     getRegionCounts(datePreset),
   ]);
 
   const title = theatre
     ? `לוח הופעות ${theatre}`
-    : buildPageTitle(datePreset, region, city);
+    : buildPageTitle(datePreset, region, city, cityName);
   const canonical = eventsPath(filters ?? []);
   const isDefaultDate = datePreset === DEFAULT_DATE_PRESET;
   const hasNonDefaultFilter = !isDefaultDate || !!region || !!city || !!theatre;
@@ -387,7 +437,7 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
     });
   } else if (city) {
     breadcrumbItems.push({
-      name: CITY_DISPLAY[city] ?? city,
+      name: cityName ?? CITY_DISPLAY[city] ?? city,
       path: eventsPath([city]),
     });
   }
@@ -535,6 +585,12 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
         regionCounts={regionCounts}
         theatre={theatre}
       />
+      <CityFilter
+        allCities={allCities.map((c) => ({ slug: c.slug, name: c.name }))}
+        citySlug={city}
+        datePreset={datePreset}
+        theatre={theatre}
+      />
 
       <div className={styles.clearRow}>
         {hasNonDefaultFilter && (
@@ -550,6 +606,7 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
             datePreset={datePreset}
             region={region}
             city={city}
+            cityName={cityName}
             theatre={theatre}
             nearestRegion={nearestRegion}
           />

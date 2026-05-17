@@ -17,6 +17,7 @@ interface EventsEmptyStateProps {
   datePreset: string;
   region?: string;
   city?: string;
+  cityName?: string;
   theatre?: string;
   nearestRegion: { slug: string; label: string; count: number } | null;
 }
@@ -25,6 +26,7 @@ export default function EventsEmptyState({
   datePreset,
   region,
   city,
+  cityName,
   theatre,
   nearestRegion,
 }: EventsEmptyStateProps) {
@@ -45,7 +47,7 @@ export default function EventsEmptyState({
         <p>
           לא נמצאו הופעות
           {region ? ` ב${REGION_SLUGS[region]}` : ""}
-          {city ? ` ב${CITY_DISPLAY[city] ?? city}` : ""}
+          {city ? ` ב${cityName ?? CITY_DISPLAY[city] ?? city}` : ""}
           {!isDefaultDate ? ` ב${DATE_SLUGS[datePreset]}` : ""}.{" "}
           יש {nearestRegion.count} הופעות ב{nearestRegion.label}{" "}
           <Link href={buildFilterUrl(isDefaultDate ? undefined : datePreset, nearestRegion.slug)}>

@@ -71,7 +71,7 @@ describe("getEvents", () => {
   it("applies city filter to venue where clause", async () => {
     mockEventFindMany.mockResolvedValue([] as never);
 
-    await getEvents({ city: "tel-aviv" });
+    await getEvents({ cityAliases: ["תל אביב", "תל אביב-יפו"] });
     expect(mockEventFindMany).toHaveBeenCalledWith(
       expect.objectContaining({
         where: expect.objectContaining({

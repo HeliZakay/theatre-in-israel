@@ -5,6 +5,7 @@ import {
   CITY_BY_NAME,
   CANONICAL_NAME_BY_ALIAS,
   citySlugToName,
+  cityNameToSlug,
 } from "@/constants/cities";
 import { CITY_SLUGS } from "@/lib/eventsConstants";
 import ROUTES, { cityPath, eventsPath } from "@/constants/routes";
@@ -53,12 +54,16 @@ async function resolveCity(slug: string) {
   return { entry, curated: CITY_BY_NAME.get(entry.name) };
 }
 
-/** Build the Latin slug used by the /events filter, if this city has one. */
-function findEventsCitySlug(aliases: string[]): string | null {
+/**
+ * Build the slug used by the /events filter for this city. Returns the Latin
+ * SEO slug for the 3 indexed cities, otherwise the Hebrew slug derived from
+ * the canonical name — every city has a working events filter URL.
+ */
+function findEventsCitySlug(aliases: string[], canonicalName: string): string {
   for (const [slug, slugAliases] of Object.entries(CITY_SLUGS)) {
     if (slugAliases.some((a) => aliases.includes(a))) return slug;
   }
-  return null;
+  return cityNameToSlug(canonicalName);
 }
 
 interface CityPageProps {
@@ -132,8 +137,8 @@ export default async function CityDetailPage({ params }: CityPageProps) {
         }
       : null;
 
-  const eventsCitySlug = findEventsCitySlug(entry.aliases);
-  const eventsLink = eventsCitySlug ? eventsPath([eventsCitySlug]) : null;
+  const eventsCitySlug = findEventsCitySlug(entry.aliases, entry.name);
+  const eventsLink = eventsPath([eventsCitySlug]);
 
   return (
     <main className={styles.page} id="main-content">
@@ -167,6 +172,10 @@ export default async function CityDetailPage({ params }: CityPageProps) {
           <span>{stats.upcomingShowCount} הצגות</span>
           <span>{stats.venueCount} אולמות</span>
         </div>
+        <Link href={eventsLink} className={styles.heroCta}>
+          לוח הופעות ב{entry.name}
+          <span aria-hidden="true" className={styles.heroCtaArrow}>←</span>
+        </Link>
       </header>
 
       {venues.length > 0 && (
@@ -197,11 +206,6 @@ export default async function CityDetailPage({ params }: CityPageProps) {
       )}
 
       <div className={styles.linksRow}>
-        {eventsLink && (
-          <Link href={eventsLink} className={styles.ctaLink}>
-            לוח הופעות ב{entry.name}
-          </Link>
-        )}
         <Link href={ROUTES.CITIES} className={styles.backLink}>
           כל הערים
         </Link>

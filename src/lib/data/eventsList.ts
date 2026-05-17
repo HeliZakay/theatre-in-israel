@@ -1,10 +1,7 @@
 import { unstable_cache } from "next/cache";
 import prisma from "../prisma";
 import { resolveDatePreset } from "../datePresets";
-import {
-  REGION_SLUGS,
-  CITY_SLUGS,
-} from "../eventsConstants";
+import { REGION_SLUGS } from "../eventsConstants";
 
 export interface EventListItem {
   id: number;
@@ -26,13 +23,13 @@ export interface EventListItem {
 interface EventsQuery {
   datePreset?: string;
   region?: string;
-  city?: string;
+  cityAliases?: string[];
   theatre?: string;
 }
 
 async function fetchEvents({
   region,
-  city,
+  cityAliases,
   theatre,
 }: EventsQuery): Promise<EventListItem[]> {
   const { from, to } = resolveDatePreset('all');
@@ -40,8 +37,8 @@ async function fetchEvents({
   const venueWhere: Record<string, unknown> = {};
   if (region && region in REGION_SLUGS) {
     venueWhere.regions = { hasSome: [region] };
-  } else if (city && city in CITY_SLUGS) {
-    venueWhere.city = { in: CITY_SLUGS[city] };
+  } else if (cityAliases && cityAliases.length > 0) {
+    venueWhere.city = { in: cityAliases };
   }
 
   const showWhere: Record<string, unknown> = {};
