@@ -1,7 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
-import { getAllCityStats } from "@/lib/data/cityDetail";
-import { CITIES } from "@/constants/cities";
+import { getAllCities } from "@/lib/data/cityDetail";
 import ROUTES, { cityPath } from "@/constants/routes";
 import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
 import {
@@ -38,9 +36,7 @@ export const metadata: Metadata = {
 export const revalidate = 120;
 
 export default async function CitiesPage() {
-  const allStats = await getAllCityStats(
-    CITIES.map((c) => ({ slug: c.slug, name: c.name, aliases: c.aliases })),
-  );
+  const cities = await getAllCities();
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: "עמוד הבית", path: ROUTES.HOME },
@@ -51,15 +47,13 @@ export default async function CitiesPage() {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: pageTitle,
-    itemListElement: CITIES.map((c, i) => ({
+    itemListElement: cities.map((c, i) => ({
       "@type": "ListItem",
       position: i + 1,
       name: c.name,
       url: toAbsoluteUrl(cityPath(c.slug)),
     })),
   };
-
-  const statsMap = new Map(allStats.map((s) => [s.slug, s]));
 
   return (
     <main className={styles.page} id="main-content">
@@ -81,38 +75,20 @@ export default async function CitiesPage() {
         <h1 className={styles.title}>{pageTitle}</h1>
         <p className={styles.subtitle}>{pageDescription}</p>
       </header>
-      <div className={styles.grid}>
-        {CITIES.map((c) => {
-          const stats = statsMap.get(c.slug);
-          return (
-            <Link
-              key={c.slug}
-              href={cityPath(c.slug)}
-              className={styles.card}
-            >
-              <Image
-                src={c.image}
-                alt={c.name}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className={styles.cardImage}
-              />
-              <div className={styles.cardOverlay}>
-                <h2 className={styles.cardTitle}>{c.name}</h2>
-                {stats ? (
-                  <div className={styles.cardStats}>
-                    <span>{stats.upcomingEventCount} הופעות קרובות</span>
-                    <span>{stats.showCount} הצגות</span>
-                    <span>{stats.venueCount} אולמות</span>
-                  </div>
-                ) : (
-                  <span className={styles.cardStats}>אין הופעות קרובות</span>
-                )}
-              </div>
+      <ul className={styles.list}>
+        {cities.map((c) => (
+          <li key={c.name} className={styles.listItem}>
+            <Link href={cityPath(c.slug)} className={styles.cityLink}>
+              <span className={styles.cityName}>{c.name}</span>
+              <span className={styles.cityCount}>
+                {c.upcomingEventCount > 0
+                  ? `${c.upcomingEventCount} הופעות קרובות`
+                  : "אין הופעות קרובות"}
+              </span>
             </Link>
-          );
-        })}
-      </div>
+          </li>
+        ))}
+      </ul>
     </main>
   );
 }

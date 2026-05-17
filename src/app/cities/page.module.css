@@ -23,79 +23,46 @@
   max-width: 700px;
 }
 
-.grid {
+.list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 4px 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.card {
-  position: relative;
+.listItem {
+  border-bottom: 1px solid var(--color-slate-008);
+}
+
+.cityLink {
   display: flex;
-  aspect-ratio: 3 / 2;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  text-decoration: none;
-  color: #fff;
-  box-shadow: 0 4px 16px var(--color-slate-008);
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-.card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 12px 32px var(--color-slate-015);
-}
-
-.card:focus-visible {
-  outline: none;
-  box-shadow:
-    0 0 0 3px rgba(156, 27, 32, 0.45),
-    0 12px 32px var(--color-slate-015);
-}
-
-.cardImage {
-  object-fit: cover;
-  transition: transform 0.25s ease;
-}
-
-.card:hover .cardImage {
-  transform: scale(1.05);
-}
-
-.cardOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.78) 0%,
-    rgba(0, 0, 0, 0.35) 50%,
-    rgba(0, 0, 0, 0.08) 100%
-  );
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 20px 24px;
-  gap: 8px;
-}
-
-.cardTitle {
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: -0.01em;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-}
-
-.cardStats {
-  display: flex;
-  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
   gap: 12px;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.85);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  padding: 12px 4px;
+  text-decoration: none;
+  color: var(--color-text-primary);
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.cityLink:hover,
+.cityLink:focus-visible {
+  color: var(--color-accent, #9c1b20);
+  background-color: rgba(0, 0, 0, 0.02);
+  outline: none;
+}
+
+.cityName {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.cityCount {
+  font-size: 0.85rem;
+  color: rgba(26, 26, 26, 0.6);
+  white-space: nowrap;
 }
 
 @media (max-width: 640px) {
@@ -107,15 +74,8 @@
     font-size: 1rem;
   }
 
-  .grid {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  }
-
-  .cardOverlay {
-    padding: 16px 18px;
-  }
-
-  .cardTitle {
-    font-size: 1.2rem;
+  .list {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 }

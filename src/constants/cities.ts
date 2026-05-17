@@ -1,28 +1,28 @@
 /**
- * City slug ↔ display-name mapping for dedicated city landing pages.
- * Only cities with multiple venues or a resident theatre company get pages.
- * The `aliases` array lists DB venue-city values that map to this city
- * (reuses the same mapping as CITY_SLUGS in eventsConstants).
+ * Curated city enrichment for cities that have a dedicated landing page with
+ * hand-written copy. Cities are keyed by their canonical Hebrew name (which
+ * also drives the URL slug). All cities that exist as venue cities in the DB
+ * get a landing page automatically — entries here only add description,
+ * resident theatres, and venue-name aliases.
+ *
+ * Slug ↔ name mapping: `<name>.replaceAll(' ', '-')` and vice versa. Hebrew
+ * letters stay in the URL (modern browsers display them natively; copy/paste
+ * percent-encodes them — accepted trade-off).
  */
 
 export interface CityInfo {
-  /** URL slug (Latin) */
-  slug: string;
-  /** Hebrew display name */
+  /** Canonical Hebrew name (matches a value in Venue.city). */
   name: string;
-  /** DB venue-city values that belong to this city */
+  /** DB venue-city values that map to this city. Defaults to [name]. */
   aliases: string[];
-  /** Hebrew description for SEO */
-  description: string;
-  /** Hebrew names of resident theatre companies (match Show.theatre in DB) */
-  residentTheatres: string[];
-  /** Path to city image in /public */
-  image: string;
+  /** Hand-written description for SEO. Optional. */
+  description?: string;
+  /** Hebrew names of resident theatre companies (match Show.theatre). */
+  residentTheatres?: string[];
 }
 
 export const CITIES: CityInfo[] = [
   {
-    slug: "tel-aviv",
     name: "תל אביב",
     aliases: ["תל אביב", "תל אביב-יפו"],
     description:
@@ -41,19 +41,15 @@ export const CITIES: CityInfo[] = [
       "תיאטרון החנות",
       "תיאטרון דוואי",
     ],
-    image: "/images/cities/תל-אביב.webp",
   },
   {
-    slug: "haifa",
     name: "חיפה",
     aliases: ["חיפה"],
     description:
       "חיפה מציעה סצנת תיאטרון עשירה בצפון הארץ — תיאטרון חיפה, אודיטוריום חיפה ומבחר הצגות מגוון לאורך כל השנה.",
     residentTheatres: ["תיאטרון חיפה"],
-    image: "/images/cities/חיפה.webp",
   },
   {
-    slug: "jerusalem",
     name: "ירושלים",
     aliases: ["ירושלים"],
     description:
@@ -63,18 +59,30 @@ export const CITIES: CityInfo[] = [
       "תיאטרון האינקובטור",
       "קבוצת התיאטרון הירושלמי",
     ],
-    image: "/images/cities/ירושלים.webp",
   },
   {
-    slug: "beer-sheva",
     name: "באר שבע",
     aliases: ["באר שבע"],
     description:
       "באר שבע היא מרכז התיאטרון של הנגב — תיאטרון באר שבע מעלה הפקות מקוריות, ואולמות העיר מארחים מיטב ההצגות מכל הארץ.",
     residentTheatres: ["תיאטרון באר שבע"],
-    image: "/images/cities/באר שבע.webp",
   },
 ];
 
-/** Map from URL slug → city info */
-export const CITY_BY_SLUG = new Map(CITIES.map((c) => [c.slug, c]));
+/** Map from canonical Hebrew name → curated enrichment. */
+export const CITY_BY_NAME = new Map(CITIES.map((c) => [c.name, c]));
+
+/** Reverse alias map: any DB venue-city value → its canonical Hebrew name. */
+export const CANONICAL_NAME_BY_ALIAS = new Map<string, string>(
+  CITIES.flatMap((c) => c.aliases.map((a) => [a, c.name] as const)),
+);
+
+/** Hebrew name → URL slug. Spaces become hyphens; Hebrew letters stay. */
+export function cityNameToSlug(name: string): string {
+  return name.replaceAll(" ", "-");
+}
+
+/** URL slug → Hebrew name. */
+export function citySlugToName(slug: string): string {
+  return slug.replaceAll("-", " ");
+}

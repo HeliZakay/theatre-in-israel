@@ -54,7 +54,12 @@ export function genrePath(slug: string): string {
   return `${ROUTES.GENRES}/${slug}`;
 }
 
-/** Build the canonical path for a single city page. */
+/**
+ * Build the canonical path for a single city page. Slugs may contain Hebrew
+ * letters; we return them raw — Next.js Link encodes for navigation, and
+ * absolute-URL emitters (sitemap, canonical metadata) should encode at the
+ * point of emission.
+ */
 export function cityPath(slug: string): string {
   return `${ROUTES.CITIES}/${slug}`;
 }

@@ -46,14 +46,18 @@ jest.mock("@/constants/genres", () => ({
 jest.mock("@/constants/cities", () => ({
   CITIES: [
     {
-      slug: "tel-aviv",
       name: "תל אביב",
-      aliases: [],
+      aliases: ["תל אביב"],
       description: "",
       residentTheatres: [],
-      image: "",
     },
   ],
+}));
+
+jest.mock("@/lib/data/cityDetail", () => ({
+  getAllCities: jest.fn().mockResolvedValue([
+    { name: "תל אביב", slug: "tel-aviv", aliases: ["תל אביב"], upcomingEventCount: 0 },
+  ]),
 }));
 
 import sitemap from "@/app/sitemap";

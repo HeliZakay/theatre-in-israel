@@ -1,8 +1,13 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getCityData } from "@/lib/data/cityDetail";
-import { CITIES, CITY_BY_SLUG } from "@/constants/cities";
+import { getCityData, getAllCities } from "@/lib/data/cityDetail";
+import {
+  CITY_BY_NAME,
+  CANONICAL_NAME_BY_ALIAS,
+  citySlugToName,
+} from "@/constants/cities";
 import { THEATRE_BY_NAME } from "@/constants/theatres";
+import { CITY_SLUGS } from "@/lib/eventsConstants";
 import ROUTES, { cityPath, theatrePath, eventsPath } from "@/constants/routes";
 import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
 import ShowCard from "@/components/shows/ShowCard/ShowCard";
@@ -17,9 +22,44 @@ import styles from "./page.module.css";
 import type { Metadata } from "next";
 
 export const revalidate = 120;
+export const dynamicParams = true;
 
-export function generateStaticParams() {
-  return CITIES.map((c) => ({ slug: c.slug }));
+export async function generateStaticParams() {
+  const cities = await getAllCities();
+  return cities.map((c) => ({ slug: c.slug }));
+}
+
+/**
+ * Resolve a URL slug to the canonical city entry + aliases. Returns null when
+ * the slug doesn't map to any known city (page should 404).
+ */
+async function resolveCity(slug: string) {
+  // Defensive decode — Next normally hands us decoded params, but accept
+  // percent-encoded forms too. Then turn URL hyphens back into spaces.
+  let decoded = slug;
+  try {
+    decoded = decodeURIComponent(slug);
+  } catch {
+    // ignore — malformed encoding, fall back to raw
+  }
+  const name = citySlugToName(decoded);
+
+  // First check curated cities (handles "תל אביב-יפו" → "תל אביב" aliasing).
+  const canonical = CANONICAL_NAME_BY_ALIAS.get(name) ?? name;
+
+  const all = await getAllCities();
+  const entry = all.find((c) => c.name === canonical);
+  if (!entry) return null;
+
+  return { entry, curated: CITY_BY_NAME.get(entry.name) };
+}
+
+/** Build the Latin slug used by the /events filter, if this city has one. */
+function findEventsCitySlug(aliases: string[]): string | null {
+  for (const [slug, slugAliases] of Object.entries(CITY_SLUGS)) {
+    if (slugAliases.some((a) => aliases.includes(a))) return slug;
+  }
+  return null;
 }
 
 interface CityPageProps {
@@ -30,19 +70,20 @@ export async function generateMetadata({
   params,
 }: CityPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const city = CITY_BY_SLUG.get(slug);
-  if (!city) {
+  const resolved = await resolveCity(slug);
+  if (!resolved) {
     return { title: "עיר לא נמצאה", robots: { index: false } };
   }
 
-  const { stats } = await getCityData(city.aliases);
-  const canonicalPath = cityPath(slug);
+  const { entry } = resolved;
+  const { stats } = await getCityData(entry.aliases);
+  const canonicalPath = cityPath(entry.slug);
 
-  const title = `הצגות תיאטרון ב${city.name}`;
+  const title = `הצגות תיאטרון ב${entry.name}`;
   const description =
     stats.upcomingEventCount > 0
-      ? `${stats.upcomingEventCount} הופעות קרובות ב${city.name} ב-${stats.venueCount} אולמות. מצאו הצגות, ביקורות וכרטיסים.`
-      : `הצגות תיאטרון ב${city.name} — תיאטראות, אולמות וביקורות צופים.`;
+      ? `${stats.upcomingEventCount} הופעות קרובות ב${entry.name} ב-${stats.venueCount} אולמות. מצאו הצגות, ביקורות וכרטיסים.`
+      : `הצגות תיאטרון ב${entry.name} — תיאטראות, אולמות וביקורות צופים.`;
 
   return {
     title,
@@ -64,21 +105,21 @@ export async function generateMetadata({
 
 export default async function CityDetailPage({ params }: CityPageProps) {
   const { slug } = await params;
-  const city = CITY_BY_SLUG.get(slug);
-  if (!city) notFound();
+  const resolved = await resolveCity(slug);
+  if (!resolved) notFound();
 
-  const { topShows, venues, stats } = await getCityData(city.aliases);
-  const canonicalPath = cityPath(slug);
+  const { entry, curated } = resolved;
+  const { topShows, venues, stats } = await getCityData(entry.aliases);
+  const canonicalPath = cityPath(entry.slug);
 
-  // Resolve resident theatres that have a dedicated page
-  const residentTheatres = city.residentTheatres
+  const residentTheatres = (curated?.residentTheatres ?? [])
     .map((name) => ({ name, info: THEATRE_BY_NAME.get(name) }))
     .filter((t) => t.info);
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: "עמוד הבית", path: ROUTES.HOME },
     { name: "ערים", path: ROUTES.CITIES },
-    { name: city.name, path: canonicalPath },
+    { name: entry.name, path: canonicalPath },
   ]);
 
   const itemListJsonLd =
@@ -86,7 +127,7 @@ export default async function CityDetailPage({ params }: CityPageProps) {
       ? {
           "@context": "https://schema.org",
           "@type": "ItemList",
-          name: `הצגות ב${city.name}`,
+          name: `הצגות ב${entry.name}`,
           itemListElement: topShows.map((show, i) => ({
             "@type": "ListItem",
             position: i + 1,
@@ -96,8 +137,8 @@ export default async function CityDetailPage({ params }: CityPageProps) {
         }
       : null;
 
-  // Events page link for this city (uses the existing city filter)
-  const eventsLink = eventsPath([slug]);
+  const eventsCitySlug = findEventsCitySlug(entry.aliases);
+  const eventsLink = eventsCitySlug ? eventsPath([eventsCitySlug]) : null;
 
   return (
     <main className={styles.page} id="main-content">
@@ -115,13 +156,15 @@ export default async function CityDetailPage({ params }: CityPageProps) {
         items={[
           { label: "עמוד הבית", href: ROUTES.HOME },
           { label: "ערים", href: ROUTES.CITIES },
-          { label: city.name },
+          { label: entry.name },
         ]}
       />
 
       <header className={styles.header}>
-        <h1 className={styles.title}>הצגות תיאטרון ב{city.name}</h1>
-        <p className={styles.description}>{city.description}</p>
+        <h1 className={styles.title}>הצגות תיאטרון ב{entry.name}</h1>
+        {curated?.description && (
+          <p className={styles.description}>{curated.description}</p>
+        )}
         <div className={styles.statsRow}>
           {stats.upcomingEventCount > 0 && (
             <span>{stats.upcomingEventCount} הופעות קרובות</span>
@@ -133,7 +176,7 @@ export default async function CityDetailPage({ params }: CityPageProps) {
 
       {residentTheatres.length > 0 && (
         <section>
-          <h2 className={styles.sectionTitle}>תיאטראות ב{city.name}</h2>
+          <h2 className={styles.sectionTitle}>תיאטראות ב{entry.name}</h2>
           <div className={styles.theatreList}>
             {residentTheatres.map((t) => (
               <Link
@@ -150,7 +193,7 @@ export default async function CityDetailPage({ params }: CityPageProps) {
 
       {venues.length > 0 && (
         <section>
-          <h2 className={styles.sectionTitle}>אולמות ב{city.name}</h2>
+          <h2 className={styles.sectionTitle}>אולמות ב{entry.name}</h2>
           <div className={styles.venueGrid}>
             {venues.map((v) => (
               <div key={`${v.name}-${v.city}`} className={styles.venueCard}>
@@ -166,7 +209,7 @@ export default async function CityDetailPage({ params }: CityPageProps) {
 
       {topShows.length > 0 && (
         <section>
-          <h2 className={styles.sectionTitle}>הצגות מובילות ב{city.name}</h2>
+          <h2 className={styles.sectionTitle}>הצגות מובילות ב{entry.name}</h2>
           <div className={styles.showGrid}>
             {topShows.map((show, i) => (
               <ShowCard key={show.id} show={show} priority={i < 4} />
@@ -176,9 +219,11 @@ export default async function CityDetailPage({ params }: CityPageProps) {
       )}
 
       <div className={styles.linksRow}>
-        <Link href={eventsLink} className={styles.ctaLink}>
-          לוח הופעות ב{city.name}
-        </Link>
+        {eventsLink && (
+          <Link href={eventsLink} className={styles.ctaLink}>
+            לוח הופעות ב{entry.name}
+          </Link>
+        )}
         <Link href={ROUTES.CITIES} className={styles.backLink}>
           כל הערים
         </Link>

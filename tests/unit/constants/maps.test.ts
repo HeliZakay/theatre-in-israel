@@ -1,5 +1,5 @@
 import { GENRES, GENRE_BY_SLUG, GENRE_BY_NAME } from "@/constants/genres";
-import { CITIES, CITY_BY_SLUG } from "@/constants/cities";
+import { CITIES, CITY_BY_NAME, cityNameToSlug } from "@/constants/cities";
 import {
   THEATRES,
   THEATRE_BY_SLUG,
@@ -44,20 +44,20 @@ describe("Genre maps", () => {
 /* ------------------------------------------------------------------ */
 
 describe("City maps", () => {
-  it("CITY_BY_SLUG has same size as CITIES (no duplicate slugs)", () => {
-    expect(CITY_BY_SLUG.size).toBe(CITIES.length);
+  it("CITY_BY_NAME has same size as CITIES (no duplicate names)", () => {
+    expect(CITY_BY_NAME.size).toBe(CITIES.length);
   });
 
-  it("every city is findable by slug", () => {
+  it("every city is findable by name", () => {
     for (const city of CITIES) {
-      expect(CITY_BY_SLUG.get(city.slug)).toBe(city);
+      expect(CITY_BY_NAME.get(city.name)).toBe(city);
     }
   });
 
-  it("all slugs are lowercase with no spaces", () => {
+  it("cityNameToSlug produces hyphen-joined slugs without whitespace", () => {
     for (const city of CITIES) {
-      expect(city.slug).toBe(city.slug.toLowerCase());
-      expect(city.slug).not.toMatch(/\s/);
+      const slug = cityNameToSlug(city.name);
+      expect(slug).not.toMatch(/\s/);
     }
   });
 

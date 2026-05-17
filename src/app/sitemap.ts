@@ -3,7 +3,7 @@ import ROUTES, { showPath, showReviewsPath, eventsPath, theatrePath, genrePath, 
 import { REGION_SLUGS, CITY_SLUGS } from "@/lib/eventsConstants";
 import { THEATRES } from "@/constants/theatres";
 import { GENRES } from "@/constants/genres";
-import { CITIES } from "@/constants/cities";
+import { getAllCities } from "@/lib/data/cityDetail";
 import prisma from "@/lib/prisma";
 import { toAbsoluteUrl } from "@/lib/seo";
 
@@ -128,6 +128,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ];
 
+  const allCities = await getAllCities();
   const cityRoutes: MetadataRoute.Sitemap = [
     {
       url: toAbsoluteUrl(ROUTES.CITIES),
@@ -135,7 +136,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "daily",
       priority: 0.85,
     },
-    ...CITIES.map((c) => ({
+    ...allCities.map((c) => ({
       url: toAbsoluteUrl(cityPath(c.slug)),
       lastModified: now,
       changeFrequency: "daily" as const,

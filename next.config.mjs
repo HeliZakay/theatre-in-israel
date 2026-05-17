@@ -20,6 +20,14 @@ const nextConfig = {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 31536000,
   },
+  async redirects() {
+    return [
+      { source: "/cities/tel-aviv", destination: "/cities/תל-אביב", permanent: true },
+      { source: "/cities/haifa", destination: "/cities/חיפה", permanent: true },
+      { source: "/cities/jerusalem", destination: "/cities/ירושלים", permanent: true },
+      { source: "/cities/beer-sheva", destination: "/cities/באר-שבע", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {
