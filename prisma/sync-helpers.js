@@ -150,6 +150,9 @@ const VENUE_ALIASES = new Map([
 
   // Theatron Givatayim — missing city from Incubator scraper (4-part format)
   ["תיאטרון גבעתיים|לא ידוע", { name: "תיאטרון גבעתיים", city: "גבעתיים" }],
+
+  // Davai — stale venue name + Tel Aviv fallback for Pardes Hanna event
+  ["בית הראשונים מרכז ל פרדס חנה|תל אביב-יפו", { name: "בית תרבות מקומי פרכו״ר", city: "פרדס חנה-כרכור" }],
 ]);
 
 const CITY_REGIONS_MAP = {

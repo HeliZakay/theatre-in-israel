@@ -334,6 +334,7 @@ function resolveVenueCity(venueName, addressText) {
     if (/הרצליה|herzliya/i.test(text)) return "הרצליה";
     if (/רמת.?גן|ramat.?gan/i.test(text)) return "רמת גן";
     if (/ראש פינה|rosh.?pina/i.test(text)) return "ראש פינה";
+    if (/פרדס.?חנה|pardes.?hanna/i.test(text)) return "פרדס חנה-כרכור";
   }
   return null;
 }
