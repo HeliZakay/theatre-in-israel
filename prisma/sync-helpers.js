@@ -51,6 +51,13 @@ const VENUE_ALIASES = new Map([
   // Auditorium Kalchkin → Eretz Israel Museum Tel Aviv (same venue)
   ["אודיטוריום ע\"ש קלצ'קין|תל אביב", { name: "מוזיאון ארץ ישראל - תל אביב", city: "תל אביב" }],
 
+  // Smolarz Auditorium — tomix scraper's comma-split treated the TAU campus
+  // suffix as a city. Map the bad row to canonical Tel Aviv.
+  ["אודיטוריום סמולרש|אוניברסיטת תל אביב", { name: "אודיטוריום סמולרש", city: "תל אביב" }],
+
+  // Tzavta — eventer city suffix תל אביב-יפו → תל אביב
+  ["צוותא|תל אביב-יפו", { name: "צוותא", city: "תל אביב" }],
+
   // Mishkan Ashdod — typo אומנויות → אמנויות
   ["המשכן לאומנויות הבמה אשדוד|אשדוד", { name: "המשכן לאמנויות הבמה אשדוד", city: "אשדוד" }],
 

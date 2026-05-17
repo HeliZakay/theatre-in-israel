@@ -507,14 +507,16 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
 
     const dateStr = formatDate(e.day, e.month, year);
 
-    // Venue: eventer often uses "VenueName, City" format
+    // Venue: eventer often uses "VenueName, City" format, but the part after
+    // the comma can be a campus ("אוניברסיטת תל אביב"), a neighborhood, or a
+    // city-with-suffix ("תל אביב-יפו"). Prefer the central venue→city map.
     let venueName = e.rawVenue;
-    let venueCity = "";
+    let commaCity = "";
 
     const commaIdx = e.rawVenue.lastIndexOf(",");
     if (commaIdx !== -1) {
       venueName = e.rawVenue.slice(0, commaIdx).trim();
-      venueCity = e.rawVenue.slice(commaIdx + 1).trim();
+      commaCity = e.rawVenue.slice(commaIdx + 1).trim();
     }
 
     // Normalize home venue name
@@ -522,10 +524,8 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
       venueName = "תיאטרון toMix אקספו ת״א";
     }
 
-    // Fall back to resolveVenueCity if no city from comma split
-    if (!venueCity) {
-      venueCity = resolveVenueCity(venueName);
-    }
+    const resolved = resolveVenueCity(venueName);
+    const venueCity = resolved !== "לא ידוע" ? resolved : commaCity || resolved;
 
     const key = `${dateStr}|${e.hour}|${venueName}`;
     if (!seen.has(key)) {
