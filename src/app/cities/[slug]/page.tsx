@@ -139,6 +139,7 @@ export default async function CityDetailPage({ params }: CityPageProps) {
 
   const eventsCitySlug = findEventsCitySlug(entry.aliases, entry.name);
   const eventsLink = eventsPath([eventsCitySlug]);
+  const hasUpcoming = stats.upcomingEventCount > 0;
 
   return (
     <main className={styles.page} id="main-content">
@@ -165,17 +166,38 @@ export default async function CityDetailPage({ params }: CityPageProps) {
         {curated?.description && (
           <p className={styles.description}>{curated.description}</p>
         )}
-        <div className={styles.statsRow}>
-          {stats.upcomingEventCount > 0 && (
-            <span>{stats.upcomingEventCount} הופעות קרובות</span>
-          )}
-          <span>{stats.upcomingShowCount} הצגות</span>
-          <span>{stats.venueCount} אולמות</span>
-        </div>
-        <Link href={eventsLink} className={styles.heroCta}>
-          לוח הופעות ב{entry.name}
-          <span aria-hidden="true" className={styles.heroCtaArrow}>←</span>
-        </Link>
+        {hasUpcoming ? (
+          <>
+            <div className={styles.statsRow}>
+              <span>{stats.upcomingEventCount} הופעות קרובות</span>
+              <span>{stats.upcomingShowCount} הצגות</span>
+              <span>{stats.venueCount} אולמות</span>
+            </div>
+            <Link href={eventsLink} className={styles.heroCta}>
+              לוח הופעות ב{entry.name}
+              <span aria-hidden="true" className={styles.heroCtaArrow}>←</span>
+            </Link>
+          </>
+        ) : (
+          <div className={styles.emptyState}>
+            <p className={styles.emptyTitle}>
+              אין הופעות קרובות ב{entry.name} כרגע
+            </p>
+            <p className={styles.emptyText}>
+              ייתכן שטרם נקבעו תאריכים, או שההופעות הקרובות התקיימו לאחרונה.
+              בינתיים אפשר לעיין בלוח ההופעות הכללי או לבחור עיר אחרת.
+            </p>
+            <div className={styles.emptyActions}>
+              <Link href={ROUTES.EVENTS} className={styles.heroCta}>
+                לוח ההופעות הכללי
+                <span aria-hidden="true" className={styles.heroCtaArrow}>←</span>
+              </Link>
+              <Link href={ROUTES.CITIES} className={styles.secondaryCta}>
+                כל הערים
+              </Link>
+            </div>
+          </div>
+        )}
       </header>
 
       {venues.length > 0 && (
@@ -209,11 +231,13 @@ export default async function CityDetailPage({ params }: CityPageProps) {
         </section>
       )}
 
-      <div className={styles.linksRow}>
-        <Link href={ROUTES.CITIES} className={styles.backLink}>
-          כל הערים
-        </Link>
-      </div>
+      {hasUpcoming && (
+        <div className={styles.linksRow}>
+          <Link href={ROUTES.CITIES} className={styles.backLink}>
+            כל הערים
+          </Link>
+        </div>
+      )}
     </main>
   );
 }
