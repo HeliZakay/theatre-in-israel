@@ -113,7 +113,6 @@ export default function DayView({ group }: DayViewProps) {
                           sizes="(max-width: 640px) 100vw, 280px"
                           className={styles.cardImageInner}
                         />
-                        <span className={styles.timeBadge}>{event.hour}</span>
                         {event.showAvgRating !== null && (
                           <span className={styles.ratingBadge}>
                             ★ {event.showAvgRating.toFixed(1)}
@@ -142,6 +141,24 @@ export default function DayView({ group }: DayViewProps) {
                             />
                           </svg>
                           <span className={styles.venueText}>{venueText}</span>
+                        </span>
+                        <span className={styles.timeTag}>
+                          <svg
+                            className={styles.timeTagIcon}
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                            focusable="false"
+                          >
+                            <path
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M12 7v5l3 2M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18z"
+                            />
+                          </svg>
+                          {event.hour}
                         </span>
                       </div>
                     </Link>
