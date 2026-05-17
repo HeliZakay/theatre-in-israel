@@ -99,10 +99,10 @@ export default async function GenresPage() {
                 <h2 className={styles.cardTitle}>{g.name}</h2>
                 {stats ? (
                   <div className={styles.cardStats}>
-                    <span>{stats.showCount} הצגות</span>
-                    {stats.avgRating !== null && (
-                      <span>★ {stats.avgRating.toFixed(1)}</span>
-                    )}
+                    <span className={styles.showCount}>
+                      {stats.showCount} הצגות
+                    </span>
+                    <span className={styles.dot} aria-hidden="true">·</span>
                     <span>{stats.totalReviews} ביקורות</span>
                   </div>
                 ) : (
