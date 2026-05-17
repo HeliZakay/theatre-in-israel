@@ -16,7 +16,7 @@ import Link from "next/link";
 import ROUTES, { eventsPath, showPath, theatrePath } from "@/constants/routes";
 import { THEATRE_BY_NAME } from "@/constants/theatres";
 import { getEvents, getRegionCounts } from "@/lib/data/eventsList";
-import { buildDateGroupsAndTabs } from "@/lib/data/eventsGroups";
+import type { EventListItem } from "@/lib/data/eventsList";
 import { getAllCities } from "@/lib/data/cityDetail";
 import {
   CANONICAL_NAME_BY_ALIAS,
@@ -45,6 +45,8 @@ import EventsFilterBar from "@/components/events/EventsFilterBar";
 import EventsClientView from "@/components/events/EventsClientView";
 import EventsEmptyState from "@/components/events/EventsEmptyState";
 import EventsFAQ from "@/components/events/EventsFAQ";
+import type { DateGroup } from "@/components/events/EventsList";
+import type { DateTab } from "@/components/events/DateStrip";
 import styles from "./page.module.css";
 
 import type { Metadata } from "next";
@@ -313,6 +315,97 @@ export async function generateMetadata({
 }
 
 // ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+
+function groupByDate(events: EventListItem[]) {
+  const groups: Map<string, EventListItem[]> = new Map();
+  for (const event of events) {
+    const dateKey = event.date.slice(0, 10);
+    const group = groups.get(dateKey);
+    if (group) {
+      group.push(event);
+    } else {
+      groups.set(dateKey, [event]);
+    }
+  }
+  return groups;
+}
+
+const hebrewDayFormatter = new Intl.DateTimeFormat("he-IL", {
+  weekday: "long",
+  day: "numeric",
+  month: "long",
+  timeZone: "Asia/Jerusalem",
+});
+
+const hebrewWeekdayFormatter = new Intl.DateTimeFormat("he-IL", {
+  weekday: "short",
+  timeZone: "Asia/Jerusalem",
+});
+
+const hebrewDayNumFormatter = new Intl.DateTimeFormat("he-IL", {
+  day: "numeric",
+  timeZone: "Asia/Jerusalem",
+});
+
+const hebrewMonthFormatter = new Intl.DateTimeFormat("he-IL", {
+  month: "short",
+  timeZone: "Asia/Jerusalem",
+});
+
+function buildDateTab(
+  dateKey: string,
+  count: number,
+  todayKey: string,
+  tomorrowKey: string,
+): DateTab {
+  const d = new Date(dateKey + "T00:00:00Z");
+  const label = "";
+
+  return {
+    dateKey,
+    dayName: hebrewWeekdayFormatter.format(d),
+    dayNum: hebrewDayNumFormatter.format(d),
+    monthName: hebrewMonthFormatter.format(d),
+    label,
+    count,
+  };
+}
+
+function formatDateHeader(dateKey: string, todayKey: string, tomorrowKey: string, count: number): string {
+  const d = new Date(dateKey + "T00:00:00Z");
+  const formatted = hebrewDayFormatter.format(d);
+
+  let prefix = "";
+  if (dateKey === todayKey) prefix = "היום · ";
+  else if (dateKey === tomorrowKey) prefix = "מחר · ";
+
+  const countLabel = count === 1 ? "הופעה אחת" : `${count} הופעות`;
+  return `${prefix}${formatted} · ${countLabel}`;
+}
+
+function getTodayTomorrowKeys(): { todayKey: string; tomorrowKey: string } {
+  const now = new Date();
+  const todayParts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Jerusalem",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(now);
+  const todayKey = todayParts; // YYYY-MM-DD
+  const tomorrow = new Date(now);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const tomorrowKey = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Jerusalem",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(tomorrow);
+  return { todayKey, tomorrowKey };
+}
+
+// ---------------------------------------------------------------------------
 // Page component
 // ---------------------------------------------------------------------------
 
@@ -437,7 +530,30 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
       : null;
 
   // Group events by date and format for EventsList + DateStrip
-  const { dateGroupsFormatted, dateTabs } = buildDateGroupsAndTabs(events);
+  const dateGroups = groupByDate(events);
+  const { todayKey, tomorrowKey } = getTodayTomorrowKeys();
+
+  const dateGroupsFormatted: DateGroup[] = Array.from(dateGroups.entries()).map(
+    ([dateKey, dayEvents]) => ({
+      dateKey,
+      label: formatDateHeader(dateKey, todayKey, tomorrowKey, dayEvents.length),
+      events: dayEvents.map((event) => ({
+        hour: event.hour,
+        showTitle: event.showTitle,
+        showSlug: event.showSlug,
+        showTheatre: event.showTheatre,
+        showAvgRating: event.showAvgRating,
+        showReviewCount: event.showReviewCount,
+        venueName: event.venueName,
+        venueCity: event.venueCity,
+      })),
+    }),
+  );
+
+  const dateTabs: DateTab[] = Array.from(dateGroups.entries()).map(
+    ([dateKey, dayEvents]) =>
+      buildDateTab(dateKey, dayEvents.length, todayKey, tomorrowKey),
+  );
 
   // Empty-state fallback: find the region with the most events to suggest
   // as an alternative when the current filter combination yields no results.
