@@ -2,14 +2,17 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getCityData, getAllCities } from "@/lib/data/cityDetail";
 import { getEvents } from "@/lib/data/eventsList";
+import { buildDateGroupsAndTabs } from "@/lib/data/eventsGroups";
 import {
   CITY_BY_NAME,
   CANONICAL_NAME_BY_ALIAS,
   citySlugToName,
+  cityNameToSlug,
 } from "@/constants/cities";
-import ROUTES, { cityPath } from "@/constants/routes";
+import { CITY_SLUGS } from "@/lib/eventsConstants";
+import ROUTES, { cityPath, eventsPath } from "@/constants/routes";
 import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
-import CityEventsCalendar from "@/components/cities/CityEventsCalendar";
+import EventsClientView from "@/components/events/EventsClientView";
 import {
   SITE_NAME,
   buildBreadcrumbJsonLd,
@@ -51,6 +54,18 @@ async function resolveCity(slug: string) {
   if (!entry) return null;
 
   return { entry, curated: CITY_BY_NAME.get(entry.name) };
+}
+
+/**
+ * Build the slug used by the /events filter for this city. Returns the Latin
+ * SEO slug for the 3 indexed cities, otherwise the Hebrew slug derived from
+ * the canonical name — every city has a working events filter URL.
+ */
+function findEventsCitySlug(aliases: string[], canonicalName: string): string {
+  for (const [slug, slugAliases] of Object.entries(CITY_SLUGS)) {
+    if (slugAliases.some((a) => aliases.includes(a))) return slug;
+  }
+  return cityNameToSlug(canonicalName);
 }
 
 interface CityPageProps {
@@ -105,17 +120,7 @@ export default async function CityDetailPage({ params }: CityPageProps) {
     getEvents({ cityAliases: entry.aliases }),
   ]);
   const canonicalPath = cityPath(entry.slug);
-  const calendarEvents = events.map((e) => ({
-    date: e.date,
-    hour: e.hour,
-    showTitle: e.showTitle,
-    showSlug: e.showSlug,
-    showTheatre: e.showTheatre,
-    showAvgRating: e.showAvgRating,
-    showReviewCount: e.showReviewCount,
-    venueName: e.venueName,
-    venueCity: e.venueCity,
-  }));
+  const { dateGroupsFormatted, dateTabs } = buildDateGroupsAndTabs(events);
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: "עמוד הבית", path: ROUTES.HOME },
@@ -123,6 +128,8 @@ export default async function CityDetailPage({ params }: CityPageProps) {
     { name: entry.name, path: canonicalPath },
   ]);
 
+  const eventsCitySlug = findEventsCitySlug(entry.aliases, entry.name);
+  const eventsLink = eventsPath([eventsCitySlug]);
   const hasUpcoming = stats.upcomingEventCount > 0;
 
   return (
@@ -172,15 +179,35 @@ export default async function CityDetailPage({ params }: CityPageProps) {
         )}
       </header>
 
-      {hasUpcoming && calendarEvents.length > 0 && (
-        <CityEventsCalendar
-          cityName={entry.name}
-          venues={venues.map((v) => ({
-            name: v.name,
-            upcomingEventCount: v.upcomingEventCount,
-          }))}
-          events={calendarEvents}
-        />
+      {venues.length > 0 && (
+        <section>
+          <h2 className={styles.sectionTitle}>אולמות ב{entry.name}</h2>
+          <div className={styles.venueGrid}>
+            {venues.map((v) => (
+              <Link
+                key={`${v.name}-${v.city}`}
+                href={`${eventsLink}?venue=${encodeURIComponent(v.name)}`}
+                className={styles.venueCard}
+              >
+                <span className={styles.venueName}>{v.name}</span>
+                <span className={styles.venueEvents}>
+                  {v.upcomingEventCount} הופעות קרובות
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {hasUpcoming && events.length > 0 && (
+        <section>
+          <h2 className={styles.sectionTitle}>לוח הופעות ב{entry.name}</h2>
+          <EventsClientView
+            groups={dateGroupsFormatted}
+            dateTabs={dateTabs}
+            datePreset="all"
+          />
+        </section>
       )}
 
       {hasUpcoming && (
