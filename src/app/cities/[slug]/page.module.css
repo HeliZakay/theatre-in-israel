@@ -37,30 +37,6 @@
   color: var(--color-text-primary);
 }
 
-.theatreList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 12px;
-}
-
-.theatreLink {
-  display: inline-flex;
-  padding: 10px 20px;
-  border-radius: 8px;
-  border: 1px solid rgba(26, 26, 26, 0.1);
-  background: var(--color-surface, #fff);
-  color: var(--color-text-primary);
-  text-decoration: none;
-  font-weight: 500;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.theatreLink:hover {
-  border-color: var(--color-curtain-red);
-  box-shadow: 0 2px 8px rgba(156, 27, 32, 0.08);
-}
-
 .venueGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));

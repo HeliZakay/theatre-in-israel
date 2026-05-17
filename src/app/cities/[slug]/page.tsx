@@ -6,9 +6,8 @@ import {
   CANONICAL_NAME_BY_ALIAS,
   citySlugToName,
 } from "@/constants/cities";
-import { THEATRE_BY_NAME } from "@/constants/theatres";
 import { CITY_SLUGS } from "@/lib/eventsConstants";
-import ROUTES, { cityPath, theatrePath, eventsPath } from "@/constants/routes";
+import ROUTES, { cityPath, eventsPath } from "@/constants/routes";
 import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
 import ShowCard from "@/components/shows/ShowCard/ShowCard";
 import {
@@ -112,10 +111,6 @@ export default async function CityDetailPage({ params }: CityPageProps) {
   const { topShows, venues, stats } = await getCityData(entry.aliases);
   const canonicalPath = cityPath(entry.slug);
 
-  const residentTheatres = (curated?.residentTheatres ?? [])
-    .map((name) => ({ name, info: THEATRE_BY_NAME.get(name) }))
-    .filter((t) => t.info);
-
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: "עמוד הבית", path: ROUTES.HOME },
     { name: "ערים", path: ROUTES.CITIES },
@@ -173,23 +168,6 @@ export default async function CityDetailPage({ params }: CityPageProps) {
           <span>{stats.venueCount} אולמות</span>
         </div>
       </header>
-
-      {residentTheatres.length > 0 && (
-        <section>
-          <h2 className={styles.sectionTitle}>תיאטראות ב{entry.name}</h2>
-          <div className={styles.theatreList}>
-            {residentTheatres.map((t) => (
-              <Link
-                key={t.name}
-                href={theatrePath(t.info!.slug)}
-                className={styles.theatreLink}
-              >
-                {t.name}
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
 
       {venues.length > 0 && (
         <section>
