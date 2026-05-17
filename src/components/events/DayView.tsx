@@ -1,13 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
-import { showPath } from "@/constants/routes";
-import FallbackImage from "@/components/ui/FallbackImage/FallbackImage";
-import { getShowImagePath } from "@/utils/getShowImagePath";
-import { getShowImageAlt } from "@/lib/seo";
 import type { DateGroup } from "./EventsList";
 import type { EventCardProps } from "./EventCard";
+import EventDayCard from "./EventDayCard";
 import styles from "./DayView.module.css";
 
 const TIME_SLOTS = [
@@ -97,73 +93,18 @@ export default function DayView({ group }: DayViewProps) {
 
             {isOpen && (
               <div className={styles.slotGrid}>
-                {slot.events.map((event, i) => {
-                  const venueText = `${event.venueName}, ${event.venueCity}`;
-                  return (
-                    <Link
-                      key={`${event.showSlug}-${event.hour}-${i}`}
-                      href={showPath(event.showSlug)}
-                      className={styles.card}
-                    >
-                      <div className={styles.cardImage}>
-                        <FallbackImage
-                          src={getShowImagePath(event.showTitle)}
-                          alt={getShowImageAlt(event.showTitle)}
-                          fill
-                          sizes="(max-width: 640px) 100vw, 280px"
-                          className={styles.cardImageInner}
-                        />
-                        {event.showAvgRating !== null && (
-                          <span className={styles.ratingBadge}>
-                            ★ {event.showAvgRating.toFixed(1)}
-                            {event.showReviewCount > 0 && (
-                              <span className={styles.ratingBadgeCount}>
-                                {" · "}{event.showReviewCount} ביקורות
-                              </span>
-                            )}
-                          </span>
-                        )}
-                      </div>
-                      <div className={styles.cardBody}>
-                        <span className={styles.cardTitle}>
-                          {event.showTitle}
-                        </span>
-                        <span className={styles.cardVenue}>
-                          <svg
-                            className={styles.venueIcon}
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                            focusable="false"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"
-                            />
-                          </svg>
-                          <span className={styles.venueText}>{venueText}</span>
-                        </span>
-                        <span className={styles.timeTag}>
-                          <svg
-                            className={styles.timeTagIcon}
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                            focusable="false"
-                          >
-                            <path
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M12 7v5l3 2M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18z"
-                            />
-                          </svg>
-                          {event.hour}
-                        </span>
-                      </div>
-                    </Link>
-                  );
-                })}
+                {slot.events.map((event, i) => (
+                  <EventDayCard
+                    key={`${event.showSlug}-${event.hour}-${i}`}
+                    hour={event.hour}
+                    showTitle={event.showTitle}
+                    showSlug={event.showSlug}
+                    showAvgRating={event.showAvgRating}
+                    showReviewCount={event.showReviewCount}
+                    venueName={event.venueName}
+                    venueCity={event.venueCity}
+                  />
+                ))}
               </div>
             )}
           </section>
