@@ -23,6 +23,49 @@
   max-width: 700px;
 }
 
+.searchRow {
+  display: flex;
+}
+
+.search {
+  flex: 1;
+  max-width: 480px;
+  padding: 10px 14px;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid var(--color-slate-015, rgba(0, 0, 0, 0.15));
+  border-radius: var(--radius-md, 8px);
+  background: #fff;
+  color: var(--color-text-primary);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.search:focus {
+  outline: none;
+  border-color: var(--color-accent, #9c1b20);
+  box-shadow: 0 0 0 3px rgba(156, 27, 32, 0.18);
+}
+
+.letterSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.letterHeading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-accent, #9c1b20);
+  border-bottom: 2px solid var(--color-accent, #9c1b20);
+  padding-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+.empty {
+  color: rgba(26, 26, 26, 0.6);
+  font-style: italic;
+}
+
 .list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));

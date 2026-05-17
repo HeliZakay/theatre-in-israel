@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { getAllCities } from "@/lib/data/cityDetail";
 import ROUTES, { cityPath } from "@/constants/routes";
 import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
@@ -8,6 +7,7 @@ import {
   toAbsoluteUrl,
   toJsonLd,
 } from "@/lib/seo";
+import CitiesSearchableList from "./CitiesSearchableList";
 import styles from "./page.module.css";
 
 import type { Metadata } from "next";
@@ -75,20 +75,13 @@ export default async function CitiesPage() {
         <h1 className={styles.title}>{pageTitle}</h1>
         <p className={styles.subtitle}>{pageDescription}</p>
       </header>
-      <ul className={styles.list}>
-        {cities.map((c) => (
-          <li key={c.name} className={styles.listItem}>
-            <Link href={cityPath(c.slug)} className={styles.cityLink}>
-              <span className={styles.cityName}>{c.name}</span>
-              <span className={styles.cityCount}>
-                {c.upcomingEventCount > 0
-                  ? `${c.upcomingEventCount} הופעות קרובות`
-                  : "אין הופעות קרובות"}
-              </span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <CitiesSearchableList
+        cities={cities.map((c) => ({
+          name: c.name,
+          slug: c.slug,
+          upcomingEventCount: c.upcomingEventCount,
+        }))}
+      />
     </main>
   );
 }
