@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-16T04:22:52.017Z",
+  "scrapedAt": "2026-05-17T04:34:33.717Z",
   "venue": {
     "name": "תיאטרון ניקו ניתאי",
     "city": "תל אביב"
@@ -85,23 +85,16 @@
     {
       "showId": 336,
       "showSlug": "להיות-ג׳ובאני",
-      "date": "2026-06-10",
+      "date": "2026-06-20",
       "hour": "20:00",
       "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%9C%D7%94%D7%99%D7%95%D7%AA_%D7%92_%D7%95%D7%91%D7%90%D7%A0%D7%99/?id=514"
     },
     {
       "showId": 337,
       "showSlug": "לעוף-אל-החופש",
-      "date": "2026-05-16",
-      "hour": "20:30",
-      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%9C%D7%A2%D7%95%D7%A3_%D7%90%D7%9C_%D7%94%D7%97%D7%95%D7%A4%D7%A9/?id=490"
-    },
-    {
-      "showId": 337,
-      "showSlug": "לעוף-אל-החופש",
       "date": "2026-06-24",
       "hour": "20:30",
-      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%9C%D7%A2%D7%95%D7%A3_%D7%90%D7%9C_%D7%94%D7%97%D7%95%D7%A4%D7%A9/?id=490"
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%9C%D7%A2%D7%95%D7%A3_%D7%90%D7%9C_%D7%94%D7%97%D7%95%D7%A4%D7%A9/?id=501"
     },
     {
       "showId": 338,

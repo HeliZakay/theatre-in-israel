@@ -1,17 +1,7 @@
 {
-  "scrapedAt": "2026-05-16T04:21:38.924Z",
+  "scrapedAt": "2026-05-17T04:33:11.180Z",
   "touring": true,
   "events": [
-    {
-      "showId": 134,
-      "showSlug": "אוי-אלוהים",
-      "date": "2026-05-16",
-      "hour": "21:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב",
-      "sourceUrl": "https://www.habima.co.il/shows/%d7%90%d7%95%d7%99-%d7%90%d7%9c%d7%95%d7%94%d7%99%d7%9d/",
-      "ticketUrl": "https://tickets.habima.co.il/order/50108"
-    },
     {
       "showId": 134,
       "showSlug": "אוי-אלוהים",
@@ -1111,16 +1101,6 @@
       "venueCity": "תל אביב",
       "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a2%d7%95%d7%9c%d7%95%d7%aa-%d7%a4%d7%a9%d7%95%d7%98%d7%95%d7%aa/",
       "ticketUrl": "https://tickets.habima.co.il/order/50484"
-    },
-    {
-      "showId": 35,
-      "showSlug": "פריסילה-מלכת-המדבר",
-      "date": "2026-05-16",
-      "hour": "21:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב",
-      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
-      "ticketUrl": "https://tickets.habima.co.il/order/50266"
     },
     {
       "showId": 35,

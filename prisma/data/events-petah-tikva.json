@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-05-16T04:24:42.865Z",
+  "scrapedAt": "2026-05-17T04:36:18.423Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות פתח תקווה",
     "city": "פתח תקווה"
   },
   "events": [
-    {
-      "showId": 256,
-      "showSlug": "מותרת-לכל-אדם",
-      "date": "2026-05-16",
-      "hour": "21:30"
-    },
     {
       "showId": 271,
       "showSlug": "שקרים-קטנים",

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-16T04:23:55.173Z",
+  "scrapedAt": "2026-05-17T04:35:35.766Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון צוותא",
@@ -138,13 +138,6 @@
       "date": "2026-06-03",
       "hour": "20:30",
       "sourceUrl": "https://www.tzavta.co.il/event/3453"
-    },
-    {
-      "showId": 195,
-      "showSlug": "מכתב-הקסם",
-      "date": "2026-05-16",
-      "hour": "12:00",
-      "sourceUrl": "https://www.tzavta.co.il/event/4938"
     },
     {
       "showId": 274,

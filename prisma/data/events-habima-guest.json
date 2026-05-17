@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-16T04:27:14.152Z",
+  "scrapedAt": "2026-05-17T04:39:17.457Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון הבימה",
@@ -21,14 +21,6 @@
       "hour": "20:00",
       "sourceUrl": "https://www.habima.co.il/shows/%d7%90%d7%99%d7%91/",
       "ticketUrl": "https://tickets.habima.co.il/order/50520"
-    },
-    {
-      "showId": 49,
-      "showSlug": "אחד-בלי-השני",
-      "date": "2026-05-16",
-      "hour": "20:00",
-      "sourceUrl": "https://www.habima.co.il/shows/%d7%90%d7%97%d7%93-%d7%91%d7%9c%d7%99-%d7%94%d7%a9%d7%a0%d7%99/",
-      "ticketUrl": "https://tickets.habima.co.il/order/50311"
     },
     {
       "showId": 49,

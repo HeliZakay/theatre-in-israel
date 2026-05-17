@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-16T04:20:55.984Z",
+  "scrapedAt": "2026-05-17T04:32:36.362Z",
   "touring": true,
   "events": [
     {
@@ -701,16 +701,6 @@
       "venueCity": "אור עקיבא",
       "sourceUrl": "https://www.teatron.org.il/shows/%d7%9e%d7%a8%d7%90%d7%94-%d7%9e%d7%a2%d7%9c-%d7%94%d7%92%d7%a9%d7%a8/",
       "ticketUrl": "https://htorakiva.smarticket.co.il/event/2551"
-    },
-    {
-      "showId": 114,
-      "showSlug": "עפרה",
-      "date": "2026-05-16",
-      "hour": "21:30",
-      "venueName": "תיאטרון הצפון",
-      "venueCity": "קריית חיים",
-      "sourceUrl": "https://www.teatron.org.il/shows/%d7%a2%d7%95%d7%a4%d7%a8%d7%94/",
-      "ticketUrl": "https://www.theatron-hazafon.co.il/tickets.asp?showURL=10776&ty=st"
     },
     {
       "showId": 114,

@@ -1,46 +1,11 @@
 {
-  "scrapedAt": "2026-05-16T04:24:55.300Z",
+  "scrapedAt": "2026-05-17T04:36:30.746Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון הצפון",
     "city": "קריית חיים"
   },
   "events": [
-    {
-      "showId": 114,
-      "showSlug": "עפרה",
-      "date": "2026-05-16",
-      "hour": "21:30",
-      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4294"
-    },
-    {
-      "showId": 114,
-      "showSlug": "עפרה",
-      "date": "2026-07-05",
-      "hour": "20:30",
-      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4294"
-    },
-    {
-      "showId": 114,
-      "showSlug": "עפרה",
-      "date": "2026-07-06",
-      "hour": "20:30",
-      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4294"
-    },
-    {
-      "showId": 114,
-      "showSlug": "עפרה",
-      "date": "2026-07-07",
-      "hour": "17:00",
-      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4294"
-    },
-    {
-      "showId": 114,
-      "showSlug": "עפרה",
-      "date": "2026-07-16",
-      "hour": "20:30",
-      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4294"
-    },
     {
       "showId": 263,
       "showSlug": "אהבה-מודרנית",
@@ -285,6 +250,34 @@
       "date": "2026-06-28",
       "hour": "20:30",
       "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4231"
+    },
+    {
+      "showId": 114,
+      "showSlug": "עפרה",
+      "date": "2026-07-05",
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4294"
+    },
+    {
+      "showId": 114,
+      "showSlug": "עפרה",
+      "date": "2026-07-06",
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4294"
+    },
+    {
+      "showId": 114,
+      "showSlug": "עפרה",
+      "date": "2026-07-07",
+      "hour": "17:00",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4294"
+    },
+    {
+      "showId": 114,
+      "showSlug": "עפרה",
+      "date": "2026-07-16",
+      "hour": "20:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4294"
     },
     {
       "showId": 117,

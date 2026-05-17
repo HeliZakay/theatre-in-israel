@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-16T04:19:37.029Z",
+  "scrapedAt": "2026-05-17T04:31:11.960Z",
   "touring": true,
   "events": [
     {
@@ -441,16 +441,6 @@
       "venueCity": "ירושלים",
       "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
       "ticketUrl": "https://khan.pres.global/order/8688"
-    },
-    {
-      "showId": 95,
-      "showSlug": "מיתה-טובה",
-      "date": "2026-05-16",
-      "hour": "21:30",
-      "venueName": "תיאטרון החאן",
-      "venueCity": "ירושלים",
-      "sourceUrl": "https://www.khan.co.il/shows/492/mita-tova",
-      "ticketUrl": "https://khan.pres.global/order/8610"
     },
     {
       "showId": 166,
