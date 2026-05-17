@@ -5,7 +5,7 @@ import { GENRES, GENRE_BY_SLUG } from "@/constants/genres";
 import { THEATRE_BY_NAME } from "@/constants/theatres";
 import ROUTES, { genrePath, showPath, theatrePath } from "@/constants/routes";
 import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
-import ShowCard from "@/components/shows/ShowCard/ShowCard";
+import GenreShowFilters from "@/components/genres/GenreShowFilters/GenreShowFilters";
 import {
   SITE_NAME,
   buildBreadcrumbJsonLd,
@@ -125,14 +125,10 @@ export default async function GenreDetailPage({ params }: GenrePageProps) {
       </header>
 
       {shows.length > 0 ? (
-        <>
+        <section>
           <h2 className={styles.sectionTitle}>כל ההצגות</h2>
-          <div className={styles.grid}>
-            {shows.map((show, i) => (
-              <ShowCard key={show.id} show={show} priority={i < 4} />
-            ))}
-          </div>
-        </>
+          <GenreShowFilters shows={shows} />
+        </section>
       ) : (
         <p className={styles.empty}>אין כרגע הצגות בז׳אנר זה.</p>
       )}
