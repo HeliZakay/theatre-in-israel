@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getCityData, getAllCities } from "@/lib/data/cityDetail";
+import { getEvents } from "@/lib/data/eventsList";
+import { buildDateGroupsAndTabs } from "@/lib/data/eventsGroups";
 import {
   CITY_BY_NAME,
   CANONICAL_NAME_BY_ALIAS,
@@ -10,7 +12,7 @@ import {
 import { CITY_SLUGS } from "@/lib/eventsConstants";
 import ROUTES, { cityPath, eventsPath } from "@/constants/routes";
 import Breadcrumb from "@/components/layout/Breadcrumb/Breadcrumb";
-import ShowCard from "@/components/shows/ShowCard/ShowCard";
+import EventsClientView from "@/components/events/EventsClientView";
 import {
   SITE_NAME,
   buildBreadcrumbJsonLd,
@@ -113,29 +115,18 @@ export default async function CityDetailPage({ params }: CityPageProps) {
   if (!resolved) notFound();
 
   const { entry, curated } = resolved;
-  const { topShows, venues, stats } = await getCityData(entry.aliases);
+  const [{ venues, stats }, events] = await Promise.all([
+    getCityData(entry.aliases),
+    getEvents({ cityAliases: entry.aliases }),
+  ]);
   const canonicalPath = cityPath(entry.slug);
+  const { dateGroupsFormatted, dateTabs } = buildDateGroupsAndTabs(events);
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: "עמוד הבית", path: ROUTES.HOME },
     { name: "ערים", path: ROUTES.CITIES },
     { name: entry.name, path: canonicalPath },
   ]);
-
-  const itemListJsonLd =
-    topShows.length > 0
-      ? {
-          "@context": "https://schema.org",
-          "@type": "ItemList",
-          name: `הצגות ב${entry.name}`,
-          itemListElement: topShows.map((show, i) => ({
-            "@type": "ListItem",
-            position: i + 1,
-            name: show.title,
-            url: toAbsoluteUrl(`/shows/${show.slug}`),
-          })),
-        }
-      : null;
 
   const eventsCitySlug = findEventsCitySlug(entry.aliases, entry.name);
   const eventsLink = eventsPath([eventsCitySlug]);
@@ -147,12 +138,6 @@ export default async function CityDetailPage({ params }: CityPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: toJsonLd(breadcrumbJsonLd) }}
       />
-      {itemListJsonLd && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: toJsonLd(itemListJsonLd) }}
-        />
-      )}
       <Breadcrumb
         items={[
           { label: "עמוד הבית", href: ROUTES.HOME },
@@ -167,17 +152,11 @@ export default async function CityDetailPage({ params }: CityPageProps) {
           <p className={styles.description}>{curated.description}</p>
         )}
         {hasUpcoming ? (
-          <>
-            <div className={styles.statsRow}>
-              <span>{stats.upcomingEventCount} הופעות קרובות</span>
-              <span>{stats.upcomingShowCount} הצגות</span>
-              <span>{stats.venueCount} אולמות</span>
-            </div>
-            <Link href={eventsLink} className={styles.heroCta}>
-              לוח הופעות ב{entry.name}
-              <span aria-hidden="true" className={styles.heroCtaArrow}>←</span>
-            </Link>
-          </>
+          <div className={styles.statsRow}>
+            <span>{stats.upcomingEventCount} הופעות קרובות</span>
+            <span>{stats.upcomingShowCount} הצגות</span>
+            <span>{stats.venueCount} אולמות</span>
+          </div>
         ) : (
           <div className={styles.emptyState}>
             <p className={styles.emptyTitle}>
@@ -220,14 +199,14 @@ export default async function CityDetailPage({ params }: CityPageProps) {
         </section>
       )}
 
-      {topShows.length > 0 && (
+      {hasUpcoming && events.length > 0 && (
         <section>
-          <h2 className={styles.sectionTitle}>הצגות מובילות ב{entry.name}</h2>
-          <div className={styles.showGrid}>
-            {topShows.map((show, i) => (
-              <ShowCard key={show.id} show={show} priority={i < 4} />
-            ))}
-          </div>
+          <h2 className={styles.sectionTitle}>לוח הופעות ב{entry.name}</h2>
+          <EventsClientView
+            groups={dateGroupsFormatted}
+            dateTabs={dateTabs}
+            datePreset="all"
+          />
         </section>
       )}
 
