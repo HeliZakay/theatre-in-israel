@@ -114,22 +114,35 @@ export default function DayView({ group }: DayViewProps) {
                           className={styles.cardImageInner}
                         />
                         <span className={styles.timeBadge}>{event.hour}</span>
+                        {event.showAvgRating !== null && (
+                          <span className={styles.ratingBadge}>
+                            ★ {event.showAvgRating.toFixed(1)}
+                            {event.showReviewCount > 0 && (
+                              <span className={styles.ratingBadgeCount}>
+                                {" · "}{event.showReviewCount} ביקורות
+                              </span>
+                            )}
+                          </span>
+                        )}
                       </div>
                       <div className={styles.cardBody}>
                         <span className={styles.cardTitle}>
                           {event.showTitle}
                         </span>
-                        <span className={styles.cardVenue}>{venueText}</span>
-                        {event.showAvgRating !== null && (
-                          <span className={styles.cardRating}>
-                            {event.showAvgRating.toFixed(1)} ★
-                            {event.showReviewCount > 0 && (
-                              <span className={styles.reviewCount}>
-                                {" "}· {event.showReviewCount} ביקורות
-                              </span>
-                            )}
-                          </span>
-                        )}
+                        <span className={styles.cardVenue}>
+                          <svg
+                            className={styles.venueIcon}
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                            focusable="false"
+                          >
+                            <path
+                              fill="currentColor"
+                              d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"
+                            />
+                          </svg>
+                          <span className={styles.venueText}>{venueText}</span>
+                        </span>
                       </div>
                     </Link>
                   );
