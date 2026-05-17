@@ -110,14 +110,18 @@ export default async function TheatresPage() {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className={styles.cardImage}
               />
+              {stats?.avgRating !== null && stats?.avgRating !== undefined && (
+                <span className={styles.ratingBadge}>
+                  <span aria-hidden="true">★</span>
+                  {stats.avgRating.toFixed(1)}
+                </span>
+              )}
               <div className={styles.cardOverlay}>
                 <h2 className={styles.cardTitle}>{t.name}</h2>
                 {stats ? (
                   <div className={styles.cardStats}>
                     <span>{stats.showCount} הצגות</span>
-                    {stats.avgRating !== null && (
-                      <span>★ {stats.avgRating.toFixed(1)}</span>
-                    )}
+                    <span className={styles.dot} aria-hidden="true">·</span>
                     <span>{stats.totalReviews} ביקורות</span>
                   </div>
                 ) : (
@@ -132,14 +136,18 @@ export default async function TheatresPage() {
             key={t.name}
             className={`${styles.card} ${styles.cardFallback}`}
           >
+            {t.stats?.avgRating !== null && t.stats?.avgRating !== undefined && (
+              <span className={styles.ratingBadge}>
+                <span aria-hidden="true">★</span>
+                {t.stats.avgRating.toFixed(1)}
+              </span>
+            )}
             <div className={styles.cardOverlay}>
               <h2 className={styles.cardTitle}>{t.name}</h2>
               {t.stats && (
                 <div className={styles.cardStats}>
                   <span>{t.stats.showCount} הצגות</span>
-                  {t.stats.avgRating !== null && (
-                    <span>★ {t.stats.avgRating.toFixed(1)}</span>
-                  )}
+                  <span className={styles.dot} aria-hidden="true">·</span>
                   <span>{t.stats.totalReviews} ביקורות</span>
                 </div>
               )}
