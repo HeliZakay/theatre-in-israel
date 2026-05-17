@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 import Link from "next/link";
-import HomeShowCard from "@/components/shows/HomeShowCard/HomeShowCard";
+import ShowCard from "@/components/shows/ShowCard/ShowCard";
 import ROUTES from "@/constants/routes";
 import type { ExploreBannerShow } from "@/lib/data/homepage";
 import { cx } from "@/utils/cx";
@@ -79,11 +79,7 @@ export default function ExploreBannerGrid({
       </button>
       <div className={cx(styles.grid, fading && styles.gridFading)}>
         {visible.map((show) => (
-          <HomeShowCard
-            key={show.id}
-            show={show}
-            imageSizes="(max-width: 640px) 45vw, (max-width: 1024px) 33vw, 22vw"
-          />
+          <ShowCard key={show.id} show={show} />
         ))}
       </div>
       <Link href={ROUTES.SHOWS} className={styles.browseLink}>

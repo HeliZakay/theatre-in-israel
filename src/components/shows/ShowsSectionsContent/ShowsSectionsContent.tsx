@@ -59,7 +59,6 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         shows={musicals}
         linkHref={genrePath(GENRE_BY_NAME.get(GENRE_SECTIONS.musicals.genres[0])!.slug)}
         linkText={GENRE_SECTIONS.musicals.linkText}
-        sectionGenres={[...GENRE_SECTIONS.musicals.genres]}
       />
 
       <ShowsSection
@@ -68,7 +67,6 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         shows={dramas}
         linkHref={genrePath(GENRE_BY_NAME.get(GENRE_SECTIONS.dramas.genres[0])!.slug)}
         linkText={GENRE_SECTIONS.dramas.linkText}
-        sectionGenres={[...GENRE_SECTIONS.dramas.genres]}
       />
 
       <ShowsSection
@@ -77,7 +75,6 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         shows={comedies}
         linkHref={genrePath(GENRE_BY_NAME.get(GENRE_SECTIONS.comedies.genres[0])!.slug)}
         linkText={GENRE_SECTIONS.comedies.linkText}
-        sectionGenres={[...GENRE_SECTIONS.comedies.genres]}
       />
 
       <ShowsSection
@@ -86,7 +83,6 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         shows={israeli}
         linkHref={genrePath(GENRE_BY_NAME.get(GENRE_SECTIONS.israeli.genres[0])!.slug)}
         linkText={GENRE_SECTIONS.israeli.linkText}
-        sectionGenres={[...GENRE_SECTIONS.israeli.genres]}
       />
 
       <ShowsSection
@@ -95,7 +91,6 @@ export default async function ShowsSectionsContent({ banner }: Props) {
         shows={kids}
         linkHref={genrePath(GENRE_BY_NAME.get(GENRE_SECTIONS.kids.genres[0])!.slug)}
         linkText={GENRE_SECTIONS.kids.linkText}
-        sectionGenres={[...GENRE_SECTIONS.kids.genres]}
       />
 
       {banner}

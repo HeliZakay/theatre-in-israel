@@ -33,6 +33,10 @@ const mockShows = Array.from({ length: 12 }, (_, i) => ({
   genre: ["דרמה"],
   avgRating: i % 2 === 0 ? 4.5 : null,
   reviewCount: 0,
+  durationMinutes: 90,
+  summary: "",
+  description: null,
+  isNew: false,
 }));
 
 describe("ExploreBanner", () => {

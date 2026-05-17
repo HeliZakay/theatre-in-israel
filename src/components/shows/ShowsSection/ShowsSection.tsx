@@ -1,7 +1,7 @@
 import styles from "./ShowsSection.module.css";
 import SectionHeader from "@/components/ui/SectionHeader/SectionHeader";
 import ShowCarousel from "@/components/shows/ShowCarousel/ShowCarousel";
-import HomeShowCard from "@/components/shows/HomeShowCard/HomeShowCard";
+import ShowCard from "@/components/shows/ShowCard/ShowCard";
 import type { ShowListItem } from "@/types";
 
 interface ShowsSectionProps {
@@ -11,7 +11,6 @@ interface ShowsSectionProps {
   linkHref?: string;
   linkText?: string;
   className?: string;
-  sectionGenres?: string[];
 }
 
 export default function ShowsSection({
@@ -21,7 +20,6 @@ export default function ShowsSection({
   linkHref,
   linkText,
   className,
-  sectionGenres,
 }: ShowsSectionProps) {
   return (
     <section className={[styles.section, className].filter(Boolean).join(" ")}>
@@ -40,11 +38,7 @@ export default function ShowsSection({
             aria-roledescription="slide"
             aria-label={`${index + 1} מתוך ${shows.length}`}
           >
-            <HomeShowCard
-              show={show}
-              sectionGenres={sectionGenres}
-              imageSizes="(max-width: 640px) 80vw, (max-width: 1024px) 33vw, 20vw"
-            />
+            <ShowCard show={show} />
           </div>
         ))}
       </ShowCarousel>

@@ -57,7 +57,7 @@ export default function ShowCard({ show, priority }: ShowCardProps) {
             <span className={styles.metaDivider} aria-hidden>
               •
             </span>
-            <span className={styles.metaItem}>{reviewCount} ביקורות</span>
+            <span className={styles.reviewCount}>{reviewCount} ביקורות</span>
           </div>
 
           <p className={styles.summary}>{show.summary}</p>

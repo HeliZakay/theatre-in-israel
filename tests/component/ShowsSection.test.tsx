@@ -93,23 +93,10 @@ describe("ShowsSection", () => {
     render(
       <ShowsSection title="t" shows={[makeShow({ avgRating: null })]} />
     );
-    expect(screen.getByText("טרם דורג")).toBeInTheDocument();
+    expect(screen.getByText("עדיין אין דירוגים")).toBeInTheDocument();
   });
 
-  it("promotes sectionGenres to front of displayed genres", () => {
-    const show = makeShow({
-      genre: ["ישראלי", "דרמה", "קלאסיקה", "קומדיה"],
-    });
-    render(
-      <ShowsSection title="קומדיות" shows={[show]} sectionGenres={["קומדיה"]} />
-    );
-    // "קומדיה" should be promoted to front and visible (within slice of 3)
-    expect(screen.getByText("קומדיה")).toBeInTheDocument();
-    // "קלאסיקה" was 3rd but "קומדיה" took its spot, pushing it to 4th (hidden)
-    expect(screen.queryByText("קלאסיקה")).not.toBeInTheDocument();
-  });
-
-  it("keeps default genre order when sectionGenres is not provided", () => {
+  it("keeps default genre order", () => {
     const show = makeShow({
       genre: ["ישראלי", "דרמה", "קלאסיקה", "קומדיה"],
     });
