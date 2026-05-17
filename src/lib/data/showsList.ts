@@ -81,6 +81,8 @@ export function buildOrderBy(sort: string): Prisma.ShowOrderByWithRelationInput[
         { avgRating: { sort: "desc", nulls: "last" } },
         { id: "asc" },
       ];
+    case "newest":
+      return [{ createdAt: "desc" }, { id: "desc" }];
     default:
       return [{ id: "asc" }];
   }

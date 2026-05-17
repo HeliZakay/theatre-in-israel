@@ -162,6 +162,11 @@ describe("buildOrderBy", () => {
     ]);
   });
 
+  it("returns createdAt desc for 'newest'", () => {
+    const result = buildOrderBy("newest");
+    expect(result).toEqual([{ createdAt: "desc" }, { id: "desc" }]);
+  });
+
   it("returns id asc for default/unknown sort", () => {
     expect(buildOrderBy("")).toEqual([{ id: "asc" }]);
     expect(buildOrderBy("unknown")).toEqual([{ id: "asc" }]);

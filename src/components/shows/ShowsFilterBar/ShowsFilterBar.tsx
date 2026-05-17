@@ -137,6 +137,7 @@ export default function ShowsFilterBar({
             options={[
               { value: "rating", label: "דירוג גבוה" },
               { value: "reviews", label: "הכי הרבה ביקורות" },
+              { value: "newest", label: "הצגות חדשות" },
             ]}
           />
         </div>
