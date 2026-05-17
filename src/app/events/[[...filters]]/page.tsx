@@ -41,6 +41,7 @@ import DateChips from "@/components/events/DateChips";
 import RegionChips from "@/components/events/RegionChips";
 import CityFilter from "@/components/events/CityFilter";
 import TheatreFilter from "@/components/events/TheatreFilter";
+import EventsFilterBar from "@/components/events/EventsFilterBar";
 import EventsClientView from "@/components/events/EventsClientView";
 import EventsEmptyState from "@/components/events/EventsEmptyState";
 import EventsFAQ from "@/components/events/EventsFAQ";
@@ -473,37 +474,47 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
       </header>
 
       <div className={styles.filterPanel}>
-        <section className={styles.filterGroup} aria-label="סינון לפי תאריך">
-          <span className={styles.filterLabel}>מתי</span>
-          <DateChips datePreset={datePreset} locationSlug={locationSlug} theatre={theatre} venue={venue} />
-        </section>
+        <EventsFilterBar
+          advancedActive={!isDefaultDate || !!city || !!theatre}
+          activeCount={(!isDefaultDate ? 1 : 0) + (city ? 1 : 0) + (theatre ? 1 : 0)}
+          basic={
+            <RegionChips
+              region={region}
+              city={city}
+              datePreset={datePreset}
+              regionCounts={regionCounts}
+              theatre={theatre}
+            />
+          }
+          advanced={
+            <>
+              <section className={styles.filterGroup} aria-label="סינון לפי תאריך">
+                <span className={styles.filterLabel}>מתי</span>
+                <DateChips datePreset={datePreset} locationSlug={locationSlug} theatre={theatre} venue={venue} />
+              </section>
 
-        <section className={styles.filterGroup} aria-label="סינון לפי מיקום">
-          <span className={styles.filterLabel}>איפה</span>
-          <RegionChips
-            region={region}
-            city={city}
-            datePreset={datePreset}
-            regionCounts={regionCounts}
-            theatre={theatre}
-          />
-          <CityFilter
-            allCities={allCities.map((c) => ({ slug: c.slug, name: c.name }))}
-            citySlug={city}
-            datePreset={datePreset}
-            theatre={theatre}
-          />
-        </section>
+              <section className={styles.filterGroup} aria-label="סינון לפי עיר">
+                <span className={styles.filterLabel}>עיר</span>
+                <CityFilter
+                  allCities={allCities.map((c) => ({ slug: c.slug, name: c.name }))}
+                  citySlug={city}
+                  datePreset={datePreset}
+                  theatre={theatre}
+                />
+              </section>
 
-        <section className={styles.filterGroup} aria-label="סינון לפי תיאטרון">
-          <span className={styles.filterLabel}>איזה תיאטרון</span>
-          <TheatreFilter
-            datePreset={datePreset}
-            locationSlug={locationSlug}
-            venue={venue}
-            theatre={theatre}
-          />
-        </section>
+              <section className={styles.filterGroup} aria-label="סינון לפי תיאטרון">
+                <span className={styles.filterLabel}>איזה תיאטרון</span>
+                <TheatreFilter
+                  datePreset={datePreset}
+                  locationSlug={locationSlug}
+                  venue={venue}
+                  theatre={theatre}
+                />
+              </section>
+            </>
+          }
+        />
       </div>
 
       <div className={styles.resultRow}>

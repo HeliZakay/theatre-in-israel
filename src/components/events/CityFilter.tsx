@@ -53,9 +53,6 @@ export default function CityFilter({
 
   return (
     <div className={styles.wrapper}>
-      <span className={styles.prefix} aria-hidden="true">
-        או בחרו עיר ספציפית
-      </span>
       <CityCombobox
         id="city-filter"
         ariaLabel="חיפוש עיר"

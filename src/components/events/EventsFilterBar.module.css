@@ -1,0 +1,81 @@
+.bar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.basicRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+
+.basicRow > * {
+  flex: 0 1 auto;
+}
+
+.toggleRow {
+  display: flex;
+  justify-content: flex-start;
+  margin-inline-start: auto;
+}
+
+@media (max-width: 640px) {
+  .toggleRow {
+    width: 100%;
+    margin-inline-start: 0;
+    justify-content: flex-start;
+  }
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  padding: 4px 0;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-curtain-red);
+  cursor: pointer;
+}
+
+.toggle:hover,
+.toggle:focus-visible {
+  text-decoration: underline;
+}
+
+.chevron {
+  display: inline-block;
+  font-size: 0.7rem;
+  transition: transform 0.15s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  background: var(--color-curtain-red);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.advanced {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-slate-008);
+}
