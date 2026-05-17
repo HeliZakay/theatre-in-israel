@@ -41,7 +41,14 @@ export default function ShowCard({ show, priority }: ShowCardProps) {
             />
           </div>
           <header className={styles.header}>
-            <h2 className={styles.title}>{show.title}</h2>
+            <div className={styles.titleRow}>
+              <h2 className={styles.title}>{show.title}</h2>
+              <WatchlistToggle
+                showId={show.id}
+                showSlug={slug}
+                variant="inline"
+              />
+            </div>
             <span className={styles.theatre}>{show.theatre}</span>
           </header>
 
@@ -70,16 +77,11 @@ export default function ShowCard({ show, priority }: ShowCardProps) {
             ))}
           </div>
 
-          <div className={styles.bottomRow}>
-            {avgRating === null && (
+          {avgRating === null && (
+            <div className={styles.bottomRow}>
               <span className={styles.ratingEmpty}>עדיין אין דירוגים</span>
-            )}
-            <WatchlistToggle
-              showId={show.id}
-              showSlug={slug}
-              variant="inline"
-            />
-          </div>
+            </div>
+          )}
         </Card>
       </Link>
     </div>

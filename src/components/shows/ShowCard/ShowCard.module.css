@@ -1,16 +1,13 @@
 .cardWrapper {
   position: relative;
-  height: 100%;
 }
 
 .card {
-  padding: 20px 22px;
+  padding: 20px 22px 14px;
   box-shadow: 0 12px 24px var(--color-slate-008);
   display: flex;
   flex-direction: column;
   gap: 12px;
-  min-height: 160px;
-  height: 100%;
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
@@ -18,7 +15,6 @@
 
 .cardLink {
   display: block;
-  height: 100%;
   text-decoration: none;
   color: inherit;
 }
@@ -54,6 +50,18 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+}
+
+.titleRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.titleRow .title {
+  flex: 1;
+  min-width: 0;
 }
 
 .title {
@@ -147,7 +155,7 @@
 
 @media (max-width: 640px) {
   .card {
-    padding: 18px;
+    padding: 18px 18px 12px;
   }
 
   .title {
