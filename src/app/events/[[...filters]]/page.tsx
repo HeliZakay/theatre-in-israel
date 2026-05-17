@@ -572,27 +572,38 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
       <Breadcrumb items={breadcrumbUiItems} />
       <header className={styles.header}>
         <h1 className={styles.title}>{title}</h1>
-        <p className={styles.subtitle}>
-          מצאו הצגות תיאטרון קרובות לפי תאריך ואזור
-        </p>
       </header>
 
-      <DateChips datePreset={datePreset} locationSlug={locationSlug} theatre={theatre} />
-      <RegionChips
-        region={region}
-        city={city}
-        datePreset={datePreset}
-        regionCounts={regionCounts}
-        theatre={theatre}
-      />
-      <CityFilter
-        allCities={allCities.map((c) => ({ slug: c.slug, name: c.name }))}
-        citySlug={city}
-        datePreset={datePreset}
-        theatre={theatre}
-      />
+      <section className={styles.filterGroup} aria-label="סינון לפי תאריך">
+        <span className={styles.filterLabel}>מתי</span>
+        <DateChips datePreset={datePreset} locationSlug={locationSlug} theatre={theatre} />
+      </section>
 
-      <div className={styles.clearRow}>
+      <section className={styles.filterGroup} aria-label="סינון לפי מיקום">
+        <span className={styles.filterLabel}>איפה</span>
+        <RegionChips
+          region={region}
+          city={city}
+          datePreset={datePreset}
+          regionCounts={regionCounts}
+          theatre={theatre}
+        />
+        <CityFilter
+          allCities={allCities.map((c) => ({ slug: c.slug, name: c.name }))}
+          citySlug={city}
+          datePreset={datePreset}
+          theatre={theatre}
+        />
+      </section>
+
+      <div className={styles.resultRow}>
+        <span className={styles.resultCount}>
+          {events.length === 0
+            ? "אין הופעות תואמות"
+            : events.length === 1
+              ? "הופעה אחת"
+              : `${events.length} הופעות`}
+        </span>
         {hasNonDefaultFilter && (
           <Link href={ROUTES.EVENTS} className={styles.clearLink}>
             נקו סינון

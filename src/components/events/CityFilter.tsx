@@ -52,12 +52,12 @@ export default function CityFilter({
 
   return (
     <div className={styles.wrapper}>
-      <label className={styles.label} htmlFor="city-filter">
-        סינון לפי עיר
-      </label>
+      <span className={styles.prefix} aria-hidden="true">
+        או בחרו עיר ספציפית
+      </span>
       <AppSelect
         id="city-filter"
-        ariaLabel="סינון לפי עיר"
+        ariaLabel="סינון לפי עיר ספציפית"
         value={value}
         onValueChange={handleChange}
         options={options}

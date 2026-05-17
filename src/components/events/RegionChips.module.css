@@ -45,4 +45,11 @@
 
 .chipBadge {
   font-size: 0.68rem;
+  font-weight: 400;
+  opacity: 0.55;
+  margin-inline-start: 2px;
+}
+
+.chipActive .chipBadge {
+  opacity: 0.75;
 }
