@@ -1,0 +1,93 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sectionTitle {
+  font-size: 1.4rem;
+  color: var(--color-text-primary);
+}
+
+.venueGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.venueButton {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(26, 26, 26, 0.08);
+  background: var(--color-surface, #fff);
+  color: inherit;
+  text-align: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.venueButton:hover {
+  border-color: rgba(156, 27, 32, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(26, 26, 26, 0.06);
+}
+
+.venueButtonActive {
+  border-color: var(--color-curtain-red);
+  background: rgba(156, 27, 32, 0.06);
+  box-shadow: 0 2px 10px rgba(156, 27, 32, 0.1);
+}
+
+.venueName {
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.venueEvents {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.resetRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.resetChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--color-curtain-red);
+  color: var(--color-curtain-red);
+  background: transparent;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.resetChip:hover {
+  background: rgba(156, 27, 32, 0.06);
+}
+
+.filterLabel {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.calendar {
+  margin-top: 8px;
+}
+
+.empty {
+  color: rgba(26, 26, 26, 0.7);
+  line-height: 1.6;
+}

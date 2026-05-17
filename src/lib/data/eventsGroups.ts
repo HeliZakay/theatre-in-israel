@@ -1,9 +1,20 @@
-import type { EventListItem } from "@/lib/data/eventsList";
 import type { DateGroup } from "@/components/events/EventsList";
 import type { DateTab } from "@/components/events/DateStrip";
 
-export function groupByDate(events: EventListItem[]) {
-  const groups: Map<string, EventListItem[]> = new Map();
+export interface EventForGroups {
+  date: string;
+  hour: string;
+  showTitle: string;
+  showSlug: string;
+  showTheatre: string;
+  showAvgRating: number | null;
+  showReviewCount: number;
+  venueName: string;
+  venueCity: string;
+}
+
+export function groupByDate<T extends { date: string }>(events: T[]) {
+  const groups: Map<string, T[]> = new Map();
   for (const event of events) {
     const dateKey = event.date.slice(0, 10);
     const group = groups.get(dateKey);
@@ -87,7 +98,7 @@ export function getTodayTomorrowKeys(): { todayKey: string; tomorrowKey: string 
   return { todayKey, tomorrowKey };
 }
 
-export function buildDateGroupsAndTabs(events: EventListItem[]): {
+export function buildDateGroupsAndTabs(events: EventForGroups[]): {
   dateGroupsFormatted: DateGroup[];
   dateTabs: DateTab[];
 } {
