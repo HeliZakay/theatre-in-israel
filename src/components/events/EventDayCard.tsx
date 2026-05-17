@@ -40,7 +40,8 @@ export default function EventDayCard({
         />
         {showAvgRating !== null && (
           <span className={styles.ratingBadge}>
-            ★ {showAvgRating.toFixed(1)}
+            <span className={styles.ratingStar} aria-hidden="true">★</span>
+            {showAvgRating.toFixed(1)}
             {showReviewCount > 0 && (
               <span className={styles.ratingBadgeCount}>
                 {" · "}{showReviewCount} ביקורות

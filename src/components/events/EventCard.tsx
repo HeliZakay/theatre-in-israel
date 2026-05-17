@@ -54,14 +54,17 @@ export default function EventCard({
         <span className={styles.eventVenue}>{venueText}</span>
         <div className={styles.eventRating}>
           {showAvgRating !== null ? (
-            <span className={styles.ratingBadge}>
-              {showAvgRating.toFixed(1)} ★
+            <>
+              <span className={styles.ratingBadge}>
+                <span className={styles.ratingStar} aria-hidden="true">★</span>
+                {showAvgRating.toFixed(1)}
+              </span>
               {showReviewCount > 0 && (
                 <span className={styles.reviewCount}>
-                  {" "}· {showReviewCount} ביקורות
+                  {showReviewCount} ביקורות
                 </span>
               )}
-            </span>
+            </>
           ) : showReviewCount === 0 ? (
             <Link
               href={`/shows/${showSlug}/review`}

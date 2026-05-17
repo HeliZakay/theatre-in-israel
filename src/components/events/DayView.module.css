@@ -52,14 +52,14 @@
 .slotGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 10px;
+  gap: 20px;
   padding: 10px;
 }
 
 @media (min-width: 640px) {
   .slotGrid {
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+    gap: 24px;
     padding: 12px;
   }
 }
