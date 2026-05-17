@@ -88,9 +88,6 @@ export default function ShowsContent({
                   &quot;{filters.query}&quot;
                 </span>
               ) : null}
-              <span className={styles.filterCount}>
-                {totalCount} תוצאות
-              </span>
               <Link
                 className={styles.clearLink}
                 href={ROUTES.SHOWS}
@@ -98,6 +95,9 @@ export default function ShowsContent({
               >
                 נקה סינון
               </Link>
+              <span className={styles.filterCount}>
+                {totalCount} תוצאות
+              </span>
             </>
           ) : (
             <span className={styles.filterCount}>

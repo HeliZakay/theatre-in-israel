@@ -25,6 +25,12 @@ export default function ShowCard({ show, priority }: ShowCardProps) {
         <Card as="article" className={styles.card} aria-label={show.title}>
           <div className={styles.imageWrapper}>
             {show.isNew && <NewBadge />}
+            {avgRating !== null && (
+              <span className={styles.ratingBadge}>
+                <span className={styles.ratingStar} aria-hidden="true">★</span>
+                {avgRating.toFixed(1)}
+              </span>
+            )}
             <FallbackImage
               src={getShowImagePath(show.title)}
               alt={getShowImageAlt(show.title)}
@@ -65,15 +71,9 @@ export default function ShowCard({ show, priority }: ShowCardProps) {
           </div>
 
           <div className={styles.bottomRow}>
-            <div className={styles.rating}>
-              {avgRating !== null ? (
-                <span className={styles.ratingValue}>
-                  {avgRating.toFixed(1)}
-                </span>
-              ) : (
-                <span className={styles.ratingEmpty}>עדיין אין דירוגים</span>
-              )}
-            </div>
+            {avgRating === null && (
+              <span className={styles.ratingEmpty}>עדיין אין דירוגים</span>
+            )}
             <WatchlistToggle
               showId={show.id}
               showSlug={slug}

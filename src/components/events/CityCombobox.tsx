@@ -18,6 +18,8 @@ interface CityComboboxProps {
   placeholder?: string;
   id?: string;
   ariaLabel?: string;
+  emptyLabel?: string;
+  clearAriaLabel?: string;
 }
 
 export default function CityCombobox({
@@ -28,6 +30,8 @@ export default function CityCombobox({
   placeholder = "חפשו עיר…",
   id,
   ariaLabel,
+  emptyLabel = "לא נמצאה עיר תואמת",
+  clearAriaLabel = "נקו בחירת עיר",
 }: CityComboboxProps) {
   const labels = options.map((o) => o.label);
   const selectedLabel = options.find((o) => o.value === value)?.label ?? "";
@@ -140,7 +144,7 @@ export default function CityCombobox({
           type="button"
           className={styles.clearBtn}
           onClick={handleClear}
-          aria-label="נקו בחירת עיר"
+          aria-label={clearAriaLabel}
         >
           ✕
         </button>
@@ -154,7 +158,7 @@ export default function CityCombobox({
           onPointerDown={(e) => e.preventDefault()}
         >
           {filteredItems.length === 0 ? (
-            <li className={styles.empty}>לא נמצאה עיר תואמת</li>
+            <li className={styles.empty}>{emptyLabel}</li>
           ) : (
             filteredItems.map((item, index) => {
               const opt = options.find((o) => o.label === item);

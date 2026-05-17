@@ -12,6 +12,7 @@ import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import styles from "./ShowsFilterBar.module.css";
 import { cx } from "@/utils/cx";
 import AppSelect from "@/components/ui/AppSelect/AppSelect";
+import CityCombobox from "@/components/events/CityCombobox";
 import { useDebounce } from "@/hooks/useDebounce";
 import { buildShowsQueryString } from "@/utils/showsQuery";
 import type { ShowFilters } from "@/types";
@@ -29,7 +30,6 @@ export default function ShowsFilterBar({
   availableGenres,
   filters,
 }: ShowsFilterBarProps) {
-  const ALL_THEATRES_VALUE = "__all_theatres__";
   const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
@@ -42,6 +42,8 @@ export default function ShowsFilterBar({
     }),
   );
   const isUpdating = isPending;
+
+  const [genresOpen, setGenresOpen] = useState(filters.genres.length > 0);
 
   // --- Search input state (debounced → URL) ---
   const [searchValue, setSearchValue] = useState(filters.query);
@@ -83,10 +85,10 @@ export default function ShowsFilterBar({
     });
   };
 
-  const theatreOptions = [
-    { value: ALL_THEATRES_VALUE, label: "הכל" },
-    ...theatres.map((theatre) => ({ value: theatre, label: theatre })),
-  ];
+  const theatreOptions = theatres.map((theatre) => ({
+    value: theatre,
+    label: theatre,
+  }));
 
   return (
     <div className={styles.filterBar} aria-busy={isUpdating}>
@@ -109,17 +111,16 @@ export default function ShowsFilterBar({
           <label className={styles.filterLabel} htmlFor="theatre">
             תיאטרון
           </label>
-          <AppSelect
+          <CityCombobox
             id="theatre"
-            name="theatre"
-            className={styles.select}
-            ariaLabel="תיאטרון"
-            value={optimisticFilters.theatre || ALL_THEATRES_VALUE}
-            onValueChange={(value) => {
-              const theatre = value === ALL_THEATRES_VALUE ? "" : value;
-              applyFilterUpdate({ theatre });
-            }}
+            ariaLabel="חיפוש תיאטרון"
+            placeholder="כל התיאטראות"
+            emptyLabel="לא נמצא תיאטרון תואם"
+            clearAriaLabel="נקו בחירת תיאטרון"
             options={theatreOptions}
+            value={optimisticFilters.theatre}
+            onValueChange={(value) => applyFilterUpdate({ theatre: value })}
+            onClear={() => applyFilterUpdate({ theatre: "" })}
           />
         </div>
         <div className={styles.filterGroup}>
@@ -139,43 +140,69 @@ export default function ShowsFilterBar({
             ]}
           />
         </div>
-      </div>
-      <div className={styles.chipRow}>
-        <span className={styles.filterLabel}>ז&apos;אנר</span>
         <button
           type="button"
           className={cx(
-            styles.chip,
-            !optimisticFilters.genres.length && styles.chipActive,
+            styles.genreToggle,
+            optimisticFilters.genres.length > 0 && styles.genreToggleActive,
           )}
-          aria-current={optimisticFilters.genres.length ? undefined : "true"}
-          onClick={() => {
-            applyFilterUpdate({ genres: [] });
-          }}
+          onClick={() => setGenresOpen((v) => !v)}
+          aria-expanded={genresOpen}
+          aria-controls="genre-chip-row"
         >
-          הכל
+          <span>סינון לפי ז&apos;אנר</span>
+          {optimisticFilters.genres.length > 0 && (
+            <span className={styles.genreCount}>
+              {optimisticFilters.genres.length}
+            </span>
+          )}
+          <span className={styles.genreChevron} aria-hidden="true">
+            {genresOpen ? "▴" : "▾"}
+          </span>
         </button>
-        <ToggleGroup.Root
-          type="multiple"
-          value={optimisticFilters.genres}
-          onValueChange={(genres) => applyFilterUpdate({ genres })}
-          className={styles.chipGroup}
-        >
-          {allGenres.map((genre) => {
-            const isAvailable = availableGenres.includes(genre);
-            return (
-              <ToggleGroup.Item
-                key={genre}
-                value={genre}
-                className={cx(styles.chip, !isAvailable && styles.chipDisabled)}
-                disabled={!isAvailable}
-              >
-                {genre}
-              </ToggleGroup.Item>
-            );
-          })}
-        </ToggleGroup.Root>
       </div>
+      {genresOpen && (
+        <div id="genre-chip-row" className={styles.chipRow}>
+            <button
+              type="button"
+              className={cx(
+                styles.chip,
+                !optimisticFilters.genres.length && styles.chipActive,
+              )}
+              aria-current={
+                optimisticFilters.genres.length ? undefined : "true"
+              }
+              onClick={() => {
+                applyFilterUpdate({ genres: [] });
+              }}
+            >
+              הכל
+            </button>
+            <ToggleGroup.Root
+              type="multiple"
+              value={optimisticFilters.genres}
+              onValueChange={(genres) => applyFilterUpdate({ genres })}
+              className={styles.chipGroup}
+            >
+              {allGenres.map((genre) => {
+                const isAvailable = availableGenres.includes(genre);
+                return (
+                  <ToggleGroup.Item
+                    key={genre}
+                    value={genre}
+                    className={cx(
+                      styles.chip,
+                      !isAvailable && styles.chipDisabled,
+                    )}
+                    disabled={!isAvailable}
+                  >
+                    {genre}
+                  </ToggleGroup.Item>
+                );
+              })}
+          </ToggleGroup.Root>
+        </div>
+      )}
       <div
         className={cx(styles.status, isUpdating && styles.statusVisible)}
         role="status"
