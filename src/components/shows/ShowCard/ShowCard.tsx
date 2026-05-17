@@ -76,12 +76,6 @@ export default function ShowCard({ show, priority }: ShowCardProps) {
               <Tag key={item}>{item}</Tag>
             ))}
           </div>
-
-          {avgRating === null && (
-            <div className={styles.bottomRow}>
-              <span className={styles.ratingEmpty}>עדיין אין דירוגים</span>
-            </div>
-          )}
         </Card>
       </Link>
     </div>
