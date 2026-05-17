@@ -17,6 +17,13 @@ export const TOMIX_THEATRE = "תיאטרון toMix";
 const LISTING_URL =
   "https://www.to-mix.co.il/product-category/tomixtheater/?page=1";
 
+// Eventer's post-comma city string sometimes uses an unhyphenated form for
+// cities whose canonical name contains a hyphen. Normalize before falling
+// back to the raw comma-city in venue resolution.
+const CITY_ALIASES = {
+  "פרדס חנה כרכור": "פרדס חנה-כרכור",
+};
+
 // ── Title prefixes to strip ────────────────────────────────────
 
 const TITLE_PREFIXES = [/^המחזמר\s+/];
@@ -525,7 +532,9 @@ export async function scrapeShowEvents(browser, url, { debug = false } = {}) {
     }
 
     const resolved = resolveVenueCity(venueName);
-    const venueCity = resolved !== "לא ידוע" ? resolved : commaCity || resolved;
+    const normalizedCommaCity = CITY_ALIASES[commaCity] || commaCity;
+    const venueCity =
+      resolved !== "לא ידוע" ? resolved : normalizedCommaCity || resolved;
 
     const key = `${dateStr}|${e.hour}|${venueName}`;
     if (!seen.has(key)) {

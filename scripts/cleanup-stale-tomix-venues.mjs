@@ -10,6 +10,7 @@
 // Dry-run by default; --apply to commit.
 
 import { PrismaClient } from "@prisma/client";
+import { CITY_REGIONS_MAP } from "../prisma/sync-helpers.js";
 
 const url = process.env.DATABASE_URL;
 const isNeon = !!url && new URL(url).hostname.endsWith(".neon.tech");
@@ -32,6 +33,7 @@ const APPLY = process.argv.includes("--apply");
 const FIXES = [
   { name: "אודיטוריום סמולרש", staleCity: "אוניברסיטת תל אביב", correctCity: "תל אביב" },
   { name: "צוותא", staleCity: "תל אביב-יפו", correctCity: "תל אביב" },
+  { name: "מרכז אומנויות הבמה", staleCity: "פרדס חנה כרכור", correctCity: "פרדס חנה-כרכור" },
 ];
 
 async function main() {
@@ -62,8 +64,16 @@ async function main() {
     );
 
     if (!canonical) {
-      console.log(`  [rename] no canonical row exists → would set city = "${fix.correctCity}"`);
-      plan.push({ kind: "rename", staleId: stale.id, newCity: fix.correctCity });
+      const newRegions = CITY_REGIONS_MAP[fix.correctCity] || [];
+      console.log(
+        `  [rename] no canonical row exists → would set city = "${fix.correctCity}", regions = [${newRegions.join(", ")}]`,
+      );
+      plan.push({
+        kind: "rename",
+        staleId: stale.id,
+        newCity: fix.correctCity,
+        newRegions,
+      });
       continue;
     }
 
@@ -102,7 +112,10 @@ async function main() {
   await prisma.$transaction(async (tx) => {
     for (const op of plan) {
       if (op.kind === "rename") {
-        await tx.venue.update({ where: { id: op.staleId }, data: { city: op.newCity } });
+        await tx.venue.update({
+          where: { id: op.staleId },
+          data: { city: op.newCity, regions: op.newRegions },
+        });
       } else if (op.kind === "delete-event") {
         await tx.event.delete({ where: { id: op.eventId } });
       } else if (op.kind === "move-event") {

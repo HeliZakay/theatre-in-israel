@@ -67,6 +67,10 @@ export const CITIES: CityInfo[] = [
       "באר שבע היא מרכז התיאטרון של הנגב — תיאטרון באר שבע מעלה הפקות מקוריות, ואולמות העיר מארחים מיטב ההצגות מכל הארץ.",
     residentTheatres: ["תיאטרון באר שבע"],
   },
+  {
+    name: "פרדס חנה-כרכור",
+    aliases: ["פרדס חנה-כרכור", "פרדס חנה כרכור"],
+  },
 ];
 
 /** Map from canonical Hebrew name → curated enrichment. */
