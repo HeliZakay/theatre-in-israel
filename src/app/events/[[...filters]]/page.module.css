@@ -20,19 +20,36 @@
   letter-spacing: -0.02em;
 }
 
-/* ---- Filter groups ---- */
+/* ---- Filter panel ---- */
+
+.filterPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--header-background);
+  border: 1px solid var(--color-slate-008);
+  border-radius: var(--radius-md);
+  box-shadow: 0 1px 2px var(--color-slate-006);
+}
 
 .filterGroup {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--color-slate-008);
+}
+
+.filterGroup:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 .filterLabel {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--color-muted-fg);
-  letter-spacing: 0.01em;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-curtain-red);
 }
 
 /* ---- Result row ---- */
@@ -87,5 +104,17 @@
   .page {
     max-width: 1400px;
     padding: 16px 40px 64px;
+  }
+
+  .filterGroup {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .filterLabel {
+    width: 96px;
+    flex-shrink: 0;
   }
 }

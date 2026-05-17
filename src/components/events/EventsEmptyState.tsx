@@ -36,7 +36,11 @@ export default function EventsEmptyState({
   if (theatre) {
     return (
       <div className={styles.emptyState}>
-        <p>אין הופעות קרובות של {theatre} כרגע.</p>
+        <p>
+          {hasNonDefaultFilter
+            ? `אין הופעות קרובות של ${theatre} שמתאימות לסינון.`
+            : `אין הופעות קרובות של ${theatre} כרגע.`}
+        </p>
       </div>
     );
   }

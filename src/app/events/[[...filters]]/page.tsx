@@ -588,37 +588,39 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
         <h1 className={styles.title}>{title}</h1>
       </header>
 
-      <section className={styles.filterGroup} aria-label="סינון לפי תאריך">
-        <span className={styles.filterLabel}>מתי</span>
-        <DateChips datePreset={datePreset} locationSlug={locationSlug} theatre={theatre} venue={venue} />
-      </section>
+      <div className={styles.filterPanel}>
+        <section className={styles.filterGroup} aria-label="סינון לפי תאריך">
+          <span className={styles.filterLabel}>מתי</span>
+          <DateChips datePreset={datePreset} locationSlug={locationSlug} theatre={theatre} venue={venue} />
+        </section>
 
-      <section className={styles.filterGroup} aria-label="סינון לפי מיקום">
-        <span className={styles.filterLabel}>איפה</span>
-        <RegionChips
-          region={region}
-          city={city}
-          datePreset={datePreset}
-          regionCounts={regionCounts}
-          theatre={theatre}
-        />
-        <CityFilter
-          allCities={allCities.map((c) => ({ slug: c.slug, name: c.name }))}
-          citySlug={city}
-          datePreset={datePreset}
-          theatre={theatre}
-        />
-      </section>
+        <section className={styles.filterGroup} aria-label="סינון לפי מיקום">
+          <span className={styles.filterLabel}>איפה</span>
+          <RegionChips
+            region={region}
+            city={city}
+            datePreset={datePreset}
+            regionCounts={regionCounts}
+            theatre={theatre}
+          />
+          <CityFilter
+            allCities={allCities.map((c) => ({ slug: c.slug, name: c.name }))}
+            citySlug={city}
+            datePreset={datePreset}
+            theatre={theatre}
+          />
+        </section>
 
-      <section className={styles.filterGroup} aria-label="סינון לפי תיאטרון">
-        <span className={styles.filterLabel}>איזה תיאטרון</span>
-        <TheatreFilter
-          datePreset={datePreset}
-          locationSlug={locationSlug}
-          venue={venue}
-          theatre={theatre}
-        />
-      </section>
+        <section className={styles.filterGroup} aria-label="סינון לפי תיאטרון">
+          <span className={styles.filterLabel}>איזה תיאטרון</span>
+          <TheatreFilter
+            datePreset={datePreset}
+            locationSlug={locationSlug}
+            venue={venue}
+            theatre={theatre}
+          />
+        </section>
+      </div>
 
       <div className={styles.resultRow}>
         <span className={styles.resultCount}>
