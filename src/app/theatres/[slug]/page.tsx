@@ -153,6 +153,15 @@ export default async function TheatreDetailPage({ params }: TheatrePageProps) {
             <span>{stats.upcomingEventCount} הופעות קרובות</span>
           )}
         </div>
+        {stats.upcomingEventCount > 0 && (
+          <Link
+            href={`${ROUTES.EVENTS}?theatre=${encodeURIComponent(theatre.name)}`}
+            className={styles.heroCta}
+          >
+            לוח הופעות {theatre.name}
+            <span className={styles.heroCtaArrow} aria-hidden="true">←</span>
+          </Link>
+        )}
       </header>
 
       {shows.length > 0 ? (
@@ -171,12 +180,6 @@ export default async function TheatreDetailPage({ params }: TheatrePageProps) {
       <div className={styles.linksRow}>
         <Link href={ROUTES.THEATRES} className={styles.backLink}>
           כל התיאטראות
-        </Link>
-        <Link
-          href={`${ROUTES.EVENTS}?theatre=${encodeURIComponent(theatre.name)}`}
-          className={styles.backLink}
-        >
-          לוח הופעות {theatre.name}
         </Link>
       </div>
     </main>

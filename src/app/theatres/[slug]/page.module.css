@@ -36,6 +36,34 @@
   color: rgba(26, 26, 26, 0.6);
 }
 
+.heroCta {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  padding: 14px 28px;
+  border-radius: 10px;
+  background: var(--color-curtain-red);
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 2px 10px rgba(156, 27, 32, 0.18);
+}
+
+.heroCta:hover {
+  background: #7d161a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(156, 27, 32, 0.25);
+}
+
+.heroCtaArrow {
+  font-size: 1.1em;
+  line-height: 1;
+}
+
 .sectionTitle {
   font-size: 1.4rem;
   color: var(--color-text-primary);

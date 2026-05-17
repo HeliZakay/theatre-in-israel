@@ -40,6 +40,7 @@ import { getShowImagePath } from "@/utils/getShowImagePath";
 import DateChips from "@/components/events/DateChips";
 import RegionChips from "@/components/events/RegionChips";
 import CityFilter from "@/components/events/CityFilter";
+import TheatreFilter from "@/components/events/TheatreFilter";
 import EventsClientView from "@/components/events/EventsClientView";
 import EventsEmptyState from "@/components/events/EventsEmptyState";
 import EventsFAQ from "@/components/events/EventsFAQ";
@@ -605,6 +606,16 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
           allCities={allCities.map((c) => ({ slug: c.slug, name: c.name }))}
           citySlug={city}
           datePreset={datePreset}
+          theatre={theatre}
+        />
+      </section>
+
+      <section className={styles.filterGroup} aria-label="סינון לפי תיאטרון">
+        <span className={styles.filterLabel}>איזה תיאטרון</span>
+        <TheatreFilter
+          datePreset={datePreset}
+          locationSlug={locationSlug}
+          venue={venue}
           theatre={theatre}
         />
       </section>

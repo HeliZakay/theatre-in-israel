@@ -1,0 +1,20 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+
+.prefix {
+  font-size: 0.78rem;
+  color: var(--color-muted-fg);
+}
+
+@media (max-width: 560px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+  }
+}
