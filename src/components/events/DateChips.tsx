@@ -7,9 +7,10 @@ interface DateChipsProps {
   datePreset: string;
   locationSlug?: string;
   theatre?: string;
+  venue?: string;
 }
 
-export default function DateChips({ datePreset, locationSlug, theatre }: DateChipsProps) {
+export default function DateChips({ datePreset, locationSlug, theatre, venue }: DateChipsProps) {
   return (
     <nav
       role="radiogroup"
@@ -25,6 +26,7 @@ export default function DateChips({ datePreset, locationSlug, theatre }: DateChi
           slug === DEFAULT_DATE_PRESET ? undefined : slug,
           locationSlug,
           theatre,
+          venue,
         );
         return (
           <Link

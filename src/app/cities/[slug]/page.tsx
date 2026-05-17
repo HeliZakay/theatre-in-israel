@@ -183,12 +183,16 @@ export default async function CityDetailPage({ params }: CityPageProps) {
           <h2 className={styles.sectionTitle}>אולמות ב{entry.name}</h2>
           <div className={styles.venueGrid}>
             {venues.map((v) => (
-              <div key={`${v.name}-${v.city}`} className={styles.venueCard}>
+              <Link
+                key={`${v.name}-${v.city}`}
+                href={`${eventsLink}?venue=${encodeURIComponent(v.name)}`}
+                className={styles.venueCard}
+              >
                 <span className={styles.venueName}>{v.name}</span>
                 <span className={styles.venueEvents}>
                   {v.upcomingEventCount} הופעות קרובות
                 </span>
-              </div>
+              </Link>
             ))}
           </div>
         </section>

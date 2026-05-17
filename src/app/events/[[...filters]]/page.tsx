@@ -233,7 +233,7 @@ export function generateStaticParams() {
 
 interface EventsPageProps {
   params: Promise<{ filters?: string[] }>;
-  searchParams: Promise<{ theatre?: string }>;
+  searchParams: Promise<{ theatre?: string; venue?: string }>;
 }
 
 const DATE_DESCRIPTION: Record<string, string> = {
@@ -271,26 +271,30 @@ export async function generateMetadata({
   searchParams,
 }: EventsPageProps): Promise<Metadata> {
   const { filters } = await params;
-  const { theatre } = await searchParams;
+  const { theatre, venue } = await searchParams;
   const allCities = await getAllCities();
   const hebrewCitySlugs = new Set(allCities.map((c) => c.slug));
   const { datePreset, region, city } = parseFilters(filters, hebrewCitySlugs);
   const cityName = city
     ? resolveCitySegment(city, allCities)?.name
     : undefined;
-  const title = theatre
-    ? `לוח הופעות ${theatre}`
-    : buildPageTitle(datePreset, region, city, cityName);
-  const description = theatre
-    ? `כל ההופעות הקרובות של ${theatre} — מועדים, מיקומים וקישורי רכישה.`
-    : buildDescription(datePreset, region, city, cityName);
+  const title = venue
+    ? `לוח הופעות ב${venue}`
+    : theatre
+      ? `לוח הופעות ${theatre}`
+      : buildPageTitle(datePreset, region, city, cityName);
+  const description = venue
+    ? `כל ההופעות הקרובות ב${venue} — מועדים וקישורי רכישה.`
+    : theatre
+      ? `כל ההופעות הקרובות של ${theatre} — מועדים, מיקומים וקישורי רכישה.`
+      : buildDescription(datePreset, region, city, cityName);
   const canonical = eventsPath(filters ?? []);
   const indexed = shouldIndex(datePreset, region, city);
 
   return {
     title: `${title} | ${SITE_NAME}`,
     description,
-    robots: { index: indexed && !theatre, follow: true },
+    robots: { index: indexed && !theatre && !venue, follow: true },
     openGraph: {
       title: `${title} | ${SITE_NAME}`,
       description,
@@ -405,7 +409,7 @@ function getTodayTomorrowKeys(): { todayKey: string; tomorrowKey: string } {
 
 export default async function EventsPage({ params, searchParams }: EventsPageProps) {
   const { filters } = await params;
-  const { theatre } = await searchParams;
+  const { theatre, venue } = await searchParams;
   const allCities = await getAllCities();
   const hebrewCitySlugs = new Set(allCities.map((c) => c.slug));
   const { datePreset, region, city } = parseFilters(filters, hebrewCitySlugs);
@@ -414,16 +418,18 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
   const cityName = cityResolved?.name;
 
   const [events, regionCounts] = await Promise.all([
-    getEvents({ region, cityAliases: cityResolved?.aliases, theatre }),
+    getEvents({ region, cityAliases: cityResolved?.aliases, theatre, venueName: venue }),
     getRegionCounts(datePreset),
   ]);
 
-  const title = theatre
-    ? `לוח הופעות ${theatre}`
-    : buildPageTitle(datePreset, region, city, cityName);
+  const title = venue
+    ? `לוח הופעות ב${venue}`
+    : theatre
+      ? `לוח הופעות ${theatre}`
+      : buildPageTitle(datePreset, region, city, cityName);
   const canonical = eventsPath(filters ?? []);
   const isDefaultDate = datePreset === DEFAULT_DATE_PRESET;
-  const hasNonDefaultFilter = !isDefaultDate || !!region || !!city || !!theatre;
+  const hasNonDefaultFilter = !isDefaultDate || !!region || !!city || !!theatre || !!venue;
 
   // Breadcrumb
   const breadcrumbItems: { name: string; path: string }[] = [
@@ -445,6 +451,13 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
     breadcrumbItems.push({
       name: theatre,
       path: `${ROUTES.EVENTS}?theatre=${encodeURIComponent(theatre)}`,
+    });
+  }
+  if (venue) {
+    const venueBase = city ? eventsPath([city]) : ROUTES.EVENTS;
+    breadcrumbItems.push({
+      name: venue,
+      path: `${venueBase}?venue=${encodeURIComponent(venue)}`,
     });
   }
   if (!isDefaultDate) {
@@ -576,7 +589,7 @@ export default async function EventsPage({ params, searchParams }: EventsPagePro
 
       <section className={styles.filterGroup} aria-label="סינון לפי תאריך">
         <span className={styles.filterLabel}>מתי</span>
-        <DateChips datePreset={datePreset} locationSlug={locationSlug} theatre={theatre} />
+        <DateChips datePreset={datePreset} locationSlug={locationSlug} theatre={theatre} venue={venue} />
       </section>
 
       <section className={styles.filterGroup} aria-label="סינון לפי מיקום">

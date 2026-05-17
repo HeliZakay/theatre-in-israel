@@ -25,12 +25,14 @@ interface EventsQuery {
   region?: string;
   cityAliases?: string[];
   theatre?: string;
+  venueName?: string;
 }
 
 async function fetchEvents({
   region,
   cityAliases,
   theatre,
+  venueName,
 }: EventsQuery): Promise<EventListItem[]> {
   const { from, to } = resolveDatePreset('all');
 
@@ -39,6 +41,9 @@ async function fetchEvents({
     venueWhere.regions = { hasSome: [region] };
   } else if (cityAliases && cityAliases.length > 0) {
     venueWhere.city = { in: cityAliases };
+  }
+  if (venueName) {
+    venueWhere.name = venueName;
   }
 
   const showWhere: Record<string, unknown> = {};
