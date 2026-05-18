@@ -1,18 +1,11 @@
 {
-  "scrapedAt": "2026-05-17T04:39:14.827Z",
+  "scrapedAt": "2026-05-18T04:43:50.405Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון ירושלים",
     "city": "ירושלים"
   },
   "events": [
-    {
-      "showId": 240,
-      "showSlug": "אמא-קוראז׳-וילדיה",
-      "date": "2026-05-17",
-      "hour": "20:30",
-      "sourceUrl": "https://www.jerusalem-theatre.co.il/%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/4233/%D7%90%D7%9E%D7%90_%D7%A7%D7%95%D7%A8%D7%90%D7%96%27_%D7%95%D7%99%D7%9C%D7%93%D7%99%D7%94"
-    },
     {
       "showId": 240,
       "showSlug": "אמא-קוראז׳-וילדיה",

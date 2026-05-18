@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-17T04:31:31.111Z",
+  "scrapedAt": "2026-05-18T04:36:21.769Z",
   "touring": true,
   "events": [
     {
@@ -21,16 +21,6 @@
       "venueCity": "תל אביב",
       "sourceUrl": "https://www.ht1.co.il/Event/Index/43551",
       "ticketUrl": "https://ht1.smarticket.co.il/event/8972"
-    },
-    {
-      "showId": 82,
-      "showSlug": "היומן",
-      "date": "2026-05-17",
-      "hour": "20:30",
-      "venueName": "תיאטרון חיפה",
-      "venueCity": "חיפה",
-      "sourceUrl": "https://www.ht1.co.il/Event/Index/43815",
-      "ticketUrl": "https://ht1.smarticket.co.il/event/8847"
     },
     {
       "showId": 82,
@@ -211,6 +201,26 @@
       "venueCity": "הרצליה",
       "sourceUrl": "https://www.ht1.co.il/Event/Index/43812",
       "ticketUrl": "https://ht1.smarticket.co.il/event/8963"
+    },
+    {
+      "showId": 80,
+      "showSlug": "לילסדה",
+      "date": "2026-06-18",
+      "hour": "20:30",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה",
+      "sourceUrl": "https://www.ht1.co.il/Event/Index/43812",
+      "ticketUrl": "https://ht1.smarticket.co.il/event/8823"
+    },
+    {
+      "showId": 80,
+      "showSlug": "לילסדה",
+      "date": "2026-06-20",
+      "hour": "21:00",
+      "venueName": "תיאטרון חיפה",
+      "venueCity": "חיפה",
+      "sourceUrl": "https://www.ht1.co.il/Event/Index/43812",
+      "ticketUrl": "https://ht1.smarticket.co.il/event/8824"
     },
     {
       "showId": 80,

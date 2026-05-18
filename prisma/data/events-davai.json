@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-17T04:34:49.998Z",
+  "scrapedAt": "2026-05-18T04:39:38.576Z",
   "touring": true,
   "events": [
     {
@@ -57,8 +57,8 @@
       "showSlug": "UNDER-CONSTRUCTION",
       "date": "2026-06-07",
       "hour": "20:30",
-      "venueName": "בית הראשונים מרכז ל פרדס חנה",
-      "venueCity": "תל אביב-יפו",
+      "venueName": "בית תרבות מקומי פרכו״ר",
+      "venueCity": "פרדס חנה-כרכור",
       "sourceUrl": "https://davai-group.org/portfolio_page/under-construction-heb/",
       "ticketUrl": "https://www.goshow.co.il/show/18609/55409"
     },
@@ -91,6 +91,16 @@
       "venueCity": "ראשון לציון",
       "sourceUrl": "https://davai-group.org/portfolio_page/under-construction-heb/",
       "ticketUrl": "https://www.goshow.co.il/show/18609/53810"
+    },
+    {
+      "showId": 432,
+      "showSlug": "UNDER-CONSTRUCTION",
+      "date": "2026-08-13",
+      "hour": "20:30",
+      "venueName": "אלומה בית מקומי לתרבות",
+      "venueCity": "הוד השרון",
+      "sourceUrl": "https://davai-group.org/portfolio_page/under-construction-heb/",
+      "ticketUrl": "https://www.goshow.co.il/show/18609/53823"
     },
     {
       "showId": 432,

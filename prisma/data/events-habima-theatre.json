@@ -1,17 +1,7 @@
 {
-  "scrapedAt": "2026-05-17T04:33:11.180Z",
+  "scrapedAt": "2026-05-18T04:37:58.759Z",
   "touring": true,
   "events": [
-    {
-      "showId": 134,
-      "showSlug": "אוי-אלוהים",
-      "date": "2026-05-17",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב",
-      "sourceUrl": "https://www.habima.co.il/shows/%d7%90%d7%95%d7%99-%d7%90%d7%9c%d7%95%d7%94%d7%99%d7%9d/",
-      "ticketUrl": "https://tickets.habima.co.il/order/50109"
-    },
     {
       "showId": 134,
       "showSlug": "אוי-אלוהים",
@@ -265,6 +255,26 @@
     {
       "showId": 36,
       "showSlug": "הנערה-מהדואר",
+      "date": "2026-07-20",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%a0%d7%a2%d7%a8%d7%94-%d7%9e%d7%94%d7%93%d7%95%d7%90%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50525"
+    },
+    {
+      "showId": 36,
+      "showSlug": "הנערה-מהדואר",
+      "date": "2026-07-21",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%a0%d7%a2%d7%a8%d7%94-%d7%9e%d7%94%d7%93%d7%95%d7%90%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50526"
+    },
+    {
+      "showId": 36,
+      "showSlug": "הנערה-מהדואר",
       "date": "2026-07-23",
       "hour": "20:00",
       "venueName": "תיאטרון הבימה",
@@ -291,6 +301,16 @@
       "venueCity": "תל אביב",
       "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%a0%d7%a2%d7%a8%d7%94-%d7%9e%d7%94%d7%93%d7%95%d7%90%d7%a8/",
       "ticketUrl": "https://tickets.habima.co.il/order/50485"
+    },
+    {
+      "showId": 36,
+      "showSlug": "הנערה-מהדואר",
+      "date": "2026-07-26",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%a0%d7%a2%d7%a8%d7%94-%d7%9e%d7%94%d7%93%d7%95%d7%90%d7%a8/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50527"
     },
     {
       "showId": 42,
@@ -391,6 +411,16 @@
       "venueCity": "תל אביב",
       "sourceUrl": "https://www.habima.co.il/shows/%d7%9c%d7%94%d7%aa%d7%a8%d7%90%d7%95%d7%aa-%d7%95%d7%aa%d7%95%d7%93%d7%94-%d7%a2%d7%9c-%d7%94%d7%a7%d7%a8%d7%9e%d7%a9%d7%a0%d7%99%d7%98/",
       "ticketUrl": "https://tickets.habima.co.il/order/50500"
+    },
+    {
+      "showId": 139,
+      "showSlug": "להתראות-ותודה-על-הקרמשניט",
+      "date": "2026-07-24",
+      "hour": "11:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9c%d7%94%d7%aa%d7%a8%d7%90%d7%95%d7%aa-%d7%95%d7%aa%d7%95%d7%93%d7%94-%d7%a2%d7%9c-%d7%94%d7%a7%d7%a8%d7%9e%d7%a9%d7%a0%d7%99%d7%98/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50501"
     },
     {
       "showId": 139,
@@ -585,12 +615,42 @@
     {
       "showId": 57,
       "showSlug": "מלאכים-בלבן",
+      "date": "2026-07-09",
+      "hour": "17:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%9c%d7%90%d7%9b%d7%99%d7%9d-%d7%91%d7%9c%d7%91%d7%9f/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50521"
+    },
+    {
+      "showId": 57,
+      "showSlug": "מלאכים-בלבן",
+      "date": "2026-07-09",
+      "hour": "20:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%9c%d7%90%d7%9b%d7%99%d7%9d-%d7%91%d7%9c%d7%91%d7%9f/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50522"
+    },
+    {
+      "showId": 57,
+      "showSlug": "מלאכים-בלבן",
       "date": "2026-07-10",
       "hour": "11:00",
       "venueName": "תיאטרון הבימה",
       "venueCity": "תל אביב",
       "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%9c%d7%90%d7%9b%d7%99%d7%9d-%d7%91%d7%9c%d7%91%d7%9f/",
       "ticketUrl": "https://tickets.habima.co.il/order/50480"
+    },
+    {
+      "showId": 57,
+      "showSlug": "מלאכים-בלבן",
+      "date": "2026-07-11",
+      "hour": "21:00",
+      "venueName": "תיאטרון הבימה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%9c%d7%90%d7%9b%d7%99%d7%9d-%d7%91%d7%9c%d7%91%d7%9f/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50523"
     },
     {
       "showId": 57,
@@ -771,16 +831,6 @@
       "venueCity": "תל אביב",
       "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a8%d7%a6%d7%99%d7%a4%d7%a0%d7%99%d7%9d/",
       "ticketUrl": "https://tickets.habima.co.il/order/50468"
-    },
-    {
-      "showId": 41,
-      "showSlug": "משהו-טוב",
-      "date": "2026-05-17",
-      "hour": "20:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב",
-      "sourceUrl": "https://www.habima.co.il/shows/%d7%9e%d7%a9%d7%94%d7%95-%d7%98%d7%95%d7%91/",
-      "ticketUrl": "https://tickets.habima.co.il/order/50237"
     },
     {
       "showId": 41,
@@ -1101,26 +1151,6 @@
       "venueCity": "תל אביב",
       "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a2%d7%95%d7%9c%d7%95%d7%aa-%d7%a4%d7%a9%d7%95%d7%98%d7%95%d7%aa/",
       "ticketUrl": "https://tickets.habima.co.il/order/50484"
-    },
-    {
-      "showId": 35,
-      "showSlug": "פריסילה-מלכת-המדבר",
-      "date": "2026-05-17",
-      "hour": "17:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב",
-      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
-      "ticketUrl": "https://tickets.habima.co.il/order/50267"
-    },
-    {
-      "showId": 35,
-      "showSlug": "פריסילה-מלכת-המדבר",
-      "date": "2026-05-17",
-      "hour": "21:00",
-      "venueName": "תיאטרון הבימה",
-      "venueCity": "תל אביב",
-      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a8%d7%99%d7%a1%d7%99%d7%9c%d7%94-%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%9e%d7%93%d7%91%d7%a8/",
-      "ticketUrl": "https://tickets.habima.co.il/order/50268"
     },
     {
       "showId": 35,

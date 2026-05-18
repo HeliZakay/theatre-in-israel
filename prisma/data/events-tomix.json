@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-17T04:34:27.296Z",
+  "scrapedAt": "2026-05-18T04:39:20.425Z",
   "touring": true,
   "events": [
     {
@@ -260,7 +260,7 @@
       "date": "2026-06-19",
       "hour": "21:00",
       "venueName": "היכל התיאטרון",
-      "venueCity": "קרית מוצקין",
+      "venueCity": "קריית מוצקין",
       "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
@@ -359,7 +359,7 @@
       "date": "2026-08-20",
       "hour": "20:30",
       "venueName": "תיאטרון יוקנעם",
-      "venueCity": "לא ידוע",
+      "venueCity": "יוקנעם",
       "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
@@ -386,7 +386,7 @@
       "date": "2026-08-28",
       "hour": "21:30",
       "venueName": "היכל התיאטרון",
-      "venueCity": "קרית מוצקין",
+      "venueCity": "קריית מוצקין",
       "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {
@@ -433,6 +433,150 @@
       "venueName": "היכל התרבות פתח תקווה",
       "venueCity": "פתח תקווה",
       "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
+    },
+    {
+      "showId": 483,
+      "showSlug": "זוגות-בזיגזג",
+      "date": "2026-06-26",
+      "hour": "21:30",
+      "venueName": "היכל התרבות נס ציונה",
+      "venueCity": "נס ציונה",
+      "sourceUrl": "https://www.to-mix.co.il/product/zugot-zigzag2026/"
+    },
+    {
+      "showId": 483,
+      "showSlug": "זוגות-בזיגזג",
+      "date": "2026-06-27",
+      "hour": "21:30",
+      "venueName": "תיאטרון גבעתיים",
+      "venueCity": "גבעתיים",
+      "sourceUrl": "https://www.to-mix.co.il/product/zugot-zigzag2026/"
+    },
+    {
+      "showId": 483,
+      "showSlug": "זוגות-בזיגזג",
+      "date": "2026-07-03",
+      "hour": "21:00",
+      "venueName": "אודיטוריום קלצ'קין",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/zugot-zigzag2026/"
+    },
+    {
+      "showId": 483,
+      "showSlug": "זוגות-בזיגזג",
+      "date": "2026-07-07",
+      "hour": "20:30",
+      "venueName": "בית ציוני אמריקה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/zugot-zigzag2026/"
+    },
+    {
+      "showId": 483,
+      "showSlug": "זוגות-בזיגזג",
+      "date": "2026-07-15",
+      "hour": "20:30",
+      "venueName": "היכל התרבות חבל מודיעין",
+      "venueCity": "איירפורט סיטי",
+      "sourceUrl": "https://www.to-mix.co.il/product/zugot-zigzag2026/"
+    },
+    {
+      "showId": 483,
+      "showSlug": "זוגות-בזיגזג",
+      "date": "2026-07-18",
+      "hour": "21:00",
+      "venueName": "היכל התרבות כפר סבא",
+      "venueCity": "כפר סבא",
+      "sourceUrl": "https://www.to-mix.co.il/product/zugot-zigzag2026/"
+    },
+    {
+      "showId": 483,
+      "showSlug": "זוגות-בזיגזג",
+      "date": "2026-07-24",
+      "hour": "21:30",
+      "venueName": "תיאטרון חולון - בית יד לבנים",
+      "venueCity": "חולון",
+      "sourceUrl": "https://www.to-mix.co.il/product/zugot-zigzag2026/"
+    },
+    {
+      "showId": 483,
+      "showSlug": "זוגות-בזיגזג",
+      "date": "2026-08-08",
+      "hour": "21:00",
+      "venueName": "אודיטוריום קלצ'קין",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.to-mix.co.il/product/zugot-zigzag2026/"
+    },
+    {
+      "showId": 483,
+      "showSlug": "זוגות-בזיגזג",
+      "date": "2026-08-22",
+      "hour": "21:00",
+      "venueName": "היכל התרבות ראשון לציון",
+      "venueCity": "ראשון לציון",
+      "sourceUrl": "https://www.to-mix.co.il/product/zugot-zigzag2026/"
+    },
+    {
+      "showId": 483,
+      "showSlug": "זוגות-בזיגזג",
+      "date": "2026-08-29",
+      "hour": "21:30",
+      "venueName": "משכן אמנויות הבמה באר שבע",
+      "venueCity": "באר שבע",
+      "sourceUrl": "https://www.to-mix.co.il/product/zugot-zigzag2026/"
+    },
+    {
+      "showId": 483,
+      "showSlug": "זוגות-בזיגזג",
+      "date": "2026-09-04",
+      "hour": "21:00",
+      "venueName": "היכל התרבות דרום השרון",
+      "venueCity": "נווה ירק",
+      "sourceUrl": "https://www.to-mix.co.il/product/zugot-zigzag2026/"
+    },
+    {
+      "showId": 483,
+      "showSlug": "זוגות-בזיגזג",
+      "date": "2026-09-10",
+      "hour": "20:30",
+      "venueName": "בית יד לבנים",
+      "venueCity": "רעננה",
+      "sourceUrl": "https://www.to-mix.co.il/product/zugot-zigzag2026/"
+    },
+    {
+      "showId": 483,
+      "showSlug": "זוגות-בזיגזג",
+      "date": "2026-09-16",
+      "hour": "20:30",
+      "venueName": "היכל התרבות נתניה",
+      "venueCity": "נתניה",
+      "sourceUrl": "https://www.to-mix.co.il/product/zugot-zigzag2026/"
+    },
+    {
+      "showId": 483,
+      "showSlug": "זוגות-בזיגזג",
+      "date": "2026-09-19",
+      "hour": "21:00",
+      "venueName": "מרכז הבמה",
+      "venueCity": "גני תקווה",
+      "sourceUrl": "https://www.to-mix.co.il/product/zugot-zigzag2026/"
+    },
+    {
+      "showId": 483,
+      "showSlug": "זוגות-בזיגזג",
+      "date": "2026-09-24",
+      "hour": "20:30",
+      "venueName": "היכל התרבות בית העם",
+      "venueCity": "רחובות",
+      "sourceUrl": "https://www.to-mix.co.il/product/zugot-zigzag2026/"
+    },
+    {
+      "showId": 483,
+      "showSlug": "זוגות-בזיגזג",
+      "date": "2026-10-10",
+      "hour": "21:30",
+      "venueName": "היכל התרבות פתח תקווה",
+      "venueCity": "פתח תקווה",
+      "sourceUrl": "https://www.to-mix.co.il/product/zugot-zigzag2026/"
     },
     {
       "showId": 266,
@@ -512,7 +656,7 @@
       "date": "2026-07-01",
       "hour": "20:00",
       "venueName": "המשכן לאמנויות הבמה",
-      "venueCity": "תל אביב",
+      "venueCity": "אשדוד",
       "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
@@ -521,7 +665,7 @@
       "date": "2026-07-11",
       "hour": "17:30",
       "venueName": "אודיטוריום סמולרש",
-      "venueCity": "אוניברסיטת תל אביב",
+      "venueCity": "תל אביב",
       "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
@@ -530,7 +674,7 @@
       "date": "2026-07-11",
       "hour": "21:00",
       "venueName": "אודיטוריום סמולרש",
-      "venueCity": "אוניברסיטת תל אביב",
+      "venueCity": "תל אביב",
       "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
@@ -575,7 +719,7 @@
       "date": "2026-08-13",
       "hour": "20:30",
       "venueName": "היכל התיאטרון",
-      "venueCity": "קרית מוצקין",
+      "venueCity": "קריית מוצקין",
       "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
@@ -584,7 +728,7 @@
       "date": "2026-08-14",
       "hour": "21:00",
       "venueName": "היכל התיאטרון",
-      "venueCity": "קרית מוצקין",
+      "venueCity": "קריית מוצקין",
       "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
@@ -620,7 +764,7 @@
       "date": "2026-09-19",
       "hour": "21:00",
       "venueName": "אודיטוריום סמולרש",
-      "venueCity": "אוניברסיטת תל אביב",
+      "venueCity": "תל אביב",
       "sourceUrl": "https://www.to-mix.co.il/product/mikasheli-musical26/"
     },
     {
@@ -665,7 +809,7 @@
       "date": "2026-06-04",
       "hour": "20:30",
       "venueName": "מתנ\"ס",
-      "venueCity": "גבעת שמואל",
+      "venueCity": "תל מונד",
       "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
@@ -683,7 +827,7 @@
       "date": "2026-06-06",
       "hour": "21:00",
       "venueName": "היכל התיאטרון",
-      "venueCity": "קרית מוצקין",
+      "venueCity": "קריית מוצקין",
       "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
@@ -728,7 +872,7 @@
       "date": "2026-07-04",
       "hour": "21:00",
       "venueName": "צוותא",
-      "venueCity": "תל אביב-יפו",
+      "venueCity": "תל אביב",
       "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
@@ -737,7 +881,7 @@
       "date": "2026-07-09",
       "hour": "20:30",
       "venueName": "היכל התרבות",
-      "venueCity": "בת ים",
+      "venueCity": "תל אביב",
       "sourceUrl": "https://www.to-mix.co.il/product/nisuyim-gariniyim-comedy/"
     },
     {
@@ -935,7 +1079,7 @@
       "date": "2026-07-02",
       "hour": "20:30",
       "venueName": "מרכז אומנויות הבמה",
-      "venueCity": "פרדס חנה כרכור",
+      "venueCity": "שוהם",
       "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {
@@ -971,7 +1115,7 @@
       "date": "2026-07-30",
       "hour": "20:30",
       "venueName": "מרכז אומנויות הבמה",
-      "venueCity": "פרדס חנה כרכור",
+      "venueCity": "שוהם",
       "sourceUrl": "https://www.to-mix.co.il/product/shekarim-ketanim25/"
     },
     {

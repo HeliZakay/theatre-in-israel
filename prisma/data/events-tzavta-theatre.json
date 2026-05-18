@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-17T04:35:35.766Z",
+  "scrapedAt": "2026-05-18T04:40:17.457Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון צוותא",
@@ -215,13 +215,6 @@
       "date": "2026-06-22",
       "hour": "20:30",
       "sourceUrl": "https://www.tzavta.co.il/event/5042"
-    },
-    {
-      "showId": 208,
-      "showSlug": "שותפים-לנצח",
-      "date": "2026-05-17",
-      "hour": "20:30",
-      "sourceUrl": "https://www.tzavta.co.il/event/5085"
     },
     {
       "showId": 208,

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-17T04:35:44.802Z",
+  "scrapedAt": "2026-05-18T04:40:33.074Z",
   "touring": true,
   "events": [
     {
@@ -97,6 +97,24 @@
       "showSlug": "לא-קל-להיות-מאושר-כשהחיים-קצת-חרא",
       "date": "2026-06-04",
       "hour": "21:00",
+      "venueName": "תיאטרון הקאמרי",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.elad-theater.co.il/not-easy-to-be-happy"
+    },
+    {
+      "showId": 341,
+      "showSlug": "לא-קל-להיות-מאושר-כשהחיים-קצת-חרא",
+      "date": "2026-07-10",
+      "hour": "20:30",
+      "venueName": "תיאטרון הקאמרי",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.elad-theater.co.il/not-easy-to-be-happy"
+    },
+    {
+      "showId": 341,
+      "showSlug": "לא-קל-להיות-מאושר-כשהחיים-קצת-חרא",
+      "date": "2026-07-11",
+      "hour": "18:00",
       "venueName": "תיאטרון הקאמרי",
       "venueCity": "תל אביב",
       "sourceUrl": "https://www.elad-theater.co.il/not-easy-to-be-happy"

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-17T04:33:07.937Z",
+  "scrapedAt": "2026-05-18T04:38:13.887Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון תמונע",
@@ -29,6 +29,22 @@
       "hour": "20:00",
       "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6146",
       "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25819"
+    },
+    {
+      "showId": 411,
+      "showSlug": "אדום",
+      "date": "2026-06-28",
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5690",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25868"
+    },
+    {
+      "showId": 479,
+      "showSlug": "אדיפוס-המלך",
+      "date": "2026-06-04",
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6424",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25866"
     },
     {
       "showId": 412,
@@ -271,6 +287,22 @@
       "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25757"
     },
     {
+      "showId": 480,
+      "showSlug": "הפינגווין",
+      "date": "2026-06-10",
+      "hour": "19:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6423",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25801"
+    },
+    {
+      "showId": 480,
+      "showSlug": "הפינגווין",
+      "date": "2026-06-11",
+      "hour": "20:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6423",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25802"
+    },
+    {
       "showId": 418,
       "showSlug": "הפצוע-הישראלי",
       "date": "2026-06-18",
@@ -293,6 +325,14 @@
       "hour": "20:00",
       "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6321",
       "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25741"
+    },
+    {
+      "showId": 481,
+      "showSlug": "ילד-שלי-מוצלח",
+      "date": "2026-06-13",
+      "hour": "11:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=76&ArticleID=6180",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25865"
     },
     {
       "showId": 419,
@@ -325,6 +365,14 @@
       "hour": "17:00",
       "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6200",
       "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25736"
+    },
+    {
+      "showId": 482,
+      "showSlug": "לחם-ושעשועים",
+      "date": "2026-06-27",
+      "hour": "19:00",
+      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=3897",
+      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25828"
     },
     {
       "showId": 283,

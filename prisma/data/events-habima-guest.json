@@ -1,19 +1,11 @@
 {
-  "scrapedAt": "2026-05-17T04:39:17.457Z",
+  "scrapedAt": "2026-05-18T04:43:50.697Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון הבימה",
     "city": "תל אביב"
   },
   "events": [
-    {
-      "showId": 296,
-      "showSlug": "איב",
-      "date": "2026-06-16",
-      "hour": "20:00",
-      "sourceUrl": "https://www.habima.co.il/shows/%d7%90%d7%99%d7%91/",
-      "ticketUrl": "https://tickets.habima.co.il/order/50429"
-    },
     {
       "showId": 296,
       "showSlug": "איב",
@@ -135,6 +127,22 @@
       "ticketUrl": "https://tickets.habima.co.il/order/50437"
     },
     {
+      "showId": 300,
+      "showSlug": "המאהבת",
+      "date": "2026-07-11",
+      "hour": "19:00",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%9e%d7%90%d7%94%d7%91%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50528"
+    },
+    {
+      "showId": 300,
+      "showSlug": "המאהבת",
+      "date": "2026-07-11",
+      "hour": "21:00",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%9e%d7%90%d7%94%d7%91%d7%aa/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50529"
+    },
+    {
       "showId": 37,
       "showSlug": "התקלה",
       "date": "2026-05-26",
@@ -191,6 +199,30 @@
       "ticketUrl": "https://tickets.habima.co.il/order/50423"
     },
     {
+      "showId": 39,
+      "showSlug": "זו-שכותבת-אותי",
+      "date": "2026-08-07",
+      "hour": "12:00",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%96%d7%95-%d7%a9%d7%9b%d7%95%d7%aa%d7%91%d7%aa-%d7%90%d7%95%d7%aa%d7%99/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50534"
+    },
+    {
+      "showId": 39,
+      "showSlug": "זו-שכותבת-אותי",
+      "date": "2026-08-08",
+      "hour": "19:00",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%96%d7%95-%d7%a9%d7%9b%d7%95%d7%aa%d7%91%d7%aa-%d7%90%d7%95%d7%aa%d7%99/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50535"
+    },
+    {
+      "showId": 39,
+      "showSlug": "זו-שכותבת-אותי",
+      "date": "2026-08-08",
+      "hour": "21:00",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%96%d7%95-%d7%a9%d7%9b%d7%95%d7%aa%d7%91%d7%aa-%d7%90%d7%95%d7%aa%d7%99/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50536"
+    },
+    {
       "showId": 434,
       "showSlug": "ימים-רגילים",
       "date": "2026-05-19",
@@ -241,14 +273,6 @@
     {
       "showId": 312,
       "showSlug": "לעלות-על-הציקלון",
-      "date": "2026-05-17",
-      "hour": "20:00",
-      "sourceUrl": "https://www.habima.co.il/shows/%d7%9c%d7%a2%d7%9c%d7%95%d7%aa-%d7%a2%d7%9c-%d7%94%d7%a6%d7%99%d7%a7%d7%9c%d7%95%d7%9f/",
-      "ticketUrl": "https://tickets.habima.co.il/order/50393"
-    },
-    {
-      "showId": 312,
-      "showSlug": "לעלות-על-הציקלון",
       "date": "2026-06-02",
       "hour": "20:00",
       "sourceUrl": "https://www.habima.co.il/shows/%d7%9c%d7%a2%d7%9c%d7%95%d7%aa-%d7%a2%d7%9c-%d7%94%d7%a6%d7%99%d7%a7%d7%9c%d7%95%d7%9f/",
@@ -287,6 +311,30 @@
       "ticketUrl": "https://tickets.habima.co.il/order/50439"
     },
     {
+      "showId": 304,
+      "showSlug": "מזוייפת",
+      "date": "2026-07-15",
+      "hour": "19:00",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%a1%d7%93%d7%a8%d7%9f/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50530"
+    },
+    {
+      "showId": 304,
+      "showSlug": "מזוייפת",
+      "date": "2026-07-15",
+      "hour": "21:30",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%a1%d7%93%d7%a8%d7%9f/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50531"
+    },
+    {
+      "showId": 484,
+      "showSlug": "נפש",
+      "date": "2026-05-29",
+      "hour": "12:00",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a0%d7%a4%d7%a9/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50514"
+    },
+    {
       "showId": 46,
       "showSlug": "פציעות-קטנות",
       "date": "2026-05-20",
@@ -303,12 +351,52 @@
       "ticketUrl": "https://tickets.habima.co.il/order/50453"
     },
     {
+      "showId": 58,
+      "showSlug": "קיצור-תהליכים",
+      "date": "2026-07-24",
+      "hour": "12:00",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a7%d7%99%d7%a6%d7%95%d7%a8-%d7%aa%d7%94%d7%9c%d7%99%d7%9b%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50532"
+    },
+    {
+      "showId": 58,
+      "showSlug": "קיצור-תהליכים",
+      "date": "2026-07-25",
+      "hour": "21:00",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%a7%d7%99%d7%a6%d7%95%d7%a8-%d7%aa%d7%94%d7%9c%d7%99%d7%9b%d7%99%d7%9d/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50533"
+    },
+    {
       "showId": 306,
       "showSlug": "רוורס",
       "date": "2026-06-24",
       "hour": "20:00",
       "sourceUrl": "https://www.habima.co.il/shows/%d7%a8%d7%95%d7%95%d7%a8%d7%a1/",
       "ticketUrl": "https://tickets.habima.co.il/order/50466"
+    },
+    {
+      "showId": 485,
+      "showSlug": "תחושת-בטן",
+      "date": "2026-06-08",
+      "hour": "20:00",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%aa%d7%97%d7%95%d7%a9%d7%aa-%d7%91%d7%98%d7%9f/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50517"
+    },
+    {
+      "showId": 485,
+      "showSlug": "תחושת-בטן",
+      "date": "2026-06-09",
+      "hour": "20:00",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%aa%d7%97%d7%95%d7%a9%d7%aa-%d7%91%d7%98%d7%9f/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50518"
+    },
+    {
+      "showId": 485,
+      "showSlug": "תחושת-בטן",
+      "date": "2026-06-10",
+      "hour": "20:00",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%aa%d7%97%d7%95%d7%a9%d7%aa-%d7%91%d7%98%d7%9f/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50519"
     },
     {
       "showId": 308,

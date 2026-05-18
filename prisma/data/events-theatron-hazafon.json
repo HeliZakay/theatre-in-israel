@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-17T04:36:30.746Z",
+  "scrapedAt": "2026-05-18T04:41:26.299Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון הצפון",
@@ -245,6 +245,20 @@
       "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4296"
     },
     {
+      "showId": 112,
+      "showSlug": "גבירתי-הנאווה",
+      "date": "2026-10-12",
+      "hour": "20:00",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4296"
+    },
+    {
+      "showId": 112,
+      "showSlug": "גבירתי-הנאווה",
+      "date": "2026-10-13",
+      "hour": "20:00",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4296"
+    },
+    {
       "showId": 121,
       "showSlug": "מראה-מעל-הגשר",
       "date": "2026-06-28",
@@ -297,6 +311,13 @@
       "showId": 271,
       "showSlug": "שקרים-קטנים",
       "date": "2026-08-07",
+      "hour": "21:30",
+      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4339"
+    },
+    {
+      "showId": 271,
+      "showSlug": "שקרים-קטנים",
+      "date": "2026-10-09",
       "hour": "21:30",
       "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4339"
     },

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-17T04:33:36.095Z",
+  "scrapedAt": "2026-05-18T04:38:33.357Z",
   "venue": {
     "name": "תיאטרון המשולש",
     "city": "תל אביב"
@@ -148,14 +148,6 @@
       "hour": "20:00",
       "sourceUrl": "https://www.hameshulash.com/hakshevharasap",
       "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/328"
-    },
-    {
-      "showId": 288,
-      "showSlug": "פאקינג-מן",
-      "date": "2026-05-17",
-      "hour": "20:00",
-      "sourceUrl": "https://www.hameshulash.com/fuckingman",
-      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/306"
     },
     {
       "showId": 288,

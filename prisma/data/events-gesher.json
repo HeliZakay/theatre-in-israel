@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-17T04:31:50.061Z",
+  "scrapedAt": "2026-05-18T04:36:36.071Z",
   "touring": true,
   "events": [
     {
@@ -91,16 +91,6 @@
       "venueCity": "תל אביב-יפו",
       "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2659",
       "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2659&DateID=6900"
-    },
-    {
-      "showId": 241,
-      "showSlug": "אנה-קרנינה",
-      "date": "2026-06-12",
-      "hour": "20:00",
-      "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו",
-      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2659",
-      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2659&DateID=7221"
     },
     {
       "showId": 241,
@@ -335,16 +325,6 @@
     {
       "showId": 159,
       "showSlug": "מישהו-לרוץ-איתו",
-      "date": "2026-05-17",
-      "hour": "19:30",
-      "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו",
-      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2857",
-      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2857&DateID=7186"
-    },
-    {
-      "showId": 159,
-      "showSlug": "מישהו-לרוץ-איתו",
       "date": "2026-06-05",
       "hour": "20:00",
       "venueName": "תיאטרון גשר",
@@ -451,16 +431,6 @@
       "venueCity": "תל אביב-יפו",
       "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2839",
       "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2839&DateID=7227"
-    },
-    {
-      "showId": 249,
-      "showSlug": "קרום",
-      "date": "2026-06-10",
-      "hour": "19:30",
-      "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו",
-      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2862",
-      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2862&DateID=7219"
     },
     {
       "showId": 249,
