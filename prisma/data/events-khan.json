@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-18T04:36:01.973Z",
+  "scrapedAt": "2026-05-19T04:32:20.010Z",
   "touring": true,
   "events": [
     {
@@ -325,26 +325,6 @@
     {
       "showId": 90,
       "showSlug": "מי-שסוכתו-נופלת",
-      "date": "2026-05-18",
-      "hour": "18:00",
-      "venueName": "בית ציוני אמריקה",
-      "venueCity": "תל אביב",
-      "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
-      "ticketUrl": "https://khan.pres.global/order/8566"
-    },
-    {
-      "showId": 90,
-      "showSlug": "מי-שסוכתו-נופלת",
-      "date": "2026-05-18",
-      "hour": "21:00",
-      "venueName": "בית ציוני אמריקה",
-      "venueCity": "תל אביב",
-      "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
-      "ticketUrl": "https://khan.pres.global/order/8567"
-    },
-    {
-      "showId": 90,
-      "showSlug": "מי-שסוכתו-נופלת",
       "date": "2026-05-19",
       "hour": "18:00",
       "venueName": "בית ציוני אמריקה",
@@ -451,6 +431,36 @@
       "venueCity": "תל אביב",
       "sourceUrl": "https://www.khan.co.il/shows/551/a-simple-tale",
       "ticketUrl": "https://khan.pres.global/order/8671"
+    },
+    {
+      "showId": 166,
+      "showSlug": "סיפור-פשוט",
+      "date": "2026-07-13",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/551/a-simple-tale",
+      "ticketUrl": "https://khan.pres.global/order/8684"
+    },
+    {
+      "showId": 166,
+      "showSlug": "סיפור-פשוט",
+      "date": "2026-07-14",
+      "hour": "20:00",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/551/a-simple-tale",
+      "ticketUrl": "https://khan.pres.global/order/8685"
+    },
+    {
+      "showId": 166,
+      "showSlug": "סיפור-פשוט",
+      "date": "2026-07-15",
+      "hour": "17:30",
+      "venueName": "תיאטרון החאן",
+      "venueCity": "ירושלים",
+      "sourceUrl": "https://www.khan.co.il/shows/551/a-simple-tale",
+      "ticketUrl": "https://khan.pres.global/order/8686"
     }
   ]
 }

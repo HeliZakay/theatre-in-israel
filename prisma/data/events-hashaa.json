@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-18T04:39:19.107Z",
+  "scrapedAt": "2026-05-19T04:35:48.030Z",
   "touring": true,
   "events": [
     {
@@ -257,15 +257,6 @@
     {
       "showId": 445,
       "showSlug": "כובע-קסמים",
-      "date": "2026-05-18",
-      "hour": "17:00",
-      "venueName": "היכל התרבות חריש",
-      "venueCity": "חריש",
-      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/כובע_קסמים_103"
-    },
-    {
-      "showId": 445,
-      "showSlug": "כובע-קסמים",
       "date": "2026-05-27",
       "hour": "17:30",
       "venueName": "היכל התרבות נתניה",
@@ -352,15 +343,6 @@
       "venueName": "תיאטרון באר שבע",
       "venueCity": "באר שבע",
       "sourceUrl": "https://teatron-hashaa.smarticket.co.il/מעשה_בשלושה_אגוזים_"
-    },
-    {
-      "showId": 447,
-      "showSlug": "פצפונת-ואנטון",
-      "date": "2026-05-18",
-      "hour": "17:30",
-      "venueName": "תיאטרון ירושלים",
-      "venueCity": "ירושלים",
-      "sourceUrl": "https://teatron-hashaa.smarticket.co.il/פצפונת_ואנטון"
     },
     {
       "showId": 448,

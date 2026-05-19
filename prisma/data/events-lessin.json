@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-18T04:35:51.352Z",
+  "scrapedAt": "2026-05-19T04:31:54.206Z",
   "venue": {
     "name": "תיאטרון בית ליסין",
     "city": "תל אביב"
@@ -542,6 +542,14 @@
       "sourceUrl": "https://www.lessin.co.il/shows/%d7%97%d7%a0%d7%90%d7%9c-%d7%95%d7%9e%d7%9b%d7%91%d7%99%d7%aa/"
     },
     {
+      "showId": 72,
+      "showSlug": "חנאל-ומכבית",
+      "date": "2026-08-05",
+      "hour": "21:00",
+      "note": "אולם 2",
+      "sourceUrl": "https://www.lessin.co.il/shows/%d7%97%d7%a0%d7%90%d7%9c-%d7%95%d7%9e%d7%9b%d7%91%d7%99%d7%aa/"
+    },
+    {
       "showId": 73,
       "showSlug": "מלכת-היופי-של-ירושלים",
       "date": "2026-05-28",
@@ -636,14 +644,6 @@
       "hour": "18:00",
       "note": "אולם 1",
       "sourceUrl": "https://www.lessin.co.il/shows/%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%99%d7%95%d7%a4%d7%99-%d7%a9%d7%9c-%d7%99%d7%a8%d7%95%d7%a9%d7%9c%d7%99%d7%9d/"
-    },
-    {
-      "showId": 60,
-      "showSlug": "סיפור-הפרברים-–-המחזמר",
-      "date": "2027-05-17",
-      "hour": "20:00",
-      "note": "אולם 1 | כתוביות באנגלית",
-      "sourceUrl": "https://www.lessin.co.il/shows/%d7%a1%d7%99%d7%a4%d7%95%d7%a8-%d7%94%d7%a4%d7%a8%d7%91%d7%a8%d7%99%d7%9d-%d7%94%d7%9e%d7%97%d7%96%d7%9e%d7%a8/"
     },
     {
       "showId": 60,

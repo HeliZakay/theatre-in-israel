@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-18T04:36:36.071Z",
+  "scrapedAt": "2026-05-19T04:32:47.334Z",
   "touring": true,
   "events": [
     {
@@ -91,6 +91,16 @@
       "venueCity": "תל אביב-יפו",
       "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2659",
       "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2659&DateID=6900"
+    },
+    {
+      "showId": 241,
+      "showSlug": "אנה-קרנינה",
+      "date": "2026-06-12",
+      "hour": "20:00",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2659",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2659&DateID=7221"
     },
     {
       "showId": 241,

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-18T04:41:26.299Z",
+  "scrapedAt": "2026-05-19T04:38:02.524Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון הצפון",
@@ -95,13 +95,6 @@
       "showSlug": "זוגיות-AI",
       "date": "2026-07-24",
       "hour": "21:30",
-      "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4373"
-    },
-    {
-      "showId": 119,
-      "showSlug": "זוגיות-AI",
-      "date": "2026-08-24",
-      "hour": "20:30",
       "sourceUrl": "https://www.theatron-hazafon.co.il/event.asp?event=4373"
     },
     {

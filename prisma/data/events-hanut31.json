@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-18T04:42:45.745Z",
+  "scrapedAt": "2026-05-19T04:39:12.892Z",
   "venue": {
     "name": "תיאטרון החנות",
     "city": "תל אביב"
@@ -12,6 +12,14 @@
       "hour": "20:00",
       "sourceUrl": "https://www.hanut31.co.il/horsing-around",
       "ticketUrl": "https://www.hanut31.co.il/events/horsing-around-2026-06-04-20-00"
+    },
+    {
+      "showId": 462,
+      "showSlug": "Horsing-Around",
+      "date": "2026-07-09",
+      "hour": "20:00",
+      "sourceUrl": "https://www.hanut31.co.il/horsing-around",
+      "ticketUrl": "https://www.hanut31.co.il/events/horsing-around-3"
     },
     {
       "showId": 360,

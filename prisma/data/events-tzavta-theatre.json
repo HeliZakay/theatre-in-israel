@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-18T04:40:17.457Z",
+  "scrapedAt": "2026-05-19T04:36:54.394Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון צוותא",
@@ -114,13 +114,6 @@
     {
       "showId": 194,
       "showSlug": "מה-שקרה-לנו",
-      "date": "2026-05-18",
-      "hour": "20:30",
-      "sourceUrl": "https://www.tzavta.co.il/event/5081"
-    },
-    {
-      "showId": 194,
-      "showSlug": "מה-שקרה-לנו",
       "date": "2026-06-20",
       "hour": "20:30",
       "sourceUrl": "https://www.tzavta.co.il/event/5081"
@@ -130,6 +123,13 @@
       "showSlug": "מה-שקרה-לנו",
       "date": "2026-07-02",
       "hour": "20:30",
+      "sourceUrl": "https://www.tzavta.co.il/event/5081"
+    },
+    {
+      "showId": 194,
+      "showSlug": "מה-שקרה-לנו",
+      "date": "2026-07-24",
+      "hour": "21:00",
       "sourceUrl": "https://www.tzavta.co.il/event/5081"
     },
     {
@@ -187,13 +187,6 @@
       "date": "2026-06-27",
       "hour": "20:30",
       "sourceUrl": "https://www.tzavta.co.il/event/5043"
-    },
-    {
-      "showId": 206,
-      "showSlug": "פצעים",
-      "date": "2026-05-18",
-      "hour": "20:30",
-      "sourceUrl": "https://www.tzavta.co.il/event/5064"
     },
     {
       "showId": 206,

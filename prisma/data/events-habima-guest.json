@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-18T04:43:50.697Z",
+  "scrapedAt": "2026-05-19T04:40:49.680Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון הבימה",
@@ -253,14 +253,6 @@
       "hour": "12:00",
       "sourceUrl": "https://www.habima.co.il/shows/%d7%9c%d7%90%d7%95%d7%a8%d7%94-%d7%a8%d7%99%d7%91%d7%9c%d7%99%d7%9f-%d7%91%d7%a2%d7%99%d7%a8-%d7%96%d7%a8%d7%94/",
       "ticketUrl": "https://tickets.habima.co.il/order/50433"
-    },
-    {
-      "showId": 477,
-      "showSlug": "להוריד-את-הכלב",
-      "date": "2026-05-18",
-      "hour": "20:00",
-      "sourceUrl": "https://www.habima.co.il/shows/%d7%9c%d7%94%d7%95%d7%a8%d7%99%d7%93-%d7%90%d7%aa-%d7%94%d7%9b%d7%9c%d7%91/",
-      "ticketUrl": "https://tickets.habima.co.il/order/50455"
     },
     {
       "showId": 303,

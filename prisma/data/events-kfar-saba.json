@@ -1,17 +1,11 @@
 {
-  "scrapedAt": "2026-05-18T04:42:04.895Z",
+  "scrapedAt": "2026-05-19T04:38:38.127Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות כפר סבא",
     "city": "כפר סבא"
   },
   "events": [
-    {
-      "showId": 4,
-      "showSlug": "מי-בעד",
-      "date": "2026-05-18",
-      "hour": "20:30"
-    },
     {
       "showId": 269,
       "showSlug": "דרושה-עוזרת",
