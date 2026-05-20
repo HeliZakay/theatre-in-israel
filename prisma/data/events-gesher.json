@@ -1,7 +1,77 @@
 {
-  "scrapedAt": "2026-05-19T04:32:47.334Z",
+  "scrapedAt": "2026-05-20T04:33:58.873Z",
   "touring": true,
   "events": [
+    {
+      "showId": 488,
+      "showSlug": "Bloody-Mary",
+      "date": "2026-06-21",
+      "hour": "19:30",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2890",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2890&DateID=7234"
+    },
+    {
+      "showId": 488,
+      "showSlug": "Bloody-Mary",
+      "date": "2026-06-22",
+      "hour": "19:30",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2890",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2890&DateID=7235"
+    },
+    {
+      "showId": 488,
+      "showSlug": "Bloody-Mary",
+      "date": "2026-09-16",
+      "hour": "19:30",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2890",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2890&DateID=7236"
+    },
+    {
+      "showId": 488,
+      "showSlug": "Bloody-Mary",
+      "date": "2026-09-17",
+      "hour": "19:30",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2890",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2890&DateID=7237"
+    },
+    {
+      "showId": 488,
+      "showSlug": "Bloody-Mary",
+      "date": "2026-09-18",
+      "hour": "12:00",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2890",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2890&DateID=7238"
+    },
+    {
+      "showId": 488,
+      "showSlug": "Bloody-Mary",
+      "date": "2026-09-18",
+      "hour": "20:00",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2890",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2890&DateID=7239"
+    },
+    {
+      "showId": 488,
+      "showSlug": "Bloody-Mary",
+      "date": "2026-09-19",
+      "hour": "18:00",
+      "venueName": "תיאטרון גשר",
+      "venueCity": "תל אביב-יפו",
+      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2890",
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2890&DateID=7240"
+    },
     {
       "showId": 240,
       "showSlug": "אמא-קוראז׳-וילדיה",
@@ -150,7 +220,7 @@
       "venueName": "תיאטרון גשר",
       "venueCity": "תל אביב-יפו",
       "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2886",
-      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2886&DateID=7214"
+      "ticketUrl": "javascript:void(0)"
     },
     {
       "showId": 406,

@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-19T04:35:45.618Z",
+  "scrapedAt": "2026-05-20T04:36:48.369Z",
   "venue": {
     "name": "תיאטרון הסימטה",
     "city": "תל אביב-יפו"
@@ -12,6 +12,38 @@
       "hour": "11:00",
       "sourceUrl": "https://hasimta.com/shows/%d7%94%d7%99%d7%9c%d7%93%d7%94-%d7%95%d7%94%d7%99%d7%9d-%d7%94%d7%a6%d7%92%d7%94-%d7%99%d7%9c%d7%93%d7%99%d7%9d/",
       "ticketUrl": "https://eventbuzz.co.il/4uf0m"
+    },
+    {
+      "showId": 490,
+      "showSlug": "התחנה",
+      "date": "2026-05-29",
+      "hour": "13:00",
+      "sourceUrl": "https://hasimta.com/shows/%d7%94%d7%aa%d7%97%d7%a0%d7%94/",
+      "ticketUrl": "https://eventbuzz.co.il/4wty0"
+    },
+    {
+      "showId": 490,
+      "showSlug": "התחנה",
+      "date": "2026-06-15",
+      "hour": "20:30",
+      "sourceUrl": "https://hasimta.com/shows/%d7%94%d7%aa%d7%97%d7%a0%d7%94/",
+      "ticketUrl": "https://eventbuzz.co.il/bspl3"
+    },
+    {
+      "showId": 490,
+      "showSlug": "התחנה",
+      "date": "2026-07-04",
+      "hour": "21:30",
+      "sourceUrl": "https://hasimta.com/shows/%d7%94%d7%aa%d7%97%d7%a0%d7%94/",
+      "ticketUrl": "https://eventbuzz.co.il/xetdh"
+    },
+    {
+      "showId": 490,
+      "showSlug": "התחנה",
+      "date": "2026-07-13",
+      "hour": "20:30",
+      "sourceUrl": "https://hasimta.com/shows/%d7%94%d7%aa%d7%97%d7%a0%d7%94/",
+      "ticketUrl": "https://eventbuzz.co.il/p21op"
     },
     {
       "showId": 353,
@@ -36,6 +68,14 @@
       "hour": "20:30",
       "sourceUrl": "https://hasimta.com/shows/%d7%a1%d7%95%d7%93%d7%95%d7%aa-%d7%91%d7%95%d7%a2%d7%a8%d7%99%d7%9d/",
       "ticketUrl": "https://eventbuzz.co.il/l41wg"
+    },
+    {
+      "showId": 423,
+      "showSlug": "סודות-בוערים",
+      "date": "2026-06-20",
+      "hour": "20:30",
+      "sourceUrl": "https://hasimta.com/shows/%d7%a1%d7%95%d7%93%d7%95%d7%aa-%d7%91%d7%95%d7%a2%d7%a8%d7%99%d7%9d/",
+      "ticketUrl": "https://eventbuzz.co.il/9p567"
     },
     {
       "showId": 476,

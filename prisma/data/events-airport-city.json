@@ -1,18 +1,11 @@
 {
-  "scrapedAt": "2026-05-19T04:38:35.344Z",
+  "scrapedAt": "2026-05-20T04:39:20.205Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות איירפורט סיטי",
     "city": "איירפורט סיטי"
   },
   "events": [
-    {
-      "showId": 263,
-      "showSlug": "אהבה-מודרנית",
-      "date": "2026-05-19",
-      "hour": "20:30",
-      "sourceUrl": "https://heichal-hm.co.il/index.php?dir=site&page=play&op=item&cs=1666"
-    },
     {
       "showId": 68,
       "showSlug": "אור-לגויים",

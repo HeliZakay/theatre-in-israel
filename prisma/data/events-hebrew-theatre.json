@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-19T04:33:46.017Z",
+  "scrapedAt": "2026-05-20T04:34:49.020Z",
   "touring": true,
   "events": [
     {
@@ -61,6 +61,16 @@
       "venueCity": "ראשון לציון",
       "sourceUrl": "https://www.teatron.org.il/shows/madona-the-tribute-show/",
       "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/11054"
+    },
+    {
+      "showId": 478,
+      "showSlug": "MADONA-–-THE-TRIBUTE-SHOW",
+      "date": "2026-10-16",
+      "hour": "21:30",
+      "venueName": "היכל התרבות כפר סבא",
+      "venueCity": "כפר סבא",
+      "sourceUrl": "https://www.teatron.org.il/shows/madona-the-tribute-show/",
+      "ticketUrl": "https://thehebrewtheater.smarticket.co.il//event/11060"
     },
     {
       "showId": 478,

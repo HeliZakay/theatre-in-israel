@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-19T04:35:31.550Z",
+  "scrapedAt": "2026-05-20T04:36:35.394Z",
   "venue": {
     "name": "תיאטרון ניקו ניתאי",
     "city": "תל אביב"
@@ -15,30 +15,23 @@
     {
       "showId": 330,
       "showSlug": "ארץ-יחפה-הצגה-חדשה",
-      "date": "2026-05-19",
-      "hour": "20:30",
-      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%90%D7%A8%D7%A5_%D7%99%D7%97%D7%A4%D7%94_-_%D7%94%D7%A6%D7%92%D7%94_%D7%97%D7%93%D7%A9%D7%94/?id=491"
-    },
-    {
-      "showId": 330,
-      "showSlug": "ארץ-יחפה-הצגה-חדשה",
       "date": "2026-05-20",
       "hour": "20:30",
-      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%90%D7%A8%D7%A5_%D7%99%D7%97%D7%A4%D7%94_-_%D7%94%D7%A6%D7%92%D7%94_%D7%97%D7%93%D7%A9%D7%94/?id=491"
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%90%D7%A8%D7%A5_%D7%99%D7%97%D7%A4%D7%94_-_%D7%94%D7%A6%D7%92%D7%94_%D7%97%D7%93%D7%A9%D7%94/?id=492"
     },
     {
       "showId": 330,
       "showSlug": "ארץ-יחפה-הצגה-חדשה",
       "date": "2026-06-17",
       "hour": "20:30",
-      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%90%D7%A8%D7%A5_%D7%99%D7%97%D7%A4%D7%94_-_%D7%94%D7%A6%D7%92%D7%94_%D7%97%D7%93%D7%A9%D7%94/?id=491"
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%90%D7%A8%D7%A5_%D7%99%D7%97%D7%A4%D7%94_-_%D7%94%D7%A6%D7%92%D7%94_%D7%97%D7%93%D7%A9%D7%94/?id=492"
     },
     {
       "showId": 330,
       "showSlug": "ארץ-יחפה-הצגה-חדשה",
       "date": "2026-06-18",
       "hour": "20:30",
-      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%90%D7%A8%D7%A5_%D7%99%D7%97%D7%A4%D7%94_-_%D7%94%D7%A6%D7%92%D7%94_%D7%97%D7%93%D7%A9%D7%94/?id=491"
+      "sourceUrl": "https://nikonitai.smarticket.co.il/%D7%90%D7%A8%D7%A5_%D7%99%D7%97%D7%A4%D7%94_-_%D7%94%D7%A6%D7%92%D7%94_%D7%97%D7%93%D7%A9%D7%94/?id=492"
     },
     {
       "showId": 331,

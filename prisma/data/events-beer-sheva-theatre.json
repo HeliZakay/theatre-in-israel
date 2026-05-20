@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-19T04:33:11.846Z",
+  "scrapedAt": "2026-05-20T04:34:23.135Z",
   "touring": true,
   "events": [
     {
@@ -511,26 +511,6 @@
       "venueCity": "באר שבע",
       "sourceUrl": "https://b7t.co.il/shows/%d7%94%d7%a2%d7%9c%d7%9e%d7%94-%d7%95%d7%94%d7%9e%d7%95%d7%95%d7%aa/",
       "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/9108"
-    },
-    {
-      "showId": 83,
-      "showSlug": "מקומות-שמורים",
-      "date": "2026-05-19",
-      "hour": "17:00",
-      "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע",
-      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
-      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8842"
-    },
-    {
-      "showId": 83,
-      "showSlug": "מקומות-שמורים",
-      "date": "2026-05-19",
-      "hour": "20:30",
-      "venueName": "תיאטרון באר שבע",
-      "venueCity": "באר שבע",
-      "sourceUrl": "https://b7t.co.il/shows/%d7%9e%d7%a7%d7%95%d7%9e%d7%95%d7%aa-%d7%a9%d7%9e%d7%95%d7%a8%d7%99%d7%9d/",
-      "ticketUrl": "https://b7t.smarticket.co.il/iframe/event/8832"
     },
     {
       "showId": 83,

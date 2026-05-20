@@ -1,16 +1,7 @@
 {
-  "scrapedAt": "2026-05-19T04:35:44.768Z",
+  "scrapedAt": "2026-05-20T04:36:29.000Z",
   "touring": true,
   "events": [
-    {
-      "showId": 263,
-      "showSlug": "אהבה-מודרנית",
-      "date": "2026-05-19",
-      "hour": "20:30",
-      "venueName": "היכל התרבות חבל מודיעין",
-      "venueCity": "איירפורט סיטי",
-      "sourceUrl": "https://www.to-mix.co.il/product/modernlovecomedy-show25/"
-    },
     {
       "showId": 263,
       "showSlug": "אהבה-מודרנית",
@@ -396,6 +387,15 @@
       "hour": "20:30",
       "venueName": "היכל התרבות עכו",
       "venueCity": "עכו",
+      "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
+    },
+    {
+      "showId": 269,
+      "showSlug": "דרושה-עוזרת",
+      "date": "2026-09-05",
+      "hour": "21:00",
+      "venueName": "מתנ''ס חריש",
+      "venueCity": "חריש",
       "sourceUrl": "https://www.to-mix.co.il/product/drushaozeret-show25/"
     },
     {

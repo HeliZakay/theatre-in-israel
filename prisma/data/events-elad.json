@@ -1,16 +1,7 @@
 {
-  "scrapedAt": "2026-05-19T04:36:58.573Z",
+  "scrapedAt": "2026-05-20T04:37:49.989Z",
   "touring": true,
   "events": [
-    {
-      "showId": 342,
-      "showSlug": "חדר-201",
-      "date": "2026-05-19",
-      "hour": "20:30",
-      "venueName": "התומשיה",
-      "venueCity": "תל אביב",
-      "sourceUrl": "https://www.elad-theater.co.il/room-201"
-    },
     {
       "showId": 342,
       "showSlug": "חדר-201",
@@ -70,6 +61,51 @@
       "showSlug": "חדר-201",
       "date": "2026-06-20",
       "hour": "21:00",
+      "venueName": "התומשיה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.elad-theater.co.il/room-201"
+    },
+    {
+      "showId": 342,
+      "showSlug": "חדר-201",
+      "date": "2026-07-01",
+      "hour": "20:30",
+      "venueName": "התומשיה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.elad-theater.co.il/room-201"
+    },
+    {
+      "showId": 342,
+      "showSlug": "חדר-201",
+      "date": "2026-07-07",
+      "hour": "20:30",
+      "venueName": "התומשיה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.elad-theater.co.il/room-201"
+    },
+    {
+      "showId": 342,
+      "showSlug": "חדר-201",
+      "date": "2026-07-08",
+      "hour": "20:30",
+      "venueName": "התומשיה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.elad-theater.co.il/room-201"
+    },
+    {
+      "showId": 342,
+      "showSlug": "חדר-201",
+      "date": "2026-07-20",
+      "hour": "20:30",
+      "venueName": "התומשיה",
+      "venueCity": "תל אביב",
+      "sourceUrl": "https://www.elad-theater.co.il/room-201"
+    },
+    {
+      "showId": 342,
+      "showSlug": "חדר-201",
+      "date": "2026-07-21",
+      "hour": "20:30",
       "venueName": "התומשיה",
       "venueCity": "תל אביב",
       "sourceUrl": "https://www.elad-theater.co.il/room-201"

@@ -1,18 +1,11 @@
 {
-  "scrapedAt": "2026-05-19T04:39:55.325Z",
+  "scrapedAt": "2026-05-20T04:40:37.794Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התיאטרון קריית מוצקין",
     "city": "קריית מוצקין"
   },
   "events": [
-    {
-      "showId": 172,
-      "showSlug": "פינק-ליידי",
-      "date": "2026-05-19",
-      "hour": "20:30",
-      "sourceUrl": "https://www.mozkin-theater.co.il/%D7%9C%D7%95%D7%97-%D7%90%D7%99%D7%A8%D7%95%D7%A2%D7%99%D7%9D/2601/%D7%A4%D7%99%D7%A0%D7%A7-%D7%9C%D7%99%D7%99%D7%93%D7%99"
-    },
     {
       "showId": 172,
       "showSlug": "פינק-ליידי",

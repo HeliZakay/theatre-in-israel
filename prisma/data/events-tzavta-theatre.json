@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-19T04:36:54.394Z",
+  "scrapedAt": "2026-05-20T04:37:44.383Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון צוותא",
@@ -12,13 +12,6 @@
       "date": "2026-05-30",
       "hour": "11:00",
       "sourceUrl": "https://www.tzavta.co.il/event/2219"
-    },
-    {
-      "showId": 176,
-      "showSlug": "אירלנד",
-      "date": "2026-05-19",
-      "hour": "20:30",
-      "sourceUrl": "https://www.tzavta.co.il/event/3716"
     },
     {
       "showId": 452,
@@ -54,13 +47,6 @@
       "date": "2026-06-02",
       "hour": "20:30",
       "sourceUrl": "https://www.tzavta.co.il/event/7"
-    },
-    {
-      "showId": 369,
-      "showSlug": "הסוף",
-      "date": "2026-05-19",
-      "hour": "20:00",
-      "sourceUrl": "https://www.tzavta.co.il/event/5"
     },
     {
       "showId": 369,

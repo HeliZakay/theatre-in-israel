@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-19T04:34:44.368Z",
+  "scrapedAt": "2026-05-20T04:35:52.289Z",
   "venue": {
     "name": "תיאטרון המשולש",
     "city": "תל אביב"
@@ -132,22 +132,6 @@
       "hour": "20:00",
       "sourceUrl": "https://www.hameshulash.com/hakshevharasap",
       "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/309"
-    },
-    {
-      "showId": 287,
-      "showSlug": "הקשב-הרס״פ",
-      "date": "2026-06-20",
-      "hour": "20:00",
-      "sourceUrl": "https://www.hameshulash.com/hakshevharasap",
-      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/327"
-    },
-    {
-      "showId": 287,
-      "showSlug": "הקשב-הרס״פ",
-      "date": "2026-06-21",
-      "hour": "20:00",
-      "sourceUrl": "https://www.hameshulash.com/hakshevharasap",
-      "ticketUrl": "https://lgbtqcenter.smarticket.co.il/iframe/event/328"
     },
     {
       "showId": 288,

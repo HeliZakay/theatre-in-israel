@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-19T04:32:20.010Z",
+  "scrapedAt": "2026-05-20T04:33:24.190Z",
   "touring": true,
   "events": [
     {
@@ -321,26 +321,6 @@
       "venueCity": "ירושלים",
       "sourceUrl": "https://www.khan.co.il/shows/568/waiting-for-godot",
       "ticketUrl": "https://khan.pres.global/order/8691"
-    },
-    {
-      "showId": 90,
-      "showSlug": "מי-שסוכתו-נופלת",
-      "date": "2026-05-19",
-      "hour": "18:00",
-      "venueName": "בית ציוני אמריקה",
-      "venueCity": "תל אביב",
-      "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
-      "ticketUrl": "https://khan.pres.global/order/8568"
-    },
-    {
-      "showId": 90,
-      "showSlug": "מי-שסוכתו-נופלת",
-      "date": "2026-05-19",
-      "hour": "21:00",
-      "venueName": "בית ציוני אמריקה",
-      "venueCity": "תל אביב",
-      "sourceUrl": "https://www.khan.co.il/shows/609/whose-sukkah-is-falling-down",
-      "ticketUrl": "https://khan.pres.global/order/8652"
     },
     {
       "showId": 90,

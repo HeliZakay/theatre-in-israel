@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-19T04:32:41.542Z",
+  "scrapedAt": "2026-05-20T04:33:43.906Z",
   "touring": true,
   "events": [
     {
@@ -21,16 +21,6 @@
       "venueCity": "תל אביב",
       "sourceUrl": "https://www.ht1.co.il/Event/Index/43551",
       "ticketUrl": "https://ht1.smarticket.co.il/event/8972"
-    },
-    {
-      "showId": 82,
-      "showSlug": "היומן",
-      "date": "2026-05-19",
-      "hour": "20:30",
-      "venueName": "תיאטרון חיפה",
-      "venueCity": "חיפה",
-      "sourceUrl": "https://www.ht1.co.il/Event/Index/43815",
-      "ticketUrl": "https://ht1.smarticket.co.il/event/8849"
     },
     {
       "showId": 82,
