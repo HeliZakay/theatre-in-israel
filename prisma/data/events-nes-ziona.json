@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-20T04:38:15.508Z",
+  "scrapedAt": "2026-05-21T04:42:29.400Z",
   "venueSource": true,
   "venue": {
     "name": "היכל התרבות נס ציונה",
@@ -112,6 +112,41 @@
       "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%a9%d7%9b%d7%95%d7%a0%d7%aa-%d7%97%d7%99%d7%99%d7%9d-%d7%94%d7%a9%d7%a2%d7%94-%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%a7%d7%99%d7%93%d7%a1/"
     },
     {
+      "showId": 3,
+      "showSlug": "לנקות-את-הראש",
+      "date": "2026-11-23",
+      "hour": "20:30",
+      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa-%d7%90%d7%aa-%d7%94%d7%a8%d7%90%d7%a9-%d7%94%d7%a7%d7%90%d7%9e%d7%a8%d7%99/"
+    },
+    {
+      "showId": 3,
+      "showSlug": "לנקות-את-הראש",
+      "date": "2026-11-24",
+      "hour": "20:30",
+      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%9c%d7%a0%d7%a7%d7%95%d7%aa-%d7%90%d7%aa-%d7%94%d7%a8%d7%90%d7%a9-%d7%94%d7%a7%d7%90%d7%9e%d7%a8%d7%99/"
+    },
+    {
+      "showId": 172,
+      "showSlug": "פינק-ליידי",
+      "date": "2027-01-18",
+      "hour": "20:30",
+      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%a4%d7%99%d7%a0%d7%a7-%d7%9c%d7%99%d7%99%d7%93%d7%99-%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a2/"
+    },
+    {
+      "showId": 172,
+      "showSlug": "פינק-ליידי",
+      "date": "2027-01-19",
+      "hour": "20:30",
+      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%a4%d7%99%d7%a0%d7%a7-%d7%9c%d7%99%d7%99%d7%93%d7%99-%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a2/"
+    },
+    {
+      "showId": 172,
+      "showSlug": "פינק-ליידי",
+      "date": "2027-01-20",
+      "hour": "20:30",
+      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%a4%d7%99%d7%a0%d7%a7-%d7%9c%d7%99%d7%99%d7%93%d7%99-%d7%91%d7%90%d7%a8-%d7%a9%d7%91%d7%a2/"
+    },
+    {
       "showId": 70,
       "showSlug": "קיר-זכוכית",
       "date": "2027-02-02",
@@ -133,6 +168,20 @@
       "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%a7%d7%99%d7%a8-%d7%96%d7%9b%d7%95%d7%9b%d7%99%d7%aa-%d7%91%d7%99%d7%aa-%d7%9c%d7%99%d7%a1%d7%99%d7%9f/"
     },
     {
+      "showId": 31,
+      "showSlug": "השותפה",
+      "date": "2027-02-14",
+      "hour": "20:30",
+      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94-%d7%94%d7%a7%d7%90%d7%9e%d7%a8%d7%99/"
+    },
+    {
+      "showId": 31,
+      "showSlug": "השותפה",
+      "date": "2027-02-15",
+      "hour": "20:30",
+      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%94%d7%a9%d7%95%d7%aa%d7%a4%d7%94-%d7%94%d7%a7%d7%90%d7%9e%d7%a8%d7%99/"
+    },
+    {
       "showId": 438,
       "showSlug": "הדודה-שלי-מרחוב-הנביאים",
       "date": "2027-02-21",
@@ -140,11 +189,39 @@
       "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%94%d7%93%d7%95%d7%93%d7%94-%d7%a9%d7%9c%d7%99-%d7%9e%d7%a8%d7%97%d7%95%d7%91-%d7%94%d7%a0%d7%91%d7%99%d7%90%d7%99%d7%9d-%d7%94%d7%a9%d7%a2%d7%94-%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%a7%d7%99/"
     },
     {
+      "showId": 159,
+      "showSlug": "מישהו-לרוץ-איתו",
+      "date": "2027-03-03",
+      "hour": "20:30",
+      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%9e%d7%99%d7%a9%d7%94%d7%95-%d7%9c%d7%a8%d7%95%d7%a5-%d7%90%d7%99%d7%aa%d7%95-%d7%92%d7%a9%d7%a8/"
+    },
+    {
+      "showId": 159,
+      "showSlug": "מישהו-לרוץ-איתו",
+      "date": "2027-03-04",
+      "hour": "20:30",
+      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%9e%d7%99%d7%a9%d7%94%d7%95-%d7%9c%d7%a8%d7%95%d7%a5-%d7%90%d7%99%d7%aa%d7%95-%d7%92%d7%a9%d7%a8/"
+    },
+    {
       "showId": 436,
       "showSlug": "בגדי-המלך-החדשים",
       "date": "2027-05-17",
       "hour": "17:30",
       "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%91%d7%92%d7%93%d7%99-%d7%94%d7%9e%d7%9c%d7%9a-%d7%94%d7%97%d7%93%d7%a9%d7%99%d7%9d-%d7%94%d7%a9%d7%a2%d7%94-%d7%aa%d7%99%d7%90%d7%98%d7%a8%d7%95%d7%a7%d7%99%d7%93%d7%a1/"
+    },
+    {
+      "showId": 57,
+      "showSlug": "מלאכים-בלבן",
+      "date": "2027-06-01",
+      "hour": "20:30",
+      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%9e%d7%9c%d7%90%d7%9b%d7%99%d7%9d-%d7%91%d7%9c%d7%91%d7%9f-%d7%94%d7%91%d7%99%d7%9e%d7%94/"
+    },
+    {
+      "showId": 57,
+      "showSlug": "מלאכים-בלבן",
+      "date": "2027-06-02",
+      "hour": "20:30",
+      "sourceUrl": "https://tarbut-nz.co.il/מופעים/%d7%9e%d7%9c%d7%90%d7%9b%d7%99%d7%9d-%d7%91%d7%9c%d7%91%d7%9f-%d7%94%d7%91%d7%99%d7%9e%d7%94/"
     }
   ]
 }

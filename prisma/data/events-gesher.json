@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-20T04:33:58.873Z",
+  "scrapedAt": "2026-05-21T04:37:27.839Z",
   "touring": true,
   "events": [
     {
@@ -220,7 +220,7 @@
       "venueName": "תיאטרון גשר",
       "venueCity": "תל אביב-יפו",
       "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=2886",
-      "ticketUrl": "javascript:void(0)"
+      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=2886&DateID=7214"
     },
     {
       "showId": 406,
@@ -351,16 +351,6 @@
       "venueCity": "תל אביב-יפו",
       "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=127",
       "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=127&DateID=7215"
-    },
-    {
-      "showId": 253,
-      "showSlug": "כפר",
-      "date": "2026-05-20",
-      "hour": "20:00",
-      "venueName": "תיאטרון גשר",
-      "venueCity": "תל אביב-יפו",
-      "sourceUrl": "https://www.gesher-theatre.co.il/he/repertoire/a/view/?ContentID=192",
-      "ticketUrl": "https://www.gesher-theatre.co.il/he/checkout/a/payment/?ContentID=192&DateID=7171"
     },
     {
       "showId": 253,

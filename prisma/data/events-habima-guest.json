@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-20T04:41:33.249Z",
+  "scrapedAt": "2026-05-21T04:45:10.252Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון הבימה",
@@ -77,6 +77,14 @@
       "hour": "20:00",
       "sourceUrl": "https://www.habima.co.il/shows/%d7%92%d7%a8%d7%94-%d7%a2%d7%9d-%d7%a7%d7%95%d7%a9%d7%9e%d7%a8%d7%95/",
       "ticketUrl": "https://tickets.habima.co.il/order/50418"
+    },
+    {
+      "showId": 44,
+      "showSlug": "גרה-עם-קושמרו",
+      "date": "2026-07-03",
+      "hour": "12:00",
+      "sourceUrl": "https://www.habima.co.il/shows/%d7%92%d7%a8%d7%94-%d7%a2%d7%9d-%d7%a7%d7%95%d7%a9%d7%9e%d7%a8%d7%95/",
+      "ticketUrl": "https://tickets.habima.co.il/order/50550"
     },
     {
       "showId": 297,
@@ -157,14 +165,6 @@
       "hour": "21:00",
       "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%aa%d7%a7%d7%9c%d7%94/",
       "ticketUrl": "https://tickets.habima.co.il/order/50329"
-    },
-    {
-      "showId": 37,
-      "showSlug": "התקלה",
-      "date": "2026-06-01",
-      "hour": "20:00",
-      "sourceUrl": "https://www.habima.co.il/shows/%d7%94%d7%aa%d7%a7%d7%9c%d7%94/",
-      "ticketUrl": "https://tickets.habima.co.il/order/50426"
     },
     {
       "showId": 37,
@@ -325,14 +325,6 @@
       "hour": "12:00",
       "sourceUrl": "https://www.habima.co.il/shows/%d7%a0%d7%a4%d7%a9/",
       "ticketUrl": "https://tickets.habima.co.il/order/50514"
-    },
-    {
-      "showId": 46,
-      "showSlug": "פציעות-קטנות",
-      "date": "2026-05-20",
-      "hour": "20:00",
-      "sourceUrl": "https://www.habima.co.il/shows/%d7%a4%d7%a6%d7%99%d7%a2%d7%95%d7%aa-%d7%a7%d7%98%d7%a0%d7%95%d7%aa/",
-      "ticketUrl": "https://tickets.habima.co.il/order/50406"
     },
     {
       "showId": 46,

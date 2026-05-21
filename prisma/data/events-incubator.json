@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-20T04:36:17.861Z",
+  "scrapedAt": "2026-05-21T04:39:55.707Z",
   "touring": true,
   "events": [
     {
@@ -111,16 +111,6 @@
       "venueCity": "תל אביב",
       "sourceUrl": "https://incubator.org.il/repertoire/anti-aging/",
       "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/202"
-    },
-    {
-      "showId": 367,
-      "showSlug": "אסתר",
-      "date": "2026-05-20",
-      "hour": "20:30",
-      "venueName": "צוותא",
-      "venueCity": "תל אביב",
-      "sourceUrl": "https://incubator.org.il/repertoire/ester/",
-      "ticketUrl": "https://incubator.smarticket.co.il/iframe/event/172"
     },
     {
       "showId": 367,

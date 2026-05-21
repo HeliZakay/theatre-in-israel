@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-20T04:36:32.140Z",
+  "scrapedAt": "2026-05-21T04:40:20.788Z",
   "venue": {
     "name": "תיאטרון הקאמרי",
     "city": "תל אביב"
@@ -412,14 +412,6 @@
     {
       "showId": 28,
       "showSlug": "הלווייתן",
-      "date": "2026-05-20",
-      "hour": "19:30",
-      "note": "English subtitles",
-      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%99%d7%aa%d7%9f/"
-    },
-    {
-      "showId": 28,
-      "showSlug": "הלווייתן",
       "date": "2026-06-22",
       "hour": "19:00",
       "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%9c%d7%95%d7%95%d7%99%d7%99%d7%aa%d7%9f/"
@@ -498,6 +490,27 @@
       "hour": "19:30",
       "note": "כתוביות בעברית",
       "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a0%d7%a4%d7%a9_%d7%94%d7%98%d7%95%d7%91%d7%94_%d7%9e%d7%a1%d7%a6%d7%95%d7%90%d7%9f/"
+    },
+    {
+      "showId": 13,
+      "showSlug": "הציפור-הכחולה",
+      "date": "2026-07-28",
+      "hour": "10:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a6%d7%99%d7%a4%d7%95%d7%a8_%d7%94%d7%9b%d7%97%d7%95%d7%9c%d7%94/"
+    },
+    {
+      "showId": 13,
+      "showSlug": "הציפור-הכחולה",
+      "date": "2026-07-28",
+      "hour": "13:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a6%d7%99%d7%a4%d7%95%d7%a8_%d7%94%d7%9b%d7%97%d7%95%d7%9c%d7%94/"
+    },
+    {
+      "showId": 13,
+      "showSlug": "הציפור-הכחולה",
+      "date": "2026-07-28",
+      "hour": "16:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%94%d7%a6%d7%99%d7%a4%d7%95%d7%a8_%d7%94%d7%9b%d7%97%d7%95%d7%9c%d7%94/"
     },
     {
       "showId": 21,
@@ -1249,6 +1262,48 @@
       "hour": "20:00",
       "note": "כתוביות בעברית",
       "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a1%d7%95%d7%a1_%d7%90%d7%97%d7%93_%d7%a0%d7%9b%d7%a0%d7%a1_%d7%9c%d7%91%d7%a8/"
+    },
+    {
+      "showId": 14,
+      "showSlug": "עוץ-לי-גוץ-לי",
+      "date": "2026-07-27",
+      "hour": "10:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a2%d7%95%d7%a5_%d7%9c%d7%99_%d7%92%d7%95%d7%a5_%d7%9c%d7%99/"
+    },
+    {
+      "showId": 14,
+      "showSlug": "עוץ-לי-גוץ-לי",
+      "date": "2026-07-27",
+      "hour": "13:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a2%d7%95%d7%a5_%d7%9c%d7%99_%d7%92%d7%95%d7%a5_%d7%9c%d7%99/"
+    },
+    {
+      "showId": 14,
+      "showSlug": "עוץ-לי-גוץ-לי",
+      "date": "2026-07-27",
+      "hour": "17:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a2%d7%95%d7%a5_%d7%9c%d7%99_%d7%92%d7%95%d7%a5_%d7%9c%d7%99/"
+    },
+    {
+      "showId": 12,
+      "showSlug": "פיטר-פן",
+      "date": "2026-07-26",
+      "hour": "10:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a4%d7%99%d7%98%d7%a8_%d7%a4%d7%9f/"
+    },
+    {
+      "showId": 12,
+      "showSlug": "פיטר-פן",
+      "date": "2026-07-26",
+      "hour": "13:00",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a4%d7%99%d7%98%d7%a8_%d7%a4%d7%9f/"
+    },
+    {
+      "showId": 12,
+      "showSlug": "פיטר-פן",
+      "date": "2026-07-26",
+      "hour": "16:30",
+      "sourceUrl": "https://www.cameri.co.il/הצגות_הקאמרי/%d7%a4%d7%99%d7%98%d7%a8_%d7%a4%d7%9f/"
     },
     {
       "showId": 10,

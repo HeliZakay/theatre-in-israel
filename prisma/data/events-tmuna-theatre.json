@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-20T04:35:34.445Z",
+  "scrapedAt": "2026-05-21T04:39:09.554Z",
   "venueSource": true,
   "venue": {
     "name": "תיאטרון תמונע",
@@ -193,14 +193,6 @@
       "hour": "20:00",
       "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=6158",
       "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25798"
-    },
-    {
-      "showId": 417,
-      "showSlug": "המדריך-לגידול-המת",
-      "date": "2026-05-20",
-      "hour": "20:00",
-      "sourceUrl": "https://www.tmu-na.org.il/?CategoryID=220&ArticleID=5956",
-      "ticketUrl": "https://www.tmu-na.org.il/?pg=BuyTicket&EventCode=25799"
     },
     {
       "showId": 417,
